@@ -158,7 +158,7 @@ class UserService {
             $id = $_SESSION[$this->getSessionKey()] = $row[$this->getFieldName('primary')];
             if ($remember) {
                 $cookie = $id .':'. md5($username.$password);
-                setcookie($this->cookiekey, $cookie, time() + $this->cookietime);
+                setcookie($this->cookiekey, $cookie, time() + $this->cookietime, '/');
             }
             return true;
         } else {
@@ -167,8 +167,8 @@ class UserService {
     }
 
     function logout() {
-        @setcookie($this->cookiekey, NULL, time() - 1);
-        unset($_COOKIE[$this->cookiekey]);
+        @setcookie($this->getCookiekey(), '', time() - 1, '/');
+        unset($_COOKIE[$this->getCookiekey()]);
         session_unset();
         $this->getCurrentUser(TRUE, false);
     }
