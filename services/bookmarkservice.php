@@ -1,6 +1,7 @@
 <?php
 class BookmarkService {
     var $db;
+    var $tablename;
 
     function & getInstance(& $db) {
         static $instance;
@@ -11,6 +12,7 @@ class BookmarkService {
 
     function BookmarkService(& $db) {
         $this->db = & $db;
+	$this->tablename = $GLOBALS['tableprefix'] .'bookmarks';
     }
 
     function _getbookmark($fieldname, $value, $all = false) {
@@ -20,7 +22,7 @@ class BookmarkService {
             $range = ' AND uId = '. $sId;
         }
 
-        $query = 'SELECT * FROM '. $GLOBALS['tableprefix'] .'bookmarks WHERE '. $fieldname .' = "'. $this->db->sql_escape($value) .'"'. $range;
+        $query = 'SELECT * FROM '. $this->getTableName() .' WHERE '. $fieldname .' = "'. $this->db->sql_escape($value) .'"'. $range;
 
         if (!($dbresult = & $this->db->sql_query_limit($query, 1, 0))) {
             message_die(GENERAL_ERROR, 'Could not get bookmark', '', __LINE__, __FILE__, $query, $this->db);
@@ -38,7 +40,7 @@ class BookmarkService {
         if (!is_numeric($bid))
             return;
 
-        $sql = 'SELECT * FROM '. $GLOBALS['tableprefix'] .'bookmarks WHERE bId = '. $this->db->sql_escape($bid);
+        $sql = 'SELECT * FROM '. $this->getTableName() .' WHERE bId = '. $this->db->sql_escape($bid);
 
         if (!($dbresult = & $this->db->sql_query($sql)))
             message_die(GENERAL_ERROR, 'Could not get vars', '', __LINE__, __FILE__, $sql, $this->db);
@@ -103,9 +105,11 @@ class BookmarkService {
 
     // Adds a bookmark to the database.
     // Note that date is expected to be a string that's interpretable by strtotime().
-    function addBookmark($address, $title, $description, $status, $categories, $date = NULL, $fromApi = false, $fromImport = false) {
-        $userservice = & ServiceFactory :: getServiceInstance('UserService');
-        $sId = $userservice->getCurrentUserId();
+    function addBookmark($address, $title, $description, $status, $categories, $date = NULL, $fromApi = false, $fromImport = false, $sId = -1) {
+	if($sId == -1) {
+	    $userservice = & ServiceFactory :: getServiceInstance('UserService');
+            $sId = $userservice->getCurrentUserId();
+	}
 
         // If bookmark address doesn't contain ":", add "http://" to the start as a default protocol
         if (strpos($address, ':') === false) {
@@ -131,7 +135,7 @@ class BookmarkService {
 
         // Set up the SQL insert statement and execute it.
         $values = array('uId' => intval($sId), 'bIp' => $ip, 'bDatetime' => $datetime, 'bModified' => $datetime, 'bTitle' => $title, 'bAddress' => $address, 'bDescription' => $description, 'bStatus' => intval($status), 'bHash' => md5($address));
-        $sql = 'INSERT INTO '. $GLOBALS['tableprefix'] .'bookmarks '. $this->db->sql_build_array('INSERT', $values);
+        $sql = 'INSERT INTO '. $this->getTableName() .' '. $this->db->sql_build_array('INSERT', $values);
         $this->db->sql_transaction('begin');
         if (!($dbresult = & $this->db->sql_query($sql))) {
             $this->db->sql_transaction('rollback');
@@ -220,6 +224,7 @@ class BookmarkService {
         //  - if the $user is set and IS the logged-in user, then get all bookmarks.
         $userservice =& ServiceFactory::getServiceInstance('UserService');
         $tagservice =& ServiceFactory::getServiceInstance('TagService');
+	$tag2tagservice =& ServiceFactory::getServiceInstance('Tag2TagService');
         $sId = $userservice->getCurrentUserId();
 
         if ($userservice->isLoggedOn()) {
@@ -252,7 +257,7 @@ class BookmarkService {
         }
         $query_1 .= 'B.*, U.'. $userservice->getFieldName('username');
 
-        $query_2 = ' FROM '. $userservice->getTableName() .' AS U, '. $GLOBALS['tableprefix'] .'bookmarks AS B';
+        $query_2 = ' FROM '. $userservice->getTableName() .' AS U, '. $this->getTableName() .' AS B';
 
         $query_3 = ' WHERE B.uId = U.'. $userservice->getFieldName('primary') . $privacy;
         if (is_null($watched)) {
@@ -295,8 +300,23 @@ class BookmarkService {
         // Handle the parts of the query that depend on any tags that are present.
         $query_4 = '';
         for ($i = 0; $i < $tagcount; $i ++) {
-            $query_2 .= ', '. $GLOBALS['tableprefix'] .'tags AS T'. $i;
-            $query_4 .= ' AND T'. $i .'.tag = "'. $this->db->sql_escape($tags[$i]) .'" AND T'. $i .'.bId = B.bId';
+            $query_2 .= ', '. $tagservice->getTableName() .' AS T'. $i;
+            $query_4 .= ' AND (';
+
+	    $allLinkedTags = $tag2tagservice->getAllLinkedTags($this->db->sql_escape($tags[$i]), '>', $user);
+	    while (count($allLinkedTags)>1) {
+		$query_4 .= ' T'. $i .'.tag = "'. array_pop($allLinkedTags) .'"';
+		$query_4 .= ' OR';
+	    }
+	    if(is_array($allLinkedTags)) {
+		$query_4 .= ' T'. $i .'.tag = "'. array_pop($allLinkedTags) .'"';
+	    } else {
+		$query_4 .= ' T'. $i .'.tag = "'. $allLinkedTags .'"';
+	    }
+	    
+            
+            $query_4 .= ') AND T'. $i .'.bId = B.bId';
+//die($query_4);
         }
 
         // Search terms
@@ -307,7 +327,7 @@ class BookmarkService {
 
             // Search terms in tags as well when none given
             if (!count($tags)) {
-                $query_2 .= ' LEFT JOIN '. $GLOBALS['tableprefix'] .'tags AS T ON B.bId = T.bId';
+                $query_2 .= ' LEFT JOIN '. $tagservice->getTableName() .' AS T ON B.bId = T.bId';
                 $dotags = true;
             } else {
                 $dotags = false;
@@ -336,8 +356,8 @@ class BookmarkService {
         if ($hash) {
             $query_4 .= ' AND B.bHash = "'. $hash .'"';
         }
-
         $query = $query_1 . $query_2 . $query_3 . $query_4 . $query_5;
+//die($query);
         if (!($dbresult = & $this->db->sql_query_limit($query, intval($perpage), intval($start)))) {
             message_die(GENERAL_ERROR, 'Could not get bookmarks', '', __LINE__, __FILE__, $query, $this->db);
             return false;
@@ -412,5 +432,18 @@ class BookmarkService {
         }
         return $this->db->sql_fetchfield(0, 0) - 1;
     }
+
+    function deleteAll() {
+	$query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';
+	$this->db->sql_query($query);
+    }
+
+    // Properties
+    function getTableName()       { return $this->tablename; }
+    function setTableName($value) { $this->tablename = $value; }
+
 }
+
+
+
 ?>

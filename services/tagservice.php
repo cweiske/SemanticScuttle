@@ -86,6 +86,25 @@ class TagService {
             }
         }
 
+	// Create links between tags
+	foreach($tags as $key => $tag) {
+	    // case ">"
+	    $pieces = explode('>', $tag);
+	    $nbPieces = count($pieces);
+	    if($nbPieces > 1) {
+		for($i = 0; $i < $nbPieces-1; $i++) {
+		    $bs =& ServiceFactory::getServiceInstance('BookmarkService');
+		    $tts =& ServiceFactory::getServiceInstance('Tag2TagService');
+		    
+		    $bookmark = $bs->getBookmark($bookmarkid);
+		    $uId = $bookmark['uId'];
+		    $tts->addLinkedTags($pieces[$i], $pieces[$i+1], '>', $uId);
+		}
+		$tags[$key] = $pieces[$nbPieces-1]; // Attach just the last tag to the bookmark
+	    }
+
+	}
+
         // Add the categories to the DB.
         for ($i = 0; $i < count($tags); $i++) {
             if ($tags[$i] != '') {
@@ -355,6 +374,12 @@ class TagService {
 
         return $output;
     }
+
+    function deleteAll() {
+	$query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';
+	$this->db->sql_query($query);
+    }
+
 
     // Properties
     function getTableName()       { return $this->tablename; }

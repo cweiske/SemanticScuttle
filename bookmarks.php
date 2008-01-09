@@ -173,9 +173,11 @@ if ($templatename == 'editbookmark.tpl') {
     if (!$cat) {
         $cat = NULL;
         $tplVars['currenttag'] = NULL; 
+	$tplVars['sidebar_blocks'][] = 'linked'; //test
     } else {
         $rssCat = '/'. filter($cat, 'url');
         $tplVars['currenttag'] = $cat;
+	$tplVars['sidebar_blocks'][] = 'linked';
         $tplVars['sidebar_blocks'][] = 'related';
         $tplVars['sidebar_blocks'][] = 'tagactions';
     }

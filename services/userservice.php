@@ -20,7 +20,7 @@ class UserService {
     var $cookiekey;
     var $cookietime = 1209600; // 2 weeks
 
-    function UserService(&$db) {
+    function UserService(& $db) {
         $this->db =& $db;
         $this->tablename = $GLOBALS['tableprefix'] .'users';
         $this->sessionkey = $GLOBALS['cookieprefix'] .'-currentuserid';

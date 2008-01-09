@@ -66,3 +66,19 @@ CREATE TABLE `sc_watched` (
   PRIMARY KEY  (`wId`),
   KEY `sc_watched_uId` (`uId`)
 );
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `sc_tags_tags`
+-- 
+
+CREATE TABLE `sc_tags2tags` (
+  `ttId` int(11) NOT NULL auto_increment,
+  `tag1` varchar(32) NOT NULL default '',
+  `tag2` varchar(32) NOT NULL default '',
+  `relationType` varchar(32) NOT NULL default '',
+  `uId` int(11) NOT NULL default '0',
+  PRIMARY KEY (`ttId`),
+  UNIQUE KEY `sc_tags2tags_tag1_tag2_uId` (`tag1`,`tag2`,`relationType`,`uId`)
+);
