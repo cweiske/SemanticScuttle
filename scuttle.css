@@ -166,6 +166,9 @@ div.link a {
 div.link a:visited {
     color: purple;
 }
+div.address {
+    color: #285;
+}
 div.meta {
     color: #285;
 }
