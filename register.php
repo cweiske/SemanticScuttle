@@ -44,6 +44,10 @@ if ($_POST['submitted']) {
     } elseif (!$userservice->isValidEmail($_POST['email'])) {
         $tplVars['error'] = T_('E-mail address is not valid. Please try again.');
 
+    // Check if antispam answer is valid
+    } elseif (strcmp($antispamAnswer, $GLOBALS['antispamAnswer']) != 0) {
+        $tplVars['error'] = T_('Antispam answer is not valid. Please try again.');
+
     // Register details
     } elseif ($userservice->addUser($posteduser, $_POST['password'], $_POST['email'])) {
         // Log in with new username
@@ -57,6 +61,7 @@ if ($_POST['submitted']) {
     }
 }
 
+$tplVars['antispamQuestion'] = $GLOBALS['antispamQuestion'];
 $tplVars['loadjs']      = true;
 $tplVars['subtitle']    = T_('Register');
 $tplVars['formaction']  = createURL('register');

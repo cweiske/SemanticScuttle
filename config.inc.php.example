@@ -84,6 +84,9 @@ $dbname = 'scuttle';
 # filetypes    : An array of bookmark extensions that Scuttle should
 #                add system tags for.
 # reservedusers : An array of usernames that cannot be registered
+#
+# antispamQuestion: A question to avoid spam
+# antispamAnswer: The answer to the question (users have to put exactly the same answer)
 ######################################################################
 
 $sitename           = 'SemanticScuttle';
@@ -117,6 +120,9 @@ $filetypes          = array(
                         'video' => array('avi', 'mov', 'mp4', 'mpeg', 'mpg', 'wmv')
                         );
 $reservedusers      = array('all', 'watchlist');
+
+$antispamQuestion = 'Put here the answer to 1 + 2 + 3';
+$antispamAnswer = '6';
 
 include_once('debug.inc.php');
 ?>
