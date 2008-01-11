@@ -62,6 +62,22 @@ class UserService {
             return false;
     }
 
+    function & getUsers($nb=0) {
+        $query = 'SELECT * FROM '. $this->getTableName() .' ORDER BY `uId` DESC';
+	if($nb>0) {
+	    $query .= ' LIMIT 0, '.$nb;
+	}
+        if (! ($dbresult =& $this->db->sql_query($query)) ) {
+            message_die(GENERAL_ERROR, 'Could not get user', '', __LINE__, __FILE__, $query, $this->db);
+            return false;
+        }
+
+        while ($row = & $this->db->sql_fetchrow($dbresult)) {
+	    $users[] = $row;
+	}
+        return $users;
+    }
+
     function _randompassword() {
         $seed = (integer) md5(microtime());
         mt_srand($seed);
