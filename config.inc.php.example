@@ -39,6 +39,7 @@ $dbname = 'scuttle';
 # System Configuration
 #
 # sitename:         The name of this site.
+# welcomeMessage:   The welcome message (or tagline) of this site
 # locale:           The locale used.
 # top_include:      The header file.
 # bottom_include:   The footer file.
@@ -85,7 +86,8 @@ $dbname = 'scuttle';
 # reservedusers : An array of usernames that cannot be registered
 ######################################################################
 
-$sitename           = 'Scuttle';
+$sitename           = 'SemanticScuttle';
+$welcomeMessage     = 'More than tags...';
 $locale             = 'en_GB';
 $top_include        = 'top.inc.php';
 $bottom_include     = 'bottom.inc.php';

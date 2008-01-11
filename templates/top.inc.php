@@ -32,6 +32,7 @@ if(isset($_GET['popup'])) {
         $this->includeTemplate('toolbar.inc');
     }
     ?>
+<span id="welcome"><?php echo $GLOBALS['welcomeMessage'];?></span>
 </div>
 
 <?php

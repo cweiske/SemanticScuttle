@@ -104,6 +104,10 @@ html > body div#header.popup h1 {
     background: url('logo_24.png') no-repeat 10px;
     padding: 0.5em 0.5em 0.5em 50px;
 }
+html > body div#header #welcome {
+    position:absolute;
+    left:75px;
+}
 h1 a {
     color: #000;
 }
