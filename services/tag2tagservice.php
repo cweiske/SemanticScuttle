@@ -88,14 +88,18 @@ class Tag2TagService {
 	return $output;
     }
 
-    function getOrphewTags($relationType, $uId) {
+    function getOrphewTags($relationType, $uId = 0) {
 	$query = "SELECT DISTINCT tag1 as tag FROM `". $this->getTableName() ."`";
 	$query.= " WHERE tag1 <> ALL";
 	$query.= " (SELECT DISTINCT tag2 FROM `". $this->getTableName() ."`";
 	$query.= " WHERE relationType = '".$relationType."'";
-	$query.= " AND uId = '".$uId."'";
+	if($uId > 0) {
+	    $query.= " AND uId = '".$uId."'";
+	}
 	$query.= ")";
-	$query.= " AND uId = '".$uId."'";
+	if($uId > 0) {
+	    $query.= " AND uId = '".$uId."'";
+	}
 
 	//die($query);
 

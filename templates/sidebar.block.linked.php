@@ -64,7 +64,11 @@ if(count($explodedTags) > 0) {
 <div id="linked">
     <table>
     <?php
-	$editingMode = ($userid === $logged_on_userid);
+	if(($logged_on_userid != null) && ($userid === $logged_on_userid)) {
+	    $editingMode = true;
+	} else {
+	    $editingMode = false;
+	}
 	foreach($explodedTags as $explodedTag) {
 		echo displayLinkedTags($explodedTag, '>', $userid, $cat_url, $user, $editingMode);
 	}

@@ -24,12 +24,20 @@ $tag2tagservice = & ServiceFactory :: getServiceInstance('Tag2TagService');
 $templateservice = & ServiceFactory :: getServiceInstance('TemplateService');
 $userservice = & ServiceFactory :: getServiceInstance('UserService');
 
+$logged_on_user = $userservice->getCurrentUser();
+
+//permissions
+if($logged_on_user == null) {
+    $tplVars['error'] = T_('Permission denied.');
+    $templateservice->loadTemplate('error.500.tpl', $tplVars);
+    exit();
+}
+
 list ($url, $tag1, $tag2) = explode('/', $_SERVER['PATH_INFO']);
 
 if ($_POST['confirm']) {
     if ($tag2tagservice->removeLinkedTags($_POST['tag1'], $_POST['tag2'], '>', $userservice->getCurrentUserId())) {
         $tplVars['msg'] = T_('Tag link deleted');
-        $logged_on_user = $userservice->getCurrentUser();
         header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')]));
     } else {
         $tplVars['error'] = T_('Failed to delete the link');
@@ -37,7 +45,6 @@ if ($_POST['confirm']) {
         exit();
     }
 } elseif ($_POST['cancel']) {
-    $logged_on_user = $userservice->getCurrentUser();
     header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')] .'/'. $tags));
 }
 

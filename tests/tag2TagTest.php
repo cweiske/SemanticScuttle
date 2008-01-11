@@ -57,6 +57,9 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$this->assertEquals(2, sizeof($orphewTags));
 	$this->assertSame('a', $orphewTags[0]['tag']);
 	$this->assertSame('f', $orphewTags[1]['tag']);
+	$orphewTags = $tts->getOrphewTags('>');
+	$this->assertEquals(2, sizeof($orphewTags));
+	$this->assertSame('f', $orphewTags[0]['tag']);
 	
 	$linkedTags = $tts->getLinkedTags('a', '>', 1);
 	$this->assertSame(array('b', 'c'), $linkedTags);
@@ -66,6 +69,8 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$tts->removeLinkedTags('a', 'c', '>', 1);
 	$linkedTags = $tts->getLinkedTags('a', '>', 1);
 	$this->assertEquals(0, sizeof($linkedTags));
+	$linkedTags = $tts->getLinkedTags('a', '>');
+	$this->assertSame(array('b', 'c', 'd'), $linkedTags);
     }
 
    public function testAddLinkedTagsThroughBookmarking()
