@@ -37,7 +37,7 @@
         <?php
         }
         ?>
-        <td><input type="text" name="terms" size="50" value="<?php echo filter($terms); ?>" /></td>
+        <td><input type="text" name="terms" size="30" value="<?php echo filter($terms); ?>" /></td>
         <td><input type="submit" value="<?php echo T_('Search' /* Submit button */); ?>" /></td>
     </tr>
     </table>

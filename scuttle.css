@@ -346,10 +346,14 @@ form {
 	margin: 0;
 }
 form#search {
-	background: #FFF;
-	color: #555;
-	font-size: small;
-	margin-bottom: 1em;
+       margin-right: 0.75em;
+       color: #CCC;
+       font-size: small;
+       float: right;
+       margin: 0;
+       position: absolute;
+       right: 0;
+       top: 6.4em;
 }
 form label,
 form td,
@@ -376,16 +380,16 @@ p {
     margin: 1em;
 }
 p#sort {
-    color: #CCC;
+    /*color: #CCC;*/
     font-size: small;
-    float: right;
-    margin: 0;
-    position: absolute;
+    /*float: right;*/
+    /*margin: 0;*/
+    /*position: absolute;*/
     right: 0;
     top: 7em;
 }
 html > body p#sort {
-    margin-right: 0.75em;
+    /*margin-right: 0.75em;*/
 }
 p#sort a {
     background: #AAA;
