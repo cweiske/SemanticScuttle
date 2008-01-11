@@ -62,7 +62,7 @@ if (isset($_GET['page']) && intval($_GET['page']) > 1) {
 }
 
 $dtend = date('Y-m-d H:i:s', strtotime('tomorrow'));
-$dtstart = date('Y-m-d H:i:s', strtotime($dtend .' -'. $defaultRecentDays .' days'));
+/*$dtstart = date('Y-m-d H:i:s', strtotime($dtend .' -'. $defaultRecentDays .' days'));*/
 
 $tplVars['page'] = $page;
 $tplVars['start'] = $start;
@@ -72,7 +72,7 @@ $tplVars['range'] = 'all';
 $tplVars['pagetitle'] = T_('Store, share and tag your favourite links');
 $tplVars['subtitle'] = T_('Recent Bookmarks');
 $tplVars['bookmarkCount'] = $start + 1;
-$bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, NULL, NULL, NULL, getSortOrder(), NULL, $dtstart, $dtend);
+$bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, NULL, NULL, NULL, getSortOrder(), NULL, 0, $dtend);
 $tplVars['total'] = $bookmarks['total'];
 $tplVars['bookmarks'] =& $bookmarks['bookmarks'];
 $tplVars['cat_url'] = createURL('tags', '%2$s');
