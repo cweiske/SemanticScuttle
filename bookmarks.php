@@ -177,9 +177,9 @@ if ($templatename == 'editbookmark.tpl') {
     } else {
         $rssCat = '/'. filter($cat, 'url');
         $tplVars['currenttag'] = $cat;
+        $tplVars['sidebar_blocks'][] = 'tagactions';
 	$tplVars['sidebar_blocks'][] = 'linked';
         $tplVars['sidebar_blocks'][] = 'related';
-        $tplVars['sidebar_blocks'][] = 'tagactions';
     }
     $tplVars['popCount'] = 30;
     $tplVars['sidebar_blocks'][] = 'popular';
