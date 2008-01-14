@@ -75,7 +75,7 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
                 }
                 exit();
             } else {
-                $tplVars['error'] = T_('Failed to delete the bookmark');
+                $tplVars['error'] = T_('Failed to delete bookmark');
                 $templateservice->loadTemplate('error.500.tpl', $tplVars);
                 exit();
             }

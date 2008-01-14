@@ -4,7 +4,7 @@ $this->includeTemplate($GLOBALS['top_include']);
 
 <form action="<?= $formaction ?>" method="post">
 <input type="hidden" name="tag" value="<?php echo $tag ?>" />
-<p><?php echo T_('Create new link :')?></p>
+<p><?php echo T_('Create new link:')?></p>
 <p><?php echo $tag ?> > <input type="text" name="newTag" /></p>
 <!--p><?php echo T_('Are you sure?'); ?></p-->
 <p>
