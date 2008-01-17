@@ -31,14 +31,14 @@ class Tag2TagService {
 	return true;
     }
 
-    function getLinkedTags($tag1, $relationType, $uId) {
+    function getLinkedTags($tag1, $relationType, $uId = -1) {
 	// Set up the SQL query.
         $query = "SELECT DISTINCT tag2 as 'tag' FROM `". $this->getTableName() ."`";
 	$query.= " WHERE tag1 = '" .$tag1 ."'";
 	if($relationType) {
 	    $query.= " AND relationType = '". $relationType ."'";
 	}
-	if($uId) {
+	if($uId>0) {
 	    $query.= " AND uId = '".$uId."'";
 	}
 
