@@ -37,7 +37,7 @@ CREATE TABLE `sc_tags` (
 -- --------------------------------------------------------
 
 -- 
--- Table structure for table `scUsers`
+-- Table structure for table `sc_users`
 -- 
 
 CREATE TABLE `sc_users` (
@@ -70,7 +70,7 @@ CREATE TABLE `sc_watched` (
 -- --------------------------------------------------------
 
 -- 
--- Table structure for table `sc_tags_tags`
+-- Table structure for table `sc_tags2tags`
 -- 
 
 CREATE TABLE `sc_tags2tags` (
