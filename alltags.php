@@ -75,6 +75,9 @@ if (isset($userid)) {
     $tplVars['cat_url'] = createURL('tags', '%2$s');
 }
 
+$tplVars['sidebar_blocks'] = array('linked');
+$tplVars['userid'] = $userid;
+
 $tplVars['subtitle'] = $pagetitle;
 $templateservice->loadTemplate('tags.tpl', $tplVars);
 

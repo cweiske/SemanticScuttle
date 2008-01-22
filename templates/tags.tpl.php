@@ -23,5 +23,6 @@ echo $contents ."\n";
 
 <?php
 }
+$this->includeTemplate('sidebar.tpl');
 $this->includeTemplate($GLOBALS['bottom_include']);
 ?>

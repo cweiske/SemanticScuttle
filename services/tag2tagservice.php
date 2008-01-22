@@ -28,17 +28,35 @@ class Tag2TagService {
                 return false;
         }
 	$this->db->sql_transaction('commit');
+
+	// Update stats
+	$tsts =& ServiceFactory::getServiceInstance('TagStatService');
+	$tsts->updateStat($tag1, $relationType, $uId);
+
 	return true;
     }
 
-    function getLinkedTags($tag1, $relationType, $uId = -1) {
+    // Return the target linked tags. If inverseRelation is true, return the source linked tags.
+    function getLinkedTags($tag, $relationType, $uId = null, $inverseRelation = false) {
 	// Set up the SQL query.
-        $query = "SELECT DISTINCT tag2 as 'tag' FROM `". $this->getTableName() ."`";
-	$query.= " WHERE tag1 = '" .$tag1 ."'";
+	if($inverseRelation) {
+	    $queriedTag = "tag1";
+	    $givenTag = "tag2";
+	} else {
+	    $queriedTag = "tag2";
+	    $givenTag = "tag1";	
+	}
+
+        $query = "SELECT DISTINCT ". $queriedTag ." as 'tag'";
+	$query.= " FROM `". $this->getTableName() ."`";
+	$query.= " WHERE 1=1";
+	if($tag !=null) {
+	    $query.= " AND ". $givenTag ." = '". $tag ."'";
+	}
 	if($relationType) {
 	    $query.= " AND relationType = '". $relationType ."'";
 	}
-	if($uId>0) {
+	if($uId != null) {
 	    $query.= " AND uId = '".$uId."'";
 	}
 
@@ -88,9 +106,14 @@ class Tag2TagService {
 	return $output;
     }
 
-    function getOrphewTags($relationType, $uId = 0) {
-	$query = "SELECT DISTINCT tag1 as tag FROM `". $this->getTableName() ."`";
-	$query.= " WHERE tag1 <> ALL";
+    function getOrphewTags($relationType, $uId = 0, $limit = null, $orderBy = null) {
+	$query = "SELECT DISTINCT tts.tag1 as tag";
+	$query.= " FROM `". $this->getTableName() ."` tts";
+	if($orderBy != null) {
+	   $tsts =& ServiceFactory::getServiceInstance('TagStatService');
+	   $query.= ", ".$tsts->getTableName() ." tsts";
+	}
+	$query.= " WHERE tts.tag1 <> ALL";
 	$query.= " (SELECT DISTINCT tag2 FROM `". $this->getTableName() ."`";
 	$query.= " WHERE relationType = '".$relationType."'";
 	if($uId > 0) {
@@ -98,12 +121,41 @@ class Tag2TagService {
 	}
 	$query.= ")";
 	if($uId > 0) {
-	    $query.= " AND uId = '".$uId."'";
+	    $query.= " AND tts.uId = '".$uId."'";
 	}
 
-	//die($query);
+	switch($orderBy) {
+	  case "nb":
+	    $query.= " AND tts.tag1 = tsts.tag1";
+	    $query.= " AND tsts.relationType = '".$relationType."'";
+	    if($uId > 0) {
+	        $query.= " AND tsts.uId = ".$uId;
+	    }
+	    $query.= " ORDER BY tsts.nb DESC";
+	    break;
+	  case "depth": // by nb of descendants
+	    $query.= " AND tts.tag1 = tsts.tag1";
+	    $query.= " AND tsts.relationType = '".$relationType."'";
+	    if($uId > 0) {
+	        $query.= " AND tsts.uId = ".$uId;
+	    }
+	    $query.= " ORDER BY tsts.depth DESC";
+	    break;
+	  case "nbupdate":
+	    $query.= " AND tts.tag1 = tsts.tag1";
+	    $query.= " AND tsts.relationType = '".$relationType."'";
+	    if($uId > 0) {
+	        $query.= " AND tsts.uId = ".$uId;
+	    }
+	    $query.= " ORDER BY tsts.nbupdate DESC";
+	    break;
+	}
 
-        if (! ($dbresult =& $this->db->sql_query_limit($query, $limit)) ){
+	if($limit != null) {
+	    $query.= " LIMIT 0,".$limit;
+	}
+
+        if (! ($dbresult =& $this->db->sql_query($query)) ){
             message_die(GENERAL_ERROR, 'Could not get linked tags', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -117,7 +169,7 @@ class Tag2TagService {
 	$query.= " AND relationType = '". $relationType ."'";
 	$query.= " AND uId = '".$uId."'";
 
-        return $this->db->sql_numrows($dbresult) > 0;
+        return $this->db->sql_numrows($this->db->sql_query($query)) > 0;
     }
 
     function removeLinkedTags($tag1, $tag2, $relationType, $uId) {
@@ -132,12 +184,19 @@ class Tag2TagService {
             return false;
         }
 
+	// Update stats
+	$tsts =& ServiceFactory::getServiceInstance('TagStatService');
+	$tsts->updateStat($tag1, $relationType, $uId);
+
         return true;
     }
 
     function deleteAll() {
 	$query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';
 	$this->db->sql_query($query);
+
+	$tsts =& ServiceFactory::getServiceInstance('TagStatService');
+	$tsts->deleteAll();
     }
 
     // Properties

@@ -26,6 +26,8 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$this->ts->deleteAll();
 	$this->tts =& ServiceFactory::getServiceInstance('Tag2TagService');
 	$this->tts->deleteAll(); 
+	$this->tsts =& ServiceFactory::getServiceInstance('TagStatService');
+	$this->tsts->deleteAll();
     }
  
     public function testManipulateTag2TagRelations()
@@ -58,9 +60,11 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$this->assertSame('a', $orphewTags[0]['tag']);
 	$this->assertSame('f', $orphewTags[1]['tag']);
 	$orphewTags = $tts->getOrphewTags('>');
-	$this->assertEquals(2, sizeof($orphewTags));
+	$this->assertEquals(1, sizeof($orphewTags));
 	$this->assertSame('f', $orphewTags[0]['tag']);
 	
+	$linkedTags = $tts->getLinkedTags('a', '>');
+	$this->assertSame(array('b', 'c', 'd'), $linkedTags);
 	$linkedTags = $tts->getLinkedTags('a', '>', 1);
 	$this->assertSame(array('b', 'c'), $linkedTags);
 	$tts->removeLinkedTags('a', 'b', '>', 1);
@@ -69,8 +73,48 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$tts->removeLinkedTags('a', 'c', '>', 1);
 	$linkedTags = $tts->getLinkedTags('a', '>', 1);
 	$this->assertEquals(0, sizeof($linkedTags));
-	$linkedTags = $tts->getLinkedTags('a', '>');
-	$this->assertSame(array('b', 'c', 'd'), $linkedTags);
+    }
+
+    /* Test function that select the best tags to display? */
+    public function testViewTag2TagRelations()
+    {
+	$tts = $this->tts;
+
+	$tts->addLinkedTags('a', 'b', '>', 1);
+	$tts->addLinkedTags('c', 'd', '>', 1);
+	$tts->addLinkedTags('d', 'e', '>', 1);
+	$tts->addLinkedTags('f', 'g', '>', 1);
+	$tts->addLinkedTags('f', 'h', '>', 1);
+	$tts->addLinkedTags('f', 'i', '>', 1);
+
+	$orphewTags = $tts->getOrphewTags('>', 1);
+	$this->assertEquals(3, sizeof($orphewTags));
+	$this->assertSame('a', $orphewTags[0]['tag']);
+	$this->assertSame('c', $orphewTags[1]['tag']);
+	$this->assertSame('f', $orphewTags[2]['tag']);
+
+	// with limit
+	$orphewTags = $tts->getOrphewTags('>', 1, 2);
+	$this->assertEquals(2, sizeof($orphewTags));
+	$this->assertSame('a', $orphewTags[0]['tag']);
+	$this->assertSame('c', $orphewTags[1]['tag']);
+
+	// with sorting
+	$orphewTags = $tts->getOrphewTags('>', 1, 2, 'nb'); // nb descendants
+	$this->assertEquals(2, sizeof($orphewTags));
+	$this->assertSame('f', $orphewTags[0]['tag']);
+	$this->assertSame('c', $orphewTags[1]['tag']);
+
+	$orphewTags = $tts->getOrphewTags('>', 1, 1, 'depth');
+	$this->assertEquals(1, sizeof($orphewTags));
+	$this->assertSame('c', $orphewTags[0]['tag']);
+
+	$orphewTags = $tts->getOrphewTags('>', 1, null, 'nbupdate');
+	$this->assertEquals(3, sizeof($orphewTags));
+	$this->assertSame('f', $orphewTags[0]['tag']);
+	$this->assertSame('c', $orphewTags[1]['tag']);
+	$this->assertSame('a', $orphewTags[2]['tag']);
+
     }
 
    public function testAddLinkedTagsThroughBookmarking()
@@ -97,6 +141,7 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$this->assertEquals(1, sizeof($linkedTags));
 	$this->assertSame('c', $linkedTags[0]['tag']);
 	$this->assertTrue($tts->existsLinkedTags('d', 'e', '>', 1));
+	$this->assertFalse($tts->existsLinkedTags('e', 'd', '>', 1));
     }
 
     public function testSearchThroughLinkedTags()
@@ -140,5 +185,96 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 
     }
 
+    public function testStatsBetweenTags()
+    {
+	$tsts = $this->tsts;
+	$tts = $this->tts;
+
+	// basic functions
+	$this->assertFalse($tsts->existStat('a', '>', 10));
+	$tsts->setNbDescendants('a', '>', 10, 2);
+	$this->assertSame(2, $tsts->getNbDescendants('a', '>', 10));
+	$tsts->setMaxDepth('a', '>', 10, 3);
+	$this->assertSame(3, $tsts->getMaxDepth('a', '>', 10));
+	$this->assertTrue($tsts->existStat('a', '>', 10));
+	$this->assertFalse($tsts->existStat('a', '>', 20));
+	$tsts->increaseNbUpdate('a', '>', 10);
+	$this->assertSame(1, $tsts->getNbUpdate('a', '>', 10));
+
+	$tsts->deleteAll();
+
+	// no structure
+	$nbC = $tsts->getNbChildren('a', '>', 1);
+	$nbD = $tsts->getNbDescendants('a', '>', 1);
+	$maxDepth = $tsts->getMaxDepth('a', '>', 1);
+	$this->assertSame(0, $nbC);
+	$this->assertSame(0, $nbD);
+	$this->assertSame(0, $maxDepth);
+
+	// simple case
+	$tts->addLinkedTags('b', 'c', '>', 1);
+	$tts->addLinkedTags('a', 'd', '>', 1);
+	$tts->addLinkedTags('a', 'b', '>', 1);
+	$tts->addLinkedTags('b', 'e', '>', 1);
+
+	$this->assertSame(3, $tsts->getNbUpdate('a', '>', '1'));
+	$this->assertSame(2, $tsts->getNbUpdate('b', '>', '1'));
+	$this->assertSame(0, $tsts->getNbUpdate('c', '>', '1'));
+	$this->assertSame(0, $tsts->getNbUpdate('d', '>', '1'));
+	$this->assertSame(0, $tsts->getNbUpdate('e', '>', '1'));
+
+
+	$nbC = $tsts->getNbChildren('a', '>', 1);
+	$nbD = $tsts->getNbDescendants('a', '>', 1);
+	$maxDepth = $tsts->getMaxDepth('a', '>', 1);
+	$this->assertSame(2, $nbC);
+	$this->assertSame(4, $nbD);
+	$this->assertSame(2, $maxDepth);
+
+	$nbC = $tsts->getNbChildren('b', '>', 1);
+	$nbD = $tsts->getNbDescendants('b', '>', 1);
+	$maxDepth = $tsts->getMaxDepth('b', '>', 1);
+	$this->assertSame(2, $nbC);
+	$this->assertSame(2, $nbD);
+	$this->assertSame(1, $maxDepth);	
+
+	$nbC = $tsts->getNbChildren('c', '>', 1);
+	$nbD = $tsts->getNbDescendants('c', '>', 1);
+	$maxDepth = $tsts->getMaxDepth('c', '>', 1);
+	$this->assertSame(0, $nbC);
+	$this->assertSame(0, $nbD);
+	$this->assertSame(0, $maxDepth);
+
+	$nbC = $tsts->getNbChildren('d', '>', 1);
+	$nbD = $tsts->getNbDescendants('d', '>', 1);
+	$maxDepth = $tsts->getMaxDepth('d', '>', 1);
+	$this->assertSame(0, $nbC);
+	$this->assertSame(0, $nbD);
+	$this->assertSame(0, $maxDepth);
+
+	// deletion
+	$tts->removeLinkedTags('b', 'e', '>', 1);
+
+	$nbC = $tsts->getNbChildren('b', '>', 1);
+	$nbD = $tsts->getNbDescendants('b', '>', 1);
+	$maxDepth = $tsts->getMaxDepth('b', '>', 1);
+	$this->assertSame(1, $nbC);
+	$this->assertSame(1, $nbD);
+	$this->assertSame(1, $maxDepth);
+
+	$nbC = $tsts->getNbChildren('a', '>', 1);
+	$nbD = $tsts->getNbDescendants('a', '>', 1);
+	$maxDepth = $tsts->getMaxDepth('a', '>', 1);
+	$this->assertSame(2, $nbC);
+	$this->assertSame(3, $nbD);
+	$this->assertSame(2, $maxDepth);
+
+
+	// advanced case with fore loop
+	//$tts->addLinkedTags('d', 'c', '>', 1);
+
+	// advanced case with back loop
+	//$tts->addLinkedTags('e', 'a', '>', 1);
+    }
 }
 ?>

@@ -82,3 +82,21 @@ CREATE TABLE `sc_tags2tags` (
   PRIMARY KEY (`ttId`),
   UNIQUE KEY `sc_tags2tags_tag1_tag2_uId` (`tag1`,`tag2`,`relationType`,`uId`)
 );
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `sc_tagsstats`
+-- 
+
+CREATE TABLE `sc_tagsstats` (
+  `tstId` int(11) NOT NULL auto_increment,
+  `tag1` varchar(32) NOT NULL default '',
+  `relationType` varchar(32) NOT NULL default '',
+  `uId` int(11) NOT NULL default '0',
+  `nb` int(11) NOT NULL default '0',
+  `depth` int(11) NOT NULL default '0',
+  `nbupdate` int(11) NOT NULL default '0',
+  PRIMARY KEY (`tstId`),
+  UNIQUE KEY `sc_tagsstats_tag1_type_uId` (`tag1`,`relationType`,`uId`)
+);
