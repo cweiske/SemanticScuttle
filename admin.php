@@ -21,7 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 // Uncomment the following lines to execute the admin script. Don't forget to re-comment them after using.
 
-/* 
+/*
 require_once('header.inc.php');
 $tagstatservice   = & ServiceFactory :: getServiceInstance('TagStatService');
 $templateservice  = & ServiceFactory :: getServiceInstance('TemplateService');

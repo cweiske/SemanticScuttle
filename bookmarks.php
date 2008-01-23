@@ -207,7 +207,7 @@ if ($templatename == 'editbookmark.tpl') {
     $tplVars['page'] = $page;
     $tplVars['start'] = $start;
     $tplVars['bookmarkCount'] = $start + 1;
-    
+
     $bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, $userid, $cat, $terms, getSortOrder());
     $tplVars['total'] = $bookmarks['total'];
     $tplVars['bookmarks'] =& $bookmarks['bookmarks'];

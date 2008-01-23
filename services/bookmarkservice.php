@@ -277,24 +277,28 @@ class BookmarkService {
             $query_3 .= ' AND ('. $query_3_1 .') AND B.bStatus IN (0, 1)';
         }
 
+	if($hash == null) {
+	    $query_5.= ' GROUP BY B.bHash';
+	}
+
         switch($sortOrder) {
             case 'date_asc':
-                $query_5 = ' ORDER BY B.bDatetime ASC ';
+                $query_5.= ' ORDER BY B.bDatetime ASC ';
                 break;
             case 'title_desc':
-                $query_5 = ' ORDER BY B.bTitle DESC ';
+                $query_5.= ' ORDER BY B.bTitle DESC ';
                 break;
             case 'title_asc':
-                $query_5 = ' ORDER BY B.bTitle ASC ';
+                $query_5.= ' ORDER BY B.bTitle ASC ';
                 break;
             case 'url_desc':
-                $query_5 = ' ORDER BY B.bAddress DESC ';
+                $query_5.= ' ORDER BY B.bAddress DESC ';
                 break;
             case 'url_asc':
-                $query_5 = ' ORDER BY B.bAddress ASC ';
+                $query_5.= ' ORDER BY B.bAddress ASC ';
                 break;
             default:
-                $query_5 = ' ORDER BY B.bDatetime DESC ';
+                $query_5.= ' ORDER BY B.bDatetime DESC ';
         }
 
         // Handle the parts of the query that depend on any tags that are present.
