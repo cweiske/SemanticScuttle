@@ -39,5 +39,6 @@ class BookmarksTest extends PHPUnit_Framework_TestCase
 
 	$bookmarks =& $bs->getBookmarks(0, 1, NULL, NULL, NULL, getSortOrder(), NULL, 0, $dtend);
     }
+
 }
 ?>
