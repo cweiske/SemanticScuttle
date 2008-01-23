@@ -258,9 +258,10 @@ div#sidebar ul li {
 
 p.tags {
     line-height: 2.25em;
-    margin: 2em 10%;
+    /*margin: 2em 10%;*/
     text-align: justify;
     vertical-align: middle;
+    width: 70%;
 }
 p.tags a,
 p.tags span {
