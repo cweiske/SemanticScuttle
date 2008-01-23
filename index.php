@@ -77,6 +77,7 @@ $tplVars['total'] = $bookmarks['total'];
 $tplVars['bookmarks'] =& $bookmarks['bookmarks'];
 $tplVars['cat_url'] = createURL('tags', '%2$s');
 $tplVars['nav_url'] = createURL('index', '%3$s');
+$tplVars['summarizeLinkedTags'] = true;
 
 $templateservice->loadTemplate('bookmarks.tpl', $tplVars);
 

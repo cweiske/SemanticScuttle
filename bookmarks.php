@@ -221,6 +221,9 @@ if ($templatename == 'editbookmark.tpl') {
     $tplVars['pagetitle'] = $title;
     $tplVars['subtitle'] = $title;
 }
+
+$tplVars['summarizeLinkedTags'] = true;
+
 $templateservice->loadTemplate($templatename, $tplVars);
 
 if ($usecache && $endcache) {

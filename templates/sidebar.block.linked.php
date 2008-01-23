@@ -25,7 +25,7 @@ function displayLinkedTags($tag, $linkType, $uId, $cat_url, $user, $editingMode 
     $output.= '</tr>';
 
     if(!in_array($tag, $stopList)) {
-	$linkedTags = $tag2tagservice->getLinkedTags($tag, '>', $userid);
+	$linkedTags = $tag2tagservice->getLinkedTags($tag, '>', $uId);
 	$precedentTag = $tag;
 	$stopList[] = $tag;
 	$level = $level + 1;
@@ -45,10 +45,10 @@ $explodedTags = array();
 if ($currenttag) {
     $explodedTags = explode('+', $currenttag);
 } else {
-    if($userid != null) {
-        $orphewTags = $tag2tagservice->getOrphewTags('>', $userid);
-    } else {
+    if($summarizeLinkedTags == true) {
 	$orphewTags = $tag2tagservice->getOrphewTags('>', $userid, 4, "nb");
+    } else {
+        $orphewTags = $tag2tagservice->getOrphewTags('>', $userid);
     }
 
     foreach($orphewTags as $orphewTag) {
