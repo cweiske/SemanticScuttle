@@ -115,6 +115,9 @@ class BookmarkService {
         if (strpos($address, ':') === false) {
             $address = 'http://'. $address;
         }
+	if (substr($address, -1) == '/') {
+	    $address = substr($address, 0, count($address)-2);
+	}
 
         // Get the client's IP address and the date; note that the date is in GMT.
         if (getenv('HTTP_CLIENT_IP'))
