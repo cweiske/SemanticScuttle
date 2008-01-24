@@ -45,7 +45,7 @@ if ($_POST['submitted']) {
         $tplVars['error'] = T_('E-mail address is not valid. Please try again.');
 
     // Check if antispam answer is valid
-    } elseif (strcmp($antispamAnswer, $GLOBALS['antispamAnswer']) != 0) {
+    } elseif (strcmp($_POST['antispamAnswer'], $GLOBALS['antispamAnswer']) != 0) {
         $tplVars['error'] = T_('Antispam answer is not valid. Please try again.');
 
     // Register details
