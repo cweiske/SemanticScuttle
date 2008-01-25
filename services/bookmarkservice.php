@@ -311,16 +311,13 @@ class BookmarkService {
             $query_4 .= ' AND (';
 
 	    $allLinkedTags = $tag2tagservice->getAllLinkedTags($this->db->sql_escape($tags[$i]), '>', $user);
-	    while (count($allLinkedTags)>1) {
+
+	    while (is_array($allLinkedTags) && count($allLinkedTags)>0) {
 		$query_4 .= ' T'. $i .'.tag = "'. array_pop($allLinkedTags) .'"';
 		$query_4 .= ' OR';
 	    }
-	    if(is_array($allLinkedTags)) {
-		$query_4 .= ' T'. $i .'.tag = "'. array_pop($allLinkedTags) .'"';
-	    } else {
-		$query_4 .= ' T'. $i .'.tag = "'. $allLinkedTags .'"';
-	    }
-	    
+
+	    $query_4 .= ' T'. $i .'.tag = "'. $this->db->sql_escape($tags[$i]) .'"';
             
             $query_4 .= ') AND T'. $i .'.bId = B.bId';
 //die($query_4);

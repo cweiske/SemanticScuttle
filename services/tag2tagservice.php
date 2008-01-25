@@ -37,7 +37,7 @@ class Tag2TagService {
     }
 
     // Return the target linked tags. If inverseRelation is true, return the source linked tags.
-    function getLinkedTags($tag, $relationType, $uId = null, $inverseRelation = false) {
+    function getLinkedTags($tag, $relationType, $uId = null, $inverseRelation = false, $stopList = array()) {
 	// Set up the SQL query.
 	if($inverseRelation) {
 	    $queriedTag = "tag1";
@@ -68,41 +68,65 @@ class Tag2TagService {
         $rowset = $this->db->sql_fetchrowset($dbresult);
 	$output = array();
 	foreach($rowset as $row) {
-	    $output[] = $row['tag'];
+	    if(!in_array($row['tag'], $stopList)) {
+	        $output[] = $row['tag'];
+	    }
 	}
+
+	//bijective case for '='
+	if($relationType == '=' && $inverseRelation == false) {
+	    //$stopList[] = $tag;
+	    $bijectiveOutput = $this->getLinkedTags($tag, $relationType, $uId, true, $stopList);
+	    $output = array_merge($output, $bijectiveOutput);
+	    //$output = array_unique($output); // remove duplication	    
+	}
+
 	return $output;
     }
 
     /* TODO: clean the outputs to obtain homogenous ones*/
     function getAllLinkedTags($tag1, $relationType, $uId, $asFlatList=true, $stopList=array()) {
+	$asFlatList = true; //we disable the tree list parameter for the moment
+
 	if(in_array($tag1, $stopList)) {
 	    return $tag1;
 	}
-	$linkedTags = $this->getLinkedTags($tag1, $relationType, $uId);
+
+	$stopList2 = $stopList;
+	$stopList2[] = $tag1;
+	$linkedTags = $this->getLinkedTags($tag1, $relationType, $uId, false, $stopList2);
+
+	if($relationType != '=') {
+	    $linkedTags = array_merge($linkedTags, $this->getLinkedTags($tag1, '=', $uId, false, $stopList2));
+	}
+
 	if(count($linkedTags) == 0) {
 	    return $tag1;
 	} else {
 	    $output = array();
 	    if($asFlatList == true) {
-		$output[$tag1] = $tag1;
+		//$output[$tag1] = $tag1;
 	    } else {
 		$output = array('node'=>$tag1);
 	    }
 
 	    $stopList[] = $tag1;
 	    foreach($linkedTags as $linkedTag) {
-		$allLinkedTags = $this->getAllLinkedTags($linkedTag, $relationType, $uId, $asFlatList, $stopList);
+		 $allLinkedTags = $this->getAllLinkedTags($linkedTag, $relationType, $uId, $asFlatList, $stopList);
+
 		if($asFlatList == true) {
 		    if(is_array($allLinkedTags)) {
+			$output[] = $linkedTag;
 			$output = array_merge($output, $allLinkedTags);
 		    } else {
-		        $output[$allLinkedTags] = $allLinkedTags;
+		        $output[] = $allLinkedTags;
 		    }
 		} else {
 		    $output[] = $allLinkedTags;
 		}
 	    }
 	}
+	//$output = array_unique($output); // remove duplication
 	return $output;
     }
 

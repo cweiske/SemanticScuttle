@@ -30,24 +30,43 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$this->tsts->deleteAll();
     }
  
-    public function testManipulateTag2TagRelations()
+    public function testManipulateTag2TagRelationsOfInclusion()
     {
 	$tts = $this->tts;
 
 	$tts->addLinkedTags('a', 'b', '>', 1);
 	$tts->addLinkedTags('a', 'c', '>', 1);
 	$tts->addLinkedTags('a', 'd', '>', 20);
-	$tts->addLinkedTags('b', 'a', '>', 1); //warning: recursive link
  	$tts->addLinkedTags('b', 'd', '>', 1);
  	$tts->addLinkedTags('d', 'e', '>', 1);
 	$tts->addLinkedTags('d', 'e', '>', 20);
 	$tts->addLinkedTags('f', 'g', '>', 20);
 
-	$allLinkedTags = $tts->getAllLinkedTags('a', '>', 1, false); //as tree
-	$this->assertSame(array('node'=>'a', array('node'=>'b', 'a', array('node'=>'d', 'e')), 'c'), $allLinkedTags);
+	// basic test
+
+	$allLinkedTags = $tts->getAllLinkedTags('d', '>', 1, true); // as flat list
+	$this->assertEquals(array('e'), $allLinkedTags);
+
+	$allLinkedTags = $tts->getAllLinkedTags('b', '>', 1, true); // as flat list
+	$this->assertEquals(array('d', 'e'), $allLinkedTags);
+	$this->assertEquals(2, sizeof($allLinkedTags));
+	$this->assertTrue(in_array('d', $allLinkedTags));
+	$this->assertTrue(in_array('e', $allLinkedTags));
+
 	$allLinkedTags = $tts->getAllLinkedTags('a', '>', 1, true); // as flat list
-	$this->assertEquals(5, sizeof($allLinkedTags));
-	$this->assertTrue(in_array('a', $allLinkedTags));
+	$this->assertEquals(4, sizeof($allLinkedTags));
+	$this->assertTrue(in_array('b', $allLinkedTags));
+	$this->assertTrue(in_array('c', $allLinkedTags));
+	$this->assertTrue(in_array('d', $allLinkedTags));
+	$this->assertTrue(in_array('e', $allLinkedTags));
+
+
+	// warning: we add recursive link
+	$tts->addLinkedTags('b', 'a', '>', 1); 
+
+	$allLinkedTags = $tts->getAllLinkedTags('a', '>', 1, true); // as flat list
+	$this->assertEquals(4, sizeof($allLinkedTags));
+	//$this->assertTrue(in_array('a', $allLinkedTags));
 	$this->assertTrue(in_array('b', $allLinkedTags));
 	$this->assertTrue(in_array('c', $allLinkedTags));
 	$this->assertTrue(in_array('d', $allLinkedTags));
@@ -75,7 +94,75 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$this->assertEquals(0, sizeof($linkedTags));
     }
 
-    /* Test function that select the best tags to display? */
+    public function testManipulateTag2TagRelationsOfSynonym()
+    {
+	$tts = $this->tts;
+
+	$tts->addLinkedTags('a', 'b', '>', 1);
+	$tts->addLinkedTags('b', 'c', '>', 1);
+	$tts->addLinkedTags('b', 'd', '=', 1);
+	$tts->addLinkedTags('d', 'e', '=', 1);
+	$tts->addLinkedTags('d', 'f', '=', 1);
+	$tts->addLinkedTags('e', 'g', '>', 1);
+
+	$linkedTags = $tts->getLinkedTags('a', '>', 1);
+	$this->assertSame(array('b'), $linkedTags);
+
+	$linkedTags = $tts->getLinkedTags('a', '=', 1);
+	$this->assertSame(array(), $linkedTags);
+
+	$linkedTags = $tts->getLinkedTags('b', '=', 1);
+	$this->assertSame(array('d'), $linkedTags);
+
+	$linkedTags = $tts->getLinkedTags('d', '=', 1);
+	$this->assertEquals(3, sizeof($linkedTags));
+	$this->assertTrue(in_array('b', $linkedTags)); // '=' is bijective
+	$this->assertTrue(in_array('e', $linkedTags));
+	$this->assertTrue(in_array('f', $linkedTags));
+
+	$linkedTags = $tts->getLinkedTags('f', '=', 1);
+	$this->assertEquals(1, sizeof($linkedTags));
+	$this->assertTrue(in_array('d', $linkedTags)); // '=' is bijective
+
+	// test allLinkTags (with inference)
+	$allLinkedTags = $tts->getAllLinkedTags('b', '=', 1, true); // as flat list
+	$this->assertEquals(array('d', 'e', 'f'), $allLinkedTags);
+	$this->assertEquals(3, sizeof($allLinkedTags));
+	$this->assertTrue(in_array('d', $allLinkedTags));
+	$this->assertTrue(in_array('e', $allLinkedTags));
+	$this->assertTrue(in_array('f', $allLinkedTags));
+
+	$allLinkedTags = $tts->getAllLinkedTags('f', '>', 1, true); // as flat list
+	$this->assertEquals(5, sizeof($allLinkedTags));
+	$this->assertTrue(in_array('b', $allLinkedTags));
+	$this->assertTrue(in_array('d', $allLinkedTags));
+	$this->assertTrue(in_array('e', $allLinkedTags));
+	$this->assertTrue(in_array('c', $allLinkedTags));
+	$this->assertTrue(in_array('g', $allLinkedTags));
+
+	$allLinkedTags = $tts->getAllLinkedTags('a', '>', 1, true); // as flat list
+	$this->assertEquals(6, sizeof($allLinkedTags));
+	$this->assertTrue(in_array('b', $allLinkedTags));
+	$this->assertTrue(in_array('c', $allLinkedTags));
+	$this->assertTrue(in_array('d', $allLinkedTags));
+	$this->assertTrue(in_array('e', $allLinkedTags));
+	$this->assertTrue(in_array('f', $allLinkedTags));
+	$this->assertTrue(in_array('g', $allLinkedTags));
+
+	// complex case: test cycle
+	$tts->addLinkedTags('g', 'a', '>', 1);
+	$allLinkedTags = $tts->getAllLinkedTags('b', '>', 1, true); // as flat list
+	$this->assertEquals(6, sizeof($allLinkedTags));
+	$this->assertTrue(in_array('a', $allLinkedTags));
+	$this->assertTrue(in_array('c', $allLinkedTags));
+	$this->assertTrue(in_array('d', $allLinkedTags));
+	$this->assertTrue(in_array('e', $allLinkedTags));
+	$this->assertTrue(in_array('f', $allLinkedTags));
+	$this->assertTrue(in_array('g', $allLinkedTags));
+
+    }
+/*
+    // Test function that select the best tags to display? 
     public function testViewTag2TagRelations()
     {
 	$tts = $this->tts;
@@ -149,12 +236,12 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$tts = $this->tts;
 	$bs = $this->bs;
 
-	$tags1 = array('aa>bb>cc', 'dd');
-	$bs->addBookmark("web.com", "B1", "description", "status", $tags1, null, false, false, 1);
+	$tags = array('aa>bb>cc', 'dd');
+	$bs->addBookmark("web1.com", "B1", "description", "status", $tags, null, false, false, 1);
 	$tags = array('bb>gg', 'ee>ff');
-	$bs->addBookmark("web.com", "B2", "description", "status", $tags, null, false, false, 1);
+	$bs->addBookmark("web2.com", "B2", "description", "status", $tags, null, false, false, 1);
 	$tags = array('ee');
-	$bs->addBookmark("web.com", "B3", "description", "status", $tags, null, false, false, 1);
+	$bs->addBookmark("web3.com", "B3", "description", "status", $tags, null, false, false, 1);
 
 	// Query format:
 	// $bs->getBookmarks($start = 0, $perpage = NULL, $user = NULL, $tags = NULL, $terms = NULL, $sortOrder = NULL, $watched = NULL, $startdate = NULL, $enddate = NULL, $hash = NULL);
@@ -275,6 +362,6 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 
 	// advanced case with back loop
 	//$tts->addLinkedTags('e', 'a', '>', 1);
-    }
+    }*/
 }
 ?>
