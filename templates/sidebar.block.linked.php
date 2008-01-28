@@ -15,7 +15,7 @@ function displayLinkedTags($tag, $linkType, $uId, $cat_url, $user, $editingMode 
     $output.= '<tr>';
     $output.= '<td></td>';
     $output.= '<td>';
-    $output.= $level ==  0?'<b>':'';
+    $output.= $level ==  1?'<b>':'';
     $output.= str_repeat('&nbsp;', $level*2) .'<a href="'. sprintf($cat_url, filter($user, 'url'), filter($tag, 'url')) .'" rel="tag">'. filter($tag) .'</a>';
     $output.= $level ==  1?'</b>':'';
     //$output.= ' - '. $tagstatservice->getMaxDepth($tag, $linkType, $uId);
@@ -118,13 +118,13 @@ if(count($explodedTags) > 0) {
 		$fatherTags = $tag2tagservice->getLinkedTags($explodedTag, '>', $userid, true);
 		if(count($fatherTags)>0) {
 		    foreach($fatherTags as $fatherTag) {
-			echo '<tr><td>';
+			echo '<tr><td></td><td>';
 			echo '<a href="'. sprintf($cat_url, filter($user, 'url'), filter($fatherTag, 'url')) .'" rel="tag">('. filter($fatherTag) .')</a>';
 			echo '</td></tr>';
 		    }
 		}
 
-		$displayLinkedTags = displayLinkedTags($explodedTag, '>', $userid, $cat_url, $user, $editingMode, null, 0);
+		$displayLinkedTags = displayLinkedTags($explodedTag, '>', $userid, $cat_url, $user, $editingMode, null, 1);
 		echo $displayLinkedTags['output'];
 		if(is_array($displayLinkedTags['stopList'])) {
 	    	    $stopList = array_merge($stopList, $displayLinkedTags['stopList']);
