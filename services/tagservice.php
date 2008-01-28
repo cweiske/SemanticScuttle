@@ -86,22 +86,37 @@ class TagService {
             }
         }
 
+	$bs =& ServiceFactory::getServiceInstance('BookmarkService');
+	$tts =& ServiceFactory::getServiceInstance('Tag2TagService');
+
 	// Create links between tags
 	foreach($tags as $key => $tag) {
-	    // case ">"
-	    $pieces = explode('>', $tag);
-	    $nbPieces = count($pieces);
-	    if($nbPieces > 1) {
-		for($i = 0; $i < $nbPieces-1; $i++) {
-		    $bs =& ServiceFactory::getServiceInstance('BookmarkService');
-		    $tts =& ServiceFactory::getServiceInstance('Tag2TagService');
-		    
-		    $bookmark = $bs->getBookmark($bookmarkid);
-		    $uId = $bookmark['uId'];
-		    $tts->addLinkedTags($pieces[$i], $pieces[$i+1], '>', $uId);
-		}
-		$tags[$key] = $pieces[$nbPieces-1]; // Attach just the last tag to the bookmark
-	    }
+	    if(strpos($tag, '=')) {
+		    // case "="
+		    $pieces = explode('=', $tag);
+		    $nbPieces = count($pieces);
+		    if($nbPieces > 1) {
+			for($i = 0; $i < $nbPieces-1; $i++) {		    
+			    $bookmark = $bs->getBookmark($bookmarkid);
+			    $uId = $bookmark['uId'];
+			    $tts->addLinkedTags($pieces[$i], $pieces[$i+1], '=', $uId);
+			}
+			$tags[$key] = $pieces[0]; // Attach just the last tag to the bookmark
+		    }
+	    } else {
+		    // case ">"
+		    $pieces = explode('>', $tag);
+		    $nbPieces = count($pieces);
+		    if($nbPieces > 1) {
+			for($i = 0; $i < $nbPieces-1; $i++) {		    
+			    $bookmark = $bs->getBookmark($bookmarkid);
+			    $uId = $bookmark['uId'];
+			    $tts->addLinkedTags($pieces[$i], $pieces[$i+1], '>', $uId);
+			}
+			$tags[$key] = $pieces[$nbPieces-1]; // Attach just the last tag to the bookmark
+		    }
+	    }    
+
 
 	}
 

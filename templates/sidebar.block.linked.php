@@ -3,14 +3,29 @@ $tag2tagservice =& ServiceFactory::getServiceInstance('Tag2TagService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 
 function displayLinkedTags($tag, $linkType, $uId, $cat_url, $user, $editingMode =false, $precedentTag =null, $level=0, $stopList=array()) {
+
+    if(in_array($tag, $stopList)) {
+	return array('output' => '', 'stoplist' => $stopList);
+    }
+
     $tag2tagservice =& ServiceFactory::getServiceInstance('Tag2TagService');
     $tagstatservice =& ServiceFactory::getServiceInstance('TagStatService');
 
     $output = '';
     $output.= '<tr>';
     $output.= '<td></td>';
-    $output.= '<td>'. str_repeat('&nbsp;', $level*2) .'<a href="'. sprintf($cat_url, filter($user, 'url'), filter($tag, 'url')) .'" rel="tag">'. filter($tag) .'</a>';
+    $output.= '<td>';
+    $output.= $level ==  0?'<b>':'';
+    $output.= str_repeat('&nbsp;', $level*2) .'<a href="'. sprintf($cat_url, filter($user, 'url'), filter($tag, 'url')) .'" rel="tag">'. filter($tag) .'</a>';
+    $output.= $level ==  1?'</b>':'';
     //$output.= ' - '. $tagstatservice->getMaxDepth($tag, $linkType, $uId);
+
+    $synonymTags = $tag2tagservice->getAllLinkedTags($tag, '=', $uId);
+    $synonymTags = is_array($synonymTags)?$synonymTags:array($synonymTags);
+    sort($synonymTags);
+    foreach($synonymTags as $synonymTag) {
+	$output.= ", ".$synonymTag;
+    }
 
     if($editingMode) {
 	$output.= ' (';
@@ -24,16 +39,26 @@ function displayLinkedTags($tag, $linkType, $uId, $cat_url, $user, $editingMode 
     $output.= '</td>';
     $output.= '</tr>';
 
-    if(!in_array($tag, $stopList)) {
-	$linkedTags = $tag2tagservice->getLinkedTags($tag, '>', $uId);
-	$precedentTag = $tag;
-	$stopList[] = $tag;
-	$level = $level + 1;
-	foreach($linkedTags as $linkedTag) {
-	    $output.= displayLinkedTags($linkedTag, $linkType, $uId, $cat_url, $user, $editingMode, $precedentTag, $level, $stopList);
-        }
-    }
-    return $output;
+    $tags = array($tag);
+    $tags = array_merge($tags, $synonymTags);
+    foreach($tags as $tag) {
+
+	    if(!in_array($tag, $stopList)) {
+		$linkedTags = $tag2tagservice->getLinkedTags($tag, '>', $uId);
+		$precedentTag = $tag;
+		$stopList[] = $tag;
+		foreach($linkedTags as $linkedTag) {
+		    $displayLinkedTags = displayLinkedTags($linkedTag, $linkType, $uId, $cat_url, $user, $editingMode, $precedentTag, $level + 1, $stopList);
+		    $output.= $displayLinkedTags['output'];
+		}
+		if(is_array($displayLinkedTags['stopList'])) {
+		    $stopList = array_merge($stopList, $displayLinkedTags['stopList']);
+		    $stopList = array_unique($stopList);
+		}
+	    }
+
+    }	
+    return array('output' => $output, 'stopList' => $stopList);
 }
 
 $logged_on_userid = $userservice->getCurrentUserId();
@@ -59,7 +84,7 @@ if ($currenttag) {
 if(count($explodedTags) > 0) {
     $displayLinkedZone = false;
     foreach($explodedTags as $explodedTag) {
-	if($tag2tagservice->getLinkedTags($explodedTag, '>', $userid)) {
+	if($tag2tagservice->getLinkedTags($explodedTag, '>', $userid) || $tag2tagservice->getLinkedTags($explodedTag, '>', $userid, true) || $tag2tagservice->getLinkedTags($explodedTag, '=', $userid)) {
 	    $displayLinkedZone = true;	  
 	    break;
 	}
@@ -86,8 +111,26 @@ if(count($explodedTags) > 0) {
 	} else {
 	    $editingMode = false;
 	}
+	$stopList = array();
 	foreach($explodedTags as $explodedTag) {
-		echo displayLinkedTags($explodedTag, '>', $userid, $cat_url, $user, $editingMode);
+	    if(!in_array($explodedTag, $stopList)) {
+		// fathers tag
+		$fatherTags = $tag2tagservice->getLinkedTags($explodedTag, '>', $userid, true);
+		if(count($fatherTags)>0) {
+		    foreach($fatherTags as $fatherTag) {
+			echo '<tr><td>';
+			echo '<a href="'. sprintf($cat_url, filter($user, 'url'), filter($fatherTag, 'url')) .'" rel="tag">('. filter($fatherTag) .')</a>';
+			echo '</td></tr>';
+		    }
+		}
+
+		$displayLinkedTags = displayLinkedTags($explodedTag, '>', $userid, $cat_url, $user, $editingMode, null, 0);
+		echo $displayLinkedTags['output'];
+		if(is_array($displayLinkedTags['stopList'])) {
+	    	    $stopList = array_merge($stopList, $displayLinkedTags['stopList']);
+		}
+	    }
+
 	}
     ?>
     </table>

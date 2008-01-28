@@ -59,7 +59,7 @@ class Tag2TagService {
 	if($uId != null) {
 	    $query.= " AND uId = '".$uId."'";
 	}
-
+//die($query);
         if (! ($dbresult =& $this->db->sql_query_limit($query, $limit)) ){
             message_die(GENERAL_ERROR, 'Could not get related tags', '', __LINE__, __FILE__, $query, $this->db);
             return false;
@@ -69,6 +69,7 @@ class Tag2TagService {
 	$output = array();
 	foreach($rowset as $row) {
 	    if(!in_array($row['tag'], $stopList)) {
+
 	        $output[] = $row['tag'];
 	    }
 	}
@@ -89,19 +90,18 @@ class Tag2TagService {
 	$asFlatList = true; //we disable the tree list parameter for the moment
 
 	if(in_array($tag1, $stopList)) {
-	    return $tag1;
+	    return array();
 	}
 
-	$stopList2 = $stopList;
-	$stopList2[] = $tag1;
-	$linkedTags = $this->getLinkedTags($tag1, $relationType, $uId, false, $stopList2);
+	$stopList[] = $tag1;
+	$linkedTags = $this->getLinkedTags($tag1, $relationType, $uId, false, $stopList);
 
 	if($relationType != '=') {
-	    $linkedTags = array_merge($linkedTags, $this->getLinkedTags($tag1, '=', $uId, false, $stopList2));
+	    $linkedTags = array_merge($linkedTags, $this->getLinkedTags($tag1, '=', $uId, false, $stopList));
 	}
 
 	if(count($linkedTags) == 0) {
-	    return $tag1;
+	    return array();
 	} else {
 	    $output = array();
 	    if($asFlatList == true) {
@@ -110,13 +110,13 @@ class Tag2TagService {
 		$output = array('node'=>$tag1);
 	    }
 
-	    $stopList[] = $tag1;
 	    foreach($linkedTags as $linkedTag) {
 		 $allLinkedTags = $this->getAllLinkedTags($linkedTag, $relationType, $uId, $asFlatList, $stopList);
 
 		if($asFlatList == true) {
+		    $output[] = $linkedTag;
 		    if(is_array($allLinkedTags)) {
-			$output[] = $linkedTag;
+			
 			$output = array_merge($output, $allLinkedTags);
 		    } else {
 		        $output[] = $allLinkedTags;

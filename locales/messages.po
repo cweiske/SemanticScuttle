@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-22 16:54+0100\n"
+"POT-Creation-Date: 2008-01-28 15:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -620,68 +620,72 @@ msgid ""
 "Note: use \">\" to include one tag in another. e.g.: europe>france>paris"
 msgstr ""
 
-#: ../../../templates/editbookmark.tpl.php:53
+#: ../../../templates/editbookmark.tpl.php:54
+msgid "Note: use \"=\" to make synonym two tags. e.g.: france=frenchcountry"
+msgstr ""
+
+#: ../../../templates/editbookmark.tpl.php:57
 #: ../../../templates/importDelicious.tpl.php:15
 #: ../../../templates/importNetscape.tpl.php:16
 msgid "Privacy"
 msgstr ""
 
-#: ../../../templates/editbookmark.tpl.php:56
+#: ../../../templates/editbookmark.tpl.php:60
 #: ../../../templates/importDelicious.tpl.php:18
 #: ../../../templates/importNetscape.tpl.php:19
 msgid "Public"
 msgstr ""
 
-#: ../../../templates/editbookmark.tpl.php:57
+#: ../../../templates/editbookmark.tpl.php:61
 msgid "Shared with Watch List"
 msgstr ""
 
-#: ../../../templates/editbookmark.tpl.php:58
+#: ../../../templates/editbookmark.tpl.php:62
 #: ../../../templates/importDelicious.tpl.php:20
 #: ../../../templates/importNetscape.tpl.php:21
 msgid "Private"
 msgstr ""
 
-#: ../../../templates/editbookmark.tpl.php:70
+#: ../../../templates/editbookmark.tpl.php:74
 msgid "Delete Bookmark"
 msgstr ""
 
-#: ../../../templates/editbookmark.tpl.php:97
+#: ../../../templates/editbookmark.tpl.php:101
 msgid "Bookmarklet"
 msgstr ""
 
-#: ../../../templates/editbookmark.tpl.php:98
+#: ../../../templates/editbookmark.tpl.php:102
 #, php-format
 msgid ""
 "Drag one of the following bookmarklets to your browser's bookmarks and click "
 "it whenever you want to add the page you are on to %s"
 msgstr ""
 
-#: ../../../templates/editbookmark.tpl.php:110
+#: ../../../templates/editbookmark.tpl.php:114
 #, php-format
 msgid "Post to %s"
 msgstr ""
 
-#: ../../../templates/editbookmark.tpl.php:111
+#: ../../../templates/editbookmark.tpl.php:115
 #, php-format
 msgid "Post to %s (Pop-up)"
 msgstr ""
 
-#: ../../../templates/editbookmark.tpl.php:115
+#: ../../../templates/editbookmark.tpl.php:119
 #: ../../../templates/importDelicious.tpl.php:26
 #: ../../../templates/importNetscape.tpl.php:27
 msgid "Import"
 msgstr ""
 
-#: ../../../templates/editbookmark.tpl.php:117
+#: ../../../templates/editbookmark.tpl.php:121
 msgid "Import bookmarks from bookmark file"
 msgstr ""
 
-#: ../../../templates/editbookmark.tpl.php:117
+#: ../../../templates/editbookmark.tpl.php:121
 msgid "Internet Explorer, Mozilla Firefox and Netscape"
 msgstr ""
 
-#: ../../../templates/editbookmark.tpl.php:118
+#: ../../../templates/editbookmark.tpl.php:122
 msgid "Import bookmarks from del.icio.us"
 msgstr ""
 
@@ -853,11 +857,11 @@ msgstr ""
 msgid "Antispam question"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:72
+#: ../../../templates/sidebar.block.linked.php:97
 msgid "Linked Tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:75
+#: ../../../templates/sidebar.block.linked.php:100
 msgid "plus"
 msgstr ""
 

@@ -44,6 +44,9 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 
 	// basic test
 
+	$allLinkedTags = $tts->getAllLinkedTags('e', '>', 1, true); // as flat list
+	$this->assertEquals(array(), $allLinkedTags);
+
 	$allLinkedTags = $tts->getAllLinkedTags('d', '>', 1, true); // as flat list
 	$this->assertEquals(array('e'), $allLinkedTags);
 
@@ -125,8 +128,10 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$this->assertTrue(in_array('d', $linkedTags)); // '=' is bijective
 
 	// test allLinkTags (with inference)
+	$allLinkedTags = $tts->getAllLinkedTags('a', '=', 1, true); // as flat list
+	$this->assertEquals(0, sizeof($allLinkedTags));
+
 	$allLinkedTags = $tts->getAllLinkedTags('b', '=', 1, true); // as flat list
-	$this->assertEquals(array('d', 'e', 'f'), $allLinkedTags);
 	$this->assertEquals(3, sizeof($allLinkedTags));
 	$this->assertTrue(in_array('d', $allLinkedTags));
 	$this->assertTrue(in_array('e', $allLinkedTags));
@@ -149,19 +154,36 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$this->assertTrue(in_array('f', $allLinkedTags));
 	$this->assertTrue(in_array('g', $allLinkedTags));
 
+	$tts->addLinkedTags('g', 'h', '>', 1);
+	$tts->addLinkedTags('i', 'h', '=', 1);
+	$tts->addLinkedTags('j', 'f', '>', 1);
+
+	$allLinkedTags = $tts->getAllLinkedTags('j', '>', 1, true); // as flat list
+	$this->assertEquals(8, sizeof($allLinkedTags));
+	$this->assertTrue(in_array('b', $allLinkedTags));
+	$this->assertTrue(in_array('c', $allLinkedTags));
+	$this->assertTrue(in_array('d', $allLinkedTags));
+	$this->assertTrue(in_array('e', $allLinkedTags));
+	$this->assertTrue(in_array('f', $allLinkedTags));
+	$this->assertTrue(in_array('g', $allLinkedTags));
+	$this->assertTrue(in_array('h', $allLinkedTags));
+	$this->assertTrue(in_array('i', $allLinkedTags));
+
 	// complex case: test cycle
 	$tts->addLinkedTags('g', 'a', '>', 1);
 	$allLinkedTags = $tts->getAllLinkedTags('b', '>', 1, true); // as flat list
-	$this->assertEquals(6, sizeof($allLinkedTags));
+	$this->assertEquals(8, sizeof($allLinkedTags));
 	$this->assertTrue(in_array('a', $allLinkedTags));
 	$this->assertTrue(in_array('c', $allLinkedTags));
 	$this->assertTrue(in_array('d', $allLinkedTags));
 	$this->assertTrue(in_array('e', $allLinkedTags));
 	$this->assertTrue(in_array('f', $allLinkedTags));
 	$this->assertTrue(in_array('g', $allLinkedTags));
+	$this->assertTrue(in_array('h', $allLinkedTags));
+	$this->assertTrue(in_array('i', $allLinkedTags));
 
     }
-/*
+
     // Test function that select the best tags to display? 
     public function testViewTag2TagRelations()
     {
@@ -207,17 +229,19 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
    public function testAddLinkedTagsThroughBookmarking()
     {
 	$bs = $this->bs;
-	$tags = array('a>b', 'b>c', 'a>d>e', 'a>a', 'a');
+	$tags = array('a>b', 'b>c', 'a>d>e', 'a>a', 'a', 'r=s', 's=t=u');
 	$bs->addBookmark("http://google.com", "title", "description", "status", $tags, null, false, false, 1);
 	$bookmark = $bs->getBookmarkByAddress("http://google.com");
 
 	$ts = $this->ts;
 	$savedTags = $ts->getTagsForBookmark(intval($bookmark['bId']));
-	$this->assertEquals(4, sizeof($savedTags));
+	$this->assertEquals(6, sizeof($savedTags));
 	$this->assertContains('b', $savedTags);
 	$this->assertContains('c', $savedTags);
 	$this->assertContains('e', $savedTags);
 	$this->assertContains('a', $savedTags);
+	$this->assertContains('r', $savedTags);
+	$this->assertContains('s', $savedTags);
 
 	$tts = $this->tts;
 	$linkedTags = $tts->getLinkedTags('a', '>', 1);
@@ -240,7 +264,7 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$bs->addBookmark("web1.com", "B1", "description", "status", $tags, null, false, false, 1);
 	$tags = array('bb>gg', 'ee>ff');
 	$bs->addBookmark("web2.com", "B2", "description", "status", $tags, null, false, false, 1);
-	$tags = array('ee');
+	$tags = array('ee=ii');
 	$bs->addBookmark("web3.com", "B3", "description", "status", $tags, null, false, false, 1);
 
 	// Query format:
@@ -263,8 +287,13 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 
 	$results = $bs->getBookmarks(0, NULL, 1, 'ee');
 	$this->assertSame(2, intval($results['total']));
-	$this->assertSame('B2', $results['bookmarks'][0]['bTitle']);
-	$this->assertSame('B3', $results['bookmarks'][1]['bTitle']);
+	$this->assertSame('B2', $results['bookmarks'][1]['bTitle']);
+	$this->assertSame('B3', $results['bookmarks'][0]['bTitle']);
+
+	$results = $bs->getBookmarks(0, NULL, 1, 'ii');
+	$this->assertSame(2, intval($results['total']));
+	$this->assertSame('B2', $results['bookmarks'][1]['bTitle']);
+	$this->assertSame('B3', $results['bookmarks'][0]['bTitle']);
 
 	$results = $bs->getBookmarks(0, NULL, 1, 'aa+ee');
 	$this->assertSame(1, intval($results['total']));
@@ -362,6 +391,6 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 
 	// advanced case with back loop
 	//$tts->addLinkedTags('e', 'a', '>', 1);
-    }*/
+    }
 }
 ?>

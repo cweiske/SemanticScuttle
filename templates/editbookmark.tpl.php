@@ -50,6 +50,10 @@ window.onload = function() {
     <td align="right"><small><?php echo T_('Note: use ">" to include one tag in another. e.g.: europe>france>paris')?><small></td>
 </tr>
 <tr>
+    <th></th>
+    <td align="right"><small><?php echo T_('Note: use "=" to make synonym two tags. e.g.: france=frenchcountry')?><small></td>
+</tr>
+<tr>
     <th align="left"><?php echo T_('Privacy'); ?></th>
     <td>
         <select name="status">
