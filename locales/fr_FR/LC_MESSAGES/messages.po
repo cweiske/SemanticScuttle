@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-28 15:37+0100\n"
-"PO-Revision-Date: 2008-01-28 15:54+0100\n"
-"Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
+"POT-Creation-Date: 2008-02-01 17:37+0100\n"
+"PO-Revision-Date: 2008-02-01 17:39+0100\n"
+"Last-Translator: Éric DANÉ <ericdane@free.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -20,7 +20,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../../../about.php:25
-#: ../../../templates/toolbar.inc.php:23
+#: ../../../templates/toolbar.inc.php:15
+#: ../../../templates/toolbar.inc.php:24
 msgid "About"
 msgstr "À propos"
 
@@ -243,7 +244,7 @@ msgstr "Les informations que vous avez entrées sont incorrectes. Veuillez recom
 
 #: ../../../login.php:48
 #: ../../../templates/login.tpl.php:26
-#: ../../../templates/toolbar.inc.php:24
+#: ../../../templates/toolbar.inc.php:25
 msgid "Log In"
 msgstr "Se connecter"
 
@@ -362,7 +363,7 @@ msgstr "Enregistrement raté. Veuillez rééssayer."
 
 #: ../../../register.php:66
 #: ../../../templates/register.tpl.php:41
-#: ../../../templates/toolbar.inc.php:25
+#: ../../../templates/toolbar.inc.php:26
 msgid "Register"
 msgstr "S'enregistrer"
 
@@ -601,10 +602,9 @@ msgstr "Pas de signets disponibles."
 #: ../../../templates/sidebar.block.popular.php:21
 #: ../../../templates/sidebar.block.recent.php:20
 #: ../../../templates/tags.tpl.php:16
-#, fuzzy
 msgid "bookmark"
 msgid_plural "bookmarks"
-msgstr[0] "Signet"
+msgstr[0] "signet"
 msgstr[1] "Signets"
 
 #: ../../../templates/editbookmark.tpl.php:29
@@ -916,7 +916,6 @@ msgstr "Renommer"
 
 #: ../../../templates/tags.tpl.php:8
 #: ../../../templates/users.tpl.php:9
-#, fuzzy
 msgid "Alphabet"
 msgstr "Alphabet"
 
@@ -929,7 +928,7 @@ msgstr "Popularité"
 msgid "Bookmarks"
 msgstr "Signets"
 
-#: ../../../templates/toolbar.inc.php:15
+#: ../../../templates/toolbar.inc.php:16
 msgid "Log Out"
 msgstr "Quitter"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-28 15:37+0100\n"
+"POT-Creation-Date: 2008-02-01 17:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ../../../about.php:25 ../../../templates/toolbar.inc.php:23
+#: ../../../about.php:25 ../../../templates/toolbar.inc.php:15
+#: ../../../templates/toolbar.inc.php:24
 msgid "About"
 msgstr ""
 
@@ -221,7 +222,7 @@ msgid "The details you have entered are incorrect. Please try again."
 msgstr ""
 
 #: ../../../login.php:48 ../../../templates/login.tpl.php:26
-#: ../../../templates/toolbar.inc.php:24
+#: ../../../templates/toolbar.inc.php:25
 msgid "Log In"
 msgstr ""
 
@@ -341,7 +342,7 @@ msgid "Registration failed. Please try again."
 msgstr ""
 
 #: ../../../register.php:66 ../../../templates/register.tpl.php:41
-#: ../../../templates/toolbar.inc.php:25
+#: ../../../templates/toolbar.inc.php:26
 msgid "Register"
 msgstr ""
 
@@ -927,7 +928,7 @@ msgstr ""
 msgid "Bookmarks"
 msgstr ""
 
-#: ../../../templates/toolbar.inc.php:15
+#: ../../../templates/toolbar.inc.php:16
 msgid "Log Out"
 msgstr ""
 
