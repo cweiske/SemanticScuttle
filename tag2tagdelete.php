@@ -36,7 +36,10 @@ if($logged_on_user == null) {
 list ($url, $tag1, $tag2) = explode('/', $_SERVER['PATH_INFO']);
 
 if ($_POST['confirm']) {
-    if ($tag2tagservice->removeLinkedTags($_POST['tag1'], $_POST['tag2'], '>', $userservice->getCurrentUserId())) {
+    $tag = $_POST['tag1'];
+    $linkType = $_POST['linkType'];
+    $newTag = $_POST['tag2'];
+    if ($tag2tagservice->removeLinkedTags($_POST['tag1'], $_POST['tag2'], $linkType, $userservice->getCurrentUserId())) {
         $tplVars['msg'] = T_('Tag link deleted');
         header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')]));
     } else {
@@ -47,6 +50,8 @@ if ($_POST['confirm']) {
 } elseif ($_POST['cancel']) {
     header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')] .'/'. $tags));
 }
+
+$tplVars['links']	= $tag2tagservice->getLinks($userservice->getCurrentUserId());
 
 $tplVars['tag1']	= $tag1;
 $tplVars['tag2']	= $tag2;

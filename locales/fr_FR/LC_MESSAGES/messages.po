@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-01 17:37+0100\n"
-"PO-Revision-Date: 2008-02-01 17:39+0100\n"
-"Last-Translator: Éric DANÉ <ericdane@free.fr>\n"
+"POT-Creation-Date: 2008-02-05 14:06+0100\n"
+"PO-Revision-Date: 2008-02-05 14:09+0100\n"
+"Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -212,20 +212,20 @@ msgid "Recent Bookmarks"
 msgstr "Signets récents"
 
 #: ../../../jsScuttle.php:22
-#: ../../../templates/tag2tagadd.tpl.php:9
-#: ../../../templates/tag2tagdelete.tpl.php:8
+#: ../../../templates/tag2tagadd.tpl.php:12
+#: ../../../templates/tag2tagdelete.tpl.php:13
 #: ../../../templates/tagdelete.tpl.php:6
 msgid "Are you sure?"
 msgstr "Etes-vous sûr ?"
 
 #: ../../../jsScuttle.php:22
-#: ../../../templates/tag2tagdelete.tpl.php:10
+#: ../../../templates/tag2tagdelete.tpl.php:15
 #: ../../../templates/tagdelete.tpl.php:8
 msgid "Yes"
 msgstr "Oui"
 
 #: ../../../jsScuttle.php:22
-#: ../../../templates/tag2tagdelete.tpl.php:11
+#: ../../../templates/tag2tagdelete.tpl.php:16
 #: ../../../templates/tagdelete.tpl.php:9
 msgid "No"
 msgstr "Non"
@@ -411,27 +411,27 @@ msgstr "Résultats de recherche"
 msgid "Permission denied."
 msgstr "Permission non accordée."
 
-#: ../../../tag2tagadd.php:42
+#: ../../../tag2tagadd.php:44
 msgid "Tag link created"
 msgstr "Lien entre tags créé."
 
-#: ../../../tag2tagadd.php:45
+#: ../../../tag2tagadd.php:47
 msgid "Failed to create the link"
 msgstr "Impossible de créer le lien"
 
-#: ../../../tag2tagadd.php:54
+#: ../../../tag2tagadd.php:58
 msgid "Add Tag Link"
 msgstr "Ajout d'un lien entre tags"
 
-#: ../../../tag2tagdelete.php:40
+#: ../../../tag2tagdelete.php:43
 msgid "Tag link deleted"
 msgstr "Effacement d'un lien entre tags"
 
-#: ../../../tag2tagdelete.php:43
+#: ../../../tag2tagdelete.php:46
 msgid "Failed to delete the link"
 msgstr "Impossible d'effacer le lien"
 
-#: ../../../tag2tagdelete.php:53
+#: ../../../tag2tagdelete.php:58
 msgid "Delete Link Between Tags"
 msgstr "Effacer un lien entre tags"
 
@@ -855,13 +855,25 @@ msgstr "Enregistrez-vous ici pour créer un compte gratuit %s. Toutes les inform
 msgid "Antispam question"
 msgstr "Question antispam"
 
-#: ../../../templates/sidebar.block.linked.php:97
+#: ../../../templates/sidebar.block.linked.php:35
+msgid "Synonyms:"
+msgstr "Synonymes :"
+
+#: ../../../templates/sidebar.block.linked.php:96
 msgid "Linked Tags"
 msgstr "Tags structurés"
 
-#: ../../../templates/sidebar.block.linked.php:100
+#: ../../../templates/sidebar.block.linked.php:99
 msgid "plus"
 msgstr "plus"
+
+#: ../../../templates/sidebar.block.linked.php:116
+msgid "Add new link"
+msgstr "Créer un lien"
+
+#: ../../../templates/sidebar.block.linked.php:117
+msgid "Delete link"
+msgstr "Supprimer un lien"
 
 #: ../../../templates/sidebar.block.recent.php:15
 msgid "Recent Tags"
@@ -889,18 +901,28 @@ msgstr "Enlever de la liste des consultés"
 msgid "Add to Watchlist"
 msgstr "Ajouter à la liste des consultés"
 
-#: ../../../templates/tag2tagadd.tpl.php:7
+#: ../../../templates/tag2tagadd.tpl.php:6
 msgid "Create new link:"
 msgstr "Créer un nouveau lien"
 
-#: ../../../templates/tag2tagadd.tpl.php:11
+#: ../../../templates/tag2tagadd.tpl.php:14
 msgid "Create"
 msgstr "Créer"
 
-#: ../../../templates/tag2tagadd.tpl.php:12
+#: ../../../templates/tag2tagadd.tpl.php:15
 #: ../../../templates/tagrename.tpl.php:25
 msgid "Cancel"
 msgstr "Annuler"
+
+#: ../../../templates/tag2tagadd.tpl.php:26
+#: ../../../templates/tag2tagdelete.tpl.php:27
+msgid "Existing links:"
+msgstr "Liens existants :"
+
+#: ../../../templates/tag2tagadd.tpl.php:44
+#: ../../../templates/tag2tagdelete.tpl.php:45
+msgid "No links"
+msgstr "Pas de liens"
 
 #: ../../../templates/tagrename.tpl.php:12
 msgid "Old"

@@ -34,11 +34,13 @@ if($logged_on_user == null) {
 }
 
 
-list ($url, $tag) = explode('/', $_SERVER['PATH_INFO']);
+list ($url, $tag1) = explode('/', $_SERVER['PATH_INFO']);
 
 if ($_POST['confirm']) {
-    $newTag = $_POST['newTag'];
-    if ($tag2tagservice->addLinkedTags($tag, $newTag, '>', $userservice->getCurrentUserId())) {
+    $tag1 = $_POST['tag1'];
+    $linkType = $_POST['linkType'];
+    $tag2 = $_POST['tag2'];
+    if ($tag2tagservice->addLinkedTags($tag1, $tag2, $linkType, $userservice->getCurrentUserId())) {
         $tplVars['msg'] = T_('Tag link created');
         header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')]));
     } else {
@@ -50,9 +52,11 @@ if ($_POST['confirm']) {
     header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')] .'/'. $tags));
 }
 
-$tplVars['tag']		= $tag;
-$tplVars['subtitle']    = T_('Add Tag Link') .': '. $tag;
-$tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $tag;
+$tplVars['links']	= $tag2tagservice->getLinks($userservice->getCurrentUserId());
+
+$tplVars['tag1']		= $tag1;
+$tplVars['subtitle']    = T_('Add Tag Link') .': '. $tag1;
+$tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $tag1;
 $tplVars['referrer']    = $_SERVER['HTTP_REFERER'];
 $templateservice->loadTemplate('tag2tagadd.tpl', $tplVars);
 ?>

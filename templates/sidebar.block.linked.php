@@ -23,8 +23,16 @@ function displayLinkedTags($tag, $linkType, $uId, $cat_url, $user, $editingMode 
     $synonymTags = $tag2tagservice->getAllLinkedTags($tag, '=', $uId);
     $synonymTags = is_array($synonymTags)?$synonymTags:array($synonymTags);
     sort($synonymTags);
+    $synonymList = '';
     foreach($synonymTags as $synonymTag) {
-	$output.= ", ".$synonymTag;
+	//$output.= ", ".$synonymTag;
+	$synonymList.= $synonymTag.' ';
+    }
+    if(count($synonymTags)>0) {
+        $output.= ', '.$synonymTags[0];
+    }
+    if(count($synonymTags)>1) {
+        $output.= '<span title="'.T_('Synonyms:').' '.$synonymList.'">, etc</span>';
     }
 
     if($editingMode) {
@@ -81,15 +89,6 @@ if ($currenttag) {
     }
 }
 
-if(count($explodedTags) > 0) {
-    $displayLinkedZone = false;
-    foreach($explodedTags as $explodedTag) {
-	if($tag2tagservice->getLinkedTags($explodedTag, '>', $userid) || $tag2tagservice->getLinkedTags($explodedTag, '>', $userid, true) || $tag2tagservice->getLinkedTags($explodedTag, '=', $userid)) {
-	    $displayLinkedZone = true;	  
-	    break;
-	}
-    }
-    if ($displayLinkedZone) {
 ?>
 
 <h2>
@@ -111,6 +110,14 @@ if(count($explodedTags) > 0) {
 	} else {
 	    $editingMode = false;
 	}
+
+	if($editingMode) {
+	    echo '<tr><td></td><td>';
+	    echo ' (<a href="'. createURL('tag2tagadd','') .'" rel="tag">'.T_('Add new link').'</a>) ';
+	    echo ' (<a href="'. createURL('tag2tagdelete','') .'" rel="tag">'.T_('Delete link').'</a>)';
+	    echo '</td></tr>';
+	}
+
 	$stopList = array();
 	foreach($explodedTags as $explodedTag) {
 	    if(!in_array($explodedTag, $stopList)) {
@@ -135,8 +142,3 @@ if(count($explodedTags) > 0) {
     ?>
     </table>
 </div>
-
-<?php
-    }
-}
-?>

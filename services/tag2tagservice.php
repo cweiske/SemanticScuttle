@@ -16,7 +16,8 @@ class Tag2TagService {
     }
 
     function addLinkedTags($tag1, $tag2, $relationType, $uId) {
-	if($tag1 == $tag2) {
+	if($tag1 == $tag2 || strlen($tag1) == 0 || strlen($tag2) == 0
+		|| ($relationType != ">" && $relationType != "=")) {
 		return false;
 	}
 	$values = array('tag1' => $tag1, 'tag2' => $tag2, 'relationType'=> $relationType, 'uId'=> $uId);
@@ -196,7 +197,21 @@ class Tag2TagService {
         return $this->db->sql_numrows($this->db->sql_query($query)) > 0;
     }
 
+    function getLinks($uId) {
+	$query = "SELECT tag1, tag2, relationType, uId FROM `". $this->getTableName() ."`";
+	$query.= " WHERE 1=1";
+	if($uId > 0) {
+	    $query.= " AND uId = '".$uId."'";
+	}
+
+        return $this->db->sql_fetchrowset($this->db->sql_query($query));
+    }
+
     function removeLinkedTags($tag1, $tag2, $relationType, $uId) {
+	if($tag1 == $tag2 || strlen($tag1) == 0 || strlen($tag2) == 0
+		|| ($relationType != ">" && $relationType != "=")) {
+		return false;
+	}
 	$query = 'DELETE FROM '. $this->getTableName();
 	$query.= ' WHERE tag1 = "'. $tag1 .'"';
 	$query.= ' AND tag2 = "'. $tag2 .'"';

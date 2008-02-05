@@ -3,8 +3,13 @@ $this->includeTemplate($GLOBALS['top_include']);
 ?>
 
 <form action="<?= $formaction ?>" method="post">
-<input type="hidden" name="tag1" value="<?php echo $tag1 ?>" />
-<input type="hidden" name="tag2" value="<?php echo $tag2 ?>" />
+<!--input type="hidden" name="tag1" value="<?php echo $tag1 ?>" />
+<input type="hidden" name="tag2" value="<?php echo $tag2 ?>" /-->
+<p>
+<input type="text" name="tag1" value="<?php echo $tag1 ?>"/>
+<input type="text" name="linkType" value=">" size="1" maxlength="1"/>
+<input type="text" name="tag2" value="<?php echo $tag2 ?>"/>
+</p>
 <p><?php echo T_('Are you sure?'); ?></p>
 <p>
     <input type="submit" name="confirm" value="<?php echo T_('Yes'); ?>" />
@@ -18,5 +23,27 @@ $this->includeTemplate($GLOBALS['top_include']);
 </form>
 
 <?php
+if(count($links)>0) {
+echo T_("Existing links:");
+foreach($links as $link) {
+    echo '<span style="white-space:nowrap;margin-left:25px;">';
+    if($link['tag1'] == $tag1 || $link['tag1'] == $tag2) {
+	$textTag1 = '<b>'.$tag1.'</b>';
+    } else {
+	$textTag1 = $link['tag1'];
+    }
+    if($link['tag2'] == $tag1 || $link['tag2'] == $tag2) {
+	$textTag2 = '<b>'.$tag2.'</b>';
+    } else {
+	$textTag2 = $link['tag2'];
+    }
+
+    echo $textTag1.' '.$link['relationType'].' '.$textTag2;
+    echo "</span> ";
+}
+} else {
+    echo T_('No links');
+}
+
 $this->includeTemplate($GLOBALS['bottom_include']); 
 ?>

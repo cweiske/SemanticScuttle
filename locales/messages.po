@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-01 17:37+0100\n"
+"POT-Creation-Date: 2008-02-05 14:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -193,18 +193,18 @@ msgstr ""
 msgid "Recent Bookmarks"
 msgstr ""
 
-#: ../../../jsScuttle.php:22 ../../../templates/tag2tagadd.tpl.php:9
-#: ../../../templates/tag2tagdelete.tpl.php:8
+#: ../../../jsScuttle.php:22 ../../../templates/tag2tagadd.tpl.php:12
+#: ../../../templates/tag2tagdelete.tpl.php:13
 #: ../../../templates/tagdelete.tpl.php:6
 msgid "Are you sure?"
 msgstr ""
 
-#: ../../../jsScuttle.php:22 ../../../templates/tag2tagdelete.tpl.php:10
+#: ../../../jsScuttle.php:22 ../../../templates/tag2tagdelete.tpl.php:15
 #: ../../../templates/tagdelete.tpl.php:8
 msgid "Yes"
 msgstr ""
 
-#: ../../../jsScuttle.php:22 ../../../templates/tag2tagdelete.tpl.php:11
+#: ../../../jsScuttle.php:22 ../../../templates/tag2tagdelete.tpl.php:16
 #: ../../../templates/tagdelete.tpl.php:9
 msgid "No"
 msgstr ""
@@ -387,27 +387,27 @@ msgstr ""
 msgid "Permission denied."
 msgstr ""
 
-#: ../../../tag2tagadd.php:42
+#: ../../../tag2tagadd.php:44
 msgid "Tag link created"
 msgstr ""
 
-#: ../../../tag2tagadd.php:45
+#: ../../../tag2tagadd.php:47
 msgid "Failed to create the link"
 msgstr ""
 
-#: ../../../tag2tagadd.php:54
+#: ../../../tag2tagadd.php:58
 msgid "Add Tag Link"
 msgstr ""
 
-#: ../../../tag2tagdelete.php:40
+#: ../../../tag2tagdelete.php:43
 msgid "Tag link deleted"
 msgstr ""
 
-#: ../../../tag2tagdelete.php:43
+#: ../../../tag2tagdelete.php:46
 msgid "Failed to delete the link"
 msgstr ""
 
-#: ../../../tag2tagdelete.php:53
+#: ../../../tag2tagdelete.php:58
 msgid "Delete Link Between Tags"
 msgstr ""
 
@@ -858,12 +858,24 @@ msgstr ""
 msgid "Antispam question"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:97
+#: ../../../templates/sidebar.block.linked.php:35
+msgid "Synonyms:"
+msgstr ""
+
+#: ../../../templates/sidebar.block.linked.php:96
 msgid "Linked Tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:100
+#: ../../../templates/sidebar.block.linked.php:99
 msgid "plus"
+msgstr ""
+
+#: ../../../templates/sidebar.block.linked.php:116
+msgid "Add new link"
+msgstr ""
+
+#: ../../../templates/sidebar.block.linked.php:117
+msgid "Delete link"
 msgstr ""
 
 #: ../../../templates/sidebar.block.recent.php:15
@@ -891,17 +903,27 @@ msgstr ""
 msgid "Add to Watchlist"
 msgstr ""
 
-#: ../../../templates/tag2tagadd.tpl.php:7
+#: ../../../templates/tag2tagadd.tpl.php:6
 msgid "Create new link:"
 msgstr ""
 
-#: ../../../templates/tag2tagadd.tpl.php:11
+#: ../../../templates/tag2tagadd.tpl.php:14
 msgid "Create"
 msgstr ""
 
-#: ../../../templates/tag2tagadd.tpl.php:12
+#: ../../../templates/tag2tagadd.tpl.php:15
 #: ../../../templates/tagrename.tpl.php:25
 msgid "Cancel"
+msgstr ""
+
+#: ../../../templates/tag2tagadd.tpl.php:26
+#: ../../../templates/tag2tagdelete.tpl.php:27
+msgid "Existing links:"
+msgstr ""
+
+#: ../../../templates/tag2tagadd.tpl.php:44
+#: ../../../templates/tag2tagdelete.tpl.php:45
+msgid "No links"
 msgstr ""
 
 #: ../../../templates/tagrename.tpl.php:12

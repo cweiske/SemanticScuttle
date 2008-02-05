@@ -44,6 +44,8 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 
 	// basic test
 
+	$links = $tts->getLinks(1);
+
 	$allLinkedTags = $tts->getAllLinkedTags('e', '>', 1, true); // as flat list
 	$this->assertEquals(array(), $allLinkedTags);
 
