@@ -264,6 +264,8 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$tts = $this->tts;
 	$bs = $this->bs;
 
+	$tts->addLinkedTags('aa', 'bb', '>', 1);	
+
 	$tags = array('aa>bb>cc', 'dd');
 	$bs->addBookmark("web1.com", "B1", "description", "status", $tags, null, false, false, 1);
 	$tags = array('bb>gg', 'ee>ff');

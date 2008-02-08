@@ -17,7 +17,8 @@ class Tag2TagService {
 
     function addLinkedTags($tag1, $tag2, $relationType, $uId) {
 	if($tag1 == $tag2 || strlen($tag1) == 0 || strlen($tag2) == 0
-		|| ($relationType != ">" && $relationType != "=")) {
+		|| ($relationType != ">" && $relationType != "=")
+		|| ($this->existsLinkedTags($tag1, $tag2, $relationType, $uId))) {
 		return false;
 	}
 	$values = array('tag1' => $tag1, 'tag2' => $tag2, 'relationType'=> $relationType, 'uId'=> $uId);
