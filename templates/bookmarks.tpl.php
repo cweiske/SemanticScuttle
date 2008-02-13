@@ -139,7 +139,9 @@ window.onload = playerLoad;
         if ($row['bDescription'] != '') {
             echo '<div class="description">'. filter($row['bDescription']) ."</div>\n";
         }
-	echo '<div class="address">'.$address.'</div>';
+	if(!isset($hash)) {
+	    echo '<div class="address">'.$address.'</div>';
+	}
         echo '<div class="meta">'. date($GLOBALS['shortdate'], strtotime($row['bDatetime'])) . $cats . $copy . $edit ."</div>\n";
         echo "</li>\n";
     }
