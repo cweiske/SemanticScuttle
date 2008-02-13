@@ -20,6 +20,7 @@ foreach ($lastUsers as $row) {
     echo  '<a href="'.createURL('profile', $row['username']).'">';
     echo $row['username'];
     echo '</a>';
+    echo ' (<a href="'.createURL('bookmarks', $user).'">'.T_('bookmarks').'</a>)';
     echo '</td></tr>';
 }
 echo '<tr><td><a href="'.createURL('users').'">...</a></td></tr>';

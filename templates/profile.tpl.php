@@ -60,6 +60,8 @@ if ($watchnames) {
 <?php
 }
 ?>
+<dt><?php echo T_('Bookmarks'); ?></dt>
+    <dd><a href="<?php echo createURL('bookmarks', $user) ?>"><?php echo T_('Go to bookmarks')?> >></a></dd>
 </dl>
 
 <?php
