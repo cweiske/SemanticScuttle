@@ -1,14 +1,44 @@
 <?php
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
+$cdservice =& ServiceFactory::getServiceInstance('CommonDescriptionService');
 
 $logged_on_userid = $userservice->getCurrentUserId();
 $this->includeTemplate($GLOBALS['top_include']);
 
 include('search.inc.php');
-if (count($bookmarks) > 0) {
 ?>
 
+<?php 
+if((isset($currenttag) && $GLOBALS['enableCommonTagDescription'])
+ || (isset($hash) && $GLOBALS['enableCommonBookmarkDescription'])):?>
+<p class="commondescription">
+
+<?php
+if(isset($currenttag) && $cdservice->getLastTagDescription($currenttag)) {
+    $description = $cdservice->getLastTagDescription($currenttag);
+    echo filter($description['cdDescription']);
+} elseif(isset($hash) && $cdservice->getLastBookmarkDescription($hash)) {
+    $description = $cdservice->getLastBookmarkDescription($hash);
+    echo filter($description['cdTitle']). "<br/>";
+    echo filter($description['cdDescription']). "<br/>";
+}
+
+if($logged_on_userid>0) {
+    if(isset($currenttag)) {
+	echo ' (<a href="'. createURL('tagcommondescriptionedit', $currenttag).'">';
+	echo T_('edit common description').'</a>)';
+    } elseif(isset($hash)) {
+	echo ' (<a href="'.createURL('bookmarkcommondescriptionedit', $hash).'">';
+	echo T_('edit common description').'</a>)';
+    }
+}
+?>
+</p>
+<?php endif ?>
+
+
+<?php if (count($bookmarks) > 0) { ?>
 <script type="text/javascript">
 window.onload = playerLoad;
 </script>

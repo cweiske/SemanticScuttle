@@ -1,0 +1,7 @@
+You need PHPunit.
+
+Then
+
+To launch the tests, put in a console situated in the root of the SEMANTICSCUTTLE project (where is the SEMANTICSCUTTLE config file):
+
+phpunit BookmarksTest ./tests/bookmarksTest.php ; phpunit CommonDescriptionTest tests/commonDescriptionTest.php ; phpunit Tag2TagTest tests/tag2TagTest.php

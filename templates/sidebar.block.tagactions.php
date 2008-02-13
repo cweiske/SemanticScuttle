@@ -1,5 +1,7 @@
 <?php
 $userservice =& ServiceFactory::getServiceInstance('UserService');
+$tagservice =& ServiceFactory::getServiceInstance('TagService');
+
 if ($userservice->isLoggedOn()) {
     $currentUser = $userservice->getCurrentUser();
     $currentUsername = $currentUser[$userservice->getFieldName('username')];
@@ -9,6 +11,7 @@ if ($userservice->isLoggedOn()) {
         $renametext = T_ngettext('Rename Tag', 'Rename Tags', count($tags));
         $renamelink = createURL('tagrename', $currenttag);
         $deletelink = createURL('tagdelete', $currenttag);
+        $commondesclink = createURL('tagcommondescriptionedit', $currenttag);
 ?>
 
 <h2><?php echo T_('Actions'); ?></h2>
@@ -18,6 +21,9 @@ if ($userservice->isLoggedOn()) {
         <?php if (count($tags) == 1): ?>
         <li><a href="<?php echo $deletelink; ?>"><?php echo T_('Delete Tag') ?></a></li>
         <?php endif; ?>
+        <?php if ($GLOBALS['enableCommonTagDescription']): ?>
+        <li><a href="<?php echo $commondesclink; ?>"><?php echo T_('Edit Tag Common Description') ?></a></li>
+	<?php endif; ?>
     </ul>
 </div>
 

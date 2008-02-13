@@ -100,3 +100,22 @@ CREATE TABLE `sc_tagsstats` (
   PRIMARY KEY (`tstId`),
   UNIQUE KEY `sc_tagsstats_tag1_type_uId` (`tag1`,`relationType`,`uId`)
 );
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `sc_commondescription`
+-- 
+
+CREATE TABLE `sc_commondescription` (
+  `cdId` int(11) NOT NULL auto_increment,
+  `uId` int(11) NOT NULL default '0',
+  `tag` varchar(32) NOT NULL default '',
+  `bHash` varchar(32) NOT NULL default '',
+  `cdTitle` varchar(255) NOT NULL default '',
+  `cdDescription` varchar(2000) default NULL,
+  `cdDatetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  PRIMARY KEY (`cdId`),
+  UNIQUE KEY `sc_commondescription_tag_datetime` (`tag`,`cdDatetime`),
+  UNIQUE KEY `sc_commondescription_bookmark_datetime` (`bHash`,`cdDatetime`)
+);

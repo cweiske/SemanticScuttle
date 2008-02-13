@@ -87,6 +87,10 @@ $dbname = 'scuttle';
 #
 # antispamQuestion: A question to avoid spam
 # antispamAnswer: The answer to the question (users have to put exactly the same answer)
+#
+# enableCommonTagDescription	  : true or false
+# enableCommonBookmarkDescription : true or false
+#
 ######################################################################
 
 $sitename           = 'SemanticScuttle';
@@ -123,6 +127,9 @@ $reservedusers      = array('all', 'watchlist');
 
 $antispamQuestion = 'Put here the answer to 1 + 2 + 3';
 $antispamAnswer = '6';
+
+$enableCommonTagDescription = true;
+$enableCommonBookmarkDescription = true;
 
 include_once('debug.inc.php');
 ?>

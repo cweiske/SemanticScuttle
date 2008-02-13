@@ -256,6 +256,13 @@ div#sidebar ul li {
 
 /* TAGS */
 
+p.commondescription {
+    padding-left:5px;
+    color: #555;
+    font-weight: bold;
+    border-left: 1px solid #CC8;
+}
+
 p.tags {
     line-height: 2.25em;
     /*margin: 2em 10%;*/

@@ -1,5 +1,8 @@
 <?php
 $this->includeTemplate($GLOBALS['top_include']);
+?>
+
+<?php
 if ($tags && count($tags) > 0) {
 ?>
 
