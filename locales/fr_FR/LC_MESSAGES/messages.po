@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-13 18:09+0100\n"
-"PO-Revision-Date: 2008-02-13 18:22+0100\n"
+"POT-Creation-Date: 2008-02-19 10:28+0100\n"
+"PO-Revision-Date: 2008-02-19 10:29+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -20,8 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../../../about.php:25
-#: ../../../templates/toolbar.inc.php:15
-#: ../../../templates/toolbar.inc.php:24
+#: ../../../templates/toolbar.inc.php:23
 msgid "About"
 msgstr "À propos"
 
@@ -50,16 +49,22 @@ msgstr "Tous les tags"
 msgid "User with username %s was not found"
 msgstr "L'utilisateur %s n'a pas été trouvé."
 
-#: ../../../bookmarkcommondescriptionedit.php:38
+#: ../../../bookmarkcommondescriptionedit.php:36
+#: ../../../tag2tagadd.php:31
+#: ../../../tag2tagdelete.php:31
+#: ../../../tagcommondescriptionedit.php:35
+msgid "Permission denied."
+msgstr "Permission non accordée."
+
+#: ../../../bookmarkcommondescriptionedit.php:46
 msgid "Bookmark common description updated"
 msgstr "Description commune du signet mise à jour."
 
-#: ../../../bookmarkcommondescriptionedit.php:41
-#, fuzzy
+#: ../../../bookmarkcommondescriptionedit.php:49
 msgid "Failed to update the bookmark common description"
-msgstr "Erreur dans la suppression du signet"
+msgstr "Erreur dans la mise à jour de la description du signet"
 
-#: ../../../bookmarkcommondescriptionedit.php:50
+#: ../../../bookmarkcommondescriptionedit.php:58
 msgid "Edit Bookmark Common Description"
 msgstr "Editer la description commune du signet"
 
@@ -257,7 +262,7 @@ msgstr "Les informations que vous avez entrées sont incorrectes. Veuillez recom
 
 #: ../../../login.php:48
 #: ../../../templates/login.tpl.php:26
-#: ../../../templates/toolbar.inc.php:25
+#: ../../../templates/toolbar.inc.php:24
 msgid "Log In"
 msgstr "Se connecter"
 
@@ -376,7 +381,7 @@ msgstr "Enregistrement raté. Veuillez rééssayer."
 
 #: ../../../register.php:66
 #: ../../../templates/register.tpl.php:41
-#: ../../../templates/toolbar.inc.php:26
+#: ../../../templates/toolbar.inc.php:25
 msgid "Register"
 msgstr "S'enregistrer"
 
@@ -419,11 +424,6 @@ msgstr "Recherche de signets"
 msgid "Search Results"
 msgstr "Résultats de recherche"
 
-#: ../../../tag2tagadd.php:31
-#: ../../../tag2tagdelete.php:31
-msgid "Permission denied."
-msgstr "Permission non accordée."
-
 #: ../../../tag2tagadd.php:44
 msgid "Tag link created"
 msgstr "Lien entre tags créé."
@@ -448,17 +448,17 @@ msgstr "Impossible d'effacer le lien"
 msgid "Delete Link Between Tags"
 msgstr "Effacer un lien entre tags"
 
-#: ../../../tagcommondescriptionedit.php:37
+#: ../../../tagcommondescriptionedit.php:45
 msgid "Tag common description updated"
 msgstr "Editer la description commune du tag"
 
-#: ../../../tagcommondescriptionedit.php:40
+#: ../../../tagcommondescriptionedit.php:48
 #, fuzzy
 msgid "Failed to update the tag common description"
 msgstr "Impossible d'effacer le tag"
 
-#: ../../../tagcommondescriptionedit.php:47
-#: ../../../templates/sidebar.block.tagactions.php:24
+#: ../../../tagcommondescriptionedit.php:55
+#: ../../../templates/sidebar.block.tagactions.php:25
 msgid "Edit Tag Common Description"
 msgstr "Editer la description commune du tag"
 
@@ -551,7 +551,7 @@ msgid "%1$s supports most of the <a href=\"http://del.icio.us/doc/api\">del.icio
 msgstr "%1$s supporte la plupart de l'<a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>."
 
 #: ../../../templates/bookmarkcommondescriptionedit.tpl.php:15
-#: ../../../templates/bookmarks.tpl.php:48
+#: ../../../templates/bookmarks.tpl.php:49
 #: ../../../templates/editbookmark.tpl.php:34
 msgid "Title"
 msgstr "Titre"
@@ -581,77 +581,77 @@ msgstr "Mettre à jour"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../../../templates/bookmarks.tpl.php:29
-#: ../../../templates/bookmarks.tpl.php:32
+#: ../../../templates/bookmarks.tpl.php:30
+#: ../../../templates/bookmarks.tpl.php:33
 msgid "edit common description"
 msgstr "éditer la description commune"
 
-#: ../../../templates/bookmarks.tpl.php:46
+#: ../../../templates/bookmarks.tpl.php:47
 #: ../../../templates/tags.tpl.php:10
 #: ../../../templates/users.tpl.php:8
 msgid "Sort by:"
 msgstr "Classer par :"
 
-#: ../../../templates/bookmarks.tpl.php:47
+#: ../../../templates/bookmarks.tpl.php:48
 msgid "Date"
 msgstr "Date"
 
-#: ../../../templates/bookmarks.tpl.php:52
+#: ../../../templates/bookmarks.tpl.php:53
 msgid "URL"
 msgstr "URL"
 
-#: ../../../templates/bookmarks.tpl.php:89
+#: ../../../templates/bookmarks.tpl.php:90
 msgid "Edit"
 msgstr "Editer"
 
-#: ../../../templates/bookmarks.tpl.php:89
+#: ../../../templates/bookmarks.tpl.php:90
 msgid "Delete"
 msgstr "Supprimer"
 
-#: ../../../templates/bookmarks.tpl.php:95
+#: ../../../templates/bookmarks.tpl.php:96
 msgid "by"
 msgstr "par"
 
-#: ../../../templates/bookmarks.tpl.php:107
+#: ../../../templates/bookmarks.tpl.php:108
 #, fuzzy, php-format
 msgid " and %s1 other%s"
 msgstr " et les autres %s"
 
-#: ../../../templates/bookmarks.tpl.php:110
+#: ../../../templates/bookmarks.tpl.php:111
 #, fuzzy, php-format
 msgid " and %2$s%1$s others%3$s"
 msgstr " et les autres %s"
 
-#: ../../../templates/bookmarks.tpl.php:119
+#: ../../../templates/bookmarks.tpl.php:120
 msgid "Copy"
 msgstr "Copier"
 
-#: ../../../templates/bookmarks.tpl.php:166
-#: ../../../templates/bookmarks.tpl.php:172
+#: ../../../templates/bookmarks.tpl.php:169
+#: ../../../templates/bookmarks.tpl.php:175
 msgid "First"
 msgstr "Première"
 
-#: ../../../templates/bookmarks.tpl.php:167
-#: ../../../templates/bookmarks.tpl.php:173
+#: ../../../templates/bookmarks.tpl.php:170
+#: ../../../templates/bookmarks.tpl.php:176
 msgid "Previous"
 msgstr "Précédent"
 
-#: ../../../templates/bookmarks.tpl.php:180
 #: ../../../templates/bookmarks.tpl.php:183
+#: ../../../templates/bookmarks.tpl.php:186
 msgid "Next"
 msgstr "Suivant"
 
-#: ../../../templates/bookmarks.tpl.php:181
 #: ../../../templates/bookmarks.tpl.php:184
+#: ../../../templates/bookmarks.tpl.php:187
 msgid "Last"
 msgstr "Dernière"
 
-#: ../../../templates/bookmarks.tpl.php:186
+#: ../../../templates/bookmarks.tpl.php:189
 #, php-format
 msgid "Page %d of %d"
 msgstr "Page %d de %d"
 
-#: ../../../templates/bookmarks.tpl.php:190
+#: ../../../templates/bookmarks.tpl.php:193
 msgid "No bookmarks available"
 msgstr "Pas de signets disponibles."
 
@@ -898,6 +898,15 @@ msgstr "Liste des signets vus"
 msgid "Watched By"
 msgstr "Consultés"
 
+#: ../../../templates/profile.tpl.php:63
+#: ../../../templates/toolbar.inc.php:10
+msgid "Bookmarks"
+msgstr "Signets"
+
+#: ../../../templates/profile.tpl.php:64
+msgid "Go to bookmarks"
+msgstr "Aller aux signets"
+
 #: ../../../templates/register.tpl.php:11
 #, php-format
 msgid "Sign up here to create a free %s account. All the information requested below is required"
@@ -944,6 +953,11 @@ msgstr "Instructions"
 #: ../../../templates/sidebar.block.users.php:14
 msgid "Last Users"
 msgstr "Derniers utilisateurs"
+
+#: ../../../templates/sidebar.block.users.php:23
+#: ../../../templates/users.tpl.php:17
+msgid "bookmarks"
+msgstr "signets"
 
 #: ../../../templates/sidebar.block.watchstatus.php:10
 msgid "Remove from Watchlist"
@@ -993,11 +1007,7 @@ msgstr "Alphabet"
 msgid "Popularity"
 msgstr "Popularité"
 
-#: ../../../templates/toolbar.inc.php:10
-msgid "Bookmarks"
-msgstr "Signets"
-
-#: ../../../templates/toolbar.inc.php:16
+#: ../../../templates/toolbar.inc.php:15
 msgid "Log Out"
 msgstr "Quitter"
 
@@ -1008,10 +1018,6 @@ msgstr "Profil"
 #: ../../../templates/users.tpl.php:17
 msgid "created in"
 msgstr "Créé en "
-
-#: ../../../templates/users.tpl.php:17
-msgid "bookmarks"
-msgstr "signets"
 
 #~ msgid "edit"
 #~ msgstr "éditer"

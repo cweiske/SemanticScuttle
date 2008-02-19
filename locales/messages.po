@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-13 18:09+0100\n"
+"POT-Creation-Date: 2008-02-19 10:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ../../../about.php:25 ../../../templates/toolbar.inc.php:15
-#: ../../../templates/toolbar.inc.php:24
+#: ../../../about.php:25 ../../../templates/toolbar.inc.php:23
 msgid "About"
 msgstr ""
 
@@ -41,15 +40,20 @@ msgstr ""
 msgid "User with username %s was not found"
 msgstr ""
 
-#: ../../../bookmarkcommondescriptionedit.php:38
+#: ../../../bookmarkcommondescriptionedit.php:36 ../../../tag2tagadd.php:31
+#: ../../../tag2tagdelete.php:31 ../../../tagcommondescriptionedit.php:35
+msgid "Permission denied."
+msgstr ""
+
+#: ../../../bookmarkcommondescriptionedit.php:46
 msgid "Bookmark common description updated"
 msgstr ""
 
-#: ../../../bookmarkcommondescriptionedit.php:41
+#: ../../../bookmarkcommondescriptionedit.php:49
 msgid "Failed to update the bookmark common description"
 msgstr ""
 
-#: ../../../bookmarkcommondescriptionedit.php:50
+#: ../../../bookmarkcommondescriptionedit.php:58
 msgid "Edit Bookmark Common Description"
 msgstr ""
 
@@ -234,7 +238,7 @@ msgid "The details you have entered are incorrect. Please try again."
 msgstr ""
 
 #: ../../../login.php:48 ../../../templates/login.tpl.php:26
-#: ../../../templates/toolbar.inc.php:25
+#: ../../../templates/toolbar.inc.php:24
 msgid "Log In"
 msgstr ""
 
@@ -354,7 +358,7 @@ msgid "Registration failed. Please try again."
 msgstr ""
 
 #: ../../../register.php:66 ../../../templates/register.tpl.php:41
-#: ../../../templates/toolbar.inc.php:26
+#: ../../../templates/toolbar.inc.php:25
 msgid "Register"
 msgstr ""
 
@@ -395,10 +399,6 @@ msgstr ""
 msgid "Search Results"
 msgstr ""
 
-#: ../../../tag2tagadd.php:31 ../../../tag2tagdelete.php:31
-msgid "Permission denied."
-msgstr ""
-
 #: ../../../tag2tagadd.php:44
 msgid "Tag link created"
 msgstr ""
@@ -423,16 +423,16 @@ msgstr ""
 msgid "Delete Link Between Tags"
 msgstr ""
 
-#: ../../../tagcommondescriptionedit.php:37
+#: ../../../tagcommondescriptionedit.php:45
 msgid "Tag common description updated"
 msgstr ""
 
-#: ../../../tagcommondescriptionedit.php:40
+#: ../../../tagcommondescriptionedit.php:48
 msgid "Failed to update the tag common description"
 msgstr ""
 
-#: ../../../tagcommondescriptionedit.php:47
-#: ../../../templates/sidebar.block.tagactions.php:24
+#: ../../../tagcommondescriptionedit.php:55
+#: ../../../templates/sidebar.block.tagactions.php:25
 msgid "Edit Tag Common Description"
 msgstr ""
 
@@ -538,7 +538,7 @@ msgid ""
 msgstr ""
 
 #: ../../../templates/bookmarkcommondescriptionedit.tpl.php:15
-#: ../../../templates/bookmarks.tpl.php:48
+#: ../../../templates/bookmarks.tpl.php:49
 #: ../../../templates/editbookmark.tpl.php:34
 msgid "Title"
 msgstr ""
@@ -568,76 +568,76 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:29
-#: ../../../templates/bookmarks.tpl.php:32
+#: ../../../templates/bookmarks.tpl.php:30
+#: ../../../templates/bookmarks.tpl.php:33
 msgid "edit common description"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:46 ../../../templates/tags.tpl.php:10
+#: ../../../templates/bookmarks.tpl.php:47 ../../../templates/tags.tpl.php:10
 #: ../../../templates/users.tpl.php:8
 msgid "Sort by:"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:47
+#: ../../../templates/bookmarks.tpl.php:48
 msgid "Date"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:52
+#: ../../../templates/bookmarks.tpl.php:53
 msgid "URL"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:89
+#: ../../../templates/bookmarks.tpl.php:90
 msgid "Edit"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:89
+#: ../../../templates/bookmarks.tpl.php:90
 msgid "Delete"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:95
+#: ../../../templates/bookmarks.tpl.php:96
 msgid "by"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:107
+#: ../../../templates/bookmarks.tpl.php:108
 #, php-format
 msgid " and %s1 other%s"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:110
+#: ../../../templates/bookmarks.tpl.php:111
 #, php-format
 msgid " and %2$s%1$s others%3$s"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:119
+#: ../../../templates/bookmarks.tpl.php:120
 msgid "Copy"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:166
-#: ../../../templates/bookmarks.tpl.php:172
+#: ../../../templates/bookmarks.tpl.php:169
+#: ../../../templates/bookmarks.tpl.php:175
 msgid "First"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:167
-#: ../../../templates/bookmarks.tpl.php:173
+#: ../../../templates/bookmarks.tpl.php:170
+#: ../../../templates/bookmarks.tpl.php:176
 msgid "Previous"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:180
 #: ../../../templates/bookmarks.tpl.php:183
+#: ../../../templates/bookmarks.tpl.php:186
 msgid "Next"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:181
 #: ../../../templates/bookmarks.tpl.php:184
+#: ../../../templates/bookmarks.tpl.php:187
 msgid "Last"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:186
+#: ../../../templates/bookmarks.tpl.php:189
 #, php-format
 msgid "Page %d of %d"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:190
+#: ../../../templates/bookmarks.tpl.php:193
 msgid "No bookmarks available"
 msgstr ""
 
@@ -898,6 +898,14 @@ msgstr ""
 msgid "Watched By"
 msgstr ""
 
+#: ../../../templates/profile.tpl.php:63 ../../../templates/toolbar.inc.php:10
+msgid "Bookmarks"
+msgstr ""
+
+#: ../../../templates/profile.tpl.php:64
+msgid "Go to bookmarks"
+msgstr ""
+
 #: ../../../templates/register.tpl.php:11
 #, php-format
 msgid ""
@@ -946,6 +954,11 @@ msgstr ""
 msgid "Last Users"
 msgstr ""
 
+#: ../../../templates/sidebar.block.users.php:23
+#: ../../../templates/users.tpl.php:17
+msgid "bookmarks"
+msgstr ""
+
 #: ../../../templates/sidebar.block.watchstatus.php:10
 msgid "Remove from Watchlist"
 msgstr ""
@@ -992,11 +1005,7 @@ msgstr ""
 msgid "Popularity"
 msgstr ""
 
-#: ../../../templates/toolbar.inc.php:10
-msgid "Bookmarks"
-msgstr ""
-
-#: ../../../templates/toolbar.inc.php:16
+#: ../../../templates/toolbar.inc.php:15
 msgid "Log Out"
 msgstr ""
 
@@ -1006,8 +1015,4 @@ msgstr ""
 
 #: ../../../templates/users.tpl.php:17
 msgid "created in"
-msgstr ""
-
-#: ../../../templates/users.tpl.php:17
-msgid "bookmarks"
 msgstr ""
