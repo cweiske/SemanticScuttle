@@ -16,6 +16,13 @@ class CommonDescriptionService {
     }
 
     function addTagDescription($tag, $desc, $uId, $time) {
+	// Check if no modification
+	$lastDesc = $this->getLastTagDescription($tag);
+	if($lastDesc['cdDescription'] == $desc) {
+	    return true;
+	}
+
+	// If modification
 	$datetime = gmdate('Y-m-d H:i:s', $time);
 	$values = array('tag'=>$tag, 'cdDescription'=>$desc, 'uId'=>$uId, 'cdDatetime'=>$datetime);
 	$sql = 'INSERT INTO '. $this->getTableName() .' '. $this->db->sql_build_array('INSERT', $values);
@@ -81,6 +88,13 @@ class CommonDescriptionService {
     }
 
     function addBookmarkDescription($bHash, $title, $desc, $uId, $time) {
+	// Check if no modification
+	$lastDesc = $this->getLastBookmarkDescription($bHash);
+	if($lastDesc['cdTitle'] == $title && $lastDesc['cdDescription'] == $desc) {
+	    return true;
+	}
+
+	// If modification
 	$datetime = gmdate('Y-m-d H:i:s', $time);
 	$values = array('bHash'=>$bHash, 'cdTitle'=>$title, 'cdDescription'=>$desc, 'uId'=>$uId, 'cdDatetime'=>$datetime);
 	$sql = 'INSERT INTO '. $this->getTableName() .' '. $this->db->sql_build_array('INSERT', $values);

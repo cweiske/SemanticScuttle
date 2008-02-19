@@ -18,9 +18,9 @@ window.onload = function() {
     <td>
  	<?php
 	if(strlen($description['cdDatetime'])>0) {
-	   echo T_('Last modification: ').$description['cdDatetime'].', ';
+	   echo T_('Last modification:').' '.$description['cdDatetime'].', ';
 	   $lastUser = $userservice->getUser($description['uId']);
-	   echo  $lastUser['username'];
+	   echo  '<a href="'.createURL('profile', $lastUser['username']).'">'.$lastUser['username'].'</a>';
 	}
 	?>
     </td>
