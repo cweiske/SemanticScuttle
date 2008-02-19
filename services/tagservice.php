@@ -41,6 +41,10 @@ class TagService {
             }
         }
 
+	//clean tags from strange characters
+	$tags = str_replace(array('"', '\''), "_", $tags);
+	
+
         $tags_count = count($tags);
         for ($i = 0; $i < $tags_count; $i++) {
             $tags[$i] = trim(strtolower($tags[$i]));
