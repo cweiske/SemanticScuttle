@@ -261,6 +261,7 @@ p.commondescription {
     color: #555;
     font-weight: bold;
     border-left: 1px solid #CC8;
+    width: 70%;
 }
 
 p.tags {

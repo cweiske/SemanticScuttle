@@ -17,11 +17,11 @@ if((isset($currenttag) && $GLOBALS['enableCommonTagDescription'])
 <?php
 if(isset($currenttag) && $cdservice->getLastTagDescription($currenttag)) {
     $description = $cdservice->getLastTagDescription($currenttag);
-    echo filter($description['cdDescription']);
+    echo nl2br(filter($description['cdDescription']));
 } elseif(isset($hash) && $cdservice->getLastBookmarkDescription($hash)) {
     $description = $cdservice->getLastBookmarkDescription($hash);
-    echo filter($description['cdTitle']). "<br/>";
-    echo filter($description['cdDescription']). "<br/>";
+    echo nl2br(filter($description['cdTitle'])). "<br/>";
+    echo nl2br(filter($description['cdDescription'])). "<br/>";
 }
 
 if($logged_on_userid>0) {
