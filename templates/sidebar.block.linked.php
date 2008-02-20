@@ -101,6 +101,7 @@ if ($currenttag) {
 ?>
 </h2>
 
+<?php if(count($explodedTags)>0):?>
 
 <div id="linked">
     <table>
@@ -146,3 +147,5 @@ if ($currenttag) {
     ?>
     </table>
 </div>
+
+<?php endif?>
