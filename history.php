@@ -73,7 +73,8 @@ if ($bookmark =& $bookmarkservice->getBookmarkByHash($hash)) {
     $tplVars['hash'] = $hash;
     $tplVars['popCount'] = 50;
     $tplVars['sidebar_blocks'] = array('common');
-    $tplVars['cat_url'] = createURL('tags', '%2$s');
+    //$tplVars['cat_url'] = createURL('tags', '%2$s');
+    $tplVars['cat_url'] = createURL('bookmarks', '%1$s/%2$s');
     $tplVars['nav_url'] = createURL('history', $hash .'/%3$s');
     $templateservice->loadTemplate('bookmarks.tpl', $tplVars);
 } else {

@@ -4,6 +4,9 @@ $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
 $cdservice =& ServiceFactory::getServiceInstance('CommonDescriptionService');
 
 $logged_on_userid = $userservice->getCurrentUserId();
+$currentUser = $userservice->getCurrentUser();
+$currentUsername = $currentUser[$userservice->getFieldName('username')];
+
 $this->includeTemplate($GLOBALS['top_include']);
 
 include('search.inc.php');
@@ -54,7 +57,25 @@ window.onload = playerLoad;
     <?php
     }
     ?>
+
+    <?php
+    if(isset($currenttag)) {
+	if(isset($user)) {
+	    echo ' - ';
+	    echo '<a href="'. createURL('tags', $currenttag) .'">';
+	    echo T_('Bookmarks from other users for these tags').'</a>';
+	    //echo T_(' for these tags');
+ 	} else if($logged_on_userid>0){
+	    echo ' - ';
+	    echo '<a href="'. createURL('bookmarks', $currentUsername.'/'.$currenttag) .'">';
+	    echo T_('Only your bookmarks for these tags').'</a>';
+	    //echo T_(' for these tags');
+	}
+    }
+    ?>
 </p>
+
+
 
 <ol<?php echo ($start > 0 ? ' start="'. ++$start .'"' : ''); ?> id="bookmarks">
 
@@ -76,8 +97,9 @@ window.onload = playerLoad;
         $cats = '';
         $tags = $row['tags'];
         foreach(array_keys($tags) as $key) {
+
             $tag =& $tags[$key];
-            $cats .= '<a href="'. sprintf($cat_url, filter($user, 'url'), filter($tag, 'url')) .'" rel="tag">'. filter($tag) .'</a>, ';
+            $cats .= '<a href="'. sprintf($cat_url, filter($row['username'], 'url'), filter($tag, 'url')) .'" rel="tag">'. filter($tag) .'</a>, ';
         }
         $cats = substr($cats, 0, -2);
         if ($cats != '') {

@@ -118,6 +118,10 @@ if ($currenttag) {
 	    echo '</td></tr>';
 	}
 
+	if(strlen($user)==0) {
+	    $cat_url = createURL('tags', '%2$s');
+	}
+
 	$stopList = array();
 	foreach($explodedTags as $explodedTag) {
 	    if(!in_array($explodedTag, $stopList)) {

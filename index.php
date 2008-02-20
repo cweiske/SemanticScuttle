@@ -75,7 +75,7 @@ $tplVars['bookmarkCount'] = $start + 1;
 $bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, NULL, NULL, NULL, getSortOrder(), NULL, 0, $dtend);
 $tplVars['total'] = $bookmarks['total'];
 $tplVars['bookmarks'] =& $bookmarks['bookmarks'];
-$tplVars['cat_url'] = createURL('tags', '%2$s');
+$tplVars['cat_url'] = createURL('bookmarks', '%1$s/%2$s');
 $tplVars['nav_url'] = createURL('index', '%3$s');
 $tplVars['summarizeLinkedTags'] = true;
 
