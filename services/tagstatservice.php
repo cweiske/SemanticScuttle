@@ -55,7 +55,7 @@ class TagStatService {
 	};
     }
 
-    function getNbUpdate($tag1, $relationType, $uId) {
+    function getNbUpdates($tag1, $relationType, $uId) {
 	$query = "SELECT nbupdate FROM `". $this->getTableName() ."`";
 	$query.= " WHERE tag1 = '" .$tag1 ."'";
 	$query.= " AND relationType = '". $relationType ."'";

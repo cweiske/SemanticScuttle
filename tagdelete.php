@@ -24,12 +24,13 @@ $tagservice = & ServiceFactory :: getServiceInstance('TagService');
 $templateservice = & ServiceFactory :: getServiceInstance('TemplateService');
 $userservice = & ServiceFactory :: getServiceInstance('UserService');
 
+$logged_on_user = $userservice->getCurrentUser();
+
 list ($url, $tag) = explode('/', $_SERVER['PATH_INFO']);
 
 if ($_POST['confirm']) {
-    if ($tagservice->deleteTag($tag)) {
-        $tplVars['msg'] = T_('Tag deleted');
-        $logged_on_user = $userservice->getCurrentUser();
+    if ($tagservice->deleteTag($logged_on_user['uId'], $tag)) {
+        $tplVars['msg'] = T_('Tag deleted');        
         header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')]));
     } else {
         $tplVars['error'] = T_('Failed to delete the tag');
@@ -37,7 +38,6 @@ if ($_POST['confirm']) {
         exit();
     }
 } elseif ($_POST['cancel']) {
-    $logged_on_user = $userservice->getCurrentUser();
     header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')] .'/'. $tags));
 }
 

@@ -146,11 +146,14 @@ class TagService {
         return true;    
     } 
     
-    function deleteTag($tag) {
-        $userservice =& ServiceFactory::getServiceInstance('UserService');
-        $logged_on_user = $userservice->getCurrentUserId();
+    function deleteTag($uId, $tag) {
+	$bs =& ServiceFactory::getServiceInstance('BookmarkService');
 
-        $query = 'DELETE FROM '. $this->getTableName() .' USING '. $GLOBALS['tableprefix'] .'tags, '. $GLOBALS['tableprefix'] .'bookmarks WHERE '. $GLOBALS['tableprefix'] .'tags.bId = '. $GLOBALS['tableprefix'] .'bookmarks.bId AND '. $GLOBALS['tableprefix'] .'bookmarks.uId = '. $logged_on_user .' AND '. $GLOBALS['tableprefix'] .'tags.tag = "'. $this->db->sql_escape($tag) .'"';
+        $query = 'DELETE FROM '. $this->getTableName();
+        $query.= ' USING '. $this->getTableName() .', '. $bs->getTableName();
+        $query.= ' WHERE '. $this->getTableName() .'.bId = '. $bs->getTableName() .'.bId';
+        $query.= ' AND '. $bs->getTableName() .'.uId = '. $uId;
+        $query.= ' AND '. $this->getTableName() .'.tag = "'. $this->db->sql_escape($tag) .'"';
 
         if (!($dbresult =& $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not delete tags', '', __LINE__, __FILE__, $query, $this->db);
@@ -349,7 +352,7 @@ class TagService {
         $bookmarks =& $bookmarksInfo['bookmarks'];
 
         // Delete old tag
-        $this->deleteTag($old);
+        $this->deleteTag($userid, $old);
 
         // Attach new tags
         foreach(array_keys($bookmarks) as $key) {
