@@ -125,7 +125,7 @@ $filetypes          = array(
                         );
 $reservedusers      = array('all', 'watchlist');
 
-$antispamQuestion = 'write the name of this application (no Caps, no spaces)';
+$antispamQuestion = 'name of this application (no Caps)';
 $antispamAnswer = 'semanticscuttle';
 
 $enableCommonTagDescription = true;
