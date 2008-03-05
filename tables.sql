@@ -1,3 +1,8 @@
+-- Semantice Scuttle
+-- Tables creation SQL script
+-- ! Dont forget to adapt the tables prefix sc_ conforming config.inc.php !
+
+
 -- 
 -- Table structure for table `sc_bookmarks`
 -- 
