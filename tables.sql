@@ -1,9 +1,5 @@
--- Semantice Scuttle
--- Tables creation SQL script
--- ! Dont forget to adapt the tables prefix sc_ conforming config.inc.php,
--- without using '-' character (badly handeld by MySQL) !
-
-
+-- Semantice Scuttle - Tables creation SQL script
+-- ! Dont forget to change table names according to $tableprefix defined in config.inc.php !
 -- 
 -- Table structure for table `sc_bookmarks`
 -- 

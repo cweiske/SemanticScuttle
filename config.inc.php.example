@@ -95,7 +95,7 @@ $dbname = 'scuttle';
 
 $sitename           = 'SemanticScuttle';
 $welcomeMessage     = 'More than tags...';
-$locale             = 'en_GB';
+$locale             = 'en_GB'; # in list ./locales : de_DE  en_GB  fr_FR  it_IT  lt_LT nl_NL  zh_CN dk_DK  es_ES  hi_IN  ja_JP  pt_BR
 $top_include        = 'top.inc.php';
 $bottom_include     = 'bottom.inc.php';
 $shortdate          = 'd-m-Y';
@@ -107,7 +107,7 @@ $defaultOrderBy     = 'date_desc';
 $TEMPLATES_DIR      = dirname(__FILE__) .'/templates/';
 $root               = NULL;
 $cookieprefix       = 'SCUTTLE';
-$tableprefix        = 'sc_';
+$tableprefix        = 'sc_'; # do not use '-' (badly handeld by MySQL)
 $adminemail         = 'admin@example.org';
 $cleanurls          = false;
 
