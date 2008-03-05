@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-20 14:51+0100\n"
-"PO-Revision-Date: 2008-02-20 14:52+0100\n"
-"Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
+"POT-Creation-Date: 2008-03-05 17:47+0100\n"
+"PO-Revision-Date: 2008-03-05 17:50+0100\n"
+"Last-Translator: Éric DANÉ <ericdane@free.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -20,7 +20,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../../../about.php:25
-#: ../../../templates/toolbar.inc.php:23
+#: ../../../templates/toolbar.inc.php:16
+#: ../../../templates/toolbar.inc.php:24
 msgid "About"
 msgstr "À propos"
 
@@ -262,7 +263,7 @@ msgstr "Les informations que vous avez entrées sont incorrectes. Veuillez recom
 
 #: ../../../login.php:48
 #: ../../../templates/login.tpl.php:26
-#: ../../../templates/toolbar.inc.php:24
+#: ../../../templates/toolbar.inc.php:25
 msgid "Log In"
 msgstr "Se connecter"
 
@@ -381,7 +382,7 @@ msgstr "Enregistrement raté. Veuillez rééssayer."
 
 #: ../../../register.php:66
 #: ../../../templates/register.tpl.php:41
-#: ../../../templates/toolbar.inc.php:25
+#: ../../../templates/toolbar.inc.php:26
 msgid "Register"
 msgstr "S'enregistrer"
 
@@ -462,11 +463,11 @@ msgstr "Impossible d'effacer le tag"
 msgid "Edit Tag Common Description"
 msgstr "Editer la description commune du tag"
 
-#: ../../../tagdelete.php:31
+#: ../../../tagdelete.php:33
 msgid "Tag deleted"
 msgstr "Tag effacé"
 
-#: ../../../tagdelete.php:35
+#: ../../../tagdelete.php:36
 msgid "Failed to delete the tag"
 msgstr "Impossible d'effacer le tag"
 
@@ -541,9 +542,8 @@ msgid "Geek Stuff"
 msgstr "Pour les Geeks"
 
 #: ../../../templates/about.tpl.php:14
-#, php-format
-msgid "%s is based on <a href=\"http://sourceforge.net/projects/scuttle/\">an open-source project</a> licensed under the <a href=\"http://www.gnu.org/copyleft/gpl.html\"><acronym title=\"GNU's Not Unix\">GNU</acronym> General Public License</a>. This means you can host it on your own web server for free, whether it is on the Internet, a private network or just your own computer."
-msgstr "%s est basé sur <a href=\"http://sourceforge.net/projects/scuttle/\">un projet open-source</a>, sous la license <a href=\"http://www.gnu.org/copyleft/gpl.html\"><acronym title=\"GNU's Not Unix\">GNU</acronym> General Public License</a>. Vous pouvez donc héberger Scuttle sur votre propre serveur gratuitement, qu'il soit relié à Internet, dans un réseau privé ou juste sur votre ordinateur personnel."
+msgid "<a href=\"http://sourceforge.net/projects/semanticscuttle/\">Semantic Scuttle</a> is licensed under the <a href=\"http://www.gnu.org/copyleft/gpl.html\"><acronym title=\"GNU's Not Unix\">GNU</acronym> General Public License</a> (you can host it on your own web server)."
+msgstr "<a href=\"http://sourceforge.net/projects/semanticscuttle/\">Semantic Scuttle</a>, sous license <a href=\"http://www.gnu.org/copyleft/gpl.html\"><acronym title=\"GNU's Not Unix\">GNU</acronym> General Public License</a> (vous pouvez donc l'héberger sur votre propre serveur)."
 
 #: ../../../templates/about.tpl.php:15
 #, php-format

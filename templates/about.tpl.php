@@ -11,7 +11,7 @@ $this->includeTemplate($GLOBALS['top_include']);
 
 <h3><?php echo T_('Geek Stuff'); ?></h3>
 <ul>
-<li><?php echo sprintf(T_('%s is based on <a href="http://sourceforge.net/projects/scuttle/">an open-source project</a> licensed under the <a href="http://www.gnu.org/copyleft/gpl.html"><acronym title="GNU\'s Not Unix">GNU</acronym> General Public License</a>. This means you can host it on your own web server for free, whether it is on the Internet, a private network or just your own computer.'), $GLOBALS['sitename']); ?></li>
+<li><?php echo sprintf(T_('<a href="http://sourceforge.net/projects/semanticscuttle/">Semantic Scuttle</a> is licensed under the <a href="http://www.gnu.org/copyleft/gpl.html"><acronym title="GNU\'s Not Unix">GNU</acronym> General Public License</a> (you can host it on your own web server).'), $GLOBALS['sitename']); ?></li>
 <li><?php echo sprintf(T_('%1$s supports most of the <a href="http://del.icio.us/doc/api">del.icio.us <abbr title="Application Programming Interface">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won\'t let you change the API address, ask the creator to add this setting. You never know, they might just do it.'), $GLOBALS['sitename']); ?></li>
 </ul>
 

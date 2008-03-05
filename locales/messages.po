@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-20 14:51+0100\n"
+"POT-Creation-Date: 2008-03-05 17:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ../../../about.php:25 ../../../templates/toolbar.inc.php:23
+#: ../../../about.php:25 ../../../templates/toolbar.inc.php:16
+#: ../../../templates/toolbar.inc.php:24
 msgid "About"
 msgstr ""
 
@@ -238,7 +239,7 @@ msgid "The details you have entered are incorrect. Please try again."
 msgstr ""
 
 #: ../../../login.php:48 ../../../templates/login.tpl.php:26
-#: ../../../templates/toolbar.inc.php:24
+#: ../../../templates/toolbar.inc.php:25
 msgid "Log In"
 msgstr ""
 
@@ -358,7 +359,7 @@ msgid "Registration failed. Please try again."
 msgstr ""
 
 #: ../../../register.php:66 ../../../templates/register.tpl.php:41
-#: ../../../templates/toolbar.inc.php:25
+#: ../../../templates/toolbar.inc.php:26
 msgid "Register"
 msgstr ""
 
@@ -436,11 +437,11 @@ msgstr ""
 msgid "Edit Tag Common Description"
 msgstr ""
 
-#: ../../../tagdelete.php:31
+#: ../../../tagdelete.php:33
 msgid "Tag deleted"
 msgstr ""
 
-#: ../../../tagdelete.php:35
+#: ../../../tagdelete.php:36
 msgid "Failed to delete the tag"
 msgstr ""
 
@@ -518,13 +519,11 @@ msgid "Geek Stuff"
 msgstr ""
 
 #: ../../../templates/about.tpl.php:14
-#, php-format
 msgid ""
-"%s is based on <a href=\"http://sourceforge.net/projects/scuttle/\">an open-"
-"source project</a> licensed under the <a href=\"http://www.gnu.org/copyleft/"
-"gpl.html\"><acronym title=\"GNU's Not Unix\">GNU</acronym> General Public "
-"License</a>. This means you can host it on your own web server for free, "
-"whether it is on the Internet, a private network or just your own computer."
+"<a href=\"http://sourceforge.net/projects/semanticscuttle/\">Semantic "
+"Scuttle</a> is licensed under the <a href=\"http://www.gnu.org/copyleft/gpl."
+"html\"><acronym title=\"GNU's Not Unix\">GNU</acronym> General Public "
+"License</a> (you can host it on your own web server)."
 msgstr ""
 
 #: ../../../templates/about.tpl.php:15
