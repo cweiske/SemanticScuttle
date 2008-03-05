@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-05 17:47+0100\n"
+"POT-Creation-Date: 2008-03-05 19:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -519,11 +519,7 @@ msgid "Geek Stuff"
 msgstr ""
 
 #: ../../../templates/about.tpl.php:14
-msgid ""
-"<a href=\"http://sourceforge.net/projects/semanticscuttle/\">Semantic "
-"Scuttle</a> is licensed under the <a href=\"http://www.gnu.org/copyleft/gpl."
-"html\"><acronym title=\"GNU's Not Unix\">GNU</acronym> General Public "
-"License</a> (you can host it on your own web server)."
+msgid "is licensed under the "
 msgstr ""
 
 #: ../../../templates/about.tpl.php:15
@@ -534,6 +530,10 @@ msgid ""
 "of the neat tools made for that system can be modified to work with %1$s "
 "instead. If you find a tool that won't let you change the API address, ask "
 "the creator to add this setting. You never know, they might just do it."
+msgstr ""
+
+#: ../../../templates/about.tpl.php:14
+msgid "you can freely host it on your own web server."
 msgstr ""
 
 #: ../../../templates/bookmarkcommondescriptionedit.tpl.php:15

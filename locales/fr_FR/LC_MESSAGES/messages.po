@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-05 17:47+0100\n"
-"PO-Revision-Date: 2008-03-05 17:50+0100\n"
+"POT-Creation-Date: 2008-03-05 19:12+0100\n"
+"PO-Revision-Date: 2008-03-05 19:16+0100\n"
 "Last-Translator: Éric DANÉ <ericdane@free.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -143,9 +143,8 @@ msgid "File"
 msgstr "Fichier"
 
 #: ../../../functions.inc.php:121
-#, fuzzy
 msgid "Information"
-msgstr "Instructions"
+msgstr "Information"
 
 #: ../../../functions.inc.php:126
 msgid "Critical Information"
@@ -204,9 +203,8 @@ msgstr "Vous avez déjà enregistré ce signet."
 
 #: ../../../import.php:97
 #: ../../../importNetscape.php:72
-#, fuzzy
 msgid "Bookmark imported."
-msgstr "Signets importés."
+msgstr "Signet importé."
 
 #: ../../../importNetscape.php:81
 #, fuzzy
@@ -542,13 +540,17 @@ msgid "Geek Stuff"
 msgstr "Pour les Geeks"
 
 #: ../../../templates/about.tpl.php:14
-msgid "<a href=\"http://sourceforge.net/projects/semanticscuttle/\">Semantic Scuttle</a> is licensed under the <a href=\"http://www.gnu.org/copyleft/gpl.html\"><acronym title=\"GNU's Not Unix\">GNU</acronym> General Public License</a> (you can host it on your own web server)."
-msgstr "<a href=\"http://sourceforge.net/projects/semanticscuttle/\">Semantic Scuttle</a>, sous license <a href=\"http://www.gnu.org/copyleft/gpl.html\"><acronym title=\"GNU's Not Unix\">GNU</acronym> General Public License</a> (vous pouvez donc l'héberger sur votre propre serveur)."
+msgid "is licensed under the "
+msgstr "est sous licence"
 
 #: ../../../templates/about.tpl.php:15
 #, php-format
 msgid "%1$s supports most of the <a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
 msgstr "%1$s supporte la plupart de l'<a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>."
+
+#: ../../../templates/about.tpl.php:14
+msgid "you can freely host it on your own web server."
+msgstr "vous pouvez librement l'installer sur votre serveur Web"
 
 #: ../../../templates/bookmarkcommondescriptionedit.tpl.php:15
 #: ../../../templates/bookmarks.tpl.php:52
@@ -1027,6 +1029,16 @@ msgstr "Profil"
 msgid "created in"
 msgstr "Créé en "
 
+#~ msgid ""
+#~ "<a href=\"http://sourceforge.net/projects/semanticscuttle/\">Semantic "
+#~ "Scuttle</a> is licensed under the <a href=\"http://www.gnu.org/copyleft/"
+#~ "gpl.html\"><acronym title=\"GNU's Not Unix\">GNU</acronym> General Public "
+#~ "License</a> (you can host it on your own web server)."
+#~ msgstr ""
+#~ "<a href=\"http://sourceforge.net/projects/semanticscuttle/\">Semantic "
+#~ "Scuttle</a>, sous license <a href=\"http://www.gnu.org/copyleft/gpl.html"
+#~ "\"><acronym title=\"GNU's Not Unix\">GNU</acronym> General Public "
+#~ "License</a> (vous pouvez donc l'héberger sur votre propre serveur)."
 #~ msgid "edit"
 #~ msgstr "éditer"
 #~ msgid "User with username %s not was not found"
