@@ -1,6 +1,7 @@
 -- Semantice Scuttle
 -- Tables creation SQL script
--- ! Dont forget to adapt the tables prefix sc_ conforming config.inc.php !
+-- ! Dont forget to adapt the tables prefix sc_ conforming config.inc.php,
+-- without using '-' character (badly handeld by MySQL) !
 
 
 -- 
