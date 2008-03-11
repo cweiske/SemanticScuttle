@@ -221,7 +221,7 @@ window.onload = playerLoad;
 } else {
 ?>
 
-    <p class="error"><?php echo T_('No bookmarks available'); ?>.</p>
+    <p class="error"><?php echo T_('No bookmarks available'); ?></p>
 
 <?php
 }
