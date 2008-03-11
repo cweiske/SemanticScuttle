@@ -160,6 +160,8 @@ window.onload = playerLoad;
 	if ($GLOBALS['enableWebsiteThumbnails']) {
 	    echo '<a href="'. $address .'"'. $rel .' ><img class="thumbnail" src="http://www.artviper.net/screenshots/screener.php?sdx=1024&sdy=768&w=90&h=68&url='.$address.'"></a>';
 	}
+	echo '<div>';
+
         echo '<div class="link"><a href="'. $address .'"'. $rel .' class="taggedlink">'. filter($row['bTitle']) ."</a></div>\n";
         if ($row['bDescription'] != '') {
             echo '<div class="description">'. filter($row['bDescription']) ."</div>\n";
@@ -169,6 +171,9 @@ window.onload = playerLoad;
 	}
 
         echo '<div class="meta">'. date($GLOBALS['shortdate'], strtotime($row['bDatetime'])) . $cats . $copy . $edit ."</div>\n";
+
+	echo '</div>';
+
         echo "</li>\n";
     }
     ?>
