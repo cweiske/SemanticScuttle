@@ -91,6 +91,8 @@ $dbname = 'scuttle';
 # enableCommonTagDescription	  : true or false
 # enableCommonBookmarkDescription : true or false
 #
+# enableWebsiteThumbnails : true or false.  According to artviper.net license, buy a license if you gain profit with your pages. (see http://www.websitethumbnail.de/)
+#
 ######################################################################
 
 $sitename           = 'SemanticScuttle';
@@ -130,6 +132,9 @@ $antispamAnswer = 'semanticscuttle';
 
 $enableCommonTagDescription = true;
 $enableCommonBookmarkDescription = true;
+
+$enableWebsiteThumbnails = true;   // see above, if you gain profit with your pages
+
 
 include_once('debug.inc.php');
 ?>

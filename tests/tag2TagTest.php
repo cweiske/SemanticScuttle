@@ -321,7 +321,7 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$this->assertTrue($tsts->existStat('a', '>', 10));
 	$this->assertFalse($tsts->existStat('a', '>', 20));
 	$tsts->increaseNbUpdate('a', '>', 10);
-	$this->assertSame(1, $tsts->getNbUpdate('a', '>', 10));
+	$this->assertSame(1, $tsts->getNbUpdates('a', '>', 10));
 
 	$tsts->deleteAll();
 
@@ -339,11 +339,11 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$tts->addLinkedTags('a', 'b', '>', 1);
 	$tts->addLinkedTags('b', 'e', '>', 1);
 
-	$this->assertSame(3, $tsts->getNbUpdate('a', '>', '1'));
-	$this->assertSame(2, $tsts->getNbUpdate('b', '>', '1'));
-	$this->assertSame(0, $tsts->getNbUpdate('c', '>', '1'));
-	$this->assertSame(0, $tsts->getNbUpdate('d', '>', '1'));
-	$this->assertSame(0, $tsts->getNbUpdate('e', '>', '1'));
+	$this->assertSame(3, $tsts->getNbUpdates('a', '>', '1'));
+	$this->assertSame(2, $tsts->getNbUpdates('b', '>', '1'));
+	$this->assertSame(0, $tsts->getNbUpdates('c', '>', '1'));
+	$this->assertSame(0, $tsts->getNbUpdates('d', '>', '1'));
+	$this->assertSame(0, $tsts->getNbUpdates('e', '>', '1'));
 
 
 	$nbC = $tsts->getNbChildren('a', '>', 1);
@@ -391,12 +391,66 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$this->assertSame(3, $nbD);
 	$this->assertSame(2, $maxDepth);
 
+	//do cases for synonyms
+
+	$tsts->deleteAll();
+	$tts->deleteAll();
+
+	$tts->addLinkedTags('a', 'b', '>', 1);
+	$tts->addLinkedTags('b', 'c', '=', 1);
+	/*$tts->addLinkedTags('a', 'c', '>', 1);
+	$tts->addLinkedTags('j', 'i', '=', 1);
+	$tts->addLinkedTags('f', 'i', '=', 1);
+	$tts->addLinkedTags('d', 'f', '>', 1);
+	$tts->addLinkedTags('d', 'e', '>', 1);
+	$tts->addLinkedTags('j', 'k', '>', 1);*/
+
+	$nbC = $tsts->getNbChildren('a', '>', 1);
+	$nbD = $tsts->getNbDescendants('a', '>', 1);
+	$nbU = $tsts->getNbUpdates('a', '>', 1);
+	$maxDepth = $tsts->getMaxDepth('a', '>', 1);
+	//$this->assertSame(2, $tts->getLinkedTags('a', '>', 1));
+	$this->assertSame(1, $nbC);
+	$this->assertSame(2, $nbD);
+	$this->assertSame(2, $nbU);
+	$this->assertSame(1, $maxDepth);
 
 	// advanced case with fore loop
 	//$tts->addLinkedTags('d', 'c', '>', 1);
 
 	// advanced case with back loop
 	//$tts->addLinkedTags('e', 'a', '>', 1);
+    }
+
+    public function testRenameFunction()
+    {
+	$tts = $this->tts;
+	$ts = $this->ts;
+	$bs = $this->bs;
+	$tsts = $this->tsts;
+
+	// with classic tags (users 10 & 20)
+	$tags = array('a', 'b', 'c');
+	$bs->addBookmark("http://site1.com", "title", "description", "status", $tags, null, false, false, 10);
+
+	$tags = array('a', 'b', 'c');
+	$bs->addBookmark("http://site2.com", "title", "description", "status", $tags, null, false, false, 20);
+
+	$bookmarks = $bs->getBookmarks(0, NULL, 10, 'a');
+	$this->assertSame(array(), $bookmarks);
+
+	$ts->renameTag(10, 'a', 'ddd');
+	$tags1 = $ts->getTagsForBookmark(1);
+	$this->assertSame(array('b', 'c', 'ddd'), $tags1);
+	
+
+	// with linked tags
+
+	$tts->addLinkedTags('b', 'c', '>', 1);
+	$tts->addLinkedTags('a', 'd', '>', 1);
+
+	//with stats
+
     }
 }
 ?>

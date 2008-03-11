@@ -163,6 +163,13 @@ html > body ol#bookmarks {
     margin: 0 1em;
     padding: 0;
 }
+img.thumbnail {
+    float: left;
+    padding: 1px;
+    margin-right: 6px;
+    margin-bottom:4px;
+    border:1px solid #AAA;
+}
 div.link a {
     color: blue;
     font-size: medium;
