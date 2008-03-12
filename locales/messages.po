@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-05 19:12+0100\n"
+"POT-Creation-Date: 2008-03-12 18:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,8 @@ msgid "User with username %s was not found"
 msgstr ""
 
 #: ../../../bookmarkcommondescriptionedit.php:36 ../../../tag2tagadd.php:31
-#: ../../../tag2tagdelete.php:31 ../../../tagcommondescriptionedit.php:35
+#: ../../../tag2tagdelete.php:31 ../../../tag2tagedit.php:31
+#: ../../../tagcommondescriptionedit.php:35
 msgid "Permission denied."
 msgstr ""
 
@@ -212,16 +213,20 @@ msgstr ""
 
 #: ../../../jsScuttle.php:22 ../../../templates/tag2tagadd.tpl.php:12
 #: ../../../templates/tag2tagdelete.tpl.php:13
+#: ../../../templates/tag2tagedit.tpl.php:12
+#: ../../../templates/tag2tagedit.tpl.php:35
 #: ../../../templates/tagdelete.tpl.php:6
 msgid "Are you sure?"
 msgstr ""
 
 #: ../../../jsScuttle.php:22 ../../../templates/tag2tagdelete.tpl.php:15
+#: ../../../templates/tag2tagedit.tpl.php:37
 #: ../../../templates/tagdelete.tpl.php:8
 msgid "Yes"
 msgstr ""
 
 #: ../../../jsScuttle.php:22 ../../../templates/tag2tagdelete.tpl.php:16
+#: ../../../templates/tag2tagedit.tpl.php:38
 #: ../../../templates/tagdelete.tpl.php:9
 msgid "No"
 msgstr ""
@@ -412,16 +417,20 @@ msgstr ""
 msgid "Add Tag Link"
 msgstr ""
 
-#: ../../../tag2tagdelete.php:43
+#: ../../../tag2tagdelete.php:43 ../../../tag2tagedit.php:43
 msgid "Tag link deleted"
 msgstr ""
 
-#: ../../../tag2tagdelete.php:46
+#: ../../../tag2tagdelete.php:46 ../../../tag2tagedit.php:46
 msgid "Failed to delete the link"
 msgstr ""
 
 #: ../../../tag2tagdelete.php:58
 msgid "Delete Link Between Tags"
+msgstr ""
+
+#: ../../../tag2tagedit.php:58
+msgid "Edit Link Between Tags"
 msgstr ""
 
 #: ../../../tagcommondescriptionedit.php:45
@@ -522,6 +531,10 @@ msgstr ""
 msgid "is licensed under the "
 msgstr ""
 
+#: ../../../templates/about.tpl.php:14
+msgid "you can freely host it on your own web server."
+msgstr ""
+
 #: ../../../templates/about.tpl.php:15
 #, php-format
 msgid ""
@@ -532,12 +545,8 @@ msgid ""
 "the creator to add this setting. You never know, they might just do it."
 msgstr ""
 
-#: ../../../templates/about.tpl.php:14
-msgid "you can freely host it on your own web server."
-msgstr ""
-
 #: ../../../templates/bookmarkcommondescriptionedit.tpl.php:15
-#: ../../../templates/bookmarks.tpl.php:52
+#: ../../../templates/bookmarks.tpl.php:53
 #: ../../../templates/editbookmark.tpl.php:34
 msgid "Title"
 msgstr ""
@@ -562,6 +571,7 @@ msgstr ""
 
 #: ../../../templates/bookmarkcommondescriptionedit.tpl.php:40
 #: ../../../templates/tag2tagadd.tpl.php:15
+#: ../../../templates/tag2tagedit.tpl.php:15
 #: ../../../templates/tagcommondescriptionedit.tpl.php:33
 #: ../../../templates/tagrename.tpl.php:25
 msgid "Cancel"
@@ -572,79 +582,83 @@ msgstr ""
 msgid "edit common description"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:50 ../../../templates/tags.tpl.php:10
+#: ../../../templates/bookmarks.tpl.php:50
+msgid "bookmark(s)"
+msgstr ""
+
+#: ../../../templates/bookmarks.tpl.php:51 ../../../templates/tags.tpl.php:10
 #: ../../../templates/users.tpl.php:8
 msgid "Sort by:"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:51
+#: ../../../templates/bookmarks.tpl.php:52
 msgid "Date"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:56
+#: ../../../templates/bookmarks.tpl.php:57
 msgid "URL"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:66
+#: ../../../templates/bookmarks.tpl.php:67
 msgid "Bookmarks from other users for these tags"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:71
+#: ../../../templates/bookmarks.tpl.php:72
 msgid "Only your bookmarks for these tags"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:112
+#: ../../../templates/bookmarks.tpl.php:113
 msgid "Edit"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:112
+#: ../../../templates/bookmarks.tpl.php:113
 msgid "Delete"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:118
+#: ../../../templates/bookmarks.tpl.php:119
 msgid "by"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:130
+#: ../../../templates/bookmarks.tpl.php:131
 #, php-format
 msgid " and %s1 other%s"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:133
+#: ../../../templates/bookmarks.tpl.php:134
 #, php-format
 msgid " and %2$s%1$s others%3$s"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:142
+#: ../../../templates/bookmarks.tpl.php:143
 msgid "Copy"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:191
-#: ../../../templates/bookmarks.tpl.php:197
+#: ../../../templates/bookmarks.tpl.php:201
+#: ../../../templates/bookmarks.tpl.php:207
 msgid "First"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:192
-#: ../../../templates/bookmarks.tpl.php:198
+#: ../../../templates/bookmarks.tpl.php:202
+#: ../../../templates/bookmarks.tpl.php:208
 msgid "Previous"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:205
-#: ../../../templates/bookmarks.tpl.php:208
+#: ../../../templates/bookmarks.tpl.php:215
+#: ../../../templates/bookmarks.tpl.php:218
 msgid "Next"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:206
-#: ../../../templates/bookmarks.tpl.php:209
+#: ../../../templates/bookmarks.tpl.php:216
+#: ../../../templates/bookmarks.tpl.php:219
 msgid "Last"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:211
+#: ../../../templates/bookmarks.tpl.php:221
 #, php-format
 msgid "Page %d of %d"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:215
+#: ../../../templates/bookmarks.tpl.php:225
 msgid "No bookmarks available"
 msgstr ""
 
@@ -924,23 +938,27 @@ msgstr ""
 msgid "Antispam question"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:35
+#: ../../../templates/sidebar.block.linked.php:16
+msgid "Edit link"
+msgstr ""
+
+#: ../../../templates/sidebar.block.linked.php:40
 msgid "Synonyms:"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:96
+#: ../../../templates/sidebar.block.linked.php:101
 msgid "Linked Tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:99
+#: ../../../templates/sidebar.block.linked.php:104
 msgid "plus"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:117
+#: ../../../templates/sidebar.block.linked.php:122
 msgid "Add new link"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:118
+#: ../../../templates/sidebar.block.linked.php:123
 msgid "Delete link"
 msgstr ""
 
@@ -948,7 +966,7 @@ msgstr ""
 msgid "Recent Tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.related.php:14
+#: ../../../templates/sidebar.block.related.php:17
 msgid "Related Tags"
 msgstr ""
 
@@ -979,17 +997,28 @@ msgid "Create new link:"
 msgstr ""
 
 #: ../../../templates/tag2tagadd.tpl.php:14
+#: ../../../templates/tag2tagedit.tpl.php:14
 msgid "Create"
 msgstr ""
 
 #: ../../../templates/tag2tagadd.tpl.php:26
 #: ../../../templates/tag2tagdelete.tpl.php:27
+#: ../../../templates/tag2tagedit.tpl.php:51
 msgid "Existing links:"
 msgstr ""
 
 #: ../../../templates/tag2tagadd.tpl.php:44
 #: ../../../templates/tag2tagdelete.tpl.php:45
+#: ../../../templates/tag2tagedit.tpl.php:69
 msgid "No links"
+msgstr ""
+
+#: ../../../templates/tag2tagedit.tpl.php:6
+msgid "Create new link"
+msgstr ""
+
+#: ../../../templates/tag2tagedit.tpl.php:27
+msgid "Delete the link"
 msgstr ""
 
 #: ../../../templates/tagrename.tpl.php:12
