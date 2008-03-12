@@ -11,12 +11,17 @@ function displayLinkedTags($tag, $linkType, $uId, $cat_url, $user, $editingMode 
     $tag2tagservice =& ServiceFactory::getServiceInstance('Tag2TagService');
     $tagstatservice =& ServiceFactory::getServiceInstance('TagStatService');
 
+    // link '>'
+    if($level>1) {
+	$link = '<small><a href="'.createURL('tag2tagedit', $precedentTag.'/'.$tag).'" title="'._('Edit link').'">></a> </small>';
+    }
+
     $output = '';
     $output.= '<tr>';
     $output.= '<td></td>';
     $output.= '<td>';
     $output.= $level ==  1?'<b>':'';
-    $output.= str_repeat('&nbsp;', $level*2) .'<a href="'. sprintf($cat_url, filter($user, 'url'), filter($tag, 'url')) .'" rel="tag">'. filter($tag) .'</a>';
+    $output.= str_repeat('&nbsp;', $level*2) .$link.'<a href="'. sprintf($cat_url, filter($user, 'url'), filter($tag, 'url')) .'" rel="tag">'. filter($tag) .'</a>';
     $output.= $level ==  1?'</b>':'';
     //$output.= ' - '. $tagstatservice->getMaxDepth($tag, $linkType, $uId);
 
@@ -35,15 +40,15 @@ function displayLinkedTags($tag, $linkType, $uId, $cat_url, $user, $editingMode 
         $output.= '<span title="'.T_('Synonyms:').' '.$synonymList.'">, etc</span>';
     }
 
-    if($editingMode) {
+    /*if($editingMode) {
 	$output.= ' (';
-	$output.= '<a href="'.createURL('tag2tagadd', $tag).'">add</a>';
-	if($precedentTag != null) {
+	$output.= '<a href="'.createURL('tag2tagadd', $tag).'" title="'._('Add a subtag').'">+</a>';
+	if(1) {
 	    $output.= ' - ';
-	    $output.= '<a href="'.createURL('tag2tagdelete', $precedentTag.'/'.$tag).'">del</a>';
+	    $output.= '<a href="'.createURL('tag2tagdelete', $tag).'">-</a>';
 	}
 	$output.= ')';
-    }
+    }*/
     $output.= '</td>';
     $output.= '</tr>';
 
