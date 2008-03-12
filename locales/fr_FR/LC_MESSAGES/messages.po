@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-12 18:05+0100\n"
-"PO-Revision-Date: 2008-03-12 18:08+0100\n"
+"PO-Revision-Date: 2008-03-12 18:09+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -561,7 +561,7 @@ msgstr "vous pouvez librement l'installer sur votre serveur Web"
 #: ../../../templates/about.tpl.php:15
 #, php-format
 msgid "%1$s supports most of the <a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
-msgstr "%1$s supporte la plupart de l'<a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>."
+msgstr "%1$s supporte la plupart de l'<a href=\"http://del.icio.us/doc/api\"><abbr title=\"Application Programming Interface\">API</abbr> del.icio.us</a>."
 
 #: ../../../templates/bookmarkcommondescriptionedit.tpl.php:15
 #: ../../../templates/bookmarks.tpl.php:53
