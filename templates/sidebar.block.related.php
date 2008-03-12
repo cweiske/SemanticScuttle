@@ -6,6 +6,9 @@ $logged_on_userid = $userservice->getCurrentUserId();
 if ($logged_on_userid === false) {
     $logged_on_userid = NULL;
 }
+if(strlen($user)==0) {
+    $cat_url = createURL('tags', '%2$s');
+}
 if ($currenttag) {
     $relatedTags = $tagservice->getRelatedTags($currenttag, $userid, $logged_on_userid);
     if (sizeof($relatedTags) > 0) {
