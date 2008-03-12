@@ -47,6 +47,7 @@ window.onload = playerLoad;
 </script>
 
 <p id="sort">
+    <?php echo $total.' '.T_("bookmark(s)"); ?> - 
     <?php echo T_("Sort by:"); ?>
     <a href="?sort=date_desc"><?php echo T_("Date"); ?></a><span> / </span>
     <a href="?sort=title_asc"><?php echo T_("Title"); ?></a><span> / </span>
