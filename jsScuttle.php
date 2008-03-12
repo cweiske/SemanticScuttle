@@ -33,7 +33,7 @@ function deleteCancelled(ele) {
 
 function deleteConfirmed(ele, input, response) {
     if (deleted == false) {
-        deleted = ele.parentNode.parentNode.parentNode;
+        deleted = ele.parentNode.parentNode.parentNode.parentNode;
     }
     var post = deleted;
     post.className = 'xfolkentry deleted';
