@@ -70,6 +70,8 @@ $dbname = 'scuttle';
 # adminemail   : Contact address for the site administrator. Used
 #                as the FROM address in password retrieval e-mails.
 # cleanurls    : true   - Use mod_rewrite to hide PHP extensions
+#                             (be cautious, doesn't work for all hosts)
+#                             (you may need to modify the .htaccess file)
 #              : false  - Don't hide extensions [Default]
 #
 # usecache     : true   - Cache pages when possible
