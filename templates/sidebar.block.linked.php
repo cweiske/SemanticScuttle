@@ -13,7 +13,11 @@ function displayLinkedTags($tag, $linkType, $uId, $cat_url, $user, $editingMode 
 
     // link '>'
     if($level>1) {
-	$link = '<small><a href="'.createURL('tag2tagedit', $precedentTag.'/'.$tag).'" title="'._('Edit link').'">></a> </small>';
+	if($editingMode) {
+	    $link = '<small><a href="'.createURL('tag2tagedit', $precedentTag.'/'.$tag).'" title="'._('Edit link').'">></a> </small>';
+	} else {
+	    $link = '> ';	
+	}
     }
 
     $output = '';
