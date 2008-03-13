@@ -164,9 +164,10 @@ window.onload = playerLoad;
 	echo '<div>';
 
         echo '<div class="link"><a href="'. $address .'"'. $rel .' class="taggedlink">'. filter($row['bTitle']) ."</a></div>\n";
-        if ($row['bDescription'] != '') {
-            echo '<div class="description">'. filter($row['bDescription']) ."</div>\n";
+        if ($row['bDescription'] == '') {
+            $row['bDescription'] = '-';
         }
+        echo '<div class="description">'. filter($row['bDescription']) ."</div>\n";
 	if(!isset($hash)) {
 	    echo '<div class="address">'.$address.'</div>';
 	}
