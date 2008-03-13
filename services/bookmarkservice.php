@@ -370,7 +370,7 @@ class BookmarkService {
         if (SQL_LAYER == 'mysql4') {
             $totalquery = 'SELECT FOUND_ROWS() AS total';
         } else {
-            $totalquery = 'SELECT COUNT(*) AS total'. $query_2 . $query_3 . $query_4;
+            $totalquery = 'SELECT COUNT(DISTINCT bAddress) AS total'. $query_2 . $query_3 . $query_4;
         }
 
         if (!($totalresult = & $this->db->sql_query($totalquery)) || (!($row = & $this->db->sql_fetchrow($totalresult)))) {
