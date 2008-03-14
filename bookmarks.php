@@ -131,9 +131,9 @@ if ($loggedon && isset($_POST['submitted'])) {
 if (isset($_GET['action']) && ($_GET['action'] == "add")) {
     // If the bookmark exists already, edit the original
     if ($bookmarkservice->bookmarkExists(stripslashes($_GET['address']), $currentUserID)) {
-        $bookmark =& $bookmarkservice->getBookmarkByAddress(stripslashes($_GET['address']));
-        $popup = (isset($_GET['popup'])) ? '?popup=1' : '';
-        header('Location: '. createURL('edit', $bookmark['bId'] . $popup));
+	$bookmark =& $bookmarkservice->getBookmarks(0, NULL, $currentUserID, NULL, NULL, NULL, NULL, NULL, NULL, md5(stripslashes($_GET['address'])));       
+	$popup = (isset($_GET['popup'])) ? '?popup=1' : '';
+        header('Location: '. createURL('edit', $bookmark['bookmarks'][0]['bId'] . $popup));
         exit();
     }
     $templatename = 'editbookmark.tpl';

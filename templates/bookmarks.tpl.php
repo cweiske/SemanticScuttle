@@ -96,11 +96,13 @@ window.onload = playerLoad;
         }
 
         $cats = '';
+	$tagsForCopy = '';
         $tags = $row['tags'];
         foreach(array_keys($tags) as $key) {
 
             $tag =& $tags[$key];
             $cats .= '<a href="'. sprintf($cat_url, filter($row['username'], 'url'), filter($tag, 'url')) .'" rel="tag">'. filter($tag) .'</a>, ';
+	    $tagsForCopy.= $tag.',';
         }
         $cats = substr($cats, 0, -2);
         if ($cats != '') {
@@ -136,11 +138,11 @@ window.onload = playerLoad;
         }
 
         // Copy link
-        if ($userservice->isLoggedOn() && ($logged_on_userid != $row['uId'])) {
+        if ($userservice->isLoggedOn() && ($logged_on_userid != $row['uId']) && !$bookmarkservice->bookmarkExists($row['bAddress'], $logged_on_userid)) {
             // Get the username of the current user
             $currentUser = $userservice->getCurrentUser();
             $currentUsername = $currentUser[$userservice->getFieldName('username')];
-            $copy .= ' - <a href="'. createURL('bookmarks', $currentUsername .'?action=add&amp;address='. urlencode($row['bAddress']) .'&amp;title='. urlencode($row['bTitle'])) .'">'. T_('Copy') .'</a>';   
+            $copy .= ' - <a href="'. createURL('bookmarks', $currentUsername .'?action=add&amp;address='. urlencode($row['bAddress']) .'&amp;title='. urlencode($row['bTitle'])). '&amp;description='.urlencode($row['bDescription']). '&amp;tags='.$tagsForCopy  .'">'. T_('Copy') .'</a>';   
         }
 
         // Nofollow option
