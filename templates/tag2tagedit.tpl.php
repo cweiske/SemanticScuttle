@@ -2,27 +2,6 @@
 $this->includeTemplate($GLOBALS['top_include']);
 ?>
 
-<form action="<?= $formaddaction ?>" method="post">
-<p><?php echo T_('Create new link')?></p>
-<p>
-<input type="text" name="tag1" value="<?php echo $tag1 ?>"/>
-<input type="text" name="linkType" value=">" size="1" maxlength="1"/>
-<input type="text" name="tag2" />
-</p>
-<!--p><?php echo T_('Are you sure?'); ?></p-->
-<p>
-    <input type="submit" name="confirm" value="<?php echo T_('Create'); ?>" />
-    <input type="submit" name="cancel" value="<?php echo T_('Cancel'); ?>" />
-</p>
-
-<?php if (isset($referrer)): ?>
-<div><input type="hidden" name="referrer" value="<?php echo $referrer; ?>" /></div>
-<?php endif; ?>
-
-</form>
-
-<hr />
-
 <form action="<?= $formdeleteaction ?>" method="post">
 <p><?php echo T_('Delete the link')?></p>
 <!--input type="hidden" name="tag1" value="<?php echo $tag1 ?>" />
@@ -36,6 +15,27 @@ $this->includeTemplate($GLOBALS['top_include']);
 <p>
     <input type="submit" name="confirm" value="<?php echo T_('Yes'); ?>" />
     <input type="submit" name="cancel" value="<?php echo T_('No'); ?>" />
+</p>
+
+<?php if (isset($referrer)): ?>
+<div><input type="hidden" name="referrer" value="<?php echo $referrer; ?>" /></div>
+<?php endif; ?>
+
+</form>
+
+<hr />
+
+<form action="<?= $formaddaction ?>" method="post">
+<p><?php echo T_('Create new link')?></p>
+<p>
+<input type="text" name="tag1" value="<?php echo $tag1 ?>"/>
+<input type="text" name="linkType" value=">" size="1" maxlength="1"/>
+<input type="text" name="tag2" />
+</p>
+<!--p><?php echo T_('Are you sure?'); ?></p-->
+<p>
+    <input type="submit" name="confirm" value="<?php echo T_('Create'); ?>" />
+    <input type="submit" name="cancel" value="<?php echo T_('Cancel'); ?>" />
 </p>
 
 <?php if (isset($referrer)): ?>

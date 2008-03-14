@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-14 11:27+0100\n"
-"PO-Revision-Date: 2008-03-14 11:29+0100\n"
+"POT-Creation-Date: 2008-03-14 11:42+0100\n"
+"PO-Revision-Date: 2008-03-14 11:43+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -232,7 +232,7 @@ msgstr "Signets récents"
 #: ../../../jsScuttle.php:22
 #: ../../../templates/tag2tagadd.tpl.php:12
 #: ../../../templates/tag2tagdelete.tpl.php:13
-#: ../../../templates/tag2tagedit.tpl.php:12
+#: ../../../templates/tag2tagedit.tpl.php:14
 #: ../../../templates/tag2tagedit.tpl.php:35
 #: ../../../templates/tagdelete.tpl.php:6
 msgid "Are you sure?"
@@ -240,14 +240,14 @@ msgstr "Etes-vous sûr ?"
 
 #: ../../../jsScuttle.php:22
 #: ../../../templates/tag2tagdelete.tpl.php:15
-#: ../../../templates/tag2tagedit.tpl.php:37
+#: ../../../templates/tag2tagedit.tpl.php:16
 #: ../../../templates/tagdelete.tpl.php:8
 msgid "Yes"
 msgstr "Oui"
 
 #: ../../../jsScuttle.php:22
 #: ../../../templates/tag2tagdelete.tpl.php:16
-#: ../../../templates/tag2tagedit.tpl.php:38
+#: ../../../templates/tag2tagedit.tpl.php:17
 #: ../../../templates/tagdelete.tpl.php:9
 msgid "No"
 msgstr "Non"
@@ -467,7 +467,7 @@ msgid "Failed to update the tag common description"
 msgstr "Impossible de mettre à jour la description commune du tag"
 
 #: ../../../tagcommondescriptionedit.php:55
-#: ../../../templates/sidebar.block.tagactions.php:25
+#: ../../../templates/sidebar.block.tagactions.php:26
 msgid "Edit Tag Common Description"
 msgstr "Editer la description commune du tag"
 
@@ -480,7 +480,7 @@ msgid "Failed to delete the tag"
 msgstr "Impossible d'effacer le tag"
 
 #: ../../../tagdelete.php:44
-#: ../../../templates/sidebar.block.tagactions.php:22
+#: ../../../templates/sidebar.block.tagactions.php:23
 msgid "Delete Tag"
 msgstr "Supprimer le tag"
 
@@ -588,7 +588,7 @@ msgstr "Mettre à jour"
 
 #: ../../../templates/bookmarkcommondescriptionedit.tpl.php:40
 #: ../../../templates/tag2tagadd.tpl.php:15
-#: ../../../templates/tag2tagedit.tpl.php:15
+#: ../../../templates/tag2tagedit.tpl.php:38
 #: ../../../templates/tagcommondescriptionedit.tpl.php:33
 #: ../../../templates/tagrename.tpl.php:25
 msgid "Cancel"
@@ -981,11 +981,15 @@ msgstr "Dernières recherches"
 msgid "Number of bookmarks for this query"
 msgstr "Nombre de signets pour cette recherche"
 
-#: ../../../templates/sidebar.block.tagactions.php:17
+#: ../../../templates/sidebar.block.tagactions.php:18
 #: ../../../templates/sidebar.block.watchstatus.php:17
 #, fuzzy
 msgid "Actions"
 msgstr "Instructions"
+
+#: ../../../templates/sidebar.block.tagactions.php:28
+msgid "Create a link to another tag"
+msgstr "Créer un lien vers un autre tag"
 
 #: ../../../templates/sidebar.block.users.php:14
 msgid "Last Users"
@@ -1009,7 +1013,7 @@ msgid "Create new link:"
 msgstr "Créer un nouveau lien"
 
 #: ../../../templates/tag2tagadd.tpl.php:14
-#: ../../../templates/tag2tagedit.tpl.php:14
+#: ../../../templates/tag2tagedit.tpl.php:37
 msgid "Create"
 msgstr "Créer"
 
@@ -1026,12 +1030,12 @@ msgid "No links"
 msgstr "Pas de liens"
 
 #: ../../../templates/tag2tagedit.tpl.php:6
-msgid "Create new link"
-msgstr "Créer un nouveau lien"
-
-#: ../../../templates/tag2tagedit.tpl.php:27
 msgid "Delete the link"
 msgstr "Supprimer le lien"
+
+#: ../../../templates/tag2tagedit.tpl.php:29
+msgid "Create new link"
+msgstr "Créer un nouveau lien"
 
 #: ../../../templates/tagrename.tpl.php:12
 msgid "Old"

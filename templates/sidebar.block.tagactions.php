@@ -12,6 +12,7 @@ if ($userservice->isLoggedOn()) {
         $renamelink = createURL('tagrename', $currenttag);
         $deletelink = createURL('tagdelete', $currenttag);
         $commondesclink = createURL('tagcommondescriptionedit', $currenttag);
+        $addtag2taglinklink = createURL('tag2tagadd', $currenttag);
 ?>
 
 <h2><?php echo T_('Actions'); ?></h2>
@@ -24,6 +25,7 @@ if ($userservice->isLoggedOn()) {
         <?php if ($GLOBALS['enableCommonTagDescription']): ?>
         <li><a href="<?php echo $commondesclink; ?>"><?php echo T_('Edit Tag Common Description') ?></a></li>
 	<?php endif; ?>
+        <li><a href="<?php echo $addtag2taglinklink; ?>"><?php echo T_('Create a link to another tag') ?></a></li>
     </ul>
 </div>
 

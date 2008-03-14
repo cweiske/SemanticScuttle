@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-14 11:27+0100\n"
+"POT-Creation-Date: 2008-03-14 11:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -213,20 +213,20 @@ msgstr ""
 
 #: ../../../jsScuttle.php:22 ../../../templates/tag2tagadd.tpl.php:12
 #: ../../../templates/tag2tagdelete.tpl.php:13
-#: ../../../templates/tag2tagedit.tpl.php:12
+#: ../../../templates/tag2tagedit.tpl.php:14
 #: ../../../templates/tag2tagedit.tpl.php:35
 #: ../../../templates/tagdelete.tpl.php:6
 msgid "Are you sure?"
 msgstr ""
 
 #: ../../../jsScuttle.php:22 ../../../templates/tag2tagdelete.tpl.php:15
-#: ../../../templates/tag2tagedit.tpl.php:37
+#: ../../../templates/tag2tagedit.tpl.php:16
 #: ../../../templates/tagdelete.tpl.php:8
 msgid "Yes"
 msgstr ""
 
 #: ../../../jsScuttle.php:22 ../../../templates/tag2tagdelete.tpl.php:16
-#: ../../../templates/tag2tagedit.tpl.php:38
+#: ../../../templates/tag2tagedit.tpl.php:17
 #: ../../../templates/tagdelete.tpl.php:9
 msgid "No"
 msgstr ""
@@ -442,7 +442,7 @@ msgid "Failed to update the tag common description"
 msgstr ""
 
 #: ../../../tagcommondescriptionedit.php:55
-#: ../../../templates/sidebar.block.tagactions.php:25
+#: ../../../templates/sidebar.block.tagactions.php:26
 msgid "Edit Tag Common Description"
 msgstr ""
 
@@ -455,7 +455,7 @@ msgid "Failed to delete the tag"
 msgstr ""
 
 #: ../../../tagdelete.php:44
-#: ../../../templates/sidebar.block.tagactions.php:22
+#: ../../../templates/sidebar.block.tagactions.php:23
 msgid "Delete Tag"
 msgstr ""
 
@@ -571,7 +571,7 @@ msgstr ""
 
 #: ../../../templates/bookmarkcommondescriptionedit.tpl.php:40
 #: ../../../templates/tag2tagadd.tpl.php:15
-#: ../../../templates/tag2tagedit.tpl.php:15
+#: ../../../templates/tag2tagedit.tpl.php:38
 #: ../../../templates/tagcommondescriptionedit.tpl.php:33
 #: ../../../templates/tagrename.tpl.php:25
 msgid "Cancel"
@@ -978,9 +978,13 @@ msgstr ""
 msgid "Number of bookmarks for this query"
 msgstr ""
 
-#: ../../../templates/sidebar.block.tagactions.php:17
+#: ../../../templates/sidebar.block.tagactions.php:18
 #: ../../../templates/sidebar.block.watchstatus.php:17
 msgid "Actions"
+msgstr ""
+
+#: ../../../templates/sidebar.block.tagactions.php:28
+msgid "Create a link to another tag"
 msgstr ""
 
 #: ../../../templates/sidebar.block.users.php:14
@@ -1005,7 +1009,7 @@ msgid "Create new link:"
 msgstr ""
 
 #: ../../../templates/tag2tagadd.tpl.php:14
-#: ../../../templates/tag2tagedit.tpl.php:14
+#: ../../../templates/tag2tagedit.tpl.php:37
 msgid "Create"
 msgstr ""
 
@@ -1022,11 +1026,11 @@ msgid "No links"
 msgstr ""
 
 #: ../../../templates/tag2tagedit.tpl.php:6
-msgid "Create new link"
+msgid "Delete the link"
 msgstr ""
 
-#: ../../../templates/tag2tagedit.tpl.php:27
-msgid "Delete the link"
+#: ../../../templates/tag2tagedit.tpl.php:29
+msgid "Create new link"
 msgstr ""
 
 #: ../../../templates/tagrename.tpl.php:12
