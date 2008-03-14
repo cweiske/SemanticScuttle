@@ -231,6 +231,30 @@ class Tag2TagService {
         return true;
     }
 
+    function renameTag($uId, $oldName, $newName) {
+	$query = 'UPDATE `'. $this->getTableName() .'`';
+	$query.= ' SET tag1="'.$newName.'"';
+	$query.= ' WHERE tag1="'.$oldName.'"';
+	$query.= ' AND uId="'.$uId.'"';
+	$this->db->sql_query($query);
+
+	$query = 'UPDATE `'. $this->getTableName() .'`';
+	$query.= ' SET tag2="'.$newName.'"';
+	$query.= ' WHERE tag2="'.$oldName.'"';
+	$query.= ' AND uId="'.$uId.'"';
+	$this->db->sql_query($query);
+
+	// Update stats
+	$tsts =& ServiceFactory::getServiceInstance('TagStatService');
+	$tsts->updateStat($oldName, '=', $uId);
+	$tsts->updateStat($oldName, '>', $uId);
+	$tsts->updateStat($newName, '=', $uId);
+	$tsts->updateStat($newName, '>', $uId);
+
+	return true;
+
+    }
+
     function deleteAll() {
 	$query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';
 	$this->db->sql_query($query);

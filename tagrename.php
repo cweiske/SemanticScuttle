@@ -21,10 +21,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 require_once('header.inc.php');
 $tagservice       = & ServiceFactory :: getServiceInstance('TagService');
+$tag2tagservice   = & ServiceFactory :: getServiceInstance('Tag2tagService');
 $templateservice  = & ServiceFactory :: getServiceInstance('TemplateService');
 $userservice      = & ServiceFactory :: getServiceInstance('UserService');
 
-$tag        = isset($_GET['query']) ? $_GET['query'] : NULL;
+list ($url, $tag) = explode('/', $_SERVER['PATH_INFO']);
+//$tag        = isset($_GET['query']) ? $_GET['query'] : NULL;
 $template   = 'tagrename.tpl';
 
 if ($_POST['confirm']) {
@@ -41,7 +43,8 @@ if ($_POST['confirm']) {
    if (
       !is_null($old) &&
       !is_null($new) &&
-      $tagservice->renameTag($userservice->getCurrentUserId(), $old, $new)
+      $tagservice->renameTag($userservice->getCurrentUserId(), $old, $new) &&
+      $tag2tagservice->renameTag($userservice->getCurrentUserId(), $old, $new)
    ) {
       $tplVars['msg'] = T_('Tag renamed');
       $logged_on_user = $userservice->getCurrentUser();

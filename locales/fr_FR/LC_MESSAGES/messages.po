@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-14 11:42+0100\n"
-"PO-Revision-Date: 2008-03-14 11:43+0100\n"
+"PO-Revision-Date: 2008-03-14 16:06+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -490,14 +490,14 @@ msgstr "Tag renommé"
 
 #: ../../../tagrename.php:50
 msgid "Failed to rename the tag"
-msgstr "Erreur dans la suppression du tag"
+msgstr "Erreur dans le renommage du tag"
 
 #: ../../../tagrename.php:57
 #: ../../../templates/sidebar.block.tagactions.php:11
 msgid "Rename Tag"
 msgid_plural "Rename Tags"
 msgstr[0] "Renommer le tag"
-msgstr[1] "TRenommer les tags"
+msgstr[1] "Renommer les tags"
 
 #: ../../../tags.php:38
 #: ../../../templates/editbookmark.tpl.php:44
@@ -1043,7 +1043,7 @@ msgstr "Ancien"
 
 #: ../../../templates/tagrename.tpl.php:17
 msgid "New"
-msgstr "Nouvaeu"
+msgstr "Nouveau"
 
 #: ../../../templates/tagrename.tpl.php:24
 msgid "Rename"
