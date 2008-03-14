@@ -2,7 +2,7 @@
 # (see $cleanurls in config.inc.php)
 
 Options +FollowSymlinks
-AcceptPathInfo On
+# AcceptPathInfo On
 RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f

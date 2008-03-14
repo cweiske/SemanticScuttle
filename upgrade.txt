@@ -1,0 +1,26 @@
+
+
+======================================================================
+=== From SemanticScuttle 0.88 to 0.89
+======================================================================
+
+==== Backup
+Backup your database. Make a copy from your SemanticScuttle directory.
+
+==== In your database, add the following table (modify the table name if necessary):
+
+CREATE TABLE `sc_searchhistory` (
+  `shId` int(11) NOT NULL auto_increment,
+  `shTerms` varchar(255) NOT NULL default '',
+  `shRange` varchar(32) NOT NULL default '',
+  `shDatetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  `shNbResults` int(6) NOT NULL default '0',
+  `uId` int(11) NOT NULL default '0',
+  PRIMARY KEY (`shId`)
+);
+
+=== In your configuration file (config.inc.php), add manually at the end of the file (for help, compare with last version of config.inc.php.example)
+
+$sizeSearchHistory = 10;
+
+
