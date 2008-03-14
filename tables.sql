@@ -121,3 +121,19 @@ CREATE TABLE `sc_commondescription` (
   UNIQUE KEY `sc_commondescription_tag_datetime` (`tag`,`cdDatetime`),
   UNIQUE KEY `sc_commondescription_bookmark_datetime` (`bHash`,`cdDatetime`)
 );
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `sc_searchhistory`
+-- 
+
+CREATE TABLE `sc_searchhistory` (
+  `shId` int(11) NOT NULL auto_increment,
+  `shTerms` varchar(255) NOT NULL default '',
+  `shRange` varchar(32) NOT NULL default '',
+  `shDatetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  `shNbResults` int(6) NOT NULL default '0',
+  `uId` int(11) NOT NULL default '0',
+  PRIMARY KEY (`shId`)
+);

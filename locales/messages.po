@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-12 18:05+0100\n"
+"POT-Creation-Date: 2008-03-14 11:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,7 +36,7 @@ msgstr ""
 
 #: ../../../alltags.php:57 ../../../bookmarks.php:72
 #: ../../../populartags.php:58 ../../../profile.php:44 ../../../rss.php:62
-#: ../../../search.php:87 ../../../watch.php:34 ../../../watchlist.php:61
+#: ../../../search.php:88 ../../../watch.php:34 ../../../watchlist.php:61
 #, php-format
 msgid "User with username %s was not found"
 msgstr ""
@@ -397,11 +397,11 @@ msgstr ""
 msgid "for"
 msgstr ""
 
-#: ../../../search.php:58 ../../../search.php:104
+#: ../../../search.php:59 ../../../search.php:108
 msgid "Search Bookmarks"
 msgstr ""
 
-#: ../../../search.php:64
+#: ../../../search.php:65
 msgid "Search Results"
 msgstr ""
 
@@ -633,32 +633,32 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:201
-#: ../../../templates/bookmarks.tpl.php:207
+#: ../../../templates/bookmarks.tpl.php:202
+#: ../../../templates/bookmarks.tpl.php:208
 msgid "First"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:202
-#: ../../../templates/bookmarks.tpl.php:208
+#: ../../../templates/bookmarks.tpl.php:203
+#: ../../../templates/bookmarks.tpl.php:209
 msgid "Previous"
-msgstr ""
-
-#: ../../../templates/bookmarks.tpl.php:215
-#: ../../../templates/bookmarks.tpl.php:218
-msgid "Next"
 msgstr ""
 
 #: ../../../templates/bookmarks.tpl.php:216
 #: ../../../templates/bookmarks.tpl.php:219
+msgid "Next"
+msgstr ""
+
+#: ../../../templates/bookmarks.tpl.php:217
+#: ../../../templates/bookmarks.tpl.php:220
 msgid "Last"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:221
+#: ../../../templates/bookmarks.tpl.php:222
 #, php-format
 msgid "Page %d of %d"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:225
+#: ../../../templates/bookmarks.tpl.php:226
 msgid "No bookmarks available"
 msgstr ""
 
@@ -938,27 +938,27 @@ msgstr ""
 msgid "Antispam question"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:16
+#: ../../../templates/sidebar.block.linked.php:17
 msgid "Edit link"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:40
+#: ../../../templates/sidebar.block.linked.php:44
 msgid "Synonyms:"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:101
+#: ../../../templates/sidebar.block.linked.php:105
 msgid "Linked Tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:104
+#: ../../../templates/sidebar.block.linked.php:108
 msgid "plus"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:122
+#: ../../../templates/sidebar.block.linked.php:126
 msgid "Add new link"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:123
+#: ../../../templates/sidebar.block.linked.php:127
 msgid "Delete link"
 msgstr ""
 
@@ -968,6 +968,14 @@ msgstr ""
 
 #: ../../../templates/sidebar.block.related.php:17
 msgid "Related Tags"
+msgstr ""
+
+#: ../../../templates/sidebar.block.search.php:16
+msgid "Last Searches"
+msgstr ""
+
+#: ../../../templates/sidebar.block.search.php:25
+msgid "Number of bookmarks for this query"
 msgstr ""
 
 #: ../../../templates/sidebar.block.tagactions.php:17

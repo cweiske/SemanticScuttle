@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-12 18:05+0100\n"
-"PO-Revision-Date: 2008-03-12 18:09+0100\n"
+"POT-Creation-Date: 2008-03-14 11:27+0100\n"
+"PO-Revision-Date: 2008-03-14 11:29+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr "À propos"
 
 #: ../../../ajaxDelete.php:30
 msgid "You are not allowed to delete this bookmark"
-msgstr "Vous ne pouvez pas supprimer ce signet."
+msgstr "Vous n'êtes pas autorisés à supprimer ce signet"
 
 #: ../../../ajaxDelete.php:34
 #: ../../../edit.php:78
@@ -43,7 +43,7 @@ msgstr "Tous les tags"
 #: ../../../populartags.php:58
 #: ../../../profile.php:44
 #: ../../../rss.php:62
-#: ../../../search.php:87
+#: ../../../search.php:88
 #: ../../../watch.php:34
 #: ../../../watchlist.php:61
 #, php-format
@@ -419,12 +419,12 @@ msgstr "tous les signets"
 msgid "for"
 msgstr "pour"
 
-#: ../../../search.php:58
-#: ../../../search.php:104
+#: ../../../search.php:59
+#: ../../../search.php:108
 msgid "Search Bookmarks"
 msgstr "Recherche de signets"
 
-#: ../../../search.php:64
+#: ../../../search.php:65
 msgid "Search Results"
 msgstr "Résultats de recherche"
 
@@ -463,9 +463,8 @@ msgid "Tag common description updated"
 msgstr "Editer la description commune du tag"
 
 #: ../../../tagcommondescriptionedit.php:48
-#, fuzzy
 msgid "Failed to update the tag common description"
-msgstr "Impossible d'effacer le tag"
+msgstr "Impossible de mettre à jour la description commune du tag"
 
 #: ../../../tagcommondescriptionedit.php:55
 #: ../../../templates/sidebar.block.tagactions.php:25
@@ -652,32 +651,32 @@ msgstr " et les autres %s"
 msgid "Copy"
 msgstr "Copier"
 
-#: ../../../templates/bookmarks.tpl.php:201
-#: ../../../templates/bookmarks.tpl.php:207
+#: ../../../templates/bookmarks.tpl.php:202
+#: ../../../templates/bookmarks.tpl.php:208
 msgid "First"
 msgstr "Première"
 
-#: ../../../templates/bookmarks.tpl.php:202
-#: ../../../templates/bookmarks.tpl.php:208
+#: ../../../templates/bookmarks.tpl.php:203
+#: ../../../templates/bookmarks.tpl.php:209
 msgid "Previous"
 msgstr "Précédent"
 
-#: ../../../templates/bookmarks.tpl.php:215
-#: ../../../templates/bookmarks.tpl.php:218
+#: ../../../templates/bookmarks.tpl.php:216
+#: ../../../templates/bookmarks.tpl.php:219
 msgid "Next"
 msgstr "Suivant"
 
-#: ../../../templates/bookmarks.tpl.php:216
-#: ../../../templates/bookmarks.tpl.php:219
+#: ../../../templates/bookmarks.tpl.php:217
+#: ../../../templates/bookmarks.tpl.php:220
 msgid "Last"
 msgstr "Dernière"
 
-#: ../../../templates/bookmarks.tpl.php:221
+#: ../../../templates/bookmarks.tpl.php:222
 #, php-format
 msgid "Page %d of %d"
 msgstr "Page %d de %d"
 
-#: ../../../templates/bookmarks.tpl.php:225
+#: ../../../templates/bookmarks.tpl.php:226
 msgid "No bookmarks available"
 msgstr "Pas de signets disponibles."
 
@@ -942,27 +941,27 @@ msgstr "Enregistrez-vous ici pour créer un compte gratuit %s. Toutes les inform
 msgid "Antispam question"
 msgstr "Question antispam"
 
-#: ../../../templates/sidebar.block.linked.php:16
+#: ../../../templates/sidebar.block.linked.php:17
 msgid "Edit link"
 msgstr "Editer un lien"
 
-#: ../../../templates/sidebar.block.linked.php:40
+#: ../../../templates/sidebar.block.linked.php:44
 msgid "Synonyms:"
 msgstr "Synonymes :"
 
-#: ../../../templates/sidebar.block.linked.php:101
+#: ../../../templates/sidebar.block.linked.php:105
 msgid "Linked Tags"
 msgstr "Tags structurés"
 
-#: ../../../templates/sidebar.block.linked.php:104
+#: ../../../templates/sidebar.block.linked.php:108
 msgid "plus"
 msgstr "plus"
 
-#: ../../../templates/sidebar.block.linked.php:122
+#: ../../../templates/sidebar.block.linked.php:126
 msgid "Add new link"
 msgstr "Créer un lien"
 
-#: ../../../templates/sidebar.block.linked.php:123
+#: ../../../templates/sidebar.block.linked.php:127
 msgid "Delete link"
 msgstr "Supprimer un lien"
 
@@ -973,6 +972,14 @@ msgstr "Tags récents"
 #: ../../../templates/sidebar.block.related.php:17
 msgid "Related Tags"
 msgstr "Tags en relation"
+
+#: ../../../templates/sidebar.block.search.php:16
+msgid "Last Searches"
+msgstr "Dernières recherches"
+
+#: ../../../templates/sidebar.block.search.php:25
+msgid "Number of bookmarks for this query"
+msgstr "Nombre de signets pour cette recherche"
 
 #: ../../../templates/sidebar.block.tagactions.php:17
 #: ../../../templates/sidebar.block.watchstatus.php:17

@@ -95,6 +95,10 @@ $dbname = 'scuttle';
 #
 # enableWebsiteThumbnails : true or false.  According to artviper.net license, buy a license if you gain profit with your pages. (see http://www.websitethumbnail.de/)
 #
+# sizeSearchHistory : the number of users' searches that are saved
+#			10 [Default]
+#			-1 Unlimited
+#
 ######################################################################
 
 $sitename           = 'SemanticScuttle';
@@ -136,6 +140,8 @@ $enableCommonTagDescription = true;
 $enableCommonBookmarkDescription = true;
 
 $enableWebsiteThumbnails = true;   // see above, if you gain profit with your pages
+
+$sizeSearchHistory = 10;
 
 
 include_once('debug.inc.php');

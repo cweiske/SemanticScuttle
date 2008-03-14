@@ -31,6 +31,7 @@ if (isset($_POST['terms'])) {
     $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
     $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
     $userservice =& ServiceFactory::getServiceInstance('UserService');
+    $searchhistoryservice =& ServiceFactory::getServiceInstance('SearchHistoryService');
 
     $logged_on_userid = $userservice->getCurrentUserId();
     list($url, $range, $terms, $page) = explode('/', $_SERVER['PATH_INFO']);
@@ -94,11 +95,14 @@ if (isset($_POST['terms'])) {
         }
     }
     $bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, $s_user, NULL, $terms, getSortOrder(), $s_watchlist, $s_start, $s_end);
+
+    // Save search
+    $searchhistoryservice->addSearch($terms, $range, $bookmarks['total'], $logged_on_userid);
     
     $tplVars['page'] = $page;
     $tplVars['start'] = $start;
     $tplVars['popCount'] = 25;
-    $tplVars['sidebar_blocks'] = array('recent');
+    $tplVars['sidebar_blocks'] = array('search', 'recent');
     $tplVars['range'] = $range;
     $tplVars['terms'] = $terms;
     $tplVars['pagetitle'] = T_('Search Bookmarks');
