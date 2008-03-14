@@ -100,6 +100,16 @@ if ($currenttag) {
 
 ?>
 
+<?php
+if(($logged_on_userid != null) && ($userid === $logged_on_userid)) {
+    $editingMode = true;
+} else {
+    $editingMode = false;
+}
+?>
+
+<?php if(count($explodedTags)>0 || $editingMode):?>
+
 <h2>
 <?php
     echo T_('Linked Tags').' ';
@@ -109,18 +119,11 @@ if ($currenttag) {
     //}
 ?>
 </h2>
-
-<?php if(count($explodedTags)>0):?>
+<?php //endif?>
 
 <div id="linked">
     <table>
     <?php
-	if(($logged_on_userid != null) && ($userid === $logged_on_userid)) {
-	    $editingMode = true;
-	} else {
-	    $editingMode = false;
-	}
-
 	if($editingMode) {
 	    echo '<tr><td></td><td>';
 	    echo ' (<a href="'. createURL('tag2tagadd','') .'" rel="tag">'.T_('Add new link').'</a>) ';
