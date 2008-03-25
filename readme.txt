@@ -1,4 +1,4 @@
-SemanticScuttle 0.87
+SemanticScuttle
 https://sourceforge.net/projects/semanticscuttle/
 
 Copyright (C) 2007 SemanticScuttle project
@@ -9,9 +9,8 @@ Available under the GNU General Public License
 - Edit config.inc.php.example and save the changes as a new config.inc.php file in the same directory.
 - Set the CHMOD permissions on the /cache/ subdirectory to 777
 
-
 = UPGRADE =
-
+See ./upgrade.txt
 
 = Use API =
 Scuttle supports most of the del.icio.us API [ http://del.icio.us/doc/api ]. Almost all of the neat tools made for that system can be modified to work with your installation instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it.
