@@ -93,8 +93,6 @@ $dbname = 'scuttle';
 # enableCommonTagDescription	  : true or false
 # enableCommonBookmarkDescription : true or false
 #
-# enableWebsiteThumbnails : true or false.  According to artviper.net license, buy a license if you gain profit with your pages. (see http://www.websitethumbnail.de/)
-#
 # sizeSearchHistory : the number of users' searches that are saved
 #			10 [Default]
 #			-1 Unlimited
@@ -139,8 +137,9 @@ $antispamAnswer = 'semanticscuttle';
 $enableCommonTagDescription = true;
 $enableCommonBookmarkDescription = true;
 
-$enableWebsiteThumbnails = true;   // see above, if you gain profit with your pages
-
+# enableWebsiteThumbnails : true or false.  
+# According to artviper.net license, buy a license if you gain profit with your pages. (see http://www.websitethumbnail.de/)
+$enableWebsiteThumbnails = true;
 $sizeSearchHistory = 10;
 
 
