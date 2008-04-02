@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-14 11:42+0100\n"
+"POT-Creation-Date: 2008-04-02 09:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -459,15 +459,15 @@ msgstr ""
 msgid "Delete Tag"
 msgstr ""
 
-#: ../../../tagrename.php:46
+#: ../../../tagrename.php:49
 msgid "Tag renamed"
 msgstr ""
 
-#: ../../../tagrename.php:50
+#: ../../../tagrename.php:53
 msgid "Failed to rename the tag"
 msgstr ""
 
-#: ../../../tagrename.php:57
+#: ../../../tagrename.php:60
 #: ../../../templates/sidebar.block.tagactions.php:11
 msgid "Rename Tag"
 msgid_plural "Rename Tags"
@@ -518,9 +518,12 @@ msgid ""
 msgstr ""
 
 #: ../../../templates/about.tpl.php:9
+msgid "Register now"
+msgstr ""
+
+#: ../../../templates/about.tpl.php:9
 #, php-format
-msgid ""
-"<strong><a href=\"register.php\">Register now</a></strong> to start using %s!"
+msgid " to start using %s!"
 msgstr ""
 
 #: ../../../templates/about.tpl.php:12
@@ -607,58 +610,58 @@ msgstr ""
 msgid "Only your bookmarks for these tags"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:113
+#: ../../../templates/bookmarks.tpl.php:115
 msgid "Edit"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:113
+#: ../../../templates/bookmarks.tpl.php:115
 msgid "Delete"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:119
+#: ../../../templates/bookmarks.tpl.php:121
 msgid "by"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:131
+#: ../../../templates/bookmarks.tpl.php:133
 #, php-format
 msgid " and %s1 other%s"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:134
+#: ../../../templates/bookmarks.tpl.php:136
 #, php-format
 msgid " and %2$s%1$s others%3$s"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:143
+#: ../../../templates/bookmarks.tpl.php:145
 msgid "Copy"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:202
-#: ../../../templates/bookmarks.tpl.php:208
+#: ../../../templates/bookmarks.tpl.php:204
+#: ../../../templates/bookmarks.tpl.php:210
 msgid "First"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:203
-#: ../../../templates/bookmarks.tpl.php:209
+#: ../../../templates/bookmarks.tpl.php:205
+#: ../../../templates/bookmarks.tpl.php:211
 msgid "Previous"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:216
-#: ../../../templates/bookmarks.tpl.php:219
+#: ../../../templates/bookmarks.tpl.php:218
+#: ../../../templates/bookmarks.tpl.php:221
 msgid "Next"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:217
-#: ../../../templates/bookmarks.tpl.php:220
+#: ../../../templates/bookmarks.tpl.php:219
+#: ../../../templates/bookmarks.tpl.php:222
 msgid "Last"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:222
+#: ../../../templates/bookmarks.tpl.php:224
 #, php-format
 msgid "Page %d of %d"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:226
+#: ../../../templates/bookmarks.tpl.php:228
 msgid "No bookmarks available"
 msgstr ""
 
@@ -946,19 +949,19 @@ msgstr ""
 msgid "Synonyms:"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:105
+#: ../../../templates/sidebar.block.linked.php:115
 msgid "Linked Tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:108
+#: ../../../templates/sidebar.block.linked.php:118
 msgid "plus"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:126
+#: ../../../templates/sidebar.block.linked.php:129
 msgid "Add new link"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:127
+#: ../../../templates/sidebar.block.linked.php:130
 msgid "Delete link"
 msgstr ""
 

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-14 11:42+0100\n"
-"PO-Revision-Date: 2008-03-14 16:06+0100\n"
+"POT-Creation-Date: 2008-04-02 09:32+0200\n"
+"PO-Revision-Date: 2008-04-02 09:36+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -484,15 +484,15 @@ msgstr "Impossible d'effacer le tag"
 msgid "Delete Tag"
 msgstr "Supprimer le tag"
 
-#: ../../../tagrename.php:46
+#: ../../../tagrename.php:49
 msgid "Tag renamed"
 msgstr "Tag renommé"
 
-#: ../../../tagrename.php:50
+#: ../../../tagrename.php:53
 msgid "Failed to rename the tag"
 msgstr "Erreur dans le renommage du tag"
 
-#: ../../../tagrename.php:57
+#: ../../../tagrename.php:60
 #: ../../../templates/sidebar.block.tagactions.php:11
 msgid "Rename Tag"
 msgid_plural "Rename Tags"
@@ -541,9 +541,13 @@ msgid "<strong>Tag</strong> your bookmarks with as many labels as you want, inst
 msgstr "<strong>Taggez</strong> vos signets avec autant de labels que vous le souhaitez au lieu de les hiérarchiser avec des dossiers."
 
 #: ../../../templates/about.tpl.php:9
+msgid "Register now"
+msgstr "S'enregistrer maintenant"
+
+#: ../../../templates/about.tpl.php:9
 #, php-format
-msgid "<strong><a href=\"register.php\">Register now</a></strong> to start using %s!"
-msgstr "<a href=\"register.php\">Enregistrez-vous maintenant</a> pour poster vos propres signets sur %s !"
+msgid " to start using %s!"
+msgstr "pour commencer à employer %s !"
 
 #: ../../../templates/about.tpl.php:12
 msgid "Geek Stuff"
@@ -625,58 +629,58 @@ msgstr "Signets des autres utilisateurs pour ces tags"
 msgid "Only your bookmarks for these tags"
 msgstr "Uniquement vos signets pour ces tags"
 
-#: ../../../templates/bookmarks.tpl.php:113
+#: ../../../templates/bookmarks.tpl.php:115
 msgid "Edit"
 msgstr "Editer"
 
-#: ../../../templates/bookmarks.tpl.php:113
+#: ../../../templates/bookmarks.tpl.php:115
 msgid "Delete"
 msgstr "Supprimer"
 
-#: ../../../templates/bookmarks.tpl.php:119
+#: ../../../templates/bookmarks.tpl.php:121
 msgid "by"
 msgstr "par"
 
-#: ../../../templates/bookmarks.tpl.php:131
+#: ../../../templates/bookmarks.tpl.php:133
 #, fuzzy, php-format
 msgid " and %s1 other%s"
 msgstr " et les autres %s"
 
-#: ../../../templates/bookmarks.tpl.php:134
+#: ../../../templates/bookmarks.tpl.php:136
 #, fuzzy, php-format
 msgid " and %2$s%1$s others%3$s"
 msgstr " et les autres %s"
 
-#: ../../../templates/bookmarks.tpl.php:143
+#: ../../../templates/bookmarks.tpl.php:145
 msgid "Copy"
 msgstr "Copier"
 
-#: ../../../templates/bookmarks.tpl.php:202
-#: ../../../templates/bookmarks.tpl.php:208
+#: ../../../templates/bookmarks.tpl.php:204
+#: ../../../templates/bookmarks.tpl.php:210
 msgid "First"
 msgstr "Première"
 
-#: ../../../templates/bookmarks.tpl.php:203
-#: ../../../templates/bookmarks.tpl.php:209
+#: ../../../templates/bookmarks.tpl.php:205
+#: ../../../templates/bookmarks.tpl.php:211
 msgid "Previous"
 msgstr "Précédent"
 
-#: ../../../templates/bookmarks.tpl.php:216
-#: ../../../templates/bookmarks.tpl.php:219
+#: ../../../templates/bookmarks.tpl.php:218
+#: ../../../templates/bookmarks.tpl.php:221
 msgid "Next"
 msgstr "Suivant"
 
-#: ../../../templates/bookmarks.tpl.php:217
-#: ../../../templates/bookmarks.tpl.php:220
+#: ../../../templates/bookmarks.tpl.php:219
+#: ../../../templates/bookmarks.tpl.php:222
 msgid "Last"
 msgstr "Dernière"
 
-#: ../../../templates/bookmarks.tpl.php:222
+#: ../../../templates/bookmarks.tpl.php:224
 #, php-format
 msgid "Page %d of %d"
 msgstr "Page %d de %d"
 
-#: ../../../templates/bookmarks.tpl.php:226
+#: ../../../templates/bookmarks.tpl.php:228
 msgid "No bookmarks available"
 msgstr "Pas de signets disponibles."
 
@@ -949,19 +953,19 @@ msgstr "Editer un lien"
 msgid "Synonyms:"
 msgstr "Synonymes :"
 
-#: ../../../templates/sidebar.block.linked.php:105
+#: ../../../templates/sidebar.block.linked.php:115
 msgid "Linked Tags"
 msgstr "Tags structurés"
 
-#: ../../../templates/sidebar.block.linked.php:108
+#: ../../../templates/sidebar.block.linked.php:118
 msgid "plus"
 msgstr "plus"
 
-#: ../../../templates/sidebar.block.linked.php:126
+#: ../../../templates/sidebar.block.linked.php:129
 msgid "Add new link"
 msgstr "Créer un lien"
 
-#: ../../../templates/sidebar.block.linked.php:127
+#: ../../../templates/sidebar.block.linked.php:130
 msgid "Delete link"
 msgstr "Supprimer un lien"
 
@@ -1071,6 +1075,12 @@ msgstr "Profil"
 msgid "created in"
 msgstr "Créé en "
 
+#~ msgid ""
+#~ "<strong><a href=\"register.php\">Register now</a></strong> to start using "
+#~ "%s!"
+#~ msgstr ""
+#~ "<a href=\"register.php\">Enregistrez-vous maintenant</a> pour poster vos "
+#~ "propres signets sur %s !"
 #~ msgid ""
 #~ "<a href=\"http://sourceforge.net/projects/semanticscuttle/\">Semantic "
 #~ "Scuttle</a> is licensed under the <a href=\"http://www.gnu.org/copyleft/"
