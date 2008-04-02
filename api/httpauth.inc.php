@@ -3,7 +3,7 @@
 //  with the user's info.
 
 function authenticate() {
-    header('WWW-Authenticate: Basic realm="del.icio.us API"');
+    header('WWW-Authenticate: Basic realm="SemanticScuttle API"');
     header('HTTP/1.0 401 Unauthorized');
     die("Use of the API calls requires authentication.");
 }
