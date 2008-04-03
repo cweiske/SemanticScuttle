@@ -8,6 +8,7 @@ RewriteRule ^posts/update posts_update.php
 RewriteRule ^posts/add posts_add.php
 RewriteRule ^posts/delete posts_delete.php
 RewriteRule ^tags/rename tags_rename.php
+RewriteRule ^tags/export export_all.php
 
 
 # Allow PHP_AUTH_USER with CGI script

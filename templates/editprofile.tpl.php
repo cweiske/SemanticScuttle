@@ -4,15 +4,6 @@ $this->includeTemplate($GLOBALS['top_include']);
 
 <form action="<?php echo $formaction; ?>" method="post">
 
-<h3><?php echo T_('Actions'); ?></h3>
-<table class="profile">
-<tr>
-    <th align="left"><?php echo T_('Export'); ?></th>
-    <td>
-	<a href="../api/posts/all"><?php echo T_('All bookmarks')?></a>
-	<?php echo ' &larr; '.T_('Del.icio.us-like API')?>
-    </td>
-</tr>
 </table>
 
 <h3><?php echo T_('Account Details'); ?></h3>
@@ -60,6 +51,19 @@ $this->includeTemplate($GLOBALS['top_include']);
     <td><input type="submit" name="submitted" value="<?php echo T_('Save Changes'); ?>" /></td>
 </tr>
 </table>
+<h3><?php echo T_('Actions'); ?></h3>
+<table class="profile">
+<tr>
+    <th align="left"><?php echo T_('Export bookmarks'); ?></th>
+    <td>
+	<a href="../api/posts/all"><?php echo T_('XML file (for del.icio.us)')?></a> /
+	<a href="../api/export/all"><?php echo T_('HTML file (for browsers)')?></a>
+    </td>
+</tr>
+<tr><th> </th><td> </td></tr>
+<tr><th> </th><td> </td></tr>
+</table>
+
 </form>
 
 <?php
