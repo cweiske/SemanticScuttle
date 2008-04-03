@@ -8,3 +8,12 @@ RewriteRule ^posts/update posts_update.php
 RewriteRule ^posts/add posts_add.php
 RewriteRule ^posts/delete posts_delete.php
 RewriteRule ^tags/rename tags_rename.php
+
+
+# Allow PHP_AUTH_USER with CGI script
+# (Sinpired by http://www.yetanothercommunitysystem.com/article-321-regle-comment-utiliser-l-authentification-http-en-php-chez-ovh )
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization},L]
+</IfModule>
