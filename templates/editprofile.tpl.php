@@ -4,6 +4,17 @@ $this->includeTemplate($GLOBALS['top_include']);
 
 <form action="<?php echo $formaction; ?>" method="post">
 
+<h3><?php echo T_('Actions'); ?></h3>
+<table class="profile">
+<tr>
+    <th align="left"><?php echo T_('Export'); ?></th>
+    <td>
+	<a href="../api/posts/all"><?php echo T_('All bookmarks')?></a>
+	<?php echo ' &larr; '.T_('Del.icio.us-like API')?>
+    </td>
+</tr>
+</table>
+
 <h3><?php echo T_('Account Details'); ?></h3>
 
 <table class="profile">
