@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-04-02 09:32+0200\n"
-"PO-Revision-Date: 2008-04-02 09:36+0100\n"
+"PO-Revision-Date: 2008-04-03 14:30+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -123,7 +123,7 @@ msgstr "Erreur pendant l'enregistrement de votre signet."
 #: ../../../edit.php:88
 #: ../../../templates/editprofile.tpl.php:49
 msgid "Save Changes"
-msgstr "Enregister les modifications"
+msgstr "Enregistrer les modifications"
 
 #: ../../../functions.inc.php:97
 msgid "message_die() was called multiple times."
