@@ -33,8 +33,15 @@ $sitename           = 'SemanticScuttle';
 $welcomeMessage     = 'More than tags...';
 # locale:           The locale used (list ./locales : de_DE  en_GB  fr_FR  it_IT  lt_LT nl_NL  zh_CN dk_DK  es_ES  hi_IN  ja_JP  pt_BR)
 $locale             = 'en_GB';
+
+### display templates ###
 # top_include:      The header file.
+$top_include        = 'top.inc.php';
 # bottom_include:   The footer file.
+$bottom_include     = 'bottom.inc.php';
+# sidebar block index : array ordering blocks search, users, linked, recent
+$index_sidebar_blocks = array('search','users','linked','recent');
+
 # shortdate:        The format of short dates.
 # longdate:         The format of long dates.
 # nofollow:             true    - Include rel="nofollow" attribute on
@@ -89,8 +96,6 @@ $locale             = 'en_GB';
 #			10 [Default]
 #			-1 Unlimited
 
-$top_include        = 'top.inc.php';
-$bottom_include     = 'bottom.inc.php';
 $shortdate          = 'd-m-Y';
 $longdate           = 'j F Y';
 $nofollow           = true;
