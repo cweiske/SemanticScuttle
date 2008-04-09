@@ -1,46 +1,38 @@
 <?php
-######################################################################
-# SCUTTLE: Online social bookmarks manager
-######################################################################
-# Copyright (C) 2005 - 2006 Scuttle project
-# http://sourceforge.net/projects/scuttle/
-# http://scuttle.org/
+# SemanticScuttle - Web social bookmarking 
+# Copyright (C) 2005 - 2006 SemanticScuttle project
+# http://sourceforge.net/projects/semanticscuttle/
 #
+# Configuration Main File
 # This module is to configure the main options for your site
 #
 # This program is free software. You can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License.
-######################################################################
 
-######################################################################
-# Database Configuration
-#
-# dbtype:   Database driver - mysql, mysqli, mysql4, oracle, postgres,
-#                             sqlite, db2, firebird, mssql, mssq-odbc
-# dbhost:   Database hostname
-# dbport:   Database port
-# dbuser:   Database username
-# dbpass:   Database password
-# dbname:   Database name
-######################################################################
 
+#### Database Configuration ####
+# dbtype:   Database driver {mysql, mysqli, mysql4, oracle, postgres, sqlite, db2, firebird, mssql, mssq-odbc}
 $dbtype = 'mysql4';
+# dbhost:   Database hostname
 $dbhost = '127.0.0.1';
+# dbport:   Database port
 $dbport = '3306';
+# dbuser:   Database username
 $dbuser = 'username';
+# dbpass:   Database password
 $dbpass = 'password';
+# dbname:   Database name
 $dbname = 'scuttle';
 
-######################################################################
-# You have finished configuring the database!
+#### System Configuration ####
 # ONLY EDIT THE INFORMATION BELOW IF YOU KNOW WHAT YOU ARE DOING.
-######################################################################
-# System Configuration
-#
 # sitename:         The name of this site.
+$sitename           = 'SemanticScuttle';
 # welcomeMessage:   The welcome message (or tagline) of this site
-# locale:           The locale used.
+$welcomeMessage     = 'More than tags...';
+# locale:           The locale used (list ./locales : de_DE  en_GB  fr_FR  it_IT  lt_LT nl_NL  zh_CN dk_DK  es_ES  hi_IN  ja_JP  pt_BR)
+$locale             = 'en_GB';
 # top_include:      The header file.
 # bottom_include:   The footer file.
 # shortdate:        The format of short dates.
@@ -96,12 +88,7 @@ $dbname = 'scuttle';
 # sizeSearchHistory : the number of users' searches that are saved
 #			10 [Default]
 #			-1 Unlimited
-#
-######################################################################
 
-$sitename           = 'SemanticScuttle';
-$welcomeMessage     = 'More than tags...';
-$locale             = 'en_GB'; # in list ./locales : de_DE  en_GB  fr_FR  it_IT  lt_LT nl_NL  zh_CN dk_DK  es_ES  hi_IN  ja_JP  pt_BR
 $top_include        = 'top.inc.php';
 $bottom_include     = 'bottom.inc.php';
 $shortdate          = 'd-m-Y';
