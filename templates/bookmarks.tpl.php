@@ -216,18 +216,14 @@ window.onload = playerLoad;
     $totalpages = ceil($total / $perpage);
     if (count($bookmarks) < $perpage || $perpage * $page == $total) {
         $bnext = '<span class="disable">'. T_('Next') .'</span>';
-        $blast = '<span class="disable">'. T_('Last') .'</span>';
+        $blast = '<span class="disable">'. T_('Last') ."</span>\n";
     } else {
         $bnext = '<a href="'. sprintf($nav_url, $user, $currenttag, '?page=') . $next . $sortAmp .'">'. T_('Next') .'</a>';
-        $blast = '<a href="'. sprintf($nav_url, $user, $currenttag, '?page=') . $totalpages . $sortAmp .'">'. T_('Last') .'</a>';
+        $blast = '<a href="'. sprintf($nav_url, $user, $currenttag, '?page=') . $totalpages . $sortAmp .'">'. T_('Last') ."</a>\n";
     }
-    echo '<p class="paging">'. $bfirst .'<span> / </span>'. $bprev .'<span> / </span>'. $bnext .'<span> / </span>'. $blast .'<span> / </span>'. sprintf(T_('Page %d of %d'), $page, $totalpages) .'</p>';
+    echo '<p class="paging">'. $bfirst .'<span> / </span>'. $bprev .'<span> / </span>'. $bnext .'<span> / </span>'. $blast .'<span> / </span>'. sprintf(T_('Page %d of %d'), $page, $totalpages) ."</p>\n";
 } else {
-?>
-
-    <p class="error"><?php echo T_('No bookmarks available'); ?></p>
-
-<?php
+    echo '<p class="error">'.T_('No bookmarks available').'</p>';
 }
 $this->includeTemplate('sidebar.tpl');
 $this->includeTemplate($GLOBALS['bottom_include']);
