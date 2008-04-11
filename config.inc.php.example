@@ -33,6 +33,9 @@ $sitename           = 'SemanticScuttle';
 $welcomeMessage     = 'More than tags...';
 # locale:           The locale used (list ./locales : de_DE  en_GB  fr_FR  it_IT  lt_LT nl_NL  zh_CN dk_DK  es_ES  hi_IN  ja_JP  pt_BR)
 $locale             = 'en_GB';
+# admin users:
+# add users as admin by: $admins = array('adminnickname', 'user1nick', 'user2nick');
+$admin_users = array();
 
 ### display templates ###
 # top_include:      The header file.

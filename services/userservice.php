@@ -133,7 +133,14 @@ class UserService {
     }
 
     function isAdmin($userid) {
-        return false; //not implemented yet
+	$user = $this->getUser($userid);
+	
+	if(isset($GLOBALS['admin_users'])
+		&& in_array($user['username'], $GLOBALS['admin_users'])) {
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     function getCurrentUserId() {
