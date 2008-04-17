@@ -2,7 +2,7 @@
 $tag2tagservice =& ServiceFactory::getServiceInstance('Tag2TagService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 
-require_once('sidebar.linkedtags.inc.php');
+require_once('./sidebar.linkedtags.inc.php');
 
 $logged_on_userid = $userservice->getCurrentUserId();
 if ($logged_on_userid === false) {
