@@ -168,17 +168,19 @@ if ($templatename == 'editbookmark.tpl') {
     }
 } else if ($user && !isset($_GET['popup'])) {
         
-    $tplVars['sidebar_blocks'] = array('profile', 'watchstatus', 'menu');
+    $tplVars['sidebar_blocks'] = array('profile', 'watchstatus');
 
     if (!$cat) {
         $cat = NULL;
         $tplVars['currenttag'] = NULL;
+        $tplVars['sidebar_blocks'][] = 'menu';
     } else {
         $rssCat = '/'. filter($cat, 'url');
         $tplVars['currenttag'] = $cat;
         $tplVars['sidebar_blocks'][] = 'tagactions';
 	$tplVars['sidebar_blocks'][] = 'linked';
         $tplVars['sidebar_blocks'][] = 'related';
+        $tplVars['sidebar_blocks'][] = 'menu';
     }
     $tplVars['popCount'] = 30;
     $tplVars['sidebar_blocks'][] = 'popular';
