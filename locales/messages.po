@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-17 10:03+0200\n"
+"POT-Creation-Date: 2008-04-17 11:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,7 +86,7 @@ msgstr ""
 msgid "You must be logged in before you can add bookmarks."
 msgstr ""
 
-#: ../../../bookmarks.php:216
+#: ../../../bookmarks.php:218
 msgid "My Bookmarks"
 msgstr ""
 
@@ -211,7 +211,7 @@ msgstr ""
 msgid "Recent Bookmarks"
 msgstr ""
 
-#: ../../../jsScuttle.php:22 ../../../templates/tag2tagadd.tpl.php:12
+#: ../../../jsScuttle.php:22 ../../../templates/tag2tagadd.tpl.php:21
 #: ../../../templates/tag2tagdelete.tpl.php:13
 #: ../../../templates/tag2tagedit.tpl.php:14
 #: ../../../templates/tag2tagedit.tpl.php:35
@@ -573,7 +573,7 @@ msgid "Update"
 msgstr ""
 
 #: ../../../templates/bookmarkcommondescriptionedit.tpl.php:40
-#: ../../../templates/tag2tagadd.tpl.php:15
+#: ../../../templates/tag2tagadd.tpl.php:24
 #: ../../../templates/tag2tagedit.tpl.php:38
 #: ../../../templates/tagcommondescriptionedit.tpl.php:33
 #: ../../../templates/tagrename.tpl.php:25
@@ -692,11 +692,13 @@ msgid "Comma-separated"
 msgstr ""
 
 #: ../../../templates/editbookmark.tpl.php:50
+#: ../../../templates/tag2tagadd.tpl.php:9
 msgid ""
 "Note: use \">\" to include one tag in another. e.g.: europe>france>paris"
 msgstr ""
 
 #: ../../../templates/editbookmark.tpl.php:54
+#: ../../../templates/tag2tagadd.tpl.php:8
 msgid "Note: use \"=\" to make synonym two tags. e.g.: france=frenchcountry"
 msgstr ""
 
@@ -1036,22 +1038,29 @@ msgstr ""
 msgid "Synonyms:"
 msgstr ""
 
-#: ../../../templates/tag2tagadd.tpl.php:6
+#: ../../../templates/tag2tagadd.tpl.php:10
+#, php-format
+msgid ""
+"Note: include a tag into '%s' tag (e.g. %s>countries) display the tag into "
+"the menu box"
+msgstr ""
+
+#: ../../../templates/tag2tagadd.tpl.php:13
 msgid "Create new link:"
 msgstr ""
 
-#: ../../../templates/tag2tagadd.tpl.php:14
+#: ../../../templates/tag2tagadd.tpl.php:23
 #: ../../../templates/tag2tagedit.tpl.php:37
 msgid "Create"
 msgstr ""
 
-#: ../../../templates/tag2tagadd.tpl.php:26
+#: ../../../templates/tag2tagadd.tpl.php:35
 #: ../../../templates/tag2tagdelete.tpl.php:27
 #: ../../../templates/tag2tagedit.tpl.php:51
 msgid "Existing links:"
 msgstr ""
 
-#: ../../../templates/tag2tagadd.tpl.php:44
+#: ../../../templates/tag2tagadd.tpl.php:53
 #: ../../../templates/tag2tagdelete.tpl.php:45
 #: ../../../templates/tag2tagedit.tpl.php:69
 msgid "No links"

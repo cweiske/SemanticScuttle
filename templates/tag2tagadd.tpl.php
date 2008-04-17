@@ -3,12 +3,21 @@ $this->includeTemplate($GLOBALS['top_include']);
 ?>
 
 <form action="<?= $formaction ?>" method="post">
+
+<p align=right" style="float:right">
+<small style="text-align:right"><?php echo T_('Note: use "=" to make synonym two tags. e.g.: france=frenchcountry')?></small><br/>
+<small style="text-align:right"><?php echo T_('Note: use ">" to include one tag in another. e.g.: europe>france>paris')?></small><br/>
+<small style="text-align:right"><?php echo sprintf(T_('Note: include a tag into \'%s\' tag (e.g. %s>countries) display the tag into the menu box'), $GLOBALS['menuTag'], $GLOBALS['menuTag'])?></small>
+</p>
+
 <p><?php echo T_('Create new link:')?></p>
 <p>
 <input type="text" name="tag1" value="<?php echo $tag1 ?>"/>
 <input type="text" name="linkType" value=">" size="1" maxlength="1"/>
 <input type="text" name="tag2" />
 </p>
+
+
 <!--p><?php echo T_('Are you sure?'); ?></p-->
 <p>
     <input type="submit" name="confirm" value="<?php echo T_('Create'); ?>" />
