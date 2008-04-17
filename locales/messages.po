@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-02 09:32+0200\n"
+"POT-Creation-Date: 2008-04-17 10:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,7 +86,7 @@ msgstr ""
 msgid "You must be logged in before you can add bookmarks."
 msgstr ""
 
-#: ../../../bookmarks.php:217
+#: ../../../bookmarks.php:216
 msgid "My Bookmarks"
 msgstr ""
 
@@ -107,7 +107,7 @@ msgstr ""
 msgid "Error while saving your bookmark"
 msgstr ""
 
-#: ../../../edit.php:88 ../../../templates/editprofile.tpl.php:49
+#: ../../../edit.php:88 ../../../templates/editprofile.tpl.php:51
 msgid "Save Changes"
 msgstr ""
 
@@ -203,11 +203,11 @@ msgstr ""
 msgid "%s: Recent bookmarks"
 msgstr ""
 
-#: ../../../index.php:72
+#: ../../../index.php:73
 msgid "Store, share and tag your favourite links"
 msgstr ""
 
-#: ../../../index.php:73
+#: ../../../index.php:74
 msgid "Recent Bookmarks"
 msgstr ""
 
@@ -556,7 +556,7 @@ msgstr ""
 
 #: ../../../templates/bookmarkcommondescriptionedit.tpl.php:20
 #: ../../../templates/editbookmark.tpl.php:39
-#: ../../../templates/editprofile.tpl.php:44
+#: ../../../templates/editprofile.tpl.php:46
 #: ../../../templates/profile.tpl.php:28
 #: ../../../templates/tagcommondescriptionedit.tpl.php:13
 msgid "Description"
@@ -661,7 +661,7 @@ msgstr ""
 msgid "Page %d of %d"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:228
+#: ../../../templates/bookmarks.tpl.php:226
 msgid "No bookmarks available"
 msgstr ""
 
@@ -681,7 +681,7 @@ msgstr ""
 
 #: ../../../templates/editbookmark.tpl.php:31
 #: ../../../templates/editbookmark.tpl.php:36
-#: ../../../templates/editprofile.tpl.php:28
+#: ../../../templates/editprofile.tpl.php:30
 #: ../../../templates/tagrename.tpl.php:14
 #: ../../../templates/tagrename.tpl.php:19
 msgid "Required"
@@ -765,42 +765,60 @@ msgstr ""
 msgid "Import bookmarks from del.icio.us"
 msgstr ""
 
-#: ../../../templates/editprofile.tpl.php:7
+#: ../../../templates/editprofile.tpl.php:9
 msgid "Account Details"
 msgstr ""
 
-#: ../../../templates/editprofile.tpl.php:11
+#: ../../../templates/editprofile.tpl.php:13
 #: ../../../templates/login.tpl.php:15 ../../../templates/password.tpl.php:10
 #: ../../../templates/profile.tpl.php:7 ../../../templates/register.tpl.php:16
 msgid "Username"
 msgstr ""
 
-#: ../../../templates/editprofile.tpl.php:16
+#: ../../../templates/editprofile.tpl.php:18
 msgid "New Password"
 msgstr ""
 
-#: ../../../templates/editprofile.tpl.php:21
+#: ../../../templates/editprofile.tpl.php:23
 msgid "Confirm Password"
 msgstr ""
 
-#: ../../../templates/editprofile.tpl.php:26
+#: ../../../templates/editprofile.tpl.php:28
 #: ../../../templates/password.tpl.php:14
 #: ../../../templates/register.tpl.php:26
 msgid "E-mail"
 msgstr ""
 
-#: ../../../templates/editprofile.tpl.php:32
+#: ../../../templates/editprofile.tpl.php:34
 msgid "Personal Details"
 msgstr ""
 
-#: ../../../templates/editprofile.tpl.php:36
+#: ../../../templates/editprofile.tpl.php:38
 #: ../../../templates/profile.tpl.php:12
 msgid "Name"
 msgstr ""
 
-#: ../../../templates/editprofile.tpl.php:40
+#: ../../../templates/editprofile.tpl.php:42
 #: ../../../templates/profile.tpl.php:18
 msgid "Homepage"
+msgstr ""
+
+#: ../../../templates/editprofile.tpl.php:54
+#: ../../../templates/sidebar.block.tagactions.php:18
+#: ../../../templates/sidebar.block.watchstatus.php:17
+msgid "Actions"
+msgstr ""
+
+#: ../../../templates/editprofile.tpl.php:57
+msgid "Export bookmarks"
+msgstr ""
+
+#: ../../../templates/editprofile.tpl.php:59
+msgid "XML file (for del.icio.us)"
+msgstr ""
+
+#: ../../../templates/editprofile.tpl.php:60
+msgid "HTML file (for browsers)"
 msgstr ""
 
 #: ../../../templates/error.404.tpl.php:5
@@ -941,28 +959,36 @@ msgstr ""
 msgid "Antispam question"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:17
-msgid "Edit link"
-msgstr ""
-
-#: ../../../templates/sidebar.block.linked.php:44
-msgid "Synonyms:"
-msgstr ""
-
-#: ../../../templates/sidebar.block.linked.php:115
+#: ../../../templates/sidebar.block.linked.php:41
 msgid "Linked Tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:118
-msgid "plus"
+#: ../../../templates/sidebar.block.linked.php:44
+#: ../../../templates/sidebar.block.menu.php:31
+msgid "all tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:129
+#: ../../../templates/sidebar.block.linked.php:55
+#: ../../../templates/sidebar.block.menu.php:42
 msgid "Add new link"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:130
+#: ../../../templates/sidebar.block.linked.php:56
+#: ../../../templates/sidebar.block.menu.php:43
 msgid "Delete link"
+msgstr ""
+
+#: ../../../templates/sidebar.block.menu.php:29
+#, php-format
+msgid "Tags included into the tag '%s'"
+msgstr ""
+
+#: ../../../templates/sidebar.block.menu.php:29
+msgid "Menu Tags"
+msgstr ""
+
+#: ../../../templates/sidebar.block.menu.php:31
+msgid "See all tags"
 msgstr ""
 
 #: ../../../templates/sidebar.block.recent.php:15
@@ -979,11 +1005,6 @@ msgstr ""
 
 #: ../../../templates/sidebar.block.search.php:25
 msgid "Number of bookmarks for this query"
-msgstr ""
-
-#: ../../../templates/sidebar.block.tagactions.php:18
-#: ../../../templates/sidebar.block.watchstatus.php:17
-msgid "Actions"
 msgstr ""
 
 #: ../../../templates/sidebar.block.tagactions.php:28
@@ -1005,6 +1026,14 @@ msgstr ""
 
 #: ../../../templates/sidebar.block.watchstatus.php:12
 msgid "Add to Watchlist"
+msgstr ""
+
+#: ../../../templates/sidebar.linkedtags.inc.php:18
+msgid "Edit link"
+msgstr ""
+
+#: ../../../templates/sidebar.linkedtags.inc.php:45
+msgid "Synonyms:"
 msgstr ""
 
 #: ../../../templates/tag2tagadd.tpl.php:6

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-02 09:32+0200\n"
-"PO-Revision-Date: 2008-04-03 14:30+0100\n"
+"POT-Creation-Date: 2008-04-17 10:03+0200\n"
+"PO-Revision-Date: 2008-04-17 10:06+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -99,7 +99,7 @@ msgstr "Ajouter signet"
 msgid "You must be logged in before you can add bookmarks."
 msgstr "Vous devez être authentifié avant de pouvoir ajouter des signets."
 
-#: ../../../bookmarks.php:217
+#: ../../../bookmarks.php:216
 msgid "My Bookmarks"
 msgstr "Mes signets"
 
@@ -121,7 +121,7 @@ msgid "Error while saving your bookmark"
 msgstr "Erreur pendant l'enregistrement de votre signet."
 
 #: ../../../edit.php:88
-#: ../../../templates/editprofile.tpl.php:49
+#: ../../../templates/editprofile.tpl.php:51
 msgid "Save Changes"
 msgstr "Enregistrer les modifications"
 
@@ -221,11 +221,11 @@ msgstr "Vous êtes maintenant déconnecté."
 msgid "%s: Recent bookmarks"
 msgstr "%s: Signets récents"
 
-#: ../../../index.php:72
+#: ../../../index.php:73
 msgid "Store, share and tag your favourite links"
 msgstr "Conservez, partagez et taggez vos liens favoris"
 
-#: ../../../index.php:73
+#: ../../../index.php:74
 msgid "Recent Bookmarks"
 msgstr "Signets récents"
 
@@ -574,7 +574,7 @@ msgstr "Titre"
 
 #: ../../../templates/bookmarkcommondescriptionedit.tpl.php:20
 #: ../../../templates/editbookmark.tpl.php:39
-#: ../../../templates/editprofile.tpl.php:44
+#: ../../../templates/editprofile.tpl.php:46
 #: ../../../templates/profile.tpl.php:28
 #: ../../../templates/tagcommondescriptionedit.tpl.php:13
 msgid "Description"
@@ -680,7 +680,7 @@ msgstr "Dernière"
 msgid "Page %d of %d"
 msgstr "Page %d de %d"
 
-#: ../../../templates/bookmarks.tpl.php:228
+#: ../../../templates/bookmarks.tpl.php:226
 msgid "No bookmarks available"
 msgstr "Pas de signets disponibles."
 
@@ -700,7 +700,7 @@ msgstr "Adresse"
 
 #: ../../../templates/editbookmark.tpl.php:31
 #: ../../../templates/editbookmark.tpl.php:36
-#: ../../../templates/editprofile.tpl.php:28
+#: ../../../templates/editprofile.tpl.php:30
 #: ../../../templates/tagrename.tpl.php:14
 #: ../../../templates/tagrename.tpl.php:19
 msgid "Required"
@@ -781,11 +781,11 @@ msgstr "Internet Explorer, Mozilla Firefox et Netscape"
 msgid "Import bookmarks from del.icio.us"
 msgstr "Importer les signets depuis del.icio.us"
 
-#: ../../../templates/editprofile.tpl.php:7
+#: ../../../templates/editprofile.tpl.php:9
 msgid "Account Details"
 msgstr "Détail du compte"
 
-#: ../../../templates/editprofile.tpl.php:11
+#: ../../../templates/editprofile.tpl.php:13
 #: ../../../templates/login.tpl.php:15
 #: ../../../templates/password.tpl.php:10
 #: ../../../templates/profile.tpl.php:7
@@ -793,33 +793,52 @@ msgstr "Détail du compte"
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: ../../../templates/editprofile.tpl.php:16
+#: ../../../templates/editprofile.tpl.php:18
 msgid "New Password"
 msgstr "Nouveau mot de passe"
 
-#: ../../../templates/editprofile.tpl.php:21
+#: ../../../templates/editprofile.tpl.php:23
 msgid "Confirm Password"
 msgstr "Confirmer le mot de passe"
 
-#: ../../../templates/editprofile.tpl.php:26
+#: ../../../templates/editprofile.tpl.php:28
 #: ../../../templates/password.tpl.php:14
 #: ../../../templates/register.tpl.php:26
 msgid "E-mail"
 msgstr "E-mail"
 
-#: ../../../templates/editprofile.tpl.php:32
+#: ../../../templates/editprofile.tpl.php:34
 msgid "Personal Details"
 msgstr "Détails personnels"
 
-#: ../../../templates/editprofile.tpl.php:36
+#: ../../../templates/editprofile.tpl.php:38
 #: ../../../templates/profile.tpl.php:12
 msgid "Name"
 msgstr "Nom"
 
-#: ../../../templates/editprofile.tpl.php:40
+#: ../../../templates/editprofile.tpl.php:42
 #: ../../../templates/profile.tpl.php:18
 msgid "Homepage"
 msgstr "Page personnelle"
+
+#: ../../../templates/editprofile.tpl.php:54
+#: ../../../templates/sidebar.block.tagactions.php:18
+#: ../../../templates/sidebar.block.watchstatus.php:17
+#, fuzzy
+msgid "Actions"
+msgstr "Instructions"
+
+#: ../../../templates/editprofile.tpl.php:57
+msgid "Export bookmarks"
+msgstr "Exporter les signets"
+
+#: ../../../templates/editprofile.tpl.php:59
+msgid "XML file (for del.icio.us)"
+msgstr "Fichier XML (pour del.icio.us)"
+
+#: ../../../templates/editprofile.tpl.php:60
+msgid "HTML file (for browsers)"
+msgstr "Fichier HTML (pour navigateurs)"
 
 #: ../../../templates/error.404.tpl.php:5
 msgid "Not Found"
@@ -945,29 +964,37 @@ msgstr "Enregistrez-vous ici pour créer un compte gratuit %s. Toutes les inform
 msgid "Antispam question"
 msgstr "Question antispam"
 
-#: ../../../templates/sidebar.block.linked.php:17
-msgid "Edit link"
-msgstr "Editer un lien"
-
-#: ../../../templates/sidebar.block.linked.php:44
-msgid "Synonyms:"
-msgstr "Synonymes :"
-
-#: ../../../templates/sidebar.block.linked.php:115
+#: ../../../templates/sidebar.block.linked.php:41
 msgid "Linked Tags"
 msgstr "Tags structurés"
 
-#: ../../../templates/sidebar.block.linked.php:118
-msgid "plus"
-msgstr "plus"
+#: ../../../templates/sidebar.block.linked.php:44
+#: ../../../templates/sidebar.block.menu.php:31
+msgid "all tags"
+msgstr "Tous les tags"
 
-#: ../../../templates/sidebar.block.linked.php:129
+#: ../../../templates/sidebar.block.linked.php:55
+#: ../../../templates/sidebar.block.menu.php:42
 msgid "Add new link"
 msgstr "Créer un lien"
 
-#: ../../../templates/sidebar.block.linked.php:130
+#: ../../../templates/sidebar.block.linked.php:56
+#: ../../../templates/sidebar.block.menu.php:43
 msgid "Delete link"
 msgstr "Supprimer un lien"
+
+#: ../../../templates/sidebar.block.menu.php:29
+#, php-format
+msgid "Tags included into the tag '%s'"
+msgstr "Tags inclus dans le tag '%s'"
+
+#: ../../../templates/sidebar.block.menu.php:29
+msgid "Menu Tags"
+msgstr "Menu Tags"
+
+#: ../../../templates/sidebar.block.menu.php:31
+msgid "See all tags"
+msgstr "Tous les tags"
 
 #: ../../../templates/sidebar.block.recent.php:15
 msgid "Recent Tags"
@@ -984,12 +1011,6 @@ msgstr "Dernières recherches"
 #: ../../../templates/sidebar.block.search.php:25
 msgid "Number of bookmarks for this query"
 msgstr "Nombre de signets pour cette recherche"
-
-#: ../../../templates/sidebar.block.tagactions.php:18
-#: ../../../templates/sidebar.block.watchstatus.php:17
-#, fuzzy
-msgid "Actions"
-msgstr "Instructions"
 
 #: ../../../templates/sidebar.block.tagactions.php:28
 msgid "Create a link to another tag"
@@ -1011,6 +1032,14 @@ msgstr "Enlever de la liste des consultés"
 #: ../../../templates/sidebar.block.watchstatus.php:12
 msgid "Add to Watchlist"
 msgstr "Ajouter à la liste des consultés"
+
+#: ../../../templates/sidebar.linkedtags.inc.php:18
+msgid "Edit link"
+msgstr "Editer un lien"
+
+#: ../../../templates/sidebar.linkedtags.inc.php:45
+msgid "Synonyms:"
+msgstr "Synonymes :"
 
 #: ../../../templates/tag2tagadd.tpl.php:6
 msgid "Create new link:"
@@ -1075,6 +1104,8 @@ msgstr "Profil"
 msgid "created in"
 msgstr "Créé en "
 
+#~ msgid "plus"
+#~ msgstr "plus"
 #~ msgid ""
 #~ "<strong><a href=\"register.php\">Register now</a></strong> to start using "
 #~ "%s!"
