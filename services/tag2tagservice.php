@@ -188,6 +188,31 @@ class Tag2TagService {
         return $this->db->sql_fetchrowset($dbresult);
     }
 
+    function getMenuTags($uId) {
+	if(strlen($GLOBALS['menuTag']) < 1) {
+	    return array();
+	} else {
+	    // we don't use the getAllLinkedTags function in order to improve performance
+	    $query = "SELECT tag2 as 'tag', COUNT(tag2) as 'count'";
+	    $query.= " FROM `". $this->getTableName() ."`";
+	    $query.= " WHERE tag1 = '".$GLOBALS['menuTag']."'";
+	    $query.= " AND relationType = '>'";
+	    if($uId > 0) {
+	    	$query.= " AND uId = '".$uId."'";
+	    }
+	    $query.= " GROUP BY tag2";
+	    $query.= " ORDER BY count DESC";
+	    $query.= " LIMIT 0, ".$GLOBALS['maxSizeMenuBlock'];
+
+            if (! ($dbresult =& $this->db->sql_query($query)) ){
+            	message_die(GENERAL_ERROR, 'Could not get linked tags', '', __LINE__, __FILE__, $query, $this->db);
+            	return false;
+            }
+        return $this->db->sql_fetchrowset($dbresult);
+	}
+    }
+
+
     function existsLinkedTags($tag1, $tag2, $relationType, $uId) {
 	$query = "SELECT tag1, tag2, relationType, uId FROM `". $this->getTableName() ."`";
 	$query.= " WHERE tag1 = '" .$tag1 ."'";

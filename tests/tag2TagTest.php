@@ -457,10 +457,27 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$linkedTags = $tts->getLinkedTags('b', '>', 2);
 	$this->assertSame(array('a'), $linkedTags);
 
-
-
 	//with stats
 
     }
+
+    // Cannot be test because the function use GLOBALS variables
+    // not taken into account by tests
+    /*public function testMenuTags()
+    {
+	$tts = $this->tts;
+	$bs = $this->bs;
+
+	$bs->addBookmark("http://site1.com", "title", "description", "status", array('menu>tag1'), null, false, false, 1);
+	$bs->addBookmark("http://site1.com", "title2", "description2", "status", array('menu>tag2>tag3'), null, false, false, 1);
+	$bs->addBookmark("http://site1.com", "title3", "description3", "status", array('menu>tag1', 'menu>tag4'), null, false, false, 2);
+
+	$menuTags = $tts->getMenuTags($uId);
+	$this->assertEquals(3, sizeof($menuTags));
+	$this->assertContains('tag1', $menuTags);
+	$this->assertContains('tag2', $menuTags);
+	$this->assertContains('tag4', $menuTags);
+
+    }*/
 }
 ?>

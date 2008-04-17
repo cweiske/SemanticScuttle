@@ -168,12 +168,11 @@ if ($templatename == 'editbookmark.tpl') {
     }
 } else if ($user && !isset($_GET['popup'])) {
         
-    $tplVars['sidebar_blocks'] = array('profile', 'watchstatus');
+    $tplVars['sidebar_blocks'] = array('profile', 'watchstatus', 'menu');
 
     if (!$cat) {
         $cat = NULL;
-        $tplVars['currenttag'] = NULL; 
-	$tplVars['sidebar_blocks'][] = 'linked'; //test
+        $tplVars['currenttag'] = NULL;
     } else {
         $rssCat = '/'. filter($cat, 'url');
         $tplVars['currenttag'] = $cat;

@@ -43,7 +43,7 @@ $top_include        = 'top.inc.php';
 # bottom_include:   The footer file.
 $bottom_include     = 'bottom.inc.php';
 # sidebar block index : array ordering blocks search, users, linked, recent
-$index_sidebar_blocks = array('search','users','linked','recent');
+$index_sidebar_blocks = array('search', 'menu', 'recent', 'users');
 
 # shortdate:        The format of short dates.
 # longdate:         The format of long dates.
@@ -136,6 +136,11 @@ $enableCommonBookmarkDescription = true;
 # According to artviper.net license, buy a license if you gain profit with your pages. (see http://www.websitethumbnail.de/)
 $enableWebsiteThumbnails = true;
 $sizeSearchHistory = 10;
+
+# name of the tag whose subtags will appear into the menu box
+$menuTag = 'menu';
+# maximum number of items (tags) appearing into menu box
+$maxSizeMenuBlock = 7;
 
 
 include_once('debug.inc.php');
