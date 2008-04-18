@@ -43,7 +43,7 @@ foreach($bookmarks['bookmarks'] as $row) {
     $taglist = '';
     if (count($row['tags']) > 0) {
         foreach($row['tags'] as $tag)
-            $taglist .= convertTag($tag) .' ';
+            $taglist .= convertTag($tag) .',';
         $taglist = substr($taglist, 0, -1);
     } else {
         $taglist = 'system:unfiled';
