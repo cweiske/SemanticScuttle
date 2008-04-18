@@ -92,6 +92,17 @@ function createURL($page = '', $ending = '') {
     return $root . $page .'/'. $ending;
 }
 
+/* Shorten a string like a URL for example by cutting the middle of it */
+function shortenString($string, $maxSize=75) {
+    $output = '';
+    if(strlen($string) > $maxSize) {
+	$output = substr($string, 0, $maxSize/2).'...'.substr($string, -$maxSize/2);
+    } else {
+	$output = $string;
+    }
+    return $output;
+}
+
 function message_die($msg_code, $msg_text = '', $msg_title = '', $err_line = '', $err_file = '', $sql = '', $db = NULL) {
     if(defined('HAS_DIED'))
         die(T_('message_die() was called multiple times.'));
