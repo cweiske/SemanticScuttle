@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-17 11:29+0200\n"
+"POT-Creation-Date: 2008-04-18 09:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -816,11 +816,11 @@ msgid "Export bookmarks"
 msgstr ""
 
 #: ../../../templates/editprofile.tpl.php:59
-msgid "XML file (for del.icio.us)"
+msgid "HTML file (for browsers)"
 msgstr ""
 
 #: ../../../templates/editprofile.tpl.php:60
-msgid "HTML file (for browsers)"
+msgid "XML file (like del.icio.us)"
 msgstr ""
 
 #: ../../../templates/error.404.tpl.php:5

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-17 11:29+0200\n"
-"PO-Revision-Date: 2008-04-17 11:29+0100\n"
+"POT-Creation-Date: 2008-04-18 09:06+0200\n"
+"PO-Revision-Date: 2008-04-18 09:07+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -208,7 +208,6 @@ msgid "Bookmark imported."
 msgstr "Signet importé."
 
 #: ../../../importNetscape.php:81
-#, fuzzy
 msgid "Import Bookmarks from Browser File"
 msgstr "Importer les signets depuis un fichier"
 
@@ -835,12 +834,12 @@ msgid "Export bookmarks"
 msgstr "Exporter les signets"
 
 #: ../../../templates/editprofile.tpl.php:59
-msgid "XML file (for del.icio.us)"
-msgstr "Fichier XML (pour del.icio.us)"
-
-#: ../../../templates/editprofile.tpl.php:60
 msgid "HTML file (for browsers)"
 msgstr "Fichier HTML (pour navigateurs)"
+
+#: ../../../templates/editprofile.tpl.php:60
+msgid "XML file (like del.icio.us)"
+msgstr "Fichier XML (comme del.icio.us)"
 
 #: ../../../templates/error.404.tpl.php:5
 msgid "Not Found"
