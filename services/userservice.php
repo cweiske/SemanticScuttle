@@ -23,8 +23,8 @@ class UserService {
     function UserService(& $db) {
         $this->db =& $db;
         $this->tablename = $GLOBALS['tableprefix'] .'users';
-        $this->sessionkey = $GLOBALS['cookieprefix'] .'-currentuserid';
-        $this->cookiekey = $GLOBALS['cookieprefix'] .'-login';
+	$this->sessionkey = $GLOBALS['cookieprefix'].INSTALLATION_ID.'-currentuserid';
+	$this->cookiekey = $GLOBALS['cookieprefix'].INSTALLATION_ID.'-login';
         $this->profileurl = createURL('profile', '%2$s');
     }
 
@@ -145,8 +145,11 @@ class UserService {
 
     function getCurrentUserId() {
         if (isset($_SESSION[$this->getSessionKey()])) {
+//echo "session";die($_SESSION[$this->getSessionKey()]);
             return $_SESSION[$this->getSessionKey()];
         } else if (isset($_COOKIE[$this->getCookieKey()])) {
+//echo "cookie";die();
+
             $cook = split(':', $_COOKIE[$this->getCookieKey()]);
             //cookie looks like this: 'id:md5(username+password)'
             $query = 'SELECT * FROM '. $this->getTableName() .

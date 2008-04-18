@@ -9,6 +9,7 @@ session_start();
 
 require_once(dirname(__FILE__) .'/services/servicefactory.php');
 require_once(dirname(__FILE__) .'/config.inc.php');
+require_once(dirname(__FILE__) .'/constants.inc.php');
 require_once(dirname(__FILE__) .'/functions.inc.php');
 
 // Determine the base URL
