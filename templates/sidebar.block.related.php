@@ -1,5 +1,5 @@
 <?php
-$tagservice =& ServiceFactory::getServiceInstance('TagService');
+$b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 
 $logged_on_userid = $userservice->getCurrentUserId();
@@ -10,7 +10,7 @@ if(strlen($user)==0) {
     $cat_url = createURL('tags', '%2$s');
 }
 if ($currenttag) {
-    $relatedTags = $tagservice->getRelatedTags($currenttag, $userid, $logged_on_userid);
+    $relatedTags = $b2tservice->getRelatedTags($currenttag, $userid, $logged_on_userid);
     if (sizeof($relatedTags) > 0) {
 ?>
 

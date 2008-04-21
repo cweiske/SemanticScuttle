@@ -47,8 +47,8 @@ class BookmarkService {
 
         if ($row = & $this->db->sql_fetchrow($dbresult)) {
             if ($include_tags) {
-                $tagservice = & ServiceFactory :: getServiceInstance('TagService');
-                $row['tags'] = $tagservice->getTagsForBookmark($bid);
+                $b2tservice = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
+                $row['tags'] = $b2tservice->getTagsForBookmark($bid);
             }
             return $row;
         } else {
@@ -157,8 +157,8 @@ class BookmarkService {
         $extension = end($uriparts);
         unset($uriparts);
 
-        $tagservice = & ServiceFactory :: getServiceInstance('TagService');
-        if (!$tagservice->attachTags($bId, $categories, $fromApi, $extension, false, $fromImport)) {
+        $b2tservice = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
+        if (!$b2tservice->attachTags($bId, $categories, $fromApi, $extension, false, $fromImport)) {
             $this->db->sql_transaction('rollback');
             message_die(GENERAL_ERROR, 'Could not insert bookmark', '', __LINE__, __FILE__, $sql, $this->db);
             return false;
@@ -204,8 +204,8 @@ class BookmarkService {
         $extension = end($uriparts);
         unset($uriparts);
 
-        $tagservice = & ServiceFactory :: getServiceInstance('TagService');
-        if (!$tagservice->attachTags($bId, $categories, $fromApi, $extension)) {
+        $b2tservice = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
+        if (!$b2tservice->attachTags($bId, $categories, $fromApi, $extension)) {
             $this->db->sql_transaction('rollback');
             message_die(GENERAL_ERROR, 'Could not update bookmark', '', __LINE__, __FILE__, $sql, $this->db);
             return false;
@@ -226,7 +226,7 @@ class BookmarkService {
         //    bookmarks; otherwise, just get the public bookmarks.
         //  - if the $user is set and IS the logged-in user, then get all bookmarks.
         $userservice =& ServiceFactory::getServiceInstance('UserService');
-        $tagservice =& ServiceFactory::getServiceInstance('TagService');
+        $b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
 	$tag2tagservice =& ServiceFactory::getServiceInstance('Tag2TagService');
         $sId = $userservice->getCurrentUserId();
 
@@ -307,7 +307,7 @@ class BookmarkService {
         // Handle the parts of the query that depend on any tags that are present.
         $query_4 = '';
         for ($i = 0; $i < $tagcount; $i ++) {
-            $query_2 .= ', '. $tagservice->getTableName() .' AS T'. $i;
+            $query_2 .= ', '. $b2tservice->getTableName() .' AS T'. $i;
             $query_4 .= ' AND (';
 
 	    $allLinkedTags = $tag2tagservice->getAllLinkedTags($this->db->sql_escape($tags[$i]), '>', $user);
@@ -331,7 +331,7 @@ class BookmarkService {
 
             // Search terms in tags as well when none given
             if (!count($tags)) {
-                $query_2 .= ' LEFT JOIN '. $tagservice->getTableName() .' AS T ON B.bId = T.bId';
+                $query_2 .= ' LEFT JOIN '. $b2tservice->getTableName() .' AS T ON B.bId = T.bId';
                 $dotags = true;
             } else {
                 $dotags = false;
@@ -386,7 +386,7 @@ class BookmarkService {
 
         $bookmarks = array();
         while ($row = & $this->db->sql_fetchrow($dbresult)) {
-            $row['tags'] = $tagservice->getTagsForBookmark(intval($row['bId']));
+            $row['tags'] = $b2tservice->getTagsForBookmark(intval($row['bId']));
             $bookmarks[] = $row;
         }
         return array ('bookmarks' => $bookmarks, 'total' => $total);

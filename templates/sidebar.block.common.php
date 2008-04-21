@@ -1,7 +1,7 @@
 <?php
-$tagservice =& ServiceFactory::getServiceInstance('TagService');
-$commonTags =& $tagservice->getRelatedTagsByHash($hash);
-$commonTags =& $tagservice->tagCloud($commonTags, 5, 90, 225, 'alphabet_asc'); 
+$b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
+$commonTags =& $b2tservice->getRelatedTagsByHash($hash);
+$commonTags =& $b2tservice->tagCloud($commonTags, 5, 90, 225, 'alphabet_asc'); 
 
 if ($commonTags && count($commonTags) > 0) {
 ?>

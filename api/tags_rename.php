@@ -8,7 +8,7 @@
 require_once('httpauth.inc.php');
 require_once('../header.inc.php');
 
-$tagservice =& ServiceFactory::getServiceInstance('TagService');
+$b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 
 // Get the tag info.
@@ -26,7 +26,7 @@ if (is_null($old) || is_null($new)) {
     $renamed = false;
 } else {
     // Rename the tag.
-    $result = $tagservice->renameTag($userservice->getCurrentUserId(), $old, $new, true);
+    $result = $b2tservice->renameTag($userservice->getCurrentUserId(), $old, $new, true);
     $renamed = $result;
 }
 

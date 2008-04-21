@@ -8,11 +8,11 @@
 require_once('httpauth.inc.php');
 require_once('../header.inc.php');
 
-$tagservice =& ServiceFactory::getServiceInstance('TagService');
+$b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 
 // Get the tags relevant to the passed-in variables.
-$tags =& $tagservice->getTags($userservice->getCurrentUserId());
+$tags =& $b2tservice->getTags($userservice->getCurrentUserId());
 
 // Set up the XML file and output all the tags.
 header('Content-Type: text/xml');

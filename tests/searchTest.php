@@ -11,7 +11,7 @@ class SearchTest extends PHPUnit_Framework_TestCase
 {
     protected $us;
     protected $bs;
-    protected $ts;
+    protected $b2ts;
     protected $tts;
     protected $shs;
  
@@ -23,8 +23,8 @@ class SearchTest extends PHPUnit_Framework_TestCase
 	$this->us =& ServiceFactory::getServiceInstance('UserService');
 	$this->bs =& ServiceFactory::getServiceInstance('BookmarkService');
 	$this->bs->deleteAll();
-	$this->ts =& ServiceFactory::getServiceInstance('TagService');
-	$this->ts->deleteAll();
+	$this->b2ts =& ServiceFactory::getServiceInstance('Bookmark2TagService');
+	$this->b2ts->deleteAll();
 	$this->tts =& ServiceFactory::getServiceInstance('Tag2TagService');
 	$this->tts->deleteAll(); 
 	$this->tsts =& ServiceFactory::getServiceInstance('TagStatService');

@@ -3,7 +3,15 @@
 === From version 0.88 to 0.89 ===
 - Backup you database
 - Make a copy from your SemanticScuttle Web directory
-- Upgrade your database : add the following table (adapt its name prefix to your convenience) executin the following SQL commands:
+- Upgrade your database :
+
+
+* change the table called 'sc_tags' into 'sc_bookmarks2tags' by executing the following SQL commands (after changing 'yourdatabasename' and adapting its name prefix 'sc_' to your convenience):
+
+	RENAME TABLE `yourdatabasename`.`sc_tags`  TO `yourdatabasename`.`sc_bookmarks2tags` ;
+
+
+* add the following table (adapt its name prefix to your convenience) executing the following SQL commands:
 
 	CREATE TABLE `sc_searchhistory` (
 	  `shId` int(11) NOT NULL auto_increment,

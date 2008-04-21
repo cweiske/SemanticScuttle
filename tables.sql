@@ -1,5 +1,6 @@
 -- Semantice Scuttle - Tables creation SQL script
 -- ! Dont forget to change table names according to $tableprefix defined in config.inc.php !
+
 -- 
 -- Table structure for table `sc_bookmarks`
 -- 
@@ -28,12 +29,27 @@ CREATE TABLE `sc_bookmarks` (
 -- 
 
 CREATE TABLE `sc_tags` (
+  `tId` int(11) NOT NULL auto_increment,
+  `tag` varchar(32) NOT NULL default '',
+  `uId` int(11) NOT NULL default '0',
+  `tDescription` varchar(255) default NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `sc_tags_tag_uId` (`tag`, `uId`)
+);
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `sc_bookmarks2tags`
+-- 
+
+CREATE TABLE `sc_bookmarks2tags` (
   `id` int(11) NOT NULL auto_increment,
   `bId` int(11) NOT NULL default '0',
   `tag` varchar(32) NOT NULL default '',
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `sc_tags_tag_bId` (`tag`,`bId`),
-  KEY `sc_tags_bId` (`bId`)
+  UNIQUE KEY `sc_bookmarks2tags_tag_bId` (`tag`,`bId`),
+  KEY `sc_bookmarks2tags_bId` (`bId`)
 );
 
 -- --------------------------------------------------------

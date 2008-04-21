@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 
 require_once('header.inc.php');
-$tagservice       = & ServiceFactory :: getServiceInstance('TagService');
+$b2tservice       = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
 $tag2tagservice   = & ServiceFactory :: getServiceInstance('Tag2tagService');
 $templateservice  = & ServiceFactory :: getServiceInstance('TemplateService');
 $userservice      = & ServiceFactory :: getServiceInstance('UserService');
@@ -43,7 +43,7 @@ if ($_POST['confirm']) {
    if (
       !is_null($old) &&
       !is_null($new) &&
-      $tagservice->renameTag($userservice->getCurrentUserId(), $old, $new) &&
+      $b2tservice->renameTag($userservice->getCurrentUserId(), $old, $new) &&
       $tag2tagservice->renameTag($userservice->getCurrentUserId(), $old, $new)
    ) {
       $tplVars['msg'] = T_('Tag renamed');

@@ -1,6 +1,5 @@
 <?php
 $userservice =& ServiceFactory::getServiceInstance('UserService');
-$tagservice =& ServiceFactory::getServiceInstance('TagService');
 
 if ($userservice->isLoggedOn()) {
     $currentUser = $userservice->getCurrentUser();

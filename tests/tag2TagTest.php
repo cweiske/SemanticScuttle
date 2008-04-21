@@ -11,7 +11,7 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 {
     protected $us;
     protected $bs;
-    protected $ts;
+    protected $b2ts;
     protected $tts;
  
     protected function setUp()
@@ -22,8 +22,8 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$this->us =& ServiceFactory::getServiceInstance('UserService');
 	$this->bs =& ServiceFactory::getServiceInstance('BookmarkService');
 	$this->bs->deleteAll();
-	$this->ts =& ServiceFactory::getServiceInstance('TagService');
-	$this->ts->deleteAll();
+	$this->b2ts =& ServiceFactory::getServiceInstance('Bookmark2TagService');
+	$this->b2ts->deleteAll();
 	$this->tts =& ServiceFactory::getServiceInstance('Tag2TagService');
 	$this->tts->deleteAll(); 
 	$this->tsts =& ServiceFactory::getServiceInstance('TagStatService');
@@ -237,8 +237,8 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$bs->addBookmark("http://google.com", "title", "description", "status", $tags, null, false, false, 1);
 	$bookmark = $bs->getBookmarkByAddress("http://google.com");
 
-	$ts = $this->ts;
-	$savedTags = $ts->getTagsForBookmark(intval($bookmark['bId']));
+	$b2ts = $this->b2ts;
+	$savedTags = $b2ts->getTagsForBookmark(intval($bookmark['bId']));
 	$this->assertEquals(6, sizeof($savedTags));
 	$this->assertContains('b', $savedTags);
 	$this->assertContains('c', $savedTags);
@@ -425,7 +425,7 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
     public function testRenameFunction()
     {
 	$tts = $this->tts;
-	$ts = $this->ts;
+	$b2ts = $this->b2ts;
 	$bs = $this->bs;
 	$tsts = $this->tsts;
 
@@ -436,10 +436,10 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 	$bookmarks =& $bs->getBookmarks(0, 1, NULL, NULL, NULL, getSortOrder(), NULL, 0, $dtend);
 	$this->assertEquals(1, $bookmarks['total']);
 
-	$ts->renameTag(1, 'tag1', 'newtag1');
-	$tags1 = $ts->getTagsForBookmark(1);
+	$b2ts->renameTag(1, 'tag1', 'newtag1');
+	$tags1 = $b2ts->getTagsForBookmark(1);
 	$this->assertSame(array('newtag1', 'tag11', 'tag111'), $tags1);
-	$tags1 = $ts->getTagsForBookmark(2);
+	$tags1 = $b2ts->getTagsForBookmark(2);
 	$this->assertSame(array('tag2', 'tag22', 'tag222'), $tags1); //should not be changed
 	
 

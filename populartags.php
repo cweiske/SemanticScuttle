@@ -21,7 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 require_once('header.inc.php');
 $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
-$tagservice =& ServiceFactory::getServiceInstance('TagService');
+$b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
 
@@ -66,8 +66,8 @@ if (isset($user) && $user != '') {
     $userid = NULL;
 }
 
-$tags = $tagservice->getPopularTags($userid, 150, $logged_on_userid);
-$tplVars['tags'] =& $tagservice->tagCloud($tags, 5, 90, 225, getSortOrder('alphabet_asc')); 
+$tags = $b2tservice->getPopularTags($userid, 150, $logged_on_userid);
+$tplVars['tags'] =& $b2tservice->tagCloud($tags, 5, 90, 225, getSortOrder('alphabet_asc')); 
 $tplVars['user'] = $user;
 
 if (isset($userid)) {

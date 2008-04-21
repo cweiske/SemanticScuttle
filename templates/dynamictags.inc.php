@@ -19,13 +19,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 
-$tagservice = & ServiceFactory :: getServiceInstance('TagService');
+$b2tservice = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
 $userservice = & ServiceFactory :: getServiceInstance('UserService');
 
 $logged_on_userid = $userservice->getCurrentUserId();
 
-$userPopularTags        =& $tagservice->getPopularTags($logged_on_userid, 25, $logged_on_userid);
-$userPopularTagsCloud   =& $tagservice->tagCloud($userPopularTags, 5, 90, 175); 
+$userPopularTags        =& $b2tservice->getPopularTags($logged_on_userid, 25, $logged_on_userid);
+$userPopularTagsCloud   =& $b2tservice->tagCloud($userPopularTags, 5, 90, 175); 
 $userPopularTagsCount   = count($userPopularTags);
 
 if ($userPopularTagsCount > 0) {

@@ -1,5 +1,4 @@
 <?php
-$tagservice =& ServiceFactory::getServiceInstance('TagService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 $searchhistoryservice =& ServiceFactory::getServiceInstance('SearchHistoryService');
 

@@ -1,16 +1,28 @@
 # this file is used if you configure your scuttle for nice urls
 # (see $cleanurls in config.inc.php)
 
-Options +FollowSymlinks
-# AcceptPathInfo On
-RewriteEngine On
-RewriteBase /
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([^/]+)/?(.*)       $1.php/$2       [L]
+#Options +FollowSymlinks
+#RewriteEngine On
+#RewriteBase /
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^([^/]+)/?(.*)       $1.php/$2       [L]
 
 # If you have Scuttle in subdirectories e.g. http://www.example.com/myscuttle/links/
 # then you need to comment the precedent line and remove comment of the following one
 # (replace "myscuttle/links/" with your subdirectories name)
 
 #RewriteRule ^([^/]+)/?(.*)      myscuttle/links/$1.php/$2       [L]
+
+####
+
+# Rewrite clean URLs onto real files
+<IfModule mod_rewrite.c>
+Options +FollowSymlinks
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^/]+)/?(.*) $1.php?query=$2 [L,QSA]
+</IfModule>

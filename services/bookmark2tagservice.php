@@ -1,18 +1,18 @@
 <?php
-class TagService {
+class Bookmark2TagService {
     var $db;
     var $tablename;
 
     function &getInstance(&$db) {
         static $instance;
         if (!isset($instance))
-            $instance =& new TagService($db);
+            $instance =& new Bookmark2TagService($db);
         return $instance;
     }
 
-    function TagService(&$db) {
+    function Bookmark2TagService(&$db) {
         $this->db =& $db;
-        $this->tablename = $GLOBALS['tableprefix'] .'tags';
+        $this->tablename = $GLOBALS['tableprefix'] .'bookmarks2tags';
     }
 
     function isNotSystemTag($var) {
@@ -204,7 +204,7 @@ class TagService {
         $userservice =& ServiceFactory::getServiceInstance('UserService');
         $logged_on_user = $userservice->getCurrentUserId();
 
-        $query = 'SELECT T.tag, COUNT(B.bId) AS bCount FROM '. $GLOBALS['tableprefix'] .'bookmarks AS B INNER JOIN '. $userservice->getTableName() .' AS U ON B.uId = U.'. $userservice->getFieldName('primary') .' INNER JOIN '. $GLOBALS['tableprefix'] .'tags AS T ON B.bId = T.bId';
+        $query = 'SELECT T.tag, COUNT(B.bId) AS bCount FROM '. $GLOBALS['tableprefix'] .'bookmarks AS B INNER JOIN '. $userservice->getTableName() .' AS U ON B.uId = U.'. $userservice->getFieldName('primary') .' INNER JOIN '. $GLOBALS['tableprefix'] .'bookmarks2tags AS T ON B.bId = T.bId';
 
         $conditions = array();
         if (!is_null($userid)) {
@@ -288,7 +288,7 @@ class TagService {
             $privacy = ' AND B.bStatus = 0 ';
         }
 
-        $query = 'SELECT T.tag, COUNT(T.tag) AS bCount FROM sc_bookmarks AS B LEFT JOIN sc_tags AS T ON B.bId = T.bId WHERE B.bHash = "'. $hash .'" '. $privacy .'AND LEFT(T.tag, 7) <> "system:" GROUP BY T.tag ORDER BY bCount DESC';
+        $query = 'SELECT T.tag, COUNT(T.tag) AS bCount FROM '.$GLOBALS['tableprefix'].'bookmarks AS B LEFT JOIN '.$GLOBALS['tableprefix'].'bookmarks2tags AS T ON B.bId = T.bId WHERE B.bHash = "'. $hash .'" '. $privacy .'AND LEFT(T.tag, 7) <> "system:" GROUP BY T.tag ORDER BY bCount DESC';
 
         if (!($dbresult =& $this->db->sql_query_limit($query, $limit))) {
             message_die(GENERAL_ERROR, 'Could not get related tags for this hash', '', __LINE__, __FILE__, $query, $this->db);

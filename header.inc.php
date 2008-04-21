@@ -26,10 +26,4 @@ if (!isset($root)) {
     }
     $root = 'http://'. $_SERVER['HTTP_HOST'] . $root;
 }
-
-// Error codes
-define('GENERAL_MESSAGE', 200);
-define('GENERAL_ERROR', 202);
-define('CRITICAL_MESSAGE', 203);
-define('CRITICAL_ERROR', 204);
 ?>

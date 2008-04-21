@@ -1,5 +1,4 @@
 <?php
-$tagservice =& ServiceFactory::getServiceInstance('TagService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 
 $logged_on_userid = $userservice->getCurrentUserId();

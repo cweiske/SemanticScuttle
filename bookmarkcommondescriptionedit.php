@@ -21,7 +21,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 require_once('header.inc.php');
 $bookmarkservice  = & ServiceFactory :: getServiceInstance('BookmarkService');
-$tagservice       = & ServiceFactory :: getServiceInstance('TagService');
 $templateservice  = & ServiceFactory :: getServiceInstance('TemplateService');
 $userservice      = & ServiceFactory :: getServiceInstance('UserService');
 $cdservice        = & ServiceFactory :: getServiceInstance('CommonDescriptionService');
