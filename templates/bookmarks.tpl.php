@@ -1,6 +1,7 @@
 <?php
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
+$tagservice =& ServiceFactory::getServiceInstance('TagService');
 $cdservice =& ServiceFactory::getServiceInstance('CommonDescriptionService');
 
 $logged_on_userid = $userservice->getCurrentUserId();
@@ -41,6 +42,19 @@ if($logged_on_userid>0) {
 <?php endif ?>
 
 
+<?php
+$userObject = $userservice->getUserByUsername($user);
+/* Private tag description */
+if(isset($currenttag) && strlen($user)>0 && $tagservice->getDescription($currenttag, $userObject['uId'])):?>
+<p class="commondescription">
+<?php
+
+    $description = $tagservice->getDescription($currenttag, $userObject['uId']);
+    echo nl2br(filter($description['tDescription']));
+?>
+</p>
+<?php endif ?>
+
 <?php if (count($bookmarks) > 0) { ?>
 <script type="text/javascript">
 window.onload = playerLoad;
@@ -64,12 +78,12 @@ window.onload = playerLoad;
 	if(isset($user)) {
 	    echo ' - ';
 	    echo '<a href="'. createURL('tags', $currenttag) .'">';
-	    echo T_('Bookmarks from other users for these tags').'</a>';
+	    echo T_('Bookmarks from other users for this tag').'</a>';
 	    //echo T_(' for these tags');
  	} else if($logged_on_userid>0){
 	    echo ' - ';
 	    echo '<a href="'. createURL('bookmarks', $currentUsername.'/'.$currenttag) .'">';
-	    echo T_('Only your bookmarks for these tags').'</a>';
+	    echo T_('Only your bookmarks for this tag').'</a>';
 	    //echo T_(' for these tags');
 	}
     }

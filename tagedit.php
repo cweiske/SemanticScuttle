@@ -20,48 +20,42 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 
 require_once('header.inc.php');
-$b2tservice       = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
-$tag2tagservice   = & ServiceFactory :: getServiceInstance('Tag2tagService');
+$tagservice       = & ServiceFactory :: getServiceInstance('TagService');
 $templateservice  = & ServiceFactory :: getServiceInstance('TemplateService');
 $userservice      = & ServiceFactory :: getServiceInstance('UserService');
 
 list ($url, $tag) = explode('/', $_SERVER['PATH_INFO']);
-//$tag        = isset($_GET['query']) ? $_GET['query'] : NULL;
-$template   = 'tagrename.tpl';
+$template   = 'tagedit.tpl';
+
+$logged_on_user = $userservice->getCurrentUser();
+
+//permissions
+if($logged_on_user == null) {
+    $tplVars['error'] = T_('Permission denied.');
+    $templateservice->loadTemplate('error.500.tpl', $tplVars);
+    exit();
+}
 
 if ($_POST['confirm']) {
-   if (isset($_POST['old']) && trim($_POST['old']) != '')
-       $old = trim($_REQUEST['old']);
-   else
-       $old = NULL;
 
-   if (isset($_POST['new']) && trim($_POST['new']) != '')
-       $new = trim($_POST['new']);
-   else
-       $new = NULL;
-
-   if (
-      !is_null($old) &&
-      !is_null($new) &&
-      $tagservice->renameTag($userservice->getCurrentUserId(), $old, $new) &&
-      $b2tservice->renameTag($userservice->getCurrentUserId(), $old, $new) &&
-      $tag2tagservice->renameTag($userservice->getCurrentUserId(), $old, $new)
+   if ( strlen($tag)>0 &&
+	$tagservice->updateDescription($tag, $logged_on_user['uId'], $_POST['description'])
    ) {
-      $tplVars['msg'] = T_('Tag renamed');
-      $logged_on_user = $userservice->getCurrentUser();
-      header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')]));
+      $tplVars['msg'] = T_('Tag description updated');
+      header('Location: '. $_POST['referrer']);
    } else {
-      $tplVars['error'] = T_('Failed to rename the tag');
+      $tplVars['error'] = T_('Failed to update the tag description');
       $template         = 'error.500.tpl';
    }
 } elseif ($_POST['cancel']) {
     $logged_on_user = $userservice->getCurrentUser();
-    header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')] .'/'. $tags));
+    header('Location: '. $_POST['referrer']);
 } else {
-   $tplVars['subtitle']    = T_('Rename Tag') .': '. $tag;
+   $tplVars['subtitle']    = T_('Edit Tag Description') .': '. $tag;
    $tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $tag;
    $tplVars['referrer']    = $_SERVER['HTTP_REFERER'];
-   $tplVars['old']         = $tag;
+   $tplVars['tag']         = $tag;
+   $tplVars['description'] = $tagservice->getDescription($tag, $logged_on_user['uId']);
 }
 $templateservice->loadTemplate($template, $tplVars);
 ?>
