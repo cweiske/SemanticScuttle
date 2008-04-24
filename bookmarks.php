@@ -117,7 +117,7 @@ if ($loggedon && isset($_POST['submitted'])) {
                     if ($GLOBALS['useredir']) {
                         $address = $GLOBALS['url_redir'] . $address;
                     }
-                    header('Location: '. $address);
+                    //header('Location: '. $address); // not useful
                 }
             } else {
                 $tplVars['error'] = T_('There was an error saving your bookmark. Please try again or contact the administrator.');

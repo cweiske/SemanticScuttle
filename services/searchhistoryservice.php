@@ -43,7 +43,7 @@ class SearchHistoryService {
 	}
     }
 
-    function getAllSearches($range = NULL, $uId = NULL, $nb = NULL, $start = NULL, $distinct = false) {
+    function getAllSearches($range = NULL, $uId = NULL, $nb = NULL, $start = NULL, $distinct = false, $withResults = false) {
 	$sql = 'SELECT DISTINCT(shTerms), shId, shRange, shNbResults, shDatetime, uId';
 	$sql.= ' FROM '. $this->getTableName();
 	$sql.= ' WHERE 1=1';
@@ -54,6 +54,9 @@ class SearchHistoryService {
 	}
 	if($uId != NULL) {
 	    $sql.= ' AND uId = '.$uId;
+	}
+	if($withResults = true) {
+	    $sql.= ' AND shNbResults > 0';
 	}
 	if($distinct) {
 	    $sql.= ' GROUP BY shTerms';

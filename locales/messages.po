@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-21 17:36+0200\n"
+"POT-Creation-Date: 2008-04-24 09:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: ../../../about.php:25 ../../../templates/toolbar.inc.php:16
-#: ../../../templates/toolbar.inc.php:24
+#: ../../../templates/toolbar.inc.php:25
 msgid "About"
 msgstr ""
 
@@ -244,7 +244,7 @@ msgid "The details you have entered are incorrect. Please try again."
 msgstr ""
 
 #: ../../../login.php:48 ../../../templates/login.tpl.php:26
-#: ../../../templates/toolbar.inc.php:25
+#: ../../../templates/toolbar.inc.php:26
 msgid "Log In"
 msgstr ""
 
@@ -300,6 +300,7 @@ msgstr ""
 #: ../../../templates/sidebar.block.common.php:9
 #: ../../../templates/sidebar.block.popular.php:15
 #: ../../../templates/sidebar.block.recent.php:30
+#: ../../../templates/toolbar.inc.php:24
 msgid "Popular Tags"
 msgstr ""
 
@@ -364,7 +365,7 @@ msgid "Registration failed. Please try again."
 msgstr ""
 
 #: ../../../register.php:66 ../../../templates/register.tpl.php:41
-#: ../../../templates/toolbar.inc.php:26
+#: ../../../templates/toolbar.inc.php:27
 msgid "Register"
 msgstr ""
 
@@ -980,18 +981,13 @@ msgstr ""
 msgid "Linked Tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:44
-#: ../../../templates/sidebar.block.menu.php:31
-msgid "all tags"
-msgstr ""
-
 #: ../../../templates/sidebar.block.linked.php:55
-#: ../../../templates/sidebar.block.menu.php:42
+#: ../../../templates/sidebar.block.menu.php:40
 msgid "Add new link"
 msgstr ""
 
 #: ../../../templates/sidebar.block.linked.php:56
-#: ../../../templates/sidebar.block.menu.php:43
+#: ../../../templates/sidebar.block.menu.php:41
 msgid "Delete link"
 msgstr ""
 
@@ -1004,8 +1000,12 @@ msgstr ""
 msgid "Menu Tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.menu.php:31
-msgid "See all tags"
+#: ../../../templates/sidebar.block.menu.php:60
+msgid "See all your tags"
+msgstr ""
+
+#: ../../../templates/sidebar.block.menu.php:60
+msgid "all your tags"
 msgstr ""
 
 #: ../../../templates/sidebar.block.recent.php:15

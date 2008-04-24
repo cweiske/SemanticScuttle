@@ -112,7 +112,7 @@ if (window.getSelection) {
 }
 document.write('<ul>');
 document.write('<li><a href="javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');location.href=\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d;void 0;"><?php echo sprintf(T_('Post to %s'), $GLOBALS['sitename']); ?><\/a><\/li>');
-document.write('<li><a href="javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');open(\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;popup=1&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d,\'<?php echo $GLOBALS['sitename']; ?>\',\'modal=1,status=0,scrollbars=1,toolbar=0,resizable=1,width=730,height=465,left=\'+(screen.width-730)/2+\',top=\'+(screen.height-425)/2);void 0;"><?php echo sprintf(T_('Post to %s (Pop-up)'), $GLOBALS['sitename']); ?><\/a><\/li>');
+document.write('<li><a href="javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');open(\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;popup=1&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d,\'<?php echo $GLOBALS['sitename']; ?>\',\'modal=1,status=0,scrollbars=1,toolbar=0,resizable=1,width=790,height=465,left=\'+(screen.width-790)/2+\',top=\'+(screen.height-425)/2);void 0;"><?php echo sprintf(T_('Post to %s (Pop-up)'), $GLOBALS['sitename']); ?><\/a><\/li>');
 document.write('<\/ul>');
 </script>
 

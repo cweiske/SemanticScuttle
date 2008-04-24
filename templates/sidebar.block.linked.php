@@ -41,7 +41,7 @@ if(($logged_on_userid != null) && ($userid === $logged_on_userid)) {
     echo T_('Linked Tags').' ';
     //if($userid != null) {
 	$cUser = $userservice->getUser($userid);
-	echo '<small><a href="'.createURL('alltags', $cUser['username']).'">('.T_('all tags').')</a></small>';
+	//echo '<small><a href="'.createURL('alltags', $cUser['username']).'">('.T_('all tags').')</a></small>';
     //}
 ?>
 </h2>

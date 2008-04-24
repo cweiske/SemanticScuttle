@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-21 17:36+0200\n"
-"PO-Revision-Date: 2008-04-21 17:37+0100\n"
+"POT-Creation-Date: 2008-04-24 09:43+0200\n"
+"PO-Revision-Date: 2008-04-24 09:47+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../../../about.php:25
 #: ../../../templates/toolbar.inc.php:16
-#: ../../../templates/toolbar.inc.php:24
+#: ../../../templates/toolbar.inc.php:25
 msgid "About"
 msgstr "À propos"
 
@@ -266,7 +266,7 @@ msgstr "Les informations que vous avez entrées sont incorrectes. Veuillez recom
 
 #: ../../../login.php:48
 #: ../../../templates/login.tpl.php:26
-#: ../../../templates/toolbar.inc.php:25
+#: ../../../templates/toolbar.inc.php:26
 msgid "Log In"
 msgstr "Se connecter"
 
@@ -318,6 +318,7 @@ msgstr "Mot de passe oublié"
 #: ../../../templates/sidebar.block.common.php:9
 #: ../../../templates/sidebar.block.popular.php:15
 #: ../../../templates/sidebar.block.recent.php:30
+#: ../../../templates/toolbar.inc.php:24
 msgid "Popular Tags"
 msgstr "Tags populaires"
 
@@ -385,7 +386,7 @@ msgstr "Enregistrement raté. Veuillez rééssayer."
 
 #: ../../../register.php:66
 #: ../../../templates/register.tpl.php:41
-#: ../../../templates/toolbar.inc.php:26
+#: ../../../templates/toolbar.inc.php:27
 msgid "Register"
 msgstr "S'enregistrer"
 
@@ -986,18 +987,13 @@ msgstr "Question antispam"
 msgid "Linked Tags"
 msgstr "Tags structurés"
 
-#: ../../../templates/sidebar.block.linked.php:44
-#: ../../../templates/sidebar.block.menu.php:31
-msgid "all tags"
-msgstr "Tous les tags"
-
 #: ../../../templates/sidebar.block.linked.php:55
-#: ../../../templates/sidebar.block.menu.php:42
+#: ../../../templates/sidebar.block.menu.php:40
 msgid "Add new link"
 msgstr "Créer un lien"
 
 #: ../../../templates/sidebar.block.linked.php:56
-#: ../../../templates/sidebar.block.menu.php:43
+#: ../../../templates/sidebar.block.menu.php:41
 msgid "Delete link"
 msgstr "Supprimer un lien"
 
@@ -1010,9 +1006,13 @@ msgstr "Tags inclus dans le tag '%s'"
 msgid "Menu Tags"
 msgstr "Menu Tags"
 
-#: ../../../templates/sidebar.block.menu.php:31
-msgid "See all tags"
-msgstr "Tous les tags"
+#: ../../../templates/sidebar.block.menu.php:60
+msgid "See all your tags"
+msgstr "Voir tous vos tags"
+
+#: ../../../templates/sidebar.block.menu.php:60
+msgid "all your tags"
+msgstr "Tous vos tags"
 
 #: ../../../templates/sidebar.block.recent.php:15
 msgid "Recent Tags"
@@ -1062,7 +1062,7 @@ msgstr "Synonymes :"
 #: ../../../templates/tag2tagadd.tpl.php:10
 #, php-format
 msgid "Note: include a tag into '%s' tag (e.g. %s>countries) display the tag into the menu box"
-msgstr "Note inclure une tag dans le tag '%s' (e.g. %s>countries) affiche ce tag dans la boîte de menu"
+msgstr "Note : inclure un tag dans le tag '%s' (e.g. %s>countries) affiche ce tag dans la boîte de menu"
 
 #: ../../../templates/tag2tagadd.tpl.php:13
 msgid "Create new link:"

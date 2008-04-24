@@ -21,14 +21,12 @@ if(strlen($user)==0) {
 }
 
 $menuTags = $tag2tagservice->getMenuTags($userid);
-if (sizeof($menuTags) > 0) {
+if (sizeof($menuTags) > 0 || ($userid != 0 && $userid === $logged_on_userid)) {
 ?>
 
 <h2>
 <?php
     echo '<span title="'.sprintf(T_('Tags included into the tag \'%s\''), $GLOBALS['menuTag']).'">'.T_('Menu Tags').'</span> ';
-    $cUser = $userservice->getUser($userid);
-    echo '<small span title="'.T_('See all tags').'"><a href="'.createURL('alltags', $cUser['username']).'">('.T_('all tags').')</a></small>';
     //}
 ?>
 </h2>
@@ -39,8 +37,8 @@ if (sizeof($menuTags) > 0) {
 <?php
     if($editingMode) {
 	echo '<tr><td></td><td>';
-	echo ' (<a href="'. createURL('tag2tagadd','') .'" rel="tag">'.T_('Add new link').'</a>) ';
-	echo ' (<a href="'. createURL('tag2tagdelete','') .'" rel="tag">'.T_('Delete link').'</a>)';
+	echo ' (<a href="'. createURL('tag2tagadd','menu') .'" rel="tag">'.T_('Add new link').'</a>) ';
+	echo ' (<a href="'. createURL('tag2tagdelete','menu') .'" rel="tag">'.T_('Delete link').'</a>)';
 	echo '</td></tr>';
     }
 
@@ -57,6 +55,10 @@ if (sizeof($menuTags) > 0) {
     }
 ?>
 </table>
+
+<?php $cUser = $userservice->getUser($userid); ?>
+<p style="text-align:right"><a href="<?php echo createURL('alltags', $cUser['username']); ?>" title="<?php echo T_('See all your tags')?>"><?php echo T_('all your tags'); ?></a> &rarr;</p>
+
 </div>
 
 <?php

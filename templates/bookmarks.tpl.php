@@ -235,7 +235,19 @@ window.onload = playerLoad;
         $bnext = '<a href="'. sprintf($nav_url, $user, $currenttag, '?page=') . $next . $sortAmp .'">'. T_('Next') .'</a>';
         $blast = '<a href="'. sprintf($nav_url, $user, $currenttag, '?page=') . $totalpages . $sortAmp .'">'. T_('Last') ."</a>\n";
     }
-    echo '<p class="paging">'. $bfirst .'<span> / </span>'. $bprev .'<span> / </span>'. $bnext .'<span> / </span>'. $blast .'<span> / </span>'. sprintf(T_('Page %d of %d'), $page, $totalpages) ."</p>\n";
+
+    // RSS
+    $brss = '';
+    $size = count($rsschannels);
+    for ($i = 0; $i < $size; $i++) {
+        $brss =  '<a style="background:#FFFFFF" href="'. $rsschannels[$i][1] .'" title="'. $rsschannels[$i][0] .'"><img src="'. $GLOBALS['root'] .'rss.gif" width="16" height="16" alt="'. $rsschannels[$i][0] .'" /></a>'; 
+    }
+
+    echo '<p class="paging">'. $bfirst .'<span> / </span>'. $bprev .'<span> / </span>'. $bnext .'<span> / </span>'. $blast .'<span> / </span>'. sprintf(T_('Page %d of %d'), $page, $totalpages) ." ". $brss ." </p>\n";
+
+
+    
+
 } else {
     echo '<p class="error">'.T_('No bookmarks available').'</p>';
 }
