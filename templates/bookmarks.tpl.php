@@ -63,12 +63,17 @@ window.onload = playerLoad;
 <p id="sort">
     <?php echo $total.' '.T_("bookmark(s)"); ?> - 
     <?php echo T_("Sort by:"); ?>
-    <a href="?sort=date_desc"><?php echo T_("Date"); ?></a><span> / </span>
-    <a href="?sort=title_asc"><?php echo T_("Title"); ?></a><span> / </span>
+    <?php
+	$dateSort = (getSortOrder()=='date_desc')? 'date_asc':'date_desc';
+	$titleSort = (getSortOrder()=='title_asc')? 'title_desc':'title_asc';
+	$urlSort = (getSortOrder()=='url_asc')? 'url_desc':'url_asc';
+    ?>
+    <a href="?sort=<?php echo $dateSort ?>"><?php echo T_("Date"); ?></a><span> / </span>
+    <a href="?sort=<?php echo $titleSort ?>"><?php echo T_("Title"); ?></a><span> / </span>
     <?php
     if (!isset($hash)) {
     ?>
-    <a href="?sort=url_asc"><?php echo T_("URL"); ?></a>
+    <a href="?sort=<?php echo $urlSort ?>"><?php echo T_("URL"); ?></a>
     <?php
     }
     ?>

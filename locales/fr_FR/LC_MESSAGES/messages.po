@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-24 09:43+0200\n"
-"PO-Revision-Date: 2008-04-24 09:47+0100\n"
+"POT-Creation-Date: 2008-04-24 19:03+0200\n"
+"PO-Revision-Date: 2008-04-24 19:07+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -226,8 +226,8 @@ msgid "Store, share and tag your favourite links"
 msgstr "Conservez, partagez et taggez vos liens favoris"
 
 #: ../../../index.php:74
-msgid "Recent Bookmarks"
-msgstr "Signets récents"
+msgid "All Bookmarks"
+msgstr "Tous les signets"
 
 #: ../../../jsScuttle.php:22
 #: ../../../templates/tag2tagadd.tpl.php:21
@@ -316,6 +316,7 @@ msgstr "Mot de passe oublié"
 #: ../../../populartags.php:49
 #: ../../../templates/dynamictags.inc.php:101
 #: ../../../templates/sidebar.block.common.php:9
+#: ../../../templates/sidebar.block.menu.php:68
 #: ../../../templates/sidebar.block.popular.php:15
 #: ../../../templates/sidebar.block.recent.php:30
 #: ../../../templates/toolbar.inc.php:24
@@ -398,7 +399,7 @@ msgstr "Signets ajoutés récemment à %s"
 #: ../../../search.inc.php:13
 #: ../../../search.inc.php:41
 msgid "Search"
-msgstr "Chercher"
+msgstr "Chercher dans"
 
 #: ../../../search.inc.php:19
 msgid "this user's bookmarks"
@@ -692,12 +693,12 @@ msgstr "Suivant"
 msgid "Last"
 msgstr "Dernière"
 
-#: ../../../templates/bookmarks.tpl.php:238
+#: ../../../templates/bookmarks.tpl.php:246
 #, php-format
 msgid "Page %d of %d"
 msgstr "Page %d de %d"
 
-#: ../../../templates/bookmarks.tpl.php:240
+#: ../../../templates/bookmarks.tpl.php:252
 msgid "No bookmarks available"
 msgstr "Pas de signets disponibles."
 
@@ -1004,15 +1005,28 @@ msgstr "Tags inclus dans le tag '%s'"
 
 #: ../../../templates/sidebar.block.menu.php:29
 msgid "Menu Tags"
-msgstr "Menu Tags"
+msgstr "Tags Menu"
 
-#: ../../../templates/sidebar.block.menu.php:60
+#: ../../../templates/sidebar.block.menu.php:62
 msgid "See all your tags"
 msgstr "Voir tous vos tags"
 
-#: ../../../templates/sidebar.block.menu.php:60
+#: ../../../templates/sidebar.block.menu.php:62
 msgid "all your tags"
 msgstr "Tous vos tags"
+
+#: ../../../templates/sidebar.block.menu.php:64
+msgid "See all tags from this user"
+msgstr "Voir tous les tags de cet utilisateur"
+
+#: ../../../templates/sidebar.block.menu.php:64
+msgid "all tags from this user"
+msgstr "tous les tags de cet utilisateur"
+
+#: ../../../templates/sidebar.block.menu.php:68
+#, fuzzy
+msgid "See popular tags"
+msgstr "Voir tous vos tags"
 
 #: ../../../templates/sidebar.block.recent.php:15
 msgid "Recent Tags"
@@ -1043,6 +1057,15 @@ msgstr "Derniers utilisateurs"
 msgid "bookmarks"
 msgstr "signets"
 
+#: ../../../templates/sidebar.block.users.php:29
+#, fuzzy
+msgid "See all users"
+msgstr "Voir tous vos tags"
+
+#: ../../../templates/sidebar.block.users.php:29
+msgid "All users"
+msgstr "Tous les utilisateurs"
+
 #: ../../../templates/sidebar.block.watchstatus.php:10
 msgid "Remove from Watchlist"
 msgstr "Enlever de la liste des consultés"
@@ -1059,14 +1082,14 @@ msgstr "Editer un lien"
 msgid "Synonyms:"
 msgstr "Synonymes :"
 
-#: ../../../templates/tag2tagadd.tpl.php:10
+#: ../../../templates/tag2tagadd.tpl.php:12
+msgid "Create new link:"
+msgstr "Créer un nouveau lien"
+
+#: ../../../templates/tag2tagadd.tpl.php:19
 #, php-format
 msgid "Note: include a tag into '%s' tag (e.g. %s>countries) display the tag into the menu box"
 msgstr "Note : inclure un tag dans le tag '%s' (e.g. %s>countries) affiche ce tag dans la boîte de menu"
-
-#: ../../../templates/tag2tagadd.tpl.php:13
-msgid "Create new link:"
-msgstr "Créer un nouveau lien"
 
 #: ../../../templates/tag2tagadd.tpl.php:23
 #: ../../../templates/tag2tagedit.tpl.php:37
@@ -1127,6 +1150,8 @@ msgstr "Profil"
 msgid "created in"
 msgstr "Créé en "
 
+#~ msgid "Recent Bookmarks"
+#~ msgstr "Signets récents"
 #~ msgid "plus"
 #~ msgstr "plus"
 #~ msgid ""

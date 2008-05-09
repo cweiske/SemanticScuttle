@@ -22,10 +22,11 @@ foreach ($lastUsers as $row) {
     echo ' (<a href="'.createURL('bookmarks', $row['username']).'">'.T_('bookmarks').'</a>)';
     echo '</td></tr>';
 }
-echo '<tr><td><a href="'.createURL('users').'">...</a></td></tr>';
+//echo '<tr><td><a href="'.createURL('users').'">...</a></td></tr>';
 ?>
 
 </table>
+<p style="text-align:right"><a href="<?php echo createURL('users'); ?>" title="<?php echo T_('See all users')?>"><?php echo T_('All users'); ?></a> &rarr;</p>
 </div>
 <?php
 }

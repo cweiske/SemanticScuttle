@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-24 09:43+0200\n"
+"POT-Creation-Date: 2008-04-24 19:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -208,7 +208,7 @@ msgid "Store, share and tag your favourite links"
 msgstr ""
 
 #: ../../../index.php:74
-msgid "Recent Bookmarks"
+msgid "All Bookmarks"
 msgstr ""
 
 #: ../../../jsScuttle.php:22 ../../../templates/tag2tagadd.tpl.php:21
@@ -298,6 +298,7 @@ msgstr ""
 
 #: ../../../populartags.php:49 ../../../templates/dynamictags.inc.php:101
 #: ../../../templates/sidebar.block.common.php:9
+#: ../../../templates/sidebar.block.menu.php:68
 #: ../../../templates/sidebar.block.popular.php:15
 #: ../../../templates/sidebar.block.recent.php:30
 #: ../../../templates/toolbar.inc.php:24
@@ -672,12 +673,12 @@ msgstr ""
 msgid "Last"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:238
+#: ../../../templates/bookmarks.tpl.php:246
 #, php-format
 msgid "Page %d of %d"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:240
+#: ../../../templates/bookmarks.tpl.php:252
 msgid "No bookmarks available"
 msgstr ""
 
@@ -1000,12 +1001,24 @@ msgstr ""
 msgid "Menu Tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.menu.php:60
+#: ../../../templates/sidebar.block.menu.php:62
 msgid "See all your tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.menu.php:60
+#: ../../../templates/sidebar.block.menu.php:62
 msgid "all your tags"
+msgstr ""
+
+#: ../../../templates/sidebar.block.menu.php:64
+msgid "See all tags from this user"
+msgstr ""
+
+#: ../../../templates/sidebar.block.menu.php:64
+msgid "all tags from this user"
+msgstr ""
+
+#: ../../../templates/sidebar.block.menu.php:68
+msgid "See popular tags"
 msgstr ""
 
 #: ../../../templates/sidebar.block.recent.php:15
@@ -1037,6 +1050,14 @@ msgstr ""
 msgid "bookmarks"
 msgstr ""
 
+#: ../../../templates/sidebar.block.users.php:29
+msgid "See all users"
+msgstr ""
+
+#: ../../../templates/sidebar.block.users.php:29
+msgid "All users"
+msgstr ""
+
 #: ../../../templates/sidebar.block.watchstatus.php:10
 msgid "Remove from Watchlist"
 msgstr ""
@@ -1053,15 +1074,15 @@ msgstr ""
 msgid "Synonyms:"
 msgstr ""
 
-#: ../../../templates/tag2tagadd.tpl.php:10
+#: ../../../templates/tag2tagadd.tpl.php:12
+msgid "Create new link:"
+msgstr ""
+
+#: ../../../templates/tag2tagadd.tpl.php:19
 #, php-format
 msgid ""
 "Note: include a tag into '%s' tag (e.g. %s>countries) display the tag into "
 "the menu box"
-msgstr ""
-
-#: ../../../templates/tag2tagadd.tpl.php:13
-msgid "Create new link:"
 msgstr ""
 
 #: ../../../templates/tag2tagadd.tpl.php:23
