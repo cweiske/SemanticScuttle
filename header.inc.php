@@ -7,6 +7,10 @@ error_reporting(E_ALL ^ E_NOTICE);
 define('DEBUG', true);
 session_start();
 
+if(!file_exists(dirname(__FILE__) .'/config.inc.php')) {
+    die("Please, create the 'config.inc.php' file. You can copy the 'config.inc.php.example' file.");
+}
+
 require_once(dirname(__FILE__) .'/services/servicefactory.php');
 require_once(dirname(__FILE__) .'/config.inc.php');
 require_once(dirname(__FILE__) .'/constants.inc.php');
