@@ -209,12 +209,12 @@ if ($templatename == 'editbookmark.tpl') {
     $tplVars['start'] = $start;
     $tplVars['bookmarkCount'] = $start + 1;
 
-    $bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, $userid, $cat, $terms, getSortOrder());
+    $bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, $userid, $cat, null, getSortOrder());
     $tplVars['total'] = $bookmarks['total'];
     $tplVars['bookmarks'] =& $bookmarks['bookmarks'];
     $tplVars['cat_url'] = createURL('bookmarks', '%s/%s');
     $tplVars['nav_url'] = createURL('bookmarks', '%s/%s%s');
-    if ($user == $currentUsername) {
+    if ($userservice->isLoggedOn() && $user == $currentUsername) {
         $title = T_('My Bookmarks') . filter($catTitle);
     } else {
         $title = filter($pagetitle);

@@ -4,13 +4,20 @@ $userservice =& ServiceFactory::getServiceInstance('UserService');
 
 require_once('sidebar.linkedtags.inc.php');
 
+/* Manage input */
+$user = isset($user)?$user:'';
+$userid = isset($userid)?$userid:0;
+$currenttag = isset($currenttag)?$currenttag:'';
+$summarizeLinkedTags = isset($summarizeLinkedTags)?$summarizeLinkedTags:false;
+
+
 $logged_on_userid = $userservice->getCurrentUserId();
 if ($logged_on_userid === false) {
     $logged_on_userid = NULL;
 }
 
 $explodedTags = array();
-if ($currenttag) {
+if (strlen($currenttag)>0) {
     $explodedTags = explode('+', $currenttag);
 } else {
     if($summarizeLinkedTags == true) {

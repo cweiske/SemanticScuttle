@@ -7,11 +7,13 @@
     <link rel="icon" type="image/png" href="<?php echo $GLOBALS['root']; ?>icon.png" />
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['root']; ?>scuttle.css" />
     <?php
-    $size = count($rsschannels);
-    for ($i = 0; $i < $size; $i++) {
-        echo '<link rel="alternate" type="application/rss+xml" title="'. $rsschannels[$i][0] .'" href="'. $rsschannels[$i][1] .'" />';
+    if(isset($rsschannels)) {
+	$size = count($rsschannels);
+	for ($i = 0; $i < $size; $i++) {
+	    echo '<link rel="alternate" type="application/rss+xml" title="'. $rsschannels[$i][0] .'" href="'. $rsschannels[$i][1] .'" />';
+	}
     }
-    if ($loadjs) {
+    if (isset($loadjs)) {
         echo '<script type="text/javascript" src="'. $GLOBALS['root'] .'jsScuttle.php"></script>';
     }
     ?>

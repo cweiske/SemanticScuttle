@@ -266,7 +266,8 @@ class Bookmark2TagService {
             message_die(GENERAL_ERROR, 'Could not get related tags', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
-        return $this->db->sql_fetchrowset($dbresult);
+	$output = $this->db->sql_fetchrowset($dbresult);
+        return $output;
     }
 
     // Returns the most popular tags used for a particular bookmark hash
@@ -322,7 +323,8 @@ class Bookmark2TagService {
             return false;
         }
 
-        return $this->db->sql_fetchrowset($dbresult);
+	$output = $this->db->sql_fetchrowset($dbresult);
+        return $output;
     }
 
     function hasTag($bookmarkid, $tag) {
@@ -366,7 +368,8 @@ class Bookmark2TagService {
     function &tagCloud($tags = NULL, $steps = 5, $sizemin = 90, $sizemax = 225, $sortOrder = NULL) {
 
         if (is_null($tags) || count($tags) < 1) {
-            return false;
+	    $output = false;
+            return $output;
         }
 
         $min = $tags[count($tags) - 1]['bCount'];

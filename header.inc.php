@@ -3,6 +3,7 @@ ini_set('display_errors', '1');
 ini_set('mysql.trace_mode', '0');
 
 error_reporting(E_ALL ^ E_NOTICE);
+//error_reporting(E_ALL);
 
 define('DEBUG', true);
 session_start();
@@ -30,4 +31,5 @@ if (!isset($root)) {
     }
     $root = 'http://'. $_SERVER['HTTP_HOST'] . $root;
 }
+
 ?>

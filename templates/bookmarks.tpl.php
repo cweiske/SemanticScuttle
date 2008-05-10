@@ -43,17 +43,22 @@ if($logged_on_userid>0) {
 
 
 <?php
-$userObject = $userservice->getUserByUsername($user);
 /* Private tag description */
-if(isset($currenttag) && strlen($user)>0 && $tagservice->getDescription($currenttag, $userObject['uId'])):?>
+if(isset($currenttag) && isset($user)) {
+    $userObject = $userservice->getUserByUsername($user);
+    if($tagservice->getDescription($currenttag, $userObject['uId'])) { ?>
+
 <p class="commondescription">
 <?php
-
     $description = $tagservice->getDescription($currenttag, $userObject['uId']);
     echo nl2br(filter($description['tDescription']));
 ?>
 </p>
-<?php endif ?>
+
+<?php 
+    }
+}
+?>
 
 <?php if (count($bookmarks) > 0) { ?>
 <script type="text/javascript">

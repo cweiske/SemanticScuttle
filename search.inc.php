@@ -1,3 +1,10 @@
+<?php
+/* Manage input */
+$select_watchlist = isset($select_watchlist)?$select_watchlist:'';
+$select_all = isset($select_all)?$select_all:'';
+?>
+
+
 <form id="search" action="<?php echo createURL('search'); ?>" method="post">
     <table>
     <tr>
@@ -16,12 +23,12 @@
                 <?php
                 if (!in_array($range, array($currentUsername, 'all', 'watchlist'))) {
                 ?>
-                <option value="<?php echo $user ?>"<?php echo $selectUser; ?>><?php echo T_("this user's bookmarks"); ?></option>
+                <option value="<?php echo $user ?>"<?php //echo $selectUser; ?>><?php echo T_("this user's bookmarks"); ?></option>
                 <?php
                 }
                 if ($logged_on) {
                 ?>
-                <option value="<?php echo $currentUsername; ?>"<?php echo $selectMy; ?>><?php echo T_('my bookmarks'); ?></option>
+                <option value="<?php echo $currentUsername; ?>"<?php //echo $selectMy; ?>><?php echo T_('my bookmarks'); ?></option>
                 <option value="watchlist"<?php echo $select_watchlist; ?>><?php echo T_('my watchlist'); ?></option>
                 <?php
                 }
@@ -37,7 +44,7 @@
         <?php
         }
         ?>
-        <td><input type="text" name="terms" size="30" value="<?php echo filter($terms); ?>" /></td>
+        <td><input type="text" name="terms" size="30" value="<?php $terms=!isset($terms)?'':$terms; echo filter($terms); ?>" /></td>
         <td><input type="submit" value="<?php echo T_('Search' /* Submit button */); ?>" /></td>
     </tr>
     </table>

@@ -62,7 +62,7 @@ class Tag2TagService {
 	    $query.= " AND uId = '".$uId."'";
 	}
 //die($query);
-        if (! ($dbresult =& $this->db->sql_query_limit($query, $limit)) ){
+        if (! ($dbresult =& $this->db->sql_query($query)) ){
             message_die(GENERAL_ERROR, 'Could not get related tags', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }

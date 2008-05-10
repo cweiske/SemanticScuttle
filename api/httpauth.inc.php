@@ -13,7 +13,6 @@ function authenticate() {
 }
 
 if(!$userservice->isLoggedOn()) {
-
     /* Maybe we have caught authentication data in $_SERVER['REMOTE_USER']
     ( Inspired by http://www.yetanothercommunitysystem.com/article-321-regle-comment-utiliser-l-authentification-http-en-php-chez-ovh ) */
     if((!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']))

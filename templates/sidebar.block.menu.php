@@ -4,6 +4,11 @@ $userservice =& ServiceFactory::getServiceInstance('UserService');
 
 require_once('sidebar.linkedtags.inc.php');
 
+/* Manage input */
+$userid = isset($userid)?$userid:0;
+$user = isset($user)?$user:null;
+
+
 $logged_on_userid = $userservice->getCurrentUserId();
 if ($logged_on_userid === false) {
     $logged_on_userid = NULL;
@@ -16,7 +21,7 @@ if(($logged_on_userid != null) && ($userid === $logged_on_userid)) {
     $editingMode = false;
 }
 
-if(strlen($user)==0) {
+if(!isset($user)) {
     $cat_url = createURL('tags', '%2$s');
 }
 

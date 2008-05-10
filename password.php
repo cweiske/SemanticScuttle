@@ -24,7 +24,7 @@ $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 $tplVars = array();
 
 // IF SUBMITTED
-if ($_POST['submitted']) {
+if (isset($_POST['submitted'])) {
 
     // NO USERNAME
     if (!$_POST['username']) {

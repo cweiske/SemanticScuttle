@@ -24,10 +24,12 @@ $tag2tagservice = & ServiceFactory :: getServiceInstance('Tag2TagService');
 $templateservice = & ServiceFactory :: getServiceInstance('TemplateService');
 $userservice = & ServiceFactory :: getServiceInstance('UserService');
 
+
+
 $logged_on_user = $userservice->getCurrentUser();
 
 //permissions
-if($logged_on_user == null) {
+if($logged_on_user  == null) {
     $tplVars['error'] = T_('Permission denied.');
     $templateservice->loadTemplate('error.500.tpl', $tplVars);
     exit();

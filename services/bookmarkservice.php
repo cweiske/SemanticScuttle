@@ -280,6 +280,7 @@ class BookmarkService {
             $query_3 .= ' AND ('. $query_3_1 .') AND B.bStatus IN (0, 1)';
         }
 
+	$query_5 = '';
 	if($hash == null) {
 	    $query_5.= ' GROUP BY B.bHash';
 	}
@@ -389,7 +390,9 @@ class BookmarkService {
             $row['tags'] = $b2tservice->getTagsForBookmark(intval($row['bId']));
             $bookmarks[] = $row;
         }
-        return array ('bookmarks' => $bookmarks, 'total' => $total);
+
+	$output = array ('bookmarks' => $bookmarks, 'total' => $total);
+        return $output;
     }
 
     function deleteBookmark($bookmarkid) {

@@ -25,10 +25,12 @@ $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 
 $tplVars = array();
 
+$keeppass = isset($_POST['keeppass'])&&($_POST['keeppass']=='yes')?true:false;
+
 $login = false;
 if (isset($_POST['submitted']) && isset($_POST['username']) && isset($_POST['password'])) {
     $posteduser = trim(utf8_strtolower($_POST['username']));
-    $login = $userservice->login($posteduser, $_POST['password'], ($_POST['keeppass'] == "yes")); 
+    $login = $userservice->login($posteduser, $_POST['password'], $keeppass); 
     if ($login) {
         if ($_POST['query'])
             header('Location: '. createURL('bookmarks', $posteduser .'?'. $_POST['query']));

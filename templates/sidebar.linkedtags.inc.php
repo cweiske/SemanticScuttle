@@ -19,6 +19,8 @@ function displayLinkedTags($tag, $linkType, $uId, $cat_url, $user, $editingMode 
 	} else {
 	    $link = '> ';	
 	}
+    } else  {
+	$link = '';
     }
 
     $output = '';
@@ -69,7 +71,7 @@ function displayLinkedTags($tag, $linkType, $uId, $cat_url, $user, $editingMode 
 		    $displayLinkedTags = displayLinkedTags($linkedTag, $linkType, $uId, $cat_url, $user, $editingMode, $precedentTag, $level + 1, $stopList);
 		    $output.= $displayLinkedTags['output'];
 		}
-		if(is_array($displayLinkedTags['stopList'])) {
+		if(isset($displayLinkedTags) && is_array($displayLinkedTags['stopList'])) {
 		    $stopList = array_merge($stopList, $displayLinkedTags['stopList']);
 		    $stopList = array_unique($stopList);
 		}

@@ -127,7 +127,7 @@ class UserService {
             if ($id = $this->getCurrentUserId())
                 $currentuser = $this->getUser($id);
             else
-                return;
+                return null;
         }
         return $currentuser;
     }

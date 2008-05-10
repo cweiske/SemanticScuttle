@@ -25,7 +25,7 @@ $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 
 $tplVars = array();
 
-if ($_POST['submitted']) {
+if (isset($_POST['submitted'])) {
     $posteduser = trim(utf8_strtolower($_POST['username']));
 
     // Check if form is incomplete
