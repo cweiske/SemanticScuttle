@@ -1,61 +1,55 @@
 <?php
-# SemanticScuttle - Web social bookmarking 
-# Copyright (C) 2005 - 2006 SemanticScuttle project
+# SemanticScuttle Configuration main file </config.inc.php.example>
 # http://sourceforge.net/projects/semanticscuttle/
-#
-# Configuration Main File
-# This module is to configure the main options for your site
-#
 # This program is free software. You can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License.
 
 
-#### Database Configuration ####
-# dbtype:   Database driver {mysql, mysqli, mysql4, oracle, postgres, sqlite, db2, firebird, mssql, mssq-odbc}
-$dbtype = 'mysql4';
-# dbhost:   Database hostname
-$dbhost = '127.0.0.1';
-# dbport:   Database port
-$dbport = '3306';
-# dbuser:   Database username
-$dbuser = 'username';
-# dbpass:   Database password
-$dbpass = 'password';
-# dbname:   Database name
-$dbname = 'scuttle';
+#### System ####
+$sitename           = 'SemanticScuttle'; #The name of this site.
+$welcomeMessage     = 'More than tags...'; # The welcome message of this site
+$root               = NULL; # Set to NULL to autodetect the root url of the website
+$locale             = 'en_GB'; #locale used in /locales/ {de_DE  en_GB  fr_FR  ...}
+$tableprefix        = 'sc_'; # table prefix used for this installation : do not use '-' (badly handeld by MySQL)
+$cookieprefix       = 'SEMANTICSCUTTLE'; # cookieprefix : The prefix to use for the cookies on the site
+$usecache           = false; # use cache ? {true,false}
+$dir_cache          = dirname(__FILE__) .'/cache/'; # directory where cache files will be stored
+$cleanurls          = false; # Use mod_rewrite to hide PHP extensions {true,false[default]}
+# be cautious, doesn't work for all hosts, you may need to modify the .htaccess file
+$cookieprefix       = 'SCUTTLE'; # prefix used for cookies
 
-#### System Configuration ####
-# ONLY EDIT THE INFORMATION BELOW IF YOU KNOW WHAT YOU ARE DOING.
-# sitename:         The name of this site.
-$sitename           = 'SemanticScuttle';
-# welcomeMessage:   The welcome message (or tagline) of this site
-$welcomeMessage     = 'More than tags...';
-# locale:           The locale used (list ./locales : de_DE  en_GB  fr_FR  it_IT  lt_LT nl_NL  zh_CN dk_DK  es_ES  hi_IN  ja_JP  pt_BR)
-$locale             = 'en_GB';
-# admin users:
-# add users as admin by: $admins = array('adminnickname', 'user1nick', 'user2nick');
-$admin_users = array();
+#### Database ####
+$dbtype = 'mysql4'; # Database driver {mysql, mysqli, mysql4, oracle, postgres, sqlite, db2, firebird, mssql, mssq-odbc}
+$dbhost = '127.0.0.1'; # Database hostname
+$dbport = '3306'; # Database port
+$dbuser = 'username'; # Database username
+$dbpass = 'password'; # Database password
+$dbname = 'scuttle'; # Database name
+$tableprefix        = 'sc_';  # table prefix used for this installation. Do not use '-' (badly handeld by MySQL)
 
-### display templates ###
-# top_include:      The header file.
-$top_include        = 'top.inc.php';
-# bottom_include:   The footer file.
-$bottom_include     = 'bottom.inc.php';
-# sidebar block index : array ordering blocks search, users, linked, recent
-$index_sidebar_blocks = array('search', 'menu', 'recent', 'users');
 
-# shortdate:        The format of short dates.
-# longdate:         The format of long dates.
-# nofollow:             true    - Include rel="nofollow" attribute on
-#                                 bookmark links.
-#                       false   - Don't include rel="nofollow".
-# defaultPerPage:   The default number of bookmarks per page.
-#                   -1 means no limit!
-# defaultRecentDays:    The number of days that bookmarks or tags should
-#                       be considered recent.
-# defaultOrderBy:   The default order in which bookmarks will appear.
-#                   Possible values are:
+### Users ###
+$adminemail         = 'admin@example.org'; # Contact address for the site administrator. Used as the FROM address in password retrieval e-mails.
+$admin_users = array('admin'); # admin users  = array('adminnickname', 'user1nick', 'user2nick');
+$reservedusers      = array('all', 'watchlist'); # array of usernames that cannot be registered
+# Antispam
+$antispamQuestion = 'name of this application (no Caps)'; # antispamQuestion: A question to avoid spam
+$antispamAnswer = 'semanticscuttle'; # antispamAnswer: The answer to the question (users have to put exactly the same answer)
+
+### Display Templates ###
+$TEMPLATES_DIR      = dirname(__FILE__) .'/templates/'; #directory where the template files (*.tpl.php) should be loaded from
+$top_include        = 'top.inc.php'; # header file
+$bottom_include     = 'bottom.inc.php'; # footer file
+$index_sidebar_blocks = array('search','users','linked','recent'); # sidebar blocks order
+
+### Bookmarks ###
+$shortdate          = 'd-m-Y'; # format of short dates.
+$longdate           = 'j F Y'; # format of long dates.
+$nofollow           = true; # include rel="nofollow" attribute on bookmark links ? {true,false}
+$defaultPerPage     = 10; # default number of bookmarks per page (-1 means no limit)
+$defaultRecentDays  = 14; # number of days that bookmarks or tags should be considered recent.
+# bookmarks order by (date, title, url) in order ascending or descending
 #                   date_desc   - By date of entry descending.
 #                                 Latest entry first. (Default)
 #                   date_asc    - By date of entry ascending.
@@ -64,84 +58,28 @@ $index_sidebar_blocks = array('search', 'menu', 'recent', 'users');
 #                   title_asc   - By title, ascending alphabetically.
 #                   url_desc    - By URL, descending alphabetically.
 #                   url_asc     - By URL, ascending alphabetically.
-# TEMPLATES_DIR: The directory where the template files should be
-#                loaded from (the *.tpl.php files)
-# root         : Set to NULL to autodetect the root url of the website
-# cookieprefix : The prefix to use for the cookies on the site
-# tableprefix  : The table prefix used for this installation
-# adminemail   : Contact address for the site administrator. Used
-#                as the FROM address in password retrieval e-mails.
-# cleanurls    : true   - Use mod_rewrite to hide PHP extensions
-#                             (be cautious, doesn't work for all hosts)
-#                             (you may need to modify the .htaccess file)
-#              : false  - Don't hide extensions [Default]
-#
-# usecache     : true   - Cache pages when possible
-#                false  - Don't cache at all [Default]
-# dir_cache    : The directory where cache files will be stored
-#
-# useredir     : true   - Improve privacy by redirecting all bookmarks
-#                         through the address specified in url_redir
-#                false  - Don't redirect bookmarks
-# url_redir    : URL prefix for bookmarks to redirect through
-#
-# filetypes    : An array of bookmark extensions that Scuttle should
-#                add system tags for.
-# reservedusers : An array of usernames that cannot be registered
-#
-# antispamQuestion: A question to avoid spam
-# antispamAnswer: The answer to the question (users have to put exactly the same answer)
-#
-# enableCommonTagDescription	  : true or false
-# enableCommonBookmarkDescription : true or false
-#
-# sizeSearchHistory : the number of users' searches that are saved
-#			10 [Default]
-#			-1 Unlimited
-
-$shortdate          = 'd-m-Y';
-$longdate           = 'j F Y';
-$nofollow           = true;
-$defaultPerPage     = 10;
-$defaultRecentDays  = 14;
 $defaultOrderBy     = 'date_desc';
-$TEMPLATES_DIR      = dirname(__FILE__) .'/templates/';
-$root               = NULL;
-$cookieprefix       = 'SCUTTLE';
-$tableprefix        = 'sc_'; # do not use '-' (badly handeld by MySQL)
-$adminemail         = 'admin@example.org';
-$cleanurls          = false;
-
-$usecache           = false;
-$dir_cache          = dirname(__FILE__) .'/cache/';
-
-$useredir           = false;
-$url_redir          = 'http://www.google.com/url?sa=D&q=';
-
+$useredir           = false; # redirect all bookmarks through the address specified in url_redir to improve privacy
+$url_redir          = 'http://www.google.com/url?sa=D&q='; # URL prefix for bookmarks to redirect through
+# filetypes : array of bookmark extensions that Scuttle should add system tags for
 $filetypes          = array(
                         'audio' => array('mp3', 'ogg', 'wav'),
                         'document' => array('doc', 'odt', 'pdf'),
                         'image' => array('gif', 'jpeg', 'jpg', 'png'),
                         'video' => array('avi', 'mov', 'mp4', 'mpeg', 'mpg', 'wmv')
                         );
-$reservedusers      = array('all', 'watchlist');
-
-$antispamQuestion = 'name of this application (no Caps)';
-$antispamAnswer = 'semanticscuttle';
-
-$enableCommonTagDescription = true;
-$enableCommonBookmarkDescription = true;
-
-# enableWebsiteThumbnails : true or false.  
+$enableCommonBookmarkDescription = true; # enableCommonBookmarkDescription {true,false}
+$enableWebsiteThumbnails = true; # enableWebsiteThumbnails {true|false}
 # According to artviper.net license, buy a license if you gain profit with your pages. (see http://www.websitethumbnail.de/)
-$enableWebsiteThumbnails = true;
-$sizeSearchHistory = 10;
 
-# name of the tag whose subtags will appear into the menu box
-$menuTag = 'menu';
-# maximum number of items (tags) appearing into menu box
-$maxSizeMenuBlock = 7;
 
+### Tags ###
+$enableCommonTagDescription = true; # enableCommonTagDescription {true, false}
+$menuTag = 'menu'; # name of the tag whose subtags will appear into the menu box
+$maxSizeMenuBlock = 7; # maximum number of items (tags) appearing into menu box
+
+### Other ###
+$sizeSearchHistory = 10; # number of users' searches that are saved {1..10[Default]..-1[Unlimited]}
 
 include_once('debug.inc.php');
 ?>
