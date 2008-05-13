@@ -11,7 +11,6 @@ $sitename           = 'SemanticScuttle'; #The name of this site.
 $welcomeMessage     = 'More than tags...'; # The welcome message of this site
 $root               = NULL; # Set to NULL to autodetect the root url of the website
 $locale             = 'en_GB'; #locale used in /locales/ {de_DE  en_GB  fr_FR  ...}
-$tableprefix        = 'sc_'; # table prefix used for this installation : do not use '-' (badly handeld by MySQL)
 $cookieprefix       = 'SEMANTICSCUTTLE'; # cookieprefix : The prefix to use for the cookies on the site
 $usecache           = false; # use cache ? {true,false}
 $dir_cache          = dirname(__FILE__) .'/cache/'; # directory where cache files will be stored
@@ -26,7 +25,7 @@ $dbport = '3306'; # Database port
 $dbuser = 'username'; # Database username
 $dbpass = 'password'; # Database password
 $dbname = 'scuttle'; # Database name
-$tableprefix        = 'sc_';  # table prefix used for this installation. Do not use '-' (badly handeld by MySQL)
+$tableprefix = 'sc_';  # table prefix used for this installation. Do not use '-' (badly handeld by MySQL)
 
 
 ### Users ###
