@@ -33,7 +33,7 @@ CREATE TABLE `sc_tags` (
   `tag` varchar(32) NOT NULL default '',
   `uId` int(11) NOT NULL default '0',
   `tDescription` varchar(255) default NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY  (`tId`),
   UNIQUE KEY `sc_tags_tag_uId` (`tag`, `uId`)
 );
 

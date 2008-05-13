@@ -23,6 +23,15 @@
 	  PRIMARY KEY (`shId`)
 	);
 
+	CREATE TABLE `sc_tags` (
+	  `tId` int(11) NOT NULL auto_increment,
+	  `tag` varchar(32) NOT NULL default '',
+	  `uId` int(11) NOT NULL default '0',
+	  `tDescription` varchar(255) default NULL,
+	  PRIMARY KEY  (`tId`),
+	  UNIQUE KEY `sc_tags_tag_uId` (`tag`, `uId`)
+	);
+
 - Upgrade your current configuration file (config.inc.php) with respect to config.inc.php.example
   - add line:
 	$sizeSearchHistory = 10;
