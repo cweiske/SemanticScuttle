@@ -40,7 +40,7 @@ $antispamAnswer = 'semanticscuttle'; # antispamAnswer: The answer to the questio
 $TEMPLATES_DIR      = dirname(__FILE__) .'/templates/'; #directory where the template files (*.tpl.php) should be loaded from
 $top_include        = 'top.inc.php'; # header file
 $bottom_include     = 'bottom.inc.php'; # footer file
-$index_sidebar_blocks = array('search','users','linked','recent'); # sidebar blocks order
+$index_sidebar_blocks = array('search','menu','users','recent'); # sidebar blocks order
 
 ### Bookmarks ###
 $shortdate          = 'd-m-Y'; # format of short dates.
