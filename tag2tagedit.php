@@ -35,7 +35,7 @@ if($logged_on_user == null) {
 
 list ($url, $tag1, $tag2) = explode('/', $_SERVER['PATH_INFO']);
 
-if ($_POST['confirm']) {
+/*if ($_POST['confirm']) {
     $tag = $_POST['tag1'];
     $linkType = $_POST['linkType'];
     $newTag = $_POST['tag2'];
@@ -49,7 +49,7 @@ if ($_POST['confirm']) {
     }
 } elseif ($_POST['cancel']) {
     header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')] .'/'. $tags));
-}
+}*/
 
 $tplVars['links']	= $tag2tagservice->getLinks($userservice->getCurrentUserId());
 

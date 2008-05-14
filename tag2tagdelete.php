@@ -41,7 +41,7 @@ if ($_POST['confirm']) {
     $newTag = $_POST['tag2'];
     if ($tag2tagservice->removeLinkedTags($_POST['tag1'], $_POST['tag2'], $linkType, $userservice->getCurrentUserId())) {
         $tplVars['msg'] = T_('Tag link deleted');
-        header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')]));
+        header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')].'/'.$tag));
     } else {
         $tplVars['error'] = T_('Failed to delete the link');
         $templateservice->loadTemplate('error.500.tpl', $tplVars);
