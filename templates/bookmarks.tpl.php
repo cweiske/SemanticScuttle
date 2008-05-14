@@ -7,11 +7,17 @@ $cdservice =& ServiceFactory::getServiceInstance('CommonDescriptionService');
 $logged_on_userid = $userservice->getCurrentUserId();
 $currentUser = $userservice->getCurrentUser();
 $currentUsername = $currentUser[$userservice->getFieldName('username')];
+$pageName = isset($pageName)?$pageName:"";
 
 $this->includeTemplate($GLOBALS['top_include']);
 
 include('search.inc.php');
 ?>
+
+<?php if($pageName == PAGE_INDEX):?>
+<p id="welcome"><?php echo $GLOBALS['welcomeMessage'];?></p>
+<?php endif?>
+
 
 <?php 
 if((isset($currenttag) && $GLOBALS['enableCommonTagDescription'])

@@ -224,6 +224,7 @@ if ($templatename == 'editbookmark.tpl') {
 }
 
 $tplVars['summarizeLinkedTags'] = true;
+$tplVars['pageName'] = PAGE_BOOKMARKS;
 
 $templateservice->loadTemplate($templatename, $tplVars);
 

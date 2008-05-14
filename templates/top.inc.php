@@ -35,7 +35,7 @@ if(isset($_GET['popup'])) {
     }
     ?>
 <? if(!isset($_GET['popup'])):?>
-<span id="welcome"><?php echo $GLOBALS['welcomeMessage'];?></span>
+<!--span id="welcome"><?php echo $GLOBALS['welcomeMessage'];?></span-->
 <?php endif; ?>
 </div>
 

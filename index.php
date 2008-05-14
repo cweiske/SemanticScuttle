@@ -79,6 +79,7 @@ $tplVars['bookmarks'] =& $bookmarks['bookmarks'];
 $tplVars['cat_url'] = createURL('bookmarks', '%1$s/%2$s');
 $tplVars['nav_url'] = createURL('index', '%3$s');
 $tplVars['summarizeLinkedTags'] = true;
+$tplVars['pageName'] = PAGE_INDEX;
 
 $templateservice->loadTemplate('bookmarks.tpl', $tplVars);
 

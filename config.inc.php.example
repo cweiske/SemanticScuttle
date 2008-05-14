@@ -8,7 +8,7 @@
 
 #### System ####
 $sitename           = 'SemanticScuttle'; #The name of this site.
-$welcomeMessage     = 'More than tags...'; # The welcome message of this site
+$welcomeMessage     = 'Welcome to SemanticScuttle! More than a social bookmarking tool.'; # The welcome message of this site
 $root               = NULL; # Set to NULL to autodetect the root url of the website
 $locale             = 'en_GB'; #locale used in /locales/ {de_DE  en_GB  fr_FR  ...}
 $cookieprefix       = 'SEMANTICSCUTTLE'; # cookieprefix : The prefix to use for the cookies on the site
