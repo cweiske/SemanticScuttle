@@ -31,7 +31,7 @@ window.onload = function() {
 <?php if(strlen($antispamQuestion)>0) {?>
 <tr>
     <th align="left"><label for="question"><?php echo T_('Antispam question'); ?></label></th>
-    <td><input type="text" id="antispamAnswer" name="antispamAnswer" size="40" class="required" value="<?php echo $antispamQuestion ?>"/></td>
+    <td><input type="text" id="antispamAnswer" name="antispamAnswer" size="40" class="required" value="<?php echo $antispamQuestion; ?>" onfocus="if (this.value == '<?php echo $antispamQuestion; ?>') this.value = '';" onblur="if (this.value == '') this.value = '<?php echo $antispamQuestion; ?>';"/></td>
     <td></td>
 </tr>
 <?php } ?>
