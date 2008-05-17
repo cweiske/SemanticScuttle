@@ -11,12 +11,10 @@ $sitename           = 'SemanticScuttle'; #The name of this site.
 $welcomeMessage     = 'Welcome to SemanticScuttle! More than a social bookmarking tool.'; # The welcome message of this site
 $root               = NULL; # Set to NULL to autodetect the root url of the website
 $locale             = 'en_GB'; #locale used in /locales/ {de_DE  en_GB  fr_FR  ...}
-$cookieprefix       = 'SEMANTICSCUTTLE'; # cookieprefix : The prefix to use for the cookies on the site
 $usecache           = false; # use cache ? {true,false}
 $dir_cache          = dirname(__FILE__) .'/cache/'; # directory where cache files will be stored
 $cleanurls          = false; # Use mod_rewrite to hide PHP extensions {true,false[default]}
-# be cautious, doesn't work for all hosts, you may need to modify the .htaccess file
-$cookieprefix       = 'SCUTTLE'; # prefix used for cookies
+			     # be cautious, doesn't work for all hosts, you may need to modify the .htaccess file
 
 #### Database ####
 $dbtype = 'mysql4'; # Database driver {mysql, mysqli, mysql4, oracle, postgres, sqlite, db2, firebird, mssql, mssq-odbc}
