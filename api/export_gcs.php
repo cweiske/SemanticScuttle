@@ -4,7 +4,7 @@ Export for Google Custom Search
 */
 
 // Force HTTP authentication first!
-require_once('httpauth.inc.php');
+//require_once('httpauth.inc.php');
 require_once('../header.inc.php');
 
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');

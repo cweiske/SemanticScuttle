@@ -36,6 +36,6 @@
   - add line:
 	$sizeSearchHistory = 10;
   - add sidebar block index line:
-	$index_sidebar_blocks = array('search','users','linked','recent');
+	$index_sidebar_blocks = array('search','menu','users','popular');
 
 
