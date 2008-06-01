@@ -13,8 +13,7 @@ define('PAGE_BOOKMARKS', "bookmarks");
 
 // Miscellanous
 
-// INSTALLATION_ID is based on directory  path and used as prefix (in session and cookie) to prevent mutual login for different installations on the same host server
-//define('INSTALLATION_ID', md5(dirname(realpath('.'))));
+// INSTALLATION_ID is based on directory DB and used as prefix (in session and cookie) to prevent mutual login for different installations on the same host server
 define('INSTALLATION_ID', md5($GLOBALS['dbname'].$GLOBALS['tableprefix']));
 
 ?>

@@ -9,7 +9,7 @@
 #### System ####
 $sitename           = 'SemanticScuttle'; #The name of this site.
 $welcomeMessage     = 'Welcome to SemanticScuttle! More than a social bookmarking tool.'; # The welcome message of this site
-$root               = NULL; # Set to NULL to autodetect the root url of the website
+$root               = NULL; # Set to NULL to autodetect the root url of the website. If your installation is into a subdirectory like "www.example.com/semanticscuttle/" then replace NULL by your address (between "" and with final '/');
 $locale             = 'en_GB'; #locale used in /locales/ {de_DE  en_GB  fr_FR  ...}
 $usecache           = false; # use cache ? {true,false}
 $dir_cache          = dirname(__FILE__) .'/cache/'; # directory where cache files will be stored
@@ -77,6 +77,7 @@ $maxSizeMenuBlock = 7; # maximum number of items (tags) appearing into menu box
 
 ### Other ###
 $sizeSearchHistory = 10; # number of users' searches that are saved {1..10[Default]..-1[Unlimited]}
+$enableGoogleCustomSearch = true; #Enable Google Search Engine into "gsearch/" folder
 
 include_once('debug.inc.php');
 ?>

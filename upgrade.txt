@@ -37,5 +37,7 @@
 	$sizeSearchHistory = 10;
   - add sidebar block index line:
 	$index_sidebar_blocks = array('search','menu','users','popular');
+  - add line:
+	$enableGoogleCustomSearch = true;
 
 
