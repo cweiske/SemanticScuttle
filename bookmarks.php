@@ -202,7 +202,7 @@ if ($templatename == 'editbookmark.tpl') {
     
     // Set template vars
     $tplVars['rsschannels'] = array(
-        array(filter($sitename .': '. $pagetitle), createURL('rss', filter($user, 'url') . $rssCat))
+        array(filter($sitename .': '. $pagetitle), createURL('rss', filter($user, 'url') . $rssCat.'?sort='.getSortOrder()))
     );
 
     $tplVars['page'] = $page;

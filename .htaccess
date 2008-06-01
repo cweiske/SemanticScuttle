@@ -24,5 +24,9 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^([^/]+)/?(.*) $1.php?query=$2 [L,QSA]
+
+#if cleanurls don't work, comment option 1 (by adding # at the beginning) and uncomment option 2:
+RewriteRule ^([^/]+)/?(.*) $1.php?query=$2 [L,QSA]        #option 1
+#RewriteRule ^([^/]+)/?(.*)       $1.php/$2       [L]     #option 2
+
 </IfModule>

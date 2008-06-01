@@ -53,7 +53,7 @@ if ($usecache) {
 $tplVars['pagetitle'] = $pagetitle;
 $tplVars['loadjs'] = true;
 $tplVars['rsschannels'] = array(
-    array(filter($sitename .': '. $pagetitle), createURL('rss', 'all/'. filter($cat, 'url')))
+    array(filter($sitename .': '. $pagetitle), createURL('rss', 'all/'. filter($cat, 'url')).'?sort='.getSortOrder())
 );
 
 // Pagination

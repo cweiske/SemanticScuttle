@@ -36,7 +36,7 @@ if (isset($_GET['action'])){
 // Header variables
 $tplVars['loadjs'] = true;
 $tplVars['rsschannels'] = array(
-    array(sprintf(T_('%s: Recent bookmarks'), $sitename), createURL('rss'))
+    array(sprintf(T_('%s: Recent bookmarks'), $sitename), createURL('rss').'?sort='.getSortOrder())
 );
 
 if ($usecache) {
