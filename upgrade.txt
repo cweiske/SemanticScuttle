@@ -3,7 +3,7 @@
 === From version 0.88 to 0.89 ===
 - Backup you database
 - Make a copy from your SemanticScuttle Web directory
-- Upgrade your database :
+- Upgrade your database by following instructions ONE after ONE (order is important) :
 
 
 * change the table called 'sc_tags' into 'sc_bookmarks2tags' by executing the following SQL commands (after changing 'yourdatabasename' and adapting its name prefix 'sc_' to your convenience):
@@ -33,11 +33,11 @@
 	);
 
 - Upgrade your current configuration file (config.inc.php) with respect to config.inc.php.example
-  - add line:
+  # add line:
 	$sizeSearchHistory = 10;
-  - add sidebar block index line:
+  # add sidebar block index line:
 	$index_sidebar_blocks = array('search','menu','users','popular');
-  - add line:
+  # add line:
 	$enableGoogleCustomSearch = true;
 
 
