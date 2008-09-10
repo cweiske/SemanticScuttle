@@ -136,7 +136,7 @@ window.onload = playerLoad;
         }
         $cats = substr($cats, 0, -2);
         if ($cats != '') {
-            $cats = ' '.T_('to').' '. $cats;
+            $cats = ' '.T_('in').' '. $cats;
         }
 
         // Edit and delete links

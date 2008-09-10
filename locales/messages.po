@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-24 19:03+0200\n"
+"POT-Creation-Date: 2008-09-10 17:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,7 +41,7 @@ msgstr ""
 msgid "User with username %s was not found"
 msgstr ""
 
-#: ../../../bookmarkcommondescriptionedit.php:35 ../../../tag2tagadd.php:31
+#: ../../../bookmarkcommondescriptionedit.php:35 ../../../tag2tagadd.php:33
 #: ../../../tag2tagdelete.php:31 ../../../tag2tagedit.php:31
 #: ../../../tagcommondescriptionedit.php:35 ../../../tagedit.php:34
 msgid "Permission denied."
@@ -239,11 +239,11 @@ msgstr ""
 msgid "Not Available"
 msgstr ""
 
-#: ../../../login.php:38
+#: ../../../login.php:40
 msgid "The details you have entered are incorrect. Please try again."
 msgstr ""
 
-#: ../../../login.php:48 ../../../templates/login.tpl.php:26
+#: ../../../login.php:50 ../../../templates/login.tpl.php:26
 #: ../../../templates/toolbar.inc.php:26
 msgid "Log In"
 msgstr ""
@@ -298,9 +298,9 @@ msgstr ""
 
 #: ../../../populartags.php:49 ../../../templates/dynamictags.inc.php:101
 #: ../../../templates/sidebar.block.common.php:9
-#: ../../../templates/sidebar.block.menu.php:68
+#: ../../../templates/sidebar.block.menu.php:73
 #: ../../../templates/sidebar.block.popular.php:15
-#: ../../../templates/sidebar.block.recent.php:30
+#: ../../../templates/sidebar.block.recent.php:33
 #: ../../../templates/toolbar.inc.php:24
 msgid "Popular Tags"
 msgstr ""
@@ -375,27 +375,27 @@ msgstr ""
 msgid "Recent bookmarks posted to %s"
 msgstr ""
 
-#: ../../../search.inc.php:13 ../../../search.inc.php:41
+#: ../../../search.inc.php:20 ../../../search.inc.php:48
 msgid "Search"
 msgstr ""
 
-#: ../../../search.inc.php:19
+#: ../../../search.inc.php:26
 msgid "this user's bookmarks"
 msgstr ""
 
-#: ../../../search.inc.php:24
+#: ../../../search.inc.php:31
 msgid "my bookmarks"
 msgstr ""
 
-#: ../../../search.inc.php:25
+#: ../../../search.inc.php:32
 msgid "my watchlist"
 msgstr ""
 
-#: ../../../search.inc.php:29
+#: ../../../search.inc.php:36
 msgid "all bookmarks"
 msgstr ""
 
-#: ../../../search.inc.php:32
+#: ../../../search.inc.php:39
 msgid "for"
 msgstr ""
 
@@ -407,23 +407,23 @@ msgstr ""
 msgid "Search Results"
 msgstr ""
 
-#: ../../../tag2tagadd.php:44
+#: ../../../tag2tagadd.php:46
 msgid "Tag link created"
 msgstr ""
 
-#: ../../../tag2tagadd.php:47
+#: ../../../tag2tagadd.php:49
 msgid "Failed to create the link"
 msgstr ""
 
-#: ../../../tag2tagadd.php:58
+#: ../../../tag2tagadd.php:60
 msgid "Add Tag Link"
 msgstr ""
 
-#: ../../../tag2tagdelete.php:43 ../../../tag2tagedit.php:43
+#: ../../../tag2tagdelete.php:43
 msgid "Tag link deleted"
 msgstr ""
 
-#: ../../../tag2tagdelete.php:46 ../../../tag2tagedit.php:46
+#: ../../../tag2tagdelete.php:46
 msgid "Failed to delete the link"
 msgstr ""
 
@@ -563,7 +563,7 @@ msgid ""
 msgstr ""
 
 #: ../../../templates/bookmarkcommondescriptionedit.tpl.php:15
-#: ../../../templates/bookmarks.tpl.php:67
+#: ../../../templates/bookmarks.tpl.php:83
 #: ../../../templates/editbookmark.tpl.php:34
 msgid "Title"
 msgstr ""
@@ -597,95 +597,99 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:34
-#: ../../../templates/bookmarks.tpl.php:37
+#: ../../../templates/bookmarks.tpl.php:40
+#: ../../../templates/bookmarks.tpl.php:43
 msgid "edit common description"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:64
+#: ../../../templates/bookmarks.tpl.php:75
 msgid "bookmark(s)"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:65 ../../../templates/tags.tpl.php:10
+#: ../../../templates/bookmarks.tpl.php:76 ../../../templates/tags.tpl.php:10
 #: ../../../templates/users.tpl.php:8
 msgid "Sort by:"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:66
+#: ../../../templates/bookmarks.tpl.php:82
 msgid "Date"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:71
+#: ../../../templates/bookmarks.tpl.php:87
 msgid "URL"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:81
+#: ../../../templates/bookmarks.tpl.php:97
 msgid "Bookmarks from other users for this tag"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:86
+#: ../../../templates/bookmarks.tpl.php:102
 msgid "Only your bookmarks for this tag"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:129
+#: ../../../templates/bookmarks.tpl.php:139
+msgid "in"
+msgstr ""
+
+#: ../../../templates/bookmarks.tpl.php:145
 msgid "Edit"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:129
+#: ../../../templates/bookmarks.tpl.php:145
 msgid "Delete"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:135
+#: ../../../templates/bookmarks.tpl.php:151
 msgid "by"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:147
+#: ../../../templates/bookmarks.tpl.php:163
 #, php-format
 msgid " and %s1 other%s"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:150
+#: ../../../templates/bookmarks.tpl.php:166
 #, php-format
 msgid " and %2$s%1$s others%3$s"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:159
+#: ../../../templates/bookmarks.tpl.php:175
 msgid "Copy"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:218
-#: ../../../templates/bookmarks.tpl.php:224
+#: ../../../templates/bookmarks.tpl.php:234
+#: ../../../templates/bookmarks.tpl.php:240
 msgid "First"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:219
-#: ../../../templates/bookmarks.tpl.php:225
+#: ../../../templates/bookmarks.tpl.php:235
+#: ../../../templates/bookmarks.tpl.php:241
 msgid "Previous"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:232
-#: ../../../templates/bookmarks.tpl.php:235
+#: ../../../templates/bookmarks.tpl.php:248
+#: ../../../templates/bookmarks.tpl.php:251
 msgid "Next"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:233
-#: ../../../templates/bookmarks.tpl.php:236
+#: ../../../templates/bookmarks.tpl.php:249
+#: ../../../templates/bookmarks.tpl.php:252
 msgid "Last"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:246
+#: ../../../templates/bookmarks.tpl.php:262
 #, php-format
 msgid "Page %d of %d"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:252
+#: ../../../templates/bookmarks.tpl.php:268
 msgid "No bookmarks available"
 msgstr ""
 
 #: ../../../templates/dynamictags.inc.php:108
 #: ../../../templates/sidebar.block.common.php:20
 #: ../../../templates/sidebar.block.popular.php:26
-#: ../../../templates/sidebar.block.recent.php:25
+#: ../../../templates/sidebar.block.recent.php:28
 #: ../../../templates/tags.tpl.php:19
 msgid "bookmark"
 msgid_plural "bookmarks"
@@ -978,50 +982,50 @@ msgstr ""
 msgid "Antispam question"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:41
+#: ../../../templates/sidebar.block.linked.php:48
 msgid "Linked Tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:55
-#: ../../../templates/sidebar.block.menu.php:40
+#: ../../../templates/sidebar.block.linked.php:62
+#: ../../../templates/sidebar.block.menu.php:45
 msgid "Add new link"
 msgstr ""
 
-#: ../../../templates/sidebar.block.linked.php:56
-#: ../../../templates/sidebar.block.menu.php:41
+#: ../../../templates/sidebar.block.linked.php:63
+#: ../../../templates/sidebar.block.menu.php:46
 msgid "Delete link"
 msgstr ""
 
-#: ../../../templates/sidebar.block.menu.php:29
+#: ../../../templates/sidebar.block.menu.php:34
 #, php-format
 msgid "Tags included into the tag '%s'"
 msgstr ""
 
-#: ../../../templates/sidebar.block.menu.php:29
+#: ../../../templates/sidebar.block.menu.php:34
 msgid "Menu Tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.menu.php:62
+#: ../../../templates/sidebar.block.menu.php:67
 msgid "See all your tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.menu.php:62
+#: ../../../templates/sidebar.block.menu.php:67
 msgid "all your tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.menu.php:64
+#: ../../../templates/sidebar.block.menu.php:69
 msgid "See all tags from this user"
 msgstr ""
 
-#: ../../../templates/sidebar.block.menu.php:64
+#: ../../../templates/sidebar.block.menu.php:69
 msgid "all tags from this user"
 msgstr ""
 
-#: ../../../templates/sidebar.block.menu.php:68
+#: ../../../templates/sidebar.block.menu.php:73
 msgid "See popular tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.recent.php:15
+#: ../../../templates/sidebar.block.recent.php:18
 msgid "Recent Tags"
 msgstr ""
 
@@ -1070,7 +1074,7 @@ msgstr ""
 msgid "Edit link"
 msgstr ""
 
-#: ../../../templates/sidebar.linkedtags.inc.php:45
+#: ../../../templates/sidebar.linkedtags.inc.php:47
 msgid "Synonyms:"
 msgstr ""
 
