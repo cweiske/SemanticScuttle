@@ -128,7 +128,7 @@ function _setlocale($category, $locale) {
     } else {
         $ret = 0;
         if (function_exists('setlocale')) // I don't know if this ever happens ;)
-           $ret = setlocale($category, $locale);
+           $ret = @setlocale($category, $locale);  //the @ hides warning messages on few installations
         if (($ret and $locale == '') or ($ret == $locale)) {
             $EMULATEGETTEXT = 0;
             $CURRENTLOCALE = $ret;
