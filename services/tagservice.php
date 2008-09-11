@@ -72,6 +72,7 @@ class TagService {
 	$query.= ' WHERE tag="'.$oldName.'"';
 	$query.= ' AND uId="'.$uId.'"';
 	$this->db->sql_query($query);
+	return true;
     }
 
    
