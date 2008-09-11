@@ -63,16 +63,20 @@ if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['si
         if ($bookmarkservice->bookmarkExists($bAddress, $userservice->getCurrentUserId())) {
             $tplVars['error'] = T_('You have already submitted this bookmark.');
         } else {
-            // If bookmark claims to be from the future, set it to be now instead
-            if (strtotime($bDatetime) > time()) {
-                $bDatetime = gmdate('Y-m-d H:i:s');
-            }
+	    // If bookmark is local (like javascript: or place: in Firefox3), do nothing
+	    if(substr($bAddress, 0, 7) == "http://") {
 
-            if ($bookmarkservice->addBookmark($bAddress, $bTitle, NULL, $status, NULL, $bDatetime, false, true)) {
-                $tplVars['msg'] = T_('Bookmark imported.');
-            } else {
-                $tplVars['error'] = T_('There was an error saving your bookmark. Please try again or contact the administrator.');
-            }
+                // If bookmark claims to be from the future, set it to be now instead
+                if (strtotime($bDatetime) > time()) {
+                    $bDatetime = gmdate('Y-m-d H:i:s');
+                }
+
+                if ($bookmarkservice->addBookmark($bAddress, $bTitle, NULL, $status, NULL, $bDatetime, false, true)) {
+                    $tplVars['msg'] = T_('Bookmark imported.');
+                } else {
+                    $tplVars['error'] = T_('There was an error saving your bookmark. Please try again or contact the administrator.');
+                }
+	    }
         }
     }
     header('Location: '. createURL('bookmarks', $userinfo[$userservice->getFieldName('username')]));
