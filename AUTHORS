@@ -1,4 +1,4 @@
-Scuttle contains code from the following applications:
+Scuttle and SemanticScuttle contain codes from the following applications:
 
 ------------
 GPL Licenced
@@ -16,3 +16,13 @@ Andreas Gohr <andi@splitbrain.org>
 
 XSPF Web Music Player (Flash)
 http://musicplayer.sourceforge.net/
+
+
+----
+
+Patches were realised by :
+
+* Simple Admin-Interface for deleting unwanted users
+Idea of the patch from Andreas Jaggi, for details visit:
+http://sourceforge.net/tracker/index.php?func=detail&aid=1543065&group_id=134378&atid=729862
+Adaptation by Andreas Keller (aka Arakel) http://akeller.eu for Takuya Misawa. 
