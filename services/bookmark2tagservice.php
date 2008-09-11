@@ -179,6 +179,26 @@ class Bookmark2TagService {
         return true;
     }
 
+    /* Allow deletion in admin page */
+    function deleteTagsForUser($uId) {
+	$qmask = 'DELETE FROM %s USING %s, %s WHERE %s.bId = %s.bId AND %s.uId = %d';
+	$query = sprintf($qmask,
+		$this->getTableName(),
+		$this->getTableName(),
+		$GLOBALS['tableprefix'].'bookmarks',
+		$this->getTableName(),
+		$GLOBALS['tableprefix'].'bookmarks',
+		$GLOBALS['tableprefix'].'bookmarks',
+		$uId);
+
+        if (!($dbresult =& $this->db->sql_query($query))) {
+            message_die(GENERAL_ERROR, 'Could not delete tags', '', __LINE__, __FILE__, $query, $this->db);
+            return false;
+        }
+
+        return true;
+    }
+
     function &getTagsForBookmark($bookmarkid) {
         if (!is_int($bookmarkid)) {
             message_die(GENERAL_ERROR, 'Could not get tags (invalid bookmarkid)', '', __LINE__, __FILE__, $query);

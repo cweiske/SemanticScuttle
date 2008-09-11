@@ -416,6 +416,17 @@ class BookmarkService {
         return true;
     }
 
+    function deleteBookmarksForUser($uId) {
+        $query = 'DELETE FROM '. $GLOBALS['tableprefix'] .'bookmarks WHERE uId = '. intval($uId);
+
+        if (!($dbresult = & $this->db->sql_query($query))) {
+            message_die(GENERAL_ERROR, 'Could not delete bookmarks', '', __LINE__, __FILE__, $query, $this->db);
+            return false;
+        }
+
+        return true;
+    }
+
     function countOthers($address) {
         if (!$address) {
             return false;

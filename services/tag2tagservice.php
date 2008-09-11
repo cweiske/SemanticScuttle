@@ -234,15 +234,17 @@ class Tag2TagService {
     }
 
     function removeLinkedTags($tag1, $tag2, $relationType, $uId) {
-	if($tag1 == $tag2 || strlen($tag1) == 0 || strlen($tag2) == 0
-		|| ($relationType != ">" && $relationType != "=")) {
+	if(($tag1 != '' && $tag1 == $tag2) ||
+	    ($relationType != ">" && $relationType != "=" && $relationType != "") ||
+	    ($tag1 == '' && $tag2 == '' && $relationType == '' && $uId == '')) {
 		return false;
 	}
 	$query = 'DELETE FROM '. $this->getTableName();
-	$query.= ' WHERE tag1 = "'. $tag1 .'"';
-	$query.= ' AND tag2 = "'. $tag2 .'"';
-	$query.= ' AND relationType = "'. $relationType .'"';
-	$query.= ' AND uId = "'. $uId .'"';
+	$query.= ' WHERE 1=1';
+	$query.= strlen($tag1)>0 ? ' AND tag1 = "'. $tag1 .'"' : '';
+	$query.= strlen($tag2)>0 ? ' AND tag2 = "'. $tag2 .'"' : '';
+	$query.= strlen($relationType)>0 ? ' AND relationType = "'. $relationType .'"' : '';
+	$query.= strlen($uId)>0 ? ' AND uId = "'. $uId .'"' : '';
 
         if (!($dbresult =& $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not remove tag relation', '', __LINE__, __FILE__, $query, $this->db);

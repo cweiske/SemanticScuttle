@@ -336,6 +336,35 @@ class UserService {
         return true;
     }
 
+	function getAllUsers ( ) { 
+		$query = 'SELECT * FROM '. $this->getTableName();
+
+		if (! ($dbresult =& $this->db->sql_query($query)) ) {
+		    message_die(GENERAL_ERROR, 'Could not get users', '', __LINE__, __FILE__, $query, $this->db);
+		    return false;
+		}
+
+		$rows = array();
+
+		while ( $row = $this->db->sql_fetchrow($dbresult) ) {
+			$rows[] = $row;
+		}
+
+		return $rows;
+	}
+
+    function deleteUser($uId) {
+    	$query = 'DELETE FROM '. $this->getTableName() .' WHERE uId = '. intval($uId);
+
+        if (!($dbresult = & $this->db->sql_query($query))) {
+            message_die(GENERAL_ERROR, 'Could not delete user', '', __LINE__, __FILE__, $query, $this->db);
+            return false;
+        }
+
+	return true;
+    }
+
+
     function sanitisePassword($password) {
         return sha1(trim($password));
     }
