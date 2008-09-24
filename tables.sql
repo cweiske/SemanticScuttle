@@ -30,7 +30,7 @@ CREATE TABLE `sc_bookmarks` (
 
 CREATE TABLE `sc_tags` (
   `tId` int(11) NOT NULL auto_increment,
-  `tag` varchar(32) NOT NULL default '',
+  `tag` varchar(100) NOT NULL default '',
   `uId` int(11) NOT NULL default '0',
   `tDescription` varchar(255) default NULL,
   PRIMARY KEY  (`tId`),
@@ -46,7 +46,7 @@ CREATE TABLE `sc_tags` (
 CREATE TABLE `sc_bookmarks2tags` (
   `id` int(11) NOT NULL auto_increment,
   `bId` int(11) NOT NULL default '0',
-  `tag` varchar(32) NOT NULL default '',
+  `tag` varchar(100) NOT NULL default '',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `sc_bookmarks2tags_tag_bId` (`tag`,`bId`),
   KEY `sc_bookmarks2tags_bId` (`bId`)
@@ -93,8 +93,8 @@ CREATE TABLE `sc_watched` (
 
 CREATE TABLE `sc_tags2tags` (
   `ttId` int(11) NOT NULL auto_increment,
-  `tag1` varchar(32) NOT NULL default '',
-  `tag2` varchar(32) NOT NULL default '',
+  `tag1` varchar(100) NOT NULL default '',
+  `tag2` varchar(100) NOT NULL default '',
   `relationType` varchar(32) NOT NULL default '',
   `uId` int(11) NOT NULL default '0',
   PRIMARY KEY (`ttId`),
@@ -109,7 +109,7 @@ CREATE TABLE `sc_tags2tags` (
 
 CREATE TABLE `sc_tagsstats` (
   `tstId` int(11) NOT NULL auto_increment,
-  `tag1` varchar(32) NOT NULL default '',
+  `tag1` varchar(100) NOT NULL default '',
   `relationType` varchar(32) NOT NULL default '',
   `uId` int(11) NOT NULL default '0',
   `nb` int(11) NOT NULL default '0',
@@ -128,7 +128,7 @@ CREATE TABLE `sc_tagsstats` (
 CREATE TABLE `sc_commondescription` (
   `cdId` int(11) NOT NULL auto_increment,
   `uId` int(11) NOT NULL default '0',
-  `tag` varchar(32) NOT NULL default '',
+  `tag` varchar(100) NOT NULL default '',
   `bHash` varchar(32) NOT NULL default '',
   `cdTitle` varchar(255) NOT NULL default '',
   `cdDescription` varchar(2000) default NULL,
