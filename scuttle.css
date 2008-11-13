@@ -470,3 +470,13 @@ ul {
 	margin-right: 1em;
 	width: 75%;
 }
+
+/* DOJO Style */
+
+.scuttletheme .dijitInputField input,
+.scuttletheme .dijitTextBox,
+.scuttletheme .dijitComboBox,
+.scuttletheme .dijitSpinner {
+	width: 100%;
+	margin: 0 0 0 0;
+}

@@ -18,9 +18,9 @@ switch ($row['bStatus']) {
 ?>
 
 <script type="text/javascript">
-window.onload = function() {
-    document.getElementById("address").focus();
-}
+//window.onload = function() {
+//    document.getElementById("address").focus();
+//}
 </script>
 
 <form action="<?php echo $formaction; ?>" method="post">
@@ -42,9 +42,13 @@ window.onload = function() {
 </tr>
 <tr>
     <th align="left"><?php echo T_('Tags'); ?></th>
-    <td><input type="text" id="tags" name="tags" size="75" value="<?php echo filter(implode(', ', $row['tags']), 'xml'); ?>" /></td>
+    <td class="scuttletheme">
+    <span dojoType="dojo.data.ItemFileReadStore" jsId="memberTagStore" url="<?php echo $GLOBALS['root']?>ajax/gettags.php"></span>
+    <input type="text" dojoType="dojox.widget.MultiComboBox" id="tags" name="tags" size="75" value="<?php echo filter(implode(', ', $row['tags']), 'xml'); ?>" store="memberTagStore" delimiter="," searchAttr="tag" hasDownArrow="false"/></td>
     <td>&larr; <?php echo T_('Comma-separated'); ?></td>
 </tr>
+
+
 <tr>
     <th></th>
     <td align="right"><small><?php echo T_('Note: use ">" to include one tag in another. e.g.: europe>france>paris')?><small></td>
