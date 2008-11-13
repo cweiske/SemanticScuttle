@@ -191,7 +191,8 @@ window.onload = playerLoad;
         // Output
         echo '<li class="xfolkentry'. $access .'">'."\n";
 	if ($GLOBALS['enableWebsiteThumbnails']) {
-	    echo '<a href="'. $address .'"'. $rel .' ><img class="thumbnail" src="http://www.artviper.net/screenshots/screener.php?sdx=1024&sdy=768&w=90&h=68&url='.$address.'"></a>';
+		$thumbnailHash = md5($address.$GLOBALS['thumbnailsUserId'].$GLOBALS['thumbnailsKey']);	    
+	    echo '<a href="'. $address .'"'. $rel .' ><img class="thumbnail" src="http://www.artviper.net/screenshots/screener.php?url='.$address.'&w=120&sdx=1280&userID='.$GLOBALS['thumbnailsUserId'].'&hash='.$thumbnailHash.'" />  ';
 	}
 	echo '<div>';
 

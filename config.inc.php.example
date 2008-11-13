@@ -28,7 +28,7 @@ $tableprefix = 'sc_';  # table prefix used for this installation. Do not use '-'
 
 ### Users ###
 $adminemail         = 'admin@example.org'; # Contact address for the site administrator. Used as the FROM address in password retrieval e-mails.
-$admin_users = array('admin'); # admin users  = array('adminnickname', 'user1nick', 'user2nick');
+$admin_users = array(''); # admin users  = array('adminnickname', 'user1nick', 'user2nick');
 $reservedusers      = array('all', 'watchlist'); # array of usernames that cannot be registered
 # Antispam
 $antispamQuestion = 'name of this application (no Caps)'; # antispamQuestion: A question to avoid spam
@@ -66,8 +66,13 @@ $filetypes          = array(
                         'video' => array('avi', 'mov', 'mp4', 'mpeg', 'mpg', 'wmv')
                         );
 $enableCommonBookmarkDescription = true; # enableCommonBookmarkDescription {true,false}
-$enableWebsiteThumbnails = true; # enableWebsiteThumbnails {true|false}
+
+
+### Website Thumbnails ###
+$enableWebsiteThumbnails = false; # enableWebsiteThumbnails {true|false}
 # According to artviper.net license, buy a license if you gain profit with your pages. (see http://www.websitethumbnail.de/)
+$thumbnailsUserId = ''; #you need to register on http://www.artviper.net/registerAPI.php in order to register your domain
+$thumbnailsKey = '';   #then artviper.net send you a UserId and a secretKey
 
 
 ### Tags ###
