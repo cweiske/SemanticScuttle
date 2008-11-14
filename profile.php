@@ -65,7 +65,7 @@ $tplVars['subtitle'] = $title;
 $tplVars['user'] = $user;
 $tplVars['userid'] = $userid;
 
-if (isset($_POST['submitted'])) {
+if (isset($_POST['submitted']) && $currentUserID == $userid) {
     $error = false;
     $detPass = trim($_POST['pPass']);
     $detPassConf = trim($_POST['pPassConf']);
