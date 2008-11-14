@@ -16,7 +16,7 @@ if ($row['name'] != "") {
 if ($row['homepage'] != "") {
 ?>
 <dt><?php echo T_('Homepage'); ?></dt>
-    <dd><a href="<?php echo filter($row['homepage'], 'url'); ?>"><?php echo filter($row['homepage']); ?></a></dd>
+    <dd><a href="<?php echo filter($row['homepage']); ?>"><?php echo filter($row['homepage']); ?></a></dd>
 <?php
 }
 ?>
