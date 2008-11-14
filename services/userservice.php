@@ -388,6 +388,18 @@ class UserService {
         		return false;
         	}
         }
+        
+        function isValidUsername($username) {
+        	if (strlen($username) > 24) {
+        		// too long usernames are cut by database and may cause bugs when compared 
+        		return false;
+        	} else {
+        		return true;
+        	}
+        	return true;
+        }        
+
+        
 
         function isValidEmail($email) {
         	if (eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,6})$", $email)) {

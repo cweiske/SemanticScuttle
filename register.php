@@ -39,6 +39,10 @@ if (isset($_POST['submitted'])) {
     // Check if username already exists
     } elseif ($userservice->getUserByUsername($posteduser)) {
         $tplVars['error'] = T_('This username already exists, please make another choice.');
+        
+    // Check if username is valid (length, authorized characters)
+    } elseif (!$userservice->isValidUsername($posteduser)) {
+        $tplVars['error'] = T_('This username is not valid (too long, forbidden characters...), please make another choice.');        
     
     // Check if e-mail address is valid
     } elseif (!$userservice->isValidEmail($_POST['email'])) {
