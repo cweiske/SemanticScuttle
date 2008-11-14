@@ -1,5 +1,9 @@
 <?php
 $this->includeTemplate($GLOBALS['top_include']);
+
+$userservice =& ServiceFactory::getServiceInstance('UserService');
+$currentUser = $userservice->getCurrentUser();
+$currentUserId = $userservice->getCurrentUserId();
 ?>
 
 <ul>
@@ -13,7 +17,12 @@ $this->includeTemplate($GLOBALS['top_include']);
 <ul>
 <li><a href="http://sourceforge.net/projects/semanticscuttle/">Semantic Scuttle</a> <?php echo T_('is licensed under the ');?> <a href="http://www.gnu.org/copyleft/gpl.html"><acronym title="GNU\'s Not Unix">GNU</acronym> General Public License</a> (<?php echo T_('you can freely host it on your own web server.'); ?>)</li>
 <li><?php echo sprintf(T_('%1$s supports most of the <a href="http://del.icio.us/doc/api">del.icio.us <abbr title="Application Programming Interface">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won\'t let you change the API address, ask the creator to add this setting. You never know, they might just do it.'), $GLOBALS['sitename']); ?></li>
+
+
+
+<?php if(!is_null($currentUser) && $userservice->isAdmin($currentUserId)): ?>
 <li>SemanticScuttle v0.90</li>
+<?php endif ?>
 </ul>
 
 <?php
