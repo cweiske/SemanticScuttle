@@ -40,7 +40,7 @@ $this->includeTemplate($GLOBALS['top_include']);
 </tr>
 <tr>
     <th align="left"><?php echo T_('Homepage'); ?></th>
-    <td><input type="text" name="pPage" size="75" value="<?php echo filter($row['homepage'], 'xml'); ?>" /></td>
+    <td><input type="text" name="pPage" size="75" value="<?php echo filter($row['homepage']); ?>" /></td>
 </tr>
 <tr>
     <th align="left"><?php echo T_('Description'); ?></th>

@@ -393,8 +393,9 @@ class UserService {
         	if (strlen($username) > 24) {
         		// too long usernames are cut by database and may cause bugs when compared 
         		return false;
-        	} else {
-        		return true;
+        	} elseif (preg_match('/(\W)/', $username) > 0) {
+        		// forbidden non-alphanumeric characters
+        		return false;
         	}
         	return true;
         }        

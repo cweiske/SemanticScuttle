@@ -10,13 +10,13 @@ $this->includeTemplate($GLOBALS['top_include']);
 if ($row['name'] != "") {
 ?>
 <dt><?php echo T_('Name'); ?></dt>
-    <dd><?php echo $row['name']; ?></dd>
+    <dd><?php echo filter($row['name']); ?></dd>
 <?php
 }
 if ($row['homepage'] != "") {
 ?>
 <dt><?php echo T_('Homepage'); ?></dt>
-    <dd><a href="<?php echo $row['homepage']; ?>"><?php echo $row['homepage']; ?></a></dd>
+    <dd><a href="<?php echo filter($row['homepage'], 'url'); ?>"><?php echo filter($row['homepage']); ?></a></dd>
 <?php
 }
 ?>
