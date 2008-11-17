@@ -20,7 +20,7 @@ String.prototype.trim = function() {
 var deleted = false;
 function deleteBookmark(ele, input){
     var confirmDelete = "<span><?php echo T_('Are you sure?') ?> <a href=\"#\" onclick=\"deleteConfirmed(this, " + input + ", \'\'); return false;\"><?php echo T_('Yes'); ?></a> - <a href=\"#\" onclick=\"deleteCancelled(this); return false;\"><?php echo T_('No'); ?></a></span>";
-    ele.style.display = 'none';
+    ele.style.display = 'none';    
     ele.parentNode.innerHTML = ele.parentNode.innerHTML + confirmDelete;
 }
 
@@ -34,14 +34,16 @@ function deleteCancelled(ele) {
 function deleteConfirmed(ele, input, response) {
     if (deleted == false) {
         deleted = ele.parentNode.parentNode.parentNode.parentNode;
-    }
+    }    
     var post = deleted;
-    post.className = 'xfolkentry deleted';
+    post.className = 'xfolkentry deleted';    
     if (response != '') {
         post.style.display = 'none';
         deleted = false;
     } else {
         loadXMLDoc('<?php echo $root; ?>ajaxDelete.php?id=' + input);
+        post.style.display = 'none';
+        
     }
 }
 
