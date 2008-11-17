@@ -73,6 +73,15 @@ if (isset($_POST['submitted']) && $currentUserID == $userid) {
     $detMail = trim($_POST['pMail']);
     $detPage = trim($_POST['pPage']);
     $detDesc = filter($_POST['pDesc']);
+    
+    // manage token preventing from CSRF vulnaribilities
+    if ( !isset($_SESSION['token'], $_SESSION['token_stamp']) 
+        || time() - $_SESSION['token_stamp'] > 600 //limit token lifetime, optionnal
+        || $_SESSION['token'] != $_POST['token']) {
+        $error = true;
+        $tplVars['error'] = T_('Invalid Token');
+    }
+    
     if ($detPass != $detPassConf) {
         $error = true;
         $tplVars['error'] = T_('Password and confirmation do not match.');
@@ -98,8 +107,14 @@ if (isset($_POST['submitted']) && $currentUserID == $userid) {
 if ($currentUserID != $userid) {
     $templatename = 'profile.tpl.php';
 } else {
+	//Token Init
+	$_SESSION['token'] = md5(uniqid(rand(), true));
+	$_SESSION['token_stamp'] = time();
+	
     $templatename = 'editprofile.tpl.php';
     $tplVars['formaction']  = createURL('profile', $user);
+    $tplVars['token'] = $_SESSION['token'];
+    
 }
 
 $tplVars['row'] = $userinfo;
