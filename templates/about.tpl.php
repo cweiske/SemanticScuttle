@@ -21,7 +21,7 @@ $currentUserId = $userservice->getCurrentUserId();
 
 
 <?php if(!is_null($currentUser) && $userservice->isAdmin($currentUserId)): ?>
-<li>SemanticScuttle v0.90</li>
+<li>SemanticScuttle v0.91</li>
 <?php endif ?>
 </ul>
 
