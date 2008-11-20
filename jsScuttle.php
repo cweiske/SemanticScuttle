@@ -62,7 +62,7 @@ function isAvailable(input, response){
     username = username.trim();
     var availability = document.getElementById("availability");
     if (username != '') {
-        usernameField.style.backgroundImage = 'url(<?php echo $root; ?>loading.gif)';
+        usernameField.style.backgroundImage = 'url(<?php echo $root; ?>images/loading.gif)';
         if (response != '') {
             usernameField.style.backgroundImage = 'none';
             if (response == 'true') {
@@ -92,7 +92,7 @@ function useAddress(ele) {
 function getTitle(input, response){
     var title = document.getElementById('titleField');
     if (title.value == '') {
-        title.style.backgroundImage = 'url(<?php echo $root; ?>loading.gif)';
+        title.style.backgroundImage = 'url(<?php echo $root; ?>images/loading.gif)';
         if (response != null) {
             title.style.backgroundImage = 'none';
             title.value = response;
