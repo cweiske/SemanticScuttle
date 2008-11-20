@@ -82,7 +82,7 @@ th {
 /* HEADER */
 
 div#header {
-    background: #FFF url('bg_header.png') bottom repeat-x;
+    background: #FFF url('images/bg_header.png') bottom repeat-x;
     border-bottom: 3px solid #9CD;
     clear: both;
 }
@@ -106,11 +106,11 @@ h1 {
     text-transform: lowercase;
 }
 html > body h1 {
-    background: url('logo.png') no-repeat 10px;
+    background: url('images/logo.png') no-repeat 10px;
     padding-left: 75px;
 }
 html > body div#header.popup h1 {
-    background: url('logo_24.png') no-repeat 10px;
+    background: url('images/logo_24.png') no-repeat 10px;
     padding: 0.5em 0.5em 0.5em 50px;
 }
 /*html > body div#header #welcome {
@@ -136,7 +136,7 @@ h1 a:hover {
     color: #000;
 }
 h2 {
-    background: #666 url('bg_bar.png') center center repeat-x;
+    background: #666 url('images/bg_bar.png') center center repeat-x;
     border-bottom: 3px solid #DDD;
     clear: both;
     color: #DDD;
@@ -244,7 +244,7 @@ div#sidebar a:hover {
     color: #773;
 }
 div#sidebar>div {
-    background: #FFF url('bg_sidebar.png') bottom repeat-x;
+    background: #FFF url('images/bg_sidebar.png') bottom repeat-x;
     border: 1px solid #CC8;
     color: #555;
     margin-bottom: 1em;
