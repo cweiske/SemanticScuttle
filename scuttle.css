@@ -243,7 +243,7 @@ div#sidebar a {
 div#sidebar a:hover {
     color: #773;
 }
-div#sidebar div {
+div#sidebar>div {
     background: #FFF url('bg_sidebar.png') bottom repeat-x;
     border: 1px solid #CC8;
     color: #555;
@@ -282,6 +282,10 @@ div#sidebar ul li {
     margin: 0.5em 0;
 }
 
+div#related {
+    padding: 0.5em;
+}
+
 /* TAGS */
 
 p.commondescription {
@@ -309,6 +313,17 @@ p.tags span:hover {
     text-decoration: underline;
 }
 p.tags span.selected {
+    background: #CEC;
+}
+
+.treeTag {
+	color: #999955;
+}
+.treeTag:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.treeTag.selected {
     background: #CEC;
 }
 

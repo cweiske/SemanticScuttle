@@ -79,6 +79,7 @@ $thumbnailsKey = '';   #then artviper.net send you a UserId and a secretKey
 $enableCommonTagDescription = true; # enableCommonTagDescription {true, false}
 $menuTag = 'menu'; # name of the tag whose subtags will appear into the menu box
 $maxSizeMenuBlock = 7; # maximum number of items (tags) appearing into menu box
+$menu2Tags = array('example', 'of', 'menu', 'tags'); # list of tags used by menu2 sidebar box (void list = hidden menu2 box)
 
 ### Other ###
 $sizeSearchHistory = 10; # number of users' searches that are saved {1..10[Default]..-1[Unlimited]}

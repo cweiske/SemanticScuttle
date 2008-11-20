@@ -23,7 +23,7 @@ if(isset($rsschannels)) {
 	src="<?php echo $GLOBALS['root']; ?>jsScuttle.php"></script>
 
 <link rel="stylesheet" type="text/css"
-	href="http://ajax.googleapis.com/ajax/libs/dojo/1.2/dijit/themes/tundra/tundra.css">
+	href="http://ajax.googleapis.com/ajax/libs/dojo/1.2/dijit/themes/nihilo/nihilo.css">
 
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/dojo/1.2/dojo/dojo.xd.js"
@@ -32,14 +32,15 @@ if(isset($rsschannels)) {
 <script type="text/javascript">
 dojo.require("dojo.parser");
 dojo.require("dojo.data.ItemFileReadStore");
-dojo.require("dojox.form.MultiComboBox");     
+dojo.require("dojox.form.MultiComboBox");
+dojo.require("dijit.Tree");        
 </script>
 <?php endif ?>
 
 </head>
 
-<body class="tundra">
-<!-- the tundra class is used by Dojo widgets -->
+<body class="nihilo">
+<!-- the class is used by Dojo widgets -->
 
 <?php
 $headerstyle = '';
