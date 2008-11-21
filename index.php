@@ -21,18 +21,27 @@
 
 require_once('header.inc.php');
 
+
+/* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
 $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
 
+/* Managing possible inputs */
+isset($_GET['action']) ? define('GET_ACTION', $_GET['action']): define('GET_ACTION', '');
+isset($_GET['page']) ? define('GET_PAGE', $_GET['page']): define('GET_PAGE', 0);
+isset($_GET['sort']) ? define('GET_SORT', $_GET['sort']): define('GET_SORT', '');
+//isset($_GET['popup']) ? define('GET_POPUP', $_GET['popup']): define('GET_SORT', '');
+
+
+// Logout action
 $tplvars = array();
-if (isset($_GET['action'])){
-	if ($_GET['action'] == "logout") {
-		$userservice->logout();
-		$tplvars['msg'] = T_('You have now logged out');
-	}
+if (GET_ACTION == "logout") {
+	$userservice->logout();
+	$tplvars['msg'] = T_('You have now logged out');
 }
+
 
 // Header variables
 $tplVars['loadjs'] = true;
@@ -54,8 +63,8 @@ if ($usecache) {
 
 // Pagination
 $perpage = getPerPageCount();
-if (isset($_GET['page']) && intval($_GET['page']) > 1) {
-	$page = $_GET['page'];
+if (intval(GET_PAGE) > 1) {
+	$page = GET_PAGE;
 	$start = ($page - 1) * $perpage;
 } else {
 	$page = 0;

@@ -1,5 +1,7 @@
-# this file is used if you configure your scuttle for nice urls
+#####################################
+# the first part of this file is used if you configure your scuttle for nice urls
 # (see $cleanurls in config.inc.php)
+#####################################
 
 #Options +FollowSymlinks
 #RewriteEngine On
@@ -30,3 +32,11 @@ RewriteRule ^([^/]+)/?(.*) $1.php?query=$2 [L,QSA]        #option 1
 #RewriteRule ^([^/]+)/?(.*)       $1.php/$2       [L]     #option 2
 
 </IfModule>
+
+
+#####################################
+# This second part is used to speed-up the application
+#####################################
+
+
+

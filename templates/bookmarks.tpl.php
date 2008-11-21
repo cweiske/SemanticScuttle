@@ -1,8 +1,12 @@
 <?php
+
+/* Service creation: only useful services are created */
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
 $tagservice =& ServiceFactory::getServiceInstance('TagService');
 $cdservice =& ServiceFactory::getServiceInstance('CommonDescriptionService');
+
+
 
 $logged_on_userid = $userservice->getCurrentUserId();
 $currentUser = $userservice->getCurrentUser();
