@@ -241,7 +241,9 @@ class Bookmark2TagService {
             message_die(GENERAL_ERROR, 'Could not get tags', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
-        return $this->db->sql_fetchrowset($dbresult);
+        
+        $output = $this->db->sql_fetchrowset($dbresult);
+        return $output;
     }
     
   

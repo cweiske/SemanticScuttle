@@ -1,14 +1,6 @@
 <?php
-// UTF-8 functions
-require_once(dirname(__FILE__) .'/includes/utf8.php');
+/* Define functions used into the application */
 
-// Translation
-require_once(dirname(__FILE__) .'/includes/php-gettext/gettext.inc');
-$domain = 'messages';
-T_setlocale(LC_MESSAGES, $locale);
-T_bindtextdomain($domain, dirname(__FILE__) .'/locales');
-T_bind_textdomain_codeset($domain, 'UTF-8');
-T_textdomain($domain);
 
 // Converts tags:
 // - direction = out: convert spaces to underscores;
