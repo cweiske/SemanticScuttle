@@ -68,13 +68,14 @@ $dtend = date('Y-m-d H:i:s', strtotime('tomorrow'));
 $tplVars['page'] = $page;
 $tplVars['start'] = $start;
 $tplVars['popCount'] = 30;
-//$tplVars['sidebar_blocks'] = array('search', 'users', 'linked', 'recent');
 $tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];
 $tplVars['range'] = 'all';
 $tplVars['pagetitle'] = T_('Store, share and tag your favourite links');
 $tplVars['subtitle'] = T_('All Bookmarks');
 $tplVars['bookmarkCount'] = $start + 1;
+
 $bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, NULL, NULL, NULL, getSortOrder(), NULL, 0, $dtend);
+
 $tplVars['total'] = $bookmarks['total'];
 $tplVars['bookmarks'] =& $bookmarks['bookmarks'];
 $tplVars['cat_url'] = createURL('bookmarks', '%1$s/%2$s');
