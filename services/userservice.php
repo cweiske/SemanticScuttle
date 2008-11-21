@@ -23,8 +23,8 @@ class UserService {
         function UserService(& $db) {
         	$this->db =& $db;
         	$this->tablename = $GLOBALS['tableprefix'] .'users';
-        	$this->sessionkey = $GLOBALS['cookieprefix'].INSTALLATION_ID.'-currentuserid';
-        	$this->cookiekey = $GLOBALS['cookieprefix'].INSTALLATION_ID.'-login';
+        	$this->sessionkey = INSTALLATION_ID.'-currentuserid';
+        	$this->cookiekey = INSTALLATION_ID.'-login';
         	$this->profileurl = createURL('profile', '%2$s');
         }
 
@@ -124,10 +124,11 @@ class UserService {
         	if (!is_null($newval)) //internal use only: reset currentuser
         	$currentuser = $newval;
         	else if ($refresh || !isset($currentuser)) {
-        		if ($id = $this->getCurrentUserId())
-        		$currentuser = $this->getUser($id);
-        		else
-        		return null;
+        		if ($id = $this->getCurrentUserId()) {
+        			$currentuser = $this->getUser($id);
+        		} else {
+        			$currentuser = null;
+        		}
         	}
         	return $currentuser;
         }

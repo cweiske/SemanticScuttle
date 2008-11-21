@@ -13,7 +13,7 @@ if ($userservice->isLoggedOn()) {
         <li><a href="<?php echo createURL('watchlist', $cUsername); ?>"><?php echo T_('Watchlist'); ?></a></li>
 	<li><a href="<?php echo $userservice->getProfileUrl($cUserId, $cUsername); ?>"><?php echo T_('Profile'); ?></a></li>
         <li><a href="<?php echo createURL('bookmarks', $cUsername . '?action=add'); ?>"><?php echo T_('Add a Bookmark'); ?></a></li>
-        <li class="access"><?php echo $cUsername?><a href="<?php echo $GLOBALS['root']; ?>?action=logout">(<?php echo T_('Log Out'); ?>)</a></li>
+        <li class="access"><?php echo $cUsername?><a href="<?php echo ROOT ?>?action=logout">(<?php echo T_('Log Out'); ?>)</a></li>
         <li><a href="<?php echo createURL('about'); ?>"><?php echo T_('About'); ?></a></li>
 	<?php if($isAdmin): ?>
         <li><a href="<?php echo createURL('admin', ''); ?>"><?php echo '['.T_('Admin').']'; ?></a></li>

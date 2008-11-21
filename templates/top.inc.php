@@ -5,9 +5,9 @@
 <title><?php echo filter($GLOBALS['sitename'] . (isset($pagetitle) ? ': ' . $pagetitle : '')); ?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="icon" type="image/png"
-	href="<?php echo $GLOBALS['root']; ?>icon.png" />
+	href="<?php echo ROOT ?>icon.png" />
 <link rel="stylesheet" type="text/css"
-	href="<?php echo $GLOBALS['root']; ?>scuttle.css" />
+	href="<?php echo ROOT ?>scuttle.css" />
 <?php
 if(isset($rsschannels)) {
 	$size = count($rsschannels);
@@ -20,7 +20,7 @@ if(isset($rsschannels)) {
 <?php if (isset($loadjs)) :?>
 
 <script type="text/javascript"
-	src="<?php echo $GLOBALS['root']; ?>jsScuttle.php"></script>
+	src="<?php echo ROOT ?>jsScuttle.php"></script>
 
 <link rel="stylesheet" type="text/css"
 	href="http://ajax.googleapis.com/ajax/libs/dojo/1.2/dijit/themes/nihilo/nihilo.css">
@@ -50,7 +50,7 @@ if(isset($_GET['popup'])) {
 ?>
 
 <div id="header" <?php echo $headerstyle; ?>>
-<h1><a href="<?php echo $GLOBALS['root']; ?>"><?php echo $GLOBALS['sitename']; ?></a></h1>
+<h1><a href="<?php echo ROOT ?>"><?php echo $GLOBALS['sitename']; ?></a></h1>
 <?php
 if(!isset($_GET['popup'])) {
 	$this->includeTemplate('toolbar.inc');

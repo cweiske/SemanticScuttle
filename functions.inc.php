@@ -85,11 +85,11 @@ function multi_array_search($needle, $haystack) {
 }
 
 function createURL($page = '', $ending = '') {
-    global $cleanurls, $root;
+    global $cleanurls;
     if (!$cleanurls && $page != '') {
         $page .= '.php';
     }
-    return $root . $page .'/'. $ending;
+    return ROOT . $page .'/'. $ending;
 }
 
 /* Shorten a string like a URL for example by cutting the middle of it */
@@ -112,7 +112,7 @@ function message_die($msg_code, $msg_text = '', $msg_title = '', $err_line = '',
 	
 	// Get SQL error if we are debugging. Do this as soon as possible to prevent 
 	// subsequent queries from overwriting the status of sql_error()
-	if (DEBUG && ($msg_code == GENERAL_ERROR || $msg_code == CRITICAL_ERROR)) {
+	if (DEBUG_MODE && ($msg_code == GENERAL_ERROR || $msg_code == CRITICAL_ERROR)) {
 		$sql_error = is_null($db) ? '' : $db->sql_error();
 		$debug_text = '';
 		
@@ -157,10 +157,10 @@ function message_die($msg_code, $msg_text = '', $msg_title = '', $err_line = '',
 			break;
 	}
 
-	// Add on DEBUG info if we've enabled debug mode and this is an error. This
-	// prevents debug info being output for general messages should DEBUG be
+	// Add on DEBUG_MODE info if we've enabled debug mode and this is an error. This
+	// prevents debug info being output for general messages should DEBUG_MODE be
 	// set TRUE by accident (preventing confusion for the end user!)
-	if (DEBUG && ($msg_code == GENERAL_ERROR || $msg_code == CRITICAL_ERROR)) {
+	if (DEBUG_MODE && ($msg_code == GENERAL_ERROR || $msg_code == CRITICAL_ERROR)) {
 		if ($debug_text != '')
 			$msg_text = $msg_text . '<br /><br /><strong>'. T_('DEBUG MODE') .'</strong>'. $debug_text;
 	}

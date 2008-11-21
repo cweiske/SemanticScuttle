@@ -14,7 +14,7 @@ if($GLOBALS['enableGoogleCustomSearch']==false) {
 
 <!-- Google CSE Search Box Begins  -->
 <form id="cref" action="http://www.google.com/cse">
-  <input type="hidden" name="cref" value="<?php echo $GLOBALS['root']?>gsearch/context.php" />
+  <input type="hidden" name="cref" value="<?php echo ROOT;?>gsearch/context.php" />
   <input type="text" name="q" size="40" />
   <input type="submit" name="sa" value="Search" />
 </form>

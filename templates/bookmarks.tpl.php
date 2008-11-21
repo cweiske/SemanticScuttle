@@ -257,7 +257,7 @@ window.onload = playerLoad;
     $brss = '';
     $size = count($rsschannels);
     for ($i = 0; $i < $size; $i++) {
-        $brss =  '<a style="background:#FFFFFF" href="'. $rsschannels[$i][1] .'" title="'. $rsschannels[$i][0] .'"><img src="'. $GLOBALS['root'] .'images/rss.gif" width="16" height="16" alt="'. $rsschannels[$i][0] .'" /></a>'; 
+        $brss =  '<a style="background:#FFFFFF" href="'. $rsschannels[$i][1] .'" title="'. $rsschannels[$i][0] .'"><img src="'. ROOT .'images/rss.gif" width="16" height="16" alt="'. $rsschannels[$i][0] .'" /></a>'; 
     }
 
     echo '<p class="paging">'. $bfirst .'<span> / </span>'. $bprev .'<span> / </span>'. $bnext .'<span> / </span>'. $blast .'<span> / </span>'. sprintf(T_('Page %d of %d'), $page, $totalpages) ." ". $brss ." </p>\n";

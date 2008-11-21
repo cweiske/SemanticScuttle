@@ -14,7 +14,7 @@
         </LookAndFeel>
     </CustomSearchEngine>
 
-    <Include type="Annotations" href="<?php echo $GLOBALS['root'];?>api/export_gcs.php?xml=1" />
+    <Include type="Annotations" href="<?php echo ROOT;?>api/export_gcs.php?xml=1" />
 
 
 </GoogleCustomizations>

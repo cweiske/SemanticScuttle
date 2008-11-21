@@ -20,6 +20,7 @@
  ***************************************************************************/
 
 require_once('header.inc.php');
+
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
 $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');

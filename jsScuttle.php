@@ -2,7 +2,7 @@
 header('Content-Type: text/javascript');
 require_once('header.inc.php');
 require_once('functions.inc.php');
-$player_root = $root .'includes/player/';
+$player_root = ROOT .'includes/player/';
 ?>
 
 function _playerAdd(anchor) {
@@ -41,7 +41,7 @@ function deleteConfirmed(ele, input, response) {
         post.style.display = 'none';
         deleted = false;
     } else {
-        loadXMLDoc('<?php echo $root; ?>ajaxDelete.php?id=' + input);
+        loadXMLDoc('<?php echo ROOT; ?>ajaxDelete.php?id=' + input);
         post.style.display = 'none';
         
     }
@@ -62,7 +62,7 @@ function isAvailable(input, response){
     username = username.trim();
     var availability = document.getElementById("availability");
     if (username != '') {
-        usernameField.style.backgroundImage = 'url(<?php echo $root; ?>images/loading.gif)';
+        usernameField.style.backgroundImage = 'url(<?php echo ROOT; ?>images/loading.gif)';
         if (response != '') {
             usernameField.style.backgroundImage = 'none';
             if (response == 'true') {
@@ -73,7 +73,7 @@ function isAvailable(input, response){
                 availability.innerHTML = '<?php echo T_('Not Available'); ?>';
             }
         } else {
-            loadXMLDoc('<?php echo $root; ?>ajaxIsAvailable.php?username=' + username);
+            loadXMLDoc('<?php echo ROOT; ?>ajaxIsAvailable.php?username=' + username);
         }
     }
 }
@@ -92,12 +92,12 @@ function useAddress(ele) {
 function getTitle(input, response){
     var title = document.getElementById('titleField');
     if (title.value == '') {
-        title.style.backgroundImage = 'url(<?php echo $root; ?>images/loading.gif)';
+        title.style.backgroundImage = 'url(<?php echo ROOT; ?>images/loading.gif)';
         if (response != null) {
             title.style.backgroundImage = 'none';
             title.value = response;
         } else if (input.indexOf('http') > -1) {
-            loadXMLDoc('<?php echo $root; ?>ajaxGetTitle.php?url=' + input);
+            loadXMLDoc('<?php echo ROOT; ?>ajaxGetTitle.php?url=' + input);
         } else {
             return false;
         }

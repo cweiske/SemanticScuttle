@@ -27,7 +27,7 @@ window.onload = function() {
         <td></td>
     </tr>
     </table>
-    <p>&raquo; <a href="<?php echo $GLOBALS['root'] ?>password.php"><?php echo T_('Forgotten your password?') ?></p>
+    <p>&raquo; <a href="<?php echo ROOT ?>password.php"><?php echo T_('Forgotten your password?') ?></p>
 </form>
 
 <?php
