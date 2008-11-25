@@ -20,6 +20,8 @@ class BookmarkService {
 			$userservice = & ServiceFactory :: getServiceInstance('UserService');
 			$sId = $userservice->getCurrentUserId();
 			$range = ' AND uId = '. $sId;
+		} else {
+			$range = '';
 		}
 
 		$query = 'SELECT * FROM '. $this->getTableName() .' WHERE '. $fieldname .' = "'. $this->db->sql_escape($value) .'"'. $range;
@@ -271,6 +273,7 @@ class BookmarkService {
 		} else {
 			$arrWatch = $userservice->getWatchlist($user);
 			if (count($arrWatch) > 0) {
+				$query_3_1 = '';
 				foreach($arrWatch as $row) {
 					$query_3_1 .= 'B.uId = '. intval($row) .' OR ';
 				}
@@ -280,7 +283,7 @@ class BookmarkService {
 			}
 			$query_3 .= ' AND ('. $query_3_1 .') AND B.bStatus IN (0, 1)';
 		}
-
+		
 		$query_5 = '';
 		if($hash == null) {
 			$query_5.= ' GROUP BY B.bHash';

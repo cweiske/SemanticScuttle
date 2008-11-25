@@ -27,7 +27,7 @@ $this->includeTemplate($GLOBALS['top_include']);
 </tr>
 <tr>
     <th align="left"><?php echo T_('E-mail'); ?></th>
-    <td><input type="text" name="pMail" size="75" value="<?php echo filter($row['email'], 'xml'); ?>" /></td>
+    <td><input type="text" name="pMail" size="75" value="<?php echo filter($objectUser->getEmail(), 'xml'); ?>" /></td>
     <td>&larr; <?php echo T_('Required'); ?></td>
 </tr>
 </table>
@@ -37,15 +37,15 @@ $this->includeTemplate($GLOBALS['top_include']);
 <table class="profile">
 <tr>
     <th align="left"><?php echo T_('Name'); ?></th>
-    <td><input type="text" name="pName" size="75" value="<?php echo filter($row['name'], 'xml'); ?>" /></td>
+    <td><input type="text" name="pName" size="75" value="<?php echo filter($objectUser->getName(), 'xml'); ?>" /></td>
 </tr>
 <tr>
     <th align="left"><?php echo T_('Homepage'); ?></th>
-    <td><input type="text" name="pPage" size="75" value="<?php echo filter($row['homepage']); ?>" /></td>
+    <td><input type="text" name="pPage" size="75" value="<?php echo filter($objectUser->getHomepage()); ?>" /></td>
 </tr>
 <tr>
     <th align="left"><?php echo T_('Description'); ?></th>
-    <td><textarea name="pDesc" cols="75" rows="10"><?php echo $row['uContent']; ?></textarea></td>
+    <td><textarea name="pDesc" cols="75" rows="10"><?php echo $objectUser->getContent(); ?></textarea></td>
 </tr>
 <tr>
     <th></th>

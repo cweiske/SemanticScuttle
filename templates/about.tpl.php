@@ -1,9 +1,13 @@
 <?php
-$this->includeTemplate($GLOBALS['top_include']);
 
+/* Service creation: only useful services are created */
 $userservice =& ServiceFactory::getServiceInstance('UserService');
-$currentUser = $userservice->getCurrentUser();
-$currentUserId = $userservice->getCurrentUserId();
+//$currentUser = $userservice->getCurrentUser();
+//$currentUserId = $userservice->getCurrentUserId();
+
+$currentObjectUser = $userservice->getCurrentObjectUser();
+
+$this->includeTemplate($GLOBALS['top_include']);
 ?>
 
 <ul>
@@ -20,9 +24,10 @@ $currentUserId = $userservice->getCurrentUserId();
 
 
 
-<?php if(!is_null($currentUser) && $userservice->isAdmin($currentUserId)): ?>
+<?php if(!is_null($currentObjectUser) && $currentObjectUser->isAdmin()): ?>
 <li>SemanticScuttle v0.91</li>
 <?php endif ?>
+
 </ul>
 
 <?php

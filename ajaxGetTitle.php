@@ -25,6 +25,9 @@ header("Cache-Control: no-cache, must-revalidate");
 
 require_once('header.inc.php');
 
+/* Managing all possible inputs */
+isset($_GET['url']) ? define('GET_URL', $_GET['url']): define('GET_URL', '');
+
 function getTitle($url) {
 	$fd = @fopen($url, 'r');
 	if ($fd) {
@@ -65,6 +68,6 @@ echo '<?xml version="1.0" encoding="utf-8"?>';
 getTitle
 </method>
 <result>
-<?php echo getTitle($_GET['url']); ?>
+<?php echo getTitle(GET_URL); ?>
 </result>
 </response>

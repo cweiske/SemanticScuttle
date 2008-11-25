@@ -1,27 +1,24 @@
 <?php
 
+/* Service creation: only useful services are created */
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 
-$currentUser = $userservice->getCurrentUser();
-$currentUserID = $userservice->getCurrentUserId();
-$currentUsername = $currentUser[$userservice->getFieldName('username')];
-
+$currentObjectUser = $userservice->getCurrentObjectUser();
 
 $this->includeTemplate($GLOBALS['top_include']);
 
 echo '<ol id="bookmarks">';
 
-foreach(array_keys($users) as $key) {
-
+foreach($users as $user) {
 	echo '<li class="xfolkentry">'."\n";
 
 	echo '<div class="link">';
-	echo '<a href="'.createURL('profile', $users[$key][$userservice->getFieldname('username')]).'">'.$users[$key][$userservice->getFieldName('username')].'</a>';
+	echo '<a href="'.createURL('profile', $user->getUsername()).'">'.$user->getUsername().'</a>';
 	echo '</div>';
 
-	if($users[$key][$userservice->getFieldName('username')] != $currentUsername) {
+	if($user->getUsername() != $currentObjectUser->getUsername()) {
 	    echo '<div class="meta">';
-	    echo '<a href="'.createURL('admin','delete/'.$users[$key][$userservice->getFieldname('username')]).'" onclick="return confirm(\''.T_('Are you sure?').'\');">'.T_('Delete').'</a>';
+	    echo '<a href="'.createURL('admin','delete/'.$user->getUsername()).'" onclick="return confirm(\''.T_('Are you sure?').'\');">'.T_('Delete').'</a>';
 	    echo '</div>';
 	}
 

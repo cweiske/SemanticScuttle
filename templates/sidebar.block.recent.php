@@ -20,7 +20,7 @@ if ($recentTags && count($recentTags) > 0) {
     <?php
     $contents = '<p class="tags">';
 
-    if(!isset($user)) {
+    if(!isset($user) || $user == '') {
     	$user = '';
 		$cat_url = createURL('tags', '%2$s');
     }

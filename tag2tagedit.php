@@ -20,11 +20,18 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 
 require_once('header.inc.php');
+
+/* Service creation: only useful services are created */
 $tag2tagservice = & ServiceFactory :: getServiceInstance('Tag2TagService');
 $templateservice = & ServiceFactory :: getServiceInstance('TemplateService');
 $userservice = & ServiceFactory :: getServiceInstance('UserService');
 
+/* Managing all possible inputs */
+isset($_SERVER['HTTP_REFERER']) ? define('HTTP_REFERER', $_SERVER['HTTP_REFERER']): define('HTTP_REFERER', '');
+
+/* Managing current logged user */
 $logged_on_user = $userservice->getCurrentUser();
+
 
 //permissions
 if($logged_on_user == null) {
@@ -33,23 +40,18 @@ if($logged_on_user == null) {
     exit();
 }
 
-list ($url, $tag1, $tag2) = explode('/', $_SERVER['PATH_INFO']);
-
-/*if ($_POST['confirm']) {
-    $tag = $_POST['tag1'];
-    $linkType = $_POST['linkType'];
-    $newTag = $_POST['tag2'];
-    if ($tag2tagservice->removeLinkedTags($_POST['tag1'], $_POST['tag2'], $linkType, $userservice->getCurrentUserId())) {
-        $tplVars['msg'] = T_('Tag link deleted');
-        header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')]));
-    } else {
-        $tplVars['error'] = T_('Failed to delete the link');
-        $templateservice->loadTemplate('error.500.tpl', $tplVars);
-        exit();
-    }
-} elseif ($_POST['cancel']) {
-    header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')] .'/'. $tags));
-}*/
+/* Managing path info */
+if(isset($_SERVER['PATH_INFO'])) {
+	$exploded = explode('/', $_SERVER['PATH_INFO']);
+	if(count($exploded) == 3) {
+		list ($url, $tag1, $tag2) = explode('/', $_SERVER['PATH_INFO']);
+	} else {
+		list ($url, $tag1) = explode('/', $_SERVER['PATH_INFO']);
+		$tag2 = '';
+	}
+} else {
+	$url = $tag1 =  $tag2 = '';
+}
 
 $tplVars['links']	= $tag2tagservice->getLinks($userservice->getCurrentUserId());
 
@@ -58,6 +60,6 @@ $tplVars['tag2']	= $tag2;
 $tplVars['subtitle']    = T_('Edit Link Between Tags') .': '. $tag1.' > '.$tag2;
 $tplVars['formaddaction']  = createUrl('tag2tagadd');
 $tplVars['formdeleteaction']  = createUrl('tag2tagdelete');
-$tplVars['referrer']    = $_SERVER['HTTP_REFERER'];
+$tplVars['referrer']    = HTTP_REFERER;
 $templateservice->loadTemplate('tag2tagedit.tpl', $tplVars);
 ?>

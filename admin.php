@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 require_once('header.inc.php');
 
+/* Service creation: only useful services are created */
 $userservice = & ServiceFactory :: getServiceInstance('UserService');
 $bookmark2tagservice = & ServiceFactory :: getServiceInstance('Bookmark2Tagservice');
 $bookmarkservice = & ServiceFactory :: getServiceInstance('BookmarkService');
@@ -28,18 +29,20 @@ $templateservice = & ServiceFactory :: getServiceInstance('TemplateService');
 // Header variables
 $tplVars['subtitle'] = T_('Manage users');
 $tplVars['loadjs'] = true;
+$tplVars['sidebar_blocks'] = array('users' );
 
 if ( !$userservice->isLoggedOn() ) {
     header('Location: '. createURL('login', ''));
     exit();
 }
 
-$currentUser = $userservice->getCurrentUser();
-$currentUserID = $userservice->getCurrentUserId();
-$currentUsername = $currentUser[$userservice->getFieldName('username')];
+//$currentUser = $userservice->getCurrentUser();
+//$currentUserID = $userservice->getCurrentUserId();
+//$currentUsername = $currentUser[$userservice->getFieldName('username')];
+$currentObjectUser = $userservice->getCurrentObjectUser();
 
-if ( !$userservice->isAdmin($currentUserID) ) {
-    header('Location: '. createURL('bookmarks', $currentUsername));
+if ( !$currentObjectUser->isAdmin() ) {
+    header('Location: '. createURL('bookmarks', $currentObjectUser->getUsername()));
     exit();
 }
 
@@ -66,7 +69,7 @@ if ( $action ) {
 }
 
 $templatename = 'userlist.tpl';
-$users =& $userservice->getAllUsers();
+$users =& $userservice->getObjectUsers();
 
 if ( !is_array($users) ) {
 	$users = array();

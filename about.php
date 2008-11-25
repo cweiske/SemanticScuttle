@@ -19,6 +19,8 @@
  ***************************************************************************/
 
 require_once('header.inc.php');
+
+/* Service creation: only useful services are created */
 $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 
 $tplVars = array();

@@ -28,11 +28,10 @@ $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
 
-/* Managing possible inputs */
+/* Managing all possible inputs */
 isset($_GET['action']) ? define('GET_ACTION', $_GET['action']): define('GET_ACTION', '');
 isset($_GET['page']) ? define('GET_PAGE', $_GET['page']): define('GET_PAGE', 0);
 isset($_GET['sort']) ? define('GET_SORT', $_GET['sort']): define('GET_SORT', '');
-//isset($_GET['popup']) ? define('GET_POPUP', $_GET['popup']): define('GET_SORT', '');
 
 
 // Logout action
@@ -91,6 +90,8 @@ $tplVars['cat_url'] = createURL('bookmarks', '%1$s/%2$s');
 $tplVars['nav_url'] = createURL('index', '%3$s');
 $tplVars['summarizeLinkedTags'] = true;
 $tplVars['pageName'] = PAGE_INDEX;
+$tplVars['user'] = '';
+$tplVars['currenttag'] = '';
 
 $templateservice->loadTemplate('bookmarks.tpl', $tplVars);
 

@@ -20,20 +20,32 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 
 require_once('header.inc.php');
+
+
+/* Service creation: only useful services are created */
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 
+
+/* Managing all possible inputs */
+isset($_POST['keeppass']) ? define('POST_KEEPPASS', $_POST['keeppass']): define('POST_KEEPPASS', '');
+isset($_POST['submitted']) ? define('POST_SUBMITTED', $_POST['submitted']): define('POST_SUBMITTED', '');
+isset($_POST['username']) ? define('POST_USERNAME', $_POST['username']): define('POST_USERNAME', '');
+isset($_POST['password']) ? define('POST_PASSWORD', $_POST['password']): define('POST_PASSWORD', '');
+isset($_POST['query']) ? define('POST_QUERY', $_POST['query']): define('POST_QUERY', '');
+
+
 $tplVars = array();
 
-$keeppass = isset($_POST['keeppass'])&&($_POST['keeppass']=='yes')?true:false;
+$keeppass = (POST_KEEPPASS=='yes')?true:false;
 
 $login = false;
-if (isset($_POST['submitted']) && isset($_POST['username']) && isset($_POST['password'])) {
-    $posteduser = trim(utf8_strtolower($_POST['username']));
-    $login = $userservice->login($posteduser, $_POST['password'], $keeppass); 
+if (POST_SUBMITTED!='' && POST_USERNAME!='' && POST_PASSWORD!='') {
+    $posteduser = trim(utf8_strtolower(POST_USERNAME));
+    $login = $userservice->login($posteduser, POST_PASSWORD, $keeppass); 
     if ($login) {
-        if ($_POST['query'])
-            header('Location: '. createURL('bookmarks', $posteduser .'?'. $_POST['query']));
+        if (POST_QUERY)
+            header('Location: '. createURL('bookmarks', $posteduser .'?'. POST_QUERY));
         else
             header('Location: '. createURL('bookmarks', $posteduser));
     } else {
@@ -42,9 +54,8 @@ if (isset($_POST['submitted']) && isset($_POST['username']) && isset($_POST['pas
 }
 if (!$login) { 
     if ($userservice->isLoggedOn()) {
-        $cUser = $userservice->getCurrentUser();
-        $cUsername = strtolower($cUser[$userservice->getFieldName('username')]);
-        header('Location: '. createURL('bookmarks', $cUsername));
+        $cUser = $userservice->getCurrentObjectUser();
+        header('Location: '. createURL('bookmarks', strtolower($cUser->getUsername())));
     }
 
     $tplVars['subtitle']    = T_('Log In');

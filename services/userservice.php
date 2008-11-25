@@ -76,6 +76,22 @@ class UserService {
 		return $users;
 	}
 
+	function & getObjectUsers($nb=0) {
+		$query = 'SELECT * FROM '. $this->getTableName() .' ORDER BY `uId` DESC';
+		if($nb>0) {
+			$query .= ' LIMIT 0, '.$nb;
+		}
+		if (! ($dbresult =& $this->db->sql_query($query)) ) {
+			message_die(GENERAL_ERROR, 'Could not get user', '', __LINE__, __FILE__, $query, $this->db);
+			return false;
+		}
+
+		while ($row = & $this->db->sql_fetchrow($dbresult)) {
+			$users[] = new User($row[$this->getFieldName('primary')], $row[$this->getFieldName('username')]);
+		}
+		return $users;
+	}
+
 	function _randompassword() {
 		$seed = (integer) md5(microtime());
 		mt_srand($seed);
@@ -109,10 +125,15 @@ class UserService {
 		return $this->_getuser($this->getFieldName('username'), $username);
 	}
 
+	function getObjectUserByUsername($username) {
+		$user = $this->_getuser($this->getFieldName('username'), $username);
+		return new User($user[$this->getFieldName('primary')], $username);
+	}
+
 	function getUser($id) {
 		return $this->_getuser($this->getFieldName('primary'), $id);
 	}
-	
+
 	// Momentary useful in order to go to object code
 	function getObjectUser($id) {
 		$user = $this->_getuser($this->getFieldName('primary'), $id);
@@ -136,7 +157,7 @@ class UserService {
 		}
 		return $currentuser;
 	}
-	
+
 	// Momentary useful in order to go to object code
 	function getCurrentObjectUser($refresh = FALSE, $newval = NULL) {
 		static $currentObjectUser;
@@ -150,6 +171,22 @@ class UserService {
 			}
 		}
 		return $currentObjectUser;
+	}
+
+	function existsUserWithUsername($username) {
+		if($this->getUserByUsername($username) != '') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function existsUser($id) {
+		if($this->getUser($id) != '') {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	function isAdmin($userid) {
@@ -446,27 +483,84 @@ class UserService {
 	function setCookieKey($value) { $this->cookiekey = $value; }
 }
 
+
+/* Defines a user. Rare fields are filled if required. */
 class User {
 
 	var $id;
 	var $username;
+	var $name;
+	var $email;
+	var $homepage;
+	var $content;
+	var $datetime;
 	var $isAdmin;
 
 	function User($id, $username) {
 		$this->id = $id;
 		$this->username = $username;
 	}
-	
+
 	function getId() {
 		return $this->id;
 	}
-	
+
 	function getUsername() {
 		return $this->username;
 	}
+
+	function getName() {
+		// Look for value only if not already set
+		if(!isset($this->name)) {
+			$userservice =& ServiceFactory::getServiceInstance('UserService');
+			$user = $userservice->getUser($this->id);
+			$this->name = $user['name'];
+		}
+		return $this->name;
+	}
 	
+	function getEmail() {
+		// Look for value only if not already set
+		if(!isset($this->email)) {
+			$userservice =& ServiceFactory::getServiceInstance('UserService');
+			$user = $userservice->getUser($this->id);
+			$this->email = $user['email'];
+		}
+		return $this->email;
+	}
+
+	function getHomepage() {
+		// Look for value only if not already set
+		if(!isset($this->homepage)) {
+			$userservice =& ServiceFactory::getServiceInstance('UserService');
+			$user = $userservice->getUser($this->id);
+			$this->homepage = $user['homepage'];
+		}
+		return $this->homepage;
+	}
+	
+	function getContent() {
+		// Look for value only if not already set
+		if(!isset($this->content)) {
+			$userservice =& ServiceFactory::getServiceInstance('UserService');
+			$user = $userservice->getUser($this->id);
+			$this->content = $user['uContent'];
+		}
+		return $this->content;
+	}	
+
+	function getDatetime() {
+		// Look for value only if not already set
+		if(!isset($this->content)) {
+			$userservice =& ServiceFactory::getServiceInstance('UserService');
+			$user = $userservice->getUser($this->id);
+			$this->datetime = $user['uDatetime'];
+		}
+		return $this->datetime;
+	}
+
 	function isAdmin() {
-		// Look for value if not already set
+		// Look for value only if not already set
 		if(!isset($this->isAdmin)) {
 			$userservice =& ServiceFactory::getServiceInstance('UserService');
 			$this->isAdmin = $userservice->isAdmin($this->id);

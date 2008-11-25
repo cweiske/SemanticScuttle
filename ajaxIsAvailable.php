@@ -24,11 +24,18 @@ header("Last-Modified: ". gmdate("D, d M Y H:i:s") ." GMT");
 header("Cache-Control: no-cache, must-revalidate");
 
 require_once('header.inc.php');
+
+/* Service creation: only useful services are created */
 $userservice = & ServiceFactory :: getServiceInstance('UserService');
-if ($userservice->isReserved($_GET['username'])) {
+
+/* Managing all possible inputs */
+isset($_GET['username']) ? define('GET_USERNAME', $_GET['username']): define('GET_USERNAME', '');
+
+
+if ($userservice->isReserved(GET_USERNAME)) {
     $result = 'false';
 } else {
-    $result = $userservice->getUserByUsername($_GET['username']) ? 'false' : 'true';
+    $result = $userservice->getUserByUsername(GET_USERNAME) ? 'false' : 'true';
 }
 ?>
 <response>

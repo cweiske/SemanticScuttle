@@ -1,5 +1,7 @@
 <?php
-/* Manage input */
+
+
+/* Managing all possible inputs */
 $select_watchlist = isset($select_watchlist)?$select_watchlist:'';
 $select_all = isset($select_all)?$select_all:'';
 ?>
@@ -9,13 +11,11 @@ $select_all = isset($select_all)?$select_all:'';
     <table>
     <tr>
         <?php
-        $logged_on = false;
         if ($userservice->isLoggedOn()) {
-            $currentUser = $userservice->getCurrentUser();
-            $currentUsername = $currentUser[$userservice->getFieldName('username')];
-            $logged_on = true;
+            $currentUser = $userservice->getCurrentObjectUser();
+            $currentUsername = $currentUser->getUsername();
         }
-        if ($logged_on || isset($user)) {
+        if ($userservice->isLoggedOn() || isset($user)) {
         ?>
         <td><?php echo T_('Search' /* Search ... for */); ?></td>
         <td>
@@ -26,7 +26,7 @@ $select_all = isset($select_all)?$select_all:'';
                 <option value="<?php echo $user ?>"<?php //echo $selectUser; ?>><?php echo T_("this user's bookmarks"); ?></option>
                 <?php
                 }
-                if ($logged_on) {
+                if ($userservice->isLoggedOn()) {
                 ?>
                 <option value="<?php echo $currentUsername; ?>"<?php //echo $selectMy; ?>><?php echo T_('my bookmarks'); ?></option>
                 <option value="watchlist"<?php echo $select_watchlist; ?>><?php echo T_('my watchlist'); ?></option>

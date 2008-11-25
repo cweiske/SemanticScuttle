@@ -1,7 +1,12 @@
 <?php
-$this->includeTemplate($GLOBALS['top_include']);
+/* Service creation: only useful services are created */
 $userservice      = & ServiceFactory :: getServiceInstance('UserService');
+
+$this->includeTemplate($GLOBALS['top_include']);
+
 list ($url, $hash) = explode('/', $_SERVER['PATH_INFO']);
+
+
 ?>
 <script type="text/javascript">
 window.onload = function() {

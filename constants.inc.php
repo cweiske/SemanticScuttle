@@ -1,6 +1,6 @@
 <?php
 /*
- * Define constants use in all the application.
+ * Define constants used in all the application.
  * Some constants are based on variables from configuration file.
  */
 

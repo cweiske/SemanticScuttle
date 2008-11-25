@@ -20,25 +20,36 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 
 require_once('header.inc.php');
+
+/* Service creation: only useful services are created */
 $b2tservice = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
 $templateservice = & ServiceFactory :: getServiceInstance('TemplateService');
 $userservice = & ServiceFactory :: getServiceInstance('UserService');
 
-$logged_on_user = $userservice->getCurrentUser();
+/* Managing all possible inputs */
+isset($_POST['confirm']) ? define('POST_CONFIRM', $_POST['confirm']): define('POST_CONFIRM', '');
+isset($_POST['cancel']) ? define('POST_CANCEL', $_POST['cancel']): define('POST_CANCEL', '');
+isset($_POST['referrer']) ? define('POST_REFERRER', $_POST['referrer']): define('POST_REFERRER', '');
 
+/* Managing current logged user */
+$currentUser = $userservice->getCurrentObjectUser();
+
+/* Managing path info */
 list ($url, $tag) = explode('/', $_SERVER['PATH_INFO']);
 
-if ($_POST['confirm']) {
-    if ($b2tservice->deleteTag($logged_on_user['uId'], $tag)) {
+
+
+if (POST_CONFIRM) {
+    if ($b2tservice->deleteTag($currentUser->getId(), $tag)) {
         $tplVars['msg'] = T_('Tag deleted');        
-        header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')]));
+        header('Location: '. createURL('bookmarks', $currentUser->getUsername()));
     } else {
         $tplVars['error'] = T_('Failed to delete the tag');
         $templateservice->loadTemplate('error.500.tpl', $tplVars);
         exit();
     }
-} elseif ($_POST['cancel']) {
-    header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')] .'/'. $tags));
+} elseif (POST_CANCEL) {
+    header('Location: '. POST_REFERRER);
 }
 
 $tplVars['subtitle']    = T_('Delete Tag') .': '. $tag;

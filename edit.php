@@ -21,9 +21,28 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 require_once('header.inc.php');
 
+/* Service creation: only useful services are created */
 $bookmarkservice = & ServiceFactory :: getServiceInstance('BookmarkService');
 $templateservice = & ServiceFactory :: getServiceInstance('TemplateService');
 $userservice = & ServiceFactory :: getServiceInstance('UserService');
+
+/* Managing all possible inputs */
+isset($_POST['submitted']) ? define('POST_SUBMITTED', $_POST['submitted']): define('POST_SUBMITTED', '');
+isset($_POST['delete']) ? define('POST_DELETE', $_POST['delete']): define('POST_DELETE', '');
+
+isset($_POST['title']) ? define('POST_TITLE', $_POST['title']): define('POST_TITLE', '');
+isset($_POST['address']) ? define('POST_ADDRESS', $_POST['address']): define('POST_ADDRESS', '');
+isset($_POST['description']) ? define('POST_DESCRIPTION', $_POST['description']): define('POST_DESCRIPTION', '');
+isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_STATUS', '');
+isset($_POST['tags']) ? define('POST_TAGS', $_POST['tags']): define('POST_TAGS', '');
+
+isset($_GET['popup']) ? define('GET_POPUP', $_GET['popup']): define('GET_POPUP', '');
+isset($_POST['popup']) ? define('POST_POPUP', $_POST['popup']): define('POST_POPUP', '');
+isset($_POST['referrer']) ? define('POST_REFERRER', $_POST['referrer']): define('POST_REFERRER', '');
+
+/* Managing current logged user */
+$currentObjectUser = $userservice->getCurrentObjectUser();
+
 
 // Header variables
 $tplVars['subtitle'] = T_('Edit Bookmark');
@@ -39,39 +58,41 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
         $tplVars['error'] = T_('You are not allowed to edit this bookmark');
         $templateservice->loadTemplate('error.500.tpl', $tplVars);
         exit();
-    } else if ($_POST['submitted']) {
-        if (!$_POST['title'] || !$_POST['address']) {
+    } else if (POST_SUBMITTED != '') {
+        if (!POST_TITLE || !POST_ADDRESS) {
             $tplVars['error'] = T_('Your bookmark must have a title and an address');
         } else {
             // Update bookmark
             $bId = intval($bookmark);
-            $address = trim($_POST['address']);
-            $title = trim($_POST['title']);
-            $description = trim($_POST['description']);
-            $status = intval($_POST['status']);
-            $tags = trim($_POST['tags']);
-            $logged_on_user = $userservice->getCurrentUser();
+            $address = trim(POST_ADDRESS);
+            $title = trim(POST_TITLE);
+            $description = trim(POST_DESCRIPTION);
+            $status = intval(POST_STATUS);
+            $tags = trim(POST_TAGS);
+            
             if (!$bookmarkservice->updateBookmark($bId, $address, $title, $description, $status, $tags)) {
                 $tplvars['error'] = T_('Error while saving your bookmark');
             } else {
-                if (isset($_POST['popup'])) {
-                    $tplVars['msg'] = (isset($_POST['popup'])) ? '<script type="text/javascript">window.close();</script>' : T_('Bookmark saved');
-                } elseif (isset($_POST['referrer'])) {
-                    header('Location: '. $_POST['referrer']);
+                if (POST_POPUP != '') {
+                    //$tplVars['msg'] = (POST_POPUP != '') ? '<script type="text/javascript">window.close();</script>' : T_('Bookmark saved');
+                    $tplVars['msg'] = '<script type="text/javascript">window.close();</script>';
+                } elseif (POST_REFERRER != '') {
+                	$tplVars['msg'] = T_('Bookmark saved');
+                    header('Location: '. POST_REFERRER);
                 } else {
-                    header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')]));
+                	$tplVars['msg'] = T_('Bookmark saved');
+                    header('Location: '. createURL('bookmarks', $currentObjectUser->getUsername()));
                 }
             }
         }
     } else {
-        if ($_POST['delete']) {
+        if (POST_DELETE != '') {
             // Delete bookmark
             if ($bookmarkservice->deleteBookmark($bookmark)) {
-                $logged_on_user = $userservice->getCurrentUser();
-                if (isset($_POST['referrer'])) {
-                    header('Location: '. $_POST['referrer']);
+                if (POST_REFERRER != '') {
+                    header('Location: '. POST_REFERRER);
                 } else {
-                    header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')]));
+                    header('Location: '. createURL('bookmarks', $currentObjectUser->getUsername()));
                 }
                 exit();
             } else {
@@ -82,7 +103,7 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
         }
     }
 
-    $tplVars['popup'] = (isset($_GET['popup'])) ? $_GET['popup'] : null;
+    $tplVars['popup'] = (GET_POPUP) ? GET_POPUP : null;
     $tplVars['row'] =& $row;
     $tplVars['formaction']  = createURL('edit', $bookmark);
     $tplVars['btnsubmit'] = T_('Save Changes');

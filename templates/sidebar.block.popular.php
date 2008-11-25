@@ -2,6 +2,13 @@
 $b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 
+if(!isset($user)) {
+	$user = '';
+}
+if(!isset($userid)) {
+	$userid = NULL;
+}
+
 $logged_on_userid = $userservice->getCurrentUserId();
 if ($logged_on_userid === false) {
     $logged_on_userid = NULL;

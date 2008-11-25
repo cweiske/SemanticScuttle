@@ -20,27 +20,29 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 require_once('header.inc.php');
 
+/* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
 $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
 
-$tplVars = array();
+/* Managing all possible inputs */
+isset($_GET['page']) ? define('GET_PAGE', $_GET['page']): define('GET_PAGE', 0);
+isset($_GET['sort']) ? define('GET_SORT', $_GET['sort']): define('GET_SORT', '');
 
+/* Managing current logged user */
+$currentUser = $userservice->getCurrentObjectUser();
+
+/* Managing path info */
 @list($url, $user, $page) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
 
-$loggedon = false;
-if ($userservice->isLoggedOn()) {
-    $loggedon = true;
-    $currentUser = $userservice->getCurrentUser();
-    $currentUsername = $currentUser[$userservice->getFieldName('username')];
-}
+$tplVars = array();
 
 if ($usecache) {
     // Generate hash for caching on
-    if ($loggedon) {
-        if ($currentUsername != $user) {
-            $cachehash = md5($_SERVER['REQUEST_URI'] . $currentUsername);
+    if ($userservice->isLoggedOn()) {
+        if ($currentUser->getUsername() != $user) {
+            $cachehash = md5($_SERVER['REQUEST_URI'] . $currentUser->getUsername());
 
             // Cache for 5 minutes
             $cacheservice->Start($cachehash);
@@ -56,13 +58,14 @@ if ($user) {
     if (is_int($user)) {
         $userid = intval($user);
     } else {
-        if (!($userinfo = $userservice->getUserByUsername($user) ) ) {
+    	$userinfo = $userservice->getObjectUserByUsername($user);
+        if ($userinfo == '' ) {
             // Throw a 404 error
             $tplVars['error'] = sprintf(T_('User with username %s was not found'), $user);
             $templateservice->loadTemplate('error.404.tpl', $tplVars);
             exit();
         } else {
-            $userid =& $userinfo['uId'];
+            $userid =& $userinfo->getId();
         }
     }
 }
@@ -77,8 +80,8 @@ if ($user) {
 
     // Pagination
     $perpage = getPerPageCount();
-    if (isset($_GET['page']) && intval($_GET['page']) > 1) {
-        $page = $_GET['page'];
+    if (intval(GET_PAGE) > 1) {
+        $page = GET_PAGE;
         $start = ($page - 1) * $perpage;
     } else {
         $page = 0;
@@ -86,6 +89,7 @@ if ($user) {
     }
 
     // Set template vars
+    $tplVars['currenttag'] = '';
     $tplVars['page'] = $page;
     $tplVars['start'] = $start;
     $tplVars['bookmarkCount'] = $start + 1;
@@ -99,7 +103,7 @@ if ($user) {
     $tplVars['cat_url'] = createURL('tags', '%2$s');
     $tplVars['nav_url'] = createURL('watchlist', '%s/%s%s');
 
-    if ($user == $currentUsername) {
+    if ($userservice->isLoggedOn() && $user == $currentUser->getUsername()) {
         $title = T_('My Watchlist');
     } else {
         $title = T_('Watchlist') .': '. $user;

@@ -20,43 +20,52 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 
 require_once('header.inc.php');
+
+/* Service creation: only useful services are created */
 $tag2tagservice = & ServiceFactory :: getServiceInstance('Tag2TagService');
 $templateservice = & ServiceFactory :: getServiceInstance('TemplateService');
 $userservice = & ServiceFactory :: getServiceInstance('UserService');
 
+/* Managing all possible inputs */
+isset($_POST['confirm']) ? define('POST_CONFIRM', $_POST['confirm']): define('POST_CONFIRM', '');
+isset($_POST['cancel']) ? define('POST_CANCEL', $_POST['cancel']): define('POST_CANCEL', '');
+isset($_POST['tag1']) ? define('POST_TAG1', $_POST['tag1']): define('POST_TAG1', '');
+isset($_POST['linkType']) ? define('POST_LINKTYPE', $_POST['linkType']): define('POST_LINKTYPE', '');
+isset($_POST['tag2']) ? define('POST_TAG2', $_POST['tag2']): define('POST_TAG2', '');
 
-
-$logged_on_user = $userservice->getCurrentUser();
+/* Managing current logged user */
+$currentObjectUser = $userservice->getCurrentObjectUser();
 
 //permissions
-if($logged_on_user  == null) {
+if(!$userservice->isLoggedOn()) {
     $tplVars['error'] = T_('Permission denied.');
     $templateservice->loadTemplate('error.500.tpl', $tplVars);
     exit();
 }
 
-
+/* Managing path info */
 list ($url, $tag1) = explode('/', $_SERVER['PATH_INFO']);
 
-if ($_POST['confirm']) {
-    $tag1 = $_POST['tag1'];
-    $linkType = $_POST['linkType'];
-    $tag2 = $_POST['tag2'];
-    if ($tag2tagservice->addLinkedTags($tag1, $tag2, $linkType, $userservice->getCurrentUserId())) {
+if (POST_CONFIRM != '') {
+    $tag1 = POST_TAG1;
+    $linkType = POST_LINKTYPE;
+    $tag2 = POST_TAG2;
+    if ($tag2tagservice->addLinkedTags($tag1, $tag2, $linkType, $currentObjectUser->getId())) {
         $tplVars['msg'] = T_('Tag link created');
-        header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')]));
+        header('Location: '. createURL('bookmarks', $currentObjectUser->getUsername()));
     } else {
         $tplVars['error'] = T_('Failed to create the link');
         $templateservice->loadTemplate('error.500.tpl', $tplVars);
         exit();
     }
-} elseif ($_POST['cancel']) {
-    header('Location: '. createURL('bookmarks', $logged_on_user[$userservice->getFieldName('username')] .'/'. $tags));
+} elseif (POST_CANCEL) {
+    header('Location: '. createURL('bookmarks', $currentObjectUser->getUsername() .'/'. $tags));
 }
 
-$tplVars['links']	= $tag2tagservice->getLinks($userservice->getCurrentUserId());
+$tplVars['links']	= $tag2tagservice->getLinks($currentObjectUser->getId());
 
 $tplVars['tag1']		= $tag1;
+$tplVars['tag2']		= '';
 $tplVars['subtitle']    = T_('Add Tag Link') .': '. $tag1;
 $tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $tag1;
 $tplVars['referrer']    = $_SERVER['HTTP_REFERER'];

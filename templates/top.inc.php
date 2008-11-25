@@ -22,13 +22,14 @@ if(isset($rsschannels)) {
 <script type="text/javascript"
 	src="<?php echo ROOT ?>jsScuttle.php"></script>
 
+
 <link rel="stylesheet" type="text/css"
 	href="http://ajax.googleapis.com/ajax/libs/dojo/1.2/dijit/themes/nihilo/nihilo.css">
 
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/dojo/1.2/dojo/dojo.xd.js"
 	djConfig="parseOnLoad:true, isDebug:false, usePlainJson:true"></script>
-
+ 
 <script type="text/javascript">
 dojo.require("dojo.parser");
 dojo.require("dojo.data.ItemFileReadStore");

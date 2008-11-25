@@ -20,32 +20,45 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 
 require_once('header.inc.php');
+
+/* Service creation: only useful services are created */
 $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
+
+/* Managing all possible inputs */
+isset($_POST['submitted']) ? define('POST_SUBMITTED', $_POST['submitted']): define('POST_SUBMITTED', '');
+isset($_POST['pPass']) ? define('POST_PASS', $_POST['pPass']): define('POST_PASS', '');
+isset($_POST['pPassConf']) ? define('POST_PASSCONF', $_POST['pPassConf']): define('POST_PASSCONF', '');
+isset($_POST['pName']) ? define('POST_NAME', $_POST['pName']): define('POST_NAME', '');
+isset($_POST['pMail']) ? define('POST_MAIL', $_POST['pMail']): define('POST_MAIL', '');
+isset($_POST['pPage']) ? define('POST_PAGE', $_POST['pPage']): define('POST_PAGE', '');
+isset($_POST['pDesc']) ? define('POST_DESC', $_POST['pDesc']): define('POST_DESC', '');
+
+isset($_POST['token']) ? define('POST_TOKEN', $_POST['token']): define('POST_TOKEN', '');
+isset($_SESSION['token']) ? define('SESSION_TOKEN', $_SESSION['token']): define('SESSION_TOKEN', '');
+isset($_SESSION['token_stamp']) ? define('SESSION_TOKENSTAMP', $_SESSION['token_stamp']): define('SESSION_TOKENSTAMP', '');
+
+
+/* Managing current logged user */
+$currentObjectUser = $userservice->getCurrentObjectUser();
+
 
 $tplVars = array();
 
 @list($url, $user) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
-
-$loggedon = false;
-if ($userservice->isLoggedOn()) {
-    $loggedon = true;
-    $currentUser = $userservice->getCurrentUser();
-    $currentUserID = $userservice->getCurrentUserId();
-    $currentUsername = $currentUser[$userservice->getFieldName('username')];
-}
 
 if ($user) {
     if (is_int($user)) {
         $userid = intval($user);
     } else {
         $user = urldecode($user);
-        if (!($userinfo = $userservice->getUserByUsername($user))) {
+        $userinfo = $userservice->getObjectUserByUsername($user);
+        if ($userinfo == '') {
             $tplVars['error'] = sprintf(T_('User with username %s was not found'), $user);
             $templateservice->loadTemplate('error.404.tpl', $tplVars);
             exit();
         } else {
-            $userid =& $userinfo['uId'];
+            $userid =& $userinfo->getId();
         }
     }
 } else {
@@ -54,7 +67,7 @@ if ($user) {
     exit();
 }
 
-if ($user == $currentUsername) {
+if ($userservice->isLoggedOn() && $user == $currentObjectUser->getUsername()) {
     $title = T_('My Profile');
 } else {
     $title = T_('Profile') .': '. $user;
@@ -65,19 +78,19 @@ $tplVars['subtitle'] = $title;
 $tplVars['user'] = $user;
 $tplVars['userid'] = $userid;
 
-if (isset($_POST['submitted']) && $currentUserID == $userid) {
+if (POST_SUBMITTED!='' && $currentObjectUser->getId() == $userid) {
     $error = false;
-    $detPass = trim($_POST['pPass']);
-    $detPassConf = trim($_POST['pPassConf']);
-    $detName = trim($_POST['pName']);
-    $detMail = trim($_POST['pMail']);
-    $detPage = trim($_POST['pPage']);
-    $detDesc = filter($_POST['pDesc']);
+    $detPass = trim(POST_PASS);
+    $detPassConf = trim(POST_PASSCONF);
+    $detName = trim(POST_NAME);
+    $detMail = trim(POST_MAIL);
+    $detPage = trim(POST_PAGE);
+    $detDesc = filter(POST_DESC);
     
-    // manage token preventing from CSRF vulnaribilities
-    if ( !isset($_SESSION['token'], $_SESSION['token_stamp']) 
-        || time() - $_SESSION['token_stamp'] > 600 //limit token lifetime, optionnal
-        || $_SESSION['token'] != $_POST['token']) {
+    // manage token preventing from CSRF vulnaribilities 
+    if ( SESSION_TOKEN == ''
+        || time() - SESSION_TOKENSTAMP > 600 //limit token lifetime, optionnal
+        || SESSION_TOKEN != POST_TOKEN) {
         $error = true;
         $tplVars['error'] = T_('Invalid Token');
     }
@@ -101,10 +114,10 @@ if (isset($_POST['submitted']) && $currentUserID == $userid) {
             $tplVars['msg'] = T_('Changes saved.');
         }
     }
-    $userinfo = $userservice->getUserByUsername($user);
+    $userinfo = $userservice->getObjectUserByUsername($user);
 }
 
-if ($currentUserID != $userid) {
+if (!$userservice->isLoggedOn() || $currentObjectUser->getId() != $userid) {
     $templatename = 'profile.tpl.php';
 } else {
 	//Token Init
@@ -117,6 +130,6 @@ if ($currentUserID != $userid) {
     
 }
 
-$tplVars['row'] = $userinfo;
+$tplVars['objectUser'] = $userinfo;
 $templateservice->loadTemplate($templatename, $tplVars);
 ?>

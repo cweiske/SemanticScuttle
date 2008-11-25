@@ -47,8 +47,6 @@ switch ($row['bStatus']) {
     <input type="text" dojoType="dojox.form.MultiComboBox" id="tags" name="tags" size="75" value="<?php echo filter(implode(', ', $row['tags']), 'xml'); ?>" store="memberTagStore" delimiter="," searchAttr="tag" hasDownArrow="false"/></td>
     <td>&larr; <?php echo T_('Comma-separated'); ?></td>
 </tr>
-
-
 <tr>
     <th></th>
     <td align="right"><small><?php echo T_('Note: use ">" to include one tag in another. e.g.: europe>france>paris')?><small></td>
@@ -73,7 +71,7 @@ switch ($row['bStatus']) {
     <td>
         <input type="submit" name="submitted" value="<?php echo $btnsubmit; ?>" />
         <?php
-        if ($showdelete) {
+        if (isset($showdelete) && $showdelete) {
         ?>
         <input type="submit" name="delete" value="<?php echo T_('Delete Bookmark'); ?>" />
         <?php
@@ -82,7 +80,7 @@ switch ($row['bStatus']) {
         ?>
         <input type="hidden" name="popup" value="1" />
         <?php
-        } elseif ($referrer) {
+        } elseif (isset($referrer)) {
         ?>
         <input type="hidden" name="referrer" value="<?php echo $referrer; ?>" />
         <?php
@@ -99,7 +97,7 @@ switch ($row['bStatus']) {
 $this->includeTemplate('dynamictags.inc');
 
 // Bookmarklets and import links
-if (empty($_REQUEST['popup']) && !$showdelete) {
+if (empty($_REQUEST['popup']) && (!isset($showdelete) || !$showdelete)) {
 ?>
 
 <h3><?php echo T_('Bookmarklet'); ?></h3>

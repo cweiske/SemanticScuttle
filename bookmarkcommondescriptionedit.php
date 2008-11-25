@@ -1,64 +1,76 @@
 <?php
 /***************************************************************************
-Copyright (C) 2006 - 2007 Scuttle project
-http://sourceforge.net/projects/scuttle/
-http://scuttle.org/
+ Copyright (C) 2006 - 2007 Scuttle project
+ http://sourceforge.net/projects/scuttle/
+ http://scuttle.org/
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-***************************************************************************/
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ ***************************************************************************/
 
 require_once('header.inc.php');
+
+/* Service creation: only useful services are created */
 $bookmarkservice  = & ServiceFactory :: getServiceInstance('BookmarkService');
 $templateservice  = & ServiceFactory :: getServiceInstance('TemplateService');
 $userservice      = & ServiceFactory :: getServiceInstance('UserService');
 $cdservice        = & ServiceFactory :: getServiceInstance('CommonDescriptionService');
 
+/* Managing all possible inputs */
+isset($_POST['confirm']) ? define('POST_CONFIRM', $_POST['confirm']): define('POST_CONFIRM', '');
+isset($_POST['cancel']) ? define('POST_CANCEL', $_POST['cancel']): define('POST_CANCEL', '');
+isset($_POST['hash']) ? define('POST_HASH', $_POST['hash']): define('POST_HASH', '');
+isset($_POST['title']) ? define('POST_TITLE', $_POST['title']): define('POST_TITLE', '');
+isset($_POST['description']) ? define('POST_DESCRIPTION', $_POST['description']): define('POST_DESCRIPTION', '');
+isset($_POST['referrer']) ? define('POST_REFERRER', $_POST['referrer']): define('POST_REFERRER', '');
+
+
+
 list ($url, $hash) = explode('/', $_SERVER['PATH_INFO']);
 $template   = 'bookmarkcommondescriptionedit.tpl';
 
-$logged_on_user = $userservice->getCurrentUser();
+//$logged_on_user = $userservice->getCurrentUser();
+$currentObjectUser = $userservice->getCurrentObjectUser();
 
 //permissions
-if($logged_on_user == null) {
-    $tplVars['error'] = T_('Permission denied.');
-    $templateservice->loadTemplate('error.500.tpl', $tplVars);
-    exit();
+if(is_null($currentObjectUser)) {
+	$tplVars['error'] = T_('Permission denied.');
+	$templateservice->loadTemplate('error.500.tpl', $tplVars);
+	exit();
 }
 
-if ($_POST['confirm']) {
-
-   if (strlen($hash)>0 &&
-	$cdservice->addBookmarkDescription($_POST['hash'], stripslashes($_POST['title']), stripslashes($_POST['description']), $logged_on_user['uId'], time())
-   ) {
-      $tplVars['msg'] = T_('Bookmark common description updated');
-      header('Location: '. $_POST['referrer']);
-   } else {
-      $tplVars['error'] = T_('Failed to update the bookmark common description');
-      $template         = 'error.500.tpl';
-   }
-} elseif ($_POST['cancel']) {
-    $logged_on_user = $userservice->getCurrentUser();
-    header('Location: '. $_POST['referrer']);
+if (POST_CONFIRM) {
+	if (strlen($hash)>0 &&
+	$cdservice->addBookmarkDescription(POST_HASH, stripslashes(POST_TITLE), stripslashes(POST_DESCRIPTION), $currentObjectUser->getId(), time())
+	) {
+		$tplVars['msg'] = T_('Bookmark common description updated');
+		header('Location: '. POST_REFERRER);
+	} else {
+		$tplVars['error'] = T_('Failed to update the bookmark common description');
+		$template         = 'error.500.tpl';
+	}
+} elseif (POST_CANCEL) {
+	$logged_on_user = $userservice->getCurrentUser();
+	header('Location: '. POST_REFERRER);
 } else {
-   $bkm = $bookmarkservice->getBookmarkByHash($hash);
+	$bkm = $bookmarkservice->getBookmarkByHash($hash);
 
-   $tplVars['subtitle']    = T_('Edit Bookmark Common Description') .': '. $bkm['bAddress'];
-   $tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $hash;
-   $tplVars['referrer']    = $_SERVER['HTTP_REFERER'];
-   $tplVars['hash']        = $hash;
-   $tplVars['description'] = $cdservice->getLastBookmarkDescription($hash);
+	$tplVars['subtitle']    = T_('Edit Bookmark Common Description') .': '. $bkm['bAddress'];
+	$tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $hash;
+	$tplVars['referrer']    = $_SERVER['HTTP_REFERER'];
+	$tplVars['hash']        = $hash;
+	$tplVars['description'] = $cdservice->getLastBookmarkDescription($hash);
 }
 $templateservice->loadTemplate($template, $tplVars);
 ?>

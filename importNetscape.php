@@ -20,16 +20,26 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 
 require_once('header.inc.php');
+
+/* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
+
+
+/* Managing all possible inputs */
+// First input is $_FILES
+// Other inputs
+isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_STATUS', '');
+
+
 $tplVars = array();
 
 if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['size'] > 0) {
-    $userinfo = $userservice->getCurrentUser();
+    $userinfo = $userservice->getCurrentObjectUser();
 
-    if (isset($_POST['status']) && is_numeric($_POST['status'])) {
-        $status = intval($_POST['status']);
+    if (is_numeric(POST_STATUS)) {
+        $status = intval(POST_STATUS);
     } else {
         $status = 2;
     }
@@ -79,7 +89,7 @@ if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['si
 	    }
         }
     }
-    header('Location: '. createURL('bookmarks', $userinfo[$userservice->getFieldName('username')]));
+    header('Location: '. createURL('bookmarks', $userinfo->getUsername()));
 } else {
     $templatename = 'importNetscape.tpl';
     $tplVars['subtitle'] = T_('Import Bookmarks from Browser File');

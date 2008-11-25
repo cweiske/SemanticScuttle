@@ -21,27 +21,34 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 require_once('header.inc.php');
 
+/* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
 $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
 
+/* Managing all possible inputs */
+isset($_GET['page']) ? define('GET_PAGE', $_GET['page']): define('GET_PAGE', 0);
+isset($_GET['sort']) ? define('GET_SORT', $_GET['sort']): define('GET_SORT', '');
+
 $tplVars = array();
 
 @list($url, $hash) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
 
-$loggedon = false;
+$currentObjectUser = $userservice->getCurrentObjectUser();
+
+/*$loggedon = false;
 if ($userservice->isLoggedOn()) {
     $loggedon = true;
     $currentUser = $userservice->getCurrentUser();
     $currentUsername = $currentUser[$userservice->getFieldName('username')];
-}
+}*/
 
 if ($usecache) {
     // Generate hash for caching on
     $hashtext = $_SERVER['REQUEST_URI'];
     if ($userservice->isLoggedOn()) {
-        $hashtext .= $currentUsername;
+        $hashtext .= $currentObjectUser->getUsername();
     }
     $cachehash = md5($hashtext);
 
@@ -51,8 +58,8 @@ if ($usecache) {
 
 // Pagination
 $perpage = getPerPageCount();
-if (isset($_GET['page']) && intval($_GET['page']) > 1) {
-    $page = $_GET['page'];
+if (intval(GET_PAGE) > 1) {
+    $page = GET_PAGE;
     $start = ($page - 1) * $perpage;
 } else {
     $page = 0;
@@ -76,6 +83,12 @@ if ($bookmark =& $bookmarkservice->getBookmarkByHash($hash)) {
     //$tplVars['cat_url'] = createURL('tags', '%2$s');
     $tplVars['cat_url'] = createURL('bookmarks', '%1$s/%2$s');
     $tplVars['nav_url'] = createURL('history', $hash .'/%3$s');
+    $tplVars['rsschannels'] = array();
+    if($userservice->isLoggedOn()) {
+    	$tplVars['user'] = $currentObjectUser->getUsername();
+    } else {
+    	$tplVars['user'] = '';
+    }
     $templateservice->loadTemplate('bookmarks.tpl', $tplVars);
 } else {
     // Throw a 404 error

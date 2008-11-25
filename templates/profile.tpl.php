@@ -7,26 +7,26 @@ $this->includeTemplate($GLOBALS['top_include']);
 <dt><?php echo T_('Username'); ?></dt>
     <dd><?php echo $user; ?></dd>
 <?php
-if ($row['name'] != "") {
+if ($objectUser->getName() != "") {
 ?>
 <dt><?php echo T_('Name'); ?></dt>
-    <dd><?php echo filter($row['name']); ?></dd>
+    <dd><?php echo filter($objectUser->getName()); ?></dd>
 <?php
 }
-if ($row['homepage'] != "") {
+if ($objectUser->getHomepage() != "") {
 ?>
 <dt><?php echo T_('Homepage'); ?></dt>
-    <dd><a href="<?php echo filter($row['homepage']); ?>"><?php echo filter($row['homepage']); ?></a></dd>
+    <dd><a href="<?php echo filter($objectUser->getHomepage()); ?>"><?php echo filter($objectUser->getHomepage()); ?></a></dd>
 <?php
 }
 ?>
 <dt><?php echo T_('Member Since'); ?></dt>
-    <dd><?php echo date($GLOBALS['longdate'], strtotime($row['uDatetime'])); ?></dd>
+    <dd><?php echo date($GLOBALS['longdate'], strtotime($objectUser->getDatetime())); ?></dd>
 <?php
-if ($row['uContent'] != "") {
+if ($objectUser->getContent() != "") {
 ?>
 <dt><?php echo T_('Description'); ?></dt>
-    <dd><?php echo $row['uContent']; ?></dd>
+    <dd><?php echo $objectUser->getContent(); ?></dd>
 <?php
 }
 $watching = $userservice->getWatchNames($userid);

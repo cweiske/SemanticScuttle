@@ -20,10 +20,16 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 
 require_once('header.inc.php');
+
+/* Service creation: only useful services are created */
 $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 $b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
+
+/* Managing current logged user */
+$currentObjectUser = $userservice->getCurrentObjectUser();
+
 
 list($url, $user) = explode('/', $_SERVER['PATH_INFO']);
 
@@ -31,10 +37,8 @@ if ($usecache) {
     // Generate hash for caching on
     $hashtext = $_SERVER['REQUEST_URI'];
     if ($userservice->isLoggedOn()) {
-        $hashtext .= $userservice->getCurrentUserID();
-        $currentUser = $userservice->getCurrentUser();
-        $currentUsername = $currentUser[$userservice->getFieldName('username')];
-        if ($currentUsername == $user) {
+        $hashtext .= $currentObjectUser->getId();
+        if ($currentObjectUser->getUsername() == $user) {
             $hashtext .= $user;
         }
     }
@@ -52,8 +56,9 @@ if (isset($user) && $user != '') {
     if (is_int($user)) {
       $userid = intval($user);
     } else {
-        if ($userinfo = $userservice->getUserByUsername($user)) {
-            $userid =& $userinfo[$userservice->getFieldName('primary')];
+    	$userinfo = $userservice->getObjectUserByUsername($user);
+        if ($userinfo != '') {
+            $userid = $userinfo->getId();
         } else {
             $tplVars['error'] = sprintf(T_('User with username %s was not found'), $user);
             $templateservice->loadTemplate('error.404.tpl', $tplVars);
@@ -77,8 +82,8 @@ if (isset($userid)) {
 }
 
 $tplVars['sidebar_blocks'] = array('linked');
-
 $tplVars['subtitle'] = $pagetitle;
+
 $templateservice->loadTemplate('tags.tpl', $tplVars);
 
 if ($usecache) {    

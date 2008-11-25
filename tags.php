@@ -1,69 +1,80 @@
 <?php
 /***************************************************************************
-Copyright (C) 2004 - 2006 Scuttle project
-http://sourceforge.net/projects/scuttle/
-http://scuttle.org/
+ Copyright (C) 2004 - 2006 Scuttle project
+ http://sourceforge.net/projects/scuttle/
+ http://scuttle.org/
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-***************************************************************************/
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ ***************************************************************************/
 
 require_once('header.inc.php');
 
+/* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
 $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
 
+/* Managing all possible inputs */
+isset($_GET['page']) ? define('GET_PAGE', $_GET['page']): define('GET_PAGE', 0);
+isset($_GET['sort']) ? define('GET_SORT', $_GET['sort']): define('GET_SORT', '');
+
+/* Managing current logged user */
+$currentUser = $userservice->getCurrentObjectUser();
+
+/* Managing path info */
+list($url, $cat) = explode('/', $_SERVER['PATH_INFO']);
+
 $tplVars = array();
 
-list($url, $cat) = explode('/', $_SERVER['PATH_INFO']);
+
 if (!$cat) {
-    header('Location: '. createURL('populartags'));
-    exit;
+	header('Location: '. createURL('populartags'));
+	exit;
 } else {
-    $cattitle = str_replace('+', ' + ', $cat);
+	$cattitle = str_replace('+', ' + ', $cat);
 }
 $pagetitle = T_('Tags') .': '. $cattitle;
 
 if ($usecache) {
-    // Generate hash for caching on
-    if ($userservice->isLoggedOn()) {
-        $hash = md5($_SERVER['REQUEST_URI'] . $userservice->getCurrentUserID());
-    } else {
-        $hash = md5($_SERVER['REQUEST_URI']);
-    }
+	// Generate hash for caching on
+	if ($userservice->isLoggedOn()) {
+		$hash = md5($_SERVER['REQUEST_URI'] . $currentUser->getId());
+	} else {
+		$hash = md5($_SERVER['REQUEST_URI']);
+	}
 
-    // Cache for 30 minutes
-    $cacheservice->Start($hash, 1800);
+	// Cache for 30 minutes
+	$cacheservice->Start($hash, 1800);
 }
 
 // Header variables
 $tplVars['pagetitle'] = $pagetitle;
 $tplVars['loadjs'] = true;
 $tplVars['rsschannels'] = array(
-    array(filter($sitename .': '. $pagetitle), createURL('rss', 'all/'. filter($cat, 'url')).'?sort='.getSortOrder())
+array(filter($sitename .': '. $pagetitle), createURL('rss', 'all/'. filter($cat, 'url')).'?sort='.getSortOrder())
 );
 
 // Pagination
 $perpage = getPerPageCount();
-if (isset($_GET['page']) && intval($_GET['page']) > 1) {
-    $page = $_GET['page'];
-    $start = ($page - 1) * $perpage;
+if (intval(GET_PAGE) > 1) {
+	$page = GET_PAGE;
+	$start = ($page - 1) * $perpage;
 } else {
-    $page = 0;
-    $start = 0;
+	$page = 0;
+	$start = 0;
 }
 
 $tplVars['page'] = $page;
@@ -82,7 +93,7 @@ $tplVars['nav_url'] = createURL('tags', '%2$s%3$s');
 $templateservice->loadTemplate('bookmarks.tpl', $tplVars);
 
 if ($usecache) {
-    // Cache output if existing copy has expired
-    $cacheservice->End($hash);
+	// Cache output if existing copy has expired
+	$cacheservice->End($hash);
 }
 ?>

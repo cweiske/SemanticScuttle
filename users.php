@@ -21,21 +21,26 @@
 
 require_once('header.inc.php');
 
+/* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
 $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
 
-$tplVars = array();
+/* Managing current logged user */
+$currentUser = $userservice->getCurrentObjectUser();
 
+/* Managing path info */
 list($url, $cat) = explode('/', $_SERVER['PATH_INFO']);
+
+$tplVars = array();
 
 $pagetitle = T_('Users');
 
 if ($usecache) {
 	// Generate hash for caching on
 	if ($userservice->isLoggedOn()) {
-		$hash = md5($_SERVER['REQUEST_URI'] . $userservice->getCurrentUserID());
+		$hash = md5($_SERVER['REQUEST_URI'] . $currentUser->getId());
 	} else {
 		$hash = md5($_SERVER['REQUEST_URI']);
 	}

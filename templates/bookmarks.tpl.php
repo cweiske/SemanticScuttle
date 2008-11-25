@@ -6,8 +6,6 @@ $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
 $tagservice =& ServiceFactory::getServiceInstance('TagService');
 $cdservice =& ServiceFactory::getServiceInstance('CommonDescriptionService');
 
-
-
 //$logged_on_userid = $userservice->getCurrentUserId();
 //$currentUser = $userservice->getCurrentUser();
 //$currentUsername = $currentUser[$userservice->getFieldName('username')];
@@ -28,10 +26,13 @@ include('search.inc.php');
 
 
 <?php
-if((isset($currenttag) && $GLOBALS['enableCommonTagDescription'])
+// common tag description
+if((isset($currenttag) && $currenttag!= '' && $GLOBALS['enableCommonTagDescription'])
 || (isset($hash) && $GLOBALS['enableCommonBookmarkDescription'])):?>
+
+
 <p class="commondescription"><?php
-if(isset($currenttag) && $cdservice->getLastTagDescription($currenttag)) {
+if(isset($currenttag) && $currenttag!= '' && $cdservice->getLastTagDescription($currenttag)) {
 	$description = $cdservice->getLastTagDescription($currenttag);
 	echo nl2br(filter($description['cdDescription']));
 } elseif(isset($hash) && $cdservice->getLastBookmarkDescription($hash)) {
@@ -40,8 +41,9 @@ if(isset($currenttag) && $cdservice->getLastTagDescription($currenttag)) {
 	echo nl2br(filter($description['cdDescription'])). "<br/>";
 }
 
+//common tag description edit
 if($userservice->isLoggedOn()) {
-	if(isset($currenttag)) {
+	if(isset($currenttag) && $currenttag!= '') {
 		echo ' (<a href="'. createURL('tagcommondescriptionedit', $currenttag).'">';
 		echo T_('edit common description').'</a>)';
 	} elseif(isset($hash)) {
@@ -55,7 +57,7 @@ if($userservice->isLoggedOn()) {
 
 <?php
 /* Private tag description */
-if(isset($currenttag) && isset($user)) {
+if(isset($currenttag) && $currenttag!= '' && isset($user)) {
 	$userObject = $userservice->getUserByUsername($user);
 	if($tagservice->getDescription($currenttag, $userObject['uId'])) { ?>
 
@@ -87,7 +89,7 @@ if (!isset($hash)) {
 	<?php
 }
 ?> <?php
-if(isset($currenttag)) {
+if(isset($currenttag) && $currenttag!= '') {
 	if(isset($user)) {
 		echo ' - ';
 		echo '<a href="'. createURL('tags', $currenttag) .'">';
@@ -216,8 +218,8 @@ if(isset($currenttag)) {
 
 	// Ordering
 	$sortOrder = '';
-	if (isset($_GET['sort'])) {
-		$sortOrder = 'sort='. $_GET['sort'];
+	if (GET_SORT != '') {
+		$sortOrder = 'sort='. GET_SORT;
 	}
 
 	$sortAmp = (($sortOrder) ? '&amp;'. $sortOrder : '');
