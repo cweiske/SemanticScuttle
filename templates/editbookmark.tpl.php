@@ -76,6 +76,11 @@ switch ($row['bStatus']) {
         <input type="submit" name="delete" value="<?php echo T_('Delete Bookmark'); ?>" />
         <?php
         }
+        if (isset($showdelete) && $showdelete) {
+			echo ' (<a href="'.createURL('bookmarkcommondescriptionedit', $row['bHash']).'">';
+			echo T_('edit common description').'</a>)';
+        }
+        
         if ($popup) {
         ?>
         <input type="hidden" name="popup" value="1" />

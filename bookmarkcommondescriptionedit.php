@@ -33,8 +33,15 @@ isset($_POST['cancel']) ? define('POST_CANCEL', $_POST['cancel']): define('POST_
 isset($_POST['hash']) ? define('POST_HASH', $_POST['hash']): define('POST_HASH', '');
 isset($_POST['title']) ? define('POST_TITLE', $_POST['title']): define('POST_TITLE', '');
 isset($_POST['description']) ? define('POST_DESCRIPTION', $_POST['description']): define('POST_DESCRIPTION', '');
-isset($_POST['referrer']) ? define('POST_REFERRER', $_POST['referrer']): define('POST_REFERRER', '');
 
+// prevent cycle between personal and common edit page
+if(!isset($_POST['referrer'])) {
+	define('POST_REFERRER', '');
+} elseif(strpos($_POST['referrer'], ROOT.'edit.php') == 0) {
+	define('POST_REFERRER', createUrl('history', POST_HASH));
+} else {
+	define('POST_REFERRER', $_POST['referrer']);
+}
 
 
 list ($url, $hash) = explode('/', $_SERVER['PATH_INFO']);

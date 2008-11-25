@@ -6,10 +6,6 @@ $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
 $tagservice =& ServiceFactory::getServiceInstance('TagService');
 $cdservice =& ServiceFactory::getServiceInstance('CommonDescriptionService');
 
-//$logged_on_userid = $userservice->getCurrentUserId();
-//$currentUser = $userservice->getCurrentUser();
-//$currentUsername = $currentUser[$userservice->getFieldName('username')];
-
 // Momentary useful to go to object code
 $currentObjectUser = $userservice->getCurrentObjectUser();
 

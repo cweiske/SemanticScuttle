@@ -66,6 +66,10 @@ class BookmarkService {
 	function getBookmarkByHash($hash) {
 		return $this->_getbookmark('bHash', $hash, true);
 	}
+	
+	function countBookmarks($uId) {
+		
+	}
 
 	function editAllowed($bookmark) {
 		if (!is_numeric($bookmark) && (!is_array($bookmark) || !is_numeric($bookmark['bId'])))

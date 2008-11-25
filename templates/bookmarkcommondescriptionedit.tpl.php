@@ -15,7 +15,7 @@ window.onload = function() {
 </script>
 
 <form action="<?php echo $formaction; ?>" method="post">
-<table>
+<table title="<?php echo T_('Collaborative description: these fields can be viewed and modified by every users') ?>">
 <tr>
     <th align="left"><?php echo T_('Title'); ?></th>
     <td><input type="text" id="title" name="title" size="75" maxlength="255" value="<?php echo $description['cdTitle']; ?>" onkeypress="this.style.backgroundImage = 'none';" /></td>
