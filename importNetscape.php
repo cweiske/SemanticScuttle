@@ -34,6 +34,8 @@ isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_
 
 
 $tplVars = array();
+$countImportedBookmarks = 0;
+$tplVars['msg'] = '';
 
 if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['size'] > 0) {
 	$userinfo = $userservice->getCurrentObjectUser();
@@ -48,16 +50,22 @@ if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['si
 	$html = file_get_contents($_FILES['userfile']['tmp_name']);
 
 	// Create link array
-	preg_match_all('/<a\s+(.*?)\s*\/*>([^<]*)/si', $html, $matches);
+	//preg_match_all('/<a\s+(.*?)\s*\/*>([^<]*)/si', $html, $matches);
+	preg_match_all('/<a\s+(.*?)>([^<]*?)<\/a>.*?(<dd>([^<]*)|<dt>)/si', $html, $matches);
+
+	//var_dump($matches);die();
+
+
 	$links = $matches[1];
 	$titles = $matches[2];
+	$descriptions = $matches[4];
 
 	$size = count($links);
 	for ($i = 0; $i < $size; $i++) {
 
 		//    	echo "<hr/>";
 		//    	echo $links[$i]."<br/>";
-		 
+			
 		preg_match_all('/(\w*\s*=\s*"[^"]*")/', $links[$i], $attributes);
 		//$attributes = $attributes[0];  // we keep just one row
 
@@ -82,28 +90,35 @@ if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['si
 					break;
 			}
 		}
-		$bTitle = eregi_replace('"', '&quot;', trim($titles[$i]));
+		$bTitle = trim($titles[$i]);
+		$bDescription = trim($descriptions[$i]);
 
 		if ($bookmarkservice->bookmarkExists($bAddress, $userservice->getCurrentUserId())) {
-			$tplVars['error'] = T_('You have already submitted this bookmark.');
+			$tplVars['error'] = T_('You have already submitted some of these bookmarks.');
 		} else {
 			// If bookmark is local (like javascript: or place: in Firefox3), do nothing
-			if(substr($bAddress, 0, 7) == "http://") {
+			if(substr($bAddress, 0, 7) == "http://" || substr($bAddress, 0, 8) == "https://") {
 
 				// If bookmark claims to be from the future, set it to be now instead
 				if (strtotime($bDatetime) > time()) {
 					$bDatetime = gmdate('Y-m-d H:i:s');
 				}
 
-				if ($bookmarkservice->addBookmark($bAddress, $bTitle, NULL, $status, $bCategories, $bDatetime, false, true)) {
-					$tplVars['msg'] = T_('Bookmark imported.');
+				if ($bookmarkservice->addBookmark($bAddress, $bTitle, $bDescription, $status, $bCategories, $bDatetime, false, true)) {
+					$countImportedBookmarks++;
 				} else {
 					$tplVars['error'] = T_('There was an error saving your bookmark. Please try again or contact the administrator.');
 				}
 			}
 		}
 	}
-	header('Location: '. createURL('bookmarks', $userinfo->getUsername()));
+	//header('Location: '. createURL('bookmarks', $userinfo->getUsername()));
+	$templatename = 'importNetscape.tpl';
+	$tplVars['msg'].= T_('Bookmarks found: ').$size.' ';
+	$tplVars['msg'].= T_('Bookmarks imported: ').' '.$countImportedBookmarks;
+	$tplVars['subtitle'] = T_('Import Bookmarks from Browser File');
+	$tplVars['formaction'] = createURL('importNetscape');
+	$templateservice->loadTemplate($templatename, $tplVars);
 } else {
 	$templatename = 'importNetscape.tpl';
 	$tplVars['subtitle'] = T_('Import Bookmarks from Browser File');

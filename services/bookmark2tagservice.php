@@ -42,7 +42,7 @@ class Bookmark2TagService {
 		}
 
 		//clean tags from strange characters
-		$tags = str_replace(array('"', '\''), "_", $tags);
+		$tags = str_replace(array('"', '\'', '/'), "_", $tags);
 
 
 		$tags_count = is_array($tags)?count($tags):0;

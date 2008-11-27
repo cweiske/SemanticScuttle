@@ -92,10 +92,7 @@ class BookmarkService {
 			return;
 		}
 
-		// If address doesn't contain ":", add "http://" as the default protocol
-		if (strpos($address, ':') === false) {
-			$address = 'http://'. $address;
-		}
+		$address = $this->normalize($address);
 
 		$crit = array ('bHash' => md5($address));
 		if (isset ($uid)) {
@@ -117,13 +114,7 @@ class BookmarkService {
 			$sId = $userservice->getCurrentUserId();
 		}
 
-		// If bookmark address doesn't contain ":", add "http://" to the start as a default protocol
-		if (strpos($address, ':') === false) {
-			$address = 'http://'. $address;
-		}
-		if (substr($address, -1) == '/') {
-			$address = substr($address, 0, count($address)-2);
-		}
+		$address = $this->normalize($address);
 
 		// Get the client's IP address and the date; note that the date is in GMT.
 		if (getenv('HTTP_CLIENT_IP'))
@@ -461,6 +452,20 @@ class BookmarkService {
 			message_die(GENERAL_ERROR, 'Could not get vars', '', __LINE__, __FILE__, $sql, $this->db);
 		}
 		return $this->db->sql_fetchfield(0, 0) - 1;
+	}
+	
+	function normalize($address) {
+		// If bookmark address doesn't contain ":", add "http://" to the start as a default protocol
+		if (strpos($address, ':') === false) {
+			$address = 'http://'. $address;
+		}
+		
+		// Delete final /
+		if (substr($address, -1) == '/') {
+			$address = substr($address, 0, count($address)-2);
+		}
+		
+		return $address;
 	}
 
 	function deleteAll() {

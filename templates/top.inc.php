@@ -63,10 +63,10 @@ if(!isset($_GET['popup'])) {
 if (isset($subtitle)) {
 	echo '<h2>'. $subtitle ."</h2>\n";
 }
-if (isset($error)) {
+if (isset($error) && $msg!='') {
 	echo '<p class="error">'. $error ."</p>\n";
 }
-if (isset($msg)) {
+if (isset($msg) && $msg!='') {
 	echo '<p class="success">'. $msg ."</p>\n";
 }
 ?>
