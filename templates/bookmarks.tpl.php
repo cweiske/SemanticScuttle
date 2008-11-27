@@ -10,6 +10,7 @@ $cdservice =& ServiceFactory::getServiceInstance('CommonDescriptionService');
 $currentObjectUser = $userservice->getCurrentObjectUser();
 
 $pageName = isset($pageName)?$pageName:"";
+$user = isset($user)?$user:"";
 
 $this->includeTemplate($GLOBALS['top_include']);
 

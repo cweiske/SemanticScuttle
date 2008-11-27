@@ -462,9 +462,9 @@ class UserService {
 			list($emailUser, $emailDomain) = split("@", $email);
 
 			// Check if the email domain has a DNS record
-			if ($this->_checkdns($emailDomain)) {
+			//if ($this->_checkdns($emailDomain)) {
 				return true;
-			}
+			//}
 		}
 		return false;
 	}
