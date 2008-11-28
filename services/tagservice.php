@@ -75,8 +75,13 @@ class TagService {
 		$this->db->sql_query($query);
 		return true;
 	}
-
-
+	
+	/* normalize the input tags which could be a string or an array*/
+	function normalize($tags) {
+		//clean tags from strange characters
+		$tags = str_replace(array('"', '\'', '/'), "_", $tags);
+		return $tags;
+	}
 
 	function deleteAll() {
 		$query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';

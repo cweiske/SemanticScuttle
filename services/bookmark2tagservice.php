@@ -41,8 +41,8 @@ class Bookmark2TagService {
 			}
 		}
 
-		//clean tags from strange characters
-		$tags = str_replace(array('"', '\'', '/'), "_", $tags);
+		$tagservice =& ServiceFactory::getServiceInstance('TagService');
+		$tags = $tagservice->normalize($tags);
 
 
 		$tags_count = is_array($tags)?count($tags):0;

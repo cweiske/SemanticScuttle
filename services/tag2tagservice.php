@@ -16,11 +16,16 @@ class Tag2TagService {
 	}
 
 	function addLinkedTags($tag1, $tag2, $relationType, $uId) {
+		$tagservice =& ServiceFactory::getServiceInstance('TagService');
+		$tag1 = $tagservice->normalize($tag1);
+		$tag2 = $tagservice->normalize($tag2);		
+		
 		if($tag1 == $tag2 || strlen($tag1) == 0 || strlen($tag2) == 0
 		|| ($relationType != ">" && $relationType != "=")
 		|| ($this->existsLinkedTags($tag1, $tag2, $relationType, $uId))) {
 			return false;
 		}
+		
 		$values = array('tag1' => $tag1, 'tag2' => $tag2, 'relationType'=> $relationType, 'uId'=> $uId);
 		$query = 'INSERT INTO '. $this->getTableName() .' '. $this->db->sql_build_array('INSERT', $values);
 		//die($query);
@@ -214,11 +219,17 @@ class Tag2TagService {
 
 
 	function existsLinkedTags($tag1, $tag2, $relationType, $uId) {
+		
+		//$tag1 = mysql_real_escape_string($tag1);
+		//$tag2 = mysql_real_escape_string($tag2);
+		
 		$query = "SELECT tag1, tag2, relationType, uId FROM `". $this->getTableName() ."`";
 		$query.= " WHERE tag1 = '" .$tag1 ."'";
 		$query.= " AND tag2 = '".$tag2."'";
 		$query.= " AND relationType = '". $relationType ."'";
 		$query.= " AND uId = '".$uId."'";
+		
+		//echo($query."<br>\n");
 
 		return $this->db->sql_numrows($this->db->sql_query($query)) > 0;
 	}
