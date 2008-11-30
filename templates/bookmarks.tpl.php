@@ -87,7 +87,7 @@ if (!isset($hash)) {
 }
 ?> <?php
 if(isset($currenttag) && $currenttag!= '') {
-	if(isset($user)) {
+	if(isset($user) && $user!= '') {
 		echo ' - ';
 		echo '<a href="'. createURL('tags', $currenttag) .'">';
 		echo T_('Bookmarks from other users for this tag').'</a>';
