@@ -14,11 +14,12 @@ if ($logged_on_userid === false) {
 	$logged_on_userid = NULL;
 }
 
-if(!isset($user)) {
+if(!isset($user)  || $user == '') {
 	$cat_url = createURL('tags', '%2$s');
 }
 
 $menu2Tags = $GLOBALS['menu2Tags'];
+
 if (sizeOf($menu2Tags) > 0) {
 	?>
 

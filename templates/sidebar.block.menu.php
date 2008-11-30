@@ -21,7 +21,7 @@ if(($logged_on_userid != null) && ($userid === $logged_on_userid)) {
     $editingMode = false;
 }
 
-if(!isset($user)) {
+if(!isset($user) || $user == '') {
     $cat_url = createURL('tags', '%2$s');
 }
 

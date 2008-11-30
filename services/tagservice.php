@@ -80,6 +80,15 @@ class TagService {
 	function normalize($tags) {
 		//clean tags from strange characters
 		$tags = str_replace(array('"', '\'', '/'), "_", $tags);
+		
+		//normalize
+		if(!is_array($tags)) {
+			$tags = strtolower(trim($tags));
+		} else {
+			for($i=0; $i<count($tags); $i++) {
+				$tags[$i] = strtolower(trim($tags[$i])); 
+			}
+		}
 		return $tags;
 	}
 
