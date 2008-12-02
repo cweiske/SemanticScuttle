@@ -23,19 +23,16 @@
 
 require_once('../header.inc.php');
 
+/* Service creation: only useful services are created */
 $b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
 $bookmarkservice =& ServiceFactory::getServiceInstance('TagService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 $tagstatservice =& ServiceFactory::getServiceInstance('TagStatService');
 
-$tag = $_GET['tag'];
-$uId = $_GET['uId'];
+/* Managing all possible inputs */
+isset($_GET['tag']) ? define('GET_TAG', $_GET['tag']): define('GET_TAG', '');
+isset($_GET['uId']) ? define('GET_UID', $_GET['uId']): define('GET_UID', '');
 
-if ($userservice->isLoggedOn()) {
-	$loggedon = true;
-	$currentUser = $userservice->getCurrentUser();
-	$currentUserID = $userservice->getCurrentUserId();
-}
 
 function displayTag($tag, $uId) {
 	$tag2tagservice =& ServiceFactory::getServiceInstance('Tag2TagService');
@@ -58,6 +55,6 @@ function displayTag($tag, $uId) {
 
 { label: 'name', identifier: 'id', items: [
 <?php
-echo displayTag($tag, $uId);
+echo displayTag(GET_TAG, GET_UID);
 ?>
 ] }
