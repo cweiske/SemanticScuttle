@@ -369,6 +369,7 @@ class Bookmark2TagService {
 
 	function renameTag($userid, $old, $new, $fromApi = false) {
 		$bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
+		$tagservice =& ServiceFactory::getServiceInstance('TagService');
 
 		if (is_null($userid) || is_null($old) || is_null($new))
 		return false;
@@ -381,6 +382,8 @@ class Bookmark2TagService {
 		$this->deleteTag($userid, $old);
 
 		// Attach new tags
+		$new = $tagservice->normalize($new);
+		
 		foreach(array_keys($bookmarks) as $key) {
 			$row =& $bookmarks[$key];
 			$this->attachTags($row['bId'], $new, $fromApi, NULL, false);

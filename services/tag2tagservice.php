@@ -270,6 +270,9 @@ class Tag2TagService {
 	}
 
 	function renameTag($uId, $oldName, $newName) {
+		$tagservice =& ServiceFactory::getServiceInstance('TagService');
+		$newName = $tagservice->normalize($newName);
+		
 		$query = 'UPDATE `'. $this->getTableName() .'`';
 		$query.= ' SET tag1="'.$newName.'"';
 		$query.= ' WHERE tag1="'.$oldName.'"';

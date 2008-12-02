@@ -68,6 +68,8 @@ class TagService {
 	}
 
 	function renameTag($uId, $oldName, $newName) {
+		$newname = $this->normalize($newname);
+		
 		$query = 'UPDATE `'. $this->getTableName() .'`';
 		$query.= ' SET tag="'.$newName.'"';
 		$query.= ' WHERE tag="'.$oldName.'"';
