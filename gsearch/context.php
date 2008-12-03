@@ -1,10 +1,10 @@
 <?php
-if($GLOBALS['enableGoogleCustomSearch']==false) {
+require_once('../header.inc.php');
+
+if($GLOBALS['enableGoogleCustomSearch'] == false) {
     echo "Google Custom Search disabled. You can enable it into the config.inc.php file.";
     die;
 }
-
-require_once('../header.inc.php');
 ?>
 
 <!--?xml version="1.0" encoding="UTF-8" ?-->
