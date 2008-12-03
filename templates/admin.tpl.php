@@ -30,7 +30,7 @@ echo '</ol>';
 ?>
 <h3><?php echo T_('Other actions')?></h3>
 <p>
-<a href="<?php echo createURL('admin','checkUrl/') ?>"> <?php echo T_('Check all urls (May take some times)')  ?></a>
+<a href="<?php echo createURL('admin','checkUrl/') ?>"> <?php echo T_('Check all URLs (May take some time)')  ?></a>
 </p>
 <?php
 $this->includeTemplate('sidebar.tpl');
