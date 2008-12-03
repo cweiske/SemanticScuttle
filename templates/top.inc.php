@@ -4,8 +4,7 @@
 <head>
 <title><?php echo filter($GLOBALS['sitename'] . (isset($pagetitle) ? ': ' . $pagetitle : '')); ?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="icon" type="image/png"
-	href="<?php echo ROOT ?>icon.png" />
+<link rel="icon" type="image/png" href="<?php echo ROOT ?>icon.png" />
 <link rel="stylesheet" type="text/css"
 	href="<?php echo ROOT ?>scuttle.css" />
 <?php
@@ -16,26 +15,11 @@ if(isset($rsschannels)) {
 	}
 }
 ?>
-
-<?php if (isset($loadjs)) :?>
-
-<script type="text/javascript"
-	src="<?php echo ROOT ?>jsScuttle.php"></script>
-
-
 <link rel="stylesheet" type="text/css"
 	href="http://ajax.googleapis.com/ajax/libs/dojo/1.2/dijit/themes/nihilo/nihilo.css">
 
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/dojo/1.2/dojo/dojo.xd.js"
-	djConfig="parseOnLoad:true, isDebug:false, usePlainJson:true"></script>
- 
-<script type="text/javascript">
-dojo.require("dojo.parser");
-dojo.require("dojo.data.ItemFileReadStore");
-dojo.require("dojox.form.MultiComboBox");
-dojo.require("dijit.Tree");        
-</script>
+<?php if (isset($loadjs)) :?>
+<script type="text/javascript" src="<?php echo ROOT ?>jsScuttle.php"></script>
 <?php endif ?>
 
 </head>

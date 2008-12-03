@@ -21,6 +21,7 @@ if(!isset($user)  || $user == '') {
 $menu2Tags = $GLOBALS['menu2Tags'];
 
 if (sizeOf($menu2Tags) > 0) {
+	$this->includeTemplate("dojo.inc");
 	?>
 
 <h2><?php echo '<span>'.T_('Menu Tags').'</span> ';?></h2>

@@ -15,7 +15,11 @@ switch ($row['bStatus']) {
         $accessPrivate = ' selected="selected"';
         break;
 }
+
+$this->includeTemplate("dojo.inc");
 ?>
+
+
 
 <script type="text/javascript">
 //window.onload = function() {
@@ -44,7 +48,7 @@ switch ($row['bStatus']) {
     <th align="left"><?php echo T_('Tags'); ?></th>
     <td class="scuttletheme">
     <span dojoType="dojo.data.ItemFileReadStore" jsId="memberTagStore" url="<?php echo ROOT?>ajax/gettags.php"></span>
-    <input type="text" dojoType="dojox.form.MultiComboBox" id="tags" name="tags" size="75" value="<?php echo filter(implode(', ', $row['tags']), 'xml'); ?>" store="memberTagStore" delimiter="," searchAttr="tag" hasDownArrow="false"/></td>
+    <input type="text" dojoType="js.MultiComboBox" id="tags2" name="tags" size="75" value="<?php echo filter(implode(', ', $row['tags']), 'xml'); ?>" store="memberTagStore" delimiter="," searchAttr="tag" hasDownArrow="false"/></td>
     <td>&larr; <?php echo T_('Comma-separated'); ?></td>
 </tr>
 <tr>
@@ -99,7 +103,7 @@ switch ($row['bStatus']) {
 
 <?php
 // Dynamic tag selection
-$this->includeTemplate('dynamictags.inc');
+//$this->includeTemplate('dynamictags.inc');
 
 // Bookmarklets and import links
 if (empty($_REQUEST['popup']) && (!isset($showdelete) || !$showdelete)) {
