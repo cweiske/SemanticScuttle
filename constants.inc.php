@@ -13,9 +13,11 @@ if(isset($GLOBALS['debugMode'])) {
 // Determine the base URL as ROOT
 if (!isset($GLOBALS['root'])) {
 	$pieces = explode('/', $_SERVER['SCRIPT_NAME']);
+	
 	$rootTmp = '/';
 	foreach($pieces as $piece) {
-		if ($piece != '' && !strstr($piece, '.php')) {
+		//we eliminate possible sscuttle subfolders (like gsearch for example)
+		if ($piece != '' && !strstr($piece, '.php') && $piece != 'gsearch') {
 			$rootTmp .= $piece .'/';
 		}
 	}
@@ -24,6 +26,8 @@ if (!isset($GLOBALS['root'])) {
 	}
 
 	define('ROOT', 'http://'. $_SERVER['HTTP_HOST'] . $rootTmp);
+} else {
+	define('ROOT', $GLOBALS['root']);
 }
 
 // Error codes
