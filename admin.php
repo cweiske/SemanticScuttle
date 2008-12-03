@@ -46,6 +46,7 @@ if ( !$currentUser->isAdmin() ) {
 
 @list($url, $action, $user) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
 
+
 if ( $action
 && strpos($_SERVER['HTTP_REFERER'], ROOT.'admin.php') === 0  // Prevent CSRF attacks
 ) {
@@ -62,6 +63,9 @@ if ( $action
 
 				$tplVars['msg'] = sprintf(T_('%s and all his bookmarks and tags were deleted.'), $user);
 			}
+			break;
+		case 'checkUrl' :
+			$tplVars['msg'] =  checkUrl('http://fr3.php.net/manual/fr/function.get-headers.php')?"no pb": "ouille";
 			break;
 		default:
 			// DO NOTHING

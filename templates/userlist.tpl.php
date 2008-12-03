@@ -24,7 +24,11 @@ foreach($users as $user) {
 
 	echo '</li>'."\n";
 }
+?>
+<h3><?php echo T_('Check consistancy')?></h3>
+<a href="<?php echo createURL('admin','checkUrl/') ?>"> <?php echo T_('Check all urls')  ?></a>
 
+<?php
 $this->includeTemplate('sidebar.tpl');
 $this->includeTemplate($GLOBALS['bottom_include']);
 

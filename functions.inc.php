@@ -95,6 +95,19 @@ function shortenString($string, $maxSize=75) {
     return $output;
 }
 
+/* Check online if a url is a valid page (Not a 404 error for example) */
+function checkUrl($url) {
+	$h = @get_headers($url);
+	
+	//look if the page doesn't return a void or 40X or 50X HTTP code error
+	if(is_array($h) && strpos($h[0], '40') === false && strpos($h[0], '50') === false) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
 function message_die($msg_code, $msg_text = '', $msg_title = '', $err_line = '', $err_file = '', $sql = '', $db = NULL) {
     if(defined('HAS_DIED'))
         die(T_('message_die() was called multiple times.'));
