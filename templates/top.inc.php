@@ -47,7 +47,7 @@ if(!isset($_GET['popup'])) {
 if (isset($subtitle)) {
 	echo '<h2>'. $subtitle ."</h2>\n";
 }
-if (isset($error) && $msg!='') {
+if (isset($error) && $error!='') {
 	echo '<p class="error">'. $error ."</p>\n";
 }
 if (isset($msg) && $msg!='') {

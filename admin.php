@@ -33,6 +33,8 @@ $currentUser = $userservice->getCurrentObjectUser();
 $tplVars['subtitle'] = T_('Manage users');
 $tplVars['loadjs'] = true;
 $tplVars['sidebar_blocks'] = array('users' );
+$tplVars['error'] = '';
+$tplVars['msg'] = '';
 
 if ( !$userservice->isLoggedOn() ) {
 	header('Location: '. createURL('login', ''));
@@ -65,14 +67,19 @@ if ( $action
 			}
 			break;
 		case 'checkUrl' :
-			$tplVars['msg'] =  checkUrl('http://fr3.php.net/manual/fr/function.get-headers.php')?"no pb": "ouille";
+			$bookmarks =& $bookmarkservice->getBookmarks(0, NULL, NULL, NULL, NULL, getSortOrder());
+			foreach($bookmarks['bookmarks'] as $bookmark) {
+				if(!checkUrl($bookmark['bAddress'])) {
+					$tplVars['error'].= T_('Problem with ').$bookmark['bAddress'].' ('. $bookmark['username'] .')<br/>';  
+				}
+			}
 			break;
 		default:
 			// DO NOTHING
 	}
 }
 
-$templatename = 'userlist.tpl';
+$templatename = 'admin.tpl';
 $users =& $userservice->getObjectUsers();
 
 if ( !is_array($users) ) {
