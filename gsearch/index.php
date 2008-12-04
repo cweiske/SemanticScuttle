@@ -24,6 +24,9 @@ $currentUser = $userservice->getCurrentObjectUser();
 <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cref"></script>
 <!-- Google CSE Search Box Ends -->
 <small>Based on <a href="http://www.google.com/coop/cse/">Google Custom Search</a> over this <a href="../api/export_gcs.php">list of websites</a> from <?php echo $GLOBALS['sitename'] ?>.</small>
+<br />
+<br />
+<small><a href="<?php echo ROOT?>"><?php echo T_('Come back to ').$GLOBALS['sitename'] ?>...</a></small>
 
 
 <?php if($userservice->isLoggedOn() && $currentUser->isAdmin()){
