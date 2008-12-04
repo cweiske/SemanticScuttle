@@ -45,6 +45,7 @@ select:focus,
 textarea:focus {
     border-color: #666;
 }
+p.tipMsg,
 p.error,
 p.success {
     border: 1px solid;
@@ -52,6 +53,11 @@ p.success {
     margin: 0.5em;
     padding: 0.5em;
     width: 70%;
+}
+p.tipMsg {
+    background: #FFFF99;
+    border-color: #CC9900;
+    color: #CC9900;
 }
 p.error {
     background: #FCC;

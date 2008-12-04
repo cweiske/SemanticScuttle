@@ -117,6 +117,9 @@ if (POST_TERMS != '') {
 	// Save search
 	$searchhistoryservice->addSearch($terms, $range, $bookmarks['total'], $currentUserId);
 
+	if($GLOBALS['enableGoogleCustomSearch']) {
+		$tplVars['tipMsg'] = T_('Unsatisfied? You can also try our ').'<a href="'.createUrl('gsearch/index').'">Google Custom Search page</a>.';
+	}
 	$tplVars['rsschannels'] = array();
 	$tplVars['page'] = $page;
 	$tplVars['start'] = $start;

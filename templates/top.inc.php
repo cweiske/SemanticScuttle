@@ -53,4 +53,7 @@ if (isset($error) && $error!='') {
 if (isset($msg) && $msg!='') {
 	echo '<p class="success">'. $msg ."</p>\n";
 }
+if (isset($tipMsg) && $tipMsg!='') {
+	echo '<p class="tipMsg">'. $tipMsg ."</p>\n";
+}
 ?>

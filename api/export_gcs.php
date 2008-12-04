@@ -7,6 +7,11 @@
 //require_once('httpauth.inc.php');
 require_once('../header.inc.php');
 
+if($GLOBALS['enableGoogleCustomSearch'] == false) {
+    echo "Google Custom Search disabled. You can enable it into the config.inc.php file.";
+    die;
+}
+
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
 $userservice =& ServiceFactory::getServiceInstance('UserService');
 
