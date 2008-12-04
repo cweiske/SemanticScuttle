@@ -6,152 +6,156 @@
 // - direction = out: convert spaces to underscores;
 // - direction = in: convert underscores to spaces.
 function convertTag($tag, $direction = 'out') {
-    if ($direction == 'out') {
-        $tag = str_replace(' ', '_', $tag);
-    } else {
-        $tag = str_replace('_', ' ', $tag);
-    }
-    return $tag;
+	if ($direction == 'out') {
+		$tag = str_replace(' ', '_', $tag);
+	} else {
+		$tag = str_replace('_', ' ', $tag);
+	}
+	return $tag;
 }
 
 function filter($data, $type = NULL) {
-    if (is_string($data)) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        switch ($type) {
-            case 'url':
-                $data = rawurlencode($data);
-                break;
-            default:
-                $data = htmlspecialchars($data);
-                break;
-        }
-    } else if (is_array($data)) {
-        foreach(array_keys($data) as $key) {
-            $row =& $data[$key];
-            $row = filter($row, $type);
-        }
-    }
-    return $data;
+	if (is_string($data)) {
+		$data = trim($data);
+		$data = stripslashes($data);
+		switch ($type) {
+			case 'url':
+				$data = rawurlencode($data);
+				break;
+			default:
+				$data = htmlspecialchars($data);
+				break;
+		}
+	} else if (is_array($data)) {
+		foreach(array_keys($data) as $key) {
+			$row =& $data[$key];
+			$row = filter($row, $type);
+		}
+	}
+	return $data;
 }
 
 function getPerPageCount() {
-    global $defaultPerPage;
-    return $defaultPerPage;
+	global $defaultPerPage;
+	return $defaultPerPage;
 }
 
 function getSortOrder($override = NULL) {
-    global $defaultOrderBy;
+	global $defaultOrderBy;
 
-    if (isset($_GET['sort'])) {
-        return $_GET['sort'];
-    } else if (isset($override)) {
-        return $override;
-    } else {
-        return $defaultOrderBy;
-    }
+	if (isset($_GET['sort'])) {
+		return $_GET['sort'];
+	} else if (isset($override)) {
+		return $override;
+	} else {
+		return $defaultOrderBy;
+	}
 }
 
 function multi_array_search($needle, $haystack) {
-    if (is_array($haystack)) {
-        foreach(array_keys($haystack) as $key) {
-            $value =& $haystack[$key];
-            $result = multi_array_search($needle, $value);
-            if (is_array($result)) {
-                $return = $result;
-                array_unshift($return, $key);
-                return $return;
-            } elseif ($result == true) {
-                $return[] = $key;
-                return $return;
-            }
-        }
-        return false;
-    } else {
-        if ($needle === $haystack) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+	if (is_array($haystack)) {
+		foreach(array_keys($haystack) as $key) {
+			$value =& $haystack[$key];
+			$result = multi_array_search($needle, $value);
+			if (is_array($result)) {
+				$return = $result;
+				array_unshift($return, $key);
+				return $return;
+			} elseif ($result == true) {
+				$return[] = $key;
+				return $return;
+			}
+		}
+		return false;
+	} else {
+		if ($needle === $haystack) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
 function createURL($page = '', $ending = '') {
-    global $cleanurls;
-    if (!$cleanurls && $page != '') {
-        $page .= '.php';
-    }
-    return ROOT . $page .'/'. $ending;
+	global $cleanurls;
+	if (!$cleanurls && $page != '') {
+		$page .= '.php';
+	}
+	return ROOT . $page .'/'. $ending;
 }
 
 /* Shorten a string like a URL for example by cutting the middle of it */
 function shortenString($string, $maxSize=75) {
-    $output = '';
-    if(strlen($string) > $maxSize) {
-	$output = substr($string, 0, $maxSize/2).'...'.substr($string, -$maxSize/2);
-    } else {
-	$output = $string;
-    }
-    return $output;
+	$output = '';
+	if(strlen($string) > $maxSize) {
+		$output = substr($string, 0, $maxSize/2).'...'.substr($string, -$maxSize/2);
+	} else {
+		$output = $string;
+	}
+	return $output;
 }
 
 /* Check url format and check online if the url is a valid page (Not a 404 error for example) */
-function checkUrl($url) {	
+function checkUrl($url, $checkOnline = true) {
 	//check format
 	if(!preg_match("#(ht|f)tp(s?)\://\S+\.\S+#i",$url)) {
 		return false;
-	}	
-	
-	//look if the page doesn't return a void or 40X or 50X HTTP code error
-	$h = @get_headers($url);
-	if(is_array($h) && strpos($h[0], '40') === false && strpos($h[0], '50') === false) {
-		return true;
+	}
+
+	if($checkOnline) {
+		//look if the page doesn't return a void or 40X or 50X HTTP code error
+		$h = @get_headers($url);
+		if(is_array($h) && strpos($h[0], '40') === false && strpos($h[0], '50') === false) {
+			return true;
+		} else {
+			return false;
+		}
 	} else {
-		return false;
+		return true;
 	}
 }
 
 
 function message_die($msg_code, $msg_text = '', $msg_title = '', $err_line = '', $err_file = '', $sql = '', $db = NULL) {
-    if(defined('HAS_DIED'))
-        die(T_('message_die() was called multiple times.'));
-    define('HAS_DIED', 1);
-	
+	if(defined('HAS_DIED'))
+	die(T_('message_die() was called multiple times.'));
+	define('HAS_DIED', 1);
+
 	$sql_store = $sql;
-	
-	// Get SQL error if we are debugging. Do this as soon as possible to prevent 
+
+	// Get SQL error if we are debugging. Do this as soon as possible to prevent
 	// subsequent queries from overwriting the status of sql_error()
 	if (DEBUG_MODE && ($msg_code == GENERAL_ERROR || $msg_code == CRITICAL_ERROR)) {
 		$sql_error = is_null($db) ? '' : $db->sql_error();
 		$debug_text = '';
-		
+
 		if ($sql_error['message'] != '')
-			$debug_text .= '<br /><br />'. T_('SQL Error') .' : '. $sql_error['code'] .' '. $sql_error['message'];
+		$debug_text .= '<br /><br />'. T_('SQL Error') .' : '. $sql_error['code'] .' '. $sql_error['message'];
 
 		if ($sql_store != '')
-			$debug_text .= '<br /><br />'. $sql_store;
+		$debug_text .= '<br /><br />'. $sql_store;
 
 		if ($err_line != '' && $err_file != '')
-			$debug_text .= '</br /><br />'. T_('Line') .' : '. $err_line .'<br />'. T_('File') .' :'. $err_file;
+		$debug_text .= '</br /><br />'. T_('Line') .' : '. $err_line .'<br />'. T_('File') .' :'. $err_file;
 	}
 
 	switch($msg_code) {
 		case GENERAL_MESSAGE:
 			if ($msg_title == '')
-				$msg_title = T_('Information');
+			$msg_title = T_('Information');
 			break;
 
 		case CRITICAL_MESSAGE:
 			if ($msg_title == '')
-				$msg_title = T_('Critical Information');
+			$msg_title = T_('Critical Information');
 			break;
 
 		case GENERAL_ERROR:
 			if ($msg_text == '')
-				$msg_text = T_('An error occured');
+			$msg_text = T_('An error occured');
 
 			if ($msg_title == '')
-				$msg_title = T_('General Error');
+			$msg_title = T_('General Error');
 			break;
 
 		case CRITICAL_ERROR:
@@ -159,10 +163,10 @@ function message_die($msg_code, $msg_text = '', $msg_title = '', $err_line = '',
 			// available so we're going to dump out a simple echo'd statement
 
 			if ($msg_text == '')
-				$msg_text = T_('An critical error occured');
+			$msg_text = T_('An critical error occured');
 
 			if ($msg_title == '')
-				$msg_title = T_('Critical Error');
+			$msg_title = T_('Critical Error');
 			break;
 	}
 
@@ -171,7 +175,7 @@ function message_die($msg_code, $msg_text = '', $msg_title = '', $err_line = '',
 	// set TRUE by accident (preventing confusion for the end user!)
 	if (DEBUG_MODE && ($msg_code == GENERAL_ERROR || $msg_code == CRITICAL_ERROR)) {
 		if ($debug_text != '')
-			$msg_text = $msg_text . '<br /><br /><strong>'. T_('DEBUG MODE') .'</strong>'. $debug_text;
+		$msg_text = $msg_text . '<br /><br /><strong>'. T_('DEBUG MODE') .'</strong>'. $debug_text;
 	}
 
 	echo "<html>\n<body>\n". $msg_title ."\n<br /><br />\n". $msg_text ."</body>\n</html>";
