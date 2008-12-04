@@ -4,6 +4,9 @@ if($GLOBALS['enableGoogleCustomSearch']==false) {
     echo "Google Custom Search disabled. You can enable it into the config.inc.php file.";
     die;
 }
+
+$userservice = & ServiceFactory :: getServiceInstance('UserService');
+$currentUser = $userservice->getCurrentObjectUser();
 ?>
 
 <html>
@@ -23,11 +26,16 @@ if($GLOBALS['enableGoogleCustomSearch']==false) {
 <small>Based on <a href="http://www.google.com/coop/cse/">Google Custom Search</a> over this <a href="../api/export_gcs.php">list of websites</a> from <?php echo $GLOBALS['sitename'] ?>.</small>
 
 
-<!--
-To refresh manually Google Custom Search Engine, goes to: http://www.google.com/coop/cse/cref
--->
-
-
+<?php if($userservice->isLoggedOn() && $currentUser->isAdmin()){
+	echo '<p><small>';
+	echo T_('Admin tips: ');
+	echo T_('To refresh manually Google Custom Search Engine, goes to: ');
+	echo '<a href="http://www.google.com/coop/cse/cref?cref='.ROOT.'search/context.php">http://www.google.com/coop/cse/cref</a><br/>';
+	echo T_('If no result appears, check that all the urls are valid in the admin section.');
+	echo '</small></p>';
+	
+}	
+?>
 
 </center>
 </body>

@@ -95,11 +95,15 @@ function shortenString($string, $maxSize=75) {
     return $output;
 }
 
-/* Check online if a url is a valid page (Not a 404 error for example) */
-function checkUrl($url) {
-	$h = @get_headers($url);
+/* Check url format and check online if the url is a valid page (Not a 404 error for example) */
+function checkUrl($url) {	
+	//check format
+	if(!preg_match("#(ht|f)tp(s?)\://\S+\.\S+#i",$url)) {
+		return false;
+	}	
 	
 	//look if the page doesn't return a void or 40X or 50X HTTP code error
+	$h = @get_headers($url);
 	if(is_array($h) && strpos($h[0], '40') === false && strpos($h[0], '50') === false) {
 		return true;
 	} else {
