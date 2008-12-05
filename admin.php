@@ -20,14 +20,9 @@
 require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
-$userservice = & ServiceFactory :: getServiceInstance('UserService');
 $bookmark2tagservice = & ServiceFactory :: getServiceInstance('Bookmark2Tagservice');
 $bookmarkservice = & ServiceFactory :: getServiceInstance('BookmarkService');
 $tag2tagservice = & ServiceFactory :: getServiceInstance('Tag2TagService');
-$templateservice = & ServiceFactory :: getServiceInstance('TemplateService');
-
-/* Managing current logged user */
-$currentUser = $userservice->getCurrentObjectUser();
 
 // Header variables
 $tplVars['subtitle'] = T_('Manage users');

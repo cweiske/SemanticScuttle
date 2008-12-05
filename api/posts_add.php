@@ -13,8 +13,8 @@
 require_once('httpauth.inc.php');
 require_once('../header.inc.php');
 
+/* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
 
 // Get all the bookmark's passed-in information
 if (isset($_REQUEST['url']) && (trim($_REQUEST['url']) != ''))

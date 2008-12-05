@@ -21,16 +21,12 @@
 require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
-$userservice =& ServiceFactory::getServiceInstance('UserService');
-$templateservice =& ServiceFactory::getServiceInstance('TemplateService');
+// No specific services
 
 /* Managing all possible inputs */
 isset($_POST['submitted']) ? define('POST_SUBMITTED', $_POST['submitted']): define('POST_SUBMITTED', '');
 isset($_POST['username']) ? define('POST_USERNAME', $_POST['username']): define('POST_USERNAME', '');
 isset($_POST['email']) ? define('POST_EMAIL', $_POST['email']): define('POST_EMAIL', '');
-
-
-$tplVars = array();
 
 // IF SUBMITTED
 if (POST_SUBMITTED != '') {

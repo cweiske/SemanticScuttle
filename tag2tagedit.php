@@ -23,18 +23,13 @@ require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
 $tag2tagservice = & ServiceFactory :: getServiceInstance('Tag2TagService');
-$templateservice = & ServiceFactory :: getServiceInstance('TemplateService');
-$userservice = & ServiceFactory :: getServiceInstance('UserService');
+
 
 /* Managing all possible inputs */
 isset($_SERVER['HTTP_REFERER']) ? define('HTTP_REFERER', $_SERVER['HTTP_REFERER']): define('HTTP_REFERER', '');
 
-/* Managing current logged user */
-$logged_on_user = $userservice->getCurrentUser();
-
-
 //permissions
-if($logged_on_user == null) {
+if(!$userservice->loggedOn()) {
     $tplVars['error'] = T_('Permission denied.');
     $templateservice->loadTemplate('error.500.tpl', $tplVars);
     exit();

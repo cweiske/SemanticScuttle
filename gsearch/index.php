@@ -5,8 +5,6 @@ if($GLOBALS['enableGoogleCustomSearch']==false) {
     die;
 }
 
-$userservice = & ServiceFactory :: getServiceInstance('UserService');
-$currentUser = $userservice->getCurrentObjectUser();
 ?>
 
 <html>

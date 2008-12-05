@@ -1,12 +1,4 @@
 <?php
-
-/* Service creation: only useful services are created */
-$userservice =& ServiceFactory::getServiceInstance('UserService');
-//$currentUser = $userservice->getCurrentUser();
-//$currentUserId = $userservice->getCurrentUserId();
-
-$currentObjectUser = $userservice->getCurrentObjectUser();
-
 $this->includeTemplate($GLOBALS['top_include']);
 ?>
 

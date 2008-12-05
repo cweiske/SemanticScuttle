@@ -1,6 +1,7 @@
 <?php
+/* Service creation: only useful services are created */
 $tag2tagservice =& ServiceFactory::getServiceInstance('Tag2TagService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
+
 
 require_once('sidebar.linkedtags.inc.php');
 

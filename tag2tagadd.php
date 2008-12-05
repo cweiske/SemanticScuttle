@@ -23,8 +23,6 @@ require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
 $tag2tagservice = & ServiceFactory :: getServiceInstance('Tag2TagService');
-$templateservice = & ServiceFactory :: getServiceInstance('TemplateService');
-$userservice = & ServiceFactory :: getServiceInstance('UserService');
 
 /* Managing all possible inputs */
 isset($_POST['confirm']) ? define('POST_CONFIRM', $_POST['confirm']): define('POST_CONFIRM', '');
@@ -33,8 +31,6 @@ isset($_POST['tag1']) ? define('POST_TAG1', $_POST['tag1']): define('POST_TAG1',
 isset($_POST['linkType']) ? define('POST_LINKTYPE', $_POST['linkType']): define('POST_LINKTYPE', '');
 isset($_POST['tag2']) ? define('POST_TAG2', $_POST['tag2']): define('POST_TAG2', '');
 
-/* Managing current logged user */
-$currentObjectUser = $userservice->getCurrentObjectUser();
 
 //permissions
 if(!$userservice->isLoggedOn()) {
@@ -50,19 +46,19 @@ if (POST_CONFIRM != '') {
     $tag1 = POST_TAG1;
     $linkType = POST_LINKTYPE;
     $tag2 = POST_TAG2;
-    if ($tag2tagservice->addLinkedTags($tag1, $tag2, $linkType, $currentObjectUser->getId())) {
+    if ($tag2tagservice->addLinkedTags($tag1, $tag2, $linkType, $currentUser->getId())) {
         $tplVars['msg'] = T_('Tag link created');
-        header('Location: '. createURL('bookmarks', $currentObjectUser->getUsername()));
+        header('Location: '. createURL('bookmarks', $currentUser->getUsername()));
     } else {
         $tplVars['error'] = T_('Failed to create the link');
         $templateservice->loadTemplate('error.500.tpl', $tplVars);
         exit();
     }
 } elseif (POST_CANCEL) {
-    header('Location: '. createURL('bookmarks', $currentObjectUser->getUsername() .'/'. $tags));
+    header('Location: '. createURL('bookmarks', $currentUser->getUsername() .'/'. $tags));
 }
 
-$tplVars['links']	= $tag2tagservice->getLinks($currentObjectUser->getId());
+$tplVars['links']	= $tag2tagservice->getLinks($currentUser->getId());
 
 $tplVars['tag1']		= $tag1;
 $tplVars['tag2']		= '';

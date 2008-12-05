@@ -23,8 +23,6 @@ require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
 $bookmarkservice  = & ServiceFactory :: getServiceInstance('BookmarkService');
-$templateservice  = & ServiceFactory :: getServiceInstance('TemplateService');
-$userservice      = & ServiceFactory :: getServiceInstance('UserService');
 $cdservice        = & ServiceFactory :: getServiceInstance('CommonDescriptionService');
 
 /* Managing all possible inputs */
@@ -47,11 +45,9 @@ if(!isset($_POST['referrer'])) {
 list ($url, $hash) = explode('/', $_SERVER['PATH_INFO']);
 $template   = 'bookmarkcommondescriptionedit.tpl';
 
-//$logged_on_user = $userservice->getCurrentUser();
-$currentObjectUser = $userservice->getCurrentObjectUser();
 
 //permissions
-if(is_null($currentObjectUser)) {
+if(is_null($currentUser)) {
 	$tplVars['error'] = T_('Permission denied.');
 	$templateservice->loadTemplate('error.500.tpl', $tplVars);
 	exit();
@@ -59,7 +55,7 @@ if(is_null($currentObjectUser)) {
 
 if (POST_CONFIRM) {
 	if (strlen($hash)>0 &&
-	$cdservice->addBookmarkDescription(POST_HASH, stripslashes(POST_TITLE), stripslashes(POST_DESCRIPTION), $currentObjectUser->getId(), time())
+	$cdservice->addBookmarkDescription(POST_HASH, stripslashes(POST_TITLE), stripslashes(POST_DESCRIPTION), $currentUser->getId(), time())
 	) {
 		$tplVars['msg'] = T_('Bookmark common description updated');
 		header('Location: '. POST_REFERRER);
@@ -68,7 +64,6 @@ if (POST_CONFIRM) {
 		$template         = 'error.500.tpl';
 	}
 } elseif (POST_CANCEL) {
-	$logged_on_user = $userservice->getCurrentUser();
 	header('Location: '. POST_REFERRER);
 } else {
 	$bkm = $bookmarkservice->getBookmarkByHash($hash);

@@ -22,7 +22,7 @@
 require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
-$userservice =& ServiceFactory::getServiceInstance('UserService');
+//No specific services
 
 /* Managing current logged user */
 $currentUser = $userservice->getCurrentObjectUser();
@@ -32,7 +32,6 @@ $currentUser = $userservice->getCurrentObjectUser();
 
 
 if ($userservice->isLoggedOn() && $user) {
-	$tplVars = array();
 	$pagetitle = '';
 
 	if (is_int($user)) {

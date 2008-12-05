@@ -8,8 +8,8 @@
 require_once('httpauth.inc.php');
 require_once('../header.inc.php');
 
+/* Service creation: only useful services are created */
 $b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
 
 // Get the tag info.
 if (isset($_REQUEST['old']) && (trim($_REQUEST['old']) != ''))

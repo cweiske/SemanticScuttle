@@ -1,5 +1,4 @@
 <?php
-$userservice =& ServiceFactory::getServiceInstance('UserService');
 $this->includeTemplate($GLOBALS['top_include']);
 ?>
 

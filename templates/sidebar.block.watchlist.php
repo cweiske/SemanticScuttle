@@ -1,5 +1,6 @@
 <?php
-$userservice =& ServiceFactory::getServiceInstance('UserService');
+/* Service creation: only useful services are created */
+//No specific services
 
 $watching = $userservice->getWatchNames($userid);
 if ($watching) {

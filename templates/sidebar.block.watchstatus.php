@@ -1,10 +1,11 @@
 <?php
-$userservice =& ServiceFactory::getServiceInstance('UserService');
-if ($userservice->isLoggedOn()) {
-    $currentUser = $userservice->getCurrentUser();
-    $currentUsername = $currentUser[$userservice->getFieldName('username')];
+/* Service creation: only useful services are created */
+//No specific services
 
-    if ($currentUsername != $user) {
+
+if ($userservice->isLoggedOn()) {
+
+    if ($currentUser->getUsername() != $user) {
         $result = $userservice->getWatchStatus($userid, $userservice->getCurrentUserId());
         if ($result) {
             $linkText = T_('Remove from Watchlist');

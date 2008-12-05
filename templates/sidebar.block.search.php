@@ -1,5 +1,5 @@
 <?php
-$userservice =& ServiceFactory::getServiceInstance('UserService');
+/* Service creation: only useful services are created */
 $searchhistoryservice =& ServiceFactory::getServiceInstance('SearchHistoryService');
 
 $logged_on_userid = $userservice->getCurrentUserId();

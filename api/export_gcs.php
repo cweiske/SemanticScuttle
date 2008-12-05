@@ -12,8 +12,9 @@ if($GLOBALS['enableGoogleCustomSearch'] == false) {
     die;
 }
 
+/* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
+
 
 /*
  // Restrict to admins?
@@ -36,8 +37,6 @@ $tag = NULL;
 // Get the posts relevant to the passed-in variables.
 $bookmarks =& $bookmarkservice->getBookmarks(0, NULL, NULL, $tag, NULL, getSortOrder());
 
-$currentuser = $userservice->getCurrentUser();
-$currentusername = $currentuser[$userservice->getFieldName('username')];
 
 // Set up the plain file and output all the posts.
 header('Content-Type: text/plain');

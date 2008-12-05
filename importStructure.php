@@ -22,8 +22,6 @@
 require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
-$userservice =& ServiceFactory::getServiceInstance('UserService');
-$templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 $tag2tagservice =& ServiceFactory::getServiceInstance('Tag2TagService');
 
 /* Managing current logged user */
@@ -33,8 +31,6 @@ $currentUser = $userservice->getCurrentObjectUser();
 /* Managing all possible inputs */
 // First input is $_FILES
 
-
-$tplVars = array();
 $tplVars['msg'] = '';
 
 if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['size'] > 0) {

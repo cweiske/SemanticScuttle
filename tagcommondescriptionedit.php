@@ -23,8 +23,6 @@ require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
 $b2tservice       = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
-$templateservice  = & ServiceFactory :: getServiceInstance('TemplateService');
-$userservice      = & ServiceFactory :: getServiceInstance('UserService');
 $cdservice        = & ServiceFactory :: getServiceInstance('CommonDescriptionService');
 
 /* Managing all possible inputs */

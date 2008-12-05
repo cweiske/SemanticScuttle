@@ -10,8 +10,9 @@
 require_once('httpauth.inc.php');
 require_once('../header.inc.php');
 
+/* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
+
 
 // Note that del.icio.us only errors out if no URL was passed in; there's no error on attempting
 // to delete a bookmark you don't have.

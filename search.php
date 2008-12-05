@@ -37,8 +37,6 @@ if (POST_TERMS != '') {
 } else {
 	/* Service creation: only useful services are created */
 	$bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-	$templateservice =& ServiceFactory::getServiceInstance('TemplateService');
-	$userservice =& ServiceFactory::getServiceInstance('UserService');
 	$searchhistoryservice =& ServiceFactory::getServiceInstance('SearchHistoryService');
 
 	/* Managing current logged user */
@@ -53,7 +51,6 @@ if (POST_TERMS != '') {
 		$page= NULL;
 	} 
 
-	$tplvars = array();
 	$tplVars['loadjs'] = true;
 
 	// Pagination

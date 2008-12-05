@@ -23,8 +23,6 @@ require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
-$templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 
 
 /* Managing all possible inputs */
@@ -32,8 +30,6 @@ $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 // Other inputs
 isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_STATUS', '');
 
-
-$tplVars = array();
 $countImportedBookmarks = 0;
 $tplVars['msg'] = '';
 

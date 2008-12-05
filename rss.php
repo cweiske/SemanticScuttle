@@ -24,12 +24,8 @@ require_once('header.inc.php');
 /* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
 $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
-$templateservice =& ServiceFactory::getServiceInstance('TemplateService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
 
 
-
-$tplVars = array();
 header('Content-Type: application/xml');
 if(isset($_SERVER['PATH_INFO']) && strlen($_SERVER['PATH_INFO']) >1) {
 	list($url, $user, $cat) = explode('/', $_SERVER['PATH_INFO']);
@@ -44,9 +40,7 @@ if ($usecache) {
 	$hashtext = $_SERVER['REQUEST_URI'];
 	if ($userservice->isLoggedOn()) {
 		$hashtext .= $userservice->getCurrentUserID();
-		$currentUser = $userservice->getCurrentUser();
-		$currentUsername = $currentUser[$userservice->getFieldName('username')];
-		if ($currentUsername == $user) {
+		if ($currentUser->getUsername() == $user) {
 			$hashtext .= $user;
 		}
 	}

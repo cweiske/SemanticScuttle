@@ -24,8 +24,6 @@ require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-$templateservice =& ServiceFactory::getServiceInstance('TemplateService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
 $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
 
 /* Managing all possible inputs */
@@ -35,7 +33,6 @@ isset($_GET['sort']) ? define('GET_SORT', $_GET['sort']): define('GET_SORT', '')
 
 
 // Logout action
-$tplvars = array();
 if (GET_ACTION == "logout") {
 	$userservice->logout();
 	$tplvars['msg'] = T_('You have now logged out');

@@ -1,13 +1,10 @@
 <?php
 
 /* Service creation: only useful services are created */
-$userservice =& ServiceFactory::getServiceInstance('UserService');
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
 $tagservice =& ServiceFactory::getServiceInstance('TagService');
 $cdservice =& ServiceFactory::getServiceInstance('CommonDescriptionService');
 
-// Momentary useful to go to object code
-$currentObjectUser = $userservice->getCurrentObjectUser();
 
 $pageName = isset($pageName)?$pageName:"";
 $user = isset($user)?$user:"";
@@ -94,7 +91,7 @@ if(isset($currenttag) && $currenttag!= '') {
 		//echo T_(' for these tags');
 	} else if($userservice->isLoggedOn()){
 		echo ' - ';
-		echo '<a href="'. createURL('bookmarks', $currentObjectUser->getUsername().'/'.$currenttag) .'">';
+		echo '<a href="'. createURL('bookmarks', $currentUser->getUsername().'/'.$currenttag) .'">';
 		echo T_('Only your bookmarks for this tag').'</a>';
 		//echo T_(' for these tags');
 	}
@@ -165,9 +162,9 @@ if(isset($currenttag) && $currenttag!= '') {
 
 		// Copy link
 		if ($userservice->isLoggedOn()
-		&& ($currentObjectUser->getId() != $row['uId'])
-		&& !$bookmarkservice->bookmarkExists($row['bAddress'], $currentObjectUser->getId())) {
-			$copy .= ' - <a href="'. createURL('bookmarks', $currentObjectUser->getUsername() .'?action=add&amp;address='. urlencode($row['bAddress']) .'&amp;title='. urlencode($row['bTitle'])). '&amp;description='.urlencode($row['bDescription']). '&amp;tags='.$tagsForCopy  .'">'. T_('Copy') .'</a>';
+		&& ($currentUser->getId() != $row['uId'])
+		&& !$bookmarkservice->bookmarkExists($row['bAddress'], $currentUser->getId())) {
+			$copy .= ' - <a href="'. createURL('bookmarks', $currentUser->getUsername() .'?action=add&amp;address='. urlencode($row['bAddress']) .'&amp;title='. urlencode($row['bTitle'])). '&amp;description='.urlencode($row['bDescription']). '&amp;tags='.$tagsForCopy  .'">'. T_('Copy') .'</a>';
 		}
 
 		// Nofollow option

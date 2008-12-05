@@ -23,11 +23,7 @@ require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-$templateservice =& ServiceFactory::getServiceInstance('TemplateService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
 $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
-
-$tplVars = array();
 
 /* Managing all possible inputs */
 isset($_GET['action']) ? define('GET_ACTION', $_GET['action']): define('GET_ACTION', '');
@@ -59,12 +55,9 @@ if ((GET_ACTION == "add") && !$userservice->isLoggedOn()) {
 }
 
 if ($userservice->isLoggedOn()) {
-	//$currentUser = $userservice->getCurrentUser();
-	//$currentUserID = $userservice->getCurrentUserId();
-	//$currentUsername = $currentUser[$userservice->getFieldName('username')];
-	$currentObjectUser = $userservice->getCurrentObjectUser();
-	$currentUserID = $currentObjectUser->getId();
-	$currentUsername = $currentObjectUser->getUsername();
+	$currentUser = $userservice->getCurrentObjectUser();
+	$currentUserID = $currentUser->getId();
+	$currentUsername = $currentUser->getUsername();
 }
 
 
@@ -197,7 +190,7 @@ if ($templatename == 'editbookmark.tpl') {
 	}
 } else if ($user && GET_POPUP == '') {
 
-	$tplVars['sidebar_blocks'] = array('profile', 'watchstatus');
+	$tplVars['sidebar_blocks'] = array('watchstatus');
 
 	if (!$cat) {
 		$cat = NULL;

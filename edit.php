@@ -23,8 +23,6 @@ require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
 $bookmarkservice = & ServiceFactory :: getServiceInstance('BookmarkService');
-$templateservice = & ServiceFactory :: getServiceInstance('TemplateService');
-$userservice = & ServiceFactory :: getServiceInstance('UserService');
 
 /* Managing all possible inputs */
 isset($_POST['submitted']) ? define('POST_SUBMITTED', $_POST['submitted']): define('POST_SUBMITTED', '');
@@ -39,9 +37,6 @@ isset($_POST['tags']) ? define('POST_TAGS', $_POST['tags']): define('POST_TAGS',
 isset($_GET['popup']) ? define('GET_POPUP', $_GET['popup']): define('GET_POPUP', '');
 isset($_POST['popup']) ? define('POST_POPUP', $_POST['popup']): define('POST_POPUP', '');
 isset($_POST['referrer']) ? define('POST_REFERRER', $_POST['referrer']): define('POST_REFERRER', '');
-
-/* Managing current logged user */
-$currentObjectUser = $userservice->getCurrentObjectUser();
 
 
 // Header variables
@@ -81,7 +76,7 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
                     header('Location: '. POST_REFERRER);
                 } else {
                 	$tplVars['msg'] = T_('Bookmark saved');
-                    header('Location: '. createURL('bookmarks', $currentObjectUser->getUsername()));
+                    header('Location: '. createURL('bookmarks', $currentUser->getUsername()));
                 }
             }
         }
@@ -92,7 +87,7 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
                 if (POST_REFERRER != '') {
                     header('Location: '. POST_REFERRER);
                 } else {
-                    header('Location: '. createURL('bookmarks', $currentObjectUser->getUsername()));
+                    header('Location: '. createURL('bookmarks', $currentUser->getUsername()));
                 }
                 exit();
             } else {

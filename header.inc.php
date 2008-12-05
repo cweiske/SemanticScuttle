@@ -37,7 +37,15 @@ T_bindtextdomain($domain, dirname(__FILE__) .'/locales');
 T_bind_textdomain_codeset($domain, 'UTF-8');
 T_textdomain($domain);
 
-
+// 4 // Session
 session_start();
 
+// 5 // Create mandatory services and objects
+$userservice =& ServiceFactory::getServiceInstance('UserService');
+$currentUser = $userservice->getCurrentObjectUser();
+
+$templateservice =& ServiceFactory::getServiceInstance('TemplateService');
+$tplVars = array();
+$tplVars['currentUser'] = $currentUser;
+$tplVars['userservice'] = $userservice;
 ?>

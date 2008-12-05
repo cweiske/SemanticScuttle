@@ -8,8 +8,9 @@
 require_once('httpauth.inc.php');
 require_once('../header.inc.php');
 
+/* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
+
 
 // Check to see if a tag was specified.
 if (isset($_REQUEST['tag']) && (trim($_REQUEST['tag']) != ''))
@@ -20,13 +21,10 @@ else
 // Get the posts relevant to the passed-in variables.
 $bookmarks =& $bookmarkservice->getBookmarks(0, NULL, $userservice->getCurrentUserId(), $tag);
 
-$currentuser = $userservice->getCurrentUser();
-$currentusername = $currentuser[$userservice->getFieldName('username')];
-
 // Set up the XML file and output all the posts.
 header('Content-Type: text/xml');
 echo '<?xml version="1.0" standalone="yes" ?'.">\r\n";
-echo '<posts update="'. gmdate('Y-m-d\TH:i:s\Z') .'" user="'. htmlspecialchars($currentusername) .'"'. (is_null($tag) ? '' : ' tag="'. htmlspecialchars($tag) .'"') .">\r\n";
+echo '<posts update="'. gmdate('Y-m-d\TH:i:s\Z') .'" user="'. htmlspecialchars($currentUser->getUsername()) .'"'. (is_null($tag) ? '' : ' tag="'. htmlspecialchars($tag) .'"') .">\r\n";
 
 foreach($bookmarks['bookmarks'] as $row) {
     if (is_null($row['bDescription']) || (trim($row['bDescription']) == ''))

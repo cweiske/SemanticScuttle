@@ -22,17 +22,13 @@
 require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
-$userservice =& ServiceFactory::getServiceInstance('UserService');
-$templateservice =& ServiceFactory::getServiceInstance('TemplateService');
-
+// No specific services
 
 /* Managing all possible inputs */
 // First input is $_FILES
 // Other inputs
 isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_STATUS', '');
 
-
-$tplVars = array();
 
 if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['size'] > 0) {
 	$userinfo = $userservice->getCurrentObjectUser();
@@ -72,7 +68,6 @@ function startElement($parser, $name, $attrs) {
 	global $depth, $status, $tplVars, $userservice;
 
 	$bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-	$userservice =& ServiceFactory::getServiceInstance('UserService');
 
 	if ($name == 'POST') {
 		while(list($attrTitle, $attrVal) = each($attrs)) {

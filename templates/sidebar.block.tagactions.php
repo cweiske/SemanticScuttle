@@ -1,11 +1,10 @@
 <?php
-$userservice =& ServiceFactory::getServiceInstance('UserService');
+/* Service creation: only useful services are created */
+//No specific services
 
 if ($userservice->isLoggedOn()) {
-    $currentUser = $userservice->getCurrentUser();
-    $currentUsername = $currentUser[$userservice->getFieldName('username')];
 
-    if ($currentUsername == $user) {
+    if ($currentUser->getUsername() == $user) {
         $tags = explode('+', $currenttag);
         $renametext = T_ngettext('Rename Tag', 'Rename Tags', count($tags));
         $renamelink = createURL('tagrename', $currenttag);

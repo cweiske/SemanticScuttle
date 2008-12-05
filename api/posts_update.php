@@ -8,14 +8,13 @@
 require_once('httpauth.inc.php');
 require_once('../header.inc.php');
 
+/* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
+
 
 // Get the posts relevant to the passed-in variables.
 $bookmarks =& $bookmarkservice->getBookmarks(0, 1, $userservice->getCurrentUserId());
 
-$currentuser = $userservice->getCurrentUser();
-$currentusername = $currentuser[$userservice->getFieldName('username')];
 
 // Set up the XML file and output all the tags.
 header('Content-Type: text/xml');

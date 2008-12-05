@@ -23,23 +23,16 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 require_once('../header.inc.php');
 
+/* Service creation: only useful services are created */
 $b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
 $bookmarkservice =& ServiceFactory::getServiceInstance('TagService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
-
-if ($userservice->isLoggedOn()) {
-    $loggedon = true;
-    $currentUser = $userservice->getCurrentUser();
-    $currentUserID = $userservice->getCurrentUserId();
-    $currentUsername = $currentUser[$userservice->getFieldName('username')];
-}
 
 ?>
 
 {identifier:"tag",
 items: [
 <?php
-	$listTags = $b2tservice->getPopularTags($currentUserID, 1000, $currentUserID);
+	$listTags = $b2tservice->getPopularTags($userservice->getCurrentUserId(), 1000, $userservice->getCurrentUserId());
 	foreach($listTags as $t) {
 		echo "{tag: \"".$t['tag']."\"},";
 	}

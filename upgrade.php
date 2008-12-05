@@ -36,7 +36,6 @@ exit();
 /////////////////
 require_once('header.inc.php');
 $tagstatservice   = & ServiceFactory :: getServiceInstance('TagStatService');
-$templateservice  = & ServiceFactory :: getServiceInstance('TemplateService');
 ?>
 
 <h1>Upgrade</h1>

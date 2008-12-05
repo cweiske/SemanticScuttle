@@ -1,6 +1,7 @@
 <?php
+/* Service creation: only useful services are created */
 $b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
+
 
 if(!isset($user)) {
 	$user = '';

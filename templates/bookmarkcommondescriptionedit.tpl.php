@@ -1,6 +1,4 @@
 <?php
-/* Service creation: only useful services are created */
-$userservice      = & ServiceFactory :: getServiceInstance('UserService');
 
 $this->includeTemplate($GLOBALS['top_include']);
 
@@ -47,7 +45,6 @@ window.onload = function() {
     <td></td>
 </tr>
 </table>
-</p>
 
 <?php if (isset($referrer)): ?>
 <div><input type="hidden" name="referrer" value="<?php echo $referrer; ?>" /></div>

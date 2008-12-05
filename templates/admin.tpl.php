@@ -1,10 +1,5 @@
 <?php
 
-/* Service creation: only useful services are created */
-$userservice =& ServiceFactory::getServiceInstance('UserService');
-
-$currentObjectUser = $userservice->getCurrentObjectUser();
-
 $this->includeTemplate($GLOBALS['top_include']);
 
 echo '<h3>'.T_('Users management').'</h3>';
@@ -18,7 +13,7 @@ foreach($users as $user) {
 	echo '<a href="'.createURL('profile', $user->getUsername()).'">'.$user->getUsername().'</a>';
 	echo '</div>';
 
-	if($user->getUsername() != $currentObjectUser->getUsername()) {
+	if($user->getUsername() != $currentUser->getUsername()) {
 	    echo '<div class="meta">';
 	    echo '<a href="'.createURL('admin','delete/'.$user->getUsername()).'" onclick="return confirm(\''.T_('Are you sure?').'\');">'.T_('Delete').'</a>';
 	    echo '</div>';

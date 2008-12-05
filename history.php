@@ -23,32 +23,21 @@ require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-$templateservice =& ServiceFactory::getServiceInstance('TemplateService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
 $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
 
 /* Managing all possible inputs */
 isset($_GET['page']) ? define('GET_PAGE', $_GET['page']): define('GET_PAGE', 0);
 isset($_GET['sort']) ? define('GET_SORT', $_GET['sort']): define('GET_SORT', '');
 
-$tplVars = array();
-
 @list($url, $hash) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
 
-$currentObjectUser = $userservice->getCurrentObjectUser();
 
-/*$loggedon = false;
-if ($userservice->isLoggedOn()) {
-    $loggedon = true;
-    $currentUser = $userservice->getCurrentUser();
-    $currentUsername = $currentUser[$userservice->getFieldName('username')];
-}*/
 
 if ($usecache) {
     // Generate hash for caching on
     $hashtext = $_SERVER['REQUEST_URI'];
     if ($userservice->isLoggedOn()) {
-        $hashtext .= $currentObjectUser->getUsername();
+        $hashtext .= $currentUser->getUsername();
     }
     $cachehash = md5($hashtext);
 
@@ -85,7 +74,7 @@ if ($bookmark =& $bookmarkservice->getBookmarkByHash($hash)) {
     $tplVars['nav_url'] = createURL('history', $hash .'/%3$s');
     $tplVars['rsschannels'] = array();
     if($userservice->isLoggedOn()) {
-    	$tplVars['user'] = $currentObjectUser->getUsername();
+    	$tplVars['user'] = $currentUser->getUsername();
     } else {
     	$tplVars['user'] = '';
     }

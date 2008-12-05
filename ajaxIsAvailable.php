@@ -26,7 +26,7 @@ header("Cache-Control: no-cache, must-revalidate");
 require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
-$userservice = & ServiceFactory :: getServiceInstance('UserService');
+//No specific services
 
 /* Managing all possible inputs */
 isset($_GET['username']) ? define('GET_USERNAME', $_GET['username']): define('GET_USERNAME', '');

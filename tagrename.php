@@ -25,8 +25,6 @@ require_once('header.inc.php');
 $b2tservice       = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
 $tagservice   = & ServiceFactory :: getServiceInstance('TagService');
 $tag2tagservice   = & ServiceFactory :: getServiceInstance('Tag2tagService');
-$templateservice  = & ServiceFactory :: getServiceInstance('TemplateService');
-$userservice      = & ServiceFactory :: getServiceInstance('UserService');
 
 /* Managing all possible inputs */
 isset($_POST['confirm']) ? define('POST_CONFIRM', $_POST['confirm']): define('POST_CONFIRM', '');

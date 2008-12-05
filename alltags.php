@@ -22,9 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
-$templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 $b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
 $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
 
 
@@ -48,7 +46,6 @@ if ($usecache) {
 }
 
 // Header variables
-$tplvars = array();
 $pagetitle = T_('All Tags');
 
 if (isset($user) && $user != '') {

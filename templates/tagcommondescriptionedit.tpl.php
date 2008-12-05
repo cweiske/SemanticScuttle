@@ -1,6 +1,6 @@
 <?php
 $this->includeTemplate($GLOBALS['top_include']);
-$userservice      = & ServiceFactory :: getServiceInstance('UserService');
+
 ?>
 <script type="text/javascript">
 window.onload = function() {

@@ -23,8 +23,6 @@ require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-$templateservice =& ServiceFactory::getServiceInstance('TemplateService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
 $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
 
 /* Managing all possible inputs */
@@ -36,8 +34,6 @@ $currentUser = $userservice->getCurrentObjectUser();
 
 /* Managing path info */
 list($url, $cat) = explode('/', $_SERVER['PATH_INFO']);
-
-$tplVars = array();
 
 
 if (!$cat) {

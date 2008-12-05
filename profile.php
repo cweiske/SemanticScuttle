@@ -22,8 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
-$templateservice =& ServiceFactory::getServiceInstance('TemplateService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
+// No specific services
 
 /* Managing all possible inputs */
 isset($_POST['submitted']) ? define('POST_SUBMITTED', $_POST['submitted']): define('POST_SUBMITTED', '');
@@ -38,12 +37,6 @@ isset($_POST['token']) ? define('POST_TOKEN', $_POST['token']): define('POST_TOK
 isset($_SESSION['token']) ? define('SESSION_TOKEN', $_SESSION['token']): define('SESSION_TOKEN', '');
 isset($_SESSION['token_stamp']) ? define('SESSION_TOKENSTAMP', $_SESSION['token_stamp']): define('SESSION_TOKENSTAMP', '');
 
-
-/* Managing current logged user */
-$currentObjectUser = $userservice->getCurrentObjectUser();
-
-
-$tplVars = array();
 
 @list($url, $user) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
 
@@ -67,7 +60,7 @@ if ($user) {
     exit();
 }
 
-if ($userservice->isLoggedOn() && $user == $currentObjectUser->getUsername()) {
+if ($userservice->isLoggedOn() && $user == $currentUser->getUsername()) {
     $title = T_('My Profile');
 } else {
     $title = T_('Profile') .': '. $user;
@@ -78,7 +71,7 @@ $tplVars['subtitle'] = $title;
 $tplVars['user'] = $user;
 $tplVars['userid'] = $userid;
 
-if (POST_SUBMITTED!='' && $currentObjectUser->getId() == $userid) {
+if (POST_SUBMITTED!='' && $currentUser->getId() == $userid) {
     $error = false;
     $detPass = trim(POST_PASS);
     $detPassConf = trim(POST_PASSCONF);
@@ -117,7 +110,7 @@ if (POST_SUBMITTED!='' && $currentObjectUser->getId() == $userid) {
     $userinfo = $userservice->getObjectUserByUsername($user);
 }
 
-if (!$userservice->isLoggedOn() || $currentObjectUser->getId() != $userid) {
+if (!$userservice->isLoggedOn() || $currentUser->getId() != $userid) {
     $templatename = 'profile.tpl.php';
 } else {
 	//Token Init

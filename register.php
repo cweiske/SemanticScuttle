@@ -22,8 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
-$userservice =& ServiceFactory::getServiceInstance('UserService');
-$templateservice =& ServiceFactory::getServiceInstance('TemplateService');
+// No specific services
 
 /* Managing all possible inputs */
 isset($_POST['submitted']) ? define('POST_SUBMITTED', $_POST['submitted']): define('POST_SUBMITTED', '');
@@ -32,8 +31,6 @@ isset($_POST['password']) ? define('POST_PASS', $_POST['password']): define('POS
 isset($_POST['email']) ? define('POST_MAIL', $_POST['email']): define('POST_MAIL', '');
 isset($_POST['antispamAnswer']) ? define('POST_ANTISPAMANSWER', $_POST['antispamAnswer']): define('POST_ANTISPAMANSWER', '');
 
-
-$tplVars = array();
 
 if (POST_SUBMITTED != '') {
     $posteduser = trim(utf8_strtolower(POST_USERNAME));

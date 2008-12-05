@@ -1,5 +1,6 @@
 <?php
-$userservice =& ServiceFactory::getServiceInstance('UserService');
+/* Service creation: only useful services are created */
+//No specific services
 
 $logged_on_userid = $userservice->getCurrentUserId();
 if ($logged_on_userid === false) {

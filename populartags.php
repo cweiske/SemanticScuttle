@@ -22,13 +22,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 require_once('header.inc.php');
 
 /* Service creation: only useful services are created */
-$templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 $b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
 $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
-
-/* Managing current logged user */
-$currentObjectUser = $userservice->getCurrentObjectUser();
 
 
 list($url, $user) = explode('/', $_SERVER['PATH_INFO']);
@@ -37,8 +32,8 @@ if ($usecache) {
     // Generate hash for caching on
     $hashtext = $_SERVER['REQUEST_URI'];
     if ($userservice->isLoggedOn()) {
-        $hashtext .= $currentObjectUser->getId();
-        if ($currentObjectUser->getUsername() == $user) {
+        $hashtext .= $currentUser->getId();
+        if ($currentUser->getUsername() == $user) {
             $hashtext .= $user;
         }
     }
@@ -49,7 +44,6 @@ if ($usecache) {
 }
 
 // Header variables
-$tplvars = array();
 $pagetitle = T_('Popular Tags');
 
 if (isset($user) && $user != '') {

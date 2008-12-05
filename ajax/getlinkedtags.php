@@ -26,7 +26,6 @@ require_once('../header.inc.php');
 /* Service creation: only useful services are created */
 $b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
 $bookmarkservice =& ServiceFactory::getServiceInstance('TagService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
 $tagstatservice =& ServiceFactory::getServiceInstance('TagStatService');
 
 /* Managing all possible inputs */

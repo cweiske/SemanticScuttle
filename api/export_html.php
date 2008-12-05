@@ -8,8 +8,8 @@
 require_once('httpauth.inc.php');
 require_once('../header.inc.php');
 
+/* Service creation: only useful services are created */
 $bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-$userservice =& ServiceFactory::getServiceInstance('UserService');
 
 // Check to see if a tag was specified.
 if (isset($_REQUEST['tag']) && (trim($_REQUEST['tag']) != ''))
@@ -20,8 +20,6 @@ else
 // Get the posts relevant to the passed-in variables.
 $bookmarks =& $bookmarkservice->getBookmarks(0, NULL, $userservice->getCurrentUserId(), $tag, NULL, getSortOrder());
 
-$currentuser = $userservice->getCurrentUser();
-$currentusername = $currentuser[$userservice->getFieldName('username')];
 
 // Set up the XML file and output all the posts.
 header('Content-Type: text/html');
@@ -29,7 +27,7 @@ echo '<!DOCTYPE NETSCAPE-Bookmark-file-1>'."\r\n";
 echo '<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">';
 echo '<!-- This is an automatically generated file. -->'."\r\n";
 echo '<TITLE>Bookmarks</TITLE>'."\r\n";
-echo '<H1 LAST_MODIFIED="'. date('U') .'">Bookmarks for '. htmlspecialchars($currentusername) .''. (is_null($tag) ? '' : ' tag="'. htmlspecialchars($tag) .'"') ." from " . $sitename ."</H1>\r\n";
+echo '<H1 LAST_MODIFIED="'. date('U') .'">Bookmarks for '. htmlspecialchars($currentUser->getUsername()) .''. (is_null($tag) ? '' : ' tag="'. htmlspecialchars($tag) .'"') ." from " . $sitename ."</H1>\r\n";
 echo '<DL><p>'."\r\n";
 
 
