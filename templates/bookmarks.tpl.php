@@ -197,7 +197,7 @@ if(isset($currenttag) && $currenttag!= '') {
 			echo '<div class="address">'.shortenString($address).'</div>';
 		}
 
-		echo '<div class="meta">'. date($GLOBALS['shortdate'], strtotime($row['bDatetime'])) . $cats . $copy . $edit ."</div>\n";
+		echo '<div class="meta">'. date($GLOBALS['shortdate'], strtotime($row['bModified'])) . $cats . $copy . $edit ."</div>\n";
 
 		echo '</div>';
 

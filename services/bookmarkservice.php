@@ -66,9 +66,9 @@ class BookmarkService {
 	function getBookmarkByHash($hash) {
 		return $this->_getbookmark('bHash', $hash, true);
 	}
-	
+
 	function countBookmarks($uId) {
-		
+
 	}
 
 	function editAllowed($bookmark) {
@@ -127,7 +127,7 @@ class BookmarkService {
 
 		// Note that if date is NULL, then it's added with a date and time of now, and if it's present,
 		// it's expected to be a string that's interpretable by strtotime().
-		if (is_null($date))
+		if (is_null($date) || $date == '')
 		$time = time();
 		else
 		$time = strtotime($date);
@@ -222,7 +222,7 @@ class BookmarkService {
 		//    if that user is on the logged-in user's watchlist, get the public AND contacts-only
 		//    bookmarks; otherwise, just get the public bookmarks.
 		//  - if the $user is set and IS the logged-in user, then get all bookmarks.
-		
+
 		$userservice =& ServiceFactory::getServiceInstance('UserService');
 		$b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
 		$tag2tagservice =& ServiceFactory::getServiceInstance('Tag2TagService');
@@ -278,7 +278,7 @@ class BookmarkService {
 			}
 			$query_3 .= ' AND ('. $query_3_1 .') AND B.bStatus IN (0, 1)';
 		}
-		
+
 		$query_5 = '';
 		if($hash == null) {
 			$query_5.= ' GROUP BY B.bHash';
@@ -286,7 +286,7 @@ class BookmarkService {
 
 		switch($sortOrder) {
 			case 'date_asc':
-				$query_5.= ' ORDER BY B.bDatetime ASC ';
+				$query_5.= ' ORDER BY B.bModified ASC ';
 				break;
 			case 'title_desc':
 				$query_5.= ' ORDER BY B.bTitle DESC ';
@@ -301,7 +301,7 @@ class BookmarkService {
 				$query_5.= ' ORDER BY B.bAddress ASC ';
 				break;
 			default:
-				$query_5.= ' ORDER BY B.bDatetime DESC ';
+				$query_5.= ' ORDER BY B.bModified DESC ';
 		}
 
 		// Handle the parts of the query that depend on any tags that are present.
@@ -453,18 +453,18 @@ class BookmarkService {
 		}
 		return $this->db->sql_fetchfield(0, 0) - 1;
 	}
-	
+
 	function normalize($address) {
 		// If bookmark address doesn't contain ":", add "http://" to the start as a default protocol
 		if (strpos($address, ':') === false) {
 			$address = 'http://'. $address;
 		}
-		
+
 		// Delete final /
 		if (substr($address, -1) == '/') {
 			$address = substr($address, 0, count($address)-2);
 		}
-		
+
 		return $address;
 	}
 
