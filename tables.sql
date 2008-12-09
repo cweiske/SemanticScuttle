@@ -14,7 +14,7 @@ CREATE TABLE `sc_bookmarks` (
   `bModified` datetime NOT NULL default '0000-00-00 00:00:00',
   `bTitle` varchar(255) NOT NULL default '',
   `bAddress` text NOT NULL,
-  `bDescription` varchar(255) default NULL,
+  `bDescription` varchar(1500) default NULL,
   `bHash` varchar(32) NOT NULL default '',
   PRIMARY KEY  (`bId`),
   KEY `sc_bookmarks_usd` (`uId`,`bStatus`,`bDatetime`),
@@ -32,7 +32,7 @@ CREATE TABLE `sc_tags` (
   `tId` int(11) NOT NULL auto_increment,
   `tag` varchar(100) NOT NULL default '',
   `uId` int(11) NOT NULL default '0',
-  `tDescription` varchar(255) default NULL,
+  `tDescription` varchar(1500) default NULL,
   PRIMARY KEY  (`tId`),
   UNIQUE KEY `sc_tags_tag_uId` (`tag`, `uId`)
 );
@@ -131,7 +131,7 @@ CREATE TABLE `sc_commondescription` (
   `tag` varchar(100) NOT NULL default '',
   `bHash` varchar(32) NOT NULL default '',
   `cdTitle` varchar(255) NOT NULL default '',
-  `cdDescription` varchar(2000) default NULL,
+  `cdDescription` varchar(1500) default NULL,
   `cdDatetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY (`cdId`),
   UNIQUE KEY `sc_commondescription_tag_datetime` (`tag`,`cdDatetime`),
