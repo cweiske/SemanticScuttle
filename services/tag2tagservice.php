@@ -18,10 +18,11 @@ class Tag2TagService {
 	function addLinkedTags($tag1, $tag2, $relationType, $uId) {
 		$tagservice =& ServiceFactory::getServiceInstance('TagService');
 		$tag1 = $tagservice->normalize($tag1);
-		$tag2 = $tagservice->normalize($tag2);		
+		$tag2 = $tagservice->normalize($tag2);				
 		
 		if($tag1 == $tag2 || strlen($tag1) == 0 || strlen($tag2) == 0
 		|| ($relationType != ">" && $relationType != "=")
+		|| !is_numeric($uId) || $uId<=0
 		|| ($this->existsLinkedTags($tag1, $tag2, $relationType, $uId))) {
 			return false;
 		}
