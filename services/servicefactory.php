@@ -16,7 +16,8 @@ class ServiceFactory {
 			if(!$db->db_connect_id) {
 				message_die(CRITICAL_ERROR, "Could not connect to the database", $db);
 			}
-		}
+		}		
+		
 		if (!isset($instances[$name])) {
 			if (isset($serviceoverrules[$name])) {
 				$name = $serviceoverrules[$name];
@@ -25,6 +26,7 @@ class ServiceFactory {
 				if (!isset($servicedir)) {
 					$servicedir = dirname(__FILE__) .'/';
 				}
+								
 				require_once($servicedir . strtolower($name) . '.php');
 			}
 			$instances[$name] = call_user_func(array($name, 'getInstance'), $db);

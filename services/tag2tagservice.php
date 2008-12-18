@@ -18,15 +18,15 @@ class Tag2TagService {
 	function addLinkedTags($tag1, $tag2, $relationType, $uId) {
 		$tagservice =& ServiceFactory::getServiceInstance('TagService');
 		$tag1 = $tagservice->normalize($tag1);
-		$tag2 = $tagservice->normalize($tag2);				
-		
+		$tag2 = $tagservice->normalize($tag2);
+
 		if($tag1 == $tag2 || strlen($tag1) == 0 || strlen($tag2) == 0
 		|| ($relationType != ">" && $relationType != "=")
 		|| !is_numeric($uId) || $uId<=0
 		|| ($this->existsLinkedTags($tag1, $tag2, $relationType, $uId))) {
 			return false;
 		}
-		
+
 		$values = array('tag1' => $tag1, 'tag2' => $tag2, 'relationType'=> $relationType, 'uId'=> $uId);
 		$query = 'INSERT INTO '. $this->getTableName() .' '. $this->db->sql_build_array('INSERT', $values);
 		//die($query);
@@ -37,9 +37,8 @@ class Tag2TagService {
 		}
 		$this->db->sql_transaction('commit');
 
-		// Update stats
-		$tsts =& ServiceFactory::getServiceInstance('TagStatService');
-		$tsts->updateStat($tag1, $relationType, $uId);
+		// Update stats and cache
+		$this->update($tag1, $tag2, $relationType, $uId);
 
 		return true;
 	}
@@ -77,7 +76,6 @@ class Tag2TagService {
 		$output = array();
 		foreach($rowset as $row) {
 			if(!in_array($row['tag'], $stopList)) {
-
 				$output[] = $row['tag'];
 			}
 		}
@@ -93,49 +91,69 @@ class Tag2TagService {
 		return $output;
 	}
 
-	/* TODO: clean the outputs to obtain homogenous ones*/
-	function getAllLinkedTags($tag1, $relationType, $uId, $asFlatList=true, $stopList=array()) {
-		$asFlatList = true; //we disable the tree list parameter for the moment
-
+	/*
+	 * Returns all linked tags (all descendants if relation is >,
+	 * all synonyms if relation is = )
+	 * $stopList allows to avoid cycle (a > b > a) between tags
+	 */
+	function getAllLinkedTags($tag1, $relationType, $uId, $stopList=array()) {
 		if(in_array($tag1, $stopList) || $tag1 == '') {
 			return array();
 		}
 
+		// try to find data in cache
+		$tcs = & ServiceFactory::getServiceInstance('TagCacheService');
+		if(count($stopList) == 0) {
+			$activatedCache = true;
+		} else {
+			$activatedCache = false;
+		}
+
+		// look for existing links
 		$stopList[] = $tag1;
 		$linkedTags = $this->getLinkedTags($tag1, $relationType, $uId, false, $stopList);
-
 		if($relationType != '=') {
 			$linkedTags = array_merge($linkedTags, $this->getLinkedTags($tag1, '=', $uId, false, $stopList));
 		}
 
 		if(count($linkedTags) == 0) {
 			return array();
+
 		} else {
-			$output = array();
-			if($asFlatList == true) {
-				//$output[$tag1] = $tag1;
-			} else {
-				$output = array('node'=>$tag1);
+			// use cache if possible
+			if($activatedCache) {
+				if($relationType == '>') {
+					$output = $tcs->getChildren($tag1, $uId);
+				} elseif($relationType == '=') {
+					$output = $tcs->getSynonyms($tag1, $uId);
+				}
+				if(count($output)>0) {
+					return $output;
+				}
 			}
 
-			foreach($linkedTags as $linkedTag) {
-				$allLinkedTags = $this->getAllLinkedTags($linkedTag, $relationType, $uId, $asFlatList, $stopList);
+			// else compute the links
+			$output = array();
 
-				if($asFlatList == true) {
-					$output[] = $linkedTag;
-					if(is_array($allLinkedTags)) {
-							
-						$output = array_merge($output, $allLinkedTags);
-					} else {
-						$output[] = $allLinkedTags;
-					}
+			foreach($linkedTags as $linkedTag) {
+				$allLinkedTags = $this->getAllLinkedTags($linkedTag, $relationType, $uId, $stopList);
+				$output[] = $linkedTag;
+				if(is_array($allLinkedTags)) {
+					$output = array_merge($output, $allLinkedTags);
 				} else {
 					$output[] = $allLinkedTags;
 				}
 			}
+
+			// and save in cache
+			if($activatedCache == true) {
+				$tcs->updateTag($tag1, $relationType, $output, $uId);
+			}
+				
+			//$output = array_unique($output); // remove duplication
+			return $output;
+
 		}
-		//$output = array_unique($output); // remove duplication
-		return $output;
 	}
 
 	function getOrphewTags($relationType, $uId = 0, $limit = null, $orderBy = null) {
@@ -220,16 +238,16 @@ class Tag2TagService {
 
 
 	function existsLinkedTags($tag1, $tag2, $relationType, $uId) {
-		
+
 		//$tag1 = mysql_real_escape_string($tag1);
 		//$tag2 = mysql_real_escape_string($tag2);
-		
+
 		$query = "SELECT tag1, tag2, relationType, uId FROM `". $this->getTableName() ."`";
 		$query.= " WHERE tag1 = '" .$tag1 ."'";
 		$query.= " AND tag2 = '".$tag2."'";
 		$query.= " AND relationType = '". $relationType ."'";
 		$query.= " AND uId = '".$uId."'";
-		
+
 		//echo($query."<br>\n");
 
 		return $this->db->sql_numrows($this->db->sql_query($query)) > 0;
@@ -263,9 +281,9 @@ class Tag2TagService {
 			return false;
 		}
 
-		// Update stats
-		$tsts =& ServiceFactory::getServiceInstance('TagStatService');
-		$tsts->updateStat($tag1, $relationType, $uId);
+
+		// Update stats and cache
+		$this->update($tag1, $tag2, $relationType, $uId);
 
 		return true;
 	}
@@ -273,7 +291,7 @@ class Tag2TagService {
 	function renameTag($uId, $oldName, $newName) {
 		$tagservice =& ServiceFactory::getServiceInstance('TagService');
 		$newName = $tagservice->normalize($newName);
-		
+
 		$query = 'UPDATE `'. $this->getTableName() .'`';
 		$query.= ' SET tag1="'.$newName.'"';
 		$query.= ' WHERE tag1="'.$oldName.'"';
@@ -286,15 +304,23 @@ class Tag2TagService {
 		$query.= ' AND uId="'.$uId.'"';
 		$this->db->sql_query($query);
 
-		// Update stats
-		$tsts =& ServiceFactory::getServiceInstance('TagStatService');
-		$tsts->updateStat($oldName, '=', $uId);
-		$tsts->updateStat($oldName, '>', $uId);
-		$tsts->updateStat($newName, '=', $uId);
-		$tsts->updateStat($newName, '>', $uId);
+
+		// Update stats and cache
+		$this->update($oldName, NULL, '=', $uId);
+		$this->update($oldName, NULL, '>', $uId);
+		$this->update($newName, NULL, '=', $uId);
+		$this->update($newName, NULL, '>', $uId);
 
 		return true;
 
+	}
+
+	function update($tag1, $tag2, $relationType, $uId) {
+		$tsts =& ServiceFactory::getServiceInstance('TagStatService');
+		$tsts->updateStat($tag1, $relationType, $uId);
+
+		$tcs = & ServiceFactory::getServiceInstance('TagCacheService');
+		$tcs->deleteByUser($uId);
 	}
 
 	function deleteAll() {

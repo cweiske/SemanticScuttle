@@ -23,6 +23,7 @@ require_once('header.inc.php');
 $bookmark2tagservice = & ServiceFactory :: getServiceInstance('Bookmark2Tagservice');
 $bookmarkservice = & ServiceFactory :: getServiceInstance('BookmarkService');
 $tag2tagservice = & ServiceFactory :: getServiceInstance('Tag2TagService');
+$tagcacheservice = & ServiceFactory :: getServiceInstance('TagCacheService');
 
 // Header variables
 $tplVars['subtitle'] = T_('Manage users');
@@ -52,9 +53,10 @@ if ( $action
 			if ( $user && ($userinfo = $userservice->getUserByUsername($user)) ) {
 				$uId = $userinfo['uId'];
 
+				$tagcacheservice->deleteByUser($uId);
 				$tag2tagservice->removeLinkedTags('','','',$uId);
 				$userservice->deleteUser($uId);
-				$bookmark2tagservice->deleteTagsForUser($uId);
+				$bookmark2tagservice->deleteTagsForUser($uId);				
 				// XXX: don't delete bookmarks before tags, else tags can't be deleted !!!
 				$bookmarkservice->deleteBookmarksForUser($uId);
 

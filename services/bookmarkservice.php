@@ -153,6 +153,8 @@ class BookmarkService {
 		$uriparts = explode('.', $address);
 		$extension = end($uriparts);
 		unset($uriparts);
+		
+		trigger_error($GLOBALS['filetypes'].'aaaaaaaaaaaaaaaaaaaaa');
 
 		$b2tservice = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
 		if (!$b2tservice->attachTags($bId, $categories, $fromApi, $extension, false, $fromImport)) {
