@@ -190,9 +190,12 @@ if(isset($currenttag) && $currenttag!= '') {
 
 		echo '<div class="link"><a href="'. $address .'"'. $rel .' class="taggedlink">'. filter($row['bTitle']) ."</a></div>\n";
 		if ($row['bDescription'] == '') {
-			$row['bDescription'] = '-';
+			$bkDescription = '-';
+		} else {
+			$bkDescription = preg_replace('|\[\/.*?\]|', '', filter($row['bDescription'])); // remove final anchor
+			$bkDescription = preg_replace('|\[(.*?)\]|', ' <br/><b>$1 : </b>', $bkDescription); // remove final anchor
 		}
-		echo '<div class="description">'. filter($row['bDescription']) ."</div>\n";
+		echo '<div class="description">'. $bkDescription ."</div>\n";
 		if(!isset($hash)) {
 			echo '<div class="address">'.shortenString($address).'</div>';
 		}

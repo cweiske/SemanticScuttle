@@ -41,8 +41,8 @@ $this->includeTemplate("dojo.inc");
 </tr>
 <tr>
     <th align="left"><?php echo T_('Description'); ?></th>
-    <td><input type="text" name="description" size="75" maxlength="255" value="<?php echo filter($row['bDescription'], 'xml'); ?>" /></td>
-    <td></td>
+    <td><textarea name="description" rows="5" cols="63" ><?php echo filter($row['bDescription'], 'xml'); ?></textarea></td>
+    <td>&larr; <?php echo T_('You can use anchors to delimite attributes. for example: [publisher]blah[/publisher] '); ?></td>
 </tr>
 <tr>
     <th align="left"><?php echo T_('Tags'); ?></th>
