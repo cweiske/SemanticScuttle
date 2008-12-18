@@ -163,6 +163,10 @@ class TagsCacheTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(array('b', 'c', 'd', 'e'), $tts->getAllLinkedTags('a', '>', 1));
 		$this->assertEquals(array('d', 'e'), $tts->getAllLinkedTags('c', '>', 1));
 		
+		// check that result comes from cache (artificial changes in cache must appear in result)
+		$tcs->removeChild('a', 'e', 1);
+		$this->assertEquals(array('b', 'c', 'd'), $tts->getAllLinkedTags('a', '>', 1));
+		
 		//cache must be deleted for user when links are modified
 		$tts->addLinkedTags('a', 'f', '=', 1);
 		$this->assertEquals(array(), $tcs->getChildren('a', 1));
