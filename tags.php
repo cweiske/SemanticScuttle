@@ -39,10 +39,17 @@ list($url, $cat) = explode('/', $_SERVER['PATH_INFO']);
 if (!$cat) {
 	header('Location: '. createURL('populartags'));
 	exit;
-} else {
-	$cattitle = str_replace('+', ' + ', $cat);
 }
-$pagetitle = T_('Tags') .': '. $cattitle;
+
+$titleTags = explode('+', filter($cat));
+$pagetitle = T_('Tags') .': ';
+for($i = 0; $i<count($titleTags);$i++) {
+	$pagetitle.= $titleTags[$i].'<a href="'.createUrl('tags', aggregateTags($titleTags, '+', $titleTags[$i])).'" title="'.T_('Remove the tag from the selection').'">*</a> + ';
+}
+$pagetitle = substr($pagetitle, 0, strlen($pagetitle) - strlen(' + ')); 
+
+
+//$cattitle = str_replace('+', ' + ', $cat);
 
 if ($usecache) {
 	// Generate hash for caching on
@@ -57,7 +64,8 @@ if ($usecache) {
 }
 
 // Header variables
-$tplVars['pagetitle'] = $pagetitle;
+//$tplVars['pagetitle'] = $pagetitle;
+$tplVars['pagetitle'] = '';
 $tplVars['loadjs'] = true;
 $tplVars['rsschannels'] = array(
 array(filter($sitename .': '. $pagetitle), createURL('rss', 'all/'. filter($cat, 'url')).'?sort='.getSortOrder())
@@ -78,7 +86,7 @@ $tplVars['start'] = $start;
 $tplVars['popCount'] = 25;
 $tplVars['currenttag'] = $cat;
 $tplVars['sidebar_blocks'] = array('linked', 'related', 'popular');
-$tplVars['subtitle'] = filter($pagetitle);
+$tplVars['subtitle'] = $pagetitle;
 $tplVars['bookmarkCount'] = $start + 1;
 $bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, NULL, $cat, NULL, getSortOrder());
 $tplVars['total'] = $bookmarks['total'];
@@ -92,4 +100,5 @@ if ($usecache) {
 	// Cache output if existing copy has expired
 	$cacheservice->End($hash);
 }
+
 ?>

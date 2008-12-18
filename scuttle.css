@@ -152,6 +152,9 @@ h2 {
     padding: 0.5em 1em;
     text-transform: lowercase;
 }
+h2 a, h2 a:hover {
+	color: #DDD;
+}
 
 /* NAVIGATION */
 

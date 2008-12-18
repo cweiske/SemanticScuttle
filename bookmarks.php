@@ -100,7 +100,15 @@ if ($user) {
 }
 if ($cat) {
 	$catTitle = ': '. str_replace('+', ' + ', $cat);
-	$pagetitle .= $catTitle;
+	
+	$catTitleWithUrls = ': ';	
+	$titleTags = explode('+', filter($cat));	
+	for($i = 0; $i<count($titleTags);$i++) {
+		$catTitleWithUrls.= $titleTags[$i].'<a href="'.createUrl('bookmarks', $user.'/'.aggregateTags($titleTags, '+', $titleTags[$i])).'" title="'.T_('Remove the tag from the selection').'">*</a> + ';
+	}
+	$catTitleWithUrls = substr($catTitleWithUrls, 0, strlen($catTitleWithUrls) - strlen(' + '));
+
+	$pagetitle .= $catTitleWithUrls;
 }
 $pagetitle = substr($pagetitle, 2);
 
@@ -237,12 +245,17 @@ if ($templatename == 'editbookmark.tpl') {
 	$tplVars['cat_url'] = createURL('bookmarks', '%s/%s');
 	$tplVars['nav_url'] = createURL('bookmarks', '%s/%s%s');
 	if ($userservice->isLoggedOn() && $user == $currentUsername) {
-		$title = T_('My Bookmarks') . filter($catTitle);
+		//$title = T_('My Bookmarks') . $catTitleWithUrls;
+		$tplVars['pagetitle'] = T_('My Bookmarks') . $catTitle;
+		$tplVars['subtitle'] =  T_('My Bookmarks') . $catTitleWithUrls;
 	} else {
-		$title = filter($pagetitle);
+		//$title = $pagetitle;
+		//$tplVars['pagetitle'] = $pagetitle;
+		$tplVars['pagetitle'] = '';
+		$tplVars['subtitle'] = $pagetitle;
 	}
-	$tplVars['pagetitle'] = $title;
-	$tplVars['subtitle'] = $title;
+	//$tplVars['pagetitle'] = $title;
+	//$tplVars['subtitle'] = $title;
 }
 
 $tplVars['summarizeLinkedTags'] = true;

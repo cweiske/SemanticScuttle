@@ -115,6 +115,20 @@ function checkUrl($url, $checkOnline = true) {
 	}
 }
 
+/* Returns a concatenated String
+ * including all the tags from the array $arrayTags (excepted of the $exceptedTag)
+ * separated by the $separator.
+ * */
+function aggregateTags($arrayTags, $separator = ' + ', $exceptedTag = '') {
+	$output = '';
+
+	for($i = 0; $i<count($arrayTags); $i++) {
+		if($arrayTags[$i] != $exceptedTag) {
+			$output.= $arrayTags[$i] . $separator;
+		}
+	}
+	return substr($output, 0, strlen($output) - strlen($separator) );
+}
 
 function message_die($msg_code, $msg_text = '', $msg_title = '', $err_line = '', $err_file = '', $sql = '', $db = NULL) {
 	if(defined('HAS_DIED'))
