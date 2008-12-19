@@ -213,7 +213,7 @@ if ($templatename == 'editbookmark.tpl') {
 		$tplVars['sidebar_blocks'][] = 'menu';
 	}
 	$tplVars['popCount'] = 30;
-	$tplVars['sidebar_blocks'][] = 'popular';
+	//$tplVars['sidebar_blocks'][] = 'popular';
 
 	$tplVars['userid'] = $userid;
 	$tplVars['userinfo'] =& $userinfo;
