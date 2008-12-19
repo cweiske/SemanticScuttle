@@ -146,7 +146,7 @@ class Tag2TagService {
 			}
 
 			// and save in cache
-			if($activatedCache == true) {
+			if($activatedCache == true && $uId>0) {
 				$tcs->updateTag($tag1, $relationType, $output, $uId);
 			}
 				
