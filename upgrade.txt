@@ -8,7 +8,7 @@
   * No intructions
 - Upgrade your current configuration file (config.inc.php) with respect to config.inc.php.example
   * Delete last line : include_once('debug.inc.php');
-  * Add variable: $menu2Tags = array();
+  * Add variable: $menu2Tags = array('example', 'of', 'menu', 'tags');
   * Add variable: $debugMode = true; # if true, show debug messages
 
 === From version 0.89 to 0.90 ===

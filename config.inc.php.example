@@ -15,7 +15,7 @@ $usecache           = false; # use cache ? {true,false}
 $dir_cache          = dirname(__FILE__) .'/cache/'; # directory where cache files will be stored
 $cleanurls          = false; # Use mod_rewrite to hide PHP extensions {true,false[default]}
 			     # be cautious, doesn't work for all hosts, you may need to modify the .htaccess file
-$debugMode			= false; # if true, show debug messages			     
+$debugMode	    = false; # if true, show debug messages			     
 
 #### Database ####
 $dbtype = 'mysql4'; # Database driver {mysql, mysqli, mysql4, oracle, postgres, sqlite, db2, firebird, mssql, mssq-odbc}
