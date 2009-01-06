@@ -81,7 +81,11 @@ function createURL($page = '', $ending = '') {
 	if (!$cleanurls && $page != '') {
 		$page .= '.php';
 	}
-	return ROOT . $page .'/'. $ending;
+	if(strlen($ending)>0) {
+		return ROOT . $page .'/'. $ending;
+	} else {
+		return ROOT . $page;
+	}
 }
 
 /* Shorten a string like a URL for example by cutting the middle of it */
