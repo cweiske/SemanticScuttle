@@ -16,7 +16,7 @@ if(isset($rsschannels)) {
 }
 ?>
 <link rel="stylesheet" type="text/css"
-	href="http://ajax.googleapis.com/ajax/libs/dojo/1.2/dijit/themes/nihilo/nihilo.css">
+	href="http://ajax.googleapis.com/ajax/libs/dojo/1.2/dijit/themes/nihilo/nihilo.css" />
 
 <?php if (isset($loadjs)) :?>
 <script type="text/javascript" src="<?php echo ROOT ?>jsScuttle.php"></script>
