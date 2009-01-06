@@ -196,9 +196,9 @@ if(isset($currenttag) && $currenttag!= '') {
 			$bkDescription = preg_replace('|\[(.*?)\]|', ' <br/><b>$1 : </b>', $bkDescription); // remove final anchor
 		}
 		echo '<div class="description">'. $bkDescription ."</div>\n";
-		if(!isset($hash)) {
+		//if(!isset($hash)) {
 			echo '<div class="address">'.shortenString($address).'</div>';
-		}
+		//}
 
 		echo '<div class="meta">'. date($GLOBALS['shortdate'], strtotime($row['bModified'])) . $cats . $copy . $edit ."</div>\n";
 
