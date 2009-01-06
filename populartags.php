@@ -77,6 +77,7 @@ if (isset($userid)) {
 
 $tplVars['sidebar_blocks'] = array('linked');
 $tplVars['subtitle'] = $pagetitle;
+$tplVars['loadjs'] = true;
 
 $templateservice->loadTemplate('tags.tpl', $tplVars);
 

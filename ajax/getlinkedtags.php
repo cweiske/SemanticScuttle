@@ -34,6 +34,8 @@ isset($_GET['uId']) ? define('GET_UID', $_GET['uId']): define('GET_UID', '');
 
 
 function displayTag($tag, $uId) {
+	$uId = ($uId==0)?NULL:$uId;  // if user is nobody, NULL allows to look for every public tags
+	
 	$tag2tagservice =& ServiceFactory::getServiceInstance('Tag2TagService');
 	$output =  '{ id:'.rand().', name:\''.$tag.'\'';
 

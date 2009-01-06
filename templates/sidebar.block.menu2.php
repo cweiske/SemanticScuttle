@@ -24,7 +24,7 @@ if (sizeOf($menu2Tags) > 0) {
 	$this->includeTemplate("dojo.inc");
 	?>
 
-<h2><?php echo '<span>'.T_('Menu Tags').'</span> ';?></h2>
+<h2><?php echo '<span>'.T_('Featured Menu Tags').'</span> ';?></h2>
 
 
 <div id="related"><?php
