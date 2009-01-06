@@ -140,7 +140,7 @@ if(isset($currenttag) && $currenttag!= '') {
 
 		// User attribution
 		$copy = '';
-		if (!isset($user) || isset($watched)) {
+		if ($user == '' || isset($watched)) {
 			$copy = ' '. T_('by') .' <a href="'. createURL('bookmarks', $row['username']) .'">'. $row['username'] .'</a>';
 		}
 
