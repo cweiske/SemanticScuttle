@@ -140,6 +140,20 @@ class CommonDescriptionService {
 
 	}
 
+	function deleteDescriptionsForUser($uId){
+		$query = 'DELETE FROM '. $this->getTableName() . ' WHERE uId = '. intval($uId);
+
+		$this->db->sql_transaction('begin');
+		if (!($dbresult = & $this->db->sql_query($query))) {
+			$this->db->sql_transaction('rollback');
+			message_die(GENERAL_ERROR, 'Could not delete user descriptions', '',
+			__LINE__, __FILE__, $query, $this->db);
+			return false;
+		}
+		
+		return true;
+	}
+
 
 	function deleteAll() {
 		$query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';

@@ -24,6 +24,9 @@ $bookmark2tagservice = & ServiceFactory :: getServiceInstance('Bookmark2Tagservi
 $bookmarkservice = & ServiceFactory :: getServiceInstance('BookmarkService');
 $tag2tagservice = & ServiceFactory :: getServiceInstance('Tag2TagService');
 $tagcacheservice = & ServiceFactory :: getServiceInstance('TagCacheService');
+$commondescriptionservice = & ServiceFactory :: getServiceInstance('CommonDescriptionService');
+$searchhistoryservice = & ServiceFactory :: getServiceInstance('SearchHistoryService');
+$tagstatservice = & ServiceFactory :: getServiceInstance('TagStatService');
 
 // Header variables
 $tplVars['subtitle'] = T_('Manage users');
@@ -56,7 +59,10 @@ if ( $action
 				$tagcacheservice->deleteByUser($uId);
 				$tag2tagservice->removeLinkedTags('','','',$uId);
 				$userservice->deleteUser($uId);
-				$bookmark2tagservice->deleteTagsForUser($uId);				
+				$bookmark2tagservice->deleteTagsForUser($uId);
+				$commondescriptionservice->deleteDescriptionsForUser($uId);
+				$searchhistoryservice->deleteSearchHistoryForUser($uId);
+				$tagstatservice->deleteTagStatForUser($uId);				
 				// XXX: don't delete bookmarks before tags, else tags can't be deleted !!!
 				$bookmarkservice->deleteBookmarksForUser($uId);
 

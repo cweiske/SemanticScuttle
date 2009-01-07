@@ -169,6 +169,18 @@ class TagStatService {
 		$this->db->sql_query($query);
 	}
 
+	function deleteTagStatForUser($uId) {
+		$query = 'DELETE FROM '. $this->getTableName() .' WHERE uId = '.		intval($uId);
+
+		if (!($dbresult = & $this->db->sql_query($query))) {
+			message_die(GENERAL_ERROR, 'Could not delete tag stats', '', __LINE__,
+			__FILE__, $query, $this->db);
+			return false;
+		}
+
+		return true;
+	}
+
 	function deleteAll() {
 		$query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';
 		$this->db->sql_query($query);
