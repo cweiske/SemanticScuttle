@@ -11,7 +11,7 @@ if($GLOBALS['enableGoogleCustomSearch'] == false) {
 <GoogleCustomizations>
     <CustomSearchEngine>
         <Title><?php echo $GLOBALS['sitename'] ?></Title>
-        <Description><?php echo $GLOBALS['welcomeMessage'] ?></Description>
+        <Description><?php echo filter($GLOBALS['welcomeMessage']) ?></Description>
         <Context>
            <BackgroundLabels>
              <Label name="include" mode="FILTER" />
