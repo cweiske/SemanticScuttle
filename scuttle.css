@@ -507,6 +507,12 @@ ul {
 	width: 75%;
 }
 
+.adminBackground {
+    background: #FFFFFF url(http://127.0.0.6/SemanticScuttle/trunk/images/logo_24.png) repeat-y scroll top right;    
+    /*border-top: 1px solid;
+    border-color: #CC9900;*/
+}
+
 /* DOJO Style */
 
 /* DOJO Style */

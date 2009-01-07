@@ -82,9 +82,11 @@ $menuTag = 'menu'; # name of the tag whose subtags will appear into the menu box
 $maxSizeMenuBlock = 7; # maximum number of items (tags) appearing into menu box
 $menu2Tags = array('example', 'of', 'menu', 'tags'); # list of tags used by menu2 sidebar box (void list = hidden menu2 box)
 
-### Other ###
+### Search ###
 $sizeSearchHistory = 10; # number of users' searches that are saved {1..10[Default]..-1[Unlimited]}
 $enableGoogleCustomSearch = true; #Enable Google Search Engine into "gsearch/" folder
 
+### Other ###
+$enableAdminColors = true;  #Enables special colors on admin pages and bookmarks marking the difference with normal user.
 
 ?>
