@@ -56,10 +56,7 @@ $cUser = $userservice->getUser($userid);
 ?></h2>
 <?php //endif?>
 
-<div id="related">
-
-<!-- table-->
-<?php
+<div id="related"><!-- table--> <?php
 if($editingMode) {
 	//echo '<tr><td></td><td>';
 	echo '<p style="margin-bottom: 13px;text-align:center;">';
@@ -80,20 +77,20 @@ foreach($explodedTags as $explodedTag) {
 
 
 		// fathers tag
-		/*$fatherTags = $tag2tagservice->getLinkedTags($explodedTag, '>', $userid, true);
+		$fatherTags = $tag2tagservice->getLinkedTags($explodedTag, '>', $userid, true);
 		if(count($fatherTags)>0) {
-		foreach($fatherTags as $fatherTag) {
-		echo '<tr><td></td><td>';
-		echo '<a href="'. sprintf($cat_url, filter($user, 'url'), filter($fatherTag, 'url')) .'" rel="tag">('. filter($fatherTag) .')</a>';
-		echo '</td></tr>';
+			foreach($fatherTags as $fatherTag) {
+				//echo '<tr><td></td><td>';
+				echo '<a href="'. sprintf($cat_url, filter($user, 'url'), filter($fatherTag, 'url')) .'" rel="tag">('. filter($fatherTag) .')</a> ';
+				//echo '</td></tr>';
+			}
 		}
-		}
-
-		$displayLinkedTags = displayLinkedTags($explodedTag, '>', $userid, $cat_url, $user, $editingMode, null, 1);
-		echo $displayLinkedTags['output'];
-		if(is_array($displayLinkedTags['stopList'])) {
-		$stopList = array_merge($stopList, $displayLinkedTags['stopList']);
-		}*/		
+		/*
+		 $displayLinkedTags = displayLinkedTags($explodedTag, '>', $userid, $cat_url, $user, $editingMode, null, 1);
+		 echo $displayLinkedTags['output'];
+		 if(is_array($displayLinkedTags['stopList'])) {
+		 $stopList = array_merge($stopList, $displayLinkedTags['stopList']);
+		 }*/
 		echo '<div dojoType="dojo.data.ItemFileReadStore" url="'.ROOT.'ajax/getlinkedtags.php?tag='.$explodedTag.'&uId='.$userid.'" jsid="linkedTagStore" ></div>';
 		echo '<div dojoType="dijit.Tree" store="linkedTagStore" labelAttr="name" >';
 		echo '<script type="dojo/method" event="onClick" args="item">';
@@ -107,8 +104,6 @@ foreach($explodedTags as $explodedTag) {
 	}
 
 }
-?>
-<!-- /table-->
-</div>
+?> <!-- /table--></div>
 
 <?php endif?>
