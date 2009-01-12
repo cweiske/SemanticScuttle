@@ -325,6 +325,11 @@ p.tags span.selected {
     background: #CEC;
 }
 
+.anchor {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .treeTag {
 	color: #999955;
 }

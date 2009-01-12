@@ -88,5 +88,8 @@ $enableGoogleCustomSearch = true; #Enable Google Search Engine into "gsearch/" f
 
 ### Other ###
 $enableAdminColors = true;  #Enables special colors on admin pages and bookmarks marking the difference with normal user.
+$descriptionAnchors = array("author", "isbn", "address"=>"[address][street][/street][city][/city][/address]"); #add a possible anchor (structured content) for bookmarks' description field
+							# a simple value "xxx" (like "author") automatically associates xxx with [xxx][/xxx].
+							# a complex value "xxx"=>"yyy" (like "address") direclty associates xxx with yyy. 
 
 ?>

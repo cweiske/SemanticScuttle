@@ -141,3 +141,9 @@ function playerLoad() {
         }
     }
 }
+
+function addAnchor(anchorForm, where) {
+    var whereZone = document.getElementById(where);    
+    whereZone.value = whereZone.value + anchorForm;    
+    document.getElementById(where).focus();
+}
