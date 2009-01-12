@@ -80,9 +80,9 @@ Array.prototype.remove = function (ele) {
 };
 
 function addonload(addition) {
-    var existing = window.onload;
+    //var existing = window.onload;
     window.onload = function () {
-        existing();
+        //existing();
         addition();
     }
 }
