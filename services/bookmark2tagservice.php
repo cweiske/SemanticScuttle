@@ -26,8 +26,6 @@ class Bookmark2TagService {
 		// Make sure that categories is an array of trimmed strings, and that if the categories are
 		// coming in from an API call to add a bookmark, that underscores are converted into strings.
 		
-		trigger_error($GLOBALS['filetypes'].'bbbbbbbbbbbbbbbbbbbbbbbbbbbb');
-		
 		if (!is_array($tags)) {
 			$tags = trim($tags);
 			if ($tags != '') {
