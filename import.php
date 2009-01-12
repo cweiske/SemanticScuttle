@@ -100,7 +100,7 @@ function startElement($parser, $name, $attrs) {
 				$bDatetime = gmdate('Y-m-d H:i:s');
 			}
 
-			if ($bookmarkservice->addBookmark($bAddress, $bTitle, $bDescription, $status, $tags, $bDatetime, true, true))
+			if ($bookmarkservice->addBookmark($bAddress, $bTitle, $bDescription, '', $status, $tags, $bDatetime, true, true))
 			$tplVars['msg'] = T_('Bookmark imported.');
 			else
 			$tplVars['error'] = T_('There was an error saving your bookmark. Please try again or contact the administrator.');

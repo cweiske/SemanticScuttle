@@ -32,11 +32,13 @@ isset($_POST['submitted']) ? define('POST_SUBMITTED', $_POST['submitted']): defi
 isset($_GET['title']) ? define('GET_TITLE', $_GET['title']): define('GET_TITLE', '');
 isset($_GET['address']) ? define('GET_ADDRESS', $_GET['address']): define('GET_ADDRESS', '');
 isset($_GET['description']) ? define('GET_DESCRIPTION', $_GET['description']): define('GET_DESCRIPTION', '');
+isset($_GET['privateNote']) ? define('GET_PRIVATENOTE', $_GET['privateNote']): define('GET_PRIVATENOTE', '');
 isset($_GET['tags']) ? define('GET_TAGS', $_GET['tags']): define('GET_TAGS', '');
 
 isset($_POST['title']) ? define('POST_TITLE', $_POST['title']): define('POST_TITLE', '');
 isset($_POST['address']) ? define('POST_ADDRESS', $_POST['address']): define('POST_ADDRESS', '');
 isset($_POST['description']) ? define('POST_DESCRIPTION', $_POST['description']): define('POST_DESCRIPTION', '');
+isset($_POST['privateNote']) ? define('POST_PRIVATENOTE', $_POST['privateNote']): define('POST_PRIVATENOTE', '');
 isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_STATUS', '');
 isset($_POST['tags']) ? define('POST_TAGS', $_POST['tags']): define('POST_TAGS', '');
 
@@ -133,10 +135,11 @@ if ($userservice->isLoggedOn() && POST_SUBMITTED != '') {
 		} else {
 			$title = trim(POST_TITLE);
 			$description = trim(POST_DESCRIPTION);
+			$privateNote = trim(POST_PRIVATENOTE);
 			$status = intval(POST_STATUS);
 			$categories = trim(POST_TAGS);
 			$saved = true;
-			if ($bookmarkservice->addBookmark($address, $title, $description, $status, $categories)) {
+			if ($bookmarkservice->addBookmark($address, $title, $description, $privateNote, $status, $categories)) {
 				if (POST_POPUP != '') {
 					$tplVars['msg'] = '<script type="text/javascript">window.close();</script>';
 				} else {
@@ -175,6 +178,7 @@ if ($templatename == 'editbookmark.tpl') {
                 'bTitle' => stripslashes(POST_TITLE),
                 'bAddress' => stripslashes(POST_ADDRESS),
                 'bDescription' => stripslashes(POST_DESCRIPTION),
+			    'bPrivateNote' => stripslashes(POST_PRIVATENOTE),
                 'tags' => (POST_TAGS ? explode(',', stripslashes(POST_TAGS)) : array()),
 				'bStatus' => 0,
 			);
@@ -184,6 +188,7 @@ if ($templatename == 'editbookmark.tpl') {
                 'bTitle' => stripslashes(GET_TITLE),
                 'bAddress' => stripslashes(GET_ADDRESS),
                 'bDescription' => stripslashes(GET_DESCRIPTION),
+			    'bPrivateNote' => stripslashes(GET_PRIVATENOTE),
                 'tags' => (GET_TAGS ? explode(',', stripslashes(GET_TAGS)) : array()),
 				'bStatus' => 0
 			);

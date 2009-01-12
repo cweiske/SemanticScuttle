@@ -15,6 +15,7 @@ CREATE TABLE `sc_bookmarks` (
   `bTitle` varchar(255) NOT NULL default '',
   `bAddress` text NOT NULL,
   `bDescription` varchar(1500) default NULL,
+  `bPrivateNote` varchar(1500) default NULL,
   `bHash` varchar(32) NOT NULL default '',
   PRIMARY KEY  (`bId`),
   KEY `sc_bookmarks_usd` (`uId`,`bStatus`,`bDatetime`),

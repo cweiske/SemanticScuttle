@@ -31,6 +31,7 @@ isset($_POST['delete']) ? define('POST_DELETE', $_POST['delete']): define('POST_
 isset($_POST['title']) ? define('POST_TITLE', $_POST['title']): define('POST_TITLE', '');
 isset($_POST['address']) ? define('POST_ADDRESS', $_POST['address']): define('POST_ADDRESS', '');
 isset($_POST['description']) ? define('POST_DESCRIPTION', $_POST['description']): define('POST_DESCRIPTION', '');
+isset($_POST['privateNote']) ? define('POST_PRIVATENOTE', $_POST['privateNote']): define('POST_PRIVATENOTE', '');
 isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_STATUS', '');
 isset($_POST['tags']) ? define('POST_TAGS', $_POST['tags']): define('POST_TAGS', '');
 
@@ -62,10 +63,11 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
             $address = trim(POST_ADDRESS);
             $title = trim(POST_TITLE);
             $description = trim(POST_DESCRIPTION);
+            $privateNote = trim(POST_PRIVATENOTE);
             $status = intval(POST_STATUS);
             $tags = trim(POST_TAGS);
             
-            if (!$bookmarkservice->updateBookmark($bId, $address, $title, $description, $status, $tags)) {
+            if (!$bookmarkservice->updateBookmark($bId, $address, $title, $description, $privateNote, $status, $tags)) {
                 $tplvars['error'] = T_('Error while saving your bookmark');
             } else {
                 if (POST_POPUP != '') {

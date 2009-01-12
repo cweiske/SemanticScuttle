@@ -73,7 +73,7 @@ if (is_null($url) || is_null($description)) {
     if ($bookmarkservice->bookmarkExists($url, $userservice->getCurrentUserId()))
         $added = false;
     else
-        $added = $bookmarkservice->addBookmark($url, $description, $extended, $status, $tags, $dt, true);
+        $added = $bookmarkservice->addBookmark($url, $description, $extended, '', $status, $tags, $dt, true);
 }
 
 // Set up the XML file and output the result.

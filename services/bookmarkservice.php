@@ -108,7 +108,7 @@ class BookmarkService {
 
 	// Adds a bookmark to the database.
 	// Note that date is expected to be a string that's interpretable by strtotime().
-	function addBookmark($address, $title, $description, $status, $categories, $date = NULL, $fromApi = false, $fromImport = false, $sId = -1) {
+	function addBookmark($address, $title, $description, $privateNote, $status, $categories, $date = NULL, $fromApi = false, $fromImport = false, $sId = -1) {
 		if($sId == -1) {
 			$userservice = & ServiceFactory :: getServiceInstance('UserService');
 			$sId = $userservice->getCurrentUserId();
@@ -134,7 +134,7 @@ class BookmarkService {
 		$datetime = gmdate('Y-m-d H:i:s', $time);
 
 		// Set up the SQL insert statement and execute it.
-		$values = array('uId' => intval($sId), 'bIp' => $ip, 'bDatetime' => $datetime, 'bModified' => $datetime, 'bTitle' => $title, 'bAddress' => $address, 'bDescription' => $description, 'bStatus' => intval($status), 'bHash' => md5($address));
+		$values = array('uId' => intval($sId), 'bIp' => $ip, 'bDatetime' => $datetime, 'bModified' => $datetime, 'bTitle' => $title, 'bAddress' => $address, 'bDescription' => $description, 'bPrivateNote' => $privateNote, 'bStatus' => intval($status), 'bHash' => md5($address));
 		$sql = 'INSERT INTO '. $this->getTableName() .' '. $this->db->sql_build_array('INSERT', $values);
 		$this->db->sql_transaction('begin');
 		if (!($dbresult = & $this->db->sql_query($sql))) {
@@ -153,8 +153,6 @@ class BookmarkService {
 		$uriparts = explode('.', $address);
 		$extension = end($uriparts);
 		unset($uriparts);
-		
-		trigger_error($GLOBALS['filetypes'].'aaaaaaaaaaaaaaaaaaaaa');
 
 		$b2tservice = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
 		if (!$b2tservice->attachTags($bId, $categories, $fromApi, $extension, false, $fromImport)) {
@@ -167,7 +165,7 @@ class BookmarkService {
 		return $bId;
 	}
 
-	function updateBookmark($bId, $address, $title, $description, $status, $categories, $date = NULL, $fromApi = false) {
+	function updateBookmark($bId, $address, $title, $description, $privateNote, $status, $categories, $date = NULL, $fromApi = false) {
 		if (!is_numeric($bId))
 		return false;
 
@@ -183,7 +181,7 @@ class BookmarkService {
 		$moddatetime = gmdate('Y-m-d H:i:s', time());
 
 		// Set up the SQL update statement and execute it.
-		$updates = array('bModified' => $moddatetime, 'bTitle' => $title, 'bAddress' => $address, 'bDescription' => $description, 'bStatus' => $status, 'bHash' => md5($address));
+		$updates = array('bModified' => $moddatetime, 'bTitle' => $title, 'bAddress' => $address, 'bDescription' => $description, 'bPrivateNote' => $privateNote, 'bStatus' => $status, 'bHash' => md5($address));
 
 		if (!is_null($date)) {
 			$datetime = gmdate('Y-m-d H:i:s', strtotime($date));

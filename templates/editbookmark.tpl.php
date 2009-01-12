@@ -40,7 +40,10 @@ $this->includeTemplate("dojo.inc");
     <td>&larr; <?php echo T_('Required'); ?></td>
 </tr>
 <tr>
-    <th align="left"><?php echo T_('Description'); ?></th>
+    <th align="left">
+    <?php echo T_('Description'); ?>
+    <a onclick="var nz = document.getElementById('privateNoteZone'); nz.style.display='';this.style.display='none';"><?php echo T_("Add Note"); ?></a>
+    </th>
     <td><textarea name="description" id="description" rows="5" cols="63" ><?php echo filter($row['bDescription'], 'xml'); ?></textarea></td>
     <td>&larr; <?php echo T_('You can use anchors to delimite attributes. for example: [publisher]blah[/publisher] '); ?> 
     <?php if(count($GLOBALS['descriptionAnchors'])>0): ?>
@@ -54,6 +57,12 @@ $this->includeTemplate("dojo.inc");
     <span class="anchor" title="<?php echo $anchorValue ?>" onclick="addAnchor('<?php echo $anchorValue ?>', 'description')"><?php echo $anchorName ?></span>
     <?php endforeach; ?>
     <?php endif; ?>
+    </td>
+</tr>
+<tr id="privateNoteZone" <?php if(strlen($row['bPrivateNote'])==0):?>style="display:none"<?php endif; ?>>
+    <th align="left"><?php echo T_('Private Note'); ?></th>
+    <td><textarea name="privateNote" id="privateNote" rows="1" cols="63" ><?php echo filter($row['bPrivateNote'], 'xml'); ?></textarea></td>
+    <td>&larr; <?php echo T_('Just visible by you and your friends.'); ?> 
     </td>
 </tr>
 <tr>
