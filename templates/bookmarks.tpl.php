@@ -200,7 +200,7 @@ if(isset($currenttag) && $currenttag!= '') {
 			$bkDescription = '-';
 		} else {
 			$bkDescription = preg_replace('|\[\/.*?\]|', '', filter($row['bDescription'])); // remove final anchor
-			$bkDescription = preg_replace('|\[(.*?)\]|', ' <br/><b>$1 : </b>', $bkDescription); // remove final anchor
+			$bkDescription = preg_replace('|\[(.*?)\]|', ' <br/><b>$1 </b>', $bkDescription); // highlight starting anchor
 		}
 		echo '<div class="description">'. $bkDescription ."</div>\n";
 		//if(!isset($hash)) {
