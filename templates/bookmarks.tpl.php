@@ -8,6 +8,8 @@ $cdservice =& ServiceFactory::getServiceInstance('CommonDescriptionService');
 
 $pageName = isset($pageName)?$pageName:"";
 $user = isset($user)?$user:"";
+$currenttag = isset($currenttag)?$currenttag:"";
+
 
 $this->includeTemplate($GLOBALS['top_include']);
 
@@ -28,12 +30,12 @@ include('search.inc.php');
 
 <?php
 // common tag description
-if((isset($currenttag) && $currenttag!= '' && $GLOBALS['enableCommonTagDescription'])
+if(($currenttag!= '' && $GLOBALS['enableCommonTagDescription'])
 || (isset($hash) && $GLOBALS['enableCommonBookmarkDescription'])):?>
 
 
 <p class="commondescription"><?php
-if(isset($currenttag) && $currenttag!= '' && $cdservice->getLastTagDescription($currenttag)) {
+if($currenttag!= '' && $cdservice->getLastTagDescription($currenttag)) {
 	$description = $cdservice->getLastTagDescription($currenttag);
 	echo nl2br(filter($description['cdDescription']));
 } elseif(isset($hash) && $cdservice->getLastBookmarkDescription($hash)) {
@@ -44,7 +46,7 @@ if(isset($currenttag) && $currenttag!= '' && $cdservice->getLastTagDescription($
 
 //common tag description edit
 if($userservice->isLoggedOn()) {
-	if(isset($currenttag) && $currenttag!= '') {
+	if($currenttag!= '') {
 		echo ' <a href="'. createURL('tagcommondescriptionedit', $currenttag).'">';
 		echo T_('common description').' <img src="'.ROOT.'images/b_edit.png" /></a>';
 	} elseif(isset($hash)) {
@@ -58,7 +60,7 @@ if($userservice->isLoggedOn()) {
 
 <?php
 /* personal tag description */
-if(isset($currenttag) && $currenttag!= '' && isset($user)) {
+if($currenttag!= '' && $user!='') {
 	$userObject = $userservice->getUserByUsername($user);
 	if($tagservice->getDescription($currenttag, $userObject['uId'])) { ?>
 
@@ -68,7 +70,7 @@ echo nl2br(filter($description['tDescription']));
 
 //personal tag description edit
 if($userservice->isLoggedOn()) {
-	if(isset($currenttag) && $currenttag!= '') {
+	if($currenttag!= '') {
 		echo ' <a href="'. createURL('tagedit', $currenttag).'">';
 		echo T_('personal description').' <img src="'.ROOT.'images/b_edit.png" /></a>';
 	}
@@ -98,8 +100,8 @@ if (!isset($hash)) {
 	<?php
 }
 ?> <?php
-if(isset($currenttag) && $currenttag!= '') {
-	if(isset($user) && $user!= '') {
+if($currenttag!= '') {
+	if($user!= '') {
 		echo ' - ';
 		echo '<a href="'. createURL('tags', $currenttag) .'">';
 		echo T_('Bookmarks from other users for this tag').'</a>';
