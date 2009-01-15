@@ -49,7 +49,7 @@ if (POST_SUBMITTED != '') {
         
     // Check if username is valid (length, authorized characters)
     } elseif (!$userservice->isValidUsername($posteduser)) {
-        $tplVars['error'] = T_('This username is not valid (too long, forbidden characters...), please make another choice.');        
+        $tplVars['error'] = T_('This username is not valid (too short, too long, forbidden characters...), please make another choice.');        
     
     // Check if e-mail address is valid
     } elseif (!$userservice->isValidEmail(POST_MAIL)) {

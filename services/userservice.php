@@ -445,7 +445,9 @@ class UserService {
 	}
 
 	function isValidUsername($username) {
-		if (strlen($username) > 24) {
+		if (strlen($username) < 4) {
+			return false;
+		}elseif (strlen($username) > 24) {
 			// too long usernames are cut by database and may cause bugs when compared
 			return false;
 		} elseif (preg_match('/(\W)/', $username) > 0) {
