@@ -45,8 +45,8 @@ if(isset($currenttag) && $currenttag!= '' && $cdservice->getLastTagDescription($
 //common tag description edit
 if($userservice->isLoggedOn()) {
 	if(isset($currenttag) && $currenttag!= '') {
-		echo ' (<a href="'. createURL('tagcommondescriptionedit', $currenttag).'">';
-		echo T_('edit common description').'</a>)';
+		echo ' <a href="'. createURL('tagcommondescriptionedit', $currenttag).'">';
+		echo T_('common description').' <img src="'.ROOT.'images/b_edit.png" /></a>';
 	} elseif(isset($hash)) {
 		echo ' (<a href="'.createURL('bookmarkcommondescriptionedit', $hash).'">';
 		echo T_('edit common description').'</a>)';
@@ -57,7 +57,7 @@ if($userservice->isLoggedOn()) {
 
 
 <?php
-/* Private tag description */
+/* personal tag description */
 if(isset($currenttag) && $currenttag!= '' && isset($user)) {
 	$userObject = $userservice->getUserByUsername($user);
 	if($tagservice->getDescription($currenttag, $userObject['uId'])) { ?>
@@ -65,6 +65,14 @@ if(isset($currenttag) && $currenttag!= '' && isset($user)) {
 <p class="commondescription"><?php
 $description = $tagservice->getDescription($currenttag, $userObject['uId']);
 echo nl2br(filter($description['tDescription']));
+
+//personal tag description edit
+if($userservice->isLoggedOn()) {
+	if(isset($currenttag) && $currenttag!= '') {
+		echo ' <a href="'. createURL('tagedit', $currenttag).'">';
+		echo T_('personal description').' <img src="'.ROOT.'images/b_edit.png" /></a>';
+	}
+}
 ?></p>
 
 <?php

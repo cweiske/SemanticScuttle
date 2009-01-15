@@ -47,7 +47,7 @@ if(!$userservice->isLoggedOn()) {
 
 if (POST_CONFIRM) {
 	if ( strlen($tag)>0 &&
-	$tagservice->updateDescription($tag, $currentUser->getId(), POST_DESCRIPTION)
+	$tagservice->updateDescription($tag, $currentUser->getId(), stripslashes(POST_DESCRIPTION))
 	) {
 		$tplVars['msg'] = T_('Tag description updated');
 		header('Location: '. POST_REFERRER);
