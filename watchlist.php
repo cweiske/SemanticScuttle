@@ -56,7 +56,7 @@ if ($user) {
         $userid = intval($user);
     } else {
     	$userinfo = $userservice->getObjectUserByUsername($user);
-        if ($userinfo == '' ) {
+        if ($userinfo == NULL ) {
             // Throw a 404 error
             $tplVars['error'] = sprintf(T_('User with username %s was not found'), $user);
             $templateservice->loadTemplate('error.404.tpl', $tplVars);

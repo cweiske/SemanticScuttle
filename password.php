@@ -44,7 +44,7 @@ if (POST_SUBMITTED != '') {
 
 		// NO MATCH
 		$userinfo = $userservice->getObjectUserByUsername(POST_USERNAME);
-		if ($userinfo == '') {
+		if ($userinfo == NULL) {
 			$tplVars['error'] = T_('No matches found for that username.');
 
 		} elseif (POST_EMAIL != $userinfo->getEmail()) {

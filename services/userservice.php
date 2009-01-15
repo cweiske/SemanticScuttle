@@ -127,7 +127,25 @@ class UserService {
 
 	function getObjectUserByUsername($username) {
 		$user = $this->_getuser($this->getFieldName('username'), $username);
-		return new User($user[$this->getFieldName('primary')], $username);
+		if($user != false) {
+			return new User($user[$this->getFieldName('primary')], $username);
+		} else {
+			return NULL;
+		}
+	}
+
+	/* Takes an numerical "id" or a string "username"
+	 and returns the numerical "id" if the user exists else returns NULL */
+	function getIdFromUser($user) {
+		if (is_int($user)) {
+			return intval($user);
+		} else {
+			$objectUser = $this->getObjectUserByUsername($user);
+			if($objectUser != NULL) {
+				return $objectUser->getId();
+			}
+		}
+		return NULL;
 	}
 
 	function getUser($id) {
@@ -465,7 +483,7 @@ class UserService {
 
 			// Check if the email domain has a DNS record
 			//if ($this->_checkdns($emailDomain)) {
-				return true;
+			return true;
 			//}
 		}
 		return false;
@@ -520,7 +538,7 @@ class User {
 		}
 		return $this->name;
 	}
-	
+
 	function getEmail() {
 		// Look for value only if not already set
 		if(!isset($this->email)) {
@@ -540,7 +558,7 @@ class User {
 		}
 		return $this->homepage;
 	}
-	
+
 	function getContent() {
 		// Look for value only if not already set
 		if(!isset($this->content)) {
@@ -549,7 +567,7 @@ class User {
 			$this->content = $user['uContent'];
 		}
 		return $this->content;
-	}	
+	}
 
 	function getDatetime() {
 		// Look for value only if not already set

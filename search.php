@@ -95,18 +95,14 @@ if (POST_TERMS != '') {
 		}
 
 		if (isset($s_user)) {
-			if (is_numeric($s_user)) {
-				$s_user = intval($s_user);
-			} else {
-				$userinfo = $userservice->getObjectUserByUsername($s_user);
-				if ($userinfo == '' ) {
-					$tplVars['error'] = sprintf(T_('User with username %s was not found'), $s_user);
-					$templateservice->loadTemplate('error.404.tpl', $tplVars);
-					exit();
-				} else {
-					$s_user =& $userinfo->getId();
-				}
+			
+			$s_user = $userservice->getIdFromUser($s_user);
+			if($s_user == NULL) {
+				$tplVars['error'] = sprintf(T_('User with username %s was not found'), $s_user);
+				$templateservice->loadTemplate('error.404.tpl', $tplVars);
+				exit();
 			}
+			
 		}
 	}
 	$bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, $s_user, NULL, $terms, getSortOrder(), $s_watchlist, $s_start, $s_end);

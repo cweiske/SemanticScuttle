@@ -34,17 +34,12 @@ $currentUser = $userservice->getCurrentObjectUser();
 if ($userservice->isLoggedOn() && $user) {
 	$pagetitle = '';
 
-	if (is_int($user)) {
-		$userid = intval($user);
-	} else {
-		$userinfo = $userservice->getObjectUserByUsername($user);
-		if ($userinfo == '') {
-			$tplVars['error'] = sprintf(T_('User with username %s was not found'), $user);
-			$templateservice->loadTemplate('error.404.tpl', $tplVars);
-			exit();
-		} else {
-			$userid =& $userinfo->getId();
-		}
+	$userid = $userservice->getIdFromUser($user);
+	
+	if($userid == NULL) {
+		$tplVars['error'] = sprintf(T_('User with username %s was not found'), $user);
+		$templateservice->loadTemplate('error.404.tpl', $tplVars);
+		exit();
 	}
 
 	$watched = $userservice->getWatchStatus($userid, $currentUser->getId());
