@@ -19,8 +19,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 
-header('Content-Type: text/html; charset=utf-8'); 
-
 /* Return a json file with list of tags according to current user and sort by popularity*/
 
 require_once('../header.inc.php');

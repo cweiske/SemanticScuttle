@@ -48,4 +48,7 @@ $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
 $tplVars = array();
 $tplVars['currentUser'] = $currentUser;
 $tplVars['userservice'] = $userservice;
+
+// 6 // Force UTF-8 behaviour for server (cannot be move into top.inc.php which is not included into every file)
+header('Content-Type: text/html; charset=utf-8'); 
 ?>
