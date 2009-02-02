@@ -24,7 +24,7 @@
 <?php if (isset($loadjs)) :?>
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/dojo/1.2/dojo/dojo.xd.js"
-	djConfig="parseOnLoad:true, isDebug:<?php echo DEBUG_MODE?'true':'false' ?>, usePlainJson:true, baseUrl: '<?php echo ROOT ?>', modulePaths: {'js': 'includes/js'},"></script>
+	djConfig="parseOnLoad:true, isDebug:<?php echo DEBUG_MODE?'true':'false' ?>, usePlainJson:true, baseUrl: '<?php echo ROOT ?>', modulePaths: {'js': 'includes/js'}"></script>
  
 <script type="text/javascript">
 dojo.require("dojo.parser");

@@ -45,6 +45,7 @@ function displayTag($tag, $uId) {
 		foreach($linkedTags as $linkedTag) {
 			$output.= displayTag($linkedTag, $uId);
 		}
+		$output = substr($output, 0, -1); // remove final comma avoiding IE6 Dojo bug
 		$output.= "]";
 	}
 
@@ -56,6 +57,8 @@ function displayTag($tag, $uId) {
 
 { label: 'name', identifier: 'id', items: [
 <?php
-echo displayTag(GET_TAG, GET_UID);
+$json = displayTag(GET_TAG, GET_UID);
+$json = substr($json, 0, -1); // remove final comma avoiding IE6 Dojo bug
+echo $json;
 ?>
 ] }
