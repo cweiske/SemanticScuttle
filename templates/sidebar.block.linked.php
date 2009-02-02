@@ -91,7 +91,7 @@ foreach($explodedTags as $explodedTag) {
 		 if(is_array($displayLinkedTags['stopList'])) {
 		 $stopList = array_merge($stopList, $displayLinkedTags['stopList']);
 		 }*/
-		echo '<div dojoType="dojo.data.ItemFileReadStore" url="'.ROOT.'ajax/getlinkedtags.php?tag='.$explodedTag.'&uId='.$userid.'" jsid="linkedTagStore" ></div>';
+		echo '<div dojoType="dojo.data.ItemFileReadStore" url="'.ROOT.'ajax/getlinkedtags.php?tag='.filter($explodedTag, 'url').'&uId='.$userid.'" jsid="linkedTagStore" ></div>';
 		echo '<div dojoType="dijit.Tree" store="linkedTagStore" labelAttr="name" >';
 		echo '<script type="dojo/method" event="onClick" args="item">';
 		$returnUrl = sprintf($cat_url, filter($user, 'url'), filter('', 'url'));
