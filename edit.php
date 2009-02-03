@@ -41,6 +41,7 @@ isset($_POST['referrer']) ? define('POST_REFERRER', $_POST['referrer']): define(
 
 
 // Header variables
+$tplVars['pagetitle'] = T_('Edit Bookmark');
 $tplVars['subtitle'] = T_('Edit Bookmark');
 $tplVars['loadjs'] = true;
 

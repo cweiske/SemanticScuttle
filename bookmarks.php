@@ -251,17 +251,12 @@ if ($templatename == 'editbookmark.tpl') {
 	$tplVars['cat_url'] = createURL('bookmarks', '%s/%s');
 	$tplVars['nav_url'] = createURL('bookmarks', '%s/%s%s');
 	if ($userservice->isLoggedOn() && $user == $currentUsername) {
-		//$title = T_('My Bookmarks') . $catTitleWithUrls;
 		$tplVars['pagetitle'] = T_('My Bookmarks') . $catTitle;
 		$tplVars['subtitle'] =  T_('My Bookmarks') . $catTitleWithUrls;
 	} else {
-		//$title = $pagetitle;
-		//$tplVars['pagetitle'] = $pagetitle;
-		$tplVars['pagetitle'] = '';
+		$tplVars['pagetitle'] = $user.': '.$cat;
 		$tplVars['subtitle'] = $pagetitle;
 	}
-	//$tplVars['pagetitle'] = $title;
-	//$tplVars['subtitle'] = $title;
 }
 
 $tplVars['summarizeLinkedTags'] = true;

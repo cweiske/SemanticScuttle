@@ -64,8 +64,7 @@ if ($usecache) {
 }
 
 // Header variables
-//$tplVars['pagetitle'] = $pagetitle;
-$tplVars['pagetitle'] = '';
+$tplVars['pagetitle'] = T_('Tags') .': '. $cat;
 $tplVars['loadjs'] = true;
 $tplVars['rsschannels'] = array(
 array(filter($sitename .': '. $pagetitle), createURL('rss', 'all/'. filter($cat, 'url')).'?sort='.getSortOrder())

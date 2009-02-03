@@ -20,6 +20,7 @@
 
 require_once('header.inc.php');
 
+$tplVars['pagetitle'] = T_('About');
 $tplVars['subtitle'] = T_('About');
 
 $templateservice->loadTemplate('about.tpl', $tplVars);

@@ -72,6 +72,7 @@ if (isset($userid)) {
 }
 
 $tplVars['sidebar_blocks'] = array('linked');
+$tplVars['pagetitle'] = $pagetitle;
 $tplVars['subtitle'] = $pagetitle;
 $tplVars['loadjs'] = true;
 
