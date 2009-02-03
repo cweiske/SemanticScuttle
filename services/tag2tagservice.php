@@ -88,6 +88,7 @@ class Tag2TagService {
 			//$output = array_unique($output); // remove duplication
 		}
 
+		$this->db->sql_freeresult($dbresult);
 		return $output;
 	}
 
@@ -209,7 +210,9 @@ class Tag2TagService {
 			message_die(GENERAL_ERROR, 'Could not get linked tags', '', __LINE__, __FILE__, $query, $this->db);
 			return false;
 		}
-		return $this->db->sql_fetchrowset($dbresult);
+		$output = $this->db->sql_fetchrowset($dbresult);
+		$this->db->sql_freeresult($dbresult);
+		return $output;
 	}
 
 	function getMenuTags($uId) {
@@ -232,7 +235,9 @@ class Tag2TagService {
 				message_die(GENERAL_ERROR, 'Could not get linked tags', '', __LINE__, __FILE__, $query, $this->db);
 				return false;
 			}
-			return $this->db->sql_fetchrowset($dbresult);
+			$output = $this->db->sql_fetchrowset($dbresult);
+			$this->db->sql_freeresult($dbresult);
+			return $output;
 		}
 	}
 
@@ -284,7 +289,8 @@ class Tag2TagService {
 
 		// Update stats and cache
 		$this->update($tag1, $tag2, $relationType, $uId);
-
+		
+		$this->db->sql_freeresult($dbresult);
 		return true;
 	}
 

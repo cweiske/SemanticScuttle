@@ -219,7 +219,7 @@ class Bookmark2TagService {
 		while ($row =& $this->db->sql_fetchrow($dbresult)) {
 			$tags[] = $row['tag'];
 		}
-
+		$this->db->sql_freeresult($dbresult);
 		return $tags;
 	}
 
@@ -246,6 +246,7 @@ class Bookmark2TagService {
 		}
 
 		$output = $this->db->sql_fetchrowset($dbresult);
+		$this->db->sql_freeresult($dbresult);
 		return $output;
 	}
 
@@ -292,6 +293,7 @@ class Bookmark2TagService {
 			return false;
 		}
 		$output = $this->db->sql_fetchrowset($dbresult);
+		$this->db->sql_freeresult($dbresult);
 		return $output;
 	}
 
@@ -321,6 +323,7 @@ class Bookmark2TagService {
 			return false;
 		}
 		$output = $this->db->sql_fetchrowset($dbresult);
+		$this->db->sql_freeresult($dbresult);
 		return $output;
 	}
 
@@ -350,6 +353,7 @@ class Bookmark2TagService {
 		}
 
 		$output = $this->db->sql_fetchrowset($dbresult);
+		$this->db->sql_freeresult($dbresult);
 		return $output;
 	}
 
@@ -363,10 +367,12 @@ class Bookmark2TagService {
 
 		if ($row =& $this->db->sql_fetchrow($dbresult)) {
 			if ($row['tCount'] > 0) {
-				return true;
+				$output = true;
 			}
 		}
-		return false;
+		$output = false;
+		$this->db->sql_freeresult($dbresult);
+		return $output;
 	}
 
 	function renameTag($userid, $old, $new, $fromApi = false) {

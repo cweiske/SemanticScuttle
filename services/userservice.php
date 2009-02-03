@@ -73,6 +73,7 @@ class UserService {
 		while ($row = & $this->db->sql_fetchrow($dbresult)) {
 			$users[] = $row;
 		}
+		$this->db->sql_freeresult($dbresult);
 		return $users;
 	}
 
@@ -89,6 +90,7 @@ class UserService {
 		while ($row = & $this->db->sql_fetchrow($dbresult)) {
 			$users[] = new User($row[$this->getFieldName('primary')], $row[$this->getFieldName('username')]);
 		}
+		$this->db->sql_freeresult($dbresult);
 		return $users;
 	}
 
@@ -238,6 +240,7 @@ class UserService {
 
 			if ($row = $this->db->sql_fetchrow($dbresult)) {
 				$_SESSION[$this->getSessionKey()] = $row[$this->getFieldName('primary')];
+				$this->db->sql_freeresult($dbresult);
 				return $_SESSION[$this->getSessionKey()];
 			}
 		}
@@ -259,6 +262,7 @@ class UserService {
 				$cookie = $id .':'. md5($username.$password);
 				setcookie($this->cookiekey, $cookie, time() + $this->cookietime, '/');
 			}
+			$this->db->sql_freeresult($dbresult);
 			return true;
 		} else {
 			return false;
@@ -314,6 +318,7 @@ class UserService {
 		while ($row =& $this->db->sql_fetchrow($dbresult)) {
 			$arrWatch[] = $row[$this->getFieldName('username')];
 		}
+		$this->db->sql_freeresult($dbresult);
 		return $arrWatch;
 	}
 
@@ -422,7 +427,7 @@ class UserService {
 		while ( $row = $this->db->sql_fetchrow($dbresult) ) {
 			$rows[] = $row;
 		}
-
+		$this->db->sql_freeresult($dbresult);
 		return $rows;
 	}
 

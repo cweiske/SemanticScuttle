@@ -72,16 +72,17 @@ class SearchHistoryService {
 		while ($row = & $this->db->sql_fetchrow($dbresult)) {
 			$searches[] = $row;
 		}
+		$this->db->sql_freeresult($dbresult);
 		return $searches;
 	}
 
 	function countSearches() {
 		$sql = 'SELECT COUNT(*) AS `total` FROM '. $this->getTableName();
-		if (!($result = & $this->db->sql_query($sql)) || (!($row = & $this->db->sql_fetchrow($result)))) {
+		if (!($dbresult = & $this->db->sql_query($sql)) || (!($row = & $this->db->sql_fetchrow($dbresult)))) {
 			message_die(GENERAL_ERROR, 'Could not get total searches', '', __LINE__, __FILE__, $sql, $this->db);
 			return false;
 		}
-
+		$this->db->sql_freeresult($dbresult);
 		return $row['total'];
 	}
 

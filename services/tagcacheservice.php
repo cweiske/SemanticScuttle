@@ -49,6 +49,7 @@ class TagCacheService {
 			$output[] = $row['tag'];
 		}
 
+		$this->db->sql_freeresult($dbresult);
 		return $output;
 	}
 
@@ -257,6 +258,7 @@ class TagCacheService {
 		}
 
 		$row = $this->db->sql_fetchrow($dbresult);
+		$this->db->sql_freeresult($dbresult);
 		return $row['tag'];
 	}
 
@@ -289,6 +291,8 @@ class TagCacheService {
 		foreach($rowset as $row) {
 			$output[] = $row['tag'];
 		}
+		
+		$this->db->sql_freeresult($dbresult);
 		return $output;
 	}
 

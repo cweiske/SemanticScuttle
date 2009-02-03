@@ -32,10 +32,12 @@ class BookmarkService {
 		}
 
 		if ($row =& $this->db->sql_fetchrow($dbresult)) {
-			return $row;
+			$output = $row;
 		} else {
-			return false;
+			$output =  false;
 		}
+		$this->db->sql_freeresult($dbresult);
+		return $output;
 	}
 
 	function & getBookmark($bid, $include_tags = false) {
@@ -52,10 +54,12 @@ class BookmarkService {
 				$b2tservice = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
 				$row['tags'] = $b2tservice->getTagsForBookmark($bid);
 			}
-			return $row;
+			$output = $row;			
 		} else {
-			return false;
+			$output = false;
 		}
+		$this->db->sql_freeresult($dbresult);
+		return $output;
 	}
 
 	function getBookmarkByAddress($address) {
@@ -103,7 +107,9 @@ class BookmarkService {
 		if (!($dbresult = & $this->db->sql_query($sql))) {
 			message_die(GENERAL_ERROR, 'Could not get vars', '', __LINE__, __FILE__, $sql, $this->db);
 		}
-		return ($this->db->sql_fetchfield(0, 0) > 0);
+		$ouput = ($this->db->sql_fetchfield(0, 0) > 0); 
+		$this->db->sql_freeresult($dbresult);
+		return $output;
 	}
 
 	// Adds a bookmark to the database.
@@ -390,6 +396,7 @@ class BookmarkService {
 			$bookmarks[] = $row;
 		}
 
+		$this->db->sql_freeresult($dbresult);
 		$output = array ('bookmarks' => $bookmarks, 'total' => $total);
 		return $output;
 	}
@@ -451,7 +458,10 @@ class BookmarkService {
 		if (!($dbresult = & $this->db->sql_query($sql))) {
 			message_die(GENERAL_ERROR, 'Could not get vars', '', __LINE__, __FILE__, $sql, $this->db);
 		}
-		return $this->db->sql_fetchfield(0, 0) - 1;
+		
+		$output = $this->db->sql_fetchfield(0, 0) - 1;
+		$this->db->sql_freeresult($dbresult);
+		return $output;
 	}
 
 	function normalize($address) {
