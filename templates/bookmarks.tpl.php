@@ -23,7 +23,7 @@ include('search.inc.php');
 
 <?php if($GLOBALS['enableAdminColors']!=false && isset($userid) && $userservice->isAdmin($userid)): ?>
 <div style="width:70%;text-align:center;">
-<img src="<?php echo ROOT ?>images/logo_24.png" width="12px"/> <?php echo T_('Bookmarks on this page are managed by an admin user.'); ?><img src="<?php echo ROOT ?>images/logo_24.png" width="12px"/>
+<img src="<?php echo ROOT ?>images/logo_24.gif" width="12px"/> <?php echo T_('Bookmarks on this page are managed by an admin user.'); ?><img src="<?php echo ROOT ?>images/logo_24.gif" width="12px"/>
 </div>
 <?php endif?>
 
@@ -196,16 +196,27 @@ if($currenttag!= '') {
 		if ($GLOBALS['useredir']) {
 			$address = $GLOBALS['url_redir'] . $address;
 		}
+		
+		// Admin specific design
+		if($userservice->isAdmin($row['uId'])) {
+			$adminBgClass = 'class="adminBackground"';
+			$adminStar = ' <img src="'. ROOT .'images/logo_24.gif" width="12px" title="'. T_('This bookmark is certified by an admin user.') .'" />';
+		} else {
+			$adminBgClass = '';
+			$adminStar = '';
+		}
 
 		// Output
-		echo '<li class="xfolkentry'. $access .'">'."\n";
+		echo '<li class="xfolkentry'. $access .'" >'."\n";
 		if ($GLOBALS['enableWebsiteThumbnails']) {
 			$thumbnailHash = md5($address.$GLOBALS['thumbnailsUserId'].$GLOBALS['thumbnailsKey']);
-			echo '<a href="'. $address .'"'. $rel .' ><img class="thumbnail" src="http://www.artviper.net/screenshots/screener.php?url='.$address.'&w=120&sdx=1280&userID='.$GLOBALS['thumbnailsUserId'].'&hash='.$thumbnailHash.'" />  ';
+			//echo '<a href="'. $address .'"'. $rel .' ><img class="thumbnail" src="http://www.artviper.net/screenshots/screener.php?url='.$address.'&w=120&sdx=1280&userID='.$GLOBALS['thumbnailsUserId'].'&hash='.$thumbnailHash.'" />';
+			echo '<img class="thumbnail" onclick="window.location.href=\''.$address.'\'" src="http://www.artviper.net/screenshots/screener.php?url='.$address.'&w=120&sdx=1280&userID='.$GLOBALS['thumbnailsUserId'].'&hash='.$thumbnailHash.'" />';
 		}
-		echo '<div>';
+		
+		echo '<div '.$adminBgClass.' >';;
 
-		echo '<div class="link"><a href="'. $address .'"'. $rel .' class="taggedlink">'. filter($row['bTitle']) ."</a></div>\n";
+		echo '<div class="link"><a href="'. $address .'"'. $rel .' class="taggedlink">'. filter($row['bTitle']) ."</a>" . $adminStar . "</div>\n";
 		if ($row['bDescription'] == '') {
 			$bkDescription = '-';
 		} else {

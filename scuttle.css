@@ -116,7 +116,7 @@ html > body h1 {
     padding-left: 75px;
 }
 html > body div#header.popup h1 {
-    background: url('images/logo_24.png') no-repeat 10px;
+    background: url('images/logo_24.gif') no-repeat 10px;
     padding: 0.5em 0.5em 0.5em 50px;
 }
 /*html > body div#header #welcome {
@@ -193,11 +193,12 @@ html > body ol#bookmarks {
     margin: 0 1em;
     padding: 0;
 }
-img.thumbnail {
+img.thumbnail {	
     float: left;
     padding: 1px;
     margin-right: 6px;
     margin-bottom:4px;
+    cursor:pointer;
     border:1px solid #AAA;
 }
 div.link a {
@@ -513,9 +514,13 @@ ul {
 }
 
 .adminBackground {
-    background: #FFFFFF url(http://127.0.0.6/SemanticScuttle/trunk/images/logo_24.png) repeat-y scroll top right;    
+    /*background: #FFFFFF url(images/logo_24.png) no-repeat scroll center right;*/    
     /*border-top: 1px solid;
     border-color: #CC9900;*/
+}
+
+.adminBackground {
+	background: #FFF url('images/bg_admin.png') repeat-y top right;
 }
 
 /* DOJO Style */
