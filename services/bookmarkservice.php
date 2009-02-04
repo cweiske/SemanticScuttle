@@ -107,7 +107,11 @@ class BookmarkService {
 		if (!($dbresult = & $this->db->sql_query($sql))) {
 			message_die(GENERAL_ERROR, 'Could not get vars', '', __LINE__, __FILE__, $sql, $this->db);
 		}
-		$ouput = ($this->db->sql_fetchfield(0, 0) > 0); 
+		if($this->db->sql_fetchfield(0, 0) > 0) {
+			$output = true; 
+		} else {
+			$output = false;
+		}
 		$this->db->sql_freeresult($dbresult);
 		return $output;
 	}

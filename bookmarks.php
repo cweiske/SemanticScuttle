@@ -41,6 +41,7 @@ isset($_POST['description']) ? define('POST_DESCRIPTION', $_POST['description'])
 isset($_POST['privateNote']) ? define('POST_PRIVATENOTE', $_POST['privateNote']): define('POST_PRIVATENOTE', '');
 isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_STATUS', '');
 isset($_POST['tags']) ? define('POST_TAGS', $_POST['tags']): define('POST_TAGS', '');
+isset($_POST['referrer']) ? define('POST_REFERRER', $_POST['referrer']): define('POST_REFERRER', '');
 
 isset($_GET['popup']) ? define('GET_POPUP', $_GET['popup']): define('GET_POPUP', '');
 isset($_POST['popup']) ? define('POST_POPUP', $_POST['popup']): define('POST_POPUP', '');
@@ -148,7 +149,10 @@ if ($userservice->isLoggedOn() && POST_SUBMITTED != '') {
 					if ($GLOBALS['useredir']) {
 						$address = $GLOBALS['url_redir'] . $address;
 					}
-					//header('Location: '. $address); // not useful
+					
+					if(POST_REFERRER != '') {
+						header('Location: '. POST_REFERRER);
+					}die('pr'.POST_REFERRER);
 				}
 			} else {
 				$tplVars['error'] = T_('There was an error saving your bookmark. Please try again or contact the administrator.');
@@ -194,6 +198,7 @@ if ($templatename == 'editbookmark.tpl') {
 			);
 		}
 		$title = T_('Add a Bookmark');
+		$tplVars['referrer'] = $_SERVER['HTTP_REFERER'];
 		$tplVars['pagetitle'] = $title;
 		$tplVars['subtitle'] = $title;
 		$tplVars['btnsubmit'] = T_('Add Bookmark');
@@ -261,6 +266,7 @@ if ($templatename == 'editbookmark.tpl') {
 
 $tplVars['summarizeLinkedTags'] = true;
 $tplVars['pageName'] = PAGE_BOOKMARKS;
+
 
 $templateservice->loadTemplate($templatename, $tplVars);
 
