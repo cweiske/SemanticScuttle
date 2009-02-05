@@ -40,6 +40,7 @@ if (!$bookmarkservice->editAllowed($bookmark)) {
 } else {
     $result = T_('Failed to delete bookmark');
 }
+
 ?>
 <response>
   <method>deleteConfirmed</method>

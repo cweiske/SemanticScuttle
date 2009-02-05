@@ -32,18 +32,17 @@ function deleteCancelled(ele) {
 }
 
 function deleteConfirmed(ele, input, response) {
-    if (deleted == false) {
+    //if (deleted == false) {
         deleted = ele.parentNode.parentNode.parentNode.parentNode;
-    }    
+    //}    
     var post = deleted;
     post.className = 'xfolkentry deleted';    
     if (response != '') {
         post.style.display = 'none';
         deleted = false;
     } else {
-        loadXMLDoc('<?php echo ROOT; ?>ajaxDelete.php?id=' + input);
-        post.style.display = 'none';
-        
+        loadXMLDoc('<?php echo ROOT; ?>ajaxDelete.php?id=' + input);        
+        post.style.display = 'none';        
     }
 }
 
@@ -125,7 +124,7 @@ function loadXMLDoc(url) {
 
 function processStateChange() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        response = xmlhttp.responseXML.documentElement;
+    	response = xmlhttp.responseXML.documentElement;
         method = response.getElementsByTagName('method')[0].firstChild.data;
         result = response.getElementsByTagName('result')[0].firstChild.data;
         eval(method + '(\'\', result)');
