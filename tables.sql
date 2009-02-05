@@ -1,4 +1,4 @@
--- Semantice Scuttle - Tables creation SQL script
+-- Semantic Scuttle - Tables creation SQL script
 -- ! Dont forget to change table names according to $tableprefix defined in config.inc.php !
 
 -- 
@@ -13,15 +13,15 @@ CREATE TABLE `sc_bookmarks` (
   `bDatetime` datetime NOT NULL default '0000-00-00 00:00:00',
   `bModified` datetime NOT NULL default '0000-00-00 00:00:00',
   `bTitle` varchar(255) NOT NULL default '',
-  `bAddress` text NOT NULL,
-  `bDescription` varchar(1500) default NULL,
-  `bPrivateNote` varchar(1500) default NULL,
+  `bAddress` varchar(1500) NOT NULL,
+  `bDescription` text default NULL,
+  `bPrivateNote` text default NULL,
   `bHash` varchar(32) NOT NULL default '',
   PRIMARY KEY  (`bId`),
   KEY `sc_bookmarks_usd` (`uId`,`bStatus`,`bDatetime`),
   KEY `sc_bookmarks_hui` (`bHash`,`uId`,`bId`),
   KEY `sc_bookmarks_du` (`bDatetime`,`uId`)
-);
+) CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 -- --------------------------------------------------------
 
@@ -33,10 +33,10 @@ CREATE TABLE `sc_tags` (
   `tId` int(11) NOT NULL auto_increment,
   `tag` varchar(100) NOT NULL default '',
   `uId` int(11) NOT NULL default '0',
-  `tDescription` varchar(1500) default NULL,
+  `tDescription` text default NULL,
   PRIMARY KEY  (`tId`),
   UNIQUE KEY `sc_tags_tag_uId` (`tag`, `uId`)
-);
+) CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 -- --------------------------------------------------------
 
@@ -51,7 +51,7 @@ CREATE TABLE `sc_bookmarks2tags` (
   PRIMARY KEY  (`id`),
   UNIQUE KEY `sc_bookmarks2tags_tag_bId` (`tag`,`bId`),
   KEY `sc_bookmarks2tags_bId` (`bId`)
-);
+) CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 -- --------------------------------------------------------
 
@@ -70,7 +70,7 @@ CREATE TABLE `sc_users` (
   `homepage` varchar(255) default NULL,
   `uContent` text,
   PRIMARY KEY  (`uId`)
-);
+) CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 -- --------------------------------------------------------
 
@@ -84,7 +84,7 @@ CREATE TABLE `sc_watched` (
   `watched` int(11) NOT NULL default '0',
   PRIMARY KEY  (`wId`),
   KEY `sc_watched_uId` (`uId`)
-);
+) CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 -- --------------------------------------------------------
 
@@ -100,7 +100,7 @@ CREATE TABLE `sc_tags2tags` (
   `uId` int(11) NOT NULL default '0',
   PRIMARY KEY (`ttId`),
   UNIQUE KEY `sc_tags2tags_tag1_tag2_uId` (`tag1`,`tag2`,`relationType`,`uId`)
-);
+) CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 -- --------------------------------------------------------
 
@@ -118,7 +118,7 @@ CREATE TABLE `sc_tagsstats` (
   `nbupdate` int(11) NOT NULL default '0',
   PRIMARY KEY (`tstId`),
   UNIQUE KEY `sc_tagsstats_tag1_type_uId` (`tag1`,`relationType`,`uId`)
-);
+) CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 -- --------------------------------------------------------
 
@@ -134,7 +134,7 @@ CREATE TABLE `sc_tagscache` (
   `uId` int(11) NOT NULL default '0',
   PRIMARY KEY (`tcId`),
   UNIQUE KEY `sc_tagscache_tag1_tag2_type_uId` (`tag1`,`tag2`,`relationType`,`uId`)
-);
+) CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 -- --------------------------------------------------------
 
@@ -148,12 +148,12 @@ CREATE TABLE `sc_commondescription` (
   `tag` varchar(100) NOT NULL default '',
   `bHash` varchar(32) NOT NULL default '',
   `cdTitle` varchar(255) NOT NULL default '',
-  `cdDescription` varchar(1500) default NULL,
+  `cdDescription` text default NULL,
   `cdDatetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY (`cdId`),
   UNIQUE KEY `sc_commondescription_tag_datetime` (`tag`,`cdDatetime`),
   UNIQUE KEY `sc_commondescription_bookmark_datetime` (`bHash`,`cdDatetime`)
-);
+) CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 -- --------------------------------------------------------
 
@@ -169,4 +169,4 @@ CREATE TABLE `sc_searchhistory` (
   `shNbResults` int(6) NOT NULL default '0',
   `uId` int(11) NOT NULL default '0',
   PRIMARY KEY (`shId`)
-);
+) CHARACTER SET utf8 COLLATE utf8_general_ci ;
