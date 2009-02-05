@@ -208,7 +208,7 @@ class Bookmark2TagService {
 			return false;
 		}
 
-		$query = 'SELECT tag FROM '. $this->getTableName() .' WHERE bId = '. intval($bookmarkid) .' AND LEFT(tag, 7) <> "system:" ORDER BY tag';
+		$query = 'SELECT tag FROM '. $this->getTableName() .' WHERE bId = '. intval($bookmarkid) .' AND LEFT(tag, 7) <> "system:" ORDER BY id ASC';
 
 		if (!($dbresult =& $this->db->sql_query($query))) {
 			message_die(GENERAL_ERROR, 'Could not get tags', '', __LINE__, __FILE__, $query, $this->db);
