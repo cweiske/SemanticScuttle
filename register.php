@@ -55,8 +55,8 @@ if (POST_SUBMITTED != '') {
     } elseif (!$userservice->isValidEmail(POST_MAIL)) {
         $tplVars['error'] = T_('E-mail address is not valid. Please try again.');
 
-    // Check if antispam answer is valid
-    } elseif (strcmp(POST_ANTISPAMANSWER, $GLOBALS['antispamAnswer']) != 0) {
+    // Check if antispam answer is valid (doesn't take into account spaces and uppercase)
+    } elseif (strcasecmp(str_replace(' ', '', POST_ANTISPAMANSWER), str_replace(' ', '', $GLOBALS['antispamAnswer'])) != 0) {
         $tplVars['error'] = T_('Antispam answer is not valid. Please try again.');
 
     // Register details
