@@ -149,10 +149,6 @@ if ($userservice->isLoggedOn() && POST_SUBMITTED != '') {
 					if ($GLOBALS['useredir']) {
 						$address = $GLOBALS['url_redir'] . $address;
 					}
-					
-					/*if(POST_REFERRER != '') {
-						header('Location: '. POST_REFERRER);
-					}*/
 				}
 			} else {
 				$tplVars['error'] = T_('There was an error saving your bookmark. Please try again or contact the administrator.');
