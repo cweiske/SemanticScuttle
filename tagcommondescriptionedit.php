@@ -39,7 +39,7 @@ $currentUser = $userservice->getCurrentObjectUser();
 list ($url, $tag) = explode('/', $_SERVER['PATH_INFO']);
 
 //permissions
-if(!$userservice->isLoggedOn()) {
+if(!$userservice->isLoggedOn() || (!$GLOBALS['enableCommonTagDescriptionEditedByAll'] && !$currentUser->isAdmin())) {
 	$tplVars['error'] = T_('Permission denied.');
 	$templateservice->loadTemplate('error.500.tpl', $tplVars);
 	exit();

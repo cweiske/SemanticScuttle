@@ -302,6 +302,7 @@ p.commondescription {
     padding-left:5px;
     color: #555;
     font-weight: bold;
+    font-size: medium;
     border-left: 1px solid #CC8;
     width: 70%;
 }

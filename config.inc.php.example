@@ -15,7 +15,7 @@ $usecache           = false; # use cache ? {true,false}
 $dir_cache          = dirname(__FILE__) .'/cache/'; # directory where cache files will be stored
 $cleanurls          = false; # Use mod_rewrite to hide PHP extensions {true,false[default]}
 			     # be cautious, doesn't work for all hosts, you may need to modify the .htaccess file
-$debugMode	    = false; # if true, show debug messages			     
+$debugMode          = false; # if true, show debug messages			     
 
 #### Database ####
 $dbtype = 'mysql4'; # Database driver {mysql, mysqli, mysql4, oracle, postgres, sqlite, db2, firebird, mssql, mssq-odbc}
@@ -78,6 +78,7 @@ $thumbnailsKey = '';   #then artviper.net send you a UserId and a secretKey
 
 ### Tags ###
 $enableCommonTagDescription = true; # enableCommonTagDescription {true, false}
+$enableCommonTagDescriptionEditedByAll = true; #true mean everybody can edit common description. Else just the admins can do it.
 $menuTag = 'menu'; # name of the tag whose subtags will appear into the menu box
 $maxSizeMenuBlock = 7; # maximum number of items (tags) appearing into menu box
 $menu2Tags = array('example', 'of', 'menu', 'tags'); # list of tags used by menu2 sidebar box (void list = hidden menu2 box)

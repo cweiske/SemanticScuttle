@@ -35,23 +35,25 @@ if(($currenttag!= '' && $GLOBALS['enableCommonTagDescription'])
 
 
 <p class="commondescription"><?php
+$cDescription = '';
 if($currenttag!= '' && $cdservice->getLastTagDescription($currenttag)) {
-	$description = $cdservice->getLastTagDescription($currenttag);
-	echo nl2br(filter($description['cdDescription']));
+	$cDescription = $cdservice->getLastTagDescription($currenttag);
+	echo nl2br(filter($cDescription['cdDescription']));
 } elseif(isset($hash) && $cdservice->getLastBookmarkDescription($hash)) {
-	$description = $cdservice->getLastBookmarkDescription($hash);
-	echo nl2br(filter($description['cdTitle'])). "<br/>";
-	echo nl2br(filter($description['cdDescription'])). "<br/>";
+	$cDescription = $cdservice->getLastBookmarkDescription($hash);
+	echo nl2br(filter($cDescription['cdTitle'])). "<br/>";
+	echo nl2br(filter($cDescription['cdDescription'])). "<br/>";
 }
 
 //common tag description edit
 if($userservice->isLoggedOn()) {
-	if($currenttag!= '') {
-		echo ' <a href="'. createURL('tagcommondescriptionedit', $currenttag).'">';
-		echo T_('common description').' <img src="'.ROOT.'images/b_edit.png" /></a>';
+	if($currenttag!= '' && ($GLOBALS['enableCommonTagDescriptionEditedByAll'] || $currentUser->isAdmin())) {
+		echo ' <a href="'. createURL('tagcommondescriptionedit', $currenttag).'" title="'.T_('Edit the common description of this tag').'">';
+		echo !is_array($cDescription) || strlen($cDescription['cdDescription'])==0?T_('Edit the common description of this tag'):'';
+		echo ' <img src="'.ROOT.'images/b_edit.png" /></a>';
 	} elseif(isset($hash)) {
-		echo ' (<a href="'.createURL('bookmarkcommondescriptionedit', $hash).'">';
-		echo T_('edit common description').'</a>)';
+		echo ' (<a href="'.createURL('bookmarkcommondescriptionedit', $hash).'" title="'.T_('Edit the common description of this bookmark').'">';
+		echo T_('Edit the common description of this bookmark').'</a>)';
 	}
 }
 ?></p>
@@ -65,14 +67,15 @@ if($currenttag!= '' && $user!='') {
 	if($tagservice->getDescription($currenttag, $userObject['uId'])) { ?>
 
 <p class="commondescription"><?php
-$description = $tagservice->getDescription($currenttag, $userObject['uId']);
-echo nl2br(filter($description['tDescription']));
+$pDescription = $tagservice->getDescription($currenttag, $userObject['uId']);
+echo nl2br(filter($pDescription['tDescription']));
 
 //personal tag description edit
 if($userservice->isLoggedOn()) {
 	if($currenttag!= '') {
-		echo ' <a href="'. createURL('tagedit', $currenttag).'">';
-		echo T_('personal description').' <img src="'.ROOT.'images/b_edit.png" /></a>';
+		echo ' <a href="'. createURL('tagedit', $currenttag).'" title="'.T_('Edit your personal description of this tag').'" >';
+		echo strlen($pDescription['tDescription'])==0?T_('Edit your personal description of this tag'):'';
+		echo ' <img src="'.ROOT.'images/b_edit.png" /></a>';
 	}
 }
 ?></p>

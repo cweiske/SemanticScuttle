@@ -22,7 +22,7 @@ if ($userservice->isLoggedOn()) {
         <li><a href="<?php echo $deletelink; ?>"><?php echo T_('Delete Tag') ?></a></li>
         <?php endif; ?>
         <li><a href="<?php echo $tagdesclink; ?>"><?php echo T_('Edit Tag Description') ?></a></li>
-        <?php if ($GLOBALS['enableCommonTagDescription']): ?>
+        <?php if ($GLOBALS['enableCommonTagDescription'] && ($GLOBALS['enableCommonTagDescriptionEditedByAll'] || $currentUser->isAdmin() )): ?>
         <li><a href="<?php echo $commondesclink; ?>"><?php echo T_('Edit Tag Common Description') ?></a></li>
 	<?php endif; ?>
         <li><a href="<?php echo $addtag2taglinklink; ?>"><?php echo T_('Create a link to another tag') ?></a></li>
