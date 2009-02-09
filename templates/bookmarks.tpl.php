@@ -159,11 +159,11 @@ if($currenttag!= '') {
 		$update = ' <small>('. T_('update') .' '. date($GLOBALS['shortdate'], strtotime($row['bModified'])). ') </small>';
 
 		// User attribution
-		$copy = '';
-		if ($user == '' || isset($watched)) {
-			$copy = ' '. T_('by') .' <a href="'. createURL('bookmarks', $row['username']) .'">'. $row['username'] .'</a>';			
+		$copy = ' '. T_('by'). ' ';
+		if($userservice->isLoggedOn() && $currentUser->getUsername() ==  $row['username']) {
+			$copy.= T_('you');			
 		} else {
-			$copy = ' '. T_('by') . ' ' . T_('you'); 
+			$copy.= '<a href="'. createURL('bookmarks', $row['username']) .'">'. $row['username'] .'</a>';
 		}
 
 		// Udders!
