@@ -220,8 +220,11 @@ if($currenttag!= '') {
 		if ($row['bDescription'] == '') {
 			$bkDescription = '-';
 		} else {
+			// Improve description display (anchors, links, ...)
 			$bkDescription = preg_replace('|\[\/.*?\]|', '', filter($row['bDescription'])); // remove final anchor
 			$bkDescription = preg_replace('|\[(.*?)\]|', ' <b>$1 </b>', $bkDescription); // highlight starting anchor
+			$bkDescription = preg_replace('@((http|https|ftp)://.*?)( |\r|$)@', '<a href="$1">$1</a>$3', $bkDescription); // make url clickable
+			
 		}
 		echo '<div class="description">'. nl2br($bkDescription) ."</div>\n";
 		//if(!isset($hash)) {
