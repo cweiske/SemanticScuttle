@@ -48,7 +48,7 @@ class TagService {
 
 	function updateDescription($tag, $uId, $desc) {
 		$objectTag = $this->getDescription($tag, $uId);
-		if(count($objectTag)>0 && $objectTag['tDescription'] != '') {
+		if(count($objectTag)>0 ) {
 			$query = 'UPDATE '.$this->getTableName();
 			$query.= ' SET tDescription="'.$this->db->sql_escape($desc).'"';
 			$query.= ' WHERE tag="'.$tag.'" AND uId="'.$uId.'"';

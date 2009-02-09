@@ -159,7 +159,7 @@ if($currenttag!= '') {
 		}
 		
 		// Last update
-		$update = ' <small>('. T_('update') .' '. date($GLOBALS['shortdate'], strtotime($row['bModified'])). ') </small>';
+		$update = ' <small title="'. T_('Last update') .'">('. date($GLOBALS['shortdate'], strtotime($row['bModified'])). ') </small>';
 
 		// User attribution
 		$copy = ' '. T_('by'). ' ';
