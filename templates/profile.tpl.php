@@ -6,6 +6,12 @@ $this->includeTemplate($GLOBALS['top_include']);
 <dt><?php echo T_('Username'); ?></dt>
     <dd><?php echo $user; ?></dd>
 <?php
+if ($currentUser->isAdmin()) {
+?>
+<dt><?php echo T_('Email'); ?></dt>
+    <dd><?php echo filter($objectUser->getEmail()) ?></dd>    
+<?php
+}
 if ($objectUser->getName() != "") {
 ?>
 <dt><?php echo T_('Name'); ?></dt>
