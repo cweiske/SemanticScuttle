@@ -7,7 +7,7 @@ if ($logged_on_userid === false) {
     $logged_on_userid = NULL;
 }
 
-$lastSearches = $searchhistoryservice->getAllSearches('all', NULL, 3, NULL, true, true);
+$lastSearches = $searchhistoryservice->getAllSearches('all', NULL, 3, NULL, true, false);
 
 if ($lastSearches && count($lastSearches) > 0) {
 ?>
