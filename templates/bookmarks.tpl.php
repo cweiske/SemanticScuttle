@@ -146,7 +146,7 @@ if($currenttag!= '') {
 		}
 		$cats = substr($cats, 0, -2);
 		if ($cats != '') {
-			$cats = ' '.T_('in').' '. $cats;
+			$cats = ' '.T_('Tags:').' '. $cats;
 		}
 
 		// Edit and delete links
@@ -154,11 +154,16 @@ if($currenttag!= '') {
 		if ($bookmarkservice->editAllowed($row['bId'])) {
 			$edit = ' - <a href="'. createURL('edit', $row['bId']) .'">'. T_('Edit') .'</a><script type="text/javascript">document.write(" - <a href=\"#\" onclick=\"deleteBookmark(this, '. $row['bId'] .'); return false;\">'. T_('Delete') .'<\/a>");</script>';
 		}
+		
+		// Last update
+		$update = ' <small>('. T_('update') .' '. date($GLOBALS['shortdate'], strtotime($row['bModified'])). ') </small>';
 
 		// User attribution
 		$copy = '';
 		if ($user == '' || isset($watched)) {
-			$copy = ' '. T_('by') .' <a href="'. createURL('bookmarks', $row['username']) .'">'. $row['username'] .'</a>';
+			$copy = ' '. T_('by') .' <a href="'. createURL('bookmarks', $row['username']) .'">'. $row['username'] .'</a>';			
+		} else {
+			$copy = ' '. T_('by') . ' ' . T_('you'); 
 		}
 
 		// Udders!
@@ -223,7 +228,7 @@ if($currenttag!= '') {
 			// Improve description display (anchors, links, ...)
 			$bkDescription = preg_replace('|\[\/.*?\]|', '', filter($row['bDescription'])); // remove final anchor
 			$bkDescription = preg_replace('|\[(.*?)\]|', ' <b>$1 </b>', $bkDescription); // highlight starting anchor
-			$bkDescription = preg_replace('@((http|https|ftp)://.*?)( |\r|$)@', '<a href="$1">$1</a>$3', $bkDescription); // make url clickable
+			$bkDescription = preg_replace('@((http|https|ftp)://.*?)( |\r|$)@', '<a href="$1" rel="nofollow">$1</a>$3', $bkDescription); // make url clickable
 			
 		}
 		echo '<div class="description">'. nl2br($bkDescription) ."</div>\n";
@@ -231,7 +236,7 @@ if($currenttag!= '') {
 			echo '<div class="address">'.shortenString($address).'</div>';
 		//}
 
-		echo '<div class="meta">'. date($GLOBALS['shortdate'], strtotime($row['bModified'])) . $cats . $copy . $edit ."</div>\n";
+		echo '<div class="meta">'.  $cats . $copy . $edit . $update ."</div>\n";
 
 		echo '</div>';
 
