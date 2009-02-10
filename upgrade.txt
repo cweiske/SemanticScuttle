@@ -96,6 +96,7 @@ ALTER TABLE `sc_searchhistory` CHARACTER SET utf8 COLLATE utf8_general_ci;
 - Upgrade your current configuration file (config.inc.php) with respect to config.inc.php.example
 * Add variable : $descriptionAnchors = array("author", "isbn", "address"=>"[address][street][/street][city][/city][/address]"); #add a possible anchor (structured content) for bookmarks' description field
 * Add variable : $enableCommonTagDescriptionEditedByAll = true; #true mean everybody can edit common description. Else just the admins can do it.
+* Add variable : $googleAnalyticsCode = ''; #Allow GoogleAnalytics tracker https://www.google.com/analytics/
 
 === From version 0.90 to 0.91 ===
 - Backup you database
