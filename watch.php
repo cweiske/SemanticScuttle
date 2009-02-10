@@ -30,6 +30,9 @@ $currentUser = $userservice->getCurrentObjectUser();
 /* Managing path info */
 @list($url, $user) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
 
+if($user=='' && $_POST['contact'] != '') {
+	$user = $_POST['contact'];
+}
 
 if ($userservice->isLoggedOn() && $user) {
 	$pagetitle = '';

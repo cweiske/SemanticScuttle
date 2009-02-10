@@ -6,7 +6,7 @@ $this->includeTemplate($GLOBALS['top_include']);
 <dt><?php echo T_('Username'); ?></dt>
     <dd><?php echo $user; ?></dd>
 <?php
-if ($currentUser->isAdmin()) {
+if ($userservice->isLoggedOn() && $currentUser->isAdmin()) {
 ?>
 <dt><?php echo T_('Email'); ?></dt>
     <dd><?php echo filter($objectUser->getEmail()) ?></dd>    

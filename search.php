@@ -94,8 +94,8 @@ if (POST_TERMS != '') {
 				break;
 		}
 
-		if (isset($s_user)) {
-			
+		if (isset($s_user)) {		
+			$tplVars['user'] = $range;	
 			$s_user = $userservice->getIdFromUser($s_user);
 			if($s_user == NULL) {
 				$tplVars['error'] = sprintf(T_('User with username %s was not found'), $s_user);
@@ -112,7 +112,7 @@ if (POST_TERMS != '') {
 
 	if($GLOBALS['enableGoogleCustomSearch']) {
 		$tplVars['tipMsg'] = T_('Unsatisfied? You can also try our ').'<a href="'.createUrl('gsearch/index').'">Google Custom Search page</a>.';
-	}
+	}	
 	$tplVars['rsschannels'] = array();
 	$tplVars['page'] = $page;
 	$tplVars['start'] = $start;
