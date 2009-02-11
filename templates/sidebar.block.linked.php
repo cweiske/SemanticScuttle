@@ -56,14 +56,12 @@ $cUser = $userservice->getUser($userid);
 ?></h2>
 <?php //endif?>
 
-<div id="related"><!-- table--> <?php
+<div id="related"> <?php
 if($editingMode) {
-	//echo '<tr><td></td><td>';
 	echo '<p style="margin-bottom: 13px;text-align:center;">';
 	echo ' (<a href="'. createURL('tag2tagadd','') .'" rel="tag">'.T_('Add new link').'</a>) ';
 	echo ' (<a href="'. createURL('tag2tagdelete','') .'" rel="tag">'.T_('Delete link').'</a>)';
 	echo '</p>';
-	//echo '</td></tr>';
 }
 
 if(strlen($user)==0) {
@@ -80,9 +78,7 @@ foreach($explodedTags as $explodedTag) {
 		$fatherTags = $tag2tagservice->getLinkedTags($explodedTag, '>', $userid, true);
 		if(count($fatherTags)>0) {
 			foreach($fatherTags as $fatherTag) {
-				//echo '<tr><td></td><td>';
 				echo '<a href="'. sprintf($cat_url, filter($user, 'url'), filter($fatherTag, 'url')) .'" rel="tag">('. filter($fatherTag) .')</a> ';
-				//echo '</td></tr>';
 			}
 		}
 		/*
@@ -91,7 +87,7 @@ foreach($explodedTags as $explodedTag) {
 		 if(is_array($displayLinkedTags['stopList'])) {
 		 $stopList = array_merge($stopList, $displayLinkedTags['stopList']);
 		 }*/
-		echo '<div dojoType="dojo.data.ItemFileReadStore" url="'.ROOT.'ajax/getlinkedtags.php?tag='.filter($explodedTag, 'url').'&uId='.$userid.'" jsid="linkedTagStore" ></div>';
+		echo '<div dojoType="dojo.data.ItemFileReadStore" url="'.ROOT.'ajax/getlinkedtags.php?tag='.filter($explodedTag, 'url').'&amp;uId='.$userid.'" jsid="linkedTagStore" ></div>';
 		echo '<div dojoType="dijit.Tree" store="linkedTagStore" labelAttr="name" >';
 		echo '<script type="dojo/method" event="onClick" args="item">';
 		$returnUrl = sprintf($cat_url, filter($user, 'url'), filter('', 'url'));
@@ -104,6 +100,6 @@ foreach($explodedTags as $explodedTag) {
 	}
 
 }
-?> <!-- /table--></div>
+?> </div>
 
 <?php endif?>
