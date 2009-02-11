@@ -25,8 +25,7 @@ require_once('header.inc.php');
 $b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
 $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
 
-
-list($url, $user) = explode('/', $_SERVER['PATH_INFO']);
+@list($url, $user) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
 
 if ($usecache) {
 	// Generate hash for caching on
