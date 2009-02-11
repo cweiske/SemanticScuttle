@@ -11,6 +11,7 @@ foreach($users as $user) {
 
 	echo '<div class="link">';
 	echo '<a href="'.createURL('profile', $user->getUsername()).'">'.$user->getUsername().'</a>';
+	echo ' - <span title='. T_('Public/Shared/Private') .'>'. $user->getNbBookmarks('public') .' / '. $user->getNbBookmarks('shared') .' / '. $user->getNbBookmarks('private') .' '. T_('bookmark(s)') .'</span>';
 	echo '</div>';
 
 	if($user->getUsername() != $currentUser->getUsername()) {

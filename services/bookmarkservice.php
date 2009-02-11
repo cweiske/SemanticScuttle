@@ -71,8 +71,30 @@ class BookmarkService {
 		return $this->_getbookmark('bHash', $hash, true);
 	}
 
-	function countBookmarks($uId) {
-
+	/* Counts bookmarks for a user. $range = {'public', 'shared', 'private', 'all'}*/
+	function countBookmarks($uId, $range = 'public') {
+		$sql = 'SELECT COUNT(*) FROM '. $GLOBALS['tableprefix'] .'bookmarks';
+		$sql.= ' WHERE uId = '.$uId;
+		switch ($range) {
+			case 'all':
+			//no constraints
+			break;
+			case 'private':
+			$sql.= ' AND bStatus = 2';
+			break;
+			case 'shared':
+			$sql.= ' AND bStatus = 1';
+			break;			
+			case 'public':
+			default:
+			$sql.= ' AND bStatus = 0';
+			break;
+		}			
+		
+		if (!($dbresult = & $this->db->sql_query($sql))) {
+			message_die(GENERAL_ERROR, 'Could not get vars', '', __LINE__, __FILE__, $sql, $this->db);
+		}
+		return $this->db->sql_fetchfield(0, 0);
 	}
 
 	function editAllowed($bookmark) {

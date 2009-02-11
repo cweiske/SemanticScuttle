@@ -592,5 +592,10 @@ class User {
 		}
 		return $this->isAdmin;
 	}
+	
+	function getNbBookmarks($range = 'public') {
+		$bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
+		return $bookmarkservice->countBookmarks($this->getId(), $range);
+	}
 }
 ?>
