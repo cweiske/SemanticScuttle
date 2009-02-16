@@ -189,7 +189,7 @@ if($currenttag!= '') {
 		if ($userservice->isLoggedOn()
 		&& ($currentUser->getId() != $row['uId'])
 		&& !$bookmarkservice->bookmarkExists($row['bAddress'], $currentUser->getId())) {
-			$copy .= ' - <a href="'. createURL('bookmarks', $currentUser->getUsername() .'?action=add&amp;address='. urlencode($row['bAddress']) .'&amp;title='. urlencode($row['bTitle'])). '&amp;description='.urlencode($row['bDescription']). '&amp;tags='.$tagsForCopy  .'">'. T_('Copy') .'</a>';
+			$copy .= ' - <a href="'. createURL('bookmarks', $currentUser->getUsername() .'?action=add&amp;copyOf='. $row['bId']) .'">'. T_('Copy') .'</a>';
 		}
 
 		// Nofollow option

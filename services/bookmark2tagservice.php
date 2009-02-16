@@ -203,7 +203,7 @@ class Bookmark2TagService {
 	}
 
 	function &getTagsForBookmark($bookmarkid) {
-		if (!is_int($bookmarkid)) {
+		if (!is_numeric($bookmarkid)) {
 			message_die(GENERAL_ERROR, 'Could not get tags (invalid bookmarkid)', '', __LINE__, __FILE__, $query);
 			return false;
 		}

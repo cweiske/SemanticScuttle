@@ -34,6 +34,7 @@ isset($_GET['address']) ? define('GET_ADDRESS', $_GET['address']): define('GET_A
 isset($_GET['description']) ? define('GET_DESCRIPTION', $_GET['description']): define('GET_DESCRIPTION', '');
 isset($_GET['privateNote']) ? define('GET_PRIVATENOTE', $_GET['privateNote']): define('GET_PRIVATENOTE', '');
 isset($_GET['tags']) ? define('GET_TAGS', $_GET['tags']): define('GET_TAGS', '');
+isset($_GET['copyOf']) ? define('GET_COPYOF', $_GET['copyOf']): define('GET_COPYOF', '');
 
 isset($_POST['title']) ? define('POST_TITLE', $_POST['title']): define('POST_TITLE', '');
 isset($_POST['address']) ? define('POST_ADDRESS', $_POST['address']): define('POST_ADDRESS', '');
@@ -183,15 +184,11 @@ if ($templatename == 'editbookmark.tpl') {
 				'bStatus' => 0,
 			);
 			$tplVars['tags'] = POST_TAGS;
-		} else {
-			$tplVars['row'] = array(
-                'bTitle' => stripslashes(GET_TITLE),
-                'bAddress' => stripslashes(GET_ADDRESS),
-                'bDescription' => stripslashes(GET_DESCRIPTION),
-			    'bPrivateNote' => stripslashes(GET_PRIVATENOTE),
-                'tags' => (GET_TAGS ? explode(',', stripslashes(GET_TAGS)) : array()),
-				'bStatus' => 0
-			);
+		} else {			
+			$tplVars['row'] = $bookmarkservice->getBookmark($_GET['copyOf'], true);
+			if(!$currentUser->isAdmin()) {
+				$tplVars['row']['bPrivateNote'] = ''; //only admin can copy private note
+			}		
 		}
 		$title = T_('Add a Bookmark');
 		$tplVars['referrer'] = $_SERVER['HTTP_REFERER'];
