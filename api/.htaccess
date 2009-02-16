@@ -1,5 +1,10 @@
-RewriteEngine On
+# Allow PHP_AUTH_USER with CGI script
+# (Inspired by http://www.yetanothercommunitysystem.com/article-321-regle-comment-utiliser-l-authentification-http-en-php-chez-ovh )
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
 RewriteRule ^tags/get tags_get.php
+RewriteRule ^tags/rename tags_rename.php
 RewriteRule ^posts/dates posts_dates.php
 RewriteRule ^posts/get posts_get.php
 RewriteRule ^posts/recent posts_recent.php
@@ -7,14 +12,7 @@ RewriteRule ^posts/all posts_all.php
 RewriteRule ^posts/update posts_update.php
 RewriteRule ^posts/add posts_add.php
 RewriteRule ^posts/delete posts_delete.php
-RewriteRule ^tags/rename tags_rename.php
 RewriteRule ^export/html export_html.php
 
-
-# Allow PHP_AUTH_USER with CGI script
-# (Inspired by http://www.yetanothercommunitysystem.com/article-321-regle-comment-utiliser-l-authentification-http-en-php-chez-ovh )
-
-<IfModule mod_rewrite.c>
-RewriteEngine on
 RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization},L]
 </IfModule>
