@@ -528,6 +528,11 @@ ul {
 	background: #FFF url('images/bg_admin.png') repeat-y top right;
 }
 
+a.bookmarklet {
+	padding: 2px;
+	background-color: #AAFAEE;
+}
+
 /* DOJO Style */
 
 /* DOJO Style */
