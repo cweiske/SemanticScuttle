@@ -39,6 +39,7 @@ define('CRITICAL_ERROR', 204);
 // Page name
 define('PAGE_INDEX', "index");
 define('PAGE_BOOKMARKS', "bookmarks");
+define('PAGE_WATCHLIST', "watchlist");
 
 
 // Miscellanous

@@ -21,7 +21,7 @@ include('search.inc.php');
 <?php endif?>
 
 
-<?php if($GLOBALS['enableAdminColors']!=false && isset($userid) && $userservice->isAdmin($userid)): ?>
+<?php if($GLOBALS['enableAdminColors']!=false && isset($userid) && $userservice->isAdmin($userid) && $pageName != PAGE_WATCHLIST) : ?>
 <div style="width:70%;text-align:center;">
 <img src="<?php echo ROOT ?>images/logo_24.gif" width="12px"/> <?php echo T_('Bookmarks on this page are managed by an admin user.'); ?><img src="<?php echo ROOT ?>images/logo_24.gif" width="12px"/>
 </div>

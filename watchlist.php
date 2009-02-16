@@ -108,6 +108,7 @@ if ($user) {
     $tplVars['pagetitle'] = $title;
     $tplVars['subtitle'] = $title;
     $tplVars['range'] = 'watchlist';
+    $tplVars['pageName'] = PAGE_WATCHLIST;
 
     $tplVars['rsschannels'] = array(
         array(filter($sitename .': '. $title), createURL('rss', 'watchlist/'. filter($user, 'url')))

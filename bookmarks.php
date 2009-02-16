@@ -185,7 +185,7 @@ if ($templatename == 'editbookmark.tpl') {
 			);
 			$tplVars['tags'] = POST_TAGS;
 		} else {			
-			$tplVars['row'] = $bookmarkservice->getBookmark($_GET['copyOf'], true);
+			$tplVars['row'] = $bookmarkservice->getBookmark(GET_COPYOF, true);
 			if(!$currentUser->isAdmin()) {
 				$tplVars['row']['bPrivateNote'] = ''; //only admin can copy private note
 			}		
