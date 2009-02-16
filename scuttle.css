@@ -238,6 +238,10 @@ li.xfolkentry.shared {
     border-left: 3px solid #FA0;
 }
 
+li.xfolkentry div div.description span.anchorBookmark {
+	font-family:monospace;
+}
+
 /* SIDEBAR */
 
 div#sidebar {
