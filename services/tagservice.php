@@ -32,6 +32,24 @@ class TagService {
 			return array('tDescription'=>'');
 		}
 	}
+	
+	function existsDescription($tag, $uId) {
+			$query = 'SELECT tag, uId, tDescription';
+		$query.= ' FROM '.$this->getTableName();
+		$query.= ' WHERE tag = "'.$tag.'"';
+		$query.= ' AND uId = "'.$uId.'"';
+
+		if (!($dbresult = & $this->db->sql_query($query))) {
+			message_die(GENERAL_ERROR, 'Could not get tag description', '', __LINE__, __FILE__, $query, $this->db);
+			return false;
+		}
+
+		if ($row =& $this->db->sql_fetchrow($dbresult)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	function getAllDescriptions($tag) {
 		$query = 'SELECT tag, uId, tDescription';
@@ -47,8 +65,7 @@ class TagService {
 	}
 
 	function updateDescription($tag, $uId, $desc) {
-		$objectTag = $this->getDescription($tag, $uId);
-		if(count($objectTag)>0 ) {
+		if($this->existsDescription($tag, $uId)) {
 			$query = 'UPDATE '.$this->getTableName();
 			$query.= ' SET tDescription="'.$this->db->sql_escape($desc).'"';
 			$query.= ' WHERE tag="'.$tag.'" AND uId="'.$uId.'"';
