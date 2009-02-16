@@ -98,11 +98,6 @@ $urlSort = (getSortOrder()=='url_asc')? 'url_desc':'url_asc';
 ?> <a href="?sort=<?php echo $dateSort ?>"><?php echo T_("Date"); ?></a><span>
 / </span> <a href="?sort=<?php echo $titleSort ?>"><?php echo T_("Title"); ?></a><span>
 / </span> <?php
-if (!isset($hash)) {
-	?> <a href="?sort=<?php echo $urlSort ?>"><?php echo T_("URL"); ?></a>
-	<?php
-}
-?> <?php
 if($currenttag!= '') {
 	if($user!= '') {
 		echo ' - ';
