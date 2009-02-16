@@ -22,7 +22,6 @@ $bookmarks =& $bookmarkservice->getBookmarks(0, NULL, $userservice->getCurrentUs
 
 
 // Set up the XML file and output all the posts.
-header('Content-Type: text/html');
 echo '<!DOCTYPE NETSCAPE-Bookmark-file-1>'."\r\n";
 echo '<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">';
 echo '<!-- This is an automatically generated file. -->'."\r\n";
