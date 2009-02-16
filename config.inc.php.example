@@ -30,6 +30,7 @@ $tableprefix = 'sc_';  # table prefix used for this installation. Do not use '-'
 ### Users ###
 $adminemail         = 'admin@example.org'; # Contact address for the site administrator. Used as the FROM address in password retrieval e-mails.
 $admin_users = array(''); # admin users  = array('adminnickname', 'user1nick', 'user2nick');
+$adminsCanModifyBookmarksFromOtherUsers = true;  # 'true' if admin users can edit or delete bookmarks belonging to other users. Else 'false'. 
 $reservedusers      = array('all', 'watchlist'); # array of usernames that cannot be registered
 # Antispam
 $antispamQuestion = 'name of this application (no Caps)'; # antispamQuestion: A question to avoid spam

@@ -107,7 +107,7 @@ class BookmarkService {
 
 		$userservice = & ServiceFactory :: getServiceInstance('UserService');
 		$userid = $userservice->getCurrentUserId();
-		if ($userservice->isAdmin($userid))
+		if ($GLOBALS['adminsCanModifyBookmarksFromOtherUsers'] && $userservice->isAdmin($userid))
 		return true;
 		else
 		return ($bookmark['uId'] == $userid);
