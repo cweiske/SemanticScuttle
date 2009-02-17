@@ -338,6 +338,20 @@ class Bookmark2TagService {
 		// ask for their tags
 		return $this->getPopularTags($admins, $limit, $logged_on_user, $days);
 	}
+	
+	function &getContactTags($user, $limit = 30, $logged_on_user = NULL, $days = NULL) {
+		// look for contact ids
+		$userservice = & ServiceFactory :: getServiceInstance('UserService');
+		$contacts = $userservice->getWatchlist($user);
+		
+		// add the user (to show him/her also his/her tags)
+		if(!is_null($logged_on_user)) {
+			$contacts[] = $logged_on_user;
+		}
+		
+		// ask for their tags
+		return $this->getPopularTags($contacts, $limit, $logged_on_user, $days);
+	}	
 
 	// $users can be {NULL, an id, an array of id}
 	function &getPopularTags($user = NULL, $limit = 30, $logged_on_user = NULL, $days = NULL) {
