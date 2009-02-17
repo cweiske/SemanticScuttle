@@ -373,7 +373,8 @@ class BookmarkService {
 			for ($i = 0; $i < count($aTerms); $i++) {
 				$query_4 .= ' AND (B.bTitle LIKE "%'. $this->db->sql_escape($aTerms[$i]) .'%"';
 				$query_4 .= ' OR B.bDescription LIKE "%'. $this->db->sql_escape($aTerms[$i]) .'%"';
-				$query_4 .= ' OR U.username = "'. $this->db->sql_escape($aTerms[$i]) .'"'; //exact match for username
+				$query_4 .= ' OR B.bPrivateNote = "'. $this->db->sql_escape($aTerms[$i]) .'"'; //warning : search in private notes of everybody but private notes won't appear if not allowed.
+				$query_4 .= ' OR U.username = "'. $this->db->sql_escape($aTerms[$i]) .'"'; //exact match for username				
 				if ($dotags) {
 					$query_4 .= ' OR T.tag = "'. $this->db->sql_escape($aTerms[$i]) .'"';
 				}
