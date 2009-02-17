@@ -40,8 +40,7 @@ if(isset($_GET['popup'])) {
 if(!isset($_GET['popup'])) {
 	$this->includeTemplate('toolbar.inc');
 }
-?> <?php if(!isset($_GET['popup'])):?> <!--span id="welcome"><?php echo $GLOBALS['welcomeMessage'];?></span-->
-<?php endif; ?></div>
+?></div>
 
 <?php
 if (isset($subtitle)) {

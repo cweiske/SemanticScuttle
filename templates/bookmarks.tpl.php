@@ -232,7 +232,7 @@ if($currenttag!= '') {
 		} else {
 			// Improve description display (anchors, links, ...)
 			$bkDescription = preg_replace('|\[\/.*?\]|', '', filter($row['bDescription'])); // remove final anchor
-			$bkDescription = preg_replace('|\[(.*?)\]|', ' <span class="anchorBookmark">$1</span> ', $bkDescription); // highlight starting anchor
+			$bkDescription = preg_replace('|\[(.*?)\]|', ' <span class="anchorBookmark">$1</span> » ', $bkDescription); // highlight starting anchor
 			$bkDescription = preg_replace('@((http|https|ftp)://.*?)( |\r|$)@', '<a href="$1" rel="nofollow">$1</a>$3', $bkDescription); // make url clickable
 			
 		}

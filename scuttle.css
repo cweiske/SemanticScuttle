@@ -244,7 +244,7 @@ li.xfolkentry.shared {
 }
 
 li.xfolkentry div div.description span.anchorBookmark {
-	font-family:monospace;
+    /*font-family:monospace;*/
 }
 
 /* SIDEBAR */
