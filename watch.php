@@ -24,14 +24,16 @@ require_once('header.inc.php');
 /* Service creation: only useful services are created */
 //No specific services
 
-/* Managing current logged user */
-$currentUser = $userservice->getCurrentObjectUser();
+isset($_POST['contact']) ? define('POST_CONTACT', $_POST['contact']): define('POST_CONTACT', '');
+isset($_GET['contact']) ? define('GET_CONTACT', $_GET['contact']): define('GET_CONTACT', '');
 
 /* Managing path info */
 @list($url, $user) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
 
-if($user=='' && $_POST['contact'] != '') {
-	$user = $_POST['contact'];
+if($user=='' && POST_CONTACT != '') {
+	$user = POST_CONTACT;
+} elseif($user=='' && GET_CONTACT != '') {
+	$user = GET_CONTACT;
 }
 
 if ($userservice->isLoggedOn() && $user) {
