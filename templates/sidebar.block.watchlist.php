@@ -36,10 +36,6 @@ foreach($watching as $watchuser) {
           </form>
         </li>
         <?php endif; ?>
-            
-    <?php if(count($watching) == 0):?>
-        <li><?php echo T_("Nobody");?></li>    
-    <?php endif; ?>
     
     <?php foreach($watching as $watchuser): ?>
         <li><a href="<?php echo createURL('bookmarks', $watchuser); ?>"><?php echo $watchuser; ?></a>

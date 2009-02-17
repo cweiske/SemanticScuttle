@@ -326,7 +326,20 @@ class Bookmark2TagService {
 		$this->db->sql_freeresult($dbresult);
 		return $output;
 	}
+	
+	function &getAdminTags($limit = 30, $logged_on_user = NULL, $days = NULL) {
+		// look for admin ids
+		$userservice = & ServiceFactory :: getServiceInstance('UserService');
+		$admins = array();
+		foreach($GLOBALS['admin_users'] as $adminName) {
+			$admins[] = $userservice->getIdFromUser($adminName);
+		}
+		
+		// ask for their tags
+		return $this->getPopularTags($admins, $limit, $logged_on_user, $days);
+	}
 
+	// $users can be {NULL, an id, an array of id}
 	function &getPopularTags($user = NULL, $limit = 30, $logged_on_user = NULL, $days = NULL) {
 		// Only count the tags that are visible to the current user.
 		if (($user != $logged_on_user) || is_null($user) || ($user === false))
@@ -342,6 +355,12 @@ class Bookmark2TagService {
 		$query = 'SELECT T.tag, COUNT(T.bId) AS bCount FROM '. $this->getTableName() .' AS T, '. $GLOBALS['tableprefix'] .'bookmarks AS B WHERE ';
 		if (is_null($user) || ($user === false)) {
 			$query .= 'B.bId = T.bId AND B.bStatus = 0';
+		} elseif(is_array($user)) {
+			$query .= ' (1 = 0';  //tricks
+			foreach($user as $u) {			
+				$query .= ' OR B.uId = '. $this->db->sql_escape($u) .' AND B.bId = T.bId';
+			}
+			$query .= ' )';
 		} else {
 			$query .= 'B.uId = '. $this->db->sql_escape($user) .' AND B.bId = T.bId'. $privacy;
 		}

@@ -9,6 +9,7 @@ Message: this version modifies the database to UTF-8 charset. The idea is to con
 #NOTHING TO CHANGE IN DB
 - Upgrade your current configuration file (config.inc.php) with respect to config.inc.php.example
 $adminsCanModifyBookmarksFromOtherUsers = true;  # 'true' if admin users can edit or delete bookmarks belonging to other users. Else 'false'.
+$adminsAreAdvisedTagsFromOtherAdmins = false;  # 'true' if tags from other admins are proposed to each admin (in add/edit a bookmark page). Else 'false'.
 
 
 === From version 0.91 to 0.92 ===
