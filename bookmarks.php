@@ -104,9 +104,9 @@ if ($user) {
 }
 if ($cat) {
 	$catTitle = ': '. str_replace('+', ' + ', $cat);
-	
-	$catTitleWithUrls = ': ';	
-	$titleTags = explode('+', filter($cat));	
+
+	$catTitleWithUrls = ': ';
+	$titleTags = explode('+', filter($cat));
 	for($i = 0; $i<count($titleTags);$i++) {
 		$catTitleWithUrls.= $titleTags[$i].'<a href="'.createUrl('bookmarks', $user.'/'.aggregateTags($titleTags, '+', $titleTags[$i])).'" title="'.T_('Remove the tag from the selection').'">*</a> + ';
 	}
@@ -162,8 +162,8 @@ if ($userservice->isLoggedOn() && POST_SUBMITTED != '') {
 
 if (GET_ACTION == "add") {
 	// If the bookmark exists already, edit the original
-	if ($bookmarkservice->bookmarkExists(stripslashes(GET_ADDRESS), $currentUserID)) {
-		$bookmark =& $bookmarkservice->getBookmarks(0, NULL, $currentUserID, NULL, NULL, NULL, NULL, NULL, NULL, md5(stripslashes(GET_ADDRESS)));
+	if ($bookmarkservice->bookmarkExists(stripslashes(GET_ADDRESS), $currentUserID)) {		
+		$bookmark =& $bookmarkservice->getBookmarks(0, NULL, $currentUserID, NULL, NULL, NULL, NULL, NULL, NULL, md5($bookmarkservice->normalize(stripslashes(GET_ADDRESS))));
 		$popup = (GET_POPUP!='') ? '?popup=1' : '';
 		header('Location: '. createURL('edit', $bookmark['bookmarks'][0]['bId'] . $popup));
 		exit();
@@ -184,11 +184,23 @@ if ($templatename == 'editbookmark.tpl') {
 				'bStatus' => 0,
 			);
 			$tplVars['tags'] = POST_TAGS;
-		} else {			
-			$tplVars['row'] = $bookmarkservice->getBookmark(GET_COPYOF, true);
-			if(!$currentUser->isAdmin()) {
-				$tplVars['row']['bPrivateNote'] = ''; //only admin can copy private note
-			}		
+		} else {
+			if(GET_COPYOF != '') {  //copy from bookmarks page
+				$tplVars['row'] = $bookmarkservice->getBookmark(GET_COPYOF, true);
+				if(!$currentUser->isAdmin()) {
+					$tplVars['row']['bPrivateNote'] = ''; //only admin can copy private note
+				}
+			}else {  //copy from pop-up bookmarklet
+			 $tplVars['row'] = array(
+			 	'bTitle' => stripslashes(GET_TITLE),
+                'bAddress' => stripslashes(GET_ADDRESS),
+                'bDescription' => stripslashes(GET_DESCRIPTION),
+                'bPrivateNote' => stripslashes(GET_PRIVATENOTE),
+                'tags' => (GET_TAGS ? explode(',', stripslashes(GET_TAGS)) : array()),
+                'bStatus' => 0
+			 );
+			}
+				
 		}
 		$title = T_('Add a Bookmark');
 		$tplVars['referrer'] = $_SERVER['HTTP_REFERER'];

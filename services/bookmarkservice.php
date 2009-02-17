@@ -436,8 +436,10 @@ class BookmarkService {
 			message_die(GENERAL_ERROR, 'Could not delete bookmarks', '', __LINE__, __FILE__, $query, $this->db);
 			return false;
 		}
+		
+		
 
-		$query = 'DELETE FROM '. $GLOBALS['tableprefix'] .'tags WHERE bId = '. intval($bookmarkid);
+		$query = 'DELETE FROM '. $GLOBALS['tableprefix'] .'bookmarks2tags WHERE bId = '. intval($bookmarkid);
 		$this->db->sql_transaction('begin');
 		if (!($dbresult = & $this->db->sql_query($query))) {
 			$this->db->sql_transaction('rollback');

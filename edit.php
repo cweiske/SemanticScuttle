@@ -87,12 +87,13 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
         if (POST_DELETE != '') {
             // Delete bookmark
             if ($bookmarkservice->deleteBookmark($bookmark)) {
-                if (POST_REFERRER != '') {
+            	if (POST_POPUP != '') {            		
+            		$tplVars['msg'] = '<script type="text/javascript">window.close();</script>';
+            	} elseif (POST_REFERRER != '') {
                     header('Location: '. POST_REFERRER);
                 } else {
                     header('Location: '. createURL('bookmarks', $currentUser->getUsername()));
                 }
-                exit();
             } else {
                 $tplVars['error'] = T_('Failed to delete bookmark');
                 $templateservice->loadTemplate('error.500.tpl', $tplVars);

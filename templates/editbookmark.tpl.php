@@ -95,7 +95,7 @@ $this->includeTemplate("dojo.inc");
     <td></td>
     <td>
         <input type="submit" name="submitted" value="<?php echo $btnsubmit; ?>" />
-        <input type="button" name="cancel" value="<?php echo T_('Cancel') ?>" onclick="javascript: history.go(-1)" />
+        <input type="button" name="cancel" value="<?php echo T_('Cancel') ?>" onclick="<?php echo $popup?'window.close();':'javascript: history.go(-1)'; ?>" />
         <?php
         if (isset($showdelete) && $showdelete) {
         ?>
