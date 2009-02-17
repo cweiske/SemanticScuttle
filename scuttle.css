@@ -217,6 +217,11 @@ div.meta {
 div.meta span {
     color: #F00;
 }
+div.privateNote {
+    font-variant: small-caps;
+    font-size: small;
+    text-align: right;
+}
 li.xfolkentry {
     border-bottom: 1px solid #DDD;
     margin-bottom: 0;

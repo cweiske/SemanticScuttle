@@ -208,7 +208,14 @@ if($currenttag!= '') {
 			$adminBgClass = '';
 			$adminStar = '';
 		}
-
+		
+		// Private Note (just visible by the owner and his/her contacts)
+		if($userservice->isLoggedOn() && ($currentUser->getId() == $row['uId'] || in_array($row['username'], $userservice->getWatchNames($currentUser->getId(), true)))) {
+			$privateNoteField = $row['bPrivateNote'];
+		} else {
+			$privateNoteField = '';
+		}
+		
 		// Output
 		echo '<li class="xfolkentry'. $access .'" >'."\n";
 		if ($GLOBALS['enableWebsiteThumbnails']) {
@@ -235,7 +242,7 @@ if($currenttag!= '') {
 		//}
 
 		echo '<div class="meta">'.  $cats . $copy . $edit . $update ."</div>\n";
-
+		echo $privateNoteField!=''?'<div class="privateNote" title="'. T_('Private Note on this bookmark') .'">'.$privateNoteField."</div>\n":'';
 		echo '</div>';
 
 		echo "</li>\n";
