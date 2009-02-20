@@ -330,13 +330,10 @@ class Bookmark2TagService {
 	function &getAdminTags($limit = 30, $logged_on_user = NULL, $days = NULL) {
 		// look for admin ids
 		$userservice = & ServiceFactory :: getServiceInstance('UserService');
-		$admins = array();
-		foreach($GLOBALS['admin_users'] as $adminName) {
-			$admins[] = $userservice->getIdFromUser($adminName);
-		}
+		$adminIds = $userservice->getAdminIds();
 		
 		// ask for their tags
-		return $this->getPopularTags($admins, $limit, $logged_on_user, $days);
+		return $this->getPopularTags($adminIds, $limit, $logged_on_user, $days);
 	}
 	
 	function &getContactTags($user, $limit = 30, $logged_on_user = NULL, $days = NULL) {

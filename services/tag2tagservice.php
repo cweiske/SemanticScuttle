@@ -43,6 +43,16 @@ class Tag2TagService {
 		return true;
 	}
 
+	// Return linked tags just for admin users
+	function getAdminLinkedTags($tag, $relationType, $inverseRelation = false, $stopList = array()) {
+		// look for admin ids
+		$userservice = & ServiceFactory :: getServiceInstance('UserService');
+		$adminIds = $userservice->getAdminIds();
+		
+		//ask for their linked tags
+		return $this->getLinkedTags($tag, $relationType, $adminIds, $inverseRelation, $stopList);
+	}
+	
 	// Return the target linked tags. If inverseRelation is true, return the source linked tags.
 	function getLinkedTags($tag, $relationType, $uId = null, $inverseRelation = false, $stopList = array()) {
 		// Set up the SQL query.
@@ -63,7 +73,13 @@ class Tag2TagService {
 		if($relationType) {
 			$query.= " AND relationType = '". $relationType ."'";
 		}
-		if($uId != null) {
+		if(is_array($uId)) {
+			$query.= " AND ( 1=0 "; //tricks always false			
+			foreach($uId as $u) {
+				$query.= " OR uId = '".$u."'";
+			}
+			$query.= " ) "; 
+		} elseif($uId != null) {
 			$query.= " AND uId = '".$uId."'";
 		}
 		//die($query);

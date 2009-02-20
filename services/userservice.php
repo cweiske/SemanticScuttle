@@ -430,6 +430,16 @@ class UserService {
 		$this->db->sql_freeresult($dbresult);
 		return $rows;
 	}
+	
+	// Returns an array with admin uIds
+	function getAdminIds() {
+		$admins = array();
+		foreach($GLOBALS['admin_users'] as $adminName) {
+			if($this->getIdFromUser($adminName) != NULL)
+			$admins[] = $this->getIdFromUser($adminName); 
+		}
+		return $admins;
+	}
 
 	function deleteUser($uId) {
 		$query = 'DELETE FROM '. $this->getTableName() .' WHERE uId = '. intval($uId);
