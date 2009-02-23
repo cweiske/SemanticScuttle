@@ -35,6 +35,13 @@ foreach($menu2Tags as $menu2Tag) {
 	$returnUrl = sprintf($cat_url, filter($user, 'url'), filter('', 'url'));
 	echo 'window.location = "'.$returnUrl.'"+item.name';
 	echo '</script>';
+	//echo '<script type="dojo/method" event="getLabel" args="item">';
+	//echo 'return item.name + "...";';
+	//echo '</script>';
+	//echo '<script type="dojo/method" event="onMouseOver" args="item">';
+	//echo 'i = item.relatedTarget;';
+	//echo 'if(i.innerHTML.charAt(i.innerHTML)=="a") alert(i.innerHTML)';
+	//echo '</script>';
 	//echo '<script type="dojo/method" event="getLabelClass" args="item">';
 	//echo 'return \'treeTag\';';
 	//echo '</script>';
@@ -42,6 +49,7 @@ foreach($menu2Tags as $menu2Tag) {
 }
 ?>
 </div>
+
 
 <?php
 }
