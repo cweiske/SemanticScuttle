@@ -17,5 +17,19 @@ RewriteRule ^([^/.]+)/?(.*)$ $1.php/$2 [QSA,L]
 # This second part is used to speed-up the application
 #####################################
 
+<IfModule mod_expires.c>
+ExpiresActive On
+
+ExpiresByType image/ico "access plus 15 days"
+ExpiresByType image/png "access plus 15 days"
+ExpiresByType image/gif "access plus 15 days"
+ExpiresByType text/js "access plus 15 days"
+ExpiresByType text/css "access plus 15 days"
+</IfModule>
 
 
+<IfModule mod_deflate.c>
+#<FilesMatch "\.(js|css)$">
+SetOutputFilter DEFLATE
+#</FilesMatch>
+</IfModule>
