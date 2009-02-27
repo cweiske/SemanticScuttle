@@ -145,7 +145,7 @@ if ($userservice->isLoggedOn() && POST_SUBMITTED != '') {
 				if (POST_POPUP != '') {
 					$tplVars['msg'] = '<script type="text/javascript">window.close();</script>';
 				} else {
-					$tplVars['msg'] = T_('Bookmark saved');
+					$tplVars['msg'] = T_('Bookmark saved') . ' <a href="javascript:history.go(-2)">'.T_('(Come back to previous page.)').'</a>';
 					// Redirection option
 					if ($GLOBALS['useredir']) {
 						$address = $GLOBALS['url_redir'] . $address;
