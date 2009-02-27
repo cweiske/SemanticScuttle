@@ -1,9 +1,7 @@
 ==== UPGRADE instructions ====
 
 === From version 0.92 to 0.93 ===
-Message: this version modifies the database to UTF-8 charset. The idea is to convert the content (through BLOB type) and then to change the tables' charsets.
-
-- Backup you database
+- Backup your database
 - Make a copy from your SemanticScuttle Web directory
 - Upgrade your database by following instructions ONE after ONE (order is important) :
 #NOTHING TO CHANGE IN DB
@@ -15,7 +13,7 @@ $adminsAreAdvisedTagsFromOtherAdmins = false;  # 'true' if tags from other admin
 === From version 0.91 to 0.92 ===
 Message: this version modifies the database to UTF-8 charset. The idea is to convert the content (through BLOB type) and then to change the tables' charsets.
 
-- Backup you database
+- Backup your database
 - Make a copy from your SemanticScuttle Web directory
 - Upgrade your database by following instructions ONE after ONE (order is important) :
 
