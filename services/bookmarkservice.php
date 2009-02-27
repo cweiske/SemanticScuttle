@@ -107,6 +107,8 @@ class BookmarkService {
 
 		$userservice = & ServiceFactory :: getServiceInstance('UserService');
 		$userid = $userservice->getCurrentUserId();
+		if(!is_numeric($userid))
+		return false;  // useful for few servers configuration (see brunaud bugs)		
 		if ($GLOBALS['adminsCanModifyBookmarksFromOtherUsers'] && $userservice->isAdmin($userid))
 		return true;
 		else
