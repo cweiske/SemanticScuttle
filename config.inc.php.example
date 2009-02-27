@@ -34,7 +34,7 @@ $adminsCanModifyBookmarksFromOtherUsers = true;  # 'true' if admin users can edi
 $adminsAreAdvisedTagsFromOtherAdmins = false;  # 'true' if tags from other admins are proposed to each admin (in add/edit a bookmark page). Else 'false'. 
 $reservedusers      = array('all', 'watchlist'); # array of usernames that cannot be registered
 # Antispam
-$antispamQuestion = 'name of this application (no Caps)'; # antispamQuestion: A question to avoid spam
+$antispamQuestion = 'name of this application'; # antispamQuestion: A question to avoid spam
 $antispamAnswer = 'semanticscuttle'; # antispamAnswer: The answer to the question (users have to put exactly the same answer)
 
 ### Display Templates ###
