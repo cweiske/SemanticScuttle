@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-27 11:56+0100\n"
-"PO-Revision-Date: 2009-02-27 11:56+0100\n"
+"POT-Creation-Date: 2009-02-28 16:43+0100\n"
+"PO-Revision-Date: 2009-02-28 16:42+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -785,9 +785,9 @@ msgid " and %s1 other%s"
 msgstr " et %s1 autre%s"
 
 #: ../../../templates/bookmarks.tpl.php:179
-#, fuzzy, php-format
+#, php-format
 msgid " and %2$s%1$s others%3$s"
-msgstr " et les autres %s"
+msgstr " et %2$s%1$s autres%3$s"
 
 #: ../../../templates/bookmarks.tpl.php:187
 msgid "Copy"
