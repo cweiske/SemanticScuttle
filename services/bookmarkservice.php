@@ -201,7 +201,7 @@ class BookmarkService {
 
 	function updateBookmark($bId, $address, $title, $description, $privateNote, $status, $categories, $date = NULL, $fromApi = false) {
 		if (!is_numeric($bId))
-		return false;
+		return false;		
 
 		// Get the client's IP address and the date; note that the date is in GMT.
 		if (getenv('HTTP_CLIENT_IP'))
@@ -213,6 +213,15 @@ class BookmarkService {
 		$ip = getenv('HTTP_X_FORWARDED_FOR');
 
 		$moddatetime = gmdate('Y-m-d H:i:s', time());
+		
+		$address = $this->normalize($address);
+		
+		//check if a new address ($address) doesn't already exist for another bookmark from the same user 
+		$bookmark = $this->getBookmark($bId);
+		if($bookmark['bAddress'] != $address && $this->bookmarkExists($address, $bookmark['uId'])) {
+			message_die(GENERAL_ERROR, 'Could not update bookmark (URL already existing = '.$address.')', '', __LINE__, __FILE__);
+			return false;
+		}
 
 		// Set up the SQL update statement and execute it.
 		$updates = array('bModified' => $moddatetime, 'bTitle' => $title, 'bAddress' => $address, 'bDescription' => $description, 'bPrivateNote' => $privateNote, 'bStatus' => $status, 'bHash' => md5($address));
