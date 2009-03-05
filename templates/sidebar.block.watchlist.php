@@ -5,7 +5,8 @@
 $watching = $userservice->getWatchNames($userid);
 $watchedBy = $userservice->getWatchNames($userid, true);
 
-$closeContacts = array(); // people in my contacts list and whose I am also in the contacts list
+
+$closeContacts = array(); // people in my contacts list and who I am also in the contacts list
 foreach($watching as $watchuser) {
 	if(in_array($watchuser, $watchedBy)) {
 		$closeContacts[] = $watchuser;
@@ -18,7 +19,7 @@ foreach($watching as $watchuser) {
 <h2 title="<?php echo T_('Close contacts are mutual contacts');?>"><?php echo ' &harr '. T_('Close contacts'); ?></h2>
 <div id="watching">
     <ul>
-    <?php foreach($watching as $watchuser): ?>
+    <?php foreach($closeContacts as $watchuser): ?>
         <li><a href="<?php echo createURL('bookmarks', $watchuser); ?>"><?php echo $watchuser; ?></a> </li>
     <?php endforeach; ?>
     </ul>
@@ -48,7 +49,7 @@ foreach($watching as $watchuser) {
     </ul>
 </div>
 
-<h2><?php echo ' &larr '. T_('Watched by'); ?></h2>
+<h2><?php echo ' &larr '. T_('Watched By'); ?></h2>
 <div id="watching">
     <ul>
     <?php foreach($watchedBy as $watchuser): ?>

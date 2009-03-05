@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-28 16:43+0100\n"
+"POT-Creation-Date: 2009-03-05 10:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1129,11 +1129,12 @@ msgid "Member Since"
 msgstr ""
 
 #: ../../../templates/profile.tpl.php:40
-#: ../../../templates/sidebar.block.watchlist.php:29
+#: ../../../templates/sidebar.block.watchlist.php:30
 msgid "Watching"
 msgstr ""
 
 #: ../../../templates/profile.tpl.php:55
+#: ../../../templates/sidebar.block.watchlist.php:52
 msgid "Watched By"
 msgstr ""
 
@@ -1244,28 +1245,24 @@ msgstr ""
 msgid "All users"
 msgstr ""
 
-#: ../../../templates/sidebar.block.watchlist.php:18
+#: ../../../templates/sidebar.block.watchlist.php:19
 msgid "Close contacts are mutual contacts"
 msgstr ""
 
-#: ../../../templates/sidebar.block.watchlist.php:18
+#: ../../../templates/sidebar.block.watchlist.php:19
 msgid "Close contacts"
 msgstr ""
 
-#: ../../../templates/sidebar.block.watchlist.php:35
+#: ../../../templates/sidebar.block.watchlist.php:36
 msgid "Add a contact..."
 msgstr ""
 
-#: ../../../templates/sidebar.block.watchlist.php:35
+#: ../../../templates/sidebar.block.watchlist.php:36
 msgid "Type a username to add it to your contacts."
 msgstr ""
 
-#: ../../../templates/sidebar.block.watchlist.php:43
+#: ../../../templates/sidebar.block.watchlist.php:44
 msgid "Remove this contact"
-msgstr ""
-
-#: ../../../templates/sidebar.block.watchlist.php:51
-msgid "Watched by"
 msgstr ""
 
 #: ../../../templates/sidebar.block.watchstatus.php:11

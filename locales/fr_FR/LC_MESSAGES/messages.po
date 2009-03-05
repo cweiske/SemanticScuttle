@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-28 16:43+0100\n"
-"PO-Revision-Date: 2009-02-28 16:42+0100\n"
+"POT-Creation-Date: 2009-03-05 10:42+0100\n"
+"PO-Revision-Date: 2009-03-05 10:42+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -1187,15 +1187,14 @@ msgid "Member Since"
 msgstr "Membre depuis"
 
 #: ../../../templates/profile.tpl.php:40
-#: ../../../templates/sidebar.block.watchlist.php:29
-#, fuzzy
+#: ../../../templates/sidebar.block.watchlist.php:30
 msgid "Watching"
-msgstr "Liste des signets vus"
+msgstr "Mes contacts"
 
 #: ../../../templates/profile.tpl.php:55
-#, fuzzy
+#: ../../../templates/sidebar.block.watchlist.php:52
 msgid "Watched By"
-msgstr "Consultés"
+msgstr "Dans les contacts de"
 
 #: ../../../templates/profile.tpl.php:68 ../../../templates/toolbar.inc.php:8
 msgid "Bookmarks"
@@ -1306,30 +1305,25 @@ msgstr "Voir tous les utilisateurs"
 msgid "All users"
 msgstr "Tous les utilisateurs"
 
-#: ../../../templates/sidebar.block.watchlist.php:18
+#: ../../../templates/sidebar.block.watchlist.php:19
 msgid "Close contacts are mutual contacts"
 msgstr "Les contacts proches sont des contacts mutuels"
 
-#: ../../../templates/sidebar.block.watchlist.php:18
+#: ../../../templates/sidebar.block.watchlist.php:19
 msgid "Close contacts"
 msgstr "Contacts proches"
 
-#: ../../../templates/sidebar.block.watchlist.php:35
+#: ../../../templates/sidebar.block.watchlist.php:36
 msgid "Add a contact..."
 msgstr "Ajouter un contact..."
 
-#: ../../../templates/sidebar.block.watchlist.php:35
+#: ../../../templates/sidebar.block.watchlist.php:36
 msgid "Type a username to add it to your contacts."
 msgstr "Entrer un nom d'utilisateur pour l'ajouter à vos contacts."
 
-#: ../../../templates/sidebar.block.watchlist.php:43
+#: ../../../templates/sidebar.block.watchlist.php:44
 msgid "Remove this contact"
 msgstr "Enlever ce contact"
-
-#: ../../../templates/sidebar.block.watchlist.php:51
-#, fuzzy
-msgid "Watched by"
-msgstr "Consultés"
 
 #: ../../../templates/sidebar.block.watchstatus.php:11
 msgid "Remove from Watchlist"
@@ -1420,6 +1414,10 @@ msgstr "Profil"
 #: ../../../templates/users.tpl.php:17
 msgid "created in"
 msgstr "Créé en "
+
+#, fuzzy
+#~ msgid "Watched by"
+#~ msgstr "Consultés"
 
 #~ msgid "URL"
 #~ msgstr "URL"
