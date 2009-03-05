@@ -9,7 +9,7 @@
 #### System ####
 $sitename           = 'SemanticScuttle'; #The name of this site.
 $welcomeMessage     = 'Welcome to SemanticScuttle! Social bookmarking for small communities.'; # The welcome message of this site
-$root               = NULL; # Set to NULL to autodetect the root url of the website. If your installation is into a subdirectory like "www.example.com/semanticscuttle/" then replace NULL by your address (between "" and with final '/');
+$root               = NULL; # Set to NULL to autodetect the root url of the website. If your installation is into a subdirectory like "http://www.example.com/semanticscuttle/" then replace NULL by your address (between "" and with final '/');
 $locale             = 'en_GB'; #locale used in /locales/ {de_DE  en_GB  fr_FR  ...}
 $usecache           = false; # use cache ? {true,false}
 $dir_cache          = dirname(__FILE__) .'/cache/'; # directory where cache files will be stored
