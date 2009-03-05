@@ -92,11 +92,33 @@ window.onload = playerLoad;
 
 <p id="sort"><?php echo $total.' '.T_("bookmark(s)"); ?> - <?php echo T_("Sort by:"); ?>
 <?php
-$dateSort = (getSortOrder()=='date_desc')? 'date_asc':'date_desc';
-$titleSort = (getSortOrder()=='title_asc')? 'title_desc':'title_asc';
-$urlSort = (getSortOrder()=='url_asc')? 'url_desc':'url_asc';
-?> <a href="?sort=<?php echo $dateSort ?>"><?php echo T_("Date"); ?></a><span>
-/ </span> <a href="?sort=<?php echo $titleSort ?>"><?php echo T_("Title"); ?></a><span>
+switch(getSortOrder()) {
+	case 'date_asc':
+	$dateArrow = ' &uarr;';
+	$dateSort = 'date_desc';
+	$titleSort = 'title_asc';
+	break;
+	case 'title_asc':
+	$titleArrow = ' &uarr;';
+	$dateSort = 'date_desc';
+	$titleSort = 'title_desc';	
+	break;
+	case 'title_desc':
+	$titleArrow = ' &darr;';
+	$dateSort = 'date_desc';
+	$titleSort = 'title_asc';
+	break;
+	case 'date_desc':
+	default:
+	$dateArrow = ' &darr;';
+	$dateSort = 'date_asc';
+	$titleSort = 'title_asc';
+	break;
+}
+//$dateSort = (getSortOrder()=='date_desc')? 'date_asc':'date_desc';
+//$titleSort = (getSortOrder()=='title_asc')? 'title_desc':'title_asc';
+?> <a href="?sort=<?php echo $dateSort ?>"><?php echo T_("Date").$dateArrow; ?></a><span>
+/ </span> <a href="?sort=<?php echo $titleSort ?>"><?php echo T_("Title").$titleArrow; ?></a><span>
 / </span> <?php
 if($currenttag!= '') {
 	if($user!= '') {
