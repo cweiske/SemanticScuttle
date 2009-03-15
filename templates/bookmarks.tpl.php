@@ -115,8 +115,6 @@ switch(getSortOrder()) {
 	$titleSort = 'title_asc';
 	break;
 }
-//$dateSort = (getSortOrder()=='date_desc')? 'date_asc':'date_desc';
-//$titleSort = (getSortOrder()=='title_asc')? 'title_desc':'title_asc';
 ?> <a href="?sort=<?php echo $dateSort ?>"><?php echo T_("Date").$dateArrow; ?></a><span>
 / </span> <a href="?sort=<?php echo $titleSort ?>"><?php echo T_("Title").$titleArrow; ?></a><span>
 / </span> <?php

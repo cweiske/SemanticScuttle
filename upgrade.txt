@@ -6,6 +6,9 @@
 - Upgrade your database by following instructions ONE after ONE (order is important) :
 #NOTHING TO CHANGE IN DB
 - Upgrade your current configuration file (config.inc.php) with respect to config.inc.php.example
+$footerMessage      = ''; #HTML message appearing at the bottom of the page (just above SemanticScuttle credits)
+$sidebarTopMessage  = ''; #HTML message appearing at the top of the sidebar
+$sidebarBottomMessage = ''; #HTML message appearing at the bottom of the sidebar
 $adminsCanModifyBookmarksFromOtherUsers = true;  # 'true' if admin users can edit or delete bookmarks belonging to other users. Else 'false'.
 $adminsAreAdvisedTagsFromOtherAdmins = false;  # 'true' if tags from other admins are proposed to each admin (in add/edit a bookmark page). Else 'false'.
 
