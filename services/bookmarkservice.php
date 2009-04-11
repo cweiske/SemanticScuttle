@@ -109,7 +109,7 @@ class BookmarkService {
 		$userid = $userservice->getCurrentUserId();
 		if(!is_numeric($userid))
 		return false;  // useful for few servers configuration (see brunaud bugs)		
-		if ($GLOBALS['adminsCanModifyBookmarksFromOtherUsers'] && $userservice->isAdmin($userid))
+		if ($GLOBALS['adminsCanModifyBookmarksFromOtherUsers'] && $userservice->isAdmin($userid) && !$userservice->isAdmin($bookmark['uId']))
 		return true;
 		else
 		return ($bookmark['uId'] == $userid);
