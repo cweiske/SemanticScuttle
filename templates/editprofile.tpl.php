@@ -58,7 +58,7 @@ $this->includeTemplate($GLOBALS['top_include']);
     <th align="left"><?php echo T_('Export bookmarks'); ?></th>
     <td>
 	<a href="../api/export_html.php"><?php echo T_('HTML file (for browsers)')?></a> /
-	<a href="../api/posts/all"><?php echo T_('XML file (like del.icio.us)')?></a>
+	<a href="../api/posts/all"><?php echo T_('XML file (like del.icio.us)')?></a> / 
 	<a href="../api/export_csv.php"><?php echo T_('CSV file (for spreadsheet tools)')?></a>
     </td>
 </tr>
