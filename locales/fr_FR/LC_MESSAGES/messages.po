@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-05 11:39+0200\n"
-"PO-Revision-Date: 2009-05-05 11:38+0100\n"
+"POT-Creation-Date: 2009-05-05 15:29+0200\n"
+"PO-Revision-Date: 2009-05-05 15:29+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../../../about.php:23 ../../../about.php:24
-#: ../../../templates/toolbar.inc.php:15 ../../../templates/toolbar.inc.php:28
+#: ../../../templates/bottom.inc.php:5 ../../../templates/toolbar.inc.php:15
+#: ../../../templates/toolbar.inc.php:28
 msgid "About"
 msgstr "À propos"
 
@@ -111,7 +112,7 @@ msgstr "Ajouter signet"
 msgid "You must be logged in before you can add bookmarks."
 msgstr "Vous devez être authentifié avant de pouvoir ajouter des signets."
 
-#: ../../../bookmarks.php:265 ../../../bookmarks.php:266
+#: ../../../bookmarks.php:266 ../../../bookmarks.php:267
 msgid "My Bookmarks"
 msgstr "Mes signets"
 
@@ -830,7 +831,7 @@ msgstr "Page %d de %d"
 msgid "No bookmarks available"
 msgstr "Pas de signets disponibles."
 
-#: ../../../templates/bottom.inc.php:5
+#: ../../../templates/bottom.inc.php:7
 msgid "Propulsed by "
 msgstr "Propulsé par "
 
@@ -1041,6 +1042,10 @@ msgstr "Fichier HTML (pour navigateurs)"
 #: ../../../templates/editprofile.tpl.php:61
 msgid "XML file (like del.icio.us)"
 msgstr "Fichier XML (comme del.icio.us)"
+
+#: ../../../templates/editprofile.tpl.php:62
+msgid "CSV file (for spreadsheet tools)"
+msgstr "Fichier CSV (pour tableurs)"
 
 #: ../../../templates/error.404.tpl.php:5
 msgid "Not Found"
@@ -1260,9 +1265,14 @@ msgstr "tous les tags de cet utilisateur"
 msgid "See popular tags"
 msgstr "Voir les tags populaires"
 
-#: ../../../templates/sidebar.block.menu2.php:26
+#: ../../../templates/sidebar.block.menu2.php:25
 msgid "Featured Menu Tags"
 msgstr "Tags Principaux"
+
+#: ../../../templates/sidebar.block.menu2.php:29
+msgid "This menu is composed of keywords (tags) organized by admins."
+msgstr ""
+"Ce menu est composé de mots-clefs (tags) organisés par les administrateurs."
 
 #: ../../../templates/sidebar.block.recent.php:18
 msgid "Recent Tags"

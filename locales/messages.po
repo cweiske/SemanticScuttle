@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-05 11:39+0200\n"
+"POT-Creation-Date: 2009-05-05 15:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: ../../../about.php:23 ../../../about.php:24
-#: ../../../templates/toolbar.inc.php:15 ../../../templates/toolbar.inc.php:28
+#: ../../../templates/bottom.inc.php:5 ../../../templates/toolbar.inc.php:15
+#: ../../../templates/toolbar.inc.php:28
 msgid "About"
 msgstr ""
 
@@ -107,7 +108,7 @@ msgstr ""
 msgid "You must be logged in before you can add bookmarks."
 msgstr ""
 
-#: ../../../bookmarks.php:265 ../../../bookmarks.php:266
+#: ../../../bookmarks.php:266 ../../../bookmarks.php:267
 msgid "My Bookmarks"
 msgstr ""
 
@@ -801,7 +802,7 @@ msgstr ""
 msgid "No bookmarks available"
 msgstr ""
 
-#: ../../../templates/bottom.inc.php:5
+#: ../../../templates/bottom.inc.php:7
 msgid "Propulsed by "
 msgstr ""
 
@@ -1003,6 +1004,10 @@ msgstr ""
 msgid "XML file (like del.icio.us)"
 msgstr ""
 
+#: ../../../templates/editprofile.tpl.php:62
+msgid "CSV file (for spreadsheet tools)"
+msgstr ""
+
 #: ../../../templates/error.404.tpl.php:5
 msgid "Not Found"
 msgstr ""
@@ -1200,8 +1205,12 @@ msgstr ""
 msgid "See popular tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.menu2.php:26
+#: ../../../templates/sidebar.block.menu2.php:25
 msgid "Featured Menu Tags"
+msgstr ""
+
+#: ../../../templates/sidebar.block.menu2.php:29
+msgid "This menu is composed of keywords (tags) organized by admins."
 msgstr ""
 
 #: ../../../templates/sidebar.block.recent.php:18
