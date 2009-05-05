@@ -25,7 +25,7 @@ if (sizeOf($menu2Tags) > 0) {
 <h2><?php echo '<span>'.T_('Featured Menu Tags').'</span> ';?></h2>
 
 
-<div id="related"><?php
+<div id="maintagsmenu"><?php
 foreach($menu2Tags as $menu2Tag) {
 
 	echo '<div dojoType="dojo.data.ItemFileReadStore" url="'.ROOT.'ajax/getadminlinkedtags.php?tag='.filter($menu2Tag, 'url').'" jsid="linkedTagStore" ></div>';

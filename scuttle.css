@@ -305,6 +305,13 @@ div#related {
     padding: 0.5em;
 }
 
+div#sidebar>div#maintagsmenu {
+    padding: 0.5em;
+    border: 5px solid #999955
+}
+
+
+
 /* TAGS */
 
 p.commondescription {
