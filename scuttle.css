@@ -153,8 +153,13 @@ h2 {
     text-transform: lowercase;
 }
 h2 a, h2 a:hover {
-	color: #DDD;
+    color: #DDD;
 }
+
+/*sup {
+    color: #77ABE0;
+    font-weight: bold;
+}*/
 
 /* NAVIGATION */
 

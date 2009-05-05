@@ -22,10 +22,13 @@ if (sizeOf($menu2Tags) > 0) {
 	$this->includeTemplate("dojo.inc");
 	?>
 
-<h2><?php echo '<span>'.T_('Featured Menu Tags').'</span> ';?></h2>
+<h2><?php echo T_('Featured Menu Tags');?></h2>
 
 
-<div id="maintagsmenu"><?php
+<div id="maintagsmenu"
+<?php echo 'title="'.T_('This menu is composed of keywords (tags) organized by admins.').'"'?>>
+
+<?php
 foreach($menu2Tags as $menu2Tag) {
 
 	echo '<div dojoType="dojo.data.ItemFileReadStore" url="'.ROOT.'ajax/getadminlinkedtags.php?tag='.filter($menu2Tag, 'url').'" jsid="linkedTagStore" ></div>';
