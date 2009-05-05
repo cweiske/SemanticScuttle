@@ -18,7 +18,6 @@ if ($logged_on_userid === false) {
 $cat_url = createURL('tags', '%2$s');
 $menu2Tags = $GLOBALS['menu2Tags'];
 
-
 if (sizeOf($menu2Tags) > 0) {
 	$this->includeTemplate("dojo.inc");
 	?>
@@ -29,7 +28,7 @@ if (sizeOf($menu2Tags) > 0) {
 <div id="related"><?php
 foreach($menu2Tags as $menu2Tag) {
 
-	echo '<div dojoType="dojo.data.ItemFileReadStore" url="ajax/getadminlinkedtags.php?tag='.filter($menu2Tag, 'url').'" jsid="linkedTagStore" ></div>';
+	echo '<div dojoType="dojo.data.ItemFileReadStore" url="'.ROOT.'ajax/getadminlinkedtags.php?tag='.filter($menu2Tag, 'url').'" jsid="linkedTagStore" ></div>';
 	echo '<div dojoType="dijit.Tree" store="linkedTagStore" labelAttr="name" >';
 	echo '<script type="dojo/method" event="onClick" args="item">';
 	$returnUrl = sprintf($cat_url, filter($user, 'url'), filter('', 'url'));
