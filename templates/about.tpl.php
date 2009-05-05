@@ -19,8 +19,14 @@ $this->includeTemplate($GLOBALS['top_include']);
 <?php if(!is_null($currentUser) && $currentUser->isAdmin()): ?>
 <li>SemanticScuttle v0.93</li>
 <?php endif ?>
-
 </ul>
+
+<h3><?php echo T_('Tips'); ?></h3>
+<ul>
+<li><?php echo T_('The secret tag "system:unfiled" allows you to find bookmarks without tags.'); ?></li>
+<li><?php echo T_('The secret tag "system:imported" allows you to find imported bookmarks.'); ?></li>
+</ul>
+
 
 <?php
 $this->includeTemplate($GLOBALS['bottom_include']);
