@@ -13,6 +13,7 @@ RewriteRule ^posts/update posts_update.php
 RewriteRule ^posts/add posts_add.php
 RewriteRule ^posts/delete posts_delete.php
 RewriteRule ^export/html export_html.php
+RewriteRule ^export/csv export_csv.php
 
 RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization},L]
 </IfModule>
