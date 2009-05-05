@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-05 10:42+0100\n"
-"PO-Revision-Date: 2009-03-05 10:42+0100\n"
+"POT-Creation-Date: 2009-05-05 11:39+0200\n"
+"PO-Revision-Date: 2009-05-05 11:38+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../../../about.php:23 ../../../about.php:24
-#: ../../../templates/toolbar.inc.php:14 ../../../templates/toolbar.inc.php:26
+#: ../../../templates/toolbar.inc.php:15 ../../../templates/toolbar.inc.php:28
 msgid "About"
 msgstr "À propos"
 
@@ -99,7 +99,7 @@ msgstr ""
 "Il y a eu une erreur en enregistrant ce signet. Veuillez rééssayer ou "
 "contacter votre administrateur."
 
-#: ../../../bookmarks.php:205 ../../../templates/toolbar.inc.php:12
+#: ../../../bookmarks.php:205 ../../../templates/toolbar.inc.php:13
 msgid "Add a Bookmark"
 msgstr "Ajouter un signet"
 
@@ -297,7 +297,7 @@ msgstr ""
 "recommencer."
 
 #: ../../../login.php:57 ../../../templates/login.tpl.php:26
-#: ../../../templates/toolbar.inc.php:27
+#: ../../../templates/toolbar.inc.php:29
 msgid "Log In"
 msgstr "Se connecter"
 
@@ -362,7 +362,7 @@ msgstr "Mot de passe oublié"
 #: ../../../templates/sidebar.block.menu.php:74
 #: ../../../templates/sidebar.block.popular.php:23
 #: ../../../templates/sidebar.block.recent.php:34
-#: ../../../templates/toolbar.inc.php:25
+#: ../../../templates/toolbar.inc.php:27
 msgid "Popular Tags"
 msgstr "Tags populaires"
 
@@ -374,7 +374,7 @@ msgstr "Le nom d'utilisateur n'a pas été spécifié."
 msgid "My Profile"
 msgstr "Mon Profil"
 
-#: ../../../profile.php:67 ../../../templates/toolbar.inc.php:11
+#: ../../../profile.php:67 ../../../templates/toolbar.inc.php:12
 msgid "Profile"
 msgstr "Profil"
 
@@ -442,7 +442,7 @@ msgid "Registration failed. Please try again."
 msgstr "Enregistrement raté. Veuillez rééssayer."
 
 #: ../../../register.php:77 ../../../templates/register.tpl.php:41
-#: ../../../templates/toolbar.inc.php:28
+#: ../../../templates/toolbar.inc.php:30
 msgid "Register"
 msgstr "S'enregistrer"
 
@@ -573,7 +573,7 @@ msgstr[1] "Renommer les tags"
 
 #: ../../../tags.php:45 ../../../tags.php:67
 #: ../../../templates/editbookmark.tpl.php:69
-#: ../../../templates/toolbar.inc.php:9
+#: ../../../templates/toolbar.inc.php:10
 msgid "Tags"
 msgstr "Tags"
 
@@ -593,7 +593,7 @@ msgstr "Utilisateur ajouté à vos contacts"
 msgid "My Watchlist"
 msgstr "Mes Contacts"
 
-#: ../../../watchlist.php:106 ../../../templates/toolbar.inc.php:10
+#: ../../../watchlist.php:106 ../../../templates/toolbar.inc.php:11
 msgid "Watchlist"
 msgstr "Contacts"
 
@@ -667,7 +667,7 @@ msgid "bookmark(s)"
 msgstr "signet(s)"
 
 #: ../../../templates/admin.tpl.php:19
-#: ../../../templates/bookmarks.tpl.php:153
+#: ../../../templates/bookmarks.tpl.php:173
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -688,7 +688,7 @@ msgstr ""
 "les utilisateurs."
 
 #: ../../../templates/bookmarkcommondescriptionedit.tpl.php:18
-#: ../../../templates/bookmarks.tpl.php:99
+#: ../../../templates/bookmarks.tpl.php:119
 #: ../../../templates/editbookmark.tpl.php:38
 msgid "Title"
 msgstr "Titre"
@@ -747,90 +747,90 @@ msgstr "Editer votre description personnelle de ce tag"
 msgid "Sort by:"
 msgstr "Classer par :"
 
-#: ../../../templates/bookmarks.tpl.php:98
+#: ../../../templates/bookmarks.tpl.php:118
 msgid "Date"
 msgstr "Date"
 
-#: ../../../templates/bookmarks.tpl.php:105
+#: ../../../templates/bookmarks.tpl.php:125
 msgid "Bookmarks from other users for this tag"
 msgstr "Signets des autres utilisateurs pour ce tag"
 
-#: ../../../templates/bookmarks.tpl.php:110
+#: ../../../templates/bookmarks.tpl.php:130
 msgid "Only your bookmarks for this tag"
 msgstr "Uniquement vos signets pour ce tag"
 
-#: ../../../templates/bookmarks.tpl.php:147
+#: ../../../templates/bookmarks.tpl.php:167
 msgid "Tags:"
 msgstr "Tags:"
 
-#: ../../../templates/bookmarks.tpl.php:153
+#: ../../../templates/bookmarks.tpl.php:173
 msgid "Edit"
 msgstr "Editer"
 
-#: ../../../templates/bookmarks.tpl.php:157
+#: ../../../templates/bookmarks.tpl.php:177
 msgid "Last update"
 msgstr "Date de dernière mise à jour"
 
-#: ../../../templates/bookmarks.tpl.php:160
+#: ../../../templates/bookmarks.tpl.php:180
 msgid "by"
 msgstr "par"
 
-#: ../../../templates/bookmarks.tpl.php:162
+#: ../../../templates/bookmarks.tpl.php:182
 msgid "you"
 msgstr "vous"
 
-#: ../../../templates/bookmarks.tpl.php:176
+#: ../../../templates/bookmarks.tpl.php:196
 #, php-format
 msgid " and %s1 other%s"
 msgstr " et %s1 autre%s"
 
-#: ../../../templates/bookmarks.tpl.php:179
+#: ../../../templates/bookmarks.tpl.php:199
 #, php-format
 msgid " and %2$s%1$s others%3$s"
 msgstr " et %2$s%1$s autres%3$s"
 
-#: ../../../templates/bookmarks.tpl.php:187
+#: ../../../templates/bookmarks.tpl.php:207
 msgid "Copy"
 msgstr "Copier"
 
-#: ../../../templates/bookmarks.tpl.php:206
+#: ../../../templates/bookmarks.tpl.php:226
 msgid "This bookmark is certified by an admin user."
 msgstr "Ce signet est certifié par un administrateur."
 
-#: ../../../templates/bookmarks.tpl.php:245
+#: ../../../templates/bookmarks.tpl.php:265
 msgid "Private Note on this bookmark"
 msgstr "Note privée sur ce signet"
 
-#: ../../../templates/bookmarks.tpl.php:271
-#: ../../../templates/bookmarks.tpl.php:277
+#: ../../../templates/bookmarks.tpl.php:291
+#: ../../../templates/bookmarks.tpl.php:297
 msgid "First"
 msgstr "Première"
 
-#: ../../../templates/bookmarks.tpl.php:272
-#: ../../../templates/bookmarks.tpl.php:278
+#: ../../../templates/bookmarks.tpl.php:292
+#: ../../../templates/bookmarks.tpl.php:298
 msgid "Previous"
 msgstr "Précédent"
 
-#: ../../../templates/bookmarks.tpl.php:285
-#: ../../../templates/bookmarks.tpl.php:288
+#: ../../../templates/bookmarks.tpl.php:305
+#: ../../../templates/bookmarks.tpl.php:308
 msgid "Next"
 msgstr "Suivant"
 
-#: ../../../templates/bookmarks.tpl.php:286
-#: ../../../templates/bookmarks.tpl.php:289
+#: ../../../templates/bookmarks.tpl.php:306
+#: ../../../templates/bookmarks.tpl.php:309
 msgid "Last"
 msgstr "Dernière"
 
-#: ../../../templates/bookmarks.tpl.php:299
+#: ../../../templates/bookmarks.tpl.php:319
 #, php-format
 msgid "Page %d of %d"
 msgstr "Page %d de %d"
 
-#: ../../../templates/bookmarks.tpl.php:305
+#: ../../../templates/bookmarks.tpl.php:325
 msgid "No bookmarks available"
 msgstr "Pas de signets disponibles."
 
-#: ../../../templates/bottom.inc.php:4
+#: ../../../templates/bottom.inc.php:5
 msgid "Propulsed by "
 msgstr "Propulsé par "
 
@@ -1196,7 +1196,7 @@ msgstr "Mes contacts"
 msgid "Watched By"
 msgstr "Dans les contacts de"
 
-#: ../../../templates/profile.tpl.php:68 ../../../templates/toolbar.inc.php:8
+#: ../../../templates/profile.tpl.php:68 ../../../templates/toolbar.inc.php:9
 msgid "Bookmarks"
 msgstr "Signets"
 
@@ -1399,11 +1399,15 @@ msgstr "Alphabet"
 msgid "Popularity"
 msgstr "Popularité"
 
-#: ../../../templates/toolbar.inc.php:13
+#: ../../../templates/toolbar.inc.php:8 ../../../templates/toolbar.inc.php:26
+msgid "Home"
+msgstr "Accueil"
+
+#: ../../../templates/toolbar.inc.php:14
 msgid "Log Out"
 msgstr "Quitter"
 
-#: ../../../templates/toolbar.inc.php:16
+#: ../../../templates/toolbar.inc.php:17
 msgid "Admin"
 msgstr "Admin"
 
