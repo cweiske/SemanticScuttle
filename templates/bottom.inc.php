@@ -2,6 +2,8 @@
 <div id="bottom">
 <?php echo $GLOBALS['footerMessage'].' ';?>
 <?php
+echo '<a href="'.createURL('about').'">'.T_('About').'</a>';
+echo ' - ';
 echo T_("Propulsed by ");
 echo "<a href=\"https://sourceforge.net/projects/semanticscuttle/\">SemanticScuttle</a>";
 
