@@ -287,7 +287,7 @@ class Tag2TagService {
 	function removeLinkedTags($tag1, $tag2, $relationType, $uId) {
 		if(($tag1 != '' && $tag1 == $tag2) ||
 		($relationType != ">" && $relationType != "=" && $relationType != "") ||
-		($tag1 == '' && $tag2 == '' && $relationType == '' && $uId == '')) {
+		($tag1 == '' && $tag2 == '')) {
 			return false;
 		}
 		$query = 'DELETE FROM '. $this->getTableName();
