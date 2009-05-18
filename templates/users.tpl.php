@@ -14,7 +14,7 @@ if ($users && count($users) > 0) {
 <?php
 $contents = '<';
 foreach ($users as $row) {
-    echo  '<strong>'.$row['username'].'</strong><li><a href="'.createURL('profile', $row['username']).'">'.T_('profile').'</a> : '.T_('created in').' '.date('M Y',strtotime($row['uDatetime'])).', <a href="'.createURL('bookmarks', $row['username']).'">'.T_('bookmarks').'</a></li>';
+    echo  '<li><strong>'.$row['username'].'</strong> (<a href="'.createURL('profile', $row['username']).'">'.T_('profile').'</a> '.T_('created in').' '.date('M Y',strtotime($row['uDatetime'])).') : <a href="'.createURL('bookmarks', $row['username']).'">'.T_('bookmarks').'</a></li>';
 }
 ?>
 </ul>
