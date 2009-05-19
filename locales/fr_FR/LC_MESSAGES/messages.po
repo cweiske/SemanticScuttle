@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-05 15:29+0200\n"
-"PO-Revision-Date: 2009-05-05 15:29+0100\n"
+"POT-Creation-Date: 2009-05-19 16:02+0200\n"
+"PO-Revision-Date: 2009-05-19 16:02+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -29,12 +29,12 @@ msgstr "À propos"
 msgid "Manage users"
 msgstr "Gérer les utilisateurs"
 
-#: ../../../admin.php:69
+#: ../../../admin.php:68
 #, php-format
 msgid "%s and all his bookmarks and tags were deleted."
 msgstr "%s, ses signets et ses tags ont été effacés."
 
-#: ../../../admin.php:76
+#: ../../../admin.php:75
 msgid "Problem with "
 msgstr "Problème avec "
 
@@ -42,7 +42,7 @@ msgstr "Problème avec "
 msgid "You are not allowed to delete this bookmark"
 msgstr "Vous n'êtes pas autorisés à supprimer ce signet"
 
-#: ../../../ajaxDelete.php:41 ../../../edit.php:98
+#: ../../../ajaxDelete.php:41 ../../../edit.php:103
 msgid "Failed to delete bookmark"
 msgstr "Erreur dans la suppression du signet"
 
@@ -79,11 +79,11 @@ msgstr "Editer la description commune du signet"
 msgid "Remove the tag from the selection"
 msgstr "Retirer le tag de la sélection"
 
-#: ../../../bookmarks.php:127 ../../../edit.php:60
+#: ../../../bookmarks.php:127 ../../../edit.php:65
 msgid "Your bookmark must have a title and an address"
 msgstr "Votre signet doit avoir un titre et une adresse."
 
-#: ../../../bookmarks.php:148 ../../../edit.php:78 ../../../edit.php:81
+#: ../../../bookmarks.php:148 ../../../edit.php:83 ../../../edit.php:86
 msgid "Bookmark saved"
 msgstr "Signet enregistré."
 
@@ -120,20 +120,20 @@ msgstr "Mes signets"
 msgid "Edit Bookmark"
 msgstr "Editer le signet"
 
-#: ../../../edit.php:50
+#: ../../../edit.php:51
 #, php-format
 msgid "Bookmark with id %s not was not found"
 msgstr "Signet %s non trouvé"
 
-#: ../../../edit.php:55
+#: ../../../edit.php:57
 msgid "You are not allowed to edit this bookmark"
 msgstr "Vous n'êtes pas autorisé à éditer ce signet."
 
-#: ../../../edit.php:72
+#: ../../../edit.php:77
 msgid "Error while saving your bookmark"
 msgstr "Erreur pendant l'enregistrement de votre signet."
 
-#: ../../../edit.php:108 ../../../templates/editprofile.tpl.php:52
+#: ../../../edit.php:113 ../../../templates/editprofile.tpl.php:52
 msgid "Save Changes"
 msgstr "Enregistrer les modifications"
 
@@ -654,6 +654,24 @@ msgid ""
 msgstr ""
 "%1$s supporte la plupart de l'<a href=\"http://del.icio.us/doc/api\"><abbr "
 "title=\"Application Programming Interface\">API</abbr> del.icio.us</a>."
+
+#: ../../../templates/about.tpl.php:24
+msgid "Tips"
+msgstr "Astuces"
+
+#: ../../../templates/about.tpl.php:26
+msgid ""
+"The secret tag \"system:unfiled\" allows you to find bookmarks without tags."
+msgstr ""
+"Le tag secret \"system:unfiled\" vous permet de trouver les signets sans "
+"tags."
+
+#: ../../../templates/about.tpl.php:27
+msgid ""
+"The secret tag \"system:imported\" allows you to find imported bookmarks."
+msgstr ""
+"Le tag secret \"system:imported\" vous permet de trouver les signets "
+"importés."
 
 #: ../../../templates/admin.tpl.php:5
 msgid "Users management"
@@ -1217,6 +1235,18 @@ msgid ""
 msgstr ""
 "Enregistrez-vous ici pour créer un compte gratuit %s. Toutes les "
 "informations requises ci-dessous sont nécessaires."
+
+#: ../../../templates/register.tpl.php:18
+msgid ""
+" at least 5 characters, alphanumeric (no spaces, no dots or other special "
+"ones)"
+msgstr ""
+"au moins 5 caractères, alphanumériques (pas d'espaces, pas de points ou "
+"autre caractère spécial)"
+
+#: ../../../templates/register.tpl.php:28
+msgid " to send you your password if you forget it"
+msgstr "pour vous envoyer votre mot de passe en cas de perte"
 
 #: ../../../templates/register.tpl.php:33
 msgid "Antispam question"

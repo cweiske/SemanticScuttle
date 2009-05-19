@@ -14,8 +14,8 @@ window.onload = function() {
 <table>
 <tr>
     <th align="left"><label for="username"><?php echo T_('Username'); ?></label></th>
-    <td><input type="text" id="username" name="username" size="20" class="required" onkeyup="isAvailable(this, '')" /></td>
-    <td id="availability"></td>
+    <td><input type="text" id="username" name="username" size="20" class="required" onkeyup="isAvailable(this, '')" /> </td>
+    <td id="availability"><?php echo '←'.T_(' at least 5 characters, alphanumeric (no spaces, no dots or other special ones)') ?></td>
 </tr>
 <tr>
     <th align="left"><label for="password"><?php echo T_('Password'); ?></label></th>
@@ -25,7 +25,7 @@ window.onload = function() {
 <tr>
     <th align="left"><label for="email"><?php echo T_('E-mail'); ?></label></th>
     <td><input type="text" id="email" name="email" size="40" class="required" /></td>
-    <td></td>
+    <td><?php echo '←'.T_(' to send you your password if you forget it')?></td>
 </tr>
 
 <?php if(strlen($antispamQuestion)>0) {?>

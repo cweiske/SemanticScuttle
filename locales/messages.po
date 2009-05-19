@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-05 15:29+0200\n"
+"POT-Creation-Date: 2009-05-19 16:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,12 +27,12 @@ msgstr ""
 msgid "Manage users"
 msgstr ""
 
-#: ../../../admin.php:69
+#: ../../../admin.php:68
 #, php-format
 msgid "%s and all his bookmarks and tags were deleted."
 msgstr ""
 
-#: ../../../admin.php:76
+#: ../../../admin.php:75
 msgid "Problem with "
 msgstr ""
 
@@ -40,7 +40,7 @@ msgstr ""
 msgid "You are not allowed to delete this bookmark"
 msgstr ""
 
-#: ../../../ajaxDelete.php:41 ../../../edit.php:98
+#: ../../../ajaxDelete.php:41 ../../../edit.php:103
 msgid "Failed to delete bookmark"
 msgstr ""
 
@@ -77,11 +77,11 @@ msgstr ""
 msgid "Remove the tag from the selection"
 msgstr ""
 
-#: ../../../bookmarks.php:127 ../../../edit.php:60
+#: ../../../bookmarks.php:127 ../../../edit.php:65
 msgid "Your bookmark must have a title and an address"
 msgstr ""
 
-#: ../../../bookmarks.php:148 ../../../edit.php:78 ../../../edit.php:81
+#: ../../../bookmarks.php:148 ../../../edit.php:83 ../../../edit.php:86
 msgid "Bookmark saved"
 msgstr ""
 
@@ -116,20 +116,20 @@ msgstr ""
 msgid "Edit Bookmark"
 msgstr ""
 
-#: ../../../edit.php:50
+#: ../../../edit.php:51
 #, php-format
 msgid "Bookmark with id %s not was not found"
 msgstr ""
 
-#: ../../../edit.php:55
+#: ../../../edit.php:57
 msgid "You are not allowed to edit this bookmark"
 msgstr ""
 
-#: ../../../edit.php:72
+#: ../../../edit.php:77
 msgid "Error while saving your bookmark"
 msgstr ""
 
-#: ../../../edit.php:108 ../../../templates/editprofile.tpl.php:52
+#: ../../../edit.php:113 ../../../templates/editprofile.tpl.php:52
 msgid "Save Changes"
 msgstr ""
 
@@ -626,6 +626,20 @@ msgid ""
 "of the neat tools made for that system can be modified to work with %1$s "
 "instead. If you find a tool that won't let you change the API address, ask "
 "the creator to add this setting. You never know, they might just do it."
+msgstr ""
+
+#: ../../../templates/about.tpl.php:24
+msgid "Tips"
+msgstr ""
+
+#: ../../../templates/about.tpl.php:26
+msgid ""
+"The secret tag \"system:unfiled\" allows you to find bookmarks without tags."
+msgstr ""
+
+#: ../../../templates/about.tpl.php:27
+msgid ""
+"The secret tag \"system:imported\" allows you to find imported bookmarks."
 msgstr ""
 
 #: ../../../templates/admin.tpl.php:5
@@ -1156,6 +1170,16 @@ msgstr ""
 msgid ""
 "Sign up here to create a free %s account. All the information requested "
 "below is required"
+msgstr ""
+
+#: ../../../templates/register.tpl.php:18
+msgid ""
+" at least 5 characters, alphanumeric (no spaces, no dots or other special "
+"ones)"
+msgstr ""
+
+#: ../../../templates/register.tpl.php:28
+msgid " to send you your password if you forget it"
 msgstr ""
 
 #: ../../../templates/register.tpl.php:33
