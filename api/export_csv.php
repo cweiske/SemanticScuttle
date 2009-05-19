@@ -17,18 +17,18 @@ else
 // Get the posts relevant to the passed-in variables.
 $bookmarks =& $bookmarkservice->getBookmarks(0, NULL, $userservice->getCurrentUserId(), $tag, NULL, getSortOrder());
 
-header("Content-Type: application/csv-tab-delimited-table");
+header("Content-Type: application/csv-tab-delimited-table;charset=UTF-8");
 header("Content-disposition: filename=exportBookmarks.csv");
 
 //columns titles
-echo 'url,title,tags,description';
+echo 'url;title;tags;description';
 echo "\n";
 
 foreach($bookmarks['bookmarks'] as $row) {
     if (is_null($row['bDescription']) || (trim($row['bDescription']) == ''))
         $description = '';
     else
-        $description = filter($row['bDescription'], 'xml');
+        $description = filter(str_replace(array("\r\n", "\n", "\r"),"", $row['bDescription']), 'xml');
 
     $taglist = '';
     if (count($row['tags']) > 0) {
@@ -39,7 +39,7 @@ foreach($bookmarks['bookmarks'] as $row) {
         $taglist = 'system:unfiled';
     }
 
-    echo '"'.filter($row['bAddress'], 'xml') .'","'. filter($row['bTitle'], 'xml') .'","'. filter($taglist, 'xml') .'","'. $description .'"';
+    echo '"'.filter($row['bAddress'], 'xml') .'";"'. filter($row['bTitle'], 'xml') .'";"'. filter($taglist, 'xml') .'";"'. $description .'"';
     echo "\n";
 }
 
