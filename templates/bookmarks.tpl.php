@@ -246,7 +246,7 @@ if($currenttag!= '') {
 		
 		echo '<div '.$adminBgClass.' >';;
 
-		echo '<div class="link"><a href="'. $address .'"'. $rel .' class="taggedlink">'. filter($row['bTitle']) ."</a>" . $adminStar . "</div>\n";
+		echo '<div class="link"><a href="'. $address .'"'. $rel .' class="taggedlink" target="_blank">'. filter($row['bTitle']) ."</a>" . $adminStar . "</div>\n";
 		if ($row['bDescription'] == '') {
 			$bkDescription = '-';
 		} else {
