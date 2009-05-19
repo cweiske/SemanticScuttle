@@ -1,4 +1,5 @@
 <?php
+
 /***************************************************************************
 Copyright (C) 2004 - 2006 Scuttle project
 http://sourceforge.net/projects/scuttle/
@@ -39,23 +40,27 @@ isset($_GET['popup']) ? define('GET_POPUP', $_GET['popup']): define('GET_POPUP',
 isset($_POST['popup']) ? define('POST_POPUP', $_POST['popup']): define('POST_POPUP', '');
 isset($_POST['referrer']) ? define('POST_REFERRER', $_POST['referrer']): define('POST_REFERRER', '');
 
-
 // Header variables
 $tplVars['pagetitle'] = T_('Edit Bookmark');
 $tplVars['subtitle'] = T_('Edit Bookmark');
 $tplVars['loadjs'] = true;
 
-list ($url, $bookmark) = explode('/', $_SERVER['PATH_INFO']);
+list ($url, $bookmark) = explode('/', $_SERVER['PATH_INFO']);	
+
 if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
     $tplVars['error'] = sprintf(T_('Bookmark with id %s not was not found'), $bookmark);
     $templateservice->loadTemplate('error.404.tpl', $tplVars);
     exit();
 } else {
+
     if (!$bookmarkservice->editAllowed($row)) {
         $tplVars['error'] = T_('You are not allowed to edit this bookmark');
         $templateservice->loadTemplate('error.500.tpl', $tplVars);
         exit();
     } else if (POST_SUBMITTED != '') {
+    
+    	
+    
         if (!POST_TITLE || !POST_ADDRESS) {
             $tplVars['error'] = T_('Your bookmark must have a title and an address');
         } else {
@@ -66,7 +71,7 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
             $description = trim(POST_DESCRIPTION);
             $privateNote = trim(POST_PRIVATENOTE);
             $status = intval(POST_STATUS);
-            $tags = trim(POST_TAGS);
+            $tags = trim(POST_TAGS);            
             
             if (!$bookmarkservice->updateBookmark($bId, $address, $title, $description, $privateNote, $status, $tags)) {
                 $tplvars['error'] = T_('Error while saving your bookmark');

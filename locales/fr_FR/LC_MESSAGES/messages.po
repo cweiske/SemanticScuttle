@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-19 16:02+0200\n"
-"PO-Revision-Date: 2009-05-19 16:02+0100\n"
+"POT-Creation-Date: 2009-05-19 17:57+0200\n"
+"PO-Revision-Date: 2009-05-19 17:47+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -137,49 +137,49 @@ msgstr "Erreur pendant l'enregistrement de votre signet."
 msgid "Save Changes"
 msgstr "Enregistrer les modifications"
 
-#: ../../../functions.inc.php:139
+#: ../../../functions.inc.php:144
 msgid "message_die() was called multiple times."
 msgstr "message_die() was called multiple times. ?"
 
-#: ../../../functions.inc.php:151
+#: ../../../functions.inc.php:156
 msgid "SQL Error"
 msgstr "Erreur SQL"
 
-#: ../../../functions.inc.php:157
+#: ../../../functions.inc.php:162
 msgid "Line"
 msgstr "Ligne"
 
-#: ../../../functions.inc.php:157 ../../../templates/importDelicious.tpl.php:8
+#: ../../../functions.inc.php:162 ../../../templates/importDelicious.tpl.php:8
 #: ../../../templates/importNetscape.tpl.php:9
 #: ../../../templates/importStructure.tpl.php:10
 msgid "File"
 msgstr "Fichier"
 
-#: ../../../functions.inc.php:163
+#: ../../../functions.inc.php:168
 msgid "Information"
 msgstr "Information"
 
-#: ../../../functions.inc.php:168
+#: ../../../functions.inc.php:173
 msgid "Critical Information"
 msgstr "Information critique."
 
-#: ../../../functions.inc.php:173
+#: ../../../functions.inc.php:178
 msgid "An error occured"
 msgstr "Une erreur s'est produite."
 
-#: ../../../functions.inc.php:176
+#: ../../../functions.inc.php:181
 msgid "General Error"
 msgstr "Erreur générale."
 
-#: ../../../functions.inc.php:184
+#: ../../../functions.inc.php:189
 msgid "An critical error occured"
 msgstr "Une erreur critique s'est produite."
 
-#: ../../../functions.inc.php:187
+#: ../../../functions.inc.php:192
 msgid "Critical Error"
 msgstr "Erreur critique."
 
-#: ../../../functions.inc.php:196
+#: ../../../functions.inc.php:201
 msgid "DEBUG MODE"
 msgstr "Mode de débogage."
 
@@ -245,20 +245,20 @@ msgstr "Nouveau lien entre tags :"
 msgid "Import Structure"
 msgstr "Importer une structure"
 
-#: ../../../index.php:37
+#: ../../../index.php:38
 msgid "You have now logged out"
 msgstr "Vous êtes maintenant déconnecté."
 
-#: ../../../index.php:44
+#: ../../../index.php:45
 #, php-format
 msgid "%s: Recent bookmarks"
 msgstr "%s: Signets récents"
 
-#: ../../../index.php:77
+#: ../../../index.php:78
 msgid "Store, share and tag your favourite links"
 msgstr "Conservez, partagez et taggez vos liens favoris"
 
-#: ../../../index.php:78
+#: ../../../index.php:79
 msgid "All Bookmarks"
 msgstr "Tous les signets"
 
@@ -686,7 +686,7 @@ msgid "bookmark(s)"
 msgstr "signet(s)"
 
 #: ../../../templates/admin.tpl.php:19
-#: ../../../templates/bookmarks.tpl.php:173
+#: ../../../templates/bookmarks.tpl.php:227
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -778,74 +778,86 @@ msgstr "Signets des autres utilisateurs pour ce tag"
 msgid "Only your bookmarks for this tag"
 msgstr "Uniquement vos signets pour ce tag"
 
-#: ../../../templates/bookmarks.tpl.php:167
-msgid "Tags:"
-msgstr "Tags:"
-
-#: ../../../templates/bookmarks.tpl.php:173
-msgid "Edit"
-msgstr "Editer"
-
-#: ../../../templates/bookmarks.tpl.php:177
-msgid "Last update"
-msgstr "Date de dernière mise à jour"
-
-#: ../../../templates/bookmarks.tpl.php:180
-msgid "by"
-msgstr "par"
-
-#: ../../../templates/bookmarks.tpl.php:182
-msgid "you"
-msgstr "vous"
-
-#: ../../../templates/bookmarks.tpl.php:196
-#, php-format
-msgid " and %s1 other%s"
-msgstr " et %s1 autre%s"
-
-#: ../../../templates/bookmarks.tpl.php:199
-#, php-format
-msgid " and %2$s%1$s others%3$s"
-msgstr " et %2$s%1$s autres%3$s"
-
-#: ../../../templates/bookmarks.tpl.php:207
-msgid "Copy"
-msgstr "Copier"
-
-#: ../../../templates/bookmarks.tpl.php:226
-msgid "This bookmark is certified by an admin user."
-msgstr "Ce signet est certifié par un administrateur."
-
-#: ../../../templates/bookmarks.tpl.php:265
-msgid "Private Note on this bookmark"
-msgstr "Note privée sur ce signet"
-
-#: ../../../templates/bookmarks.tpl.php:291
-#: ../../../templates/bookmarks.tpl.php:297
+#: ../../../templates/bookmarks.tpl.php:153
+#: ../../../templates/bookmarks.tpl.php:159
 msgid "First"
 msgstr "Première"
 
-#: ../../../templates/bookmarks.tpl.php:292
-#: ../../../templates/bookmarks.tpl.php:298
+#: ../../../templates/bookmarks.tpl.php:154
+#: ../../../templates/bookmarks.tpl.php:160
 msgid "Previous"
 msgstr "Précédent"
 
-#: ../../../templates/bookmarks.tpl.php:305
-#: ../../../templates/bookmarks.tpl.php:308
+#: ../../../templates/bookmarks.tpl.php:167
+#: ../../../templates/bookmarks.tpl.php:170
 msgid "Next"
 msgstr "Suivant"
 
-#: ../../../templates/bookmarks.tpl.php:306
-#: ../../../templates/bookmarks.tpl.php:309
+#: ../../../templates/bookmarks.tpl.php:168
+#: ../../../templates/bookmarks.tpl.php:171
 msgid "Last"
 msgstr "Dernière"
 
-#: ../../../templates/bookmarks.tpl.php:319
+#: ../../../templates/bookmarks.tpl.php:181
 #, php-format
 msgid "Page %d of %d"
 msgstr "Page %d de %d"
 
-#: ../../../templates/bookmarks.tpl.php:325
+#: ../../../templates/bookmarks.tpl.php:221
+msgid "Tags:"
+msgstr "Tags:"
+
+#: ../../../templates/bookmarks.tpl.php:227
+msgid "Edit"
+msgstr "Editer"
+
+#: ../../../templates/bookmarks.tpl.php:231
+msgid "Last update"
+msgstr "Date de dernière mise à jour"
+
+#: ../../../templates/bookmarks.tpl.php:234
+msgid "by"
+msgstr "par"
+
+#: ../../../templates/bookmarks.tpl.php:236
+msgid "you"
+msgstr "vous"
+
+#: ../../../templates/bookmarks.tpl.php:250
+#, php-format
+msgid " and %s1 other%s"
+msgstr " et %s1 autre%s"
+
+#: ../../../templates/bookmarks.tpl.php:253
+#, php-format
+msgid " and %2$s%1$s others%3$s"
+msgstr " et %2$s%1$s autres%3$s"
+
+#: ../../../templates/bookmarks.tpl.php:261
+msgid "Copy this bookmark to YOUR bookmarks."
+msgstr "Copier ce signet dans VOS signets."
+
+#: ../../../templates/bookmarks.tpl.php:261
+msgid "Copy"
+msgstr "Copier"
+
+#: ../../../templates/bookmarks.tpl.php:280
+msgid "This bookmark is certified by an admin user."
+msgstr "Ce signet est certifié par un administrateur."
+
+#: ../../../templates/bookmarks.tpl.php:319
+msgid "Private Note on this bookmark"
+msgstr "Note privée sur ce signet"
+
+#: ../../../templates/bookmarks.tpl.php:330
+msgid "Come back to the top of this page."
+msgstr "Revenir en haut de cette page."
+
+#: ../../../templates/bookmarks.tpl.php:330
+msgid "Top of the page"
+msgstr "Haut de page"
+
+#: ../../../templates/bookmarks.tpl.php:336
 msgid "No bookmarks available"
 msgstr "Pas de signets disponibles."
 
@@ -924,7 +936,7 @@ msgstr "Note : utiliser \"=\" pour rendre deux tags synonymes ex: europe=eu"
 #: ../../../templates/importDelicious.tpl.php:15
 #: ../../../templates/importNetscape.tpl.php:16
 msgid "Privacy"
-msgstr "Vision"
+msgstr "Accès"
 
 #: ../../../templates/editbookmark.tpl.php:87
 #: ../../../templates/importDelicious.tpl.php:18
@@ -1241,12 +1253,12 @@ msgid ""
 " at least 5 characters, alphanumeric (no spaces, no dots or other special "
 "ones)"
 msgstr ""
-"au moins 5 caractères, alphanumériques (pas d'espaces, pas de points ou "
+" au moins 5 caractères, alphanumériques (pas d'espaces, pas de points ou "
 "autre caractère spécial)"
 
 #: ../../../templates/register.tpl.php:28
 msgid " to send you your password if you forget it"
-msgstr "pour vous envoyer votre mot de passe en cas de perte"
+msgstr " pour vous envoyer votre mot de passe en cas de perte"
 
 #: ../../../templates/register.tpl.php:33
 msgid "Antispam question"
@@ -1329,8 +1341,8 @@ msgid "Create a link to another tag"
 msgstr "Créer un lien vers un autre tag"
 
 #: ../../../templates/sidebar.block.users.php:14
-msgid "Last Users"
-msgstr "Derniers utilisateurs"
+msgid "New Users"
+msgstr "Nouveaux Utilisateurs"
 
 #: ../../../templates/sidebar.block.users.php:23
 #: ../../../templates/users.tpl.php:17
@@ -1458,6 +1470,9 @@ msgstr "Profil"
 #: ../../../templates/users.tpl.php:17
 msgid "created in"
 msgstr "Créé en "
+
+#~ msgid "Last Users"
+#~ msgstr "Derniers utilisateurs"
 
 #, fuzzy
 #~ msgid "Watched by"

@@ -51,6 +51,7 @@ $shortdate          = 'd-m-Y'; # format of short dates.
 $longdate           = 'j F Y'; # format of long dates.
 $nofollow           = true; # include rel="nofollow" attribute on bookmark links ? {true,false}
 $defaultPerPage     = 10; # default number of bookmarks per page (-1 means no limit)
+$defaultPerPageForAdmins = 10; # default number of bookmarks per page for admins (-1 means no limit)
 $defaultRecentDays  = 14; # number of days that bookmarks or tags should be considered recent.
 # bookmarks order by (date, title, url) in order ascending or descending
 #                   date_desc   - By date of entry descending.

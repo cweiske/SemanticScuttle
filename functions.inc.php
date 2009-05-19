@@ -35,9 +35,14 @@ function filter($data, $type = NULL) {
 	return $data;
 }
 
-function getPerPageCount() {
-	global $defaultPerPage;
-	return $defaultPerPage;
+function getPerPageCount($userObject = null) {
+	global $defaultPerPage, $defaultPerPageForAdmins;
+	
+	if(isset($defaultPerPageForAdmins) && $userObject != null && $userObject->isAdmin()) {		
+		return $defaultPerPageForAdmins;
+	} else {
+		return $defaultPerPage;
+	}
 }
 
 function getSortOrder($override = NULL) {

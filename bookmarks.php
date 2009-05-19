@@ -239,7 +239,7 @@ if ($templatename == 'editbookmark.tpl') {
 	$tplVars['range'] = 'user';
 
 	// Pagination
-	$perpage = getPerPageCount();
+	$perpage = getPerPageCount($currentUser);
 	if (intval(GET_PAGE) > 1) {
 		$page = GET_PAGE;
 		$start = ($page - 1) * $perpage;

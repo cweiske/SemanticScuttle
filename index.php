@@ -34,6 +34,7 @@ isset($_GET['sort']) ? define('GET_SORT', $_GET['sort']): define('GET_SORT', '')
 // Logout action
 if (GET_ACTION == "logout") {
 	$userservice->logout();
+	$tplVars['currentUser'] = null;
 	$tplvars['msg'] = T_('You have now logged out');
 }
 
@@ -57,7 +58,7 @@ if ($usecache) {
 }
 
 // Pagination
-$perpage = getPerPageCount();
+$perpage = getPerPageCount($currentUser);
 if (intval(GET_PAGE) > 1) {
 	$page = GET_PAGE;
 	$start = ($page - 1) * $perpage;

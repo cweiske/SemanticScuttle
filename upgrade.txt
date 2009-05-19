@@ -11,6 +11,8 @@ $sidebarTopMessage  = ''; #HTML message appearing at the top of the sidebar
 $sidebarBottomMessage = ''; #HTML message appearing at the bottom of the sidebar
 $adminsCanModifyBookmarksFromOtherUsers = true;  # 'true' if admin users can edit or delete bookmarks belonging to other users. Else 'false'.
 $adminsAreAdvisedTagsFromOtherAdmins = false;  # 'true' if tags from other admins are proposed to each admin (in add/edit a bookmark page). Else 'false'.
+$defaultPerPageForAdmins = 20; # default number of bookmarks per page for admins (-1 means no limit)
+
 
 
 === From version 0.91 to 0.92 ===

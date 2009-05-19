@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-19 16:02+0200\n"
+"POT-Creation-Date: 2009-05-19 17:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,49 +133,49 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: ../../../functions.inc.php:139
+#: ../../../functions.inc.php:144
 msgid "message_die() was called multiple times."
 msgstr ""
 
-#: ../../../functions.inc.php:151
+#: ../../../functions.inc.php:156
 msgid "SQL Error"
 msgstr ""
 
-#: ../../../functions.inc.php:157
+#: ../../../functions.inc.php:162
 msgid "Line"
 msgstr ""
 
-#: ../../../functions.inc.php:157 ../../../templates/importDelicious.tpl.php:8
+#: ../../../functions.inc.php:162 ../../../templates/importDelicious.tpl.php:8
 #: ../../../templates/importNetscape.tpl.php:9
 #: ../../../templates/importStructure.tpl.php:10
 msgid "File"
 msgstr ""
 
-#: ../../../functions.inc.php:163
+#: ../../../functions.inc.php:168
 msgid "Information"
 msgstr ""
 
-#: ../../../functions.inc.php:168
+#: ../../../functions.inc.php:173
 msgid "Critical Information"
 msgstr ""
 
-#: ../../../functions.inc.php:173
+#: ../../../functions.inc.php:178
 msgid "An error occured"
 msgstr ""
 
-#: ../../../functions.inc.php:176
+#: ../../../functions.inc.php:181
 msgid "General Error"
 msgstr ""
 
-#: ../../../functions.inc.php:184
+#: ../../../functions.inc.php:189
 msgid "An critical error occured"
 msgstr ""
 
-#: ../../../functions.inc.php:187
+#: ../../../functions.inc.php:192
 msgid "Critical Error"
 msgstr ""
 
-#: ../../../functions.inc.php:196
+#: ../../../functions.inc.php:201
 msgid "DEBUG MODE"
 msgstr ""
 
@@ -241,20 +241,20 @@ msgstr ""
 msgid "Import Structure"
 msgstr ""
 
-#: ../../../index.php:37
+#: ../../../index.php:38
 msgid "You have now logged out"
 msgstr ""
 
-#: ../../../index.php:44
+#: ../../../index.php:45
 #, php-format
 msgid "%s: Recent bookmarks"
 msgstr ""
 
-#: ../../../index.php:77
+#: ../../../index.php:78
 msgid "Store, share and tag your favourite links"
 msgstr ""
 
-#: ../../../index.php:78
+#: ../../../index.php:79
 msgid "All Bookmarks"
 msgstr ""
 
@@ -655,7 +655,7 @@ msgid "bookmark(s)"
 msgstr ""
 
 #: ../../../templates/admin.tpl.php:19
-#: ../../../templates/bookmarks.tpl.php:173
+#: ../../../templates/bookmarks.tpl.php:227
 msgid "Delete"
 msgstr ""
 
@@ -745,74 +745,86 @@ msgstr ""
 msgid "Only your bookmarks for this tag"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:167
-msgid "Tags:"
-msgstr ""
-
-#: ../../../templates/bookmarks.tpl.php:173
-msgid "Edit"
-msgstr ""
-
-#: ../../../templates/bookmarks.tpl.php:177
-msgid "Last update"
-msgstr ""
-
-#: ../../../templates/bookmarks.tpl.php:180
-msgid "by"
-msgstr ""
-
-#: ../../../templates/bookmarks.tpl.php:182
-msgid "you"
-msgstr ""
-
-#: ../../../templates/bookmarks.tpl.php:196
-#, php-format
-msgid " and %s1 other%s"
-msgstr ""
-
-#: ../../../templates/bookmarks.tpl.php:199
-#, php-format
-msgid " and %2$s%1$s others%3$s"
-msgstr ""
-
-#: ../../../templates/bookmarks.tpl.php:207
-msgid "Copy"
-msgstr ""
-
-#: ../../../templates/bookmarks.tpl.php:226
-msgid "This bookmark is certified by an admin user."
-msgstr ""
-
-#: ../../../templates/bookmarks.tpl.php:265
-msgid "Private Note on this bookmark"
-msgstr ""
-
-#: ../../../templates/bookmarks.tpl.php:291
-#: ../../../templates/bookmarks.tpl.php:297
+#: ../../../templates/bookmarks.tpl.php:153
+#: ../../../templates/bookmarks.tpl.php:159
 msgid "First"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:292
-#: ../../../templates/bookmarks.tpl.php:298
+#: ../../../templates/bookmarks.tpl.php:154
+#: ../../../templates/bookmarks.tpl.php:160
 msgid "Previous"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:305
-#: ../../../templates/bookmarks.tpl.php:308
+#: ../../../templates/bookmarks.tpl.php:167
+#: ../../../templates/bookmarks.tpl.php:170
 msgid "Next"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:306
-#: ../../../templates/bookmarks.tpl.php:309
+#: ../../../templates/bookmarks.tpl.php:168
+#: ../../../templates/bookmarks.tpl.php:171
 msgid "Last"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:319
+#: ../../../templates/bookmarks.tpl.php:181
 #, php-format
 msgid "Page %d of %d"
 msgstr ""
 
-#: ../../../templates/bookmarks.tpl.php:325
+#: ../../../templates/bookmarks.tpl.php:221
+msgid "Tags:"
+msgstr ""
+
+#: ../../../templates/bookmarks.tpl.php:227
+msgid "Edit"
+msgstr ""
+
+#: ../../../templates/bookmarks.tpl.php:231
+msgid "Last update"
+msgstr ""
+
+#: ../../../templates/bookmarks.tpl.php:234
+msgid "by"
+msgstr ""
+
+#: ../../../templates/bookmarks.tpl.php:236
+msgid "you"
+msgstr ""
+
+#: ../../../templates/bookmarks.tpl.php:250
+#, php-format
+msgid " and %s1 other%s"
+msgstr ""
+
+#: ../../../templates/bookmarks.tpl.php:253
+#, php-format
+msgid " and %2$s%1$s others%3$s"
+msgstr ""
+
+#: ../../../templates/bookmarks.tpl.php:261
+msgid "Copy this bookmark to YOUR bookmarks."
+msgstr ""
+
+#: ../../../templates/bookmarks.tpl.php:261
+msgid "Copy"
+msgstr ""
+
+#: ../../../templates/bookmarks.tpl.php:280
+msgid "This bookmark is certified by an admin user."
+msgstr ""
+
+#: ../../../templates/bookmarks.tpl.php:319
+msgid "Private Note on this bookmark"
+msgstr ""
+
+#: ../../../templates/bookmarks.tpl.php:330
+msgid "Come back to the top of this page."
+msgstr ""
+
+#: ../../../templates/bookmarks.tpl.php:330
+msgid "Top of the page"
+msgstr ""
+
+#: ../../../templates/bookmarks.tpl.php:336
 msgid "No bookmarks available"
 msgstr ""
 
@@ -1262,7 +1274,7 @@ msgid "Create a link to another tag"
 msgstr ""
 
 #: ../../../templates/sidebar.block.users.php:14
-msgid "Last Users"
+msgid "New Users"
 msgstr ""
 
 #: ../../../templates/sidebar.block.users.php:23

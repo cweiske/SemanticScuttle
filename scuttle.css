@@ -501,9 +501,15 @@ p#sort a:hover {
 p#sort span {
     display: none;
 }
+
+p.backToTop{
+	text-align:center;
+}
+
 p.paging {
 	font-size: small;
 	margin-left: 1em;
+	text-align:center;
 }
 p.paging a,
 p.paging span.disable {

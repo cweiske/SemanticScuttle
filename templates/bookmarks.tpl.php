@@ -133,6 +133,60 @@ if($currenttag!= '') {
 }
 ?></p>
 
+<?php
+	// PAGINATION
+
+	// Ordering
+	$sortOrder = '';
+	if (GET_SORT != '') {
+		$sortOrder = 'sort='. GET_SORT;
+	}
+
+	$sortAmp = (($sortOrder) ? '&amp;'. $sortOrder : '');
+	$sortQue = (($sortOrder) ? '?'. $sortOrder : '');
+
+	// Previous
+	$perpage = getPerPageCount($currentUser);
+	if (!$page || $page < 2) {
+		$page = 1;
+		$start = 0;
+		$bfirst = '<span class="disable">'. T_('First') .'</span>';
+		$bprev = '<span class="disable">'. T_('Previous') .'</span>';
+	} else {
+		$prev = $page - 1;
+		$prev = 'page='. $prev;
+		$start = ($page - 1) * $perpage;
+		$bfirst= '<a href="'. sprintf($nav_url, $user, $currenttag, '') . $sortQue .'">'. T_('First') .'</a>';
+		$bprev = '<a href="'. sprintf($nav_url, $user, $currenttag, '?') . $prev . $sortAmp .'">'. T_('Previous') .'</a>';
+	}
+
+	// Next
+	$next = $page + 1;
+	$totalpages = ceil($total / $perpage);
+	if (count($bookmarks) < $perpage || $perpage * $page == $total) {
+		$bnext = '<span class="disable">'. T_('Next') .'</span>';
+		$blast = '<span class="disable">'. T_('Last') ."</span>\n";
+	} else {
+		$bnext = '<a href="'. sprintf($nav_url, $user, $currenttag, '?page=') . $next . $sortAmp .'">'. T_('Next') .'</a>';
+		$blast = '<a href="'. sprintf($nav_url, $user, $currenttag, '?page=') . $totalpages . $sortAmp .'">'. T_('Last') ."</a>\n";
+	}
+
+	// RSS
+	$brss = '';
+	$size = count($rsschannels);
+	for ($i = 0; $i < $size; $i++) {
+		$brss =  '<a style="background:#FFFFFF" href="'. $rsschannels[$i][1] .'" title="'. $rsschannels[$i][0] .'"><img src="'. ROOT .'images/rss.gif" width="16" height="16" alt="'. $rsschannels[$i][0] .'" /></a>';
+	}
+
+	$pagesBanner = '<p class="paging">'. $bfirst .'<span> / </span>'. $bprev .'<span> / </span>'. $bnext .'<span> / </span>'. $blast .'<span> / </span>'. sprintf(T_('Page %d of %d'), $page, $totalpages) ." ". $brss ." </p>\n";
+	
+	if(getPerPageCount($currentUser) > 10) {
+		echo $pagesBanner; // display a page banner if too many bookmarks to manage
+	} 
+
+
+?>
+
 
 
 <ol <?php echo ($start > 0 ? ' start="'. ++$start .'"' : ''); ?>
@@ -204,7 +258,7 @@ if($currenttag!= '') {
 		if ($userservice->isLoggedOn()
 		&& ($currentUser->getId() != $row['uId'])
 		&& !$bookmarkservice->bookmarkExists($row['bAddress'], $currentUser->getId())) {
-			$copy .= ' - <a href="'. createURL('bookmarks', $currentUser->getUsername() .'?action=add&amp;copyOf='. $row['bId']) .'">'. T_('Copy') .'</a>';
+			$copy .= ' - <a href="'. createURL('bookmarks', $currentUser->getUsername() .'?action=add&amp;copyOf='. $row['bId']) .'" title="'.T_('Copy this bookmark to YOUR bookmarks.').'">'. T_('Copy') .'</a>';
 		}
 
 		// Nofollow option
@@ -272,54 +326,11 @@ if($currenttag!= '') {
 </ol>
 
 	<?php
-	// PAGINATION
-
-	// Ordering
-	$sortOrder = '';
-	if (GET_SORT != '') {
-		$sortOrder = 'sort='. GET_SORT;
+	if(getPerPageCount($currentUser)>7) {	
+		echo '<p class="backToTop"><a href="#header" title="'.T_('Come back to the top of this page.').'">'.T_('Top of the page').'</a></p>';
 	}
-
-	$sortAmp = (($sortOrder) ? '&amp;'. $sortOrder : '');
-	$sortQue = (($sortOrder) ? '?'. $sortOrder : '');
-
-	// Previous
-	$perpage = getPerPageCount();
-	if (!$page || $page < 2) {
-		$page = 1;
-		$start = 0;
-		$bfirst = '<span class="disable">'. T_('First') .'</span>';
-		$bprev = '<span class="disable">'. T_('Previous') .'</span>';
-	} else {
-		$prev = $page - 1;
-		$prev = 'page='. $prev;
-		$start = ($page - 1) * $perpage;
-		$bfirst= '<a href="'. sprintf($nav_url, $user, $currenttag, '') . $sortQue .'">'. T_('First') .'</a>';
-		$bprev = '<a href="'. sprintf($nav_url, $user, $currenttag, '?') . $prev . $sortAmp .'">'. T_('Previous') .'</a>';
-	}
-
-	// Next
-	$next = $page + 1;
-	$totalpages = ceil($total / $perpage);
-	if (count($bookmarks) < $perpage || $perpage * $page == $total) {
-		$bnext = '<span class="disable">'. T_('Next') .'</span>';
-		$blast = '<span class="disable">'. T_('Last') ."</span>\n";
-	} else {
-		$bnext = '<a href="'. sprintf($nav_url, $user, $currenttag, '?page=') . $next . $sortAmp .'">'. T_('Next') .'</a>';
-		$blast = '<a href="'. sprintf($nav_url, $user, $currenttag, '?page=') . $totalpages . $sortAmp .'">'. T_('Last') ."</a>\n";
-	}
-
-	// RSS
-	$brss = '';
-	$size = count($rsschannels);
-	for ($i = 0; $i < $size; $i++) {
-		$brss =  '<a style="background:#FFFFFF" href="'. $rsschannels[$i][1] .'" title="'. $rsschannels[$i][0] .'"><img src="'. ROOT .'images/rss.gif" width="16" height="16" alt="'. $rsschannels[$i][0] .'" /></a>';
-	}
-
-	echo '<p class="paging">'. $bfirst .'<span> / </span>'. $bprev .'<span> / </span>'. $bnext .'<span> / </span>'. $blast .'<span> / </span>'. sprintf(T_('Page %d of %d'), $page, $totalpages) ." ". $brss ." </p>\n";
-
-
-
+	echo $pagesBanner;  // display previous and next links pages + RSS link
+	
 
 } else {
 	echo '<p class="error">'.T_('No bookmarks available').'</p>';

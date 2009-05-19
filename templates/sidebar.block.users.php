@@ -11,7 +11,7 @@ $lastUsers = $userservice->getUsers(3);
 if ($lastUsers && count($lastUsers) > 0) {
 ?>
 
-<h2><?php echo T_('Last Users'); ?></h2>
+<h2><?php echo T_('New Users'); ?></h2>
 <div id="users">
 <table>
 <?php
