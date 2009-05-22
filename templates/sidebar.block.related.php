@@ -28,7 +28,7 @@ if ($currenttag) {
     <table>
     <?php foreach($relatedTags as $row): ?>
     <tr>        
-        <td><a href="<?php echo sprintf($cat_url, filter($user, 'url'), filter($row['tag'], 'url')); ?>" rel="tag"><?php echo filter($row['tag']); ?></a> <b><a href="<?php echo sprintf($cat_url, filter($user, 'url'), filter($currenttag, 'url') .'+'. filter($row['tag'], 'url')); ?>" title="<?php echo T_('Add this tag to the query') ?>">+</a></b></td>      
+        <td><a href="<?php echo sprintf($cat_url, filter($user, 'url'), filter($row['tag'], 'url')); ?>" rel="tag"><?php echo filter($row['tag']); ?></a> <a href="<?php echo sprintf($cat_url, filter($user, 'url'), filter($currenttag, 'url') .'+'. filter($row['tag'], 'url')); ?>" title="<?php echo $currenttag . '+' . filter($row['tag']); ?>" class="crossTags">+</a></td>      
     </tr>
     <?php endforeach; ?>
     </table>

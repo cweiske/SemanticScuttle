@@ -310,6 +310,11 @@ div#related {
     padding: 0.5em;
 }
 
+.crossTags {
+    padding:0px 3px;    
+    border: 1px solid #999955
+}
+
 div#sidebar>div#maintagsmenu {
     padding: 0.5em;
     border: 5px solid #999955
