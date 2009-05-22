@@ -94,22 +94,26 @@ window.onload = playerLoad;
 <?php
 switch(getSortOrder()) {
 	case 'date_asc':
+	$titleArrow = '';
 	$dateArrow = ' &uarr;';
 	$dateSort = 'date_desc';
 	$titleSort = 'title_asc';
 	break;
 	case 'title_asc':
 	$titleArrow = ' &uarr;';
+	$dateArrow = '';
 	$dateSort = 'date_desc';
 	$titleSort = 'title_desc';	
 	break;
 	case 'title_desc':
 	$titleArrow = ' &darr;';
+	$dateArrow = '';
 	$dateSort = 'date_desc';
 	$titleSort = 'title_asc';
 	break;
 	case 'date_desc':
 	default:
+	$titleArrow = '';
 	$dateArrow = ' &darr;';
 	$dateSort = 'date_asc';
 	$titleSort = 'title_asc';

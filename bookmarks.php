@@ -114,6 +114,10 @@ if ($cat) {
 
 	$pagetitle .= $catTitleWithUrls;
 }
+else
+{
+	$catTitleWithUrls = '';
+}
 $pagetitle = substr($pagetitle, 2);
 
 // Header variables
