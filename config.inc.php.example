@@ -5,6 +5,9 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License.
 
+# FIRST CONFIGURATION ? The most important variables are $root if you want to install SemanticScuttle into a subdirectory and database variables ($dbtype, $dbhost, $dbuser, $dbpass, $dbname, $tableprefix). You can define Admin users with $admin_users variable.
+# Don't forget to put $debugMode to "false" when installation is finished.
+
 
 #### System ####
 $sitename           = 'SemanticScuttle'; #The name of this site.
@@ -18,7 +21,7 @@ $usecache           = false; # use cache ? {true,false}
 $dir_cache          = dirname(__FILE__) .'/cache/'; # directory where cache files will be stored
 $cleanurls          = false; # Use mod_rewrite to hide PHP extensions {true,false[default]}
 			     # be cautious, doesn't work for all hosts, you may need to modify the .htaccess file
-$debugMode          = false; # if true, show debug messages			     
+$debugMode          = true; # if true, show debug messages			     
 
 #### Database ####
 $dbtype = 'mysql4'; # Database driver {mysql, mysqli, mysql4, oracle, postgres, sqlite, db2, firebird, mssql, mssq-odbc}
