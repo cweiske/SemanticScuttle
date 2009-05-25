@@ -7,6 +7,7 @@
 <link rel="icon" type="image/png" href="<?php echo ROOT ?>icon.png" />
 <link rel="stylesheet" type="text/css"
 	href="<?php echo ROOT ?>scuttle.css" />
+<link rel="search" type="application/opensearchdescription+xml" href="<?php echo ROOT ?>api/opensearch.php" title="<?php echo $GLOBALS['sitename'] ?>"/>
 <?php
 if(isset($rsschannels)) {
 	$size = count($rsschannels);
