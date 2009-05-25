@@ -23,6 +23,7 @@ $this->includeTemplate($GLOBALS['top_include']);
 
 <h3><?php echo T_('Tips'); ?></h3>
 <ul>
+<li><?php echo T_('Add search plugin into your browser:'); ?> <a href="" onclick="window.external.AddSearchProvider('<?php echo ROOT?>api/opensearch.php');">opensearch</a></li>
 <li><?php echo T_('The secret tag "system:unfiled" allows you to find bookmarks without tags.'); ?></li>
 <li><?php echo T_('The secret tag "system:imported" allows you to find imported bookmarks.'); ?></li>
 </ul>
