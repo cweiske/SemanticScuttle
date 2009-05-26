@@ -90,7 +90,7 @@ $enableCommonTagDescription = true; # enableCommonTagDescription {true, false}
 $enableCommonTagDescriptionEditedByAll = true; #true mean everybody can edit common description. Else just the admins can do it.
 $menuTag = 'menu'; # name of the tag whose subtags will appear into the menu box
 $maxSizeMenuBlock = 7; # maximum number of items (tags) appearing into menu box
-$menu2Tags = array('example', 'of', 'menu', 'tags'); # list of tags used by menu2 sidebar box (void list = hidden menu2 box). menu2 displays linked tags just belonging to admins.
+$menu2Tags = array('menutags', 'configurable', 'in', 'config.inc.php'); # list of tags used by menu2 sidebar box (void list = hidden menu2 box). menu2 displays linked tags just belonging to admins.
 
 ### Search ###
 $sizeSearchHistory = 10; # number of users' searches that are saved {1..10[Default]..-1[Unlimited]}
