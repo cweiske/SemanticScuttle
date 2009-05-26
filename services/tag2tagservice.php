@@ -309,6 +309,23 @@ class Tag2TagService {
 		$this->db->sql_freeresult($dbresult);
 		return true;
 	}
+	
+	function removeLinkedTagsForUser($uId) {
+		$query = 'DELETE FROM '. $this->getTableName();
+		$query.= ' WHERE uId = "'. $uId .'"';
+
+		if (!($dbresult =& $this->db->sql_query($query))) {
+			message_die(GENERAL_ERROR, 'Could not remove tag relation', '', __LINE__, __FILE__, $query, $this->db);
+			return false;
+		}
+
+
+		// Update stats and cache
+		$this->update('', '', '', $uId);
+		
+		$this->db->sql_freeresult($dbresult);
+		return true;
+	}	
 
 	function renameTag($uId, $oldName, $newName) {
 		$tagservice =& ServiceFactory::getServiceInstance('TagService');

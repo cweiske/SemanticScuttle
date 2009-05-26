@@ -56,7 +56,7 @@ if ( $action
 				$uId = $userinfo['uId'];
 
 				$tagcacheservice->deleteByUser($uId);
-				$tag2tagservice->removeLinkedTags('','','',$uId);
+				$tag2tagservice->removeLinkedTagsForUser($uId);
 				$userservice->deleteUser($uId);
 				$bookmark2tagservice->deleteTagsForUser($uId);
 				$commondescriptionservice->deleteDescriptionsForUser($uId);
