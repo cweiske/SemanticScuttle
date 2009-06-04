@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-26 11:31+0200\n"
+"POT-Creation-Date: 2009-06-04 11:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -881,7 +881,7 @@ msgid "Private Note"
 msgstr ""
 
 #: ../../../templates/editbookmark.tpl.php:65
-msgid "Just visible by you and your friends."
+msgid "Just visible by you and your contacts."
 msgstr ""
 
 #: ../../../templates/editbookmark.tpl.php:73
@@ -1392,6 +1392,13 @@ msgstr ""
 
 #: ../../../templates/toolbar.inc.php:17
 msgid "Admin"
+msgstr ""
+
+#: ../../../templates/top.inc.php:51
+msgid ""
+"Admins, your installation is in \"Debug Mode\" ($debugMode = true). To go in "
+"\"Normal Mode\" and hide debugging messages, change $debugMode to false into "
+"config.inc.php."
 msgstr ""
 
 #: ../../../templates/users.tpl.php:17

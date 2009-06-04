@@ -62,7 +62,7 @@ $this->includeTemplate("dojo.inc");
 <tr id="privateNoteZone" <?php if(strlen($row['bPrivateNote'])==0):?>style="display:none"<?php endif; ?>>
     <th align="left"><?php echo T_('Private Note'); ?></th>
     <td><textarea name="privateNote" id="privateNote" rows="1" cols="63" ><?php echo filter($row['bPrivateNote'], 'xml'); ?></textarea></td>
-    <td>&larr; <?php echo T_('Just visible by you and your friends.'); ?> 
+    <td>&larr; <?php echo T_('Just visible by you and your contacts.'); ?> 
     </td>
 </tr>
 <tr>
