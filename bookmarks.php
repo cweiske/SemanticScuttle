@@ -223,6 +223,7 @@ if ($templatename == 'editbookmark.tpl') {
 		$cat = NULL;
 		$tplVars['currenttag'] = NULL;
 		//$tplVars['sidebar_blocks'][] = 'menu2';
+		$tplVars['sidebar_blocks'][] = 'linked';
 		$tplVars['sidebar_blocks'][] = 'popular';
 	} else { //pages with tags
 		$rssCat = '/'. filter($cat, 'url');
