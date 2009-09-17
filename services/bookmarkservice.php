@@ -428,6 +428,7 @@ class BookmarkService {
 		}
 
 		$total = $row['total'];
+		$this->db->sql_freeresult($totalresult);
 
 		$bookmarks = array();
 		while ($row = & $this->db->sql_fetchrow($dbresult)) {
