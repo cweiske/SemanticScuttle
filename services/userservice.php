@@ -24,6 +24,7 @@ class UserService {
 		$this->sessionkey = INSTALLATION_ID.'-currentuserid';
 		$this->cookiekey = INSTALLATION_ID.'-login';
 		$this->profileurl = createURL('profile', '%2$s');
+		$this->updateSessionStability();
 	}
 
 	function _checkdns($host) {
@@ -54,10 +55,13 @@ class UserService {
 			return false;
 		}
 
-		if ($row =& $this->db->sql_fetchrow($dbresult))
-		return $row;
-		else
-		return false;
+		$row =& $this->db->sql_fetchrow($dbresult);
+		$this->db->sql_freeresult($dbresult);
+		if ($row) {
+			return $row;
+		} else {
+			return false;
+		}
 	}
 
 	function & getUsers($nb=0) {
@@ -313,6 +317,7 @@ class UserService {
 
 		$arrWatch = array();
 		if ($this->db->sql_numrows($dbresult) == 0) {
+			$this->db->sql_freeresult($dbresult);
 			return $arrWatch;
 		}
 		while ($row =& $this->db->sql_fetchrow($dbresult)) {
@@ -502,6 +507,38 @@ class UserService {
 			//}
 		}
 		return false;
+	}
+
+	/**
+	 * Sets a session variable.
+	 * Updates it when it is already set.
+	 * This is used to detect if cookies work.
+	 *
+	 * @return void
+	 *
+	 * @see isSessionStable()
+	 */
+	function updateSessionStability() {
+		//find out if we have cookies enabled
+		if (!isset($_SESSION['sessionStable']))) {
+			$_SESSION['sessionStable'] = 0;
+		} else {
+			$_SESSION['sessionStable'] = 1;
+		}
+	}
+
+	/**
+    	 * Tells you if the session is fresh or old.
+    	 * If the session is fresh, it's the first page
+    	 * call with that session id. If the session is old,
+    	 * we know that cookies (or session persistance) works
+    	 * 
+    	 * @return boolean True if the 
+    	 *
+    	 * @see updateSessionStability()
+    	 */
+	function isSessionStable() {
+		return $_SESSION['sessionStable'] == 1;
 	}
 
 	// Properties

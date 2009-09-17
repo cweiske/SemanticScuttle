@@ -8,6 +8,12 @@ window.onload = function() {
 }
 </script>
 
+<?php
+if (!$userservice->isSessionStable()) {
+    echo '<p class="error">'.T_('Please activate cookies').'</p>';
+}
+?>
+
 <form action="<?php echo $formaction; ?>" method="post">
     <div><input type="hidden" name="query" value="<?php echo $querystring; ?>" /></div>
     <table>
