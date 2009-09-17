@@ -13,6 +13,7 @@ $selected = ' selected="selected"';
     <table>
     <tr>
         <?php
+        $currentUser = $currentUsername = null;
         if ($userservice->isLoggedOn()) {
             $currentUser = $userservice->getCurrentObjectUser();
             $currentUsername = $currentUser->getUsername();
