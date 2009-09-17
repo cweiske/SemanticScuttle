@@ -46,6 +46,9 @@ if (POST_TERMS != '') {
 	$exploded = explode('/', $_SERVER['PATH_INFO']);
 	if(count($exploded) == 4) {
 		list($url, $range, $terms, $page) = $exploded;
+	} else if (count($exploded) == 2) {
+		list($url, $range) = $exploded;
+		$terms = $page= NULL;
 	} else {
 		list($url, $range, $terms) = $exploded;
 		$page= NULL;
@@ -71,8 +74,8 @@ if (POST_TERMS != '') {
 	// No search terms
 	if (is_null($terms)) {
 		$tplVars['subtitle'] = T_('Search Bookmarks');
-		$s_start = date('Y-m-d H:i:s', strtotime($dtend .' -'. $defaultRecentDays .' days'));
 		$s_end = date('Y-m-d H:i:s', strtotime('tomorrow'));
+		$s_start = date('Y-m-d H:i:s', strtotime($s_end .' -'. $defaultRecentDays .' days'));
 
 		// Search terms
 	} else {
