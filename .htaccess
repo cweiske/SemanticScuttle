@@ -9,7 +9,7 @@
 Options +FollowSymlinks
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^([^/.]+)/?(.*)$ $1.php/$2 [QSA,L]
+RewriteRule ^([^/.]+)/?(.*)$ /$1.php/$2 [QSA,L]
 </IfModule>
 
 
