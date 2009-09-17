@@ -207,7 +207,10 @@ if ($templatename == 'editbookmark.tpl') {
 				
 		}
 		$title = T_('Add a Bookmark');
-		$tplVars['referrer'] = $_SERVER['HTTP_REFERER'];
+		$tplVars['referrer'] = '';;
+		if (isset($_SERVER['HTTP_REFERER'])) {
+			$tplVars['referrer'] = $_SERVER['HTTP_REFERER'];
+		}
 		$tplVars['pagetitle'] = $title;
 		$tplVars['subtitle'] = $title;
 		$tplVars['btnsubmit'] = T_('Add Bookmark');

@@ -112,7 +112,10 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
     $tplVars['formaction']  = createURL('edit', $bookmark);
     $tplVars['btnsubmit'] = T_('Save Changes');
     $tplVars['showdelete'] = true;
-    $tplVars['referrer'] = $_SERVER['HTTP_REFERER'];
+    $tplVars['referrer'] = '';
+    if (isset($_SERVER['HTTP_REFERER'])) {
+        $tplVars['referrer'] = $_SERVER['HTTP_REFERER'];
+    }
     $templateservice->loadTemplate('editbookmark.tpl', $tplVars);
 }
 ?>
