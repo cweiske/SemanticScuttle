@@ -48,13 +48,15 @@ define('PAGE_WATCHLIST', "watchlist");
 define('INSTALLATION_ID', md5($GLOBALS['dbname'].$GLOBALS['tableprefix']));
 
 // Correct bugs with PATH_INFO (maybe for Apache 1 or CGI) -- for 1&1 host...
-if(strlen($_SERVER["PATH_INFO"])<strlen($_SERVER["ORIG_PATH_INFO"])) {
-	$_SERVER["PATH_INFO"] = $_SERVER["ORIG_PATH_INFO"];
-}
-if(strcasecmp($_SERVER["PATH_INFO"], $_SERVER["SCRIPT_NAME "]) == 0) {
-	unset($_SERVER["PATH_INFO"]);
-}
-if(strpos($_SERVER["PATH_INFO"], '.php') !== false) {
-	unset($_SERVER["PATH_INFO"]);
+if (isset($_SERVER['PATH_INFO']) && isset($_SERVER['ORIG_PATH_INFO'])) {
+	if(strlen($_SERVER["PATH_INFO"])<strlen($_SERVER["ORIG_PATH_INFO"])) {
+		$_SERVER["PATH_INFO"] = $_SERVER["ORIG_PATH_INFO"];
+	}
+	if(strcasecmp($_SERVER["PATH_INFO"], $_SERVER["SCRIPT_NAME "]) == 0) {
+		unset($_SERVER["PATH_INFO"]);
+	}
+	if(strpos($_SERVER["PATH_INFO"], '.php') !== false) {
+		unset($_SERVER["PATH_INFO"]);
+	}
 }
 ?>
