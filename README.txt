@@ -80,3 +80,12 @@ https://sourceforge.net/tracker/?group_id=211356&atid=1017433
 
 https://sourceforge.net/tracker/?group_id=211356&atid=1017432
  - patches
+
+
+Known issues
+------------
+
+Number of bookmarks always 0: "0 bookmark(s)"
+ This issue occurs when debug mode is enabled.
+ Technically, this is because the database layers DEBUG_EXTRA gets
+ enabled through debug mode.
