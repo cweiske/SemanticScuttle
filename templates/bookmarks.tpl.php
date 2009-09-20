@@ -16,7 +16,7 @@ $this->includeTemplate($GLOBALS['top_include']);
 include('search.inc.php');
 ?>
 
-<?php if($pageName == PAGE_INDEX):?>
+<?php if($pageName == PAGE_INDEX && $GLOBALS['welcomeMessage']):?>
 <p id="welcome"><?php echo $GLOBALS['welcomeMessage'];?></p>
 <?php endif?>
 
