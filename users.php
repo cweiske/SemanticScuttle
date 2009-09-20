@@ -28,10 +28,6 @@ $cacheservice =& ServiceFactory::getServiceInstance('CacheService');
 /* Managing current logged user */
 $currentUser = $userservice->getCurrentObjectUser();
 
-/* Managing path info */
-list($url, $cat) = explode('/', $_SERVER['PATH_INFO']);
-
-
 $pagetitle = T_('Users');
 
 if ($usecache) {
