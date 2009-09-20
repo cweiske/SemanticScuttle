@@ -406,7 +406,7 @@ class BookmarkService {
 			$query_4 .= ' AND B.bHash = "'. $hash .'"';
 		}
 		$query = $query_1 . $query_2 . $query_3 . $query_4 . $query_5;
-		//die($query);
+
 		if (!($dbresult = & $this->db->sql_query_limit($query, intval($perpage), intval($start)))) {
 			message_die(GENERAL_ERROR, 'Could not get bookmarks', '', __LINE__, __FILE__, $query, $this->db);
 			return false;
