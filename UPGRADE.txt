@@ -1,6 +1,9 @@
-==== UPGRADE instructions ====
+Upgrading SemanticScuttle from a previous version
+=================================================
 
-=== From version 0.92 to 0.93 ===
+From version 0.92 to 0.93
+-------------------------
+
 - Backup your database
 - Make a copy from your SemanticScuttle Web directory
 - Upgrade your database by following instructions ONE after ONE (order is important) :
@@ -14,8 +17,8 @@ $adminsAreAdvisedTagsFromOtherAdmins = false;  # 'true' if tags from other admin
 $defaultPerPageForAdmins = 20; # default number of bookmarks per page for admins (-1 means no limit)
 
 
-
-=== From version 0.91 to 0.92 ===
+From version 0.91 to 0.92
+-------------------------
 Message: this version modifies the database to UTF-8 charset. The idea is to convert the content (through BLOB type) and then to change the tables' charsets.
 
 - Backup your database
@@ -113,7 +116,9 @@ ALTER TABLE `sc_searchhistory` CHARACTER SET utf8 COLLATE utf8_general_ci;
 * Add variable : $enableCommonTagDescriptionEditedByAll = true; #true mean everybody can edit common description. Else just the admins can do it.
 * Add variable : $googleAnalyticsCode = ''; #Allow GoogleAnalytics tracker https://www.google.com/analytics/
 
-=== From version 0.90 to 0.91 ===
+
+From version 0.90 to 0.91
+-------------------------
 - Backup you database
 - Make a copy from your SemanticScuttle Web directory
 - Upgrade your database by following instructions ONE after ONE (order is important) :
@@ -132,7 +137,10 @@ ALTER TABLE `sc_searchhistory` CHARACTER SET utf8 COLLATE utf8_general_ci;
   * Add variable: $menu2Tags = array('example', 'of', 'menu', 'tags');
   * Add variable: $debugMode = true; # if true, show debug messages
 
-=== From version 0.89 to 0.90 ===
+
+From version 0.89 to 0.90
+-------------------------
+
 - Backup you database
 - Make a copy from your SemanticScuttle Web directory
 
@@ -143,7 +151,9 @@ $thumbnailsKey = '';
 
 
 
-=== From version 0.88 to 0.89 ===
+From version 0.88 to 0.89
+-------------------------
+
 - Backup you database
 - Make a copy from your SemanticScuttle Web directory
 - Upgrade your database by following instructions ONE after ONE (order is important) :
@@ -182,5 +192,3 @@ $thumbnailsKey = '';
 	$index_sidebar_blocks = array('search','menu','users','popular');
   # add line:
 	$enableGoogleCustomSearch = true;
-
-

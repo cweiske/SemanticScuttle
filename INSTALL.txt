@@ -1,0 +1,14 @@
+SemanticScuttle installation
+============================
+
+1. Create a new MySQL database
+2. Import tables.sql into that database, i.e.
+   run
+   > mysql -umyusername semanticscuttle < tables.sql
+   on the shell ("semanticscuttle" being the database name)
+3. Copy config.inc.php.dist to config.php and modify it as
+   necessary.
+4. Make the cache directory writable by your web server.
+   For example, run
+   > chmod 0777 cache
+   on the shell.
