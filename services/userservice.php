@@ -520,7 +520,7 @@ class UserService {
 	 */
 	function updateSessionStability() {
 		//find out if we have cookies enabled
-		if (!isset($_SESSION['sessionStable']))) {
+		if (!isset($_SESSION['sessionStable'])) {
 			$_SESSION['sessionStable'] = 0;
 		} else {
 			$_SESSION['sessionStable'] = 1;
