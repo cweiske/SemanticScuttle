@@ -1,9 +1,10 @@
 <?php
 if(!file_exists(dirname(__FILE__) .'/config.inc.php')) {
-	die("Please, create the 'config.inc.php' file. You can copy the 'config.inc.php.example' file.");
+	die('Please copy "config.inc.php.dist" to "config.inc.php"');
 }
 
 // 1 // First requirements part (before debug management)
+require_once(dirname(__FILE__) .'/config.default.inc.php');
 require_once(dirname(__FILE__) .'/config.inc.php');
 require_once(dirname(__FILE__) .'/constants.inc.php'); // some constants are based on variables from config file
 

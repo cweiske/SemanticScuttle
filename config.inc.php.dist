@@ -1,105 +1,113 @@
 <?php
-# SemanticScuttle Configuration main file </config.inc.php.dist>
-# http://sourceforge.net/projects/semanticscuttle/
-# This program is free software. You can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License.
+/**
+ * Configuration for SemanticScuttle.
+ *
+ * Copy this file to config.inc.php and adjust it.
+ *
+ * See config.default.inc.php for more options.
+ */
 
-# FIRST CONFIGURATION ? The most important variables are $root if you want to install SemanticScuttle into a subdirectory and database variables ($dbtype, $dbhost, $dbuser, $dbpass, $dbname, $tableprefix). You can define Admin users with $admin_users variable.
-# Don't forget to put $debugMode to "false" when installation is finished.
+/**
+ * The name of this site.
+ *
+ * @var string
+ */
+$sitename = 'SemanticScuttle';
 
+/**
+ * The welcome message on the homepage.
+ *
+ * @var string
+ */
+$welcomeMessage = 'Welcome to SemanticScuttle! Social bookmarking for small communities.';
 
-#### System ####
-$sitename           = 'SemanticScuttle'; #The name of this site.
-$welcomeMessage     = 'Welcome to SemanticScuttle! Social bookmarking for small communities.'; # The welcome message of this site
-$footerMessage      = ''; #HTML message appearing at the bottom of the page (just above SemanticScuttle credits)
-$sidebarTopMessage  = ''; #HTML message appearing at the top of the sidebar
-$sidebarBottomMessage = ''; #HTML message appearing at the bottom of the sidebar
-$root               = NULL; # Set to NULL to autodetect the root url of the website. If your installation is into a subdirectory like "http://www.example.com/semanticscuttle/" then replace NULL by your address (between "" and with final '/');
-$locale             = 'en_GB'; #locale used in /locales/ {de_DE  en_GB  fr_FR  ...}
-$usecache           = false; # use cache ? {true,false}
-$dir_cache          = dirname(__FILE__) .'/cache/'; # directory where cache files will be stored
-$cleanurls          = false; # Use mod_rewrite to hide PHP extensions {true,false[default]}
-			     # be cautious, doesn't work for all hosts, you may need to modify the .htaccess file
-$debugMode          = true; # if true, show debug messages			     
+/**
+ * SemanticScuttle root directory.
+ *
+ * Set to NULL to autodetect the root url of the website.
+ *
+ * If your installation is in a subdirectory like
+ * "http://www.example.com/semanticscuttle/" then
+ * replace NULL by your address (between "" and with trailing '/')
+ *
+ * @var string
+ */
+$root = null;
 
-#### Database ####
-$dbtype = 'mysql4'; # Database driver {mysql, mysqli, mysql4, oracle, postgres, sqlite, db2, firebird, mssql, mssq-odbc}
-$dbhost = '127.0.0.1'; # Database hostname
-$dbport = '3306'; # Database port
-$dbuser = 'username'; # Database username
-$dbpass = 'password'; # Database password
-$dbname = 'scuttle'; # Database name
-$tableprefix = 'sc_';  # table prefix used for this installation. Do not use '-' (badly handeld by MySQL)
+/**
+ * Translation from locales/ folder.
+ *
+ * Examples: de_DE, en_GB, fr_FR
+ *
+ * @var string
+ */
+$locale = 'en_GB';
 
+/**
+ * Use clean urls without .php filenames.
+ * Requires mod_rewrite (for Apache) to be active.
+ *
+ * @var boolean
+ */
+$cleanurls = false;
 
-### Users ###
-$adminemail         = 'admin@example.org'; # Contact address for the site administrator. Used as the FROM address in password retrieval e-mails.
-$admin_users = array(''); # admin users  = array('adminnickname', 'user1nick', 'user2nick');
-$adminsCanModifyBookmarksFromOtherUsers = true;  # 'true' if admin users can edit or delete bookmarks belonging to other users. Else 'false'. 
-$adminsAreAdvisedTagsFromOtherAdmins = false;  # 'true' if tags from other admins are proposed to each admin (in add/edit a bookmark page). Else 'false'. 
-$reservedusers      = array('all', 'watchlist'); # array of usernames that cannot be registered
-# Antispam
-$antispamQuestion = 'name of this application'; # antispamQuestion: A question to avoid spam
-$antispamAnswer = 'semanticscuttle'; # antispamAnswer: The answer to the question (users have to put exactly the same answer)
-
-### Display Templates ###
-$TEMPLATES_DIR      = dirname(__FILE__) .'/templates/'; #directory where the template files (*.tpl.php) should be loaded from
-$top_include        = 'top.inc.php'; # header file
-$bottom_include     = 'bottom.inc.php'; # footer file
-$index_sidebar_blocks = array('search','menu2','menu','users','recent'); # sidebar blocks order (see below $menu2Tags for item of menu2)
-
-### Bookmarks ###
-$shortdate          = 'd-m-Y'; # format of short dates.
-$longdate           = 'j F Y'; # format of long dates.
-$nofollow           = true; # include rel="nofollow" attribute on bookmark links ? {true,false}
-$defaultPerPage     = 10; # default number of bookmarks per page (-1 means no limit)
-$defaultPerPageForAdmins = 10; # default number of bookmarks per page for admins (-1 means no limit)
-$defaultRecentDays  = 14; # number of days that bookmarks or tags should be considered recent.
-# bookmarks order by (date, title, url) in order ascending or descending
-#                   date_desc   - By date of entry descending.
-#                                 Latest entry first. (Default)
-#                   date_asc    - By date of entry ascending.
-#                                 Earliest entry first.
-#                   title_desc  - By title, descending alphabetically.
-#                   title_asc   - By title, ascending alphabetically.
-#                   url_desc    - By URL, descending alphabetically.
-#                   url_asc     - By URL, ascending alphabetically.
-$defaultOrderBy     = 'date_desc';
-$useredir           = false; # redirect all bookmarks through the address specified in url_redir to improve privacy
-$url_redir          = 'http://www.google.com/url?sa=D&q='; # URL prefix for bookmarks to redirect through
-# filetypes : array of bookmark extensions that Scuttle should add system tags for
-$filetypes          = array(
-                        'audio' => array('mp3', 'ogg', 'wav'),
-                        'document' => array('doc', 'odt', 'pdf'),
-                        'image' => array('gif', 'jpeg', 'jpg', 'png'),
-                        'video' => array('avi', 'mov', 'mp4', 'mpeg', 'mpg', 'wmv')
-                        );
-$enableCommonBookmarkDescription = true; # enableCommonBookmarkDescription {true,false}
+/**
+ * Show debug messages.
+ * This setting is recommended when setting up SemanticScuttle,
+ * and when hacking on it.
+ *
+ * @var boolean
+ */
+$debugMode = true;
 
 
-### Website Thumbnails ###
-$enableWebsiteThumbnails = false; # enableWebsiteThumbnails {true|false}
-# According to artviper.net license, buy a license if you gain profit with your pages. (see http://www.websitethumbnail.de/)
-$thumbnailsUserId = ''; #you need to register on http://www.artviper.net/registerAPI.php in order to register your domain
-$thumbnailsKey = '';   #then artviper.net send you a UserId and a secretKey
+/***************************************************
+ * Database configuration
+ */
 
+/**
+ * Database driver
+ *
+ * available:
+ * mysql4, mysqli, mysql, oracle, postgres, sqlite, db2, firebird,
+ * mssql, mssq-odbc
+ *
+ * @var string
+ */
+$dbtype = 'mysql4';
+/**
+ * Database username
+ *
+ * @var string
+ */
+$dbuser = 'username';
 
-### Tags ###
-$enableCommonTagDescription = true; # enableCommonTagDescription {true, false}
-$enableCommonTagDescriptionEditedByAll = true; #true mean everybody can edit common description. Else just the admins can do it.
-$menuTag = 'menu'; # name of the tag whose subtags will appear into the menu box
-$maxSizeMenuBlock = 7; # maximum number of items (tags) appearing into menu box
-$menu2Tags = array('menu2', 'tags', 'configurable', 'in', 'configincphp'); # list of tags used by menu2 sidebar box (void list = hidden menu2 box). menu2 displays linked tags just belonging to admins.
+/**
+ * Database password
+ *
+ * @var string
+ */
+$dbpass = 'password';
 
-### Search ###
-$sizeSearchHistory = 10; # number of users' searches that are saved {1..10[Default]..-1[Unlimited]}
-$enableGoogleCustomSearch = true; #Enable Google Search Engine into "gsearch/" folder
+/**
+ * Name of database
+ *
+ * @var string
+ */
+$dbname = 'scuttle';
 
-### Other ###
-$enableAdminColors = true;  #Enables special colors on admin pages and bookmarks marking the difference with normal user.
-$descriptionAnchors = array("author", "isbn", "address"=>"[address][street][/street][city][/city][/address]"); #add a possible anchor (structured content) for bookmarks' description field
-							# a simple value "xxx" (like "author") automatically associates xxx with [xxx][/xxx].
-							# a complex value "xxx"=>"yyy" (like "address") direclty associates xxx with yyy. 
-$googleAnalyticsCode = ''; #Allow GoogleAnalytics tracker https://www.google.com/analytics/
+/**
+ * Database hostname/IP
+ *
+ * @var string
+ */
+$dbhost = '127.0.0.1';
+
+/**
+ * Database port
+ *
+ * @var string|integer
+ */
+$dbport = 3306;
+
 ?>
