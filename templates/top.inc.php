@@ -1,31 +1,30 @@
 <?php header('Content-Type: text/html; charset=utf-8'); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<head>
-<title><?php echo filter($GLOBALS['sitename'] .(isset($pagetitle) ? ' » ' . $pagetitle : '')); ?></title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="icon" type="image/png" href="<?php echo ROOT ?>icon.png" />
-<link rel="stylesheet" type="text/css"
-	href="<?php echo ROOT ?>scuttle.css" />
-<link rel="search" type="application/opensearchdescription+xml" href="<?php echo ROOT ?>api/opensearch.php" title="<?php echo $GLOBALS['sitename'] ?>"/>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title><?php echo filter($GLOBALS['sitename'] .(isset($pagetitle) ? ' » ' . $pagetitle : '')); ?></title>
+  <link rel="icon" type="image/png" href="<?php echo ROOT ?>icon.png" />
+  <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>scuttle.css" />
+  <link rel="search" type="application/opensearchdescription+xml" href="<?php echo ROOT ?>api/opensearch.php" title="<?php echo $GLOBALS['sitename'] ?>"/>
 <?php
 if(isset($rsschannels)) {
 	$size = count($rsschannels);
 	for ($i = 0; $i < $size; $i++) {
-		echo '<link rel="alternate" type="application/rss+xml" title="'. $rsschannels[$i][0] .'" href="'. $rsschannels[$i][1] .'" />';
+		echo '  <link rel="alternate" type="application/rss+xml" title="'. $rsschannels[$i][0] .'" href="'. $rsschannels[$i][1] .'" />';
 	}
 }
 ?>
-<link rel="stylesheet" type="text/css"
+  <link rel="stylesheet" type="text/css"
 	href="http://ajax.googleapis.com/ajax/libs/dojo/1.2/dijit/themes/nihilo/nihilo.css" />
 
 <?php if (isset($loadjs)) :?>
-<script type="text/javascript" src="<?php echo ROOT ?>jsScuttle.php"></script>
+  <script type="text/javascript" src="<?php echo ROOT ?>jsScuttle.php"></script>
 <?php endif ?>
 
-</head>
+ </head>
 
-<body class="nihilo">
+ <body class="nihilo">
 <!-- the class is used by Dojo widgets -->
 
 <?php
