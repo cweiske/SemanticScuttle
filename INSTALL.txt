@@ -6,7 +6,7 @@ SemanticScuttle installation
    run
    > mysql -umyusername semanticscuttle < tables.sql
    on the shell ("semanticscuttle" being the database name)
-3. Copy config.inc.php.dist to config.php and modify it as
+3. Copy config.inc.php.dist to config.inc.php and modify it as
    necessary.
 4. Make the cache directory writable by your web server.
    For example, run
