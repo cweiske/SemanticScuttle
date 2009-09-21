@@ -101,13 +101,6 @@ $dbname = 'scuttle';
  *
  * @var string
  */
-$dbhost = '127.0.0.1';
-
-/**
- * Database port
- *
- * @var string|integer
- */
-$dbport = 3306;
+$dbhost = 'localhost';
 
 ?>

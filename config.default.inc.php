@@ -137,14 +137,17 @@ $dbtype = 'mysql4';
  *
  * @var string
  */
-$dbhost = '127.0.0.1';
+$dbhost = 'localhost';
 
 /**
- * Database port
+ * Database port.
+ *
+ * When using mysqli, leave this to null
+ * - connecting will fail otherwise.
  *
  * @var string|integer
  */
-$dbport = 3306;
+$dbport = null;
 
 /**
  * Database username
