@@ -33,7 +33,7 @@ if (!$userservice->isSessionStable()) {
         <td></td>
     </tr>
     </table>
-    <p>&raquo; <a href="<?php echo ROOT ?>password.php"><?php echo T_('Forgotten your password?') ?></p>
+    <p>&raquo; <a href="<?php echo ROOT ?>password.php"><?php echo T_('Forgotten your password?') ?></a></p>
 </form>
 
 <?php
