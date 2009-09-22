@@ -1,4 +1,4 @@
-<?
+<?php
 /***************************************************************************
  Copyright (C) 2005 Scuttle project
  https://sourceforge.net/projects/scuttle/
