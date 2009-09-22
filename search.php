@@ -43,7 +43,8 @@ if (POST_TERMS != '') {
 	$currentUserId = $userservice->getCurrentUserId();
 	
 	
-	$exploded = explode('/', $_SERVER['PATH_INFO']);
+	$exploded = isset($_SERVER['PATH_INFO'])
+		? explode('/', $_SERVER['PATH_INFO']) : null;
 	if(count($exploded) == 4) {
 		list($url, $range, $terms, $page) = $exploded;
 	} else if (count($exploded) == 2) {
