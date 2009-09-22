@@ -27,7 +27,7 @@ foreach($watching as $watchuser) {
 <?php endif; ?>
 
 
-<h2><?php echo ' &rarr '. T_('Watching'); ?></h2>
+<h2><?php echo ' &rarr; '. T_('Watching'); ?></h2>
 <div id="watching">
     <ul>
         <?php if($userservice->isLoggedOn() && $currentUser->getUsername() == $user): ?>            
@@ -49,7 +49,7 @@ foreach($watching as $watchuser) {
     </ul>
 </div>
 
-<h2><?php echo ' &larr '. T_('Watched By'); ?></h2>
+<h2><?php echo ' &larr; '. T_('Watched By'); ?></h2>
 <div id="watching">
     <ul>
     <?php foreach($watchedBy as $watchuser): ?>
