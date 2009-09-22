@@ -380,11 +380,7 @@ class sql_db
 	}
 
 	function sql_escape($msg) {
-		if (function_exists('mysql_real_escape_string')) {
-			return @mysql_real_escape_string($msg, $this->db_connect_id);
-		} else {
-			return mysql_escape_string($msg);
-		}		
+		return mysqli_real_escape_string($this->db_connect_id, $msg);
 	}
 	
 	function sql_error($sql = '')
