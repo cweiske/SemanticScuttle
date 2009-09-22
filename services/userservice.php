@@ -213,11 +213,24 @@ class UserService {
 		}
 	}
 
-	function isAdmin($userid) {
-		$user = $this->getUser($userid);
+	/**
+	 * Checks if the given user is an administrator.
+	 * Uses global admin_users property containing admin
+	 * user names
+	 *
+	 * @param integer|array $user User ID or user row from DB
+	 *
+	 * @return boolean True if the user is admin
+	 */
+	function isAdmin($user)
+	{
+		if (is_numeric($user)) {
+			$user = $this->getUser($user);
+		}
 
-		if(isset($GLOBALS['admin_users'])
-		&& in_array($user['username'], $GLOBALS['admin_users'])) {
+		if (isset($GLOBALS['admin_users'])
+			&& in_array($user['username'], $GLOBALS['admin_users'])
+		) {
 			return true;
 		} else {
 			return false;

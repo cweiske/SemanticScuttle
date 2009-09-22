@@ -97,22 +97,38 @@ class BookmarkService {
 		return $this->db->sql_fetchfield(0, 0);
 	}
 
-	function editAllowed($bookmark) {
-		if (!is_numeric($bookmark) && (!is_array($bookmark) || !is_numeric($bookmark['bId'])))
-		return false;
+	/**
+	 * Check if a bookmark may be edited by the current user
+     *
+	 * @param integer|array $bookmark Bookmark uId or bookmark array
+	 *
+	 * @return boolean True if allowed
+	 */
+	function editAllowed($bookmark)
+	{
+		if (!is_numeric($bookmark) && (!is_array($bookmark)
+			|| !is_numeric($bookmark['bId']))
+		) {
+			return false;
+		}
 
-		if (!is_array($bookmark))
-		if (!($bookmark = $this->getBookmark($bookmark)))
-		return false;
+		if (!is_array($bookmark)
+			 && !($bookmark = $this->getBookmark($bookmark))
+		) {
+			return false;
+		}
 
-		$userservice = & ServiceFactory :: getServiceInstance('UserService');
-		$userid = $userservice->getCurrentUserId();
-		if(!is_numeric($userid))
-		return false;  // useful for few servers configuration (see brunaud bugs)		
-		if ($GLOBALS['adminsCanModifyBookmarksFromOtherUsers'] && $userservice->isAdmin($userid) && !$userservice->isAdmin($bookmark['uId']))
-		return true;
-		else
-		return ($bookmark['uId'] == $userid);
+		$userservice = & ServiceFactory::getServiceInstance('UserService');
+		$user = $userservice->getCurrentUser();
+
+		//user has to be either admin, or owner
+		if ($GLOBALS['adminsCanModifyBookmarksFromOtherUsers']
+			&& $userservice->isAdmin($user)
+		) {
+			return true;
+		} else {
+			return ($bookmark['uId'] == $user['uId']);
+		}
 	}
 
 	function bookmarkExists($address = false, $uid = NULL) {
