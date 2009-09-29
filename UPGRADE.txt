@@ -7,6 +7,8 @@ From version 0.93 to 0.94
 - Nothing changed except for the default configuration file.
   It is recommended to start with a fresh config file,
   but not neccesary. Old config files still work.
+- If you used translation de_AT, please switch to de_DE.
+  de_AT was moved to de_DE and de_AT has been removed.
 
 
 From version 0.92 to 0.93

@@ -1,0 +1,33 @@
+ChangeLog for SemantiScuttle
+============================
+
+0.94 - 2009-09-29
+-----------------
+- Fix bug #2834070: unfreed sql results
+- Fix bug #2834077: .htaccess on virtual masshosted apaches
+- Fix bug #2834097: Errors when using search without terms
+- Fix bug #2834293: E_NOTICE when referer is missing
+- Fix bug #2834118: Undefined variable in search.inc.php when not logged on
+- Fix bug #2847580: short open tag <? in import.php
+- Fix bug #2674961: editAllowed optimization - make less queries for each bookmark
+- Fix bug #2829642: PATH_INFO undefined
+- Fix bug: mysqli did not work at all
+- Fix bug: 404 - api/posts/all not found
+- Fix bug: PATH_INFO used when not needed
+- Fix bug: htmlentities not always escaped
+- Fix bug: Not all pages are valid XHTML
+- Fix bug: Hide welcome message if it is empty
+- Fix bug: allow deleting links between tags when deleting a user.
+- Fix bug: some parse errors
+- Interface fix: put linkedtags box on bookmarks page.
+
+- Implement request #2834111: Detect if cookies are enabled
+- Translation updates
+- Updated German translation (de_DE), removed de_AT
+- New configuration file system
+- Remove home link in menu bar
+- Add INSTALL.txt and ChangeLog
+
+
+0.93 - 2009-05-26
+-----------------
