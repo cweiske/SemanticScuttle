@@ -1,5 +1,5 @@
-SemanticScuttle
-===============
+SemanticScuttle 0.94
+====================
 A social bookmarking tool experimenting with new features
 like structured tags or collaborative descriptions of tags.
 

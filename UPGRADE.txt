@@ -1,6 +1,14 @@
 Upgrading SemanticScuttle from a previous version
 =================================================
 
+From version 0.93 to 0.94
+-------------------------
+
+- Nothing changed except for the default configuration file.
+  It is recommended to start with a fresh config file,
+  but not neccesary. Old config files still work.
+
+
 From version 0.92 to 0.93
 -------------------------
 
