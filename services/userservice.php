@@ -303,10 +303,14 @@ class UserService {
 		}
 
 		$arrWatch = array();
-		if ($this->db->sql_numrows($dbresult) == 0)
-		return $arrWatch;
-		while ($row =& $this->db->sql_fetchrow($dbresult))
-		$arrWatch[] = $row['watched'];
+		if ($this->db->sql_numrows($dbresult) == 0) {
+			$this->db->sql_freeresult($dbresult);
+			return $arrWatch;
+		}
+		while ($row =& $this->db->sql_fetchrow($dbresult)) {
+			$arrWatch[] = $row['watched'];
+		}
+		$this->db->sql_freeresult($dbresult);
 		return $arrWatch;
 	}
 
