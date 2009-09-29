@@ -1,21 +1,30 @@
-Scuttle and SemanticScuttle contain codes from the following applications:
+SemanticScuttle developers:
+ Eric Dane <ericdane@users.sourceforge.net>
+ Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ Christian Weiske <cweiske@cweiske.de>
+
+
+SemanticScuttle is a fork of Scuttle.
+ http://sourceforge.net/projects/scuttle/
+
+Scuttle and SemanticScuttle contain code from the following applications:
 
 ------------
 GPL Licenced
 ------------
 
 phpBB2 (database abstraction layer)
-http://www.phpbb.com/
+ http://www.phpbb.com/
 
 php-gettext
-Danilo Segan <danilo@kvota.net>
-http://savannah.nongnu.org/projects/php-gettext/
+ Danilo Segan <danilo@kvota.net>
+ http://savannah.nongnu.org/projects/php-gettext/
 
 UTF8 Helper Functions
-Andreas Gohr <andi@splitbrain.org>
+ Andreas Gohr <andi@splitbrain.org>
 
 XSPF Web Music Player (Flash)
-http://musicplayer.sourceforge.net/
+ http://musicplayer.sourceforge.net/
 
 
 ----
@@ -23,6 +32,6 @@ http://musicplayer.sourceforge.net/
 Patches were realised by :
 
 * Simple Admin-Interface for deleting unwanted users
-Idea of the patch from Andreas Jaggi, for details visit:
-http://sourceforge.net/tracker/index.php?func=detail&aid=1543065&group_id=134378&atid=729862
-Adaptation by Andreas Keller (aka Arakel) http://akeller.eu for Takuya Misawa. 
+  Idea of the patch from Andreas Jaggi, for details visit:
+  http://sourceforge.net/tracker/index.php?func=detail&aid=1543065&group_id=134378&atid=729862
+  Adaptation by Andreas Keller (aka Arakel) http://akeller.eu for Takuya Misawa. 
