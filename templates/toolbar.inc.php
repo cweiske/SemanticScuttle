@@ -5,6 +5,7 @@ if ($userservice->isLoggedOn()) {
 ?>
 
     <ul id="navigation">
+    	<li><a href="<?php echo createURL(''); ?>"><?php echo T_('Home'); ?></a></li>    
         <li><a href="<?php echo createURL('bookmarks', $cUsername); ?>"><?php echo T_('Bookmarks'); ?></a></li>
 	<li><a href="<?php echo createURL('alltags', $cUsername); ?>"><?php echo T_('Tags'); ?></a></li>
         <li><a href="<?php echo createURL('watchlist', $cUsername); ?>"><?php echo T_('Watchlist'); ?></a></li>
@@ -22,6 +23,7 @@ if ($userservice->isLoggedOn()) {
 } else {
 ?>
     <ul id="navigation">
+    	<li><a href="<?php echo createURL(''); ?>"><?php echo T_('Home'); ?></a></li>
 	<li><a href="<?php echo createURL('populartags'); ?>"><?php echo T_('Popular Tags'); ?></a></li>
         <li><a href="<?php echo createURL('about'); ?>"><?php echo T_('About'); ?></a></li>
         <li class="access"><a href="<?php echo createURL('login'); ?>"><?php echo T_('Log In'); ?></a></li>

@@ -1,7 +1,7 @@
 ChangeLog for SemantiScuttle
 ============================
 
-0.94 - 2009-09-29
+0.94 - 2009-10-02
 -----------------
 - Fix bug #2834070: unfreed sql results
 - Fix bug #2834077: .htaccess on virtual masshosted apaches
@@ -25,7 +25,6 @@ ChangeLog for SemantiScuttle
 - Translation updates
 - Updated German translation (de_DE), removed de_AT
 - New configuration file system
-- Remove home link in menu bar
 - Add INSTALL.txt and ChangeLog
 
 
