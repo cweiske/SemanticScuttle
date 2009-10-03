@@ -1,22 +1,33 @@
 <?php
-class TagStatService {
-	var $db;
+class SemanticScuttle_Service_TagStat extends SemanticScuttle_Service
+{
+
 	var $tablename;
 
-	function &getInstance(&$db) {
+    /**
+     * Returns the single service instance
+     *
+     * @param DB $db Database object
+     *
+     * @return SemanticScuttle_Service
+     */
+	public static function getInstance($db)
+    {
 		static $instance;
-		if (!isset($instance))
-		$instance =& new TagStatService($db);
+		if (!isset($instance)) {
+            $instance = new self($db);
+        }
 		return $instance;
 	}
 
-	function TagStatService(&$db) {
-		$this->db =& $db;
+	protected function __construct($db)
+    {
+		$this->db = $db;
 		$this->tablename = $GLOBALS['tableprefix'] .'tagsstats';
 	}
 
 	function getNbChildren($tag1, $relationType, $uId) {
-		$tts =& ServiceFactory::getServiceInstance('Tag2TagService');
+		$tts =SemanticScuttle_Service_Factory::getServiceInstance('Tag2Tag');
 		$query = "SELECT tag1, relationType, uId FROM `". $tts->getTableName() ."`";
 		$query.= " WHERE tag1 = '" .$tag1 ."'";
 		$query.= " AND relationType = '". $relationType ."'";
@@ -91,7 +102,7 @@ class TagStatService {
 			return false;
 		}
 
-		$tts =& ServiceFactory::getServiceInstance('Tag2TagService');
+		$tts =SemanticScuttle_Service_Factory::getServiceInstance('Tag2Tag');
 		$linkedTags = $tts->getLinkedTags($tag1, $relationType, $uId);
 		$nbDescendants = 0;
 		$maxDepth = 0;
@@ -112,7 +123,7 @@ class TagStatService {
 	}
 
 	function updateAllStat() {
-		$tts =& ServiceFactory::getServiceInstance('Tag2TagService');
+		$tts =SemanticScuttle_Service_Factory::getServiceInstance('Tag2Tag');
 
 		$query = "SELECT tag1, uId FROM `". $tts->getTableName() ."`";
 		$query.= " WHERE relationType = '>'";

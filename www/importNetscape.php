@@ -19,10 +19,10 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ***************************************************************************/
 
-require_once('header.inc.php');
+require_once '../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
+$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
 
 
 /* Managing all possible inputs */

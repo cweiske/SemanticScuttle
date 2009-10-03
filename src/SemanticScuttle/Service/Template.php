@@ -1,15 +1,26 @@
 <?php
-class TemplateService {
-	var $basedir;
+class SemanticScuttle_Service_Template extends SemanticScuttle_Service
+{
+	protected $basedir;
 
-	function &getInstance() {
+    /**
+     * Returns the single service instance
+     *
+     * @param DB $db Database object
+     *
+     * @return SemanticScuttle_Service
+     */
+	public static function getInstance($db)
+    {
 		static $instance;
-		if (!isset($instance))
-		$instance =& new TemplateService();
+		if (!isset($instance)) {
+            $instance = new self($db);
+        }
 		return $instance;
 	}
 
-	function TemplateService() {
+	public function __construct()
+    {
 		$this->basedir = $GLOBALS['TEMPLATES_DIR'];
 	}
 

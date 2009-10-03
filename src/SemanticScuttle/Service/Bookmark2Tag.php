@@ -1,17 +1,28 @@
 <?php
-class Bookmark2TagService {
-	var $db;
+class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_Service
+{
 	var $tablename;
 
-	function &getInstance(&$db) {
+
+    /**
+     * Returns the single service instance
+     *
+     * @param DB $db Database object
+     *
+     * @return SemanticScuttle_Service
+     */
+	public static function getInstance($db)
+    {
 		static $instance;
-		if (!isset($instance))
-		$instance =& new Bookmark2TagService($db);
+		if (!isset($instance)) {
+            $instance = new self($db);
+        }
 		return $instance;
 	}
 
-	function Bookmark2TagService(&$db) {
-		$this->db =& $db;
+	public function __construct($db)
+    {
+		$this->db = $db;
 		$this->tablename = $GLOBALS['tableprefix'] .'bookmarks2tags';
 	}
 
@@ -42,7 +53,7 @@ class Bookmark2TagService {
 			}
 		}
 
-		$tagservice =& ServiceFactory::getServiceInstance('TagService');
+		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
 		$tags = $tagservice->normalize($tags);
 
 
@@ -51,7 +62,7 @@ class Bookmark2TagService {
 		for ($i = 0; $i < $tags_count; $i++) {
 			$tags[$i] = trim(strtolower($tags[$i]));
 			if ($fromApi) {
-				include_once(dirname(__FILE__) .'/../functions.inc.php');
+				include_once 'SemanticScuttle/functions.php';
 				$tags[$i] = convertTag($tags[$i], 'in');
 			}
 		}
@@ -70,7 +81,7 @@ class Bookmark2TagService {
 
 		// Media and file types
 		if (!is_null($extension)) {
-			include_once(dirname(__FILE__) .'/../functions.inc.php');
+			include_once 'SemanticScuttle/functions.php';
 			
 			if ($keys = multi_array_search($extension, $GLOBALS['filetypes'])) {
 				$tags[] = 'system:filetype:'. $extension;
@@ -93,8 +104,8 @@ class Bookmark2TagService {
 			}
 		}
 
-		$bs =& ServiceFactory::getServiceInstance('BookmarkService');
-		$tts =& ServiceFactory::getServiceInstance('Tag2TagService');
+		$bs =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
+		$tts =SemanticScuttle_Service_Factory::getServiceInstance('Tag2Tag');
 
 		// Create links between tags
 		foreach($tags as $key => $tag) {
@@ -150,7 +161,7 @@ class Bookmark2TagService {
 	}
 
 	function deleteTag($uId, $tag) {
-		$bs =& ServiceFactory::getServiceInstance('BookmarkService');
+		$bs =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
 
 		$query = 'DELETE FROM '. $this->getTableName();
 		$query.= ' USING '. $this->getTableName() .', '. $bs->getTableName();
@@ -224,7 +235,7 @@ class Bookmark2TagService {
 	}
 
 	function &getTags($userid = NULL) {
-		$userservice =& ServiceFactory::getServiceInstance('UserService');
+		$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
 		$logged_on_user = $userservice->getCurrentUserId();
 
 		$query = 'SELECT T.tag, COUNT(B.bId) AS bCount FROM '. $GLOBALS['tableprefix'] .'bookmarks AS B INNER JOIN '. $userservice->getTableName() .' AS U ON B.uId = U.'. $userservice->getFieldName('primary') .' INNER JOIN '. $GLOBALS['tableprefix'] .'bookmarks2tags AS T ON B.bId = T.bId';
@@ -299,7 +310,7 @@ class Bookmark2TagService {
 
 	// Returns the most popular tags used for a particular bookmark hash
 	function &getRelatedTagsByHash($hash, $limit = 20) {
-		$userservice = & ServiceFactory :: getServiceInstance('UserService');
+		$userservice = SemanticScuttle_Service_Factory :: getServiceInstance('User');
 		$sId = $userservice->getCurrentUserId();
 		// Logged in
 		if ($userservice->isLoggedOn()) {
@@ -329,7 +340,7 @@ class Bookmark2TagService {
 	
 	function &getAdminTags($limit = 30, $logged_on_user = NULL, $days = NULL) {
 		// look for admin ids
-		$userservice = & ServiceFactory :: getServiceInstance('UserService');
+		$userservice = SemanticScuttle_Service_Factory :: getServiceInstance('User');
 		$adminIds = $userservice->getAdminIds();
 		
 		// ask for their tags
@@ -338,7 +349,7 @@ class Bookmark2TagService {
 	
 	function &getContactTags($user, $limit = 30, $logged_on_user = NULL, $days = NULL) {
 		// look for contact ids
-		$userservice = & ServiceFactory :: getServiceInstance('UserService');
+		$userservice = SemanticScuttle_Service_Factory :: getServiceInstance('User');
 		$contacts = $userservice->getWatchlist($user);
 		
 		// add the user (to show him/her also his/her tags)
@@ -406,8 +417,8 @@ class Bookmark2TagService {
 	}
 
 	function renameTag($userid, $old, $new, $fromApi = false) {
-		$bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-		$tagservice =& ServiceFactory::getServiceInstance('TagService');
+		$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
+		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
 
 		if (is_null($userid) || is_null($old) || is_null($new))
 		return false;

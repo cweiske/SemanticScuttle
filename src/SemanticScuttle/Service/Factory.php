@@ -1,16 +1,19 @@
 <?php
 /* Connect to the database and build services */
 
-class ServiceFactory {
-	function ServiceFactory(&$db, $serviceoverrules = array()) {
+class SemanticScuttle_Service_Factory
+{
+	public function __construct($db, $serviceoverrules = array())
+    {
 	}
 
-	function &getServiceInstance($name, $servicedir = NULL) {
+	public function getServiceInstance($name, $servicedir = null)
+    {
 		global $dbhost, $dbuser, $dbpass, $dbname, $dbport, $dbpersist, $dbtype;
 		static $instances = array();
 		static $db;
 		if (!isset($db)) {
-			require_once(dirname(__FILE__) .'/../includes/db/'. $dbtype .'.php');
+			require_once 'SemanticScuttle/db/'. $dbtype .'.php';
 			$db = new sql_db();
 			$db->sql_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport, $dbpersist);
 			if(!$db->db_connect_id) {
@@ -25,12 +28,15 @@ class ServiceFactory {
 			}
 			if (!class_exists($name)) {
 				if (!isset($servicedir)) {
-					$servicedir = dirname(__FILE__) .'/';
+					$servicedir = 'SemanticScuttle/Service/';
 				}
 								
-				require_once($servicedir . strtolower($name) . '.php');
+				require_once $servicedir . $name . '.php';
 			}
-			$instances[$name] = call_user_func(array($name, 'getInstance'), $db);
+			$instances[$name] = call_user_func(
+                array('SemanticScuttle_Service_' . $name, 'getInstance'),
+                $db
+            );
 		}
 		return $instances[$name];
 	}

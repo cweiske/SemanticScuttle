@@ -8,10 +8,10 @@ $countMax = 100;
 
 // Force HTTP authentication first!
 require_once('httpauth.inc.php');
-require_once('../header.inc.php');
+require_once '../../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
+$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
 
 
 // Check to see if a tag was specified.

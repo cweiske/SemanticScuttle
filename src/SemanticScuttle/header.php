@@ -1,12 +1,17 @@
 <?php
-if(!file_exists(dirname(__FILE__) .'/config.inc.php')) {
-	die('Please copy "config.inc.php.dist" to "config.inc.php"');
+if(!file_exists(dirname(__FILE__) .'/../../data/config.php')) {
+	die('Please copy "config.php.dist" to "config.php"');
 }
+set_include_path(
+    get_include_path() . PATH_SEPARATOR
+    . dirname(__FILE__) . '/../'
+);
 
 // 1 // First requirements part (before debug management)
-require_once(dirname(__FILE__) .'/config.default.inc.php');
-require_once(dirname(__FILE__) .'/config.inc.php');
-require_once(dirname(__FILE__) .'/constants.inc.php'); // some constants are based on variables from config file
+$datadir = dirname(__FILE__) . '/../../data/';
+require_once($datadir . '/config.default.php');
+require_once($datadir . '/config.php');
+require_once 'SemanticScuttle/constants.php'; // some constants are based on variables from config file
 
 
 // Debug Management using constants
@@ -21,17 +26,18 @@ if(DEBUG_MODE) {
 }
 
 // 2 // Second requirements part which could display bugs (must come after debug management)
-require_once(dirname(__FILE__) .'/services/servicefactory.php');
-require_once(dirname(__FILE__) .'/functions.inc.php');
+require_once 'SemanticScuttle/Service.php';
+require_once 'SemanticScuttle/Service/Factory.php';
+require_once 'SemanticScuttle/functions.php';
 
 
 // 3 // Third requirements part which import functions from includes/ directory
 
 // UTF-8 functions
-require_once(dirname(__FILE__) .'/includes/utf8.php');
+require_once 'SemanticScuttle/utf8.php';
 
 // Translation
-require_once(dirname(__FILE__) .'/includes/php-gettext/gettext.inc');
+require_once 'php-gettext/gettext.inc';
 $domain = 'messages';
 T_setlocale(LC_MESSAGES, $locale);
 T_bindtextdomain($domain, dirname(__FILE__) .'/locales');
@@ -42,10 +48,10 @@ T_textdomain($domain);
 session_start();
 
 // 5 // Create mandatory services and objects
-$userservice =& ServiceFactory::getServiceInstance('UserService');
+$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
 $currentUser = $userservice->getCurrentObjectUser();
 
-$templateservice =& ServiceFactory::getServiceInstance('TemplateService');
+$templateservice =SemanticScuttle_Service_Factory::getServiceInstance('Template');
 $tplVars = array();
 $tplVars['currentUser'] = $currentUser;
 $tplVars['userservice'] = $userservice;

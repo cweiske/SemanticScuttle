@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: text/javascript');
-require_once('header.inc.php');
+require_once '../src/SemanticScuttle/header.php';
 require_once('functions.inc.php');
 $player_root = ROOT .'includes/player/';
 ?>

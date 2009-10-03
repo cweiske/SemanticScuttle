@@ -1,12 +1,12 @@
 <?php
 /* Export data with semantic format (SIOC: http://sioc-project.org/, FOAF, SKOS, Annotea Ontology) */
 
-require_once('../header.inc.php');
+require_once '../../src/SemanticScuttle/header.php';
 header('Content-Type: text/xml; charset=utf-8'); //we change headers html defined in headers.inc.php
 
 /* Service creation: only useful services are created */
-$userservice =& ServiceFactory::getServiceInstance('UserService');
-$bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
+$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
+$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
 
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"utf-8\"\n?>"; ?>

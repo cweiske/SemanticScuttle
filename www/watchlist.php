@@ -18,11 +18,11 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
-require_once('header.inc.php');
+require_once '../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-$cacheservice =& ServiceFactory::getServiceInstance('CacheService');
+$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
+$cacheservice =SemanticScuttle_Service_Factory::getServiceInstance('Cache');
 
 /* Managing all possible inputs */
 isset($_GET['page']) ? define('GET_PAGE', $_GET['page']): define('GET_PAGE', 0);

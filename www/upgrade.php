@@ -34,8 +34,8 @@ exit();
 /////////////////
 // This part below will be executed once you comment the two lines above
 /////////////////
-require_once('header.inc.php');
-$tagstatservice   = & ServiceFactory :: getServiceInstance('TagStatService');
+require_once '../src/SemanticScuttle/header.php';
+$tagstatservice   = SemanticScuttle_Service_Factory :: getServiceInstance('TagStat');
 ?>
 
 <h1>Upgrade</h1>

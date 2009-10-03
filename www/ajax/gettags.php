@@ -21,11 +21,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 /* Return a json file with list of tags according to current user and sort by popularity*/
 
-require_once('../header.inc.php');
+require_once '../../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
-$bookmarkservice =& ServiceFactory::getServiceInstance('TagService');
+$b2tservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark2Tag');
+$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
 
 ?>
 

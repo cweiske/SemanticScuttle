@@ -6,10 +6,10 @@
 
 // Force HTTP authentication first!
 require_once('httpauth.inc.php');
-require_once('../header.inc.php');
+require_once '../../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
+$b2tservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark2Tag');
 
 // Get the tag info.
 if (isset($_REQUEST['old']) && (trim($_REQUEST['old']) != ''))

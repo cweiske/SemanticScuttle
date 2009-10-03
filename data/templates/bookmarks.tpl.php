@@ -1,9 +1,9 @@
 <?php
 
 /* Service creation: only useful services are created */
-$bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-$tagservice =& ServiceFactory::getServiceInstance('TagService');
-$cdservice =& ServiceFactory::getServiceInstance('CommonDescriptionService');
+$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
+$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
+$cdservice =SemanticScuttle_Service_Factory::getServiceInstance('CommonDescription');
 
 
 $pageName = isset($pageName)?$pageName:"";
@@ -13,7 +13,7 @@ $currenttag = isset($currenttag)?$currenttag:"";
 
 $this->includeTemplate($GLOBALS['top_include']);
 
-include('search.inc.php');
+include('search.menu.php');
 ?>
 
 <?php if($pageName == PAGE_INDEX && $GLOBALS['welcomeMessage']):?>

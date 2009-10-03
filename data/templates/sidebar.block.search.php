@@ -1,6 +1,6 @@
 <?php
 /* Service creation: only useful services are created */
-$searchhistoryservice =& ServiceFactory::getServiceInstance('SearchHistoryService');
+$searchhistoryservice =SemanticScuttle_Service_Factory::getServiceInstance('SearchHistory');
 
 $logged_on_userid = $userservice->getCurrentUserId();
 if ($logged_on_userid === false) {

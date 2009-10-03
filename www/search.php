@@ -19,7 +19,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ***************************************************************************/
 
-require_once('header.inc.php');
+require_once '../src/SemanticScuttle/header.php';
 
 /* Managing all possible inputs */
 isset($_POST['terms']) ? define('POST_TERMS', $_POST['terms']): define('POST_TERMS', '');
@@ -36,8 +36,8 @@ if (POST_TERMS != '') {
 	// GET
 } else {
 	/* Service creation: only useful services are created */
-	$bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
-	$searchhistoryservice =& ServiceFactory::getServiceInstance('SearchHistoryService');
+	$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
+	$searchhistoryservice =SemanticScuttle_Service_Factory::getServiceInstance('SearchHistory');
 
 	/* Managing current logged user */
 	$currentUserId = $userservice->getCurrentUserId();

@@ -19,12 +19,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ***************************************************************************/
 
-require_once('header.inc.php');
+require_once '../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$b2tservice       = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
-$tagservice   = & ServiceFactory :: getServiceInstance('TagService');
-$tag2tagservice   = & ServiceFactory :: getServiceInstance('Tag2tagService');
+$b2tservice       = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark2Tag');
+$tagservice   = SemanticScuttle_Service_Factory :: getServiceInstance('Tag');
+$tag2tagservice   = SemanticScuttle_Service_Factory :: getServiceInstance('Tag2Tag');
 
 /* Managing all possible inputs */
 isset($_POST['confirm']) ? define('POST_CONFIRM', $_POST['confirm']): define('POST_CONFIRM', '');

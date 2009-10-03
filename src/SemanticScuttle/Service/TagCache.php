@@ -1,31 +1,43 @@
 <?php
-
-/*
- * This class infers on relation between tags by storing all the including tags or synonymous tag.
- * For example, if the user creates: tag1>tag2>tag3, the system can infer that tag is included into tag1.
- * Instead of computing this relation several times, it is saved into this current table.
+/**
+ * This class infers on relation between tags by storing all
+ * the including tags or synonymous tag.
+ * For example, if the user creates: tag1>tag2>tag3, the system
+ * can infer that tag is included into tag1.
+ * Instead of computing this relation several times, it is saved
+ * into this current table.
  * For synonymy, this table stores also the group of synonymous tags.
- * The table must be updated for each modification of the relations between tags.
+ * The table must be updated for each modification of
+ * the relations between tags.
  */
-
-class TagCacheService {
-	var $db;
+class SemanticScuttle_Service_TagCache extends SemanticScuttle_Service
+{
 	var $tablename;
 
-	function &getInstance(&$db) {
+    /**
+     * Returns the single service instance
+     *
+     * @param DB $db Database object
+     *
+     * @return SemanticScuttle_Service
+     */
+	public static function getInstance($db)
+    {
 		static $instance;
-		if (!isset($instance))
-		$instance =& new TagCacheService($db);
+		if (!isset($instance)) {
+            $instance = new self($db);
+        }
 		return $instance;
 	}
 
-	function TagCacheService(&$db) {
-		$this->db =& $db;
+	protected function __construct($db)
+    {
+		$this->db =$db;
 		$this->tablename = $GLOBALS['tableprefix'] .'tagscache';
 	}
 
 	function getChildren($tag1, $uId) {
-		$tagservice =& ServiceFactory::getServiceInstance('TagService');
+		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
 		$tag1 = $tagservice->normalize($tag1);
 
 		if($tag1 == '') return false;
@@ -54,7 +66,7 @@ class TagCacheService {
 	}
 
 	function addChild($tag1, $tag2, $uId) {
-		$tagservice =& ServiceFactory::getServiceInstance('TagService');
+		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
 		$tag1 = $tagservice->normalize($tag1);
 		$tag2 = $tagservice->normalize($tag2);
 
@@ -98,7 +110,7 @@ class TagCacheService {
 	}
 
 	function existsChild($tag1, $tag2, $uId) {
-		$tagservice =& ServiceFactory::getServiceInstance('TagService');
+		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
 		$tag1 = $tagservice->normalize($tag1);
 		$tag2 = $tagservice->normalize($tag2);
 
@@ -202,7 +214,7 @@ class TagCacheService {
 	}
 
 	function _isSynonymKey($tag1, $uId) {
-		$tagservice =& ServiceFactory::getServiceInstance('TagService');
+		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
 		$tag1 = $tagservice->normalize($tag1);
 
 		$query = "SELECT tag1 FROM `". $this->getTableName() ."`";
@@ -214,7 +226,7 @@ class TagCacheService {
 	}
 
 	function _isSynonymValue($tag2, $uId) {
-		$tagservice =& ServiceFactory::getServiceInstance('TagService');
+		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
 		$tag2 = $tagservice->normalize($tag2);
 
 		$query = "SELECT tag2 FROM `". $this->getTableName() ."`";
@@ -238,7 +250,7 @@ class TagCacheService {
 	}
 
 	function _getSynonymKey($tag2, $uId) {
-		$tagservice =& ServiceFactory::getServiceInstance('TagService');
+		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
 		$tag2 = $tagservice->normalize($tag2);
 
 		if($this->_isSynonymKey($tag2)) return $tag2;
@@ -267,7 +279,7 @@ class TagCacheService {
 	 * $tagExcepted allows to hide a value.
 	 */
 	function _getSynonymValues($tag1, $uId, $tagExcepted = NULL) {
-		$tagservice =& ServiceFactory::getServiceInstance('TagService');
+		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
 		$tag1 = $tagservice->normalize($tag1);
 		$tagExcepted = $tagservice->normalize($tagExcepted);
 

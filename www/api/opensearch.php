@@ -1,5 +1,5 @@
 <?php 
-require_once('../header.inc.php');
+require_once '../../src/SemanticScuttle/header.php';
 header("Content-type: text/xml");
 ?>
 

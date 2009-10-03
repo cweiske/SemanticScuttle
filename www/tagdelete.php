@@ -19,10 +19,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 
-require_once('header.inc.php');
+require_once '../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$b2tservice = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
+$b2tservice = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark2Tag');
 
 
 /* Managing all possible inputs */

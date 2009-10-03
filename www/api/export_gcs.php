@@ -5,7 +5,7 @@
 
 // Force HTTP authentication first!
 //require_once('httpauth.inc.php');
-require_once('../header.inc.php');
+require_once '../../src/SemanticScuttle/header.php';
 
 if($GLOBALS['enableGoogleCustomSearch'] == false) {
     echo "Google Custom Search disabled. You can enable it into the config.inc.php file.";
@@ -13,7 +13,7 @@ if($GLOBALS['enableGoogleCustomSearch'] == false) {
 }
 
 /* Service creation: only useful services are created */
-$bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
+$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
 
 
 /*

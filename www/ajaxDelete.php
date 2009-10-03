@@ -22,10 +22,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 header('Content-Type: text/xml; charset=UTF-8');
 header('Last-Modified: '. gmdate("D, d M Y H:i:s") .' GMT');
 header('Cache-Control: no-cache, must-revalidate');
-require_once('header.inc.php');
+require_once '../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$bookmarkservice = & ServiceFactory :: getServiceInstance('BookmarkService');
+$bookmarkservice = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark');
 
 /* Managing all possible inputs */
 isset($_GET['id']) ? define('GET_ID', $_GET['id']): define('GET_ID', '');

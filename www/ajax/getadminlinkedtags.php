@@ -21,12 +21,12 @@
 
 /* Return a json file with list of linked tags */
 
-require_once('../header.inc.php');
+require_once '../../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
-$bookmarkservice =& ServiceFactory::getServiceInstance('TagService');
-$tagstatservice =& ServiceFactory::getServiceInstance('TagStatService');
+$b2tservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark2Tag');
+$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
+$tagstatservice =SemanticScuttle_Service_Factory::getServiceInstance('TagStat');
 
 /* Managing all possible inputs */
 isset($_GET['tag']) ? define('GET_TAG', $_GET['tag']): define('GET_TAG', '');
@@ -36,7 +36,7 @@ isset($_GET['uId']) ? define('GET_UID', $_GET['uId']): define('GET_UID', '');
 function displayTag($tag, $uId) {
 	$uId = ($uId==0)?NULL:$uId;  // if user is nobody, NULL allows to look for every public tags
 	
-	$tag2tagservice =& ServiceFactory::getServiceInstance('Tag2TagService');
+	$tag2tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag2Tag');
 	$output =  '{ id:'.rand().', name:\''.$tag.'\'';
 
 	$linkedTags = $tag2tagservice->getAdminLinkedTags($tag, '>');

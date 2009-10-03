@@ -1,23 +1,33 @@
 <?php
-class BookmarkService {
-	var $db;
+class SemanticScuttle_Service_Bookmark extends SemanticScuttle_Service
+{
 	var $tablename;
 
-	function & getInstance(& $db) {
+    /**
+     * Returns the single service instance
+     *
+     * @param DB $db Database object
+     *
+     * @return SemanticScuttle_Service
+     */
+	public static function getInstance($db)
+    {
 		static $instance;
-		if (!isset ($instance))
-		$instance = & new BookmarkService($db);
+		if (!isset($instance)) {
+            $instance = new self($db);
+        }
 		return $instance;
 	}
 
-	function BookmarkService(& $db) {
-		$this->db = & $db;
+	public function __construct($db)
+    {
+		$this->db = $db;
 		$this->tablename = $GLOBALS['tableprefix'] .'bookmarks';
 	}
 
 	function _getbookmark($fieldname, $value, $all = false) {
 		if (!$all) {
-			$userservice = & ServiceFactory :: getServiceInstance('UserService');
+			$userservice = SemanticScuttle_Service_Factory :: getServiceInstance('User');
 			$sId = $userservice->getCurrentUserId();
 			$range = ' AND uId = '. $sId;
 		} else {
@@ -51,7 +61,7 @@ class BookmarkService {
 
 		if ($row = & $this->db->sql_fetchrow($dbresult)) {
 			if ($include_tags) {
-				$b2tservice = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
+				$b2tservice = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark2Tag');
 				$row['tags'] = $b2tservice->getTagsForBookmark($bid);
 			}
 			$output = $row;			
@@ -118,7 +128,7 @@ class BookmarkService {
 			return false;
 		}
 
-		$userservice = & ServiceFactory::getServiceInstance('UserService');
+		$userservice = SemanticScuttle_Service_Factory::getServiceInstance('User');
 		$user = $userservice->getCurrentUser();
 
 		//user has to be either admin, or owner
@@ -160,7 +170,7 @@ class BookmarkService {
 	// Note that date is expected to be a string that's interpretable by strtotime().
 	function addBookmark($address, $title, $description, $privateNote, $status, $categories, $date = NULL, $fromApi = false, $fromImport = false, $sId = -1) {
 		if($sId == -1) {
-			$userservice = & ServiceFactory :: getServiceInstance('UserService');
+			$userservice = SemanticScuttle_Service_Factory :: getServiceInstance('User');
 			$sId = $userservice->getCurrentUserId();
 		}
 
@@ -204,7 +214,7 @@ class BookmarkService {
 		$extension = end($uriparts);
 		unset($uriparts);
 
-		$b2tservice = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
+		$b2tservice = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark2Tag');
 		if (!$b2tservice->attachTags($bId, $categories, $fromApi, $extension, false, $fromImport)) {
 			$this->db->sql_transaction('rollback');
 			message_die(GENERAL_ERROR, 'Could not insert bookmark', '', __LINE__, __FILE__, $sql, $this->db);
@@ -260,7 +270,7 @@ class BookmarkService {
 		$extension = end($uriparts);
 		unset($uriparts);
 
-		$b2tservice = & ServiceFactory :: getServiceInstance('Bookmark2TagService');
+		$b2tservice = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark2Tag');
 		if (!$b2tservice->attachTags($bId, $categories, $fromApi, $extension)) {
 			$this->db->sql_transaction('rollback');
 			message_die(GENERAL_ERROR, 'Could not update bookmark', '', __LINE__, __FILE__, $sql, $this->db);
@@ -282,9 +292,9 @@ class BookmarkService {
 		//    bookmarks; otherwise, just get the public bookmarks.
 		//  - if the $user is set and IS the logged-in user, then get all bookmarks.
 
-		$userservice =& ServiceFactory::getServiceInstance('UserService');
-		$b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
-		$tag2tagservice =& ServiceFactory::getServiceInstance('Tag2TagService');
+		$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
+		$b2tservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark2Tag');
+		$tag2tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag2Tag');
 		$sId = $userservice->getCurrentUserId();
 
 		if ($userservice->isLoggedOn()) {
@@ -496,7 +506,7 @@ class BookmarkService {
 			return false;
 		}
 
-		$userservice = & ServiceFactory :: getServiceInstance('UserService');
+		$userservice = SemanticScuttle_Service_Factory :: getServiceInstance('User');
 		$sId = $userservice->getCurrentUserId();
 
 		if ($userservice->isLoggedOn()) {

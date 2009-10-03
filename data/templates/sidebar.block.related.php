@@ -1,6 +1,6 @@
 <?php
 /* Service creation: only useful services are created */
-$b2tservice =& ServiceFactory::getServiceInstance('Bookmark2TagService');
+$b2tservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark2Tag');
 
 
 if(!isset($user)) $user="";

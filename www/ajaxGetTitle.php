@@ -23,7 +23,7 @@ header('Content-Type: text/xml; charset=UTF-8');
 header("Last-Modified: ". gmdate("D, d M Y H:i:s") ." GMT");
 header("Cache-Control: no-cache, must-revalidate");
 
-require_once('header.inc.php');
+require_once '../src/SemanticScuttle/header.php';
 
 /* Managing all possible inputs */
 isset($_GET['url']) ? define('GET_URL', $_GET['url']): define('GET_URL', '');

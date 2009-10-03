@@ -1,28 +1,39 @@
 <?php
-class UserService {
-	var $db;
-	var $fields = array(
+class SemanticScuttle_Service_User extends SemanticScuttle_Service
+{
+	protected $db;
+	protected $fields = array(
         'primary'   =>  'uId',
         'username'  =>  'username',
         'password'  =>  'password');
-	var $profileurl;
-	var $tablename;
-	var $sessionkey;
-	var $cookiekey;
-	var $cookietime = 1209600; // 2 weeks
+	protected $profileurl;
+	protected $tablename;
+	protected $sessionkey;
+	protected $cookiekey;
+	protected $cookietime = 1209600; // 2 weeks
 
-	function &getInstance(&$db) {
+    /**
+     * Returns the single service instance
+     *
+     * @param DB $db Database object
+     *
+     * @return SemanticScuttle_Service
+     */
+	public static function getInstance($db)
+    {
 		static $instance;
-		if (!isset($instance))
-		$instance =& new UserService($db);
+		if (!isset($instance)) {
+            $instance = new self($db);
+        }
 		return $instance;
 	}
 
-	function UserService(& $db) {
-		$this->db =& $db;
-		$this->tablename = $GLOBALS['tableprefix'] .'users';
+	protected function __construct($db)
+    {
+		$this->db = $db;
+		$this->tablename  = $GLOBALS['tableprefix'] .'users';
 		$this->sessionkey = INSTALLATION_ID.'-currentuserid';
-		$this->cookiekey = INSTALLATION_ID.'-login';
+		$this->cookiekey  = INSTALLATION_ID.'-login';
 		$this->profileurl = createURL('profile', '%2$s');
 		$this->updateSessionStability();
 	}
@@ -601,7 +612,7 @@ class User {
 	function getName() {
 		// Look for value only if not already set
 		if(!isset($this->name)) {
-			$userservice =& ServiceFactory::getServiceInstance('UserService');
+			$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
 			$user = $userservice->getUser($this->id);
 			$this->name = $user['name'];
 		}
@@ -611,7 +622,7 @@ class User {
 	function getEmail() {
 		// Look for value only if not already set
 		if(!isset($this->email)) {
-			$userservice =& ServiceFactory::getServiceInstance('UserService');
+			$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
 			$user = $userservice->getUser($this->id);
 			$this->email = $user['email'];
 		}
@@ -621,7 +632,7 @@ class User {
 	function getHomepage() {
 		// Look for value only if not already set
 		if(!isset($this->homepage)) {
-			$userservice =& ServiceFactory::getServiceInstance('UserService');
+			$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
 			$user = $userservice->getUser($this->id);
 			$this->homepage = $user['homepage'];
 		}
@@ -631,7 +642,7 @@ class User {
 	function getContent() {
 		// Look for value only if not already set
 		if(!isset($this->content)) {
-			$userservice =& ServiceFactory::getServiceInstance('UserService');
+			$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
 			$user = $userservice->getUser($this->id);
 			$this->content = $user['uContent'];
 		}
@@ -641,7 +652,7 @@ class User {
 	function getDatetime() {
 		// Look for value only if not already set
 		if(!isset($this->content)) {
-			$userservice =& ServiceFactory::getServiceInstance('UserService');
+			$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
 			$user = $userservice->getUser($this->id);
 			$this->datetime = $user['uDatetime'];
 		}
@@ -651,14 +662,14 @@ class User {
 	function isAdmin() {
 		// Look for value only if not already set
 		if(!isset($this->isAdmin)) {
-			$userservice =& ServiceFactory::getServiceInstance('UserService');
+			$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
 			$this->isAdmin = $userservice->isAdmin($this->id);
 		}
 		return $this->isAdmin;
 	}
 	
 	function getNbBookmarks($range = 'public') {
-		$bookmarkservice =& ServiceFactory::getServiceInstance('BookmarkService');
+		$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
 		return $bookmarkservice->countBookmarks($this->getId(), $range);
 	}
 }

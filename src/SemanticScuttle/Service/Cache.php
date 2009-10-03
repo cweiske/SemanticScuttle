@@ -1,18 +1,27 @@
 <?php
-class CacheService {
+class SemanticScuttle_Service_Cache extends SemanticScuttle_Service
+{
     var $basedir;
     var $fileextension = '.cache';
 
-    function &getInstance() {
-        static $instance;
-        
-        if (!isset($instance))
-            $instance =& new CacheService();
+    /**
+     * Returns the single service instance
+     *
+     * @param DB $db Database object
+     *
+     * @return SemanticScuttle_Service
+     */
+	public static function getInstance($db)
+    {
+		static $instance;
+		if (!isset($instance)) {
+            $instance = new self($db);
+        }
+		return $instance;
+	}
 
-        return $instance;
-    }
-
-    function CacheService() {
+    protected function __construct()
+    {
         $this->basedir = $GLOBALS['dir_cache'];    
     }
 

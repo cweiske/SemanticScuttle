@@ -1,17 +1,27 @@
 <?php
-class TagService {
-	var $db;
+class SemanticScuttle_Service_Tag extends SemanticScuttle_Service
+{
 	var $tablename;
 
-	function &getInstance(&$db) {
+    /**
+     * Returns the single service instance
+     *
+     * @param DB $db Database object
+     *
+     * @return SemanticScuttle_Service
+     */
+	public static function getInstance($db)
+    {
 		static $instance;
-		if (!isset($instance))
-		$instance =& new TagService($db);
+		if (!isset($instance)) {
+            $instance = new self($db);
+        }
 		return $instance;
 	}
 
-	function TagService(&$db) {
-		$this->db =& $db;
+	public function __construct($db)
+    {
+		$this->db = $db;
 		$this->tablename = $GLOBALS['tableprefix'] .'tags';
 	}
 

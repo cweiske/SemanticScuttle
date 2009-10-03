@@ -1,5 +1,5 @@
 <?php
-require_once('../header.inc.php');
+require_once '../../src/SemanticScuttle/header.php';
 
 //  Provides HTTP Basic authentication of a user, and sets two variables, sId and username,
 //  with the user's info.

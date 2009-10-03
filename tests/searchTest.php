@@ -20,16 +20,16 @@ class SearchTest extends PHPUnit_Framework_TestCase
         global $dbhost, $dbuser, $dbpass, $dbname, $dbport, $dbpersist, $dbtype, $tableprefix;
 	require_once('./header.inc.php');
 
-	$this->us =& ServiceFactory::getServiceInstance('UserService');
-	$this->bs =& ServiceFactory::getServiceInstance('BookmarkService');
+	$this->us =SemanticScuttle_Service_Factory::getServiceInstance('User');
+	$this->bs =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
 	$this->bs->deleteAll();
-	$this->b2ts =& ServiceFactory::getServiceInstance('Bookmark2TagService');
+	$this->b2ts =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark2Tag');
 	$this->b2ts->deleteAll();
-	$this->tts =& ServiceFactory::getServiceInstance('Tag2TagService');
+	$this->tts =SemanticScuttle_Service_Factory::getServiceInstance('Tag2Tag');
 	$this->tts->deleteAll(); 
-	$this->tsts =& ServiceFactory::getServiceInstance('TagStatService');
+	$this->tsts =SemanticScuttle_Service_Factory::getServiceInstance('TagStat');
 	$this->tsts->deleteAll();
-	$this->shs =& ServiceFactory::getServiceInstance('SearchHistoryService');
+	$this->shs =SemanticScuttle_Service_Factory::getServiceInstance('SearchHistory');
 	$this->shs->deleteAll();
     }
 

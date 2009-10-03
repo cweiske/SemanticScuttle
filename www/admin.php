@@ -1,7 +1,7 @@
 <?php
 /***************************************************************************
  Copyright (C) 2007 - 2008 SemanticScuttle project (fork from Scuttle)
- http://sourceforge.net/projects/semanticscuttle/
+ http://sourceforge.net/projects/semanticscuttle/
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -17,16 +17,16 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ***************************************************************************/
 
-require_once('header.inc.php');
+require_once '../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$bookmark2tagservice = & ServiceFactory :: getServiceInstance('Bookmark2Tagservice');
-$bookmarkservice = & ServiceFactory :: getServiceInstance('BookmarkService');
-$tag2tagservice = & ServiceFactory :: getServiceInstance('Tag2TagService');
-$tagcacheservice = & ServiceFactory :: getServiceInstance('TagCacheService');
-$commondescriptionservice = & ServiceFactory :: getServiceInstance('CommonDescriptionService');
-$searchhistoryservice = & ServiceFactory :: getServiceInstance('SearchHistoryService');
-$tagstatservice = & ServiceFactory :: getServiceInstance('TagStatService');
+$bookmark2tagservice = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark2Tagservice');
+$bookmarkservice = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark');
+$tag2tagservice = SemanticScuttle_Service_Factory :: getServiceInstance('Tag2Tag');
+$tagcacheservice = SemanticScuttle_Service_Factory :: getServiceInstance('TagCache');
+$commondescriptionservice = SemanticScuttle_Service_Factory :: getServiceInstance('CommonDescription');
+$searchhistoryservice = SemanticScuttle_Service_Factory :: getServiceInstance('SearchHistory');
+$tagstatservice = SemanticScuttle_Service_Factory :: getServiceInstance('TagStat');
 
 // Header variables
 $tplVars['subtitle'] = T_('Manage users');

@@ -1,18 +1,28 @@
 <?php
-class SearchHistoryService {
-	var $db;
+class SemanticScuttle_Service_SearchHistory extends SemanticScuttle_Service
+{
 	var $tablename;
 	var $sizeSearchHistory;
 
-	function &getInstance(&$db) {
+    /**
+     * Returns the single service instance
+     *
+     * @param DB $db Database object
+     *
+     * @return SemanticScuttle_Service
+     */
+	public static function getInstance($db)
+    {
 		static $instance;
-		if (!isset($instance))
-		$instance =& new SearchHistoryService($db);
+		if (!isset($instance)) {
+            $instance = new self($db);
+        }
 		return $instance;
 	}
 
-	function SearchHistoryService(& $db) {
-		$this->db =& $db;
+	public function __construct($db)
+    {
+		$this->db = $db;
 		$this->tablename = $GLOBALS['tableprefix'] .'searchhistory';
 		if(isset($GLOBALS['sizeSearchHistory'])) {
 			$this->sizeSearchHistory = $GLOBALS['sizeSearchHistory'];
