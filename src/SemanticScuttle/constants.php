@@ -11,10 +11,7 @@ if(isset($GLOBALS['debugMode'])) {
 }
 
 // Determine the base URL as ROOT
-if (!isset($_SERVER['HTTP_HOST'])) {
-    //not set in unit tests
-	define('ROOT', 'http://localhost/');
-} else if (!isset($GLOBALS['root'])) {
+if (!isset($GLOBALS['root'])) {
 	$pieces = explode('/', $_SERVER['SCRIPT_NAME']);
 	
 	$rootTmp = '/';

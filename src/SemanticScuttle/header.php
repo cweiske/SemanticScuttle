@@ -45,7 +45,9 @@ T_bind_textdomain_codeset($domain, 'UTF-8');
 T_textdomain($domain);
 
 // 4 // Session
-session_start();
+if (!defined('UNIT_TEST_MODE')) {
+    session_start();
+}
 
 // 5 // Create mandatory services and objects
 $userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
@@ -57,5 +59,7 @@ $tplVars['currentUser'] = $currentUser;
 $tplVars['userservice'] = $userservice;
 
 // 6 // Force UTF-8 behaviour for server (cannot be move into top.inc.php which is not included into every file)
-header('Content-Type: text/html; charset=utf-8');
+if (!defined('UNIT_TEST_MODE')) {
+    header('Content-Type: text/html; charset=utf-8');
+}
 ?>

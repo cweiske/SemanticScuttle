@@ -15,6 +15,7 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
     define('PHPUnit_MAIN_METHOD', 'AllTests::main');
 }
 
+require_once 'prepare.php';
 require_once 'PHPUnit/Framework/TestSuite.php';
 
 class AllTests extends PHPUnit_Framework_TestSuite
