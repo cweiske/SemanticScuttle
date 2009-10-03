@@ -19,7 +19,7 @@ class CommonDescriptionTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         global $dbhost, $dbuser, $dbpass, $dbname, $dbport, $dbpersist, $dbtype, $tableprefix;
-	require_once('./header.inc.php');
+		require_once dirname(__FILE__) . '/../src/SemanticScuttle/header.php';
 
 	$this->us =SemanticScuttle_Service_Factory::getServiceInstance('User');
 	$this->bs =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');

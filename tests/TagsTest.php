@@ -14,7 +14,7 @@ class TagsTest extends PHPUnit_Framework_TestCase
 	protected function setUp()
 	{
 		global $dbhost, $dbuser, $dbpass, $dbname, $dbport, $dbpersist, $dbtype, $tableprefix;
-		require_once('./header.inc.php');
+		require_once dirname(__FILE__) . '/../src/SemanticScuttle/header.php';
 
 		$this->ts =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
 		$this->ts->deleteAll();
