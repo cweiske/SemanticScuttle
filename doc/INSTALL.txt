@@ -1,6 +1,16 @@
 SemanticScuttle installation
 ============================
 
+
+Prerequisites
+-------------
+To run SemanticScuttle, you need:
+- PHP5
+- A web server, for example Apache
+
+
+Installation instructions
+-------------------------
 1. Create a new MySQL database
 2. Import tables.sql into that database, i.e.
    run
