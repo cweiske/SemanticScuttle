@@ -173,6 +173,7 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_Service
     public function rewriteVotings()
     {
         //FIXME
+        //SELECT bid, SUM( vote ) FROM sc_votes GROUP BY bid
     }
 
 

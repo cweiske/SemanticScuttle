@@ -1,6 +1,12 @@
 Upgrading SemanticScuttle from a previous version
 =================================================
 
+From versin 0.94 to 0.10.0
+--------------------------
+- ALTER TABLE `sc_bookmarks` ADD `bVoting` INT NOT NULL ;
+- Add the new votes database table. See data/tables.sql.
+
+
 From version 0.93 to 0.94
 -------------------------
 
