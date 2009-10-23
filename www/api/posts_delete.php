@@ -11,7 +11,7 @@ require_once('httpauth.inc.php');
 require_once '../../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
+$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
 
 
 // Note that del.icio.us only errors out if no URL was passed in; there's no error on attempting

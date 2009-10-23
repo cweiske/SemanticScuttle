@@ -35,7 +35,7 @@ exit();
 // This part below will be executed once you comment the two lines above
 /////////////////
 require_once '../src/SemanticScuttle/header.php';
-$tagstatservice   = SemanticScuttle_Service_Factory :: getServiceInstance('TagStat');
+$tagstatservice   = SemanticScuttle_Service_Factory :: get('TagStat');
 ?>
 
 <h1>Upgrade</h1>

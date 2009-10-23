@@ -1,9 +1,9 @@
 <?php
 
 /* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
-$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
-$cdservice =SemanticScuttle_Service_Factory::getServiceInstance('CommonDescription');
+$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
+$tagservice =SemanticScuttle_Service_Factory::get('Tag');
+$cdservice =SemanticScuttle_Service_Factory::get('CommonDescription');
 
 
 $pageName = isset($pageName)?$pageName:"";

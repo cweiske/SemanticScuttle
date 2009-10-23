@@ -22,8 +22,8 @@
 require_once '../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
-$cacheservice =SemanticScuttle_Service_Factory::getServiceInstance('Cache');
+$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
+$cacheservice =SemanticScuttle_Service_Factory::get('Cache');
 
 /* Managing current logged user */
 $currentUser = $userservice->getCurrentObjectUser();

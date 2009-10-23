@@ -1,6 +1,6 @@
 <?php
 /* Service creation: only useful services are created */
-$tag2tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag2Tag');
+$tag2tagservice =SemanticScuttle_Service_Factory::get('Tag2Tag');
 
 require_once('sidebar.linkedtags.inc.php');
 

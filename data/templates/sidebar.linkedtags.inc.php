@@ -9,8 +9,8 @@ function displayLinkedTags($tag, $linkType, $uId, $cat_url, $user, $editingMode 
 	return array('output' => '', 'stoplist' => $stopList);
     }
 
-    $tag2tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag2Tag');
-    $tagstatservice =SemanticScuttle_Service_Factory::getServiceInstance('TagStat');
+    $tag2tagservice =SemanticScuttle_Service_Factory::get('Tag2Tag');
+    $tagstatservice =SemanticScuttle_Service_Factory::get('TagStat');
 
     // link '>'
     if($level>1) {

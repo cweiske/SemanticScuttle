@@ -67,7 +67,7 @@ if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['si
 function startElement($parser, $name, $attrs) {
 	global $depth, $status, $tplVars, $userservice;
 
-	$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
+	$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
 
 	if ($name == 'POST') {
 		while(list($attrTitle, $attrVal) = each($attrs)) {

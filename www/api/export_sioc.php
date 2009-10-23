@@ -5,8 +5,8 @@ require_once '../../src/SemanticScuttle/header.php';
 header('Content-Type: text/xml; charset=utf-8'); //we change headers html defined in headers.inc.php
 
 /* Service creation: only useful services are created */
-$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
-$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
+$userservice =SemanticScuttle_Service_Factory::get('User');
+$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
 
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"utf-8\"\n?>"; ?>

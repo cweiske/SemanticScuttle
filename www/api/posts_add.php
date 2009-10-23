@@ -14,7 +14,7 @@ require_once('httpauth.inc.php');
 require_once '../../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
+$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
 
 // Get all the bookmark's passed-in information
 if (isset($_REQUEST['url']) && (trim($_REQUEST['url']) != ''))

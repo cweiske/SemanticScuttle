@@ -37,7 +37,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_Service
 	}
 
 	function getChildren($tag1, $uId) {
-		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
+		$tagservice =SemanticScuttle_Service_Factory::get('Tag');
 		$tag1 = $tagservice->normalize($tag1);
 
 		if($tag1 == '') return false;
@@ -66,7 +66,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_Service
 	}
 
 	function addChild($tag1, $tag2, $uId) {
-		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
+		$tagservice =SemanticScuttle_Service_Factory::get('Tag');
 		$tag1 = $tagservice->normalize($tag1);
 		$tag2 = $tagservice->normalize($tag2);
 
@@ -110,7 +110,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_Service
 	}
 
 	function existsChild($tag1, $tag2, $uId) {
-		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
+		$tagservice =SemanticScuttle_Service_Factory::get('Tag');
 		$tag1 = $tagservice->normalize($tag1);
 		$tag2 = $tagservice->normalize($tag2);
 
@@ -214,7 +214,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_Service
 	}
 
 	function _isSynonymKey($tag1, $uId) {
-		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
+		$tagservice =SemanticScuttle_Service_Factory::get('Tag');
 		$tag1 = $tagservice->normalize($tag1);
 
 		$query = "SELECT tag1 FROM `". $this->getTableName() ."`";
@@ -226,7 +226,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_Service
 	}
 
 	function _isSynonymValue($tag2, $uId) {
-		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
+		$tagservice =SemanticScuttle_Service_Factory::get('Tag');
 		$tag2 = $tagservice->normalize($tag2);
 
 		$query = "SELECT tag2 FROM `". $this->getTableName() ."`";
@@ -250,7 +250,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_Service
 	}
 
 	function _getSynonymKey($tag2, $uId) {
-		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
+		$tagservice =SemanticScuttle_Service_Factory::get('Tag');
 		$tag2 = $tagservice->normalize($tag2);
 
 		if($this->_isSynonymKey($tag2)) return $tag2;
@@ -279,7 +279,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_Service
 	 * $tagExcepted allows to hide a value.
 	 */
 	function _getSynonymValues($tag1, $uId, $tagExcepted = NULL) {
-		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
+		$tagservice =SemanticScuttle_Service_Factory::get('Tag');
 		$tag1 = $tagservice->normalize($tag1);
 		$tagExcepted = $tagservice->normalize($tagExcepted);
 

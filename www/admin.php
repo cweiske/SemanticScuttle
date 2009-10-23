@@ -20,13 +20,13 @@
 require_once '../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$bookmark2tagservice = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark2Tagservice');
-$bookmarkservice = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark');
-$tag2tagservice = SemanticScuttle_Service_Factory :: getServiceInstance('Tag2Tag');
-$tagcacheservice = SemanticScuttle_Service_Factory :: getServiceInstance('TagCache');
-$commondescriptionservice = SemanticScuttle_Service_Factory :: getServiceInstance('CommonDescription');
-$searchhistoryservice = SemanticScuttle_Service_Factory :: getServiceInstance('SearchHistory');
-$tagstatservice = SemanticScuttle_Service_Factory :: getServiceInstance('TagStat');
+$bookmark2tagservice = SemanticScuttle_Service_Factory :: get('Bookmark2Tagservice');
+$bookmarkservice = SemanticScuttle_Service_Factory :: get('Bookmark');
+$tag2tagservice = SemanticScuttle_Service_Factory :: get('Tag2Tag');
+$tagcacheservice = SemanticScuttle_Service_Factory :: get('TagCache');
+$commondescriptionservice = SemanticScuttle_Service_Factory :: get('CommonDescription');
+$searchhistoryservice = SemanticScuttle_Service_Factory :: get('SearchHistory');
+$tagstatservice = SemanticScuttle_Service_Factory :: get('TagStat');
 
 // Header variables
 $tplVars['subtitle'] = T_('Manage users');

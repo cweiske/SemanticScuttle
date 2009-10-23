@@ -53,7 +53,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_Service
 			}
 		}
 
-		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
+		$tagservice =SemanticScuttle_Service_Factory::get('Tag');
 		$tags = $tagservice->normalize($tags);
 
 
@@ -104,8 +104,8 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_Service
 			}
 		}
 
-		$bs =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
-		$tts =SemanticScuttle_Service_Factory::getServiceInstance('Tag2Tag');
+		$bs =SemanticScuttle_Service_Factory::get('Bookmark');
+		$tts =SemanticScuttle_Service_Factory::get('Tag2Tag');
 
 		// Create links between tags
 		foreach($tags as $key => $tag) {
@@ -161,7 +161,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_Service
 	}
 
 	function deleteTag($uId, $tag) {
-		$bs =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
+		$bs =SemanticScuttle_Service_Factory::get('Bookmark');
 
 		$query = 'DELETE FROM '. $this->getTableName();
 		$query.= ' USING '. $this->getTableName() .', '. $bs->getTableName();
@@ -235,7 +235,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_Service
 	}
 
 	function &getTags($userid = NULL) {
-		$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
+		$userservice =SemanticScuttle_Service_Factory::get('User');
 		$logged_on_user = $userservice->getCurrentUserId();
 
 		$query = 'SELECT T.tag, COUNT(B.bId) AS bCount FROM '. $GLOBALS['tableprefix'] .'bookmarks AS B INNER JOIN '. $userservice->getTableName() .' AS U ON B.uId = U.'. $userservice->getFieldName('primary') .' INNER JOIN '. $GLOBALS['tableprefix'] .'bookmarks2tags AS T ON B.bId = T.bId';
@@ -310,7 +310,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_Service
 
 	// Returns the most popular tags used for a particular bookmark hash
 	function &getRelatedTagsByHash($hash, $limit = 20) {
-		$userservice = SemanticScuttle_Service_Factory :: getServiceInstance('User');
+		$userservice = SemanticScuttle_Service_Factory :: get('User');
 		$sId = $userservice->getCurrentUserId();
 		// Logged in
 		if ($userservice->isLoggedOn()) {
@@ -340,7 +340,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_Service
 	
 	function &getAdminTags($limit = 30, $logged_on_user = NULL, $days = NULL) {
 		// look for admin ids
-		$userservice = SemanticScuttle_Service_Factory :: getServiceInstance('User');
+		$userservice = SemanticScuttle_Service_Factory :: get('User');
 		$adminIds = $userservice->getAdminIds();
 		
 		// ask for their tags
@@ -349,7 +349,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_Service
 	
 	function &getContactTags($user, $limit = 30, $logged_on_user = NULL, $days = NULL) {
 		// look for contact ids
-		$userservice = SemanticScuttle_Service_Factory :: getServiceInstance('User');
+		$userservice = SemanticScuttle_Service_Factory :: get('User');
 		$contacts = $userservice->getWatchlist($user);
 		
 		// add the user (to show him/her also his/her tags)
@@ -417,8 +417,8 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_Service
 	}
 
 	function renameTag($userid, $old, $new, $fromApi = false) {
-		$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
-		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
+		$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
+		$tagservice =SemanticScuttle_Service_Factory::get('Tag');
 
 		if (is_null($userid) || is_null($old) || is_null($new))
 		return false;

@@ -612,7 +612,7 @@ class User {
 	function getName() {
 		// Look for value only if not already set
 		if(!isset($this->name)) {
-			$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
+			$userservice =SemanticScuttle_Service_Factory::get('User');
 			$user = $userservice->getUser($this->id);
 			$this->name = $user['name'];
 		}
@@ -622,7 +622,7 @@ class User {
 	function getEmail() {
 		// Look for value only if not already set
 		if(!isset($this->email)) {
-			$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
+			$userservice =SemanticScuttle_Service_Factory::get('User');
 			$user = $userservice->getUser($this->id);
 			$this->email = $user['email'];
 		}
@@ -632,7 +632,7 @@ class User {
 	function getHomepage() {
 		// Look for value only if not already set
 		if(!isset($this->homepage)) {
-			$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
+			$userservice =SemanticScuttle_Service_Factory::get('User');
 			$user = $userservice->getUser($this->id);
 			$this->homepage = $user['homepage'];
 		}
@@ -642,7 +642,7 @@ class User {
 	function getContent() {
 		// Look for value only if not already set
 		if(!isset($this->content)) {
-			$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
+			$userservice =SemanticScuttle_Service_Factory::get('User');
 			$user = $userservice->getUser($this->id);
 			$this->content = $user['uContent'];
 		}
@@ -652,7 +652,7 @@ class User {
 	function getDatetime() {
 		// Look for value only if not already set
 		if(!isset($this->content)) {
-			$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
+			$userservice =SemanticScuttle_Service_Factory::get('User');
 			$user = $userservice->getUser($this->id);
 			$this->datetime = $user['uDatetime'];
 		}
@@ -662,14 +662,14 @@ class User {
 	function isAdmin() {
 		// Look for value only if not already set
 		if(!isset($this->isAdmin)) {
-			$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
+			$userservice =SemanticScuttle_Service_Factory::get('User');
 			$this->isAdmin = $userservice->isAdmin($this->id);
 		}
 		return $this->isAdmin;
 	}
 	
 	function getNbBookmarks($range = 'public') {
-		$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
+		$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
 		return $bookmarkservice->countBookmarks($this->getId(), $range);
 	}
 }

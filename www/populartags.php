@@ -22,8 +22,8 @@
 require_once '../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$b2tservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark2Tag');
-$cacheservice =SemanticScuttle_Service_Factory::getServiceInstance('Cache');
+$b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
+$cacheservice =SemanticScuttle_Service_Factory::get('Cache');
 
 @list($url, $user) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
 

@@ -36,8 +36,8 @@ if (POST_TERMS != '') {
 	// GET
 } else {
 	/* Service creation: only useful services are created */
-	$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
-	$searchhistoryservice =SemanticScuttle_Service_Factory::getServiceInstance('SearchHistory');
+	$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
+	$searchhistoryservice =SemanticScuttle_Service_Factory::get('SearchHistory');
 
 	/* Managing current logged user */
 	$currentUserId = $userservice->getCurrentUserId();

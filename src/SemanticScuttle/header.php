@@ -50,10 +50,10 @@ if (!defined('UNIT_TEST_MODE')) {
 }
 
 // 5 // Create mandatory services and objects
-$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
+$userservice =SemanticScuttle_Service_Factory::get('User');
 $currentUser = $userservice->getCurrentObjectUser();
 
-$templateservice =SemanticScuttle_Service_Factory::getServiceInstance('Template');
+$templateservice =SemanticScuttle_Service_Factory::get('Template');
 $tplVars = array();
 $tplVars['currentUser'] = $currentUser;
 $tplVars['userservice'] = $userservice;

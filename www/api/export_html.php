@@ -9,7 +9,7 @@ require_once('httpauth.inc.php');
 require_once '../../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
+$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
 
 // Check to see if a tag was specified.
 if (isset($_REQUEST['tag']) && (trim($_REQUEST['tag']) != ''))

@@ -25,7 +25,7 @@ header('Cache-Control: no-cache, must-revalidate');
 require_once '../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$bookmarkservice = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark');
+$bookmarkservice = SemanticScuttle_Service_Factory :: get('Bookmark');
 
 /* Managing all possible inputs */
 isset($_GET['id']) ? define('GET_ID', $_GET['id']): define('GET_ID', '');

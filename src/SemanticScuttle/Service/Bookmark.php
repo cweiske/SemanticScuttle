@@ -27,7 +27,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_Service
 
 	function _getbookmark($fieldname, $value, $all = false) {
 		if (!$all) {
-			$userservice = SemanticScuttle_Service_Factory :: getServiceInstance('User');
+			$userservice = SemanticScuttle_Service_Factory :: get('User');
 			$sId = $userservice->getCurrentUserId();
 			$range = ' AND uId = '. $sId;
 		} else {
@@ -61,7 +61,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_Service
 
 		if ($row = & $this->db->sql_fetchrow($dbresult)) {
 			if ($include_tags) {
-				$b2tservice = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark2Tag');
+				$b2tservice = SemanticScuttle_Service_Factory :: get('Bookmark2Tag');
 				$row['tags'] = $b2tservice->getTagsForBookmark($bid);
 			}
 			$output = $row;			
@@ -128,7 +128,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_Service
 			return false;
 		}
 
-		$userservice = SemanticScuttle_Service_Factory::getServiceInstance('User');
+		$userservice = SemanticScuttle_Service_Factory::get('User');
 		$user = $userservice->getCurrentUser();
 
 		//user has to be either admin, or owner
@@ -170,7 +170,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_Service
 	// Note that date is expected to be a string that's interpretable by strtotime().
 	function addBookmark($address, $title, $description, $privateNote, $status, $categories, $date = NULL, $fromApi = false, $fromImport = false, $sId = -1) {
 		if($sId == -1) {
-			$userservice = SemanticScuttle_Service_Factory :: getServiceInstance('User');
+			$userservice = SemanticScuttle_Service_Factory :: get('User');
 			$sId = $userservice->getCurrentUserId();
 		}
 
@@ -214,7 +214,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_Service
 		$extension = end($uriparts);
 		unset($uriparts);
 
-		$b2tservice = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark2Tag');
+		$b2tservice = SemanticScuttle_Service_Factory :: get('Bookmark2Tag');
 		if (!$b2tservice->attachTags($bId, $categories, $fromApi, $extension, false, $fromImport)) {
 			$this->db->sql_transaction('rollback');
 			message_die(GENERAL_ERROR, 'Could not insert bookmark', '', __LINE__, __FILE__, $sql, $this->db);
@@ -270,7 +270,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_Service
 		$extension = end($uriparts);
 		unset($uriparts);
 
-		$b2tservice = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark2Tag');
+		$b2tservice = SemanticScuttle_Service_Factory :: get('Bookmark2Tag');
 		if (!$b2tservice->attachTags($bId, $categories, $fromApi, $extension)) {
 			$this->db->sql_transaction('rollback');
 			message_die(GENERAL_ERROR, 'Could not update bookmark', '', __LINE__, __FILE__, $sql, $this->db);
@@ -292,9 +292,9 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_Service
 		//    bookmarks; otherwise, just get the public bookmarks.
 		//  - if the $user is set and IS the logged-in user, then get all bookmarks.
 
-		$userservice =SemanticScuttle_Service_Factory::getServiceInstance('User');
-		$b2tservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark2Tag');
-		$tag2tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag2Tag');
+		$userservice =SemanticScuttle_Service_Factory::get('User');
+		$b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
+		$tag2tagservice =SemanticScuttle_Service_Factory::get('Tag2Tag');
 		$sId = $userservice->getCurrentUserId();
 
 		if ($userservice->isLoggedOn()) {
@@ -506,7 +506,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_Service
 			return false;
 		}
 
-		$userservice = SemanticScuttle_Service_Factory :: getServiceInstance('User');
+		$userservice = SemanticScuttle_Service_Factory :: get('User');
 		$sId = $userservice->getCurrentUserId();
 
 		if ($userservice->isLoggedOn()) {

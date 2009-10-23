@@ -27,7 +27,7 @@ class SemanticScuttle_Service_TagStat extends SemanticScuttle_Service
 	}
 
 	function getNbChildren($tag1, $relationType, $uId) {
-		$tts =SemanticScuttle_Service_Factory::getServiceInstance('Tag2Tag');
+		$tts =SemanticScuttle_Service_Factory::get('Tag2Tag');
 		$query = "SELECT tag1, relationType, uId FROM `". $tts->getTableName() ."`";
 		$query.= " WHERE tag1 = '" .$tag1 ."'";
 		$query.= " AND relationType = '". $relationType ."'";
@@ -102,7 +102,7 @@ class SemanticScuttle_Service_TagStat extends SemanticScuttle_Service
 			return false;
 		}
 
-		$tts =SemanticScuttle_Service_Factory::getServiceInstance('Tag2Tag');
+		$tts =SemanticScuttle_Service_Factory::get('Tag2Tag');
 		$linkedTags = $tts->getLinkedTags($tag1, $relationType, $uId);
 		$nbDescendants = 0;
 		$maxDepth = 0;
@@ -123,7 +123,7 @@ class SemanticScuttle_Service_TagStat extends SemanticScuttle_Service
 	}
 
 	function updateAllStat() {
-		$tts =SemanticScuttle_Service_Factory::getServiceInstance('Tag2Tag');
+		$tts =SemanticScuttle_Service_Factory::get('Tag2Tag');
 
 		$query = "SELECT tag1, uId FROM `". $tts->getTableName() ."`";
 		$query.= " WHERE relationType = '>'";

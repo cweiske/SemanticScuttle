@@ -22,7 +22,7 @@
 require_once '../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$tagservice       = SemanticScuttle_Service_Factory :: getServiceInstance('Tag');
+$tagservice       = SemanticScuttle_Service_Factory :: get('Tag');
 
 /* Managing all possible inputs */
 isset($_POST['confirm']) ? define('POST_CONFIRM', $_POST['confirm']): define('POST_CONFIRM', '');

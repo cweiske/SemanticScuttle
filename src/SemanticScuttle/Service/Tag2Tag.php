@@ -27,7 +27,7 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_Service
 	}
 
 	function addLinkedTags($tag1, $tag2, $relationType, $uId) {
-		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
+		$tagservice =SemanticScuttle_Service_Factory::get('Tag');
 		$tag1 = $tagservice->normalize($tag1);
 		$tag2 = $tagservice->normalize($tag2);
 
@@ -57,7 +57,7 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_Service
 	// Return linked tags just for admin users
 	function getAdminLinkedTags($tag, $relationType, $inverseRelation = false, $stopList = array()) {
 		// look for admin ids
-		$userservice = SemanticScuttle_Service_Factory :: getServiceInstance('User');
+		$userservice = SemanticScuttle_Service_Factory :: get('User');
 		$adminIds = $userservice->getAdminIds();
 		
 		//ask for their linked tags
@@ -130,7 +130,7 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_Service
 		}
 
 		// try to find data in cache
-		$tcs = SemanticScuttle_Service_Factory::getServiceInstance('TagCache');
+		$tcs = SemanticScuttle_Service_Factory::get('TagCache');
 		if(count($stopList) == 0) {
 			$activatedCache = true;
 		} else {
@@ -188,7 +188,7 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_Service
 		$query = "SELECT DISTINCT tts.tag1 as tag";
 		$query.= " FROM `". $this->getTableName() ."` tts";
 		if($orderBy != null) {
-			$tsts =SemanticScuttle_Service_Factory::getServiceInstance('TagStat');
+			$tsts =SemanticScuttle_Service_Factory::get('TagStat');
 			$query.= ", ".$tsts->getTableName() ." tsts";
 		}
 		$query.= " WHERE tts.tag1 <> ALL";
@@ -339,7 +339,7 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_Service
 	}	
 
 	function renameTag($uId, $oldName, $newName) {
-		$tagservice =SemanticScuttle_Service_Factory::getServiceInstance('Tag');
+		$tagservice =SemanticScuttle_Service_Factory::get('Tag');
 		$newName = $tagservice->normalize($newName);
 
 		$query = 'UPDATE `'. $this->getTableName() .'`';
@@ -366,10 +366,10 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_Service
 	}
 
 	function update($tag1, $tag2, $relationType, $uId) {
-		$tsts =SemanticScuttle_Service_Factory::getServiceInstance('TagStat');
+		$tsts =SemanticScuttle_Service_Factory::get('TagStat');
 		$tsts->updateStat($tag1, $relationType, $uId);
 
-		$tcs = SemanticScuttle_Service_Factory::getServiceInstance('TagCache');
+		$tcs = SemanticScuttle_Service_Factory::get('TagCache');
 		$tcs->deleteByUser($uId);
 	}
 
@@ -377,7 +377,7 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_Service
 		$query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';
 		$this->db->sql_query($query);
 
-		$tsts =SemanticScuttle_Service_Factory::getServiceInstance('TagStat');
+		$tsts =SemanticScuttle_Service_Factory::get('TagStat');
 		$tsts->deleteAll();
 	}
 

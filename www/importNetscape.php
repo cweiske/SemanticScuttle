@@ -22,7 +22,7 @@
 require_once '../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
+$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
 
 
 /* Managing all possible inputs */

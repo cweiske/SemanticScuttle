@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /* Service creation: only useful services are created */
-$b2tservice = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark2Tag');
+$b2tservice = SemanticScuttle_Service_Factory :: get('Bookmark2Tag');
 
 $logged_on_userid = $userservice->getCurrentUserId();
 

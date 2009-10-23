@@ -22,7 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 require_once '../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$b2tservice = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark2Tag');
+$b2tservice = SemanticScuttle_Service_Factory :: get('Bookmark2Tag');
 
 
 /* Managing all possible inputs */

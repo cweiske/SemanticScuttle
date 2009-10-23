@@ -62,7 +62,7 @@ class SemanticScuttle_Service_Factory
      *
      * @return SemanticScuttle_Service Service object
      */
-    public static function getServiceInstance($name)
+    public static function get($name)
     {
         self::loadDb();
         self::loadService($name);

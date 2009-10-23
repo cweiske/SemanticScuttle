@@ -21,16 +21,16 @@ class CommonDescriptionTest extends PHPUnit_Framework_TestCase
         global $dbhost, $dbuser, $dbpass, $dbname, $dbport, $dbpersist, $dbtype, $tableprefix;
 		require_once dirname(__FILE__) . '/../src/SemanticScuttle/header.php';
 
-	$this->us =SemanticScuttle_Service_Factory::getServiceInstance('User');
-	$this->bs =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark');
+	$this->us =SemanticScuttle_Service_Factory::get('User');
+	$this->bs =SemanticScuttle_Service_Factory::get('Bookmark');
 	$this->bs->deleteAll();
-	$this->b2ts =SemanticScuttle_Service_Factory::getServiceInstance('Bookmark2Tag');
+	$this->b2ts =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
 	$this->b2ts->deleteAll();
-	$this->tts =SemanticScuttle_Service_Factory::getServiceInstance('Tag2Tag');
+	$this->tts =SemanticScuttle_Service_Factory::get('Tag2Tag');
 	$this->tts->deleteAll(); 
-	$this->tsts =SemanticScuttle_Service_Factory::getServiceInstance('TagStat');
+	$this->tsts =SemanticScuttle_Service_Factory::get('TagStat');
 	$this->tsts->deleteAll();
-	$this->cds =SemanticScuttle_Service_Factory::getServiceInstance('CommonDescription');
+	$this->cds =SemanticScuttle_Service_Factory::get('CommonDescription');
 	$this->cds->deleteAll();
     }
  

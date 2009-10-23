@@ -22,8 +22,8 @@
 require_once '../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$b2tservice       = SemanticScuttle_Service_Factory :: getServiceInstance('Bookmark2Tag');
-$cdservice        = SemanticScuttle_Service_Factory :: getServiceInstance('CommonDescription');
+$b2tservice       = SemanticScuttle_Service_Factory :: get('Bookmark2Tag');
+$cdservice        = SemanticScuttle_Service_Factory :: get('CommonDescription');
 
 /* Managing all possible inputs */
 isset($_POST['confirm']) ? define('POST_CONFIRM', $_POST['confirm']): define('POST_CONFIRM', '');
