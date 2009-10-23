@@ -15,9 +15,9 @@ class SemanticScuttle_Service_User extends SemanticScuttle_Service
     /**
      * Returns the single service instance
      *
-     * @param DB $db Database object
+     * @param sql_db $db Database object
      *
-     * @return SemanticScuttle_Service
+     * @return SemanticScuttle_Service_User
      */
 	public static function getInstance($db)
     {
