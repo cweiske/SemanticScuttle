@@ -1,6 +1,29 @@
 <?php
-/* Connect to the database and build services */
+/**
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
 
+/**
+ * Connect to the database and build services.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
 class SemanticScuttle_Service_Factory
 {
     /**
@@ -71,7 +94,7 @@ class SemanticScuttle_Service_Factory
         if (!class_exists($class)) {
             //PEAR classname to filename rule
             $file = str_replace('_', '/', $class) . '.php';
-            require_once $file;
+            include_once $file;
         }
 
         self::$instances[$name] = call_user_func(
@@ -95,19 +118,20 @@ class SemanticScuttle_Service_Factory
         if (self::$db !== null) {
             return;
         }
-        require_once 'SemanticScuttle/db/'. $dbtype .'.php';
+        include_once 'SemanticScuttle/db/'. $dbtype .'.php';
         $db = new sql_db();
         $db->sql_connect(
             $dbhost, $dbuser, $dbpass, $dbname, $dbport, $dbpersist
         );
-        if(!$db->db_connect_id) {
+        if (!$db->db_connect_id) {
             message_die(
                 CRITICAL_ERROR,
                 'Could not connect to the database',
-                $db
+                self::$db
             );
         }
         $db->sql_query('SET NAMES UTF8');
+        self::$db = $db;
     }
 
 }
