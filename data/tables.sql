@@ -170,3 +170,13 @@ CREATE TABLE `sc_searchhistory` (
   `uId` int(11) NOT NULL default '0',
   PRIMARY KEY (`shId`)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci ;
+
+
+CREATE TABLE `sc_votes` (
+  `bid` INT NOT NULL ,
+  `uid` INT NOT NULL ,
+  `vote` INT( 2 ) NOT NULL ,
+  UNIQUE KEY `bid_2` (`bid`,`uid`),
+  KEY `bid` (`bid`),
+  KEY `uid` (`uid`)
+) CHARACTER SET utf8 COLLATE utf8_general_ci ;
