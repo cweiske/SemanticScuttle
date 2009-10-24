@@ -1,8 +1,6 @@
 <?php
-class SemanticScuttle_Service_Bookmark extends SemanticScuttle_Service
+class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 {
-    var $tablename;
-
     /**
      * Returns the single service instance
      *
@@ -288,7 +286,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_Service
         unset($uriparts);
 
         $b2tservice = SemanticScuttle_Service_Factory::get('Bookmark2Tag');
-        $aok = !$b2tservice->attachTags(
+        $aok = $b2tservice->attachTags(
             $bId, $categories, $fromApi, $extension, false, $fromImport
         );
         if (!$aok) {
@@ -679,11 +677,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_Service
         $query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';
         $this->db->sql_query($query);
     }
-
-
-    // Properties
-    function getTableName()       { return $this->tablename; }
-    function setTableName($value) { $this->tablename = $value; }
 
 }
 
