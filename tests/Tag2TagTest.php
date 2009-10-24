@@ -435,7 +435,7 @@ class Tag2TagTest extends PHPUnit_Framework_TestCase
 		$bs->addBookmark("http://site1.com", "title", "description", "status", array('tag1', 'tag11', 'tag111'), null, false, false, 1);
 		$bs->addBookmark("http://site1.com", "title2", "description2", "status", array('tag2', 'tag22', 'tag222'), null, false, false, 2);
 
-		$bookmarks =& $bs->getBookmarks(0, 1, NULL, NULL, NULL, getSortOrder(), NULL, 0, $dtend);
+		$bookmarks =& $bs->getBookmarks(0, 1, NULL, NULL, NULL, getSortOrder(), NULL, 0, null);
 		$this->assertEquals(1, $bookmarks['total']);
 
 		$b2ts->renameTag(1, 'tag1', 'newtag1');
