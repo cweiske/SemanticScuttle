@@ -57,6 +57,7 @@ class VoteTest extends PHPUnit_Framework_TestCase
     {
         //FIXME: create true new instance
         $this->vs = SemanticScuttle_Service_Factory::get('Vote');
+        $this->vs->deleteAll();
     }
 
 

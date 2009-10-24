@@ -163,14 +163,14 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
                 '', __LINE__, __FILE__, $query, $this->db
             );
             //FIXME: throw exception
-            return false;
+            return null;
         }
 
         $row = $this->db->sql_fetchrow($dbres);
         $this->db->sql_freeresult($dbres);
 
         if (!$row) {
-            return false;
+            return null;
         }
 
         return (int)$row['count'] == 1;
@@ -279,6 +279,20 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
         throw new Exception('Not implemented yet');
         //FIXME
         //SELECT bid, SUM( vote ) FROM sc_votes GROUP BY bid
+    }
+
+
+
+    /**
+     * Delete all votes from the database table.
+     * Used in unit tests.
+     *
+     * @return void
+     */
+    public function deleteAll()
+    {
+        $query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';
+        $this->db->sql_query($query);
     }
 
 
