@@ -112,7 +112,7 @@ class SemanticScuttle_Service_Factory
      */
     protected static function loadDb()
     {
-        global $dbhost, $dbuser, $dbpass, $dbname, 
+        global $dbhost, $dbuser, $dbpass, $dbname,
             $dbport, $dbpersist, $dbtype;
 
         if (self::$db !== null) {

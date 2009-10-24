@@ -11,18 +11,18 @@ class SemanticScuttle_Service_Cache extends SemanticScuttle_Service
      *
      * @return SemanticScuttle_Service
      */
-	public static function getInstance($db)
+    public static function getInstance($db)
     {
-		static $instance;
-		if (!isset($instance)) {
+        static $instance;
+        if (!isset($instance)) {
             $instance = new self($db);
         }
-		return $instance;
-	}
+        return $instance;
+    }
 
     protected function __construct()
     {
-        $this->basedir = $GLOBALS['dir_cache'];    
+        $this->basedir = $GLOBALS['dir_cache'];
     }
 
     function Start($hash, $time = 300) {
@@ -37,7 +37,7 @@ class SemanticScuttle_Service_Cache extends SemanticScuttle_Service
     }
 
     function End($hash) {
-        $cachefile = $this->basedir .'/'. $hash . $this->fileextension;      
+        $cachefile = $this->basedir .'/'. $hash . $this->fileextension;
         $handle = fopen($cachefile, 'w');
         fwrite($handle, ob_get_contents());
         fclose($handle);

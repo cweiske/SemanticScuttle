@@ -70,7 +70,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
                 $b2tservice = SemanticScuttle_Service_Factory :: get('Bookmark2Tag');
                 $row['tags'] = $b2tservice->getTagsForBookmark($bid);
             }
-            $output = $row;            
+            $output = $row;
         } else {
             $output = false;
         }
@@ -109,13 +109,13 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             break;
             case 'shared':
             $sql.= ' AND bStatus = 1';
-            break;            
+            break;
             case 'public':
             default:
             $sql.= ' AND bStatus = 0';
             break;
-        }            
-        
+        }
+
         if (!($dbresult = & $this->db->sql_query($sql))) {
             message_die(GENERAL_ERROR, 'Could not get vars', '', __LINE__, __FILE__, $sql, $this->db);
         }
@@ -178,7 +178,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             message_die(GENERAL_ERROR, 'Could not get vars', '', __LINE__, __FILE__, $sql, $this->db);
         }
         if($this->db->sql_fetchfield(0, 0) > 0) {
-            $output = true; 
+            $output = true;
         } else {
             $output = false;
         }
@@ -332,7 +332,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         $categories, $date = NULL, $fromApi = false
     ) {
         if (!is_numeric($bId)) {
-            return false;        
+            return false;
         }
 
         // Get the client's IP address and the date; note that the date is in GMT.
@@ -345,10 +345,10 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         $ip = getenv('HTTP_X_FORWARDED_FOR');
 
         $moddatetime = gmdate('Y-m-d H:i:s', time());
-        
+
         $address = $this->normalize($address);
-        
-        //check if a new address ($address) doesn't already exist for another bookmark from the same user 
+
+        //check if a new address ($address) doesn't already exist for another bookmark from the same user
         $bookmark = $this->getBookmark($bId);
         if($bookmark['bAddress'] != $address && $this->bookmarkExists($address, $bookmark['uId'])) {
             message_die(GENERAL_ERROR, 'Could not update bookmark (URL already existing = '.$address.')', '', __LINE__, __FILE__);
@@ -415,7 +415,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      * @param string  $terms     Search terms separated by spaces
      * @param string  $sortOrder One of the following values:
      *                           "date_asc", "date_desc",
-     *                           "title_desc", "title_asc", 
+     *                           "title_desc", "title_asc",
      *                           "url_desc", "url_asc"
      * @param boolean $watched   True if only watched bookmarks
      *                           shall be returned (FIXME)
@@ -540,7 +540,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         if ($terms) {
             // Multiple search terms okay
             $aTerms = explode(' ', $terms);
-            $aTerms = array_map('trim', $aTerms);    
+            $aTerms = array_map('trim', $aTerms);
 
             // Search terms in tags as well when none given
             if (!count($tags)) {
@@ -555,7 +555,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
                 $query_4 .= ' AND (B.bTitle LIKE "%'. $this->db->sql_escape($aTerms[$i]) .'%"';
                 $query_4 .= ' OR B.bDescription LIKE "%'. $this->db->sql_escape($aTerms[$i]) .'%"';
                 $query_4 .= ' OR B.bPrivateNote LIKE "'. $this->db->sql_escape($aTerms[$i]) .'%"'; //warning : search in private notes of everybody but private notes won't appear if not allowed.
-                $query_4 .= ' OR U.username = "'. $this->db->sql_escape($aTerms[$i]) .'"'; //exact match for username                
+                $query_4 .= ' OR U.username = "'. $this->db->sql_escape($aTerms[$i]) .'"'; //exact match for username
                 if ($dotags) {
                     $query_4 .= ' OR T.tag LIKE "'. $this->db->sql_escape($aTerms[$i]) .'%"';
                 }
@@ -622,8 +622,8 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             message_die(GENERAL_ERROR, 'Could not delete bookmarks', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
-        
-        
+
+
 
         $query = 'DELETE FROM '. $GLOBALS['tableprefix'] .'bookmarks2tags WHERE bId = '. intval($bookmarkid);
         $this->db->sql_transaction('begin');
@@ -679,7 +679,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         if (!($dbresult = & $this->db->sql_query($sql))) {
             message_die(GENERAL_ERROR, 'Could not get vars', '', __LINE__, __FILE__, $sql, $this->db);
         }
-        
+
         $output = $this->db->sql_fetchfield(0, 0) - 1;
         $this->db->sql_freeresult($dbresult);
         return $output;

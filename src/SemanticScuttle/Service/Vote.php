@@ -142,7 +142,7 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
 
 
     /**
-     * Returns if the user has already voted for 
+     * Returns if the user has already voted for
      * the given bookmark.
      *
      * @param integer $bookmark Bookmark ID
@@ -220,7 +220,7 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
      *
      * @internal
      * We check if voting is enabled or not,
-     * and if the user has already voted. 
+     * and if the user has already voted.
      * It is up to the calling code to make sure
      * the user is authorized to vote.
      *
