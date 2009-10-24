@@ -1,9 +1,6 @@
 <?php
-class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_Service
+class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
 {
-	var $tablename;
-
-
     /**
      * Returns the single service instance
      *
@@ -481,9 +478,5 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_Service
 		$this->db->sql_query($query);
 	}
 
-
-	// Properties
-	function getTableName()       { return $this->tablename; }
-	function setTableName($value) { $this->tablename = $value; }
 }
 ?>

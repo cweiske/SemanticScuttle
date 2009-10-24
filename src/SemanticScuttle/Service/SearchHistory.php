@@ -1,7 +1,6 @@
 <?php
-class SemanticScuttle_Service_SearchHistory extends SemanticScuttle_Service
+class SemanticScuttle_Service_SearchHistory extends SemanticScuttle_DbService
 {
-	var $tablename;
 	var $sizeSearchHistory;
 
     /**
@@ -127,8 +126,5 @@ class SemanticScuttle_Service_SearchHistory extends SemanticScuttle_Service
 		$this->db->sql_query($query);
 	}
 
-	// Properties
-	function getTableName()       { return $this->tablename; }
-	function setTableName($value) { $this->tablename = $value; }
 }
 ?>

@@ -1,8 +1,6 @@
 <?php
-class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_Service
+class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
 {
-	protected $tablename;
-
     /**
      * Returns the single service instance
      *
@@ -381,8 +379,5 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_Service
 		$tsts->deleteAll();
 	}
 
-	// Properties
-	function getTableName()       { return $this->tablename; }
-	function setTableName($value) { $this->tablename = $value; }
 }
 ?>

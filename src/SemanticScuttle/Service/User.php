@@ -1,13 +1,11 @@
 <?php
-class SemanticScuttle_Service_User extends SemanticScuttle_Service
+class SemanticScuttle_Service_User extends SemanticScuttle_DbService
 {
-	protected $db;
 	protected $fields = array(
         'primary'   =>  'uId',
         'username'  =>  'username',
         'password'  =>  'password');
 	protected $profileurl;
-	protected $tablename;
 	protected $sessionkey;
 	protected $cookiekey;
 	protected $cookietime = 1209600; // 2 weeks
@@ -568,10 +566,6 @@ class SemanticScuttle_Service_User extends SemanticScuttle_Service
 	function isSessionStable() {
 		return $_SESSION['sessionStable'] == 1;
 	}
-
-	// Properties
-	function getTableName()       { return $this->tablename; }
-	function setTableName($value) { $this->tablename = $value; }
 
 	function getFieldName($field)         { return $this->fields[$field]; }
 	function setFieldName($field, $value) { $this->fields[$field] = $value; }
