@@ -27,6 +27,7 @@ class AllTests extends PHPUnit_Framework_TestSuite
     }
 
 
+
     public static function suite()
     {
     	$suite = new AllTests();
@@ -40,12 +41,7 @@ class AllTests extends PHPUnit_Framework_TestSuite
         return $suite;
     }
  
-    protected function setUp()
-    {
-    	global $dbhost, $dbuser, $dbpass, $dbname, $dbport, $dbpersist, $dbtype,
-            $tableprefix, $TEMPLATES_DIR, $filetypes, $debugMode;
-		require_once dirname(__FILE__) . '/../src/SemanticScuttle/header.php';
-    }
+
  
     protected function tearDown()
     {
