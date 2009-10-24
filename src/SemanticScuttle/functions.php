@@ -160,6 +160,8 @@ function message_die($msg_code, $msg_text = '', $msg_title = '', $err_line = '',
 
 		if ($err_line != '' && $err_file != '')
 		$debug_text .= '</br /><br />'. T_('Line') .' : '. $err_line .'<br />'. T_('File') .' :'. $err_file;
+
+		debug_print_backtrace();
 	}
 
 	switch($msg_code) {
