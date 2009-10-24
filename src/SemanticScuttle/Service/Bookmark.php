@@ -390,20 +390,52 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
 
 
+    /**
+     * Only get the bookmarks that are visible to the current user.
+     * Our rules:
+     * - if the $user is NULL, that means get bookmarks from ALL users,
+     *   so we need to make sure to check the logged-in user's
+     *   watchlist and get the contacts-only bookmarks from
+     *   those users.
+     *   If the user isn't logged-in, just get the public bookmarks.
+     *
+     * - if the $user is set and isn't the logged-in user, then get
+     *   that user's bookmarks, and if that user is on the logged-in
+     *   user's watchlist, get the public AND contacts-only
+     *   bookmarks; otherwise, just get the public bookmarks.
+     *
+     * - if the $user is set and IS the logged-in user, then
+     *   get all bookmarks.
+     *
+     * @param integer $start     Page number
+     * @param integer $perpage   Number of bookmarks per page
+     * @param integer $user      User ID
+     * @param mixed   $tags      Array of tags or tags separated
+     *                           by "+" signs
+     * @param string  $terms     Search terms separated by spaces
+     * @param string  $sortOrder One of the following values:
+     *                           "date_asc", "date_desc",
+     *                           "title_desc", "title_asc", 
+     *                           "url_desc", "url_asc"
+     * @param boolean $watched   True if only watched bookmarks
+     *                           shall be returned (FIXME)
+     * @param integer $startdate Filter for creation date.
+     *                           SQL-DateTime value
+     *                           "YYYY-MM-DD hh:ii:ss'
+     * @param integer $enddate   Filter for creation date.
+     *                           SQL-DateTime value
+     *                           "YYYY-MM-DD hh:ii:ss'
+     * @param string  $hash      Filter by URL hash
+     *
+     * @return array Array with two keys: 'bookmarks' and 'total'.
+     *               First contains an array of bookmarks, 'total'
+     *               the total number of bookmarks (without paging).
+     */
     public function getBookmarks(
-        $start = 0, $perpage = NULL, $user = NULL, $tags = NULL,
-        $terms = NULL, $sortOrder = NULL, $watched = NULL,
-        $startdate = NULL, $enddate = NULL, $hash = NULL
+        $start = 0, $perpage = null, $user = null, $tags = null,
+        $terms = null, $sortOrder = null, $watched = null,
+        $startdate = null, $enddate = null, $hash = null
     ) {
-        // Only get the bookmarks that are visible to the current user.  Our rules:
-        //  - if the $user is NULL, that means get bookmarks from ALL users, so we need to make
-        //    sure to check the logged-in user's watchlist and get the contacts-only bookmarks from
-        //    those users. If the user isn't logged-in, just get the public bookmarks.
-        //  - if the $user is set and isn't the logged-in user, then get that user's bookmarks, and
-        //    if that user is on the logged-in user's watchlist, get the public AND contacts-only
-        //    bookmarks; otherwise, just get the public bookmarks.
-        //  - if the $user is set and IS the logged-in user, then get all bookmarks.
-
         $userservice =SemanticScuttle_Service_Factory::get('User');
         $b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
         $tag2tagservice =SemanticScuttle_Service_Factory::get('Tag2Tag');
