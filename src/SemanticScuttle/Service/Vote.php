@@ -1,4 +1,15 @@
 <?php
+/**
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
 
 /**
  * SemanticScuttle voting system.
@@ -15,16 +26,14 @@
  * sure lookups are really fast, since every bookmarks
  * in a list shows its voting.
  *
+ * @category Bookmarking
+ * @package  SemanticScuttle
  * @author Christian Weiske <cweiske@cweiske.de>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
  */
-class SemanticScuttle_Service_Vote extends SemanticScuttle_Service
+class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
 {
-    /**
-     * Database object
-     *
-     * @var sql_db
-     */
-    protected $db;
 
 
 
@@ -62,14 +71,39 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_Service
     /**
      * Returns the sum of votes for the given bookmark.
      *
+     * @internal
+     * Uses the "votes" table to retrieve the votes, which
+     * has high costs. It is more efficient to get the sum of
+     * all votes for a bookmark from the bookmarks table,
+     * field bVoting.
+     *
      * @param integer $bookmark Bookmark ID
      *
      * @return integer Vote (can be positive, 0 or negative)
      */
     public function getVoting($bookmark)
     {
-        //FIXME
-    }
+        $query = 'SELECT SUM(vote) as sum FROM ' . $this->getTableName()
+            . ' WHERE bid = "' . $this->db->sql_escape($bookmark) . '"';
+
+        if (!($dbres = $this->db->sql_query_limit($query, 1, 0))) {
+            message_die(
+                GENERAL_ERROR, 'Could not get voting',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            //FIXME: throw exception
+            return false;
+        }
+
+        $row = $this->db->sql_fetchrow($dbres);
+        $this->db->sql_freeresult($dbres);
+
+        if (!$row) {
+            return false;
+        }
+
+        return (int)$row['sum'];
+    }//public function getVoting(..)
 
 
 
@@ -83,7 +117,26 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_Service
      */
     public function getVotes($bookmark)
     {
-        //FIXME
+        $query = 'SELECT COUNT(vote) as count FROM ' . $this->getTableName()
+            . ' WHERE bid = "' . $this->db->sql_escape($bookmark) . '"';
+
+        if (!($dbres = $this->db->sql_query_limit($query, 1, 0))) {
+            message_die(
+                GENERAL_ERROR, 'Could not get vote count',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            //FIXME: throw exception
+            return false;
+        }
+
+        $row = $this->db->sql_fetchrow($dbres);
+        $this->db->sql_freeresult($dbres);
+
+        if (!$row) {
+            return false;
+        }
+
+        return (int)$row['count'];
     }
 
 
@@ -99,7 +152,28 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_Service
      */
     public function hasVoted($bookmark, $user)
     {
-        //FIXME
+        $query = 'SELECT COUNT(vote) as count FROM ' . $this->getTableName()
+            . ' WHERE'
+            . ' bid = "' . $this->db->sql_escape($bookmark) . '"'
+            . ' AND uid = "' . $this->db->sql_escape($user) . '"';
+
+        if (!($dbres = $this->db->sql_query_limit($query, 1, 0))) {
+            message_die(
+                GENERAL_ERROR, 'Could not get vote count',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            //FIXME: throw exception
+            return false;
+        }
+
+        $row = $this->db->sql_fetchrow($dbres);
+        $this->db->sql_freeresult($dbres);
+
+        if (!$row) {
+            return false;
+        }
+
+        return (int)$row['count'] == 1;
     }
 
 
@@ -111,11 +185,32 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_Service
      * @param integer $bookmark Bookmark ID
      * @param integer $user     User ID
      *
-     * @return integer Either 1 or -1.
+     * @return integer Either 1 or -1, null when not voted.
      */
     public function getVote($bookmark, $user)
     {
-        //FIXME
+        $query = 'SELECT vote FROM ' . $this->getTableName()
+            . ' WHERE'
+            . ' bid = "' . $this->db->sql_escape($bookmark) . '"'
+            . ' AND uid = "' . $this->db->sql_escape($user) . '"';
+
+        if (!($dbres = $this->db->sql_query_limit($query, 1, 0))) {
+            message_die(
+                GENERAL_ERROR, 'Could not get vote count',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            //FIXME: throw exception
+            return false;
+        }
+
+        $row = $this->db->sql_fetchrow($dbres);
+        $this->db->sql_freeresult($dbres);
+
+        if (!$row) {
+            return null;
+        }
+
+        return $row['vote'];
     }
 
 
@@ -149,7 +244,7 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_Service
             return false;
         }
 
-        $dbresult = $this->db->sql_query(
+        $res = $this->db->sql_query(
             'INSERT INTO ' . $this->getTableName()
             . ' SET'
             . ' bid = ' . (int)$bookmark
@@ -157,8 +252,17 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_Service
             . ',vote = ' . (int)$vote
         );
         //FIXME: check for sql error
-        $this->db->sql_freeresult();
-        //FIXME: update bookmarks table
+        $this->db->sql_freeresult($res);
+
+        //update bookmark table
+        $bm  = SemanticScuttle_Service_Factory::get('Bookmark');
+        $res = $this->db->sql_query(
+            'UPDATE ' . $bm->getTableName()
+            . ' SET bVoting = bVoting + ' . (int)$vote
+        );
+        $this->db->sql_freeresult($res);
+
+        return true;
     }
 
 
@@ -172,6 +276,7 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_Service
      */
     public function rewriteVotings()
     {
+        throw new Exception('Not implemented yet');
         //FIXME
         //SELECT bid, SUM( vote ) FROM sc_votes GROUP BY bid
     }
