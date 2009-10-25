@@ -12,7 +12,6 @@
  */
 
 require_once 'prepare.php';
-require_once 'PHPUnit/Framework.php';
 
 if (!defined('PHPUnit_MAIN_METHOD')) {
     define('PHPUnit_MAIN_METHOD', 'VoteTest::main');
@@ -27,7 +26,7 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-class VoteTest extends PHPUnit_Framework_TestCase
+class VoteTest extends TestBase
 {
     /**
      * Vote service instance to test.
@@ -58,28 +57,6 @@ class VoteTest extends PHPUnit_Framework_TestCase
         //FIXME: create true new instance
         $this->vs = SemanticScuttle_Service_Factory::get('Vote');
         $this->vs->deleteAll();
-    }
-
-
-
-    /**
-     * Create a new bookmark.
-     *
-     * @return integer ID of bookmark
-     */
-    protected function addBookmark()
-    {
-        $bs = SemanticScuttle_Service_Factory::get('Bookmark');
-        $rand = rand();
-        $bid = $bs->addBookmark(
-            'http://example.org/' . $rand,
-            'unittest bookmark #' . $rand,
-            'description',
-            null,
-            0,
-            array('unittest')
-        );
-        return $bid;
     }
 
 
@@ -345,7 +322,7 @@ class VoteTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(-1, $this->vs->getVote($bid, $uid));
     }
 
-}//class VoteTest extends PHPUnit_Framework_TestCase
+}//class VoteTest extends TestBase
 
 
 if (PHPUnit_MAIN_METHOD == 'VoteTest::main') {

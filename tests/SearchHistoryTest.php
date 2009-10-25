@@ -1,25 +1,58 @@
 <?php
-require_once 'PHPUnit/Framework.php';
+/**
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
 
-/*
-To launch this test, type the following line into a shell
-at the root of the scuttlePlus directory :
-     phpunit SearchTest tests/searchTest.php
-*/
+require_once 'prepare.php';
 
-class SearchTest extends PHPUnit_Framework_TestCase
+if (!defined('PHPUnit_MAIN_METHOD')) {
+    define('PHPUnit_MAIN_METHOD', 'SearchHistoryTest::main');
+}
+
+/**
+ * Unit tests for the SemanticScuttle search history service.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author Christian Weiske <cweiske@cweiske.de>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
+class SearchHistoryTest extends TestBase
 {
     protected $us;
     protected $bs;
     protected $b2ts;
     protected $tts;
     protected $shs;
+
+
+
+    /**
+     * Used to run this test class standalone
+     *
+     * @return void
+     */
+    public static function main()
+    {
+        require_once 'PHPUnit/TextUI/TestRunner.php';
+        PHPUnit_TextUI_TestRunner::run(
+            new PHPUnit_Framework_TestSuite(__CLASS__)
+        );
+    }
+
+
  
     protected function setUp()
     {
-        global $dbhost, $dbuser, $dbpass, $dbname, $dbport, $dbpersist, $dbtype, $tableprefix;
-		require_once dirname(__FILE__) . '/../src/SemanticScuttle/header.php';
-
 	$this->us =SemanticScuttle_Service_Factory::get('User');
 	$this->bs =SemanticScuttle_Service_Factory::get('Bookmark');
 	$this->bs->deleteAll();
@@ -77,4 +110,10 @@ class SearchTest extends PHPUnit_Framework_TestCase
 	$this->assertSame(2, count($searches));
     }
 }
+
+
+if (PHPUnit_MAIN_METHOD == 'SearchHistoryTest::main') {
+    SearchHistoryTest::main();
+}
+
 ?>

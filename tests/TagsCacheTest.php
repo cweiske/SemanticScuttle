@@ -1,18 +1,52 @@
 <?php
-require_once 'PHPUnit/Framework.php';
-
-/*
- To launch this test, type the following line into a shell
- at the root of the scuttlePlus directory :
- phpunit TagsCacheTest tests/tagsCacheTest.php
+/**
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
  */
 
+require_once 'prepare.php';
+
+if (!defined('PHPUnit_MAIN_METHOD')) {
+    define('PHPUnit_MAIN_METHOD', 'TagsCacheTest::main');
+}
+
+/**
+ * Unit tests for the SemanticScuttle tags cache service.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author Christian Weiske <cweiske@cweiske.de>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
 class TagsCacheTest extends PHPUnit_Framework_TestCase
 {
 	protected $us;
 	protected $bs;
 	protected $b2ts;
 	protected $tts;
+
+
+
+    /**
+     * Used to run this test class standalone
+     *
+     * @return void
+     */
+    public static function main()
+    {
+        require_once 'PHPUnit/TextUI/TestRunner.php';
+        PHPUnit_TextUI_TestRunner::run(
+            new PHPUnit_Framework_TestSuite(__CLASS__)
+        );
+    }
 
 	protected function setUp()
 	{
@@ -173,4 +207,9 @@ class TagsCacheTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(array(), $tcs->getSynonyms('d', 1));
 	}
 }
+
+if (PHPUnit_MAIN_METHOD == 'TagsCacheTest::main') {
+    TagsCacheTest::main();
+}
+
 ?>

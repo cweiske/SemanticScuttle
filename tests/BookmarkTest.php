@@ -1,25 +1,57 @@
 <?php
-require_once 'PHPUnit/Framework.php';
-
-/*
- To launch this test, type the following line into a shell
- into the tests/ directory :
-     phpunit BookmarksTest tests/boomarksTest.php
+/**
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
  */
 
-class BookmarksTest extends PHPUnit_Framework_TestCase
+require_once 'prepare.php';
+
+if (!defined('PHPUnit_MAIN_METHOD')) {
+    define('PHPUnit_MAIN_METHOD', 'BookmarkTest::main');
+}
+
+/**
+ * Unit tests for the SemanticScuttle bookmark service.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author Christian Weiske <cweiske@cweiske.de>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
+class BookmarkTest extends TestBase
 {
 	protected $us;
 	protected $bs;
 	protected $ts;
 	protected $tts;
 
+
+
+    /**
+     * Used to run this test class standalone
+     *
+     * @return void
+     */
+    public static function main()
+    {
+        require_once 'PHPUnit/TextUI/TestRunner.php';
+        PHPUnit_TextUI_TestRunner::run(
+            new PHPUnit_Framework_TestSuite(__CLASS__)
+        );
+    }
+
+
+
 	protected function setUp()
 	{
-		global $dbhost, $dbuser, $dbpass, $dbname, $dbport, $dbpersist, $dbtype,
-            $tableprefix, $TEMPLATES_DIR, $filetypes, $debugMode;
-		require_once dirname(__FILE__) . '/../src/SemanticScuttle/header.php';
-
 		$this->us =SemanticScuttle_Service_Factory::get('User');
 		$this->bs =SemanticScuttle_Service_Factory::get('Bookmark');
 		$this->bs->deleteAll();
@@ -72,5 +104,17 @@ class BookmarksTest extends PHPUnit_Framework_TestCase
 	 $this->assertEquals(1, $bookmarks['total']);
 	 }*/
 
+
+
+    public function testDeleteBookmark()
+    {
+        //FIXME
+    }
+
+}
+
+
+if (PHPUnit_MAIN_METHOD == 'BookmarkTest::main') {
+    BookmarkTest::main();
 }
 ?>

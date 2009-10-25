@@ -32,12 +32,12 @@ class AllTests extends PHPUnit_Framework_TestSuite
     {
     	$suite = new AllTests();
         $tdir = dirname(__FILE__);
-    	$suite->addTestFile($tdir . '/BookmarksTest.php');
+    	$suite->addTestFile($tdir . '/BookmarkTest.php');
     	$suite->addTestFile($tdir . '/Tag2TagTest.php'); 
     	$suite->addTestFile($tdir . '/TagsCacheTest.php');
     	$suite->addTestFile($tdir . '/CommonDescriptionTest.php');     	
-    	$suite->addTestFile($tdir . '/SearchTest.php'); 
-    	$suite->addTestFile($tdir . '/TagsTest.php');
+    	$suite->addTestFile($tdir . '/SearchHistoryTest.php'); 
+    	$suite->addTestFile($tdir . '/TagTest.php');
     	$suite->addTestFile($tdir . '/VoteTest.php');
         return $suite;
     }

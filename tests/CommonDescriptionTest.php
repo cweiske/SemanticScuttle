@@ -1,13 +1,32 @@
 <?php
-require_once 'PHPUnit/Framework.php';
+/**
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
 
-/*
-To launch this test, type the following line into a shell
-at the root of the scuttlePlus directory :
-     phpunit CommonDescriptionTest tests/commonDescriptionTest.php
-*/
+require_once 'prepare.php';
 
-class CommonDescriptionTest extends PHPUnit_Framework_TestCase
+if (!defined('PHPUnit_MAIN_METHOD')) {
+    define('PHPUnit_MAIN_METHOD', 'CommonDescriptionTest::main');
+}
+
+/**
+ * Unit tests for the SemanticScuttle common description service.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author Christian Weiske <cweiske@cweiske.de>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
+class CommonDescriptionTest extends TestBase
 {
     protected $us;
     protected $bs;
@@ -15,23 +34,36 @@ class CommonDescriptionTest extends PHPUnit_Framework_TestCase
     protected $tts;
     protected $tsts;
     protected $cds;
+
+
+
+    /**
+     * Used to run this test class standalone
+     *
+     * @return void
+     */
+    public static function main()
+    {
+        require_once 'PHPUnit/TextUI/TestRunner.php';
+        PHPUnit_TextUI_TestRunner::run(
+            new PHPUnit_Framework_TestSuite(__CLASS__)
+        );
+    }
+
  
     protected function setUp()
     {
-        global $dbhost, $dbuser, $dbpass, $dbname, $dbport, $dbpersist, $dbtype, $tableprefix;
-		require_once dirname(__FILE__) . '/../src/SemanticScuttle/header.php';
-
-	$this->us =SemanticScuttle_Service_Factory::get('User');
-	$this->bs =SemanticScuttle_Service_Factory::get('Bookmark');
-	$this->bs->deleteAll();
-	$this->b2ts =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
-	$this->b2ts->deleteAll();
-	$this->tts =SemanticScuttle_Service_Factory::get('Tag2Tag');
-	$this->tts->deleteAll(); 
-	$this->tsts =SemanticScuttle_Service_Factory::get('TagStat');
-	$this->tsts->deleteAll();
-	$this->cds =SemanticScuttle_Service_Factory::get('CommonDescription');
-	$this->cds->deleteAll();
+        $this->us =SemanticScuttle_Service_Factory::get('User');
+        $this->bs =SemanticScuttle_Service_Factory::get('Bookmark');
+        $this->bs->deleteAll();
+        $this->b2ts =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
+        $this->b2ts->deleteAll();
+        $this->tts =SemanticScuttle_Service_Factory::get('Tag2Tag');
+        $this->tts->deleteAll(); 
+        $this->tsts =SemanticScuttle_Service_Factory::get('TagStat');
+        $this->tsts->deleteAll();
+        $this->cds =SemanticScuttle_Service_Factory::get('CommonDescription');
+        $this->cds->deleteAll();
     }
  
     public function testModifyDescription()
@@ -92,5 +124,10 @@ class CommonDescriptionTest extends PHPUnit_Framework_TestCase
 
     }
 
+}
+
+
+if (PHPUnit_MAIN_METHOD == 'CommonDescriptionTest::main') {
+    CommonDescriptionTest::main();
 }
 ?>
