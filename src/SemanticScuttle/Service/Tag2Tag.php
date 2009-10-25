@@ -24,24 +24,49 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
         $this->tablename = $GLOBALS['tableprefix'] .'tags2tags';
     }
 
-    function addLinkedTags($tag1, $tag2, $relationType, $uId) {
-        $tagservice =SemanticScuttle_Service_Factory::get('Tag');
+    /**
+     * Add a tag-to-tag link relation
+     *
+     * @param string  $tag1         First tag
+     * @param string  $tag2         Second tag
+     * @param string  $relationType Relation:
+     *                              "=" (both tags are equal)
+     *                              ">" (tag2 is part of tag1)
+     * @param integer $uId          User ID
+     *
+     * @return boolean True when it was created, false in case of
+     *                 an error or when the link already existed.
+     */
+    public function addLinkedTags($tag1, $tag2, $relationType, $uId)
+    {
+        $tagservice = SemanticScuttle_Service_Factory::get('Tag');
         $tag1 = $tagservice->normalize($tag1);
         $tag2 = $tagservice->normalize($tag2);
 
-        if($tag1 == $tag2 || strlen($tag1) == 0 || strlen($tag2) == 0
-        || ($relationType != ">" && $relationType != "=")
-        || !is_numeric($uId) || $uId<=0
-        || ($this->existsLinkedTags($tag1, $tag2, $relationType, $uId))) {
+        if ($tag1 == $tag2 || strlen($tag1) == 0 || strlen($tag2) == 0
+            || ($relationType != '>' && $relationType != '=')
+            || !is_numeric($uId) || $uId<=0
+            || ($this->existsLinkedTags($tag1, $tag2, $relationType, $uId))
+        ) {
             return false;
         }
 
-        $values = array('tag1' => $tag1, 'tag2' => $tag2, 'relationType'=> $relationType, 'uId'=> $uId);
-        $query = 'INSERT INTO '. $this->getTableName() .' '. $this->db->sql_build_array('INSERT', $values);
+        $values = array(
+            'tag1'         => $tag1,
+            'tag2'         => $tag2,
+            'relationType' => $relationType,
+            'uId'          => $uId
+        );
+        $query = 'INSERT INTO ' . $this->getTableName()
+            . ' ' . $this->db->sql_build_array('INSERT', $values);
+
         //die($query);
         if (!($dbresult = $this->db->sql_query($query))) {
             $this->db->sql_transaction('rollback');
-            message_die(GENERAL_ERROR, 'Could not attach tag to tag', '', __LINE__, __FILE__, $query, $this->db);
+            message_die(
+                GENERAL_ERROR, 'Could not attach tag to tag',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
             return false;
         }
         $this->db->sql_transaction('commit');
