@@ -55,8 +55,9 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
             return false;
         }
 
-        if ($row =& $this->db->sql_fetchrow($dbresult)) {
-            $this->db->sql_freeresult($dbresult);
+        $row = $this->db->sql_fetchrow($dbresult);
+        $this->db->sql_freeresult($dbresult);
+        if ($row) {
             return $row;
         } else {
             return false;
@@ -129,8 +130,9 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
             return false;
         }
 
-        if ($row =& $this->db->sql_fetchrow($dbresult)) {
-            $this->db->sql_freeresult($dbresult);
+        $row = $this->db->sql_fetchrow($dbresult);
+        $this->db->sql_freeresult($dbresult);
+        if ($row) {
             return $row;
         } else {
             return false;
@@ -148,8 +150,9 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
             return false;
         }
 
-        return $this->db->sql_fetchrowset($dbresult);
-
+        $rowset = $this->db->sql_fetchrowset($dbresult);
+        $this->db->sql_freeresult($dbresult);
+        return $rowset;
     }
 
     function deleteDescriptionsForUser($uId){

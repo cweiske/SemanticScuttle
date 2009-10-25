@@ -121,8 +121,10 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
 
         //echo($query."<br>\n");
 
-        return $this->db->sql_numrows($this->db->sql_query($query)) > 0;
-
+        $dbres = $this->db->sql_query($query);
+        $rows = $this->db->sql_numrows($dbres);
+        $this->db->sql_freeresult($dbres);
+        return $rows > 0;
     }
 
     /*
@@ -221,7 +223,10 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
         $query.= " AND relationType = '='";
         $query.= " AND uId = '".$uId."'";
 
-        return $this->db->sql_numrows($this->db->sql_query($query)) > 0;
+        $dbres = $this->db->sql_query($query);
+        $rows = $this->db->sql_numrows($dbres);
+        $this->db->sql_freeresult($dbres);
+        return $rows > 0;
     }
 
     function _isSynonymValue($tag2, $uId) {
@@ -233,7 +238,10 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
         $query.= " AND relationType = '='";
         $query.= " AND uId = '".$uId."'";
 
-        return $this->db->sql_numrows($this->db->sql_query($query)) > 0;
+        $dbres = $this->db->sql_query($query);
+        $rows = $this->db->sql_numrows($dbres);
+        $this->db->sql_freeresult($dbres);
+        return $rows > 0;
     }
 
     function getSynonyms($tag1, $uId) {
@@ -252,7 +260,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
         $tagservice =SemanticScuttle_Service_Factory::get('Tag');
         $tag2 = $tagservice->normalize($tag2);
 
-        if($this->_isSynonymKey($tag2)) return $tag2;
+        if($this->_isSynonymKey($tag2, $uId)) return $tag2;
 
         if($tag2 == '') return false;
 

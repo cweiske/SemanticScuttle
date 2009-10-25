@@ -30,7 +30,10 @@ class SemanticScuttle_Service_TagStat extends SemanticScuttle_DbService
         $query.= " AND relationType = '". $relationType ."'";
         $query.= " AND uId = '".$uId."'";
 
-        return $this->db->sql_numrows($this->db->sql_query($query));
+        $dbres = $this->db->sql_query($query);
+        $rows = $this->db->sql_numrows($dbres);
+        $this->db->sql_freeresult($dbres);
+        return $rows;
     }
 
     function getNbDescendants($tag1, $relationType, $uId) {
@@ -41,6 +44,7 @@ class SemanticScuttle_Service_TagStat extends SemanticScuttle_DbService
 
         $dbresults =& $this->db->sql_query($query);
         $row = $this->db->sql_fetchrow($dbresults);
+        $this->db->sql_freeresult($dbresults);
         if($row['nb'] == null) {
             return 0;
         } else {
@@ -56,6 +60,7 @@ class SemanticScuttle_Service_TagStat extends SemanticScuttle_DbService
 
         $dbresults =& $this->db->sql_query($query);
         $row = $this->db->sql_fetchrow($dbresults);
+        $this->db->sql_freeresult($dbresults);
         if($row['depth'] == null) {
             return 0;
         } else {
@@ -71,6 +76,7 @@ class SemanticScuttle_Service_TagStat extends SemanticScuttle_DbService
 
         $dbresults =& $this->db->sql_query($query);
         $row = $this->db->sql_fetchrow($dbresults);
+        $this->db->sql_freeresult($dbresults);
         if($row['nbupdate'] == null) {
             return 0;
         } else {
@@ -84,7 +90,10 @@ class SemanticScuttle_Service_TagStat extends SemanticScuttle_DbService
         $query.= " AND relationType = '". $relationType ."'";
         $query.= " AND uId = '".$uId."'";
 
-        return $this->db->sql_numrows($this->db->sql_query($query))>0;
+        $dbres = $this->db->sql_query($query);
+        $rows = $this->db->sql_numrows($dbres);
+        $this->db->sql_freeresult($dbres);
+        return $rows > 0;
     }
 
     function createStat($tag1, $relationType, $uId) {
@@ -136,6 +145,7 @@ class SemanticScuttle_Service_TagStat extends SemanticScuttle_DbService
         foreach($rowset as $row) {
             $this->updateStat($row['tag1'], '>', $row['uId']);
         }
+        $this->db->sql_freeresult($dbresult);
     }
 
     function setNbDescendants($tag1, $relationType, $uId, $nb) {
@@ -147,7 +157,7 @@ class SemanticScuttle_Service_TagStat extends SemanticScuttle_DbService
         $query.= " WHERE tag1 = '" .$tag1 ."'";
         $query.= " AND relationType = '". $relationType ."'";
         $query.= " AND uId = '".$uId."'";
-        $this->db->sql_query($query);
+        $this->db->sql_freeresult($this->db->sql_query($query));
     }
 
     function setMaxDepth($tag1, $relationType, $uId, $depth) {

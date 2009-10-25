@@ -34,7 +34,9 @@ class SemanticScuttle_Service_Tag extends SemanticScuttle_DbService
             return false;
         }
 
-        if ($row =& $this->db->sql_fetchrow($dbresult)) {
+        $row = $this->db->sql_fetchrow($dbresult);
+        $this->db->sql_freeresult($dbresult);
+        if ($row) {
             return $row;
         } else {
             return array('tDescription'=>'');
@@ -52,7 +54,9 @@ class SemanticScuttle_Service_Tag extends SemanticScuttle_DbService
             return false;
         }
 
-        if ($row =& $this->db->sql_fetchrow($dbresult)) {
+        $row = $this->db->sql_fetchrow($dbresult);
+        $this->db->sql_freeresult($dbresult);
+        if ($row) {
             return true;
         } else {
             return false;
@@ -69,7 +73,9 @@ class SemanticScuttle_Service_Tag extends SemanticScuttle_DbService
             return false;
         }
 
-        return $this->db->sql_fetchrowset($dbresult);
+        $rowset = $this->db->sql_fetchrowset($dbresult);
+        $this->db->sql_freeresult($dbresult);
+        return $rowset;
     }
 
     function updateDescription($tag, $uId, $desc) {

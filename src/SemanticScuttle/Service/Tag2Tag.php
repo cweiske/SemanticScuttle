@@ -39,7 +39,7 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
         $values = array('tag1' => $tag1, 'tag2' => $tag2, 'relationType'=> $relationType, 'uId'=> $uId);
         $query = 'INSERT INTO '. $this->getTableName() .' '. $this->db->sql_build_array('INSERT', $values);
         //die($query);
-        if (!($dbresult =& $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             $this->db->sql_transaction('rollback');
             message_die(GENERAL_ERROR, 'Could not attach tag to tag', '', __LINE__, __FILE__, $query, $this->db);
             return false;
@@ -280,7 +280,10 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
 
         //echo($query."<br>\n");
 
-        return $this->db->sql_numrows($this->db->sql_query($query)) > 0;
+        $dbres = $this->db->sql_query($query);
+        $hasTags = $this->db->sql_numrows($dbres) > 0;
+        $this->db->sql_freeresult($dbres);
+        return $hasTags;
     }
 
     function getLinks($uId) {
@@ -290,7 +293,10 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
             $query.= " AND uId = '".$uId."'";
         }
 
-        return $this->db->sql_fetchrowset($this->db->sql_query($query));
+        $dbres = $this->db->sql_query($query);
+        $rowset = $this->db->sql_fetchrowset($dbres);
+        $this->db->sql_freeresult($dbres);
+        return $rowset;
     }
 
     function removeLinkedTags($tag1, $tag2, $relationType, $uId) {
