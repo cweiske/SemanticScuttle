@@ -544,7 +544,8 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      *
      * @see isSessionStable()
      */
-    function updateSessionStability() {
+    public function updateSessionStability()
+    {
         //find out if we have cookies enabled
         if (!isset($_SESSION['sessionStable'])) {
             $_SESSION['sessionStable'] = 0;
@@ -554,16 +555,17 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     }
 
     /**
-         * Tells you if the session is fresh or old.
-         * If the session is fresh, it's the first page
-         * call with that session id. If the session is old,
-         * we know that cookies (or session persistance) works
-         *
-         * @return boolean True if the
-         *
-         * @see updateSessionStability()
-         */
-    function isSessionStable() {
+     * Tells you if the session is fresh or old.
+     * If the session is fresh, it's the first page
+     * call with that session id. If the session is old,
+     * we know that cookies (or session persistance) works
+     *
+     * @return boolean True if the
+     *
+     * @see updateSessionStability()
+     */
+    publi function isSessionStable()
+    {
         return $_SESSION['sessionStable'] == 1;
     }
 
