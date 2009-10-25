@@ -60,7 +60,7 @@ if (POST_SUBMITTED != '') {
         $tplVars['error'] = T_('Antispam answer is not valid. Please try again.');
 
     // Register details
-    } elseif ($userservice->addUser($posteduser, POST_PASS, POST_MAIL)) {
+    } elseif ($userservice->addUser($posteduser, POST_PASS, POST_MAIL) !== false) {
         // Log in with new username
         $login = $userservice->login($posteduser, POST_PASS);
         if ($login) {

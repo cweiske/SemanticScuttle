@@ -28,10 +28,10 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
  */
 class BookmarkTest extends TestBase
 {
-	protected $us;
-	protected $bs;
-	protected $ts;
-	protected $tts;
+    protected $us;
+    protected $bs;
+    protected $ts;
+    protected $tts;
 
 
 
@@ -50,83 +50,132 @@ class BookmarkTest extends TestBase
 
 
 
-	protected function setUp()
-	{
-		$this->us =SemanticScuttle_Service_Factory::get('User');
-		$this->bs =SemanticScuttle_Service_Factory::get('Bookmark');
-		$this->bs->deleteAll();
-		$this->b2ts=SemanticScuttle_Service_Factory::get('Bookmark2Tag');
-		$this->b2ts->deleteAll();
-		$this->tts =SemanticScuttle_Service_Factory::get('Tag2Tag');
-		$this->tts->deleteAll();
-		$this->tsts =SemanticScuttle_Service_Factory::get('TagStat');
-		$this->tsts->deleteAll();
-	}
+    protected function setUp()
+    {
+        $this->us = SemanticScuttle_Service_Factory::get('User');
+        $this->bs = SemanticScuttle_Service_Factory::get('Bookmark');
+        $this->bs->deleteAll();
+        $this->b2ts= SemanticScuttle_Service_Factory::get('Bookmark2Tag');
+        $this->b2ts->deleteAll();
+        $this->tts = SemanticScuttle_Service_Factory::get('Tag2Tag');
+        $this->tts->deleteAll();
+        $this->tsts = SemanticScuttle_Service_Factory::get('TagStat');
+        $this->tsts->deleteAll();
+        $this->vs = SemanticScuttle_Service_Factory::get('Vote');
+        $this->vs->deleteAll();
+    }
 
-	public function testHardCharactersInBookmarks()
-	{		
-		$bs = $this->bs;
-		$title = "title&é\"'(-è_çà)=";
-		$desc = "description#{[|`\^@]}³<> ¹¡÷×¿&é\"'(-è\\_çà)=";
-		$tag1 = "#{|`^@]³¹¡¿<&é\"'(-è\\_çà)";	
-		$tag2 = "&é\"'(-è.[?./§!_çà)";
+    public function testHardCharactersInBookmarks()
+    {
+        $bs = $this->bs;
+        $title = "title&é\"'(-è_çà)=";
+        $desc = "description#{[|`\^@]}³<> ¹¡÷×¿&é\"'(-è\\_çà)=";
+        $tag1 = "#{|`^@]³¹¡¿<&é\"'(-è\\_çà)";
+        $tag2 = "&é\"'(-è.[?./§!_çà)";
 
-		$bs->addBookmark(
+        $bs->addBookmark(
             'http://site1.com', $title, $desc, 'note',
             0, array($tag1, $tag2),
             null, false, false, 1
         );
 
-		$bookmarks = $bs->getBookmarks(0, 1);
+        $bookmarks = $bs->getBookmarks(0, 1);
 
-		$b0 = $bookmarks['bookmarks'][0];
-		$this->assertEquals($title, $b0['bTitle']);
-		$this->assertEquals($desc, $b0['bDescription']);
-		$this->assertEquals(
-            str_replace(array('"', '\'', '/'), "_", $tag1), 
+        $b0 = $bookmarks['bookmarks'][0];
+        $this->assertEquals($title, $b0['bTitle']);
+        $this->assertEquals($desc, $b0['bDescription']);
+        $this->assertEquals(
+            str_replace(array('"', '\'', '/'), "_", $tag1),
             $b0['tags'][0]
         );
-		$this->assertEquals(
+        $this->assertEquals(
             str_replace(array('"', '\'', '/'), "_", $tag2),
             $b0['tags'][1]
         );
-	}
+    }
 
-	public function testUnificationOfBookmarks()
-	{		
-		$bs = $this->bs;
+    public function testUnificationOfBookmarks()
+    {
+        $bs = $this->bs;
 
-		$bs->addBookmark(
+        $bs->addBookmark(
             'http://site1.com', "title", "description", 'note',
             0, array('tag1'), null, false, false,
             1
         );
-		$bs->addBookmark(
+        $bs->addBookmark(
             "http://site1.com", "title2", "description2", 'note',
             0, array('tag2'), null, false, false,
             2
         );
 
-		$bookmarks = $bs->getBookmarks();
-		$this->assertEquals(1, $bookmarks['total']);
-	}
+        $bookmarks = $bs->getBookmarks();
+        $this->assertEquals(1, $bookmarks['total']);
+    }
 
-	/*public function testSearchingBookmarksAccentsInsensible()
-	 {
-	 $bs = $this->bs;
+    /*public function testSearchingBookmarksAccentsInsensible()
+     {
+     $bs = $this->bs;
 
-	 $bs->addBookmark("http://site1.com", "title", "éèüaàê", "status", array('tag1'), null, false, false, 1);
-	 $bookmarks =& $bs->getBookmarks(0, NULL, NULL, NULL, $terms = "eeaae"); //void
-	 $this->assertEquals(0, $bookmarks['total']);
-	 $bookmarks =& $bs->getBookmarks(0, NULL, NULL, NULL, $terms = "eeuaae");
-	 $this->assertEquals(1, $bookmarks['total']);
-	 }*/
+     $bs->addBookmark("http://site1.com", "title", "éèüaàê", "status", array('tag1'), null, false, false, 1);
+     $bookmarks =& $bs->getBookmarks(0, NULL, NULL, NULL, $terms = "eeaae"); //void
+     $this->assertEquals(0, $bookmarks['total']);
+     $bookmarks =& $bs->getBookmarks(0, NULL, NULL, NULL, $terms = "eeuaae");
+     $this->assertEquals(1, $bookmarks['total']);
+     }*/
 
 
 
+    /**
+     * Test if deleting a bookmark works.
+     *
+     * @return void
+     */
     public function testDeleteBookmark()
     {
-        //FIXME
+        $bookmarks = $this->bs->getBookmarks();
+        $this->assertEquals(0, $bookmarks['total']);
+
+        $bid = $this->addBookmark();
+        $bookmarks = $this->bs->getBookmarks();
+        $this->assertEquals(1, $bookmarks['total']);
+
+        $bid2 = $this->addBookmark();
+        $bookmarks = $this->bs->getBookmarks();
+        $this->assertEquals(2, $bookmarks['total']);
+
+        $this->assertTrue($this->bs->deleteBookmark($bid));
+        $bookmarks = $this->bs->getBookmarks();
+        $this->assertEquals(1, $bookmarks['total']);
+
+        $this->assertTrue($this->bs->deleteBookmark($bid2));
+        $bookmarks = $this->bs->getBookmarks();
+        $this->assertEquals(0, $bookmarks['total']);
+    }
+
+
+
+    /**
+     * Test if deleting a bookmark with a vote works.
+     *
+     * @return void
+     */
+    public function testDeleteBookmarkWithVote()
+    {
+        $uid = $this->addUser();
+        $bid = $this->addBookmark();
+
+        $bid = $this->addBookmark();
+        $this->vs->vote($bid, $uid, 1);
+        $this->assertTrue($this->vs->hasVoted($bid, $uid));
+
+        $bid2 = $this->addBookmark();
+        $this->vs->vote($bid2, $uid, 1);
+        $this->assertTrue($this->vs->hasVoted($bid2, $uid));
+
+        $this->assertTrue($this->bs->deleteBookmark($bid));
+        $this->assertFalse($this->vs->hasVoted($bid, $uid));
+        $this->assertTrue($this->vs->hasVoted($bid2, $uid));
     }
 
 }

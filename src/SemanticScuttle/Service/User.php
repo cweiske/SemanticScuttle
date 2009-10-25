@@ -400,24 +400,47 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         return true;
     }
 
-    function addUser($username, $password, $email) {
+    /**
+     * Create a new user in database.
+     * No checks are done in here - you ought to have checked
+     * everything before calling this method!
+     *
+     * @param string $username Username to use
+     * @param string $password Password to use
+     * @param string $email    Email to use
+     *
+     * @return mixed Integer user ID if all is well,
+     *               boolean false if an error occured
+     */
+    public function addUser($username, $password, $email)
+    {
         // Set up the SQL UPDATE statement.
         $datetime = gmdate('Y-m-d H:i:s', time());
         $password = $this->sanitisePassword($password);
-        $values = array('username' => $username, 'password' => $password, 'email' => $email, 'uDatetime' => $datetime, 'uModified' => $datetime);
-        $sql = 'INSERT INTO '. $this->getTableName() .' '. $this->db->sql_build_array('INSERT', $values);
+        $values   = array(
+            'username'  => $username,
+            'password'  => $password,
+            'email'     => $email,
+            'uDatetime' => $datetime,
+            'uModified' => $datetime
+        );
+        $sql = 'INSERT INTO '. $this->getTableName()
+            . ' '. $this->db->sql_build_array('INSERT', $values);
 
         // Execute the statement.
         $this->db->sql_transaction('begin');
         if (!($dbresult = & $this->db->sql_query($sql))) {
             $this->db->sql_transaction('rollback');
-            message_die(GENERAL_ERROR, 'Could not insert user', '', __LINE__, __FILE__, $sql, $this->db);
+            message_die(
+                GENERAL_ERROR, 'Could not insert user',
+                '', __LINE__, __FILE__, $sql, $this->db
+            );
             return false;
         }
+        $uId = $this->db->sql_nextid($dbresult);
         $this->db->sql_transaction('commit');
 
-        // Everything worked out, so return true.
-        return true;
+        return $uId;
     }
 
     function updateUser($uId, $password, $name, $email, $homepage, $uContent) {
@@ -564,7 +587,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      *
      * @see updateSessionStability()
      */
-    publi function isSessionStable()
+    public function isSessionStable()
     {
         return $_SESSION['sessionStable'] == 1;
     }

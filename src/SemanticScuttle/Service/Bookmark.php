@@ -212,9 +212,9 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      */
     public function addBookmark(
         $address, $title, $description, $privateNote, $status, $categories,
-        $date = null, $fromApi = false, $fromImport = false, $sId = -1
+        $date = null, $fromApi = false, $fromImport = false, $sId = null
     ) {
-        if ($sId == -1) {
+        if ($sId === null) {
             $userservice = SemanticScuttle_Service_Factory::get('User');
             $sId = $userservice->getCurrentUserId();
         }
@@ -436,16 +436,17 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         $terms = null, $sortOrder = null, $watched = null,
         $startdate = null, $enddate = null, $hash = null
     ) {
-        $userservice =SemanticScuttle_Service_Factory::get('User');
-        $b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
-        $tag2tagservice =SemanticScuttle_Service_Factory::get('Tag2Tag');
-        $sId = $userservice->getCurrentUserId();
+        $userservice    = SemanticScuttle_Service_Factory::get('User');
+        $b2tservice     = SemanticScuttle_Service_Factory::get('Bookmark2Tag');
+        $tag2tagservice = SemanticScuttle_Service_Factory::get('Tag2Tag');
+        $sId            = $userservice->getCurrentUserId();
 
         if ($userservice->isLoggedOn()) {
-            // All public bookmarks, user's own bookmarks and any shared with user
+            // All public bookmarks, user's own bookmarks
+            // and any shared with user
             $privacy = ' AND ((B.bStatus = 0) OR (B.uId = '. $sId .')';
             $watchnames = $userservice->getWatchNames($sId, true);
-            foreach($watchnames as $watchuser) {
+            foreach ($watchnames as $watchuser) {
                 $privacy .= ' OR (U.username = "'. $watchuser .'" AND B.bStatus = 1)';
             }
             $privacy .= ')';
