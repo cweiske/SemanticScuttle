@@ -11,6 +11,15 @@ set_include_path(
 $datadir = dirname(__FILE__) . '/../../data/';
 require_once $datadir . '/config.default.php';
 require_once $datadir . '/config.php';
+
+if (defined('UNIT_TEST_MODE')) {
+    //make local config vars global - needed for unit tests
+    //run with phpunit
+    foreach (get_defined_vars() as $var => $value) {
+        $GLOBALS[$var] = $value;
+    }
+}
+
 require_once 'SemanticScuttle/constants.php'; // some constants are based on variables from config file
 
 
