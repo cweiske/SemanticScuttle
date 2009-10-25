@@ -267,7 +267,12 @@ class Tag2TagTest extends TestBase
     {
         $bs = $this->bs;
         $tags = array('a>b', 'b>c', 'a>d>e', 'a>a', 'a', 'r=s', 's=t=u');
-        $bs->addBookmark("http://google.com", "title", "description", "status", $tags, null, false, false, 1);
+        $uid = $this->addUser();
+        $bs->addBookmark(
+            "http://google.com", "title", "description", 'note',
+            0, $tags, null, false, false,
+            $uid
+        );
         $bookmark = $bs->getBookmarkByAddress("http://google.com");
 
         $b2ts = $this->b2ts;
@@ -300,11 +305,20 @@ class Tag2TagTest extends TestBase
         $tts->addLinkedTags('aa', 'bb', '>', 1);
 
         $tags = array('aa>bb>cc', 'dd');
-        $bs->addBookmark("web1.com", "B1", "description", "status", $tags, null, false, false, 1);
+        $bs->addBookmark(
+            "web1.com", "B1", "description", 'note', 0,
+            $tags, null, false, false, 1
+        );
         $tags = array('bb>gg', 'ee>ff');
-        $bs->addBookmark("web2.com", "B2", "description", "status", $tags, null, false, false, 1);
+        $bs->addBookmark(
+            "web2.com", "B2", "description", 'note', 0,
+            $tags, null, false, false, 1
+        );
         $tags = array('ee=ii');
-        $bs->addBookmark("web3.com", "B3", "description", "status", $tags, null, false, false, 1);
+        $bs->addBookmark(
+            "web3.com", "B3", "description", 'note', 0,
+            $tags, null, false, false, 1
+        );
 
         // Query format:
         // $bs->getBookmarks($start = 0, $perpage = NULL, $user = NULL, $tags = NULL, $terms = NULL, $sortOrder = NULL, $watched = NULL, $startdate = NULL, $enddate = NULL, $hash = NULL);
