@@ -9,8 +9,8 @@ set_include_path(
 
 // 1 // First requirements part (before debug management)
 $datadir = dirname(__FILE__) . '/../../data/';
-require_once($datadir . '/config.default.php');
-require_once($datadir . '/config.php');
+require_once $datadir . '/config.default.php';
+require_once $datadir . '/config.php';
 require_once 'SemanticScuttle/constants.php'; // some constants are based on variables from config file
 
 
