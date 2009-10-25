@@ -199,7 +199,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      *                             0 - public
      *                             1 - shared
      *                             2 - private
-     * @param array   $categories  Array of tags
+     * @param array   $tags        Array of tags
      * @param string  $date        Date when the bookmark has been created
      *                             originally. Used in combination with
      *                             $fromImport. Has to be a strtotime()
@@ -211,7 +211,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      * @return integer Bookmark ID
      */
     public function addBookmark(
-        $address, $title, $description, $privateNote, $status, $categories,
+        $address, $title, $description, $privateNote, $status, $tags,
         $date = null, $fromApi = false, $fromImport = false, $sId = null
     ) {
         if ($sId === null) {
@@ -287,7 +287,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         $b2tservice = SemanticScuttle_Service_Factory::get('Bookmark2Tag');
         $aok = $b2tservice->attachTags(
-            $bId, $categories, $fromApi, $extension, false, $fromImport
+            $bId, $tags, $fromApi, $extension, false, $fromImport
         );
         if (!$aok) {
             $this->db->sql_transaction('rollback');
