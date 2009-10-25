@@ -56,6 +56,7 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
         }
 
         if ($row =& $this->db->sql_fetchrow($dbresult)) {
+            $this->db->sql_freeresult($dbresult);
             return $row;
         } else {
             return false;
@@ -73,8 +74,9 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
             return false;
         }
 
-        return $this->db->sql_fetchrowset($dbresult);
-
+        $res = $this->db->sql_fetchrowset($dbresult);
+        $this->db->sql_freeresult($dbresult);
+        return $res;
     }
 
     function getDescriptionById($cdId) {
@@ -88,6 +90,7 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
         }
 
         if ($row =& $this->db->sql_fetchrow($dbresult)) {
+            $this->db->sql_freeresult($dbresult);
             return $row;
         } else {
             return false;
@@ -127,6 +130,7 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
         }
 
         if ($row =& $this->db->sql_fetchrow($dbresult)) {
+            $this->db->sql_freeresult($dbresult);
             return $row;
         } else {
             return false;
