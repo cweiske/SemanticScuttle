@@ -464,18 +464,35 @@ class Tag2TagTest extends TestBase
 		$bs = $this->bs;
 		$tsts = $this->tsts;
 
-		// with classic tags (users 10 & 20)
-		$bs->addBookmark("http://site1.com", "title", "description", "status", array('tag1', 'tag11', 'tag111'), null, false, false, 1);
-		$bs->addBookmark("http://site1.com", "title2", "description2", "status", array('tag2', 'tag22', 'tag222'), null, false, false, 2);
+        $uid1 = $this->addUser();
+        $uid2 = $this->addUser();
 
-		$bookmarks =& $bs->getBookmarks(0, 1, NULL, NULL, NULL, getSortOrder(), NULL, 0, null);
+		// with classic tags (users 10 & 20)
+		$bid1 = $bs->addBookmark(
+            "http://site1.com", "title", "description", 'note', 0,
+            array('tag1', 'tag11', 'tag111'), null, false, false,
+            $uid1
+        );
+		$bid2 = $bs->addBookmark(
+            "http://site1.com", "title2", "description2", 'note', 0,
+            array('tag2', 'tag22', 'tag222'), null, false, false,
+            $uid2
+        );
+
+		$bookmarks = $bs->getBookmarks();
 		$this->assertEquals(1, $bookmarks['total']);
 
-		$b2ts->renameTag(1, 'tag1', 'newtag1');
-		$tags1 = $b2ts->getTagsForBookmark(1);
-		$this->assertSame(array('newtag1', 'tag11', 'tag111'), $tags1);
-		$tags1 = $b2ts->getTagsForBookmark(2);
-		$this->assertSame(array('tag2', 'tag22', 'tag222'), $tags1); //should not be changed
+		$b2ts->renameTag($uid1, 'tag1', 'newtag1');
+		$tags1 = $b2ts->getTagsForBookmark($bid1);
+        $this->assertContains('newtag1', $tags1);
+        $this->assertContains('tag11', $tags1);
+        $this->assertContains('tag111', $tags1);
+
+        //should not be changed
+		$tags2 = $b2ts->getTagsForBookmark($bid2);
+        $this->assertContains('tag2', $tags2);
+        $this->assertContains('tag22', $tags2);
+        $this->assertContains('tag222', $tags2);
 
 
 		// with linked tags
