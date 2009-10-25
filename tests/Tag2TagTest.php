@@ -265,9 +265,9 @@ class Tag2TagTest extends TestBase
 
     public function testAddLinkedTagsThroughBookmarking()
     {
-        $bs = $this->bs;
+        $bs   = $this->bs;
         $tags = array('a>b', 'b>c', 'a>d>e', 'a>a', 'a', 'r=s', 's=t=u');
-        $uid = $this->addUser();
+        $uid  = $this->addUser();
         $bs->addBookmark(
             "http://google.com", "title", "description", 'note',
             0, $tags, null, false, false,
@@ -286,15 +286,16 @@ class Tag2TagTest extends TestBase
         $this->assertContains('s', $savedTags);
 
         $tts = $this->tts;
-        $linkedTags = $tts->getLinkedTags('a', '>', 1);
-        $this->assertEquals(2, sizeof($linkedTags));
+        $linkedTags = $tts->getLinkedTags('a', '>', $uid);
+        $this->assertEquals(2, count($linkedTags));
         $this->assertSame('b', $linkedTags[0]['tag']);
         $this->assertSame('d', $linkedTags[1]['tag']);
-        $linkedTags = $tts->getLinkedTags('b', '>', 1);
-        $this->assertEquals(1, sizeof($linkedTags));
+
+        $linkedTags = $tts->getLinkedTags('b', '>', $uid);
+        $this->assertEquals(1, count($linkedTags));
         $this->assertSame('c', $linkedTags[0]['tag']);
-        $this->assertTrue($tts->existsLinkedTags('d', 'e', '>', 1));
-        $this->assertFalse($tts->existsLinkedTags('e', 'd', '>', 1));
+        $this->assertTrue($tts->existsLinkedTags('d', 'e', '>', $uid));
+        $this->assertFalse($tts->existsLinkedTags('e', 'd', '>', $uid));
     }
 
     public function testSearchThroughLinkedTags()
