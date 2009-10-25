@@ -71,25 +71,43 @@ class BookmarkTest extends TestBase
 		$tag1 = "#{|`^@]³¹¡¿<&é\"'(-è\\_çà)";	
 		$tag2 = "&é\"'(-è.[?./§!_çà)";
 
-		$bs->addBookmark("http://site1.com", $title, $desc, "status", array($tag1, $tag2), null, false, false, 1);
+		$bs->addBookmark(
+            'http://site1.com', $title, $desc, 'note',
+            0, array($tag1, $tag2),
+            null, false, false, 1
+        );
 
-		$bookmarks =& $bs->getBookmarks(0, 1, NULL, NULL, NULL, getSortOrder(), NULL, 0);
+		$bookmarks = $bs->getBookmarks(0, 1);
 
 		$b0 = $bookmarks['bookmarks'][0];
 		$this->assertEquals($title, $b0['bTitle']);
 		$this->assertEquals($desc, $b0['bDescription']);
-		$this->assertEquals(str_replace(array('"', '\'', '/'), "_", $tag1), $b0['tags'][0]);
-		$this->assertEquals(str_replace(array('"', '\'', '/'), "_", $tag2), $b0['tags'][1]);
+		$this->assertEquals(
+            str_replace(array('"', '\'', '/'), "_", $tag1), 
+            $b0['tags'][0]
+        );
+		$this->assertEquals(
+            str_replace(array('"', '\'', '/'), "_", $tag2),
+            $b0['tags'][1]
+        );
 	}
 
 	public function testUnificationOfBookmarks()
 	{		
 		$bs = $this->bs;
 
-		$bs->addBookmark("http://site1.com", "title", "description", "status", array('tag1'), null, false, false, 1);
-		$bs->addBookmark("http://site1.com", "title2", "description2", "status", array('tag2'), null, false, false, 2);
+		$bs->addBookmark(
+            'http://site1.com', "title", "description", 'note',
+            0, array('tag1'), null, false, false,
+            1
+        );
+		$bs->addBookmark(
+            "http://site1.com", "title2", "description2", 'note',
+            0, array('tag2'), null, false, false,
+            2
+        );
 
-		$bookmarks =& $bs->getBookmarks(0, 1, NULL, NULL, NULL, getSortOrder(), NULL, 0);
+		$bookmarks = $bs->getBookmarks();
 		$this->assertEquals(1, $bookmarks['total']);
 	}
 
