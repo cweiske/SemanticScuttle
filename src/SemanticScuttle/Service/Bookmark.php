@@ -286,10 +286,10 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         unset($uriparts);
 
         $b2tservice = SemanticScuttle_Service_Factory::get('Bookmark2Tag');
-        $aok = $b2tservice->attachTags(
+        $attachok   = $b2tservice->attachTags(
             $bId, $tags, $fromApi, $extension, false, $fromImport
         );
-        if (!$aok) {
+        if (!$attachok) {
             $this->db->sql_transaction('rollback');
             message_die(
                 GENERAL_ERROR,
