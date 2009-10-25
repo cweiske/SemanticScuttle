@@ -30,10 +30,27 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         return true;
     }
 
-    function attachTags($bookmarkid, $tags, $fromApi = false, $extension = NULL, $replace = true, $fromImport = false) {
-        // Make sure that categories is an array of trimmed strings, and that if the categories are
-        // coming in from an API call to add a bookmark, that underscores are converted into strings.
-
+    /**
+     * Attach tags to a bookmark.
+     *
+     * Make sure that categories is an array of trimmed strings.
+     * If the categories are coming in from an API call, be sure
+     * that underscores are converted into strings.
+     *
+     * @param integer $bookmarkid ID of the bookmark
+     * @param array   $tags       Array of tags (strings, trimmed)
+     * @param boolean $fromApi    If this is from an API call
+     * @param string  $extension  File extension (i.e. 'pdf')
+     * @param boolean $replace    If existing tags for this bookmark
+     *                            are to be replaced
+     * @param boolean $fromImport If this is from a file import
+     *
+     * @return boolean True if all went well
+     */
+    public function attachTags(
+        $bookmarkid, $tags, $fromApi = false,
+        $extension = null, $replace = true, $fromImport = false
+    ) {
         if (!is_array($tags)) {
             $tags = trim($tags);
             if ($tags != '') {
@@ -101,56 +118,70 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
             }
         }
 
-        $bs =SemanticScuttle_Service_Factory::get('Bookmark');
-        $tts =SemanticScuttle_Service_Factory::get('Tag2Tag');
+        $bs  = SemanticScuttle_Service_Factory::get('Bookmark');
+        $tts = SemanticScuttle_Service_Factory::get('Tag2Tag');
 
         // Create links between tags
-        foreach($tags as $key => $tag) {
-            if(strpos($tag, '=')) {
+        foreach ($tags as $key => $tag) {
+            if (strpos($tag, '=')) {
                 // case "="
                 $pieces = explode('=', $tag);
                 $nbPieces = count($pieces);
-                if($nbPieces > 1) {
-                    for($i = 0; $i < $nbPieces-1; $i++) {
-                        $bookmark = $bs->getBookmark($bookmarkid);
-                        $uId = $bookmark['uId'];
-                        $tts->addLinkedTags($pieces[$i], $pieces[$i+1], '=', $uId);
-                    }
-                    $tags[$key] = $pieces[0]; // Attach just the last tag to the bookmark
+                if ($nbPieces <= 1) {
+                    continue;
                 }
+                for ($i = 0; $i < $nbPieces-1; $i++) {
+                    $bookmark = $bs->getBookmark($bookmarkid);
+                    $uId = $bookmark['uId'];
+                    $tts->addLinkedTags($pieces[$i], $pieces[$i+1], '=', $uId);
+                }
+                // Attach just the last tag to the bookmark
+                $tags[$key] = $pieces[0];
             } else {
                 // case ">"
-                $pieces = explode('>', $tag);
+                $pieces   = explode('>', $tag);
                 $nbPieces = count($pieces);
-                if($nbPieces > 1) {
-                    for($i = 0; $i < $nbPieces-1; $i++) {
-                        $bookmark = $bs->getBookmark($bookmarkid);
-                        $uId = $bookmark['uId'];
-                        $tts->addLinkedTags($pieces[$i], $pieces[$i+1], '>', $uId);
-                    }
-                    $tags[$key] = $pieces[$nbPieces-1]; // Attach just the last tag to the bookmark
+                if ($nbPieces <= 1) {
+                    continue;
                 }
+                for ($i = 0; $i < $nbPieces-1; $i++) {
+                    $bookmark = $bs->getBookmark($bookmarkid);
+                    $uId = $bookmark['uId'];
+                    $tts->addLinkedTags($pieces[$i], $pieces[$i+1], '>', $uId);
+                }
+                // Attach just the last tag to the bookmark
+                $tags[$key] = $pieces[$nbPieces-1];
             }
-
-
         }
 
-        // Add the categories to the DB.
-        for ($i = 0; $i < count($tags); $i++) {
-            if ($tags[$i] != '') {
-                $values = array(
-                    'bId' => intval($bookmarkid),
-                    'tag' => $tags[$i]
-                );
+        //after exploding, there may be duplicate keys
+        //since we are in a transaction, hasTag() may
+        // not return true for newly added duplicate tags
+        $tags = array_unique($tags);
 
-                if (!$this->hasTag($bookmarkid, $tags[$i])) {
-                    $sql = 'INSERT INTO '. $this->getTableName() .' '. $this->db->sql_build_array('INSERT', $values);
-                    if (!($dbresult =& $this->db->sql_query($sql))) {
-                        $this->db->sql_transaction('rollback');
-                        message_die(GENERAL_ERROR, 'Could not attach tags', '', __LINE__, __FILE__, $sql, $this->db);
-                        return false;
-                    }
-                }
+        // Add the tags to the DB.
+        foreach ($tags as $tag) {
+            if ($tag == '') {
+                continue;
+            }
+            if ($this->hasTag($bookmarkid, $tag)) {
+                continue;
+            }
+
+            $values = array(
+                'bId' => intval($bookmarkid),
+                'tag' => $tag
+            );
+
+            $sql = 'INSERT INTO '. $this->getTableName()
+                . ' ' . $this->db->sql_build_array('INSERT', $values);
+            if (!($dbresult =& $this->db->sql_query($sql))) {
+                $this->db->sql_transaction('rollback');
+                message_die(
+                    GENERAL_ERROR, 'Could not attach tags',
+                    '', __LINE__, __FILE__, $sql, $this->db
+                );
+                return false;
             }
         }
         $this->db->sql_transaction('commit');
