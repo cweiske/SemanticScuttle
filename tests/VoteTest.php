@@ -147,7 +147,7 @@ class VoteTest extends TestBase
 
 
     /**
-     * Test getVoting() when several votes have been cast.
+     * Test getVotes() when several votes have been cast.
      *
      * @return void
      */

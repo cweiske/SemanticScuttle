@@ -34,9 +34,6 @@
  */
 class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
 {
-
-
-
     /**
      * Returns the single service instance
      *
@@ -98,10 +95,6 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
         $row = $this->db->sql_fetchrow($dbres);
         $this->db->sql_freeresult($dbres);
 
-        if (!$row) {
-            return false;
-        }
-
         return (int)$row['sum'];
     }//public function getVoting(..)
 
@@ -117,7 +110,8 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
      */
     public function getVotes($bookmark)
     {
-        $query = 'SELECT COUNT(vote) as count FROM ' . $this->getTableName()
+        $query = 'SELECT COUNT(vote) as count FROM '
+            . $this->getTableName()
             . ' WHERE bid = "' . $this->db->sql_escape($bookmark) . '"';
 
         if (!($dbres = $this->db->sql_query_limit($query, 1, 0))) {
@@ -131,10 +125,6 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
 
         $row = $this->db->sql_fetchrow($dbres);
         $this->db->sql_freeresult($dbres);
-
-        if (!$row) {
-            return false;
-        }
 
         return (int)$row['count'];
     }
@@ -152,7 +142,8 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
      */
     public function hasVoted($bookmark, $user)
     {
-        $query = 'SELECT COUNT(vote) as count FROM ' . $this->getTableName()
+        $query = 'SELECT COUNT(vote) as count FROM '
+            . $this->getTableName()
             . ' WHERE'
             . ' bid = "' . $this->db->sql_escape($bookmark) . '"'
             . ' AND uid = "' . $this->db->sql_escape($user) . '"';
@@ -168,10 +159,6 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
 
         $row = $this->db->sql_fetchrow($dbres);
         $this->db->sql_freeresult($dbres);
-
-        if (!$row) {
-            return null;
-        }
 
         return (int)$row['count'] == 1;
     }
