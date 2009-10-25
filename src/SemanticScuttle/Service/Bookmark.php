@@ -625,7 +625,8 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
     {
         $bookmark = (int)$bookmark;
 
-        $query = 'DELETE FROM ' . $GLOBALS['tableprefix'] . 'bookmarks WHERE bId = '. $bookmark;
+        $query = 'DELETE FROM ' . $GLOBALS['tableprefix'] . 'bookmarks'
+            . ' WHERE bId = '. $bookmark;
         $this->db->sql_transaction('begin');
         if (!($dbres = $this->db->sql_query($query))) {
             $this->db->sql_transaction('rollback');
@@ -636,7 +637,8 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             return false;
         }
 
-        $query = 'DELETE FROM ' . $GLOBALS['tableprefix'] . 'bookmarks2tags WHERE bId = '. $bookmark;
+        $query = 'DELETE FROM ' . $GLOBALS['tableprefix'] . 'bookmarks2tags'
+            . ' WHERE bId = '. $bookmark;
         $this->db->sql_transaction('begin');
         if (!($dbres = $this->db->sql_query($query))) {
             $this->db->sql_transaction('rollback');
@@ -647,7 +649,8 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             return false;
         }
 
-        $query = 'DELETE FROM '. $GLOBALS['tableprefix'] .'votes WHERE bid = '. $bookmark;
+        $query = 'DELETE FROM '. $GLOBALS['tableprefix'] .'votes'
+            . ' WHERE bid = '. $bookmark;
         $this->db->sql_transaction('begin');
         if (!($dbres = $this->db->sql_query($query))) {
             $this->db->sql_transaction('rollback');
