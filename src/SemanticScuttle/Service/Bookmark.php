@@ -613,27 +613,53 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
 
 
-    public function deleteBookmark($bookmarkid)
+    /**
+     * Delete the bookmark with the given id.
+     * Also deletes tags and votes for the given bookmark.
+     *
+     * @param integer $bookmark Bookmark ID
+     *
+     * @return boolean True if all went well, false if not
+     */
+    public function deleteBookmark($bookmark)
     {
-        $query = 'DELETE FROM '. $GLOBALS['tableprefix'] .'bookmarks WHERE bId = '. intval($bookmarkid);
+        $bookmark = (int)$bookmark;
+
+        $query = 'DELETE FROM ' . $GLOBALS['tableprefix'] . 'bookmarks WHERE bId = '. $bookmark;
         $this->db->sql_transaction('begin');
-        if (!($dbresult = & $this->db->sql_query($query))) {
+        if (!($dbres = $this->db->sql_query($query))) {
             $this->db->sql_transaction('rollback');
-            message_die(GENERAL_ERROR, 'Could not delete bookmarks', '', __LINE__, __FILE__, $query, $this->db);
+            message_die(
+                GENERAL_ERROR, 'Could not delete bookmark',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
             return false;
         }
 
-
-
-        $query = 'DELETE FROM '. $GLOBALS['tableprefix'] .'bookmarks2tags WHERE bId = '. intval($bookmarkid);
+        $query = 'DELETE FROM ' . $GLOBALS['tableprefix'] . 'bookmarks2tags WHERE bId = '. $bookmark;
         $this->db->sql_transaction('begin');
-        if (!($dbresult = & $this->db->sql_query($query))) {
+        if (!($dbres = $this->db->sql_query($query))) {
             $this->db->sql_transaction('rollback');
-            message_die(GENERAL_ERROR, 'Could not delete bookmarks', '', __LINE__, __FILE__, $query, $this->db);
+            message_die(
+                GENERAL_ERROR, 'Could not delete tags for bookmark',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            return false;
+        }
+
+        $query = 'DELETE FROM '. $GLOBALS['tableprefix'] .'votes WHERE bid = '. $bookmark;
+        $this->db->sql_transaction('begin');
+        if (!($dbres = $this->db->sql_query($query))) {
+            $this->db->sql_transaction('rollback');
+            message_die(
+                GENERAL_ERROR, 'Could not delete votes for bookmark',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
             return false;
         }
 
         $this->db->sql_transaction('commit');
+
         return true;
     }
 
