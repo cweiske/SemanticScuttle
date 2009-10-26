@@ -408,6 +408,12 @@ $filetypes = array(
  */
 $enableCommonBookmarkDescription = true;
 
+/**
+ * Enable bookmark voting system
+ *
+ * @var boolean
+ */
+$enableVoting = true;
 
 
 /****************************

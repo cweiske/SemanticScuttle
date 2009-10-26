@@ -221,7 +221,9 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
      */
     public function vote($bookmark, $user, $vote = 1)
     {
-        //FIXME: check if voting is enabled (global conf var)
+        if ($GLOBALS['enableVoting'] == false) {
+            return false;
+        }
 
         if ($this->hasVoted($bookmark, $user)) {
             return false;

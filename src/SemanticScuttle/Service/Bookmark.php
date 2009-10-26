@@ -432,6 +432,10 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      * - if the $user is set and IS the logged-in user, then
      *   get all bookmarks.
      *
+     * In case voting is enabled and a user is logged in,
+     *  each bookmark array contains two additional keys:
+     * 'hasVoted' and 'vote'.
+     *
      * @param integer $start     Page number
      * @param integer $perpage   Number of bookmarks per page
      * @param integer $user      User ID
@@ -601,6 +605,18 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         if ($hash) {
             $query_4 .= ' AND B.bHash = "'. $hash .'"';
         }
+
+        //Voting system
+        if ($GLOBALS['enableVoting'] && $userservice->isLoggedOn()) {
+            $currentuser = $userservice->getCurrentUser();
+            $vs = SemanticScuttle_Service_Factory::get('Vote');
+            $query_1 .= ', !ISNULL(V.bId) as hasVoted, V.vote as vote';
+            $query_2 .= ' LEFT JOIN ' . $vs->getTableName() . ' AS V'
+                . ' ON B.bId = V.bId'
+                . ' AND V.uId = ' . (int)$currentuser['uId'];
+        }
+
+
         $query = $query_1 . $query_2 . $query_3 . $query_4 . $query_5;
 
         if (!($dbresult = & $this->db->sql_query_limit($query, intval($perpage), intval($start)))) {
