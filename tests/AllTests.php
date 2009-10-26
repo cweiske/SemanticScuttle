@@ -1,14 +1,17 @@
 <?php
-/*
-* To launch all tests, type the following line into the root directory
-* of SemanticScuttle (where is the config.php file) :
-*
-*     phpunit --testdox-html tests/dox.html AllTests tests/allTests.php
-*
-* A dox.html file will be created into the tests/ directory providing a summary
-* of tests according to agile development.
-* */
-
+/**
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
 if (!defined('PHPUnit_MAIN_METHOD')) {
     define('PHPUnit_MAIN_METHOD', 'AllTests::main');
 }
@@ -16,6 +19,26 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
 require_once 'prepare.php';
 require_once 'PHPUnit/Framework/TestSuite.php';
 
+/**
+ * SemanticScuttle unit tests.
+ *
+ * To launch this tests, you need PHPUnit 3.
+ * Run them with:
+ * $ php tests/AllTests.php
+ * or single files like:
+ * $ php tests/BookmarkTest.php
+ *
+ * You also may use phpunit directly:
+ * $ phpunit tests/AllTests.php
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
 class AllTests extends PHPUnit_Framework_TestSuite
 {
     public static function main()
