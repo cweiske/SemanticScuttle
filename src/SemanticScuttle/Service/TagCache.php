@@ -1,5 +1,21 @@
 <?php
 /**
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
+
+/**
+ * SemanticScuttle tag caching service.
+ *
  * This class infers on relation between tags by storing all
  * the including tags or synonymous tag.
  * For example, if the user creates: tag1>tag2>tag3, the system
@@ -9,6 +25,14 @@
  * For synonymy, this table stores also the group of synonymous tags.
  * The table must be updated for each modification of
  * the relations between tags.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
  */
 class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
 {
