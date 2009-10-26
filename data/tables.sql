@@ -1,5 +1,5 @@
 -- Semantic Scuttle - Tables creation SQL script
--- ! Dont forget to change table names according to $tableprefix defined in config.inc.php !
+-- ! Dont forget to change table names according to $tableprefix defined in config.php !
 
 -- 
 -- Table structure for table `sc_bookmarks`
@@ -17,6 +17,7 @@ CREATE TABLE `sc_bookmarks` (
   `bDescription` text default NULL,
   `bPrivateNote` text default NULL,
   `bHash` varchar(32) NOT NULL default '',
+  `bVoting` int(11) NOT NULL,
   PRIMARY KEY  (`bId`),
   KEY `sc_bookmarks_usd` (`uId`,`bStatus`,`bDatetime`),
   KEY `sc_bookmarks_hui` (`bHash`,`uId`,`bId`),
