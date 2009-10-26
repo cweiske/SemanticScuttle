@@ -2,9 +2,10 @@
 /**
  * Default configuration file for SemanticScuttle
  *
- * This file is included just before config.inc.php
+ * This file is included just before config.php.
  * If there is something you want to change, copy the lines
- * in your personal config.inc.php file
+ * in your personal config.php file.
+ * Do not modify _this_ file!
  *
  * This program is free software. You can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

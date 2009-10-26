@@ -8,7 +8,7 @@
 require_once '../../src/SemanticScuttle/header.php';
 
 if($GLOBALS['enableGoogleCustomSearch'] == false) {
-    echo "Google Custom Search disabled. You can enable it into the config.inc.php file.";
+    echo "Google Custom Search disabled. You can enable it into the config.php file.";
     die;
 }
 

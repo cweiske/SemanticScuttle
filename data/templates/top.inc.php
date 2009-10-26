@@ -47,7 +47,7 @@ if (isset($subtitle)) {
 	echo '<h2>'. $subtitle ."</h2>\n";
 }
 if(DEBUG_MODE) {
-	echo '<p class="error">'. T_('Admins, your installation is in "Debug Mode" ($debugMode = true). To go in "Normal Mode" and hide debugging messages, change $debugMode to false into config.inc.php.') ."</p>\n";
+	echo '<p class="error">'. T_('Admins, your installation is in "Debug Mode" ($debugMode = true). To go in "Normal Mode" and hide debugging messages, change $debugMode to false into config.php.') ."</p>\n";
 }
 if (isset($error) && $error!='') {
 	echo '<p class="error">'. $error ."</p>\n";
