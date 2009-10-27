@@ -527,6 +527,18 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             $query_5.= ' GROUP BY B.bHash';
         }
 
+
+        //Voting system
+        //needs to be directly after FROM bookmarks
+        if ($GLOBALS['enableVoting'] && $userservice->isLoggedOn()) {
+            $currentuser = $userservice->getCurrentUser();
+            $vs = SemanticScuttle_Service_Factory::get('Vote');
+            $query_1 .= ', !ISNULL(V.bId) as hasVoted, V.vote as vote';
+            $query_2 .= ' LEFT JOIN ' . $vs->getTableName() . ' AS V'
+                . ' ON B.bId = V.bId'
+                . ' AND V.uId = ' . (int)$currentuser['uId'];
+        }
+
         switch($sortOrder) {
             case 'date_asc':
                 $query_5.= ' ORDER BY B.bModified ASC ';
@@ -604,16 +616,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         // Hash
         if ($hash) {
             $query_4 .= ' AND B.bHash = "'. $hash .'"';
-        }
-
-        //Voting system
-        if ($GLOBALS['enableVoting'] && $userservice->isLoggedOn()) {
-            $currentuser = $userservice->getCurrentUser();
-            $vs = SemanticScuttle_Service_Factory::get('Vote');
-            $query_1 .= ', !ISNULL(V.bId) as hasVoted, V.vote as vote';
-            $query_2 .= ' LEFT JOIN ' . $vs->getTableName() . ' AS V'
-                . ' ON B.bId = V.bId'
-                . ' AND V.uId = ' . (int)$currentuser['uId'];
         }
 
 
