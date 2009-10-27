@@ -184,7 +184,7 @@ if($currenttag!= '') {
 
 	$pagesBanner = '<p class="paging">'. $bfirst .'<span> / </span>'. $bprev .'<span> / </span>'. $bnext .'<span> / </span>'. $blast .'<span> / </span>'. sprintf(T_('Page %d of %d'), $page, $totalpages) ." ". $brss ." </p>\n";
 	
-	if(getPerPageCount($currentUser) > 10) {
+	if (getPerPageCount($currentUser) > 10) {
 		echo $pagesBanner; // display a page banner if too many bookmarks to manage
 	} 
 
@@ -260,9 +260,14 @@ if($currenttag!= '') {
 
 		// Copy link
 		if ($userservice->isLoggedOn()
-		&& ($currentUser->getId() != $row['uId'])
-		&& !$bookmarkservice->bookmarkExists($row['bAddress'], $currentUser->getId())) {
-			$copy .= ' - <a href="'. createURL('bookmarks', $currentUser->getUsername() .'?action=add&amp;copyOf='. $row['bId']) .'" title="'.T_('Copy this bookmark to YOUR bookmarks.').'">'. T_('Copy') .'</a>';
+            && ($currentUser->getId() != $row['uId'])
+            && !$bookmarkservice->bookmarkExists($row['bAddress'], $currentUser->getId())
+        ) {
+			$copy .= ' - <a href="'
+                . createURL('bookmarks', $currentUser->getUsername() .'?action=add&amp;copyOf='. $row['bId'])
+                . '" title="'.T_('Copy this bookmark to YOUR bookmarks.').'">'
+                . T_('Copy')
+                . '</a>';
 		}
 
 		// Nofollow option
@@ -296,11 +301,7 @@ if($currenttag!= '') {
 		
 		// Output
 		echo '<li class="xfolkentry'. $access .'" >'."\n";
-		if ($GLOBALS['enableWebsiteThumbnails']) {
-			$thumbnailHash = md5($address.$GLOBALS['thumbnailsUserId'].$GLOBALS['thumbnailsKey']);
-			//echo '<a href="'. $address .'"'. $rel .' ><img class="thumbnail" src="http://www.artviper.net/screenshots/screener.php?url='.$address.'&w=120&sdx=1280&userID='.$GLOBALS['thumbnailsUserId'].'&hash='.$thumbnailHash.'" />';
-			echo '<img class="thumbnail" onclick="window.location.href=\''.$address.'\'" src="http://www.artviper.net/screenshots/screener.php?url='.$address.'&w=120&sdx=1280&userID='.$GLOBALS['thumbnailsUserId'].'&hash='.$thumbnailHash.'" />';
-		}
+        include 'bookmarks-thumbnail.inc.tpl.php';
         include 'bookmarks-vote.inc.tpl.php';
 		
 		echo '<div '.$adminBgClass.' >';;
