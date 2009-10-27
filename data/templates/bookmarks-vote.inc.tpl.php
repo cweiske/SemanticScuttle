@@ -8,20 +8,23 @@
 if (!$GLOBALS['enableVoting']) {
     return;
 }
-if ($row['hasVoted']) {
+if (isset($row['hasVoted']) && !$row['hasVoted']) {
     $classes = 'vote-badge vote-badge-inactive';
 } else {
     $classes = 'vote-badge';
 }
 echo '<span class="' . $classes . '">';
-if (!$row['hasVoted']) {
+
+if (isset($row['hasVoted']) && !$row['hasVoted']) {
     echo '<a class="vote-for" href="'
         . createVoteURL(true, $row['bId']) . '">+</a>';
 } else {
     echo '<span class="vote-for-inactive">+</span>';
 }
+
 echo '<span class="voting">' . $row['bVoting'] . '</span>';
-if (!$row['hasVoted']) {
+
+if (isset($row['hasVoted']) && !$row['hasVoted']) {
     echo '<a class="vote-against" href="'
         . createVoteURL(false, $row['bId']) . '">-</a>';
 } else {
