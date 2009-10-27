@@ -63,7 +63,14 @@ if (!defined('UNIT_TEST_MODE')) {
         if (isset($_SESSION['lastUrl'])) {
             $GLOBALS['lastUrl'] = $_SESSION['lastUrl'];
         }
-        $_SESSION['lastUrl'] = $_SERVER['REQUEST_URI'];
+        //this here is hacky, but currently the only way to
+        // differentiate between css/js php files and normal
+        // http files
+        if (!isset($GLOBALS['saveInLastUrl'])
+            || $GLOBALS['saveInLastUrl']
+        ) {
+            $_SESSION['lastUrl'] = $_SERVER['REQUEST_URI'];
+        }
     }
 }
 
