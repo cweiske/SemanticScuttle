@@ -3,9 +3,9 @@
  * We do expect three parameters:
  * - type (for/against)
  * - bookmark id
- * - url we shall redirect to (?from=)
+ * - session needs to contain the URL last visited
  *
- * vote/for/123?from=xyz
+ * vote/for/123
  */
 require_once '../src/SemanticScuttle/header.php';
 
@@ -21,7 +21,7 @@ $vs = SemanticScuttle_Service_Factory::get('Vote');
 
 if (!$us->isLoggedOn()) {
     header('HTTP/1.0 400 Bad Request');
-    echo 'need a logged on user';
+    echo 'You need to be logged on to vote.';
     exit(1);
 }
 $user = $us->getCurrentUser();
@@ -49,12 +49,12 @@ if (!is_numeric($bookmark)) {
 }
 $bookmark = (int)$bookmark;
 
-if (!isset($_GET['from']) || $_GET['from'] == '') {
-    header('HTTP/1.0 400 Bad Request');
-    echo 'Missing "from" parameter';
+if (!isset($GLOBALS['lastUrl']) || $GLOBALS['lastUrl'] == '') {
+    header('HTTP/1.0 412 Precondition failed');
+    echo 'Missing last URL in session';
     exit(5);
 }
-$from = $_GET['from'];
+$from = $GLOBALS['lastUrl'];
 
 
 if ($vs->hasVoted($bookmark, $user)) {

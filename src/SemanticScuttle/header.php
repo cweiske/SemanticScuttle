@@ -1,5 +1,5 @@
 <?php
-if(!file_exists(dirname(__FILE__) .'/../../data/config.php')) {
+if (!file_exists(dirname(__FILE__) .'/../../data/config.php')) {
 	die('Please copy "config.php.dist" to "config.php"');
 }
 set_include_path(
@@ -20,11 +20,12 @@ if (defined('UNIT_TEST_MODE')) {
     }
 }
 
-require_once 'SemanticScuttle/constants.php'; // some constants are based on variables from config file
+// some constants are based on variables from config file
+require_once 'SemanticScuttle/constants.php';
 
 
 // Debug Management using constants
-if(DEBUG_MODE) {
+if (DEBUG_MODE) {
 	ini_set('display_errors', '1');
 	ini_set('mysql.trace_mode', '1');
 	error_reporting(E_ALL);
@@ -34,7 +35,8 @@ if(DEBUG_MODE) {
 	error_reporting(0);
 }
 
-// 2 // Second requirements part which could display bugs (must come after debug management)
+// 2 // Second requirements part which could display bugs
+// (must come after debug management)
 require_once 'SemanticScuttle/Service.php';
 require_once 'SemanticScuttle/DbService.php';
 require_once 'SemanticScuttle/Service/Factory.php';
@@ -50,20 +52,26 @@ require_once 'SemanticScuttle/utf8.php';
 require_once 'php-gettext/gettext.inc';
 $domain = 'messages';
 T_setlocale(LC_MESSAGES, $locale);
-T_bindtextdomain($domain, dirname(__FILE__) .'/locales');
+T_bindtextdomain($domain, dirname(__FILE__) . '/locales');
 T_bind_textdomain_codeset($domain, 'UTF-8');
 T_textdomain($domain);
 
 // 4 // Session
 if (!defined('UNIT_TEST_MODE')) {
     session_start();
+    if ($GLOBALS['enableVoting']) {
+        if (isset($_SESSION['lastUrl'])) {
+            $GLOBALS['lastUrl'] = $_SESSION['lastUrl'];
+        }
+        $_SESSION['lastUrl'] = $_SERVER['REQUEST_URI'];
+    }
 }
 
 // 5 // Create mandatory services and objects
-$userservice =SemanticScuttle_Service_Factory::get('User');
+$userservice = SemanticScuttle_Service_Factory::get('User');
 $currentUser = $userservice->getCurrentObjectUser();
 
-$templateservice =SemanticScuttle_Service_Factory::get('Template');
+$templateservice = SemanticScuttle_Service_Factory::get('Template');
 $tplVars = array();
 $tplVars['currentUser'] = $currentUser;
 $tplVars['userservice'] = $userservice;

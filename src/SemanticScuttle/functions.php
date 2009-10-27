@@ -95,8 +95,6 @@ function createURL($page = '', $ending = '') {
 /**
  * Creates a "vote for/against this bookmark" URL.
  * Also runs htmlspecialchars() on them to prevent XSS.
- * We need to use ENT_QUOTES since otherwise we would not be
- * protected when the attribute is used in single quotes.
  *
  * @param boolean $for For the bookmark (true) or against (false)
  * @param integer $bId Bookmark ID
@@ -105,14 +103,11 @@ function createURL($page = '', $ending = '') {
  */
 function createVoteURL($for, $bId)
 {
-    //FIXME: we need a "current url" variable that is
-    //filled with a safe version of the current url.
-    //all this specialchars stuff is bit of a hack.
     return htmlspecialchars(
         createURL(
             'vote',
             ($for ? 'for' : 'against') . '/' . $bId
-        ) . '?from=' . urlencode($_SERVER['REQUEST_URI']),
+        ),
         ENT_QUOTES
     );
 }
