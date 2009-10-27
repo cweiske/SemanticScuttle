@@ -16,13 +16,8 @@ a:hover {
 a img {
     border: 0;
 }
-img.thumbnail { /* Thank you Ricco * */
-	border: 1px solid #AAAAAA;
-	float: left;
-	margin-bottom: 4px;
-	margin-right: 6px;
-	padding: 1px;
-}
+
+
 body {
     margin: 0;
     padding: 0;
