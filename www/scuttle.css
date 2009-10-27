@@ -247,6 +247,46 @@ li.xfolkentry div div.description span.anchorBookmark {
     /*font-family:monospace;*/
 }
 
+/* bookmark voting */
+.vote-badge {
+    float: left;
+    width: 3em;
+    margin: 5px;
+    border: 1px solid #CCCC88;
+    font-weight: bold;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+.vote-badge span, .vote-badge a {
+    display: block;
+    text-align: center;
+}
+.vote-badge a:hover {
+    text-decoration: none;
+}
+.vote-for {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-topleft: 10px;
+}
+.vote-against {
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+}
+a.vote-for:hover {
+    background-color: #ccffbb;
+}
+a.vote-against:hover {
+    background-color: #ffbbbb;
+}
+.vote-badge .vote-for-inactive, .vote-badge .vote-against-inactive {
+    font-size: 3px;
+    color: white;
+}
+
 /* SIDEBAR */
 
 div#sidebar {
