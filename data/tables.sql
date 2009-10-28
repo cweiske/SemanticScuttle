@@ -174,10 +174,10 @@ CREATE TABLE `sc_searchhistory` (
 
 
 CREATE TABLE `sc_votes` (
-  `bid` INT NOT NULL ,
-  `uid` INT NOT NULL ,
+  `bId` INT NOT NULL ,
+  `uId` INT NOT NULL ,
   `vote` INT( 2 ) NOT NULL ,
-  UNIQUE KEY `bid_2` (`bid`,`uid`),
-  KEY `bid` (`bid`),
-  KEY `uid` (`uid`)
+  UNIQUE KEY `bid_2` (`bId`,`uId`),
+  KEY `bid` (`bId`),
+  KEY `uid` (`uId`)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci ;
