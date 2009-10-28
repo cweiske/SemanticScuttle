@@ -103,15 +103,18 @@ class BookmarkTest extends TestBase
     {
         $bs = $this->bs;
 
+        $uid  = $this->addUser();
+        $uid2 = $this->addUser();
+
         $bs->addBookmark(
             'http://site1.com', "title", "description", 'note',
             0, array('tag1'), null, false, false,
-            1
+            $uid
         );
         $bs->addBookmark(
             "http://site1.com", "title2", "description2", 'note',
             0, array('tag2'), null, false, false,
-            2
+            $uid2
         );
 
         $bookmarks = $bs->getBookmarks();

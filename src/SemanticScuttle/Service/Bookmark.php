@@ -479,7 +479,8 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      * @param string  $sortOrder One of the following values:
      *                           "date_asc", "date_desc",
      *                           "title_desc", "title_asc",
-     *                           "url_desc", "url_asc"
+     *                           "url_desc", "url_asc",
+     *                           "voting_asc", "voting_desc"
      * @param boolean $watched   True if only watched bookmarks
      *                           shall be returned (FIXME)
      * @param integer $startdate Filter for creation date.
@@ -574,23 +575,29 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         }
 
         switch($sortOrder) {
-            case 'date_asc':
-                $query_5.= ' ORDER BY B.bModified ASC ';
-                break;
-            case 'title_desc':
-                $query_5.= ' ORDER BY B.bTitle DESC ';
-                break;
-            case 'title_asc':
-                $query_5.= ' ORDER BY B.bTitle ASC ';
-                break;
-            case 'url_desc':
-                $query_5.= ' ORDER BY B.bAddress DESC ';
-                break;
-            case 'url_asc':
-                $query_5.= ' ORDER BY B.bAddress ASC ';
-                break;
-            default:
-                $query_5.= ' ORDER BY B.bModified DESC ';
+        case 'date_asc':
+            $query_5 .= ' ORDER BY B.bModified ASC ';
+            break;
+        case 'title_desc':
+            $query_5 .= ' ORDER BY B.bTitle DESC ';
+            break;
+        case 'title_asc':
+            $query_5 .= ' ORDER BY B.bTitle ASC ';
+            break;
+        case 'voting_desc':
+            $query_5 .= ' ORDER BY B.bVoting DESC ';
+            break;
+        case 'voting_asc':
+            $query_5 .= ' ORDER BY B.bVoting ASC ';
+            break;
+        case 'url_desc':
+            $query_5 .= ' ORDER BY B.bAddress DESC ';
+            break;
+        case 'url_asc':
+            $query_5 .= ' ORDER BY B.bAddress ASC ';
+            break;
+        default:
+            $query_5 .= ' ORDER BY B.bModified DESC ';
         }
 
         // Handle the parts of the query that depend on any tags that are present.
