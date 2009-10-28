@@ -261,17 +261,18 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
      * Re-calculates all votings for all bookmarks
      * and updates the voting values in the bookmarks
      * table.
+     * This is mainly meant to be an administrative method
+     * to fix a broken database.
      *
      * @return void
      */
     public function rewriteVotings()
     {
-        throw new Exception('Not implemented yet');
-        //FIXME
-        $bm  = SemanticScuttle_Service_Factory::get('Bookmark');
-        $sql = 'UPDATE ' . $bm->getTableName() . ' as B SET bVoting = '
+        $bm    = SemanticScuttle_Service_Factory::get('Bookmark');
+        $query = 'UPDATE ' . $bm->getTableName() . ' as B SET bVoting = '
             . '(SELECT SUM(vote) FROM ' . $this->getTableName() . ' as V'
             . ' WHERE V.bId = B.bId GROUP BY bid)';
+        $this->db->sql_query($query);
     }
 
 

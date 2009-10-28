@@ -329,6 +329,34 @@ class VoteTest extends TestBase
         $this->assertEquals(-1, $this->vs->getVote($bid, $uid));
     }
 
+
+
+    /**
+     * Test that rewriting votings does work
+     *
+     * @return void
+     */
+    public function testRewriteVotings()
+    {
+        $uid = 1;
+        $bid = $this->addBookmark();
+        $this->assertTrue($this->vs->vote($bid, $uid, 1));
+
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals(1, $bm['bVoting']);
+
+        $this->vs->deleteAll();
+        //we assume that $vs->deleteAll() does *not* reset
+        //voting in bookmarks table
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals(1, $bm['bVoting']);
+
+        $this->vs->rewriteVotings();
+        $bm = $this->bs->getBookmark($bid);
+        //now it should be reset to 0
+        $this->assertEquals(0, $bm['bVoting']);
+    }
+
 }//class VoteTest extends TestBase
 
 
