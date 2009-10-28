@@ -60,6 +60,7 @@ class AllTests extends PHPUnit_Framework_TestSuite
         $suite->addTestFile($tdir . '/SearchHistoryTest.php');
         $suite->addTestFile($tdir . '/TagTest.php');
         $suite->addTestFile($tdir . '/VoteTest.php');
+        $suite->addTestFile($tdir . '/UserTest.php');
         return $suite;
     }
 
