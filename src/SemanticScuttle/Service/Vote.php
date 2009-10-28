@@ -246,8 +246,9 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
         //update bookmark table
         $bm  = SemanticScuttle_Service_Factory::get('Bookmark');
         $res = $this->db->sql_query(
-            'UPDATE ' . $bm->getTableName()
+            $sql='UPDATE ' . $bm->getTableName()
             . ' SET bVoting = bVoting + ' . (int)$vote
+            . ' WHERE bId = ' . (int)$bookmark
         );
         $this->db->sql_freeresult($res);
 
@@ -267,7 +268,10 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
     {
         throw new Exception('Not implemented yet');
         //FIXME
-        //SELECT bid, SUM( vote ) FROM sc_votes GROUP BY bid
+        $bm  = SemanticScuttle_Service_Factory::get('Bookmark');
+        $sql = 'UPDATE ' . $bm->getTableName() . ' as B SET bVoting = '
+            . '(SELECT SUM(vote) FROM ' . $this->getTableName() . ' as V'
+            . ' WHERE V.bId = B.bId GROUP BY bid)';
     }
 
 
