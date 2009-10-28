@@ -97,7 +97,7 @@ $dateArrow   = '';
 $votingArrow = '';
 $dateSort    = 'date_desc';
 $titleSort   = 'title_asc';
-$votingSort  = 'voting_asc';
+$votingSort  = 'voting_desc';
 
 switch(getSortOrder()) {
 case 'date_asc':
