@@ -2,7 +2,7 @@
 $this->includeTemplate($GLOBALS['top_include']);
 ?>
 
-<form action="<?= $formaction ?>" method="post">
+<form action="<?php echo $formaction; ?>" method="post">
 
 <p align=right" style="float:right">
 <small style="text-align:right"><?php echo T_('Note: use "=" to make synonym two tags. e.g.: france=frenchcountry')?></small><br/>

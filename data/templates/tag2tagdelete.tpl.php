@@ -2,7 +2,7 @@
 $this->includeTemplate($GLOBALS['top_include']);
 ?>
 
-<form action="<?= $formaction ?>" method="post">
+<form action="<?php echo $formaction; ?>" method="post">
 <!--input type="hidden" name="tag1" value="<?php echo $tag1 ?>" />
 <input type="hidden" name="tag2" value="<?php echo $tag2 ?>" /-->
 <p>

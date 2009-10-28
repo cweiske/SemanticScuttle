@@ -2,7 +2,7 @@
 $this->includeTemplate($GLOBALS['top_include']);
 ?>
 
-<form action="<?= $formdeleteaction ?>" method="post">
+<form action="<?php echo $formdeleteaction; ?>" method="post">
 <p><?php echo T_('Delete the link')?></p>
 <!--input type="hidden" name="tag1" value="<?php echo $tag1 ?>" />
 <input type="hidden" name="tag2" value="<?php echo $tag2 ?>" /-->
@@ -25,7 +25,7 @@ $this->includeTemplate($GLOBALS['top_include']);
 
 <hr />
 
-<form action="<?= $formaddaction ?>" method="post">
+<form action="<?php echo $formaddaction; ?>" method="post">
 <p><?php echo T_('Create new link')?></p>
 <p>
 <input type="text" name="tag1" value="<?php echo $tag1 ?>"/>
