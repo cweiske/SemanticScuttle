@@ -103,6 +103,21 @@ class UserTest extends TestBase
         $this->assertEquals($uid2, $user['uId']);
     }
 
+
+
+    /**
+     * Test login() function with invalid creditentials
+     *
+     * @return void
+     */
+    public function testLoginInvalid()
+    {
+        $this->us->deleteAll();
+        $this->assertFalse(
+            $this->us->login('doesnot', 'exist', false)
+        );
+    }
+
 }
 
 

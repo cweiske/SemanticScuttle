@@ -368,13 +368,15 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
             return false;
         }
 
-        if ($row =& $this->db->sql_fetchrow($dbresult)) {
+        $row = $this->db->sql_fetchrow($dbresult);
+        $this->db->sql_freeresult($dbresult);
+
+        if ($row) {
             $id = $_SESSION[$this->getSessionKey()] = $row[$this->getFieldName('primary')];
             if ($remember) {
                 $cookie = $id .':'. md5($username.$password);
                 setcookie($this->cookiekey, $cookie, time() + $this->cookietime, '/');
             }
-            $this->db->sql_freeresult($dbresult);
             return true;
         } else {
             return false;
@@ -591,6 +593,21 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
 
         return true;
     }
+
+
+
+    /**
+     * Delete all bookmarks.
+     * Mainly used in unit tests.
+     *
+     * @return void
+     */
+    public function deleteAll()
+    {
+        $query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';
+        $this->db->sql_query($query);
+    }
+
 
 
     function sanitisePassword($password) {
