@@ -49,21 +49,35 @@ class SemanticScuttle_Service_Template extends SemanticScuttle_Service
         $this->basedir = $GLOBALS['TEMPLATES_DIR'];
     }
 
-    function loadTemplate($template, $vars = NULL) {
-        if (substr($template, -4) != '.php')
-        $template .= '.php';
-        $tpl =& new Template($this->basedir .'/'. $template, $vars, $this);
+    /**
+     * Loads and displays a template file.
+     *
+     * @param string $template Template filename relative
+     *                         to template dir
+     * @param array  $vars     Array of template variables.
+     *
+     * @return Template Template object
+     */
+    function loadTemplate($template, $vars = null)
+    {
+        if (substr($template, -4) != '.php') {
+            $template .= '.php';
+        }
+        $tpl = new Template($this->basedir .'/'. $template, $vars, $this);
         $tpl->parse();
+
         return $tpl;
     }
 }
 
-class Template {
+class Template
+{
     var $vars = array();
     var $file = '';
     var $templateservice;
 
-    function Template($file, $vars = NULL, &$templateservice) {
+    function Template($file, $vars = null, &$templateservice)
+    {
         $this->vars = $vars;
         $this->file = $file;
         $this->templateservice = $templateservice;
