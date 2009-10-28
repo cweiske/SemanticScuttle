@@ -25,7 +25,7 @@ if (!$userservice->isSessionStable()) {
     <tr>
         <th align="left"><label for="password"><?php echo T_('Password'); ?></label></th>
         <td><input type="password" id="password" name="password" size="20" /></td>
-        <td><input type="checkbox" name="keeppass" value="yes" /> <?php echo T_("Don't ask for my password for 2 weeks"); ?>.</td>
+        <td><input type="checkbox" name="keeppass" id="keeppass" value="yes" /> <label for="keeppass"><?php echo T_("Don't ask for my password for 2 weeks"); ?>.</label></td>
     </tr>
     <tr>
         <td></td>
