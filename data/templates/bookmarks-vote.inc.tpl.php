@@ -10,6 +10,12 @@ if (!$GLOBALS['enableVoting']) {
 }
 if (isset($row['hasVoted']) && !$row['hasVoted']) {
     $classes = 'vote-badge vote-badge-inactive';
+} else if (isset($row['vote']))  {
+    $classes = 'vote-badge '
+        . ($row['vote'] == 1
+           ? 'vote-badge-for'
+           : 'vote-badge-against'
+        );
 } else {
     $classes = 'vote-badge';
 }

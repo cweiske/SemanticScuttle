@@ -280,11 +280,17 @@ a.vote-for:hover {
     background-color: #ccffbb;
 }
 a.vote-against:hover {
-    background-color: #ffbbbb;
+    background-color: #ffcccc;
 }
 .vote-badge .vote-for-inactive, .vote-badge .vote-against-inactive {
     font-size: 3px;
-    color: white;
+    color: transparent;
+}
+.vote-badge-for {
+    background-color: #ccffbb;
+}
+.vote-badge-against {
+    background-color: #ffcccc;
 }
 
 /* SIDEBAR */
