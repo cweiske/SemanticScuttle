@@ -16,7 +16,7 @@ foreach($watching as $watchuser) {
 ?>
 
 <?php if(count($closeContacts)>0):?>
-<h2 title="<?php echo T_('Close contacts are mutual contacts');?>"><?php echo ' &harr '. T_('Close contacts'); ?></h2>
+<h2 title="<?php echo T_('Close contacts are mutual contacts');?>"><?php echo ' &harr; '. T_('Close contacts'); ?></h2>
 <div id="watching">
     <ul>
     <?php foreach($closeContacts as $watchuser): ?>
