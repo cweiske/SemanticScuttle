@@ -811,7 +811,13 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
 
 
-    function deleteAll()
+    /**
+     * Delete all bookmarks.
+     * Mainly used in unit tests.
+     *
+     * @return void
+     */
+    public function deleteAll()
     {
         $query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';
         $this->db->sql_query($query);
