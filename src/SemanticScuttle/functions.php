@@ -49,7 +49,7 @@ function getSortOrder($override = NULL) {
 	global $defaultOrderBy;
 
 	if (isset($_GET['sort'])) {
-		return $_GET['sort'];
+		return preg_replace('/[^a-z]/', '', $_GET['sort']);
 	} else if (isset($override)) {
 		return $override;
 	} else {
