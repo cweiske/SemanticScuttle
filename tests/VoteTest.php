@@ -57,6 +57,8 @@ class VoteTest extends TestBase
         //FIXME: create true new instance
         $this->vs = SemanticScuttle_Service_Factory::get('Vote');
         $this->vs->deleteAll();
+
+        $this->bs = SemanticScuttle_Service_Factory::get('Bookmark');
     }
 
 
@@ -193,7 +195,9 @@ class VoteTest extends TestBase
 
 
     /**
-     * Test hasVoted() when a vote has been cast for other bookmarks
+     * Test hasVoted() when a vote has been cast for other bookmarks.
+     * Also verify that the bookmark voting did not change for
+     * the other bookmarks.
      *
      * @return void
      */
@@ -208,6 +212,9 @@ class VoteTest extends TestBase
         $this->vs->vote($bid3, $uid, 1);
 
         $this->assertFalse($this->vs->hasVoted($bid2, $uid));
+
+        $bm2 = $this->bs->getBookmark($bid2);
+        $this->assertEquals(0, $bm2['bVoting']);
     }
 
 
