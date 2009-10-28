@@ -77,10 +77,11 @@ class BookmarkTest extends TestBase
         $tag1 = "#{|`^@]³¹¡¿<&é\"'(-è\\_çà)";
         $tag2 = "&é\"'(-è.[?./§!_çà)";
 
-        $bs->addBookmark(
+        $uid = $this->addUser();
+        $bid = $bs->addBookmark(
             'http://site1.com', $title, $desc, 'note',
             0, array($tag1, $tag2),
-            null, false, false, 1
+            null, false, false, $uid
         );
 
         $bookmarks = $bs->getBookmarks(0, 1);
