@@ -2,10 +2,13 @@
 
 
 /* Managing all possible inputs */
-$select_watchlist = isset($select_watchlist)?$select_watchlist:'';
-$select_all = isset($select_all)?$select_all:'';
+$select_watchlist = isset($select_watchlist) ? $select_watchlist : '';
+$select_all = isset($select_all) ? $select_all : '';
 
 $selected = ' selected="selected"';
+if (!isset($range)) {
+    $range = '';
+}
 ?>
 
 
