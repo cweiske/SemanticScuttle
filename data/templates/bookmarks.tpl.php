@@ -92,36 +92,56 @@ window.onload = playerLoad;
 
 <p id="sort"><?php echo $total.' '.T_("bookmark(s)"); ?> - <?php echo T_("Sort by:"); ?>
 <?php
+$titleArrow  = '';
+$dateArrow   = '';
+$votingArrow = '';
+$dateSort    = 'date_desc';
+$titleSort   = 'title_asc';
+$votingSort  = 'voting_asc';
+
 switch(getSortOrder()) {
-	case 'date_asc':
-	$titleArrow = '';
+case 'date_asc':
 	$dateArrow = ' &uarr;';
-	$dateSort = 'date_desc';
-	$titleSort = 'title_asc';
+	$dateSort  = 'date_desc';
 	break;
-	case 'title_asc':
+
+case 'title_asc':
 	$titleArrow = ' &uarr;';
-	$dateArrow = '';
-	$dateSort = 'date_desc';
-	$titleSort = 'title_desc';	
+	$titleSort  = 'title_desc';
 	break;
-	case 'title_desc':
+
+case 'title_desc':
 	$titleArrow = ' &darr;';
-	$dateArrow = '';
-	$dateSort = 'date_desc';
-	$titleSort = 'title_asc';
+	$titleSort  = 'title_asc';
 	break;
-	case 'date_desc':
-	default:
-	$titleArrow = '';
+
+case 'voting_asc':
+	$votingArrow = ' &uarr;';
+	$votingSort  = 'voting_desc';
+	break;
+
+case 'voting_desc':
+	$votingArrow = ' &darr;';
+	$votingSort  = 'voting_asc';
+	break;
+
+case 'date_desc':
+default:
 	$dateArrow = ' &darr;';
 	$dateSort = 'date_asc';
-	$titleSort = 'title_asc';
 	break;
 }
-?> <a href="?sort=<?php echo $dateSort ?>"><?php echo T_("Date").$dateArrow; ?></a><span>
-/ </span> <a href="?sort=<?php echo $titleSort ?>"><?php echo T_("Title").$titleArrow; ?></a><span>
-/ </span> <?php
+?>
+<a href="?sort=<?php echo $dateSort ?>"><?php echo T_("Date").$dateArrow; ?></a>
+<span>/</span>
+<a href="?sort=<?php echo $titleSort ?>"><?php echo T_("Title").$titleArrow; ?></a>
+<span>/</span>
+<?php if ($GLOBALS['enableVoting']) { ?>
+<a href="?sort=<?php echo $votingSort ?>"><?php echo T_("Voting").$votingArrow; ?></a>
+<span>/</span>
+<?php } ?>
+
+<?php
 if($currenttag!= '') {
 	if($user!= '') {
 		echo ' - ';
@@ -183,10 +203,10 @@ if($currenttag!= '') {
 	}
 
 	$pagesBanner = '<p class="paging">'. $bfirst .'<span> / </span>'. $bprev .'<span> / </span>'. $bnext .'<span> / </span>'. $blast .'<span> / </span>'. sprintf(T_('Page %d of %d'), $page, $totalpages) ." ". $brss ." </p>\n";
-	
+
 	if (getPerPageCount($currentUser) > 10) {
 		echo $pagesBanner; // display a page banner if too many bookmarks to manage
-	} 
+	}
 
 
 ?>
@@ -230,14 +250,14 @@ if($currenttag!= '') {
 		if ($bookmarkservice->editAllowed($row)) {
 			$edit = ' - <a href="'. createURL('edit', $row['bId']) .'">'. T_('Edit') .'</a><script type="text/javascript">document.write(" - <a href=\"#\" onclick=\"deleteBookmark(this, '. $row['bId'] .'); return false;\">'. T_('Delete') .'<\/a>");</script>';
 		}
-		
+
 		// Last update
 		$update = ' <small title="'. T_('Last update') .'">('. date($GLOBALS['shortdate'], strtotime($row['bModified'])). ') </small>';
 
 		// User attribution
 		$copy = ' '. T_('by'). ' ';
 		if($userservice->isLoggedOn() && $currentUser->getUsername() ==  $row['username']) {
-			$copy.= T_('you');			
+			$copy.= T_('you');
 		} else {
 			$copy.= '<a href="'. createURL('bookmarks', $row['username']) .'">'. $row['username'] .'</a>';
 		}
@@ -282,7 +302,7 @@ if($currenttag!= '') {
 		if ($GLOBALS['useredir']) {
 			$address = $GLOBALS['url_redir'] . $address;
 		}
-		
+
 		// Admin specific design
 		if($userservice->isAdmin($row['uId'])) {
 			$adminBgClass = 'class="adminBackground"';
@@ -291,19 +311,19 @@ if($currenttag!= '') {
 			$adminBgClass = '';
 			$adminStar = '';
 		}
-		
+
 		// Private Note (just visible by the owner and his/her contacts)
 		if($userservice->isLoggedOn() && ($currentUser->getId() == $row['uId'] || in_array($row['username'], $userservice->getWatchNames($currentUser->getId(), true)))) {
 			$privateNoteField = $row['bPrivateNote'];
 		} else {
 			$privateNoteField = '';
 		}
-		
+
 		// Output
 		echo '<li class="xfolkentry'. $access .'" >'."\n";
         include 'bookmarks-thumbnail.inc.tpl.php';
         include 'bookmarks-vote.inc.tpl.php';
-		
+
 		echo '<div '.$adminBgClass.' >';;
 
 		echo '<div class="link"><a href="'. $address .'"'. $rel .' class="taggedlink" target="_blank">'. filter($row['bTitle']) ."</a>" . $adminStar . "</div>\n";
@@ -314,7 +334,7 @@ if($currenttag!= '') {
 			$bkDescription = preg_replace('|\[\/.*?\]|', '', filter($row['bDescription'])); // remove final anchor
 			$bkDescription = preg_replace('|\[(.*?)\]|', ' <span class="anchorBookmark">$1</span> » ', $bkDescription); // highlight starting anchor
 			$bkDescription = preg_replace('@((http|https|ftp)://.*?)( |\r|$)@', '<a href="$1" rel="nofollow">$1</a>$3', $bkDescription); // make url clickable
-			
+
 		}
 		echo '<div class="description">'. nl2br($bkDescription) ."</div>\n";
 		//if(!isset($hash)) {
@@ -332,11 +352,11 @@ if($currenttag!= '') {
 </ol>
 
 	<?php
-	if(getPerPageCount($currentUser)>7) {	
+	if(getPerPageCount($currentUser)>7) {
 		echo '<p class="backToTop"><a href="#header" title="'.T_('Come back to the top of this page.').'">'.T_('Top of the page').'</a></p>';
 	}
 	echo $pagesBanner;  // display previous and next links pages + RSS link
-	
+
 
 } else {
 	echo '<p class="error">'.T_('No bookmarks available').'</p>';
