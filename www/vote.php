@@ -65,5 +65,11 @@ if ($vs->hasVoted($bookmark, $user)) {
 }
 
 $vs->vote($bookmark, $user, $type == 'for' ? 1 : -1);
+
+if (isset($GLOBALS['ajaxRequest']) && $GLOBALS['ajaxRequest']) {
+    //we are in ajax mode and return the badge in ajaxVote.php
+    return;
+}
+
 header('Location: ' . $from);
 ?>

@@ -42,7 +42,7 @@ function deleteConfirmed(ele, input, response) {
         post.style.display = 'none';
         deleted = false;
     } else {
-        loadXMLDoc('<?php echo ROOT; ?>ajaxDelete.php?id=' + input);        
+        loadXMLDocProc('<?php echo ROOT; ?>ajaxDelete.php?id=' + input);        
         post.style.display = 'none';        
     }
 }
@@ -97,7 +97,7 @@ function getTitle(input, response){
             title.style.backgroundImage = 'none';
             title.value = response;
         } else if (input.indexOf('http') > -1) {
-            loadXMLDoc('<?php echo ROOT; ?>ajaxGetTitle.php?url=' + input);
+            loadXMLDocProc('<?php echo ROOT; ?>ajaxGetTitle.php?url=' + input);
         } else {
             return false;
         }
@@ -105,11 +105,25 @@ function getTitle(input, response){
 }
 
 var xmlhttp;
-function loadXMLDoc(url) {
+function loadXMLDocProc(url) {
+    loadXMLDoc(url, processStateChange);
+}
+function vote(bookmark, vote) {
+    if (vote == 1) {
+        vote = 'for';
+    } else {
+        vote = 'against';
+    }
+    loadXMLDoc(
+        '<?php echo ROOT; ?>ajaxVote.php/' + vote + '/' + bookmark,
+        processVotingResult
+    );
+}
+function loadXMLDoc(url, callback) {
     // Native
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = processStateChange;
+        xmlhttp.onreadystatechange = callback;
         xmlhttp.open("GET", url, true);
         xmlhttp.send(null);
     // ActiveX
@@ -130,6 +144,20 @@ function processStateChange() {
         result = response.getElementsByTagName('result')[0].firstChild.data;
         eval(method + '(\'\', result)');
     }
+}
+function processVotingResult() {
+    if (xmlhttp.readyState != 4 || xmlhttp.status != 200) {
+        return;
+    }
+    var response = xmlhttp.responseXML.documentElement;
+    var bookmark = response.getElementsByTagName('bookmark')[0]
+        .firstChild.nodeValue;
+    var bmnode = document.getElementById('bmv-'+bookmark);
+
+    bmnode.parentNode.replaceChild(
+        response.getElementsByTagName('html')[0].firstChild,
+        bmnode
+    );
 }
 
 function playerLoad() {

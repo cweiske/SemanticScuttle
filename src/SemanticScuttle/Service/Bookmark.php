@@ -80,19 +80,51 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
 
 
+    /**
+     * Load a single bookmark and return it
+     *
+     * @param integer $bid          Bookmark ID
+     * @param boolean $include_tags If tags shall be loaded
+     *
+     * @return mixed Array with bookmark data or false in case
+     *               of an error.
+     */
     function getBookmark($bid, $include_tags = false)
     {
-        if (!is_numeric($bid))
-        return;
+        if (!is_numeric($bid)) {
+            return false;
+        }
 
-        $sql = 'SELECT * FROM '. $this->getTableName() .' WHERE bId = '. $this->db->sql_escape($bid);
+        $userservice = SemanticScuttle_Service_Factory::get('User');
 
-        if (!($dbresult = & $this->db->sql_query($sql)))
-        message_die(GENERAL_ERROR, 'Could not get vars', '', __LINE__, __FILE__, $sql, $this->db);
+        $query_1 = '*';
+        $query_2 = $this->getTableName() . ' as B';
 
-        if ($row = & $this->db->sql_fetchrow($dbresult)) {
+        //Voting system
+        //needs to be directly after FROM bookmarks
+        if ($GLOBALS['enableVoting'] && $userservice->isLoggedOn()) {
+            $currentuser = $userservice->getCurrentUser();
+            $vs = SemanticScuttle_Service_Factory::get('Vote');
+            $query_1 .= ', !ISNULL(V.bId) as hasVoted, V.vote as vote';
+            $query_2 .= ' LEFT JOIN ' . $vs->getTableName() . ' AS V'
+                . ' ON B.bId = V.bId'
+                . ' AND V.uId = ' . (int)$currentuser['uId'];
+        }
+
+        $sql = 'SELECT ' . $query_1 . ' FROM '
+            . $query_2
+            .' WHERE B.bId = '. $this->db->sql_escape($bid);
+
+        if (!($dbresult = & $this->db->sql_query($sql))) {
+            message_die(
+                GENERAL_ERROR, 'Could not get bookmark',
+                '', __LINE__, __FILE__, $sql, $this->db
+            );
+        }
+
+        if ($row = $this->db->sql_fetchrow($dbresult)) {
             if ($include_tags) {
-                $b2tservice = SemanticScuttle_Service_Factory :: get('Bookmark2Tag');
+                $b2tservice = SemanticScuttle_Service_Factory::get('Bookmark2Tag');
                 $row['tags'] = $b2tservice->getTagsForBookmark($bid);
             }
             $output = $row;
