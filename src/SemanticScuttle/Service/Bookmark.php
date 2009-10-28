@@ -81,7 +81,9 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
 
     /**
-     * Load a single bookmark and return it
+     * Load a single bookmark and return it.
+     * When a user is logged on, the returned array will contain
+     * keys "hasVoted" and "vote".
      *
      * @param integer $bid          Bookmark ID
      * @param boolean $include_tags If tags shall be loaded
@@ -97,18 +99,18 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         $userservice = SemanticScuttle_Service_Factory::get('User');
 
-        $query_1 = '*';
+        $query_1 = 'B.*';
         $query_2 = $this->getTableName() . ' as B';
 
         //Voting system
         //needs to be directly after FROM bookmarks
         if ($GLOBALS['enableVoting'] && $userservice->isLoggedOn()) {
-            $currentuser = $userservice->getCurrentUser();
+            $cuid = $userservice->getCurrentUserId();
             $vs = SemanticScuttle_Service_Factory::get('Vote');
             $query_1 .= ', !ISNULL(V.bId) as hasVoted, V.vote as vote';
             $query_2 .= ' LEFT JOIN ' . $vs->getTableName() . ' AS V'
                 . ' ON B.bId = V.bId'
-                . ' AND V.uId = ' . (int)$currentuser['uId'];
+                . ' AND V.uId = ' . (int)$cuid;
         }
 
         $sql = 'SELECT ' . $query_1 . ' FROM '
@@ -563,12 +565,12 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         //Voting system
         //needs to be directly after FROM bookmarks
         if ($GLOBALS['enableVoting'] && $userservice->isLoggedOn()) {
-            $currentuser = $userservice->getCurrentUser();
-            $vs = SemanticScuttle_Service_Factory::get('Vote');
+            $cuid = $userservice->getCurrentUserId();
+            $vs   = SemanticScuttle_Service_Factory::get('Vote');
             $query_1 .= ', !ISNULL(V.bId) as hasVoted, V.vote as vote';
             $query_2 .= ' LEFT JOIN ' . $vs->getTableName() . ' AS V'
                 . ' ON B.bId = V.bId'
-                . ' AND V.uId = ' . (int)$currentuser['uId'];
+                . ' AND V.uId = ' . (int)$cuid;
         }
 
         switch($sortOrder) {

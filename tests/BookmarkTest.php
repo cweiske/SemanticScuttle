@@ -182,6 +182,97 @@ class BookmarkTest extends TestBase
         $this->assertTrue($this->vs->hasVoted($bid2, $uid));
     }
 
+
+
+    /**
+     * Verify that getBookmark() does not include user voting
+     * data when no user is logged on.
+     *
+     * @return void
+     */
+    public function testGetBookmarkUserVotingNoUser()
+    {
+        $uid = $this->addUser();
+        $bid = $this->addBookmark($uid);
+        //no user
+        $this->us->setCurrentUserId(null);
+
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertArrayNotHasKey('hasVoted', $bm);
+        $this->assertArrayNotHasKey('vote', $bm);
+    }
+
+
+
+    /**
+     * Verify that getBookmark() automatically includes
+     * voting data of the currently logged on user,
+     * even if he did not vote yet.
+     *
+     * @return void
+     */
+    public function testGetBookmarkUserVotingWithUserNoVote()
+    {
+        $uid = $this->addUser();
+        $bid = $this->addBookmark($uid);
+        //log user in
+        $this->us->setCurrentUserId($uid);
+
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertArrayHasKey('hasVoted', $bm);
+        $this->assertArrayHasKey('vote', $bm);
+        $this->assertEquals(0, $bm['hasVoted']);
+        $this->assertEquals(null, $bm['vote']);
+    }
+
+
+
+    /**
+     * Verify that getBookmark() automatically includes
+     * voting data of the currently logged on user
+     * when he voted positive.
+     *
+     * @return void
+     */
+    public function testGetBookmarkUserVotingWithUserPositiveVote()
+    {
+        $uid = $this->addUser();
+        $bid = $this->addBookmark($uid);
+        //log user in
+        $this->us->setCurrentUserId($uid);
+        $this->assertTrue($this->vs->vote($bid, $uid, 1));
+
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertArrayHasKey('hasVoted', $bm);
+        $this->assertArrayHasKey('vote', $bm);
+        $this->assertEquals(1, $bm['hasVoted']);
+        $this->assertEquals(1, $bm['vote']);
+    }
+
+
+
+    /**
+     * Verify that getBookmark() automatically includes
+     * voting data of the currently logged on user
+     * when he voted positive.
+     *
+     * @return void
+     */
+    public function testGetBookmarkUserVotingWithUserNegativeVote()
+    {
+        $uid = $this->addUser();
+        $bid = $this->addBookmark($uid);
+        //log user in
+        $this->us->setCurrentUserId($uid);
+        $this->assertTrue($this->vs->vote($bid, $uid, -1));
+
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertArrayHasKey('hasVoted', $bm);
+        $this->assertArrayHasKey('vote', $bm);
+        $this->assertEquals(1, $bm['hasVoted']);
+        $this->assertEquals(-1, $bm['vote']);
+    }
+
 }
 
 

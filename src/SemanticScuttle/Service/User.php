@@ -26,10 +26,23 @@
  */
 class SemanticScuttle_Service_User extends SemanticScuttle_DbService
 {
+    /**
+     * Currently logged on user from database
+     *
+     * @var array
+     *
+     * @see getCurrentUserId()
+     * @see getCurrentUser()
+     * @see setCurrentUserId()
+     */
+    protected $currentuser = null;
+
     protected $fields = array(
         'primary'   =>  'uId',
         'username'  =>  'username',
-        'password'  =>  'password');
+        'password'  =>  'password'
+    );
+
     protected $profileurl;
     protected $sessionkey;
     protected $cookiekey;
@@ -202,18 +215,29 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         return ($this->getCurrentUserId() !== false);
     }
 
-    function &getCurrentUser($refresh = FALSE, $newval = NULL) {
-        static $currentuser;
-        if (!is_null($newval)) { //internal use only: reset currentuser
+    /**
+     * Returns the current user object
+     *
+     * @param boolean $refresh Reload the user from database
+     *                         based on current user id
+     * @param mixed   $newval  New user value (used internally
+     *                         as setter method)
+     *
+     * @return array User from database
+     */
+    public function getCurrentUser($refresh = false, $newval = null)
+    {
+        if (!is_null($newval)) {
+            //internal use only: reset currentuser
             $currentuser = $newval;
-        } else if ($refresh || !isset($currentuser)) {
+        } else if ($refresh || !isset($this->currentuser)) {
             if ($id = $this->getCurrentUserId()) {
-                $currentuser = $this->getUser($id);
+                $this->currentuser = $this->getUser($id);
             } else {
-                $currentuser = null;
+                $this->currentuser = null;
             }
         }
-        return $currentuser;
+        return $this->currentuser;
     }
 
     // Momentary useful in order to go to object code
@@ -271,10 +295,17 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         }
     }
 
-    /* return current user id based on session or cookie */
-    function getCurrentUserId() {
+    /**
+     * Return current user id based on session or cookie
+     *
+     * @return mixed Integer user id or boolean false when user
+     *               could not be found or is not logged on.
+     */
+    public function getCurrentUserId()
+    {
         if (isset($_SESSION[$this->getSessionKey()])) {
             return $_SESSION[$this->getSessionKey()];
+
         } else if (isset($_COOKIE[$this->getCookieKey()])) {
             $cook = split(':', $_COOKIE[$this->getCookieKey()]);
             //cookie looks like this: 'id:md5(username+password)'
@@ -285,18 +316,48 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
             $this->getFieldName('primary'). ' = '. $this->db->sql_escape($cook[0]);
 
             if (! ($dbresult =& $this->db->sql_query($query)) ) {
-                message_die(GENERAL_ERROR, 'Could not get user', '', __LINE__, __FILE__, $query, $this->db);
+                message_die(
+                    GENERAL_ERROR, 'Could not get user',
+                    '', __LINE__, __FILE__, $query, $this->db
+                );
                 return false;
             }
 
             if ($row = $this->db->sql_fetchrow($dbresult)) {
-                $_SESSION[$this->getSessionKey()] = $row[$this->getFieldName('primary')];
+                $this->setCurrentUserId(
+                    $row[$this->getFieldName('primary')]
+                );
                 $this->db->sql_freeresult($dbresult);
                 return $_SESSION[$this->getSessionKey()];
             }
         }
         return false;
     }
+
+
+
+    /**
+     * Set the current user ID (i.e. when logging on)
+     *
+     * @internal
+     * No ID verification is being done.
+     *
+     * @param integer $user User ID or null to unset the user
+     *
+     * @return void
+     */
+    public function setCurrentUserId($user)
+    {
+        if ($user === null) {
+            unset($_SESSION[$this->getSessionKey()]);
+        } else {
+            $_SESSION[$this->getSessionKey()] = (int)$user;
+        }
+        //reload user object
+        $this->getCurrentUser(true);
+    }
+
+
 
     function login($username, $password, $remember = FALSE) {
         $password = $this->sanitisePassword($password);
@@ -617,8 +678,32 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         return $_SESSION['sessionStable'] == 1;
     }
 
-    function getFieldName($field)         { return $this->fields[$field]; }
-    function setFieldName($field, $value) { $this->fields[$field] = $value; }
+    /**
+     * Get database column name.
+     *
+     * @param string $field Field name like 'primary', 'username'
+     *                      and 'password'
+     *
+     * @return string Real field name
+     */
+    public function getFieldName($field)
+    {
+        return $this->fields[$field];
+    }
+
+    /**
+     * Set field name
+     *
+     * @param string $field Field name like 'primary', 'username'
+     *                      and 'password'
+     * @param string $value Real database column name
+     *
+     * @return void
+     */
+    public function setFieldName($field, $value)
+    {
+        $this->fields[$field] = $value;
+    }
 
     function getSessionKey()       { return $this->sessionkey; }
     function setSessionKey($value) { $this->sessionkey = $value; }
