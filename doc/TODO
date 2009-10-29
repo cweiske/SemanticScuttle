@@ -1,5 +1,7 @@
 - SemanticScuttle_Filter
   -> class with static filter functions to filter
-     ids, usernames, passwords etc.
+     ids, usernames, passwords, sorting etc.
 - Rename model classes (Template, User)
 - find out the reasoning behind define(POST_|GET_)
+- when a user gets deleted from database, he should not be
+  logged in anymore (name not shown on top right)
