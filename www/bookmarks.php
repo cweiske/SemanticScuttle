@@ -190,7 +190,7 @@ if ($templatename == 'editbookmark.tpl') {
 			$tplVars['tags'] = POST_TAGS;
 		} else {
 			if(GET_COPYOF != '') {  //copy from bookmarks page
-				$tplVars['row'] = $bookmarkservice->getBookmark(GET_COPYOF, true);
+				$tplVars['row'] = $bookmarkservice->getBookmark(intval(GET_COPYOF), true);
 				if(!$currentUser->isAdmin()) {
 					$tplVars['row']['bPrivateNote'] = ''; //only admin can copy private note
 				}
@@ -249,7 +249,7 @@ if ($templatename == 'editbookmark.tpl') {
 	// Pagination
 	$perpage = getPerPageCount($currentUser);
 	if (intval(GET_PAGE) > 1) {
-		$page = GET_PAGE;
+		$page = intval(GET_PAGE);
 		$start = ($page - 1) * $perpage;
 	} else {
 		$page = 0;

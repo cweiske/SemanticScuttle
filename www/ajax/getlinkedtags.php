@@ -57,7 +57,7 @@ function displayTag($tag, $uId) {
 
 { label: 'name', identifier: 'id', items: [
 <?php
-$json = displayTag(GET_TAG, GET_UID);
+$json = displayTag(GET_TAG, intval(GET_UID));
 $json = substr($json, 0, -1); // remove final comma avoiding IE6 Dojo bug
 echo $json;
 ?>

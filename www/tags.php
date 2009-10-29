@@ -73,7 +73,7 @@ array(filter($sitename .': '. $pagetitle), createURL('rss', 'all/'. filter($cat,
 // Pagination
 $perpage = getPerPageCount($currentUser);
 if (intval(GET_PAGE) > 1) {
-	$page = GET_PAGE;
+	$page = intval(GET_PAGE);
 	$start = ($page - 1) * $perpage;
 } else {
 	$page = 0;
