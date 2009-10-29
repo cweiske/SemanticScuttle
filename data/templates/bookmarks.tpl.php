@@ -163,7 +163,7 @@ if($currenttag!= '') {
 	// Ordering
 	$sortOrder = '';
 	if (GET_SORT != '') {
-		$sortOrder = 'sort='. GET_SORT;
+		$sortOrder = 'sort=' . getSortOrder();
 	}
 
 	$sortAmp = (($sortOrder) ? '&amp;'. $sortOrder : '');
