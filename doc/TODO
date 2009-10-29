@@ -1,0 +1,5 @@
+- SemanticScuttle_Filter
+  -> class with static filter functions to filter
+     ids, usernames, passwords etc.
+- Rename model classes (Template, User)
+- find out the reasoning behind define(POST_|GET_)
