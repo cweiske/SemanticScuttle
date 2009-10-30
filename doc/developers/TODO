@@ -7,3 +7,4 @@
 - Make users inactive by default when registered newly
   - have to be activated by admins
 - Deactivate user registration
+- Hide bookmarks with vote < 0 (or threshold) from unregistered users
