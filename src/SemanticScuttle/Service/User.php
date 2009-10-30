@@ -13,6 +13,8 @@
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
 
+require_once 'SemanticScuttle/Model/User.php';
+
 /**
  * SemanticScuttle user management service.
  *
@@ -128,18 +130,36 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         return $users;
     }
 
-    function & getObjectUsers($nb=0) {
-        $query = 'SELECT * FROM '. $this->getTableName() .' ORDER BY `uId` DESC';
-        if($nb>0) {
-            $query .= ' LIMIT 0, '.$nb;
+    /**
+     * Returns an array of user objects.
+     * Array is in order of uids
+     *
+     * @param integer $nb Number of users to fetch.
+     *
+     * @return array Array of SemanticScuttle_Model_User objects
+     */
+    public function getObjectUsers($nb = 0)
+    {
+        $query = 'SELECT * FROM ' . $this->getTableName()
+            . ' ORDER BY uId DESC';
+
+        if ($nb > 0) {
+            $query .= ' LIMIT 0, ' . intval($nb);
         }
+
         if (! ($dbresult =& $this->db->sql_query($query)) ) {
-            message_die(GENERAL_ERROR, 'Could not get user', '', __LINE__, __FILE__, $query, $this->db);
+            message_die(
+                GENERAL_ERROR, 'Could not get user',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
             return false;
         }
 
         while ($row = & $this->db->sql_fetchrow($dbresult)) {
-            $users[] = new User($row[$this->getFieldName('primary')], $row[$this->getFieldName('username')]);
+            $users[] = new SemanticScuttle_Model_User(
+                $row[$this->getFieldName('primary')],
+                $row[$this->getFieldName('username')]
+            );
         }
         $this->db->sql_freeresult($dbresult);
         return $users;
@@ -181,7 +201,9 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     function getObjectUserByUsername($username) {
         $user = $this->_getuser($this->getFieldName('username'), $username);
         if($user != false) {
-            return new User($user[$this->getFieldName('primary')], $username);
+            return new SemanticScuttle_Model_User(
+                $user[$this->getFieldName('primary')], $username
+            );
         } else {
             return NULL;
         }
@@ -201,14 +223,31 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         return NULL;
     }
 
-    function getUser($id) {
+    /**
+     * Returns user row from database.
+     *
+     * @param integer $id User ID
+     *
+     * @return array User array from database
+     */
+    public function getUser($id)
+    {
         return $this->_getuser($this->getFieldName('primary'), $id);
     }
 
-    // Momentary useful in order to go to object code
-    function getObjectUser($id) {
+    /**
+     * Returns user object for given user id
+     *
+     * @param integer $id User ID
+     *
+     * @return SemanticScuttle_Model_User User object
+     */
+    public function getObjectUser($id)
+    {
         $user = $this->_getuser($this->getFieldName('primary'), $id);
-        return new User($id, $user[$this->getFieldName('username')]);
+        return new SemanticScuttle_Model_User(
+            $id, $user[$this->getFieldName('username')]
+        );
     }
 
     function isLoggedOn() {
@@ -240,10 +279,21 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         return $this->currentuser;
     }
 
-    // Momentary useful in order to go to object code
-    function getCurrentObjectUser($refresh = FALSE, $newval = NULL) {
+    /**
+     * Return current user as object
+     *
+     * @param boolean $refresh Reload the user from database
+     *                         based on current user id
+     * @param mixed   $newval  New user value (used internally
+     *                         as setter method)
+     *
+     * @return SemanticScuttle_Model_User User object
+     */
+    function getCurrentObjectUser($refresh = false, $newval = null)
+    {
         static $currentObjectUser;
-        if (!is_null($newval)) { //internal use only: reset currentuser
+        if (!is_null($newval)) {
+            //internal use only: reset currentuser
             $currentObjectUser = $newval;
         } else if ($refresh || !isset($currentObjectUser)) {
             if ($id = $this->getCurrentUserId()) {
@@ -729,94 +779,4 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     function setCookieKey($value) { $this->cookiekey = $value; }
 }
 
-
-/* Defines a user. Rare fields are filled if required. */
-class User {
-
-    var $id;
-    var $username;
-    var $name;
-    var $email;
-    var $homepage;
-    var $content;
-    var $datetime;
-    var $isAdmin;
-
-    function User($id, $username) {
-        $this->id = $id;
-        $this->username = $username;
-    }
-
-    function getId() {
-        return $this->id;
-    }
-
-    function getUsername() {
-        return $this->username;
-    }
-
-    function getName() {
-        // Look for value only if not already set
-        if(!isset($this->name)) {
-            $userservice =SemanticScuttle_Service_Factory::get('User');
-            $user = $userservice->getUser($this->id);
-            $this->name = $user['name'];
-        }
-        return $this->name;
-    }
-
-    function getEmail() {
-        // Look for value only if not already set
-        if(!isset($this->email)) {
-            $userservice =SemanticScuttle_Service_Factory::get('User');
-            $user = $userservice->getUser($this->id);
-            $this->email = $user['email'];
-        }
-        return $this->email;
-    }
-
-    function getHomepage() {
-        // Look for value only if not already set
-        if(!isset($this->homepage)) {
-            $userservice =SemanticScuttle_Service_Factory::get('User');
-            $user = $userservice->getUser($this->id);
-            $this->homepage = $user['homepage'];
-        }
-        return $this->homepage;
-    }
-
-    function getContent() {
-        // Look for value only if not already set
-        if(!isset($this->content)) {
-            $userservice =SemanticScuttle_Service_Factory::get('User');
-            $user = $userservice->getUser($this->id);
-            $this->content = $user['uContent'];
-        }
-        return $this->content;
-    }
-
-    function getDatetime() {
-        // Look for value only if not already set
-        if(!isset($this->content)) {
-            $userservice =SemanticScuttle_Service_Factory::get('User');
-            $user = $userservice->getUser($this->id);
-            $this->datetime = $user['uDatetime'];
-        }
-        return $this->datetime;
-    }
-
-    function isAdmin() {
-        // Look for value only if not already set
-        if(!isset($this->isAdmin)) {
-            $userservice =SemanticScuttle_Service_Factory::get('User');
-            $this->isAdmin = $userservice->isAdmin($this->id);
-        }
-        return $this->isAdmin;
-    }
-
-    function getNbBookmarks($range = 'public') {
-        $bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
-        return $bookmarkservice->countBookmarks($this->getId(), $range);
-    }
-}
 ?>

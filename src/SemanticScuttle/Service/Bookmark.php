@@ -154,29 +154,41 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
 
 
-    /* Counts bookmarks for a user. $range = {'public', 'shared', 'private', 'all'}*/
-    function countBookmarks($uId, $range = 'public')
+    /**
+     * Counts bookmarks for a user.
+     *
+     * @param integer $uId   User ID
+     * @param string  $range Range of bookmarks:
+     *                       'public', 'shared', 'private'
+     *                       or 'all'
+     *
+     * @return integer Number of bookmarks
+     */
+    public function countBookmarks($uId, $range = 'public')
     {
-        $sql = 'SELECT COUNT(*) FROM '. $GLOBALS['tableprefix'] .'bookmarks';
-        $sql.= ' WHERE uId = '.$uId;
+        $sql = 'SELECT COUNT(*) FROM '. $this->getTableName();
+        $sql.= ' WHERE uId = ' . intval($uId);
         switch ($range) {
-            case 'all':
+        case 'all':
             //no constraints
             break;
-            case 'private':
-            $sql.= ' AND bStatus = 2';
+        case 'private':
+            $sql .= ' AND bStatus = 2';
             break;
-            case 'shared':
-            $sql.= ' AND bStatus = 1';
+        case 'shared':
+            $sql .= ' AND bStatus = 1';
             break;
-            case 'public':
-            default:
-            $sql.= ' AND bStatus = 0';
+        case 'public':
+        default:
+            $sql .= ' AND bStatus = 0';
             break;
         }
 
-        if (!($dbresult = & $this->db->sql_query($sql))) {
-            message_die(GENERAL_ERROR, 'Could not get vars', '', __LINE__, __FILE__, $sql, $this->db);
+        if (!($dbresult = $this->db->sql_query($sql))) {
+            message_die(
+                GENERAL_ERROR, 'Could not get vars',
+                '', __LINE__, __FILE__, $sql, $this->db
+            );
         }
         return $this->db->sql_fetchfield(0, 0);
     }
@@ -227,7 +239,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         $address = $this->normalize($address);
 
-        $crit = array ('bHash' => md5($address));
+        $crit = array('bHash' => md5($address));
         if (isset ($uid)) {
             $crit['uId'] = $uid;
         }
