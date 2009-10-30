@@ -13,6 +13,8 @@
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
 
+require_once 'SemanticScuttle/Model/Template.php';
+
 /**
  * SemanticScuttle template service.
  *
@@ -26,7 +28,17 @@
  */
 class SemanticScuttle_Service_Template extends SemanticScuttle_Service
 {
+    /**
+     * Full path to template directory.
+     *
+     * Set in constructor to
+     * $GLOBALS['TEMPLATES_DIR']
+     *
+     * @var string
+     */
     protected $basedir;
+
+
 
     /**
      * Returns the single service instance
@@ -44,10 +56,17 @@ class SemanticScuttle_Service_Template extends SemanticScuttle_Service
         return $instance;
     }
 
-    public function __construct()
+
+
+    /**
+     * Create a new instance
+     */
+    protected function __construct()
     {
         $this->basedir = $GLOBALS['TEMPLATES_DIR'];
     }
+
+
 
     /**
      * Loads and displays a template file.
@@ -56,41 +75,20 @@ class SemanticScuttle_Service_Template extends SemanticScuttle_Service
      *                         to template dir
      * @param array  $vars     Array of template variables.
      *
-     * @return Template Template object
+     * @return SemanticScuttle_Model_Template Template object
      */
     function loadTemplate($template, $vars = null)
     {
         if (substr($template, -4) != '.php') {
             $template .= '.php';
         }
-        $tpl = new Template($this->basedir .'/'. $template, $vars, $this);
+        $tpl = new SemanticScuttle_Model_Template(
+            $this->basedir .'/'. $template, $vars, $this
+        );
         $tpl->parse();
 
         return $tpl;
     }
 }
 
-class Template
-{
-    var $vars = array();
-    var $file = '';
-    var $templateservice;
-
-    function Template($file, $vars = null, &$templateservice)
-    {
-        $this->vars = $vars;
-        $this->file = $file;
-        $this->templateservice = $templateservice;
-    }
-
-    function parse() {
-        if (isset($this->vars))
-        extract($this->vars);
-        include($this->file);
-    }
-
-    function includeTemplate($name) {
-        return $this->templateservice->loadTemplate($name, $this->vars);
-    }
-}
 ?>
