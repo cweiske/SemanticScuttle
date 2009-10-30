@@ -30,3 +30,191 @@ ChangeLog for SemantiScuttle
 
 0.93 - 2009-05-26
 -----------------
+
+
+0.92 - 2009-02-11
+-----------------
+- Database stores data in UTF-8 now, leading to better
+  search results for accented characters
+- Several Internet Explorer bugs fixed
+- clean URLs are back
+- Improved page titles
+
+
+0.91 - 2008-11-14
+-----------------
+- Major Refactoring: add a tag cache improving query processing
+  (knowledge inference on tag relations) [DB modified]
+- Interface fix: allows to remove a tag from the selection into
+  subtitle bar thanks to a *.
+- New Feature: authorizes anchors with brackets into descriptions
+  of bookmark. For example: "[city]Paris[/city]".
+  This text between anchors will be highlighted when the
+  corresponding bookmark will be displayed.
+- Interface Fix: transforms description field into textarea
+- Interface fix: make longer description field [DB modified]
+- Interface fix: takes dModified field instead of bDatetime one
+  (to sort bookmarks)
+- Interface fix: add link to gsearch/ forlder on normal search
+  page and correct gsearch feature.
+- New Translation: SemanticScuttle is now available in German,
+  formal and gender-neutral version (thanks Elmar H. Beer)
+- New Feature: admin can check urls validity (in his/her admin page)
+- Bug fix: correct ROOT declaration
+- Bug fix: correct DOJO completion in tags edition
+- Interface fix: add tags cloud from all users into add bookmark
+  window (orouk proposition)
+- New Feature: possibility to import a structure of
+  hierarchical tags from a file
+- Minor fix: improve import from Netscape files
+  (now takes tags into account)
+- Interface fix: add an hyperlink from bookmark edition
+  page to collaborative edition of the same bookmark
+- Bug fix: correct admin CSRF vulnerability (thank you Etienne Z.)
+- Major refactoring: transform users row into object, define
+  page parameters (POST and GET) as constants, simplify
+  debugging ... [Config file modified: $debugMode]
+- New feature: Dynamic tree of tags using Dojo toolkit
+  (used by a menu2 sidebar box) [Config file modified: $menu2Tags]
+- Bug fix: prevent from CSRF vulnerabilities on profile page
+  (thank you Etienne Z.)
+- Bug fix: correct AJAX deleting of bookmarks (thank you Ricco)
+
+
+0.90 - 2008-06-05
+-----------------
+The main improvements of this new version are:
+- menu tags (tags which are included into the "menu" tag and
+  thus which appear on the main page)
+- connexion with Google Custom Search Engine which allows to
+  use the Google Engine to look into your SemanticScuttle
+  bookmarks (http://www.google.com/coop/cse/).
+
+
+All the changes:
+- New feature: add Google Custom Search Engine into
+  gsearch/ folder and looking into all bookmarks [Config modified]
+- Interface design: antispam question is hidden when
+  focussed (Thanks to Lifty)
+- Interface fix: move welcome message to index page
+- Interface fix: displays an error message if the
+  config.inc.php file has not been created
+- Interface design: improve tags presentation, menu box,
+  popup size, redirection after adding a bookmark, RSS link position
+- Interface design: hide searchs with no results into search history box
+- New feature: private descriptions for tags [DB modified]
+- Refactoring: rename sc_tags into sc_bookmarks2tags
+  (and services, codes...) [DB modified]
+- Interface design: shorten too long URLs in the displayed bookmarks
+- Bug fix: correct mutual logins for several installations on the same host
+- New feature: menu box which displays tags included into the
+  special tag "menu" [Config modified]
+- New feature: export URL for Google Custom Search (api/export/gcs)
+- New feature: add admins profile [Config modified: $admin_users]
+- New feature: template sidebar customized in configuration
+  file [Config modified]
+- New feature: export bookmarks into html file for import into
+  browsers (Thanks to warenhaus)
+- Interface design: add export option through API into the profile page
+- Bug fix: del.icio.us bookmarks (in .xml format) import 0K
+- Bug fix: correct authentification for API with CGI
+- Interface fix: correct few links and translations on the about page
+- Interface design: copy description and tags (when creating a
+  bookmark from another one)
+- Feature improvement: make rename tags more consistent
+  (with regards to linked tags)
+- Interface design fix: improve visualisation of structuredtags box
+- Interface design: improve tag2tag link edition (add item in
+  Actions menu and improve tag2tagedit page)
+- New feature: Save search history: what, by who, when, number of
+  results and display "last searches" box [DB & config modified]
+- Bug fix: correct counting result for history page
+- Bug fix: correct counting for unified bookmarks
+- Interface fix: improve visualisation in history if no descriptions
+  for bookmarks
+- Interface design: display number of resources in results
+- Interface design: improve navigation between tags
+  (clickable ">")
+- Bug fix: delete thumbnail when ajax delete
+
+
+0.88 - 2008-03-12
+-----------------
+The main change of this release is the possibility to preview websites
+through thumbnails (thanks to artviper.net).
+
+All the changes:
+- Interface design: display SemanticScuttle version number
+  on "about" page
+- Bug fix: allow clean urls thanks to .htaccess
+- New feature: add website preview/thumbnail (based on
+  artviper.net) [Config file modified]
+- Interface fix: add About link for logged users
+- Interface fix: hide "structured box" when no linked tags
+- Interface fix: make more consistent the general navigation between
+  personal and common spaces
+- Interface fix: add a link to last editor profile in common description.
+  Moreover, don't count a change if a user saves with no modifications.
+- Bug fixes: prevent from adding special characters
+  (like " or ') into tags
+- Upgrade: from Scuttle 0.7.2 to SemanticScuttle 0.87.
+
+
+0.87 - 2008-02-14
+-----------------
+This new version brings two major features to SemanticScuttle:
+1) You can now create a synonym link between tags.
+   For example, by linking the tags "monument" and "monuments",
+   you can find resources tagged with the first one when you navigate
+   through the second one. More important, this link works with
+   the inclusion link already implemented.
+2) Users can create commune descriptions for tags and bookmarks.
+   In a small community, the idea is to bring gradually people to work
+   together (if they want it). From a research perspective, we explore
+   the bridge between individual actions (easy to do) and collaborative
+   ones (more difficult but more powerful).
+
+All the changes:
+- Interface design: allow to access to users' bookmarks from last
+  user sidebox. (Currently, we can just access to their profiles).
+- Interface design: hide multiple URLs repeated into history page
+- Interface design: hide About link for logged users
+- New feature: Collaborative spaces (like wiki) for descriptions
+  of tags and bookmarks
+- Interface fix: improve the creation of structured links
+- New feature: Allow the creation of synonym links between tags
+
+
+0.86 - 2008-01-24
+-----------------
+- Bug fix: correct antispam question feature
+- Interface design: normalize URL when adding
+  (remove final "/")
+- Interface design: group similar URL
+- Interface bug fix: improve linked relations into structured links box
+- Interface bug fix: improve display of structured tags into alltags
+  and populartags page (problem of div size)
+
+
+0.85 - 2008-01-22
+-----------------
+- New feature: Add stats (nb children, nb descendants, depth,
+  nb update) to structured tags
+  - Allow to visualize structured tags according to stats
+  - Add admin page to update stats from the existing structured
+    tags in the database
+- Translation: improve French translation (add missing translations,
+  transform "labels" into "tags")
+- New feature: List all users in a users page and users block on
+  the front page
+- Interface design: Transform recent bookmarks into last bookmarks
+  on front page (to avoid blank front page)
+- Interface design: Add structured tags in a right box on the front page
+- New feature: Antispam question to register
+- New feature: Allowing a subtitle message, managable in the
+  configuration file.
+- Interface design: Redesign menu (search box, sort buttons, top
+  and right menu)
+- Interface design: Make URLs appear under bookmarks
+- Debug: correcting a problem to log out (bugs from Scuttle).
+
