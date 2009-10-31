@@ -190,7 +190,9 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
                 '', __LINE__, __FILE__, $sql, $this->db
             );
         }
-        return $this->db->sql_fetchfield(0, 0);
+        $count = $this->db->sql_fetchfield(0, 0);
+        $this->db->sql_freeresult($dbresult);
+        return $count;
     }
 
 
