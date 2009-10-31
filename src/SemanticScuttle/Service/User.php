@@ -155,6 +155,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
             return false;
         }
 
+        $users = array();
         while ($row = & $this->db->sql_fetchrow($dbresult)) {
             $users[] = new SemanticScuttle_Model_User(
                 $row[$this->getFieldName('primary')],

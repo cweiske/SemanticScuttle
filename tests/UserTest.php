@@ -53,6 +53,7 @@ class UserTest extends TestBase
     protected function setUp()
     {
         $this->us = SemanticScuttle_Service_Factory::get('User');
+        $this->us->deleteAll();
     }
 
 
@@ -116,6 +117,51 @@ class UserTest extends TestBase
         $this->assertFalse(
             $this->us->login('doesnot', 'exist', false)
         );
+    }
+
+
+
+    /**
+     * Check if getObjectUsers() without any user works
+     *
+     * @return void
+     */
+    public function testGetObjectUsersNone()
+    {
+        $users = $this->us->getObjectUsers();
+        $this->assertEquals(0, count($users));
+    }
+
+
+
+    /**
+     * Check if getObjectUsers() with a single user works
+     *
+     * @return void
+     */
+    public function testGetObjectUsersSingle()
+    {
+        $uid = $this->addUser();
+        $users = $this->us->getObjectUsers();
+        $this->assertEquals(1, count($users));
+        $this->assertType('SemanticScuttle_Model_User', reset($users));
+    }
+
+
+
+    /**
+     * Check if getObjectUsers() with a several users works
+     *
+     * @return void
+     */
+    public function testGetObjectUsersMultiple()
+    {
+        $uid = $this->addUser();
+        $uid2 = $this->addUser();
+        $uid3 = $this->addUser();
+        $users = $this->us->getObjectUsers();
+        $this->assertEquals(3, count($users));
+        $this->assertType('SemanticScuttle_Model_User', reset($users));
     }
 
 }
