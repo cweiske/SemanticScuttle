@@ -8,3 +8,4 @@
   - have to be activated by admins
 - Deactivate user registration
 - Hide bookmarks with vote < 0 (or threshold) from unregistered users
+- Add RDFa to user profile page
