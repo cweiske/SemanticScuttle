@@ -135,6 +135,81 @@ class BookmarkTest extends TestBase
 
 
     /**
+     * Test if countBookmarks() works with no bookmarks
+     *
+     * @return void
+     */
+    public function testCountBookmarksNone()
+    {
+        $uid = $this->addUser();
+        $this->assertEquals(0, $this->bs->countBookmarks($uid));
+        $this->assertEquals(0, $this->bs->countBookmarks($uid, 'public'));
+        $this->assertEquals(0, $this->bs->countBookmarks($uid, 'private'));
+        $this->assertEquals(0, $this->bs->countBookmarks($uid, 'shared'));
+    }
+
+
+
+    /**
+     * Test if countBookmarks() works with one public bookmark
+     *
+     * @return void
+     */
+    public function testCountBookmarksOnePublic()
+    {
+        $uid = $this->addUser();
+        $this->addBookmark($uid);
+        $this->assertEquals(1, $this->bs->countBookmarks($uid));
+        $this->assertEquals(1, $this->bs->countBookmarks($uid, 'public'));
+        $this->assertEquals(0, $this->bs->countBookmarks($uid, 'private'));
+        $this->assertEquals(0, $this->bs->countBookmarks($uid, 'shared'));
+    }
+
+
+
+    /**
+     * Test if countBookmarks() works with one private bookmark
+     *
+     * @return void
+     */
+    public function testCountBookmarksOnePrivate()
+    {
+        $uid = $this->addUser();
+        $this->bs->addBookmark(
+            'http://test', 'test', 'desc', 'note',
+            2,//private
+            array(), null, false, false, $uid
+        );
+        $this->assertEquals(0, $this->bs->countBookmarks($uid));
+        $this->assertEquals(0, $this->bs->countBookmarks($uid, 'public'));
+        $this->assertEquals(1, $this->bs->countBookmarks($uid, 'private'));
+        $this->assertEquals(0, $this->bs->countBookmarks($uid, 'shared'));
+    }
+
+
+
+    /**
+     * Test if countBookmarks() works with one shared bookmark
+     *
+     * @return void
+     */
+    public function testCountBookmarksOneShared()
+    {
+        $uid = $this->addUser();
+        $this->bs->addBookmark(
+            'http://test', 'test', 'desc', 'note',
+            1,//shared
+            array(), null, false, false, $uid
+        );
+        $this->assertEquals(0, $this->bs->countBookmarks($uid));
+        $this->assertEquals(0, $this->bs->countBookmarks($uid, 'public'));
+        $this->assertEquals(0, $this->bs->countBookmarks($uid, 'private'));
+        $this->assertEquals(1, $this->bs->countBookmarks($uid, 'shared'));
+    }
+
+
+
+    /**
      * Test if deleting a bookmark works.
      *
      * @return void
@@ -170,6 +245,8 @@ class BookmarkTest extends TestBase
      */
     public function testDeleteBookmarkWithVote()
     {
+        $GLOBALS['enableVoting'] = true;
+
         $uid = $this->addUser();
         $bid = $this->addBookmark();
 
@@ -196,6 +273,8 @@ class BookmarkTest extends TestBase
      */
     public function testGetBookmarkUserVotingNoUser()
     {
+        $GLOBALS['enableVoting'] = true;
+
         $uid = $this->addUser();
         $bid = $this->addBookmark($uid);
         //no user
@@ -217,6 +296,8 @@ class BookmarkTest extends TestBase
      */
     public function testGetBookmarkUserVotingWithUserNoVote()
     {
+        $GLOBALS['enableVoting'] = true;
+
         $uid = $this->addUser();
         $bid = $this->addBookmark($uid);
         //log user in
@@ -240,6 +321,8 @@ class BookmarkTest extends TestBase
      */
     public function testGetBookmarkUserVotingWithUserPositiveVote()
     {
+        $GLOBALS['enableVoting'] = true;
+
         $uid = $this->addUser();
         $bid = $this->addBookmark($uid);
         //log user in
@@ -264,6 +347,8 @@ class BookmarkTest extends TestBase
      */
     public function testGetBookmarkUserVotingWithUserNegativeVote()
     {
+        $GLOBALS['enableVoting'] = true;
+
         $uid = $this->addUser();
         $bid = $this->addBookmark($uid);
         //log user in
