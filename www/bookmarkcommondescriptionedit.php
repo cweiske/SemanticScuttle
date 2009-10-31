@@ -70,7 +70,7 @@ if (POST_CONFIRM) {
 
 	$tplVars['subtitle']    = T_('Edit Bookmark Common Description') .': '. $bkm['bAddress'];
 	$tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $hash;
-	$tplVars['referrer']    = $_SERVER['HTTP_REFERER'];
+	$tplVars['referrer']    = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
 	$tplVars['hash']        = $hash;
 	$tplVars['description'] = $cdservice->getLastBookmarkDescription($hash);
 }
