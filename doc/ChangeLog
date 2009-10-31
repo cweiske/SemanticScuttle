@@ -4,6 +4,7 @@ ChangeLog for SemantiScuttle
 0.95 - FIXME: IN THE FUTURE
 -----------------
 - Implement request #2878169: Voting system
+- Fix bug #2881886: PHP notice when viewing tags
 
 
 0.94 - 2009-10-02
