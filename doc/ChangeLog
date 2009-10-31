@@ -1,6 +1,11 @@
 ChangeLog for SemantiScuttle
 ============================
 
+0.95 - FIXME: IN THE FUTURE
+-----------------
+- Implement request #2878169: Voting system
+
+
 0.94 - 2009-10-02
 -----------------
 - Fix bug #2834070: unfreed sql results
