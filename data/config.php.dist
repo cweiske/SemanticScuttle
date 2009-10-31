@@ -103,4 +103,29 @@ $dbname = 'scuttle';
  */
 $dbhost = 'localhost';
 
+
+/***************************************************
+ * Users
+ */
+
+/**
+ * Contact address for the site administrator.
+ * Used as the FROM address in password retrieval e-mails.
+ *
+ * @var string
+ */
+$adminemail = 'admin@example.org';
+
+/**
+ * Array of user names who have admin rights
+ *
+ * Example:
+ * <code>
+ * $admin_users = array('adminnickname', 'user1nick', 'user2nick');
+ * </code>
+ *
+ * @var array
+ */
+$admin_users = array();
+
 ?>
