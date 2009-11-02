@@ -35,6 +35,13 @@ class VoteTest extends TestBase
      */
     protected $vs = null;
 
+    /**
+     * Bookmark service instance.
+     *
+     * @var SemanticScuttle_Service_Bookmark
+     */
+    protected $bs = null;
+
 
 
     /**
@@ -293,11 +300,11 @@ class VoteTest extends TestBase
         $uid = 1;
         $bid = $this->addBookmark();
         $this->assertTrue($this->vs->vote($bid, $uid, 1));
-        $this->assertFalse($this->vs->vote($bid, $uid, 1));
+        $this->assertTrue($this->vs->vote($bid, $uid, 1));
 
         $bid = $this->addBookmark();
         $this->assertTrue($this->vs->vote($bid, $uid, -1));
-        $this->assertFalse($this->vs->vote($bid, $uid, 1));
+        $this->assertTrue($this->vs->vote($bid, $uid, 1));
     }
 
 
@@ -328,6 +335,122 @@ class VoteTest extends TestBase
         $bid = $this->addBookmark();
         $this->assertTrue($this->vs->vote($bid, $uid, -1));
         $this->assertEquals(-1, $this->vs->getVote($bid, $uid));
+    }
+
+
+
+    /**
+     * Verify that changing the vote from positive to negative
+     * works.
+     *
+     * @return void
+     */
+    public function testVoteChangePosNeg()
+    {
+        $uid = 1;
+        $bid = $this->addBookmark();
+
+        $this->assertTrue($this->vs->vote($bid, $uid, 1));
+        $this->assertEquals(1, $this->vs->getVote($bid, $uid));
+        $this->assertEquals(1, $this->vs->getVotes($bid));
+
+        $b = $this->bs->getBookmark($bid);
+        $this->assertEquals(1, $b['bVoting']);
+
+        //change vote
+        $this->assertTrue($this->vs->vote($bid, $uid, -1));
+        $this->assertEquals(-1, $this->vs->getVote($bid, $uid));
+        $this->assertEquals(1, $this->vs->getVotes($bid));
+
+        $b = $this->bs->getBookmark($bid);
+        $this->assertEquals(-1, $b['bVoting']);
+    }
+
+
+
+    /**
+     * Verify that changing the vote from negative to positive
+     * works.
+     *
+     * @return void
+     */
+    public function testVoteChangeNegPos()
+    {
+        $uid = 1;
+        $bid = $this->addBookmark();
+
+        $this->assertTrue($this->vs->vote($bid, $uid, -1));
+        $this->assertEquals(-1, $this->vs->getVote($bid, $uid));
+        $this->assertEquals(1, $this->vs->getVotes($bid));
+
+        $b = $this->bs->getBookmark($bid);
+        $this->assertEquals(-1, $b['bVoting']);
+
+        //change vote
+        $this->assertTrue($this->vs->vote($bid, $uid, 1));
+        $this->assertEquals(1, $this->vs->getVote($bid, $uid));
+        $this->assertEquals(1, $this->vs->getVotes($bid));
+
+        $b = $this->bs->getBookmark($bid);
+        $this->assertEquals(1, $b['bVoting']);
+    }
+
+
+
+    /**
+     * Verify that changing the vote from postitive to positive
+     * has no strange effects
+     *
+     * @return void
+     */
+    public function testVoteChangePosPos()
+    {
+        $uid = 1;
+        $bid = $this->addBookmark();
+
+        $this->assertTrue($this->vs->vote($bid, $uid, 1));
+        $this->assertEquals(1, $this->vs->getVote($bid, $uid));
+        $this->assertEquals(1, $this->vs->getVotes($bid));
+
+        $b = $this->bs->getBookmark($bid);
+        $this->assertEquals(1, $b['bVoting']);
+
+        //change vote
+        $this->assertTrue($this->vs->vote($bid, $uid, 1));
+        $this->assertEquals(1, $this->vs->getVote($bid, $uid));
+        $this->assertEquals(1, $this->vs->getVotes($bid));
+
+        $b = $this->bs->getBookmark($bid);
+        $this->assertEquals(1, $b['bVoting']);
+    }
+
+
+
+    /**
+     * Verify that changing the vote from postitive to positive
+     * has no strange effects
+     *
+     * @return void
+     */
+    public function testVoteChangeNegNeg()
+    {
+        $uid = 1;
+        $bid = $this->addBookmark();
+
+        $this->assertTrue($this->vs->vote($bid, $uid, -1));
+        $this->assertEquals(-1, $this->vs->getVote($bid, $uid));
+        $this->assertEquals(1, $this->vs->getVotes($bid));
+
+        $b = $this->bs->getBookmark($bid);
+        $this->assertEquals(-1, $b['bVoting']);
+
+        //change vote to same value
+        $this->assertTrue($this->vs->vote($bid, $uid, -1));
+        $this->assertEquals(-1, $this->vs->getVote($bid, $uid));
+        $this->assertEquals(1, $this->vs->getVotes($bid));
+
+        $b = $this->bs->getBookmark($bid);
+        $this->assertEquals(-1, $b['bVoting']);
     }
 
 

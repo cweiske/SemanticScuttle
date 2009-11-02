@@ -225,12 +225,12 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
             return false;
         }
 
-        if ($this->hasVoted($bookmark, $user)) {
+        if ($vote != -1 && $vote != 1) {
             return false;
         }
 
-        if ($vote != -1 && $vote != 1) {
-            return false;
+        if ($this->hasVoted($bookmark, $user)) {
+            $this->removeVote($bookmark, $user);
         }
 
         $res = $this->db->sql_query(
@@ -248,6 +248,41 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
         $res = $this->db->sql_query(
             $sql='UPDATE ' . $bm->getTableName()
             . ' SET bVoting = bVoting + ' . (int)$vote
+            . ' WHERE bId = ' . (int)$bookmark
+        );
+        $this->db->sql_freeresult($res);
+
+        return true;
+    }
+
+
+
+    /**
+     * Removes a vote from the database
+     *
+     * @param integer $bookmark Bookmark ID
+     * @param integer $user     User ID
+     *
+     * @return boolean True if all went well, false if not
+     */
+    protected function removeVote($bookmark, $user)
+    {
+        $vote = $this->getVote($bookmark, $user);
+        if ($vote === null) {
+            return false;
+        }
+
+        //remove from votes table
+        $query = 'DELETE FROM ' . $this->getTableName()
+            . ' WHERE bId = ' . (int)$bookmark
+            . ' AND uId = ' . (int)$user;
+        $this->db->sql_query($query);
+
+        //change voting sum in bookmarks table
+        $bm  = SemanticScuttle_Service_Factory::get('Bookmark');
+        $res = $this->db->sql_query(
+            $sql='UPDATE ' . $bm->getTableName()
+            . ' SET bVoting = bVoting - ' . (int)$vote
             . ' WHERE bId = ' . (int)$bookmark
         );
         $this->db->sql_freeresult($res);
