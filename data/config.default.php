@@ -253,6 +253,13 @@ $antispamQuestion = 'name of this application';
  */
 $antispamAnswer = 'semanticscuttle';
 
+/**
+ * Enable or disable user registration
+ *
+ * @var boolean
+ */
+$enableRegistration = true;
+
 
 
 /***************************************************

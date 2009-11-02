@@ -21,6 +21,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 require_once '../src/SemanticScuttle/header.php';
 
+if (!$GLOBALS['enableRegistration']) {
+    header('HTTP/1.0 501 Not implemented');
+    echo 'Registration is disabled';
+    exit(1);
+}
+
 /* Service creation: only useful services are created */
 // No specific services
 
