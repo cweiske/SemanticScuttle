@@ -57,13 +57,6 @@ if (!isset($GLOBALS['lastUrl']) || $GLOBALS['lastUrl'] == '') {
 $from = $GLOBALS['lastUrl'];
 
 
-if ($vs->hasVoted($bookmark, $user)) {
-    //already voted
-    header('HTTP/1.0 412 Precondition failed');
-    echo 'Bookmark has been already voted for';
-    exit(6);
-}
-
 $vs->vote($bookmark, $user, $type == 'for' ? 1 : -1);
 
 if (isset($GLOBALS['ajaxRequest']) && $GLOBALS['ajaxRequest']) {

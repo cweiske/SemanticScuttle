@@ -443,7 +443,7 @@ class VoteTest extends TestBase
 
 
     /**
-     * Verify that changing the vote from postitive to positive
+     * Verify that changing the vote from negative to negative
      * has no strange effects
      *
      * @return void
