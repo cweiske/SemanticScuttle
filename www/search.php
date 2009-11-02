@@ -41,8 +41,8 @@ if (POST_TERMS != '') {
 
 	/* Managing current logged user */
 	$currentUserId = $userservice->getCurrentUserId();
-	
-	
+
+
 	$exploded = isset($_SERVER['PATH_INFO'])
 		? explode('/', $_SERVER['PATH_INFO']) : null;
 	if(count($exploded) == 4) {
@@ -53,7 +53,7 @@ if (POST_TERMS != '') {
 	} else {
 		list($url, $range, $terms) = $exploded;
 		$page= NULL;
-	} 
+	}
 
 	$tplVars['loadjs'] = true;
 
@@ -84,29 +84,29 @@ if (POST_TERMS != '') {
 		$selected = ' selected="selected"';
 
 		switch ($range) {
-			case 'all':
-				$tplVars['select_all'] = $selected;
-				$s_user = NULL;
-				break;
-			case 'watchlist':
-				$tplVars['select_watchlist'] = $selected;
-				$s_user = $currentUserId;
-				$s_watchlist = true;
-				break;
-			default:
-				$s_user = $range;
-				break;
+        case 'all':
+            $tplVars['select_all'] = $selected;
+            $s_user = NULL;
+            break;
+        case 'watchlist':
+            $tplVars['select_watchlist'] = $selected;
+            $s_user = $currentUserId;
+            $s_watchlist = true;
+            break;
+        default:
+            $s_user = $range;
+            break;
 		}
 
-		if (isset($s_user)) {		
-			$tplVars['user'] = $range;	
+		if (isset($s_user)) {
+			$tplVars['user'] = $range;
 			$s_user = $userservice->getIdFromUser($s_user);
 			if($s_user == NULL) {
 				$tplVars['error'] = sprintf(T_('User with username %s was not found'), $s_user);
 				$templateservice->loadTemplate('error.404.tpl', $tplVars);
 				exit();
 			}
-			
+
 		}
 	}
 	$bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, $s_user, NULL, $terms, getSortOrder(), $s_watchlist, $s_start, $s_end);
@@ -115,22 +115,22 @@ if (POST_TERMS != '') {
 	$searchhistoryservice->addSearch($terms, $range, $bookmarks['total'], $currentUserId);
 
 	if($GLOBALS['enableGoogleCustomSearch']) {
-		$tplVars['tipMsg'] = T_('Unsatisfied? You can also try our ').'<a href="'.createUrl('gsearch/index').'">Google Custom Search page</a>.';
-	}	
-	$tplVars['rsschannels'] = array();
-	$tplVars['page'] = $page;
-	$tplVars['start'] = $start;
-	$tplVars['popCount'] = 25;
-	$tplVars['sidebar_blocks'] = array('search', 'recent', 'menu2');
-	$tplVars['range'] = $range;
-	$tplVars['terms'] = $terms;
-	$tplVars['pagetitle'] = T_('Search Bookmarks');
-	$tplVars['bookmarkCount'] = $start + 1;
-	$tplVars['total'] = $bookmarks['total'];
-	$tplVars['bookmarks'] =& $bookmarks['bookmarks'];
-	$tplVars['cat_url'] = createURL('tags', '%2$s');
-	$tplVars['nav_url'] = createURL('search', $range .'/'. $terms .'/%3$s');
+        $tplVars['tipMsg'] = T_('Unsatisfied? You can also try our ').'<a href="'.createUrl('gsearch/index').'">Google Custom Search page</a>.';
+    }
+    $tplVars['rsschannels'] = array();
+    $tplVars['page'] = $page;
+    $tplVars['start'] = $start;
+    $tplVars['popCount'] = 25;
+    $tplVars['sidebar_blocks'] = array('search', 'recent', 'menu2');
+    $tplVars['range'] = $range;
+    $tplVars['terms'] = $terms;
+    $tplVars['pagetitle'] = T_('Search Bookmarks');
+    $tplVars['bookmarkCount'] = $start + 1;
+    $tplVars['total'] = $bookmarks['total'];
+    $tplVars['bookmarks'] =& $bookmarks['bookmarks'];
+    $tplVars['cat_url'] = createURL('tags', '%2$s');
+    $tplVars['nav_url'] = createURL('search', $range .'/'. $terms .'/%3$s');
 
-	$templateservice->loadTemplate('bookmarks.tpl', $tplVars);
+    $templateservice->loadTemplate('bookmarks.tpl', $tplVars);
 }
 ?>
