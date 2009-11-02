@@ -282,14 +282,12 @@ li.xfolkentry div div.description span.anchorBookmark {
 .vote-badge a.vote-against:hover {
     background-color: #ffcccc;
 }
-.vote-badge .vote-for-inactive, .vote-badge .vote-against-inactive {
-    font-size: 3px;
+.vote-badge-for .vote-for-inactive {
     color: transparent;
-}
-.vote-badge-for {
     background-color: #ccffbb;
 }
-.vote-badge-against {
+.vote-badge-against .vote-against-inactive {
+    color: transparent;
     background-color: #ffcccc;
 }
 
