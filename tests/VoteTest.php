@@ -54,6 +54,7 @@ class VoteTest extends TestBase
 
     public function setUp()
     {
+        $GLOBALS['enableVoting'] = true;
         //FIXME: create true new instance
         $this->vs = SemanticScuttle_Service_Factory::get('Vote');
         $this->vs->deleteAll();
