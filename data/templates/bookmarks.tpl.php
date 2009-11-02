@@ -343,6 +343,7 @@ if($currenttag!= '') {
 
 		echo '<div class="meta">'.  $cats . $copy . $edit . $update ."</div>\n";
 		echo $privateNoteField!=''?'<div class="privateNote" title="'. T_('Private Note on this bookmark') .'">'.$privateNoteField."</div>\n":'';
+        include 'bookmarks-vote-horizontal.inc.tpl.php';
 		echo '</div>';
 
 		echo "</li>\n";

@@ -264,22 +264,22 @@ li.xfolkentry div div.description span.anchorBookmark {
 .vote-badge a:hover {
     text-decoration: none;
 }
-.vote-for {
+.vote-badge .vote-for {
     /*border-top-right-radius: 10px;*/
     /*border-top-left-radius: 10px;*/
     -moz-border-radius-topright: 10px;
     -moz-border-radius-topleft: 10px;
 }
-.vote-against {
+.vote-badge .vote-against {
     /*border-bottom-right-radius: 10px;*/
     /*border-bottom-left-radius: 10px;*/
     -moz-border-radius-bottomright: 10px;
     -moz-border-radius-bottomleft: 10px;
 }
-a.vote-for:hover {
+.vote-badge a.vote-for:hover {
     background-color: #ccffbb;
 }
-a.vote-against:hover {
+.vote-badge a.vote-against:hover {
     background-color: #ffcccc;
 }
 .vote-badge .vote-for-inactive, .vote-badge .vote-against-inactive {
@@ -292,6 +292,26 @@ a.vote-against:hover {
 .vote-badge-against {
     background-color: #ffcccc;
 }
+
+/* bookmark voting horizontal */
+div.vote-horiz .voting {
+    font-weight: bold;
+}
+li.xfolkentry div.vote-horiz-for {
+    border-left: 1em solid #ccffbb;
+    padding-left: 0.5em;
+}
+li.xfolkentry div.vote-horiz-against {
+    border-left: 1em solid #ffcccc;
+    padding-left: 0.5em;
+}
+.vote-horiz a.vote-for:hover {
+    background-color: #ccffbb;
+}
+.vote-horiz a.vote-against:hover {
+    background-color: #ffcccc;
+}
+
 
 /* SIDEBAR */
 
