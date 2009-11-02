@@ -113,10 +113,23 @@ if (is_null($terms)) {
 
     }
 }
-$bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, $s_user, NULL, $terms, getSortOrder(), $s_watchlist, $s_start, $s_end);
+$bookmarks =& $bookmarkservice->getBookmarks(
+    $start, $perpage, $s_user, NULL, $terms, getSortOrder(),
+    $s_watchlist, $s_start, $s_end
+);
 
 // Save search
-$searchhistoryservice->addSearch($terms, $range, $bookmarks['total'], $currentUserId);
+$searchhistoryservice->addSearch(
+    $terms, $range, $bookmarks['total'], $currentUserId
+);
+
+if (isset($_GET['lucky']) && $_GET['lucky']
+    && isset($bookmarks['bookmarks'][0])
+) {
+    $url = $bookmarks['bookmarks'][0]['bAddress'];
+    header('Location: ' . $url);
+    exit();
+}
 
 if ($GLOBALS['enableGoogleCustomSearch']) {
     $tplVars['tipMsg'] = T_('Unsatisfied? You can also try our ')

@@ -107,5 +107,3 @@ Tracker items:
   So I'd define "freddy" as short url name in the bookmark, and anyone could
   access it e.g. via our-bookmarks.com/s/freddy and get redirected to the
   real url. Useful to get permanent URLs to moving targets.
-#2874049 - feeling lucky button
-  redirect to first search result
