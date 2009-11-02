@@ -272,6 +272,22 @@ class VoteTest extends TestBase
 
 
     /**
+     * Test vote() when voting is deactivated
+     *
+     * @return void
+     */
+    public function testVoteVotingDeactivated()
+    {
+        $GLOBALS['enableVoting'] = false;
+
+        $uid = 1;
+        $bid = $this->addBookmark();
+        $this->assertFalse($this->vs->vote($bid, $uid, 1));
+    }
+
+
+
+    /**
      * Test vote() with wrong vote parameter
      *
      * @return void
