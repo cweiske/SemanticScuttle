@@ -6,7 +6,6 @@
   logged in anymore (name not shown on top right)
 - Make users inactive by default when registered newly
   - have to be activated by admins
-- Deactivate user registration
 - Hide bookmarks with vote < 0 (or threshold) from unregistered users
 - Add RDFa to user profile page
 - use recaptcha or alike

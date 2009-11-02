@@ -5,6 +5,7 @@ ChangeLog for SemantiScuttle
 -----------------
 - Implement request #2878169: Voting system
 - Fix bug #2881886: PHP notice when viewing tags
+- Configuration option to disable registration
 
 
 0.94 - 2009-10-02
