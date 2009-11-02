@@ -431,6 +431,14 @@ $enableVoting = true;
  */
 $votingMode = 2;
 
+/**
+ * Hide bookmarks below a certain voting from all users.
+ * Null to deactivate it.
+ *
+ * @var integer
+ */
+$hideBelowVoting = null;
+
 
 /****************************
  * Website Thumbnails

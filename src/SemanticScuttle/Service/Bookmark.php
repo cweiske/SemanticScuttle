@@ -550,9 +550,17 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         }
         $query_1 .= 'B.*, U.'. $userservice->getFieldName('username');
 
-        $query_2 = ' FROM '. $userservice->getTableName() .' AS U, '. $this->getTableName() .' AS B';
+        $query_2 = ' FROM '. $userservice->getTableName() .' AS U'
+            . ', '. $this->getTableName() .' AS B';
 
         $query_3 = ' WHERE B.uId = U.'. $userservice->getFieldName('primary') . $privacy;
+
+        if ($GLOBALS['enableVoting'] && $GLOBALS['hideBelowVoting'] !== null
+            && !$userservice->isAdmin($userservice->getCurrentUserId())
+        ) {
+            $query_3 .= ' AND B.bVoting >= ' . (int)$GLOBALS['hideBelowVoting'];
+        }
+
         if (is_null($watched)) {
             if (!is_null($user)) {
                 $query_3 .= ' AND B.uId = '. $user;

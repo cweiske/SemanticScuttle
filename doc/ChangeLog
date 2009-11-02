@@ -8,6 +8,7 @@ ChangeLog for SemantiScuttle
 - Configuration option to disable registration
 - Implement request #2874049: "Feeling lucky" button
   just add "?lucky=1" as parameter to search page
+- Hide bookmarks with vote < $threshold from users (not admins)
 
 
 0.94 - 2009-10-02
