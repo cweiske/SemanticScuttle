@@ -415,6 +415,15 @@ $enableCommonBookmarkDescription = true;
  */
 $enableVoting = true;
 
+/**
+ * Voting mode:
+ * 1 - voting badge
+ * 2 - voting links: hand up/down
+ *
+ * @var integer
+ */
+$votingMode = 2;
+
 
 /****************************
  * Website Thumbnails

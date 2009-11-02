@@ -298,18 +298,38 @@ div.vote-horiz .voting {
     font-weight: bold;
 }
 li.xfolkentry div.vote-horiz-for {
-    border-left: 1em solid #ccffbb;
-    padding-left: 0.5em;
+/*    border-left: 1em solid #ccffbb;*/
+/*    padding-left: 0.5em;*/
 }
 li.xfolkentry div.vote-horiz-against {
-    border-left: 1em solid #ffcccc;
-    padding-left: 0.5em;
+/*    border-left: 1em solid #ffcccc;*/
+/*    padding-left: 0.5em;*/
+}
+.vote-horiz a, .vote-horiz .vote-for-inactive,
+.vote-horiz .vote-against-inactive {
+    padding-left: 1.5em;
+    margin-left: 0.7em;
 }
 .vote-horiz a.vote-for:hover {
     background-color: #ccffbb;
 }
 .vote-horiz a.vote-against:hover {
     background-color: #ffcccc;
+}
+.vote-horiz .vote-for-inactive, .vote-horiz .vote-against-inactive {
+    color: #AAA;
+}
+.vote-horiz .vote-for {
+    background: url(images/vote-for.png) no-repeat;
+}
+.vote-horiz .vote-against {
+    background: url(images/vote-against.png) no-repeat;
+}
+.vote-horiz .vote-for-inactive {
+    background: url(images/vote-for-voted.png) no-repeat;
+}
+.vote-horiz .vote-against-inactive {
+    background: url(images/vote-against-voted.png) no-repeat;
 }
 
 

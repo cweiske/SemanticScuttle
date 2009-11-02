@@ -5,7 +5,7 @@
  * against a bookmark.
  * Expects a $row variable with bookmark data
  */
-if (!$GLOBALS['enableVoting']) {
+if (!$GLOBALS['enableVoting'] || $GLOBALS['votingMode'] != 1) {
     return;
 }
 if (isset($row['hasVoted']) && !$row['hasVoted']) {
