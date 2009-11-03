@@ -21,10 +21,10 @@
  *
  * @internal
  * Votes are saved in a separate "votes" table.
- * Additionally to that, the voting of a bookmark is also
- * stored in the bookmarks table. This is done to make
- * sure lookups are really fast, since every bookmarks
- * in a list shows its voting.
+ * Additionally to that, the voting and number of votes
+ * of a bookmark is also stored in the bookmarks table.
+ *  This is done to make sure lookups are really fast, since
+ * every bookmark in a list shows its voting.
  *
  * @category Bookmarking
  * @package  SemanticScuttle
@@ -103,6 +103,12 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
     /**
      * Returns the number of users that voted for or
      * against the given bookmark.
+     *
+     * @internal
+     * This method uses the votes table to calculate the
+     * number of votes for a bookmark. In normal life, it
+     * is more efficient to use the "bVotes" field in the
+     * bookmarks table.
      *
      * @param integer $bookmark Bookmark ID
      *
@@ -248,6 +254,7 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
         $res = $this->db->sql_query(
             $sql='UPDATE ' . $bm->getTableName()
             . ' SET bVoting = bVoting + ' . (int)$vote
+            . ' , bVotes = bVotes + 1'
             . ' WHERE bId = ' . (int)$bookmark
         );
         $this->db->sql_freeresult($res);
@@ -283,6 +290,7 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
         $res = $this->db->sql_query(
             $sql='UPDATE ' . $bm->getTableName()
             . ' SET bVoting = bVoting - ' . (int)$vote
+            . ' , bVotes = bVotes - 1'
             . ' WHERE bId = ' . (int)$bookmark
         );
         $this->db->sql_freeresult($res);
@@ -306,6 +314,9 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
         $bm    = SemanticScuttle_Service_Factory::get('Bookmark');
         $query = 'UPDATE ' . $bm->getTableName() . ' as B SET bVoting = '
             . '(SELECT SUM(vote) FROM ' . $this->getTableName() . ' as V'
+            . ' WHERE V.bId = B.bId GROUP BY bid)'
+            . ', bVotes = '
+            . '(SELECT COUNT(vote) FROM ' . $this->getTableName() . ' as V'
             . ' WHERE V.bId = B.bId GROUP BY bid)';
         $this->db->sql_query($query);
     }

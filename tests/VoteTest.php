@@ -80,6 +80,10 @@ class VoteTest extends TestBase
     {
         $bid = $this->addBookmark();
         $this->assertEquals(0, $this->vs->getVoting($bid));
+
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals(0, $bm['bVoting']);
+        $this->assertEquals(0, $bm['bVotes']);
     }
 
 
@@ -94,6 +98,10 @@ class VoteTest extends TestBase
         $bid = $this->addBookmark();
         $this->vs->vote($bid, 1, 1);
         $this->assertEquals(1, $this->vs->getVoting($bid));
+
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals(1, $bm['bVoting']);
+        $this->assertEquals(1, $bm['bVotes']);
     }
 
 
@@ -108,6 +116,10 @@ class VoteTest extends TestBase
         $bid = $this->addBookmark();
         $this->vs->vote($bid, 1, -1);
         $this->assertEquals(-1, $this->vs->getVoting($bid));
+
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals(-1, $bm['bVoting']);
+        $this->assertEquals(1, $bm['bVotes']);
     }
 
 
@@ -125,6 +137,10 @@ class VoteTest extends TestBase
         $this->vs->vote($bid, 3, 1);
         $this->vs->vote($bid, 4, 1);
         $this->assertEquals(2, $this->vs->getVoting($bid));
+
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals(2, $bm['bVoting']);
+        $this->assertEquals(4, $bm['bVotes']);
     }
 
 
@@ -138,6 +154,10 @@ class VoteTest extends TestBase
     {
         $bid = $this->addBookmark();
         $this->assertEquals(0, $this->vs->getVotes($bid));
+
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals(0, $bm['bVoting']);
+        $this->assertEquals(0, $bm['bVotes']);
     }
 
 
@@ -152,6 +172,10 @@ class VoteTest extends TestBase
         $bid = $this->addBookmark();
         $this->vs->vote($bid, 1, 1);
         $this->assertEquals(1, $this->vs->getVotes($bid));
+
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals(1, $bm['bVoting']);
+        $this->assertEquals(1, $bm['bVotes']);
     }
 
 
@@ -169,6 +193,10 @@ class VoteTest extends TestBase
         $this->vs->vote($bid, 3, 1);
         $this->vs->vote($bid, 4, 1);
         $this->assertEquals(4, $this->vs->getVotes($bid));
+
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals(2, $bm['bVoting']);
+        $this->assertEquals(4, $bm['bVotes']);
     }
 
 
@@ -223,6 +251,7 @@ class VoteTest extends TestBase
 
         $bm2 = $this->bs->getBookmark($bid2);
         $this->assertEquals(0, $bm2['bVoting']);
+        $this->assertEquals(0, $bm2['bVotes']);
     }
 
 
@@ -318,9 +347,17 @@ class VoteTest extends TestBase
         $this->assertTrue($this->vs->vote($bid, $uid, 1));
         $this->assertTrue($this->vs->vote($bid, $uid, 1));
 
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals(1, $bm['bVoting']);
+        $this->assertEquals(1, $bm['bVotes']);
+
         $bid = $this->addBookmark();
         $this->assertTrue($this->vs->vote($bid, $uid, -1));
         $this->assertTrue($this->vs->vote($bid, $uid, 1));
+
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals(1, $bm['bVoting']);
+        $this->assertEquals(1, $bm['bVotes']);
     }
 
 
@@ -336,6 +373,10 @@ class VoteTest extends TestBase
         $bid = $this->addBookmark();
         $this->assertTrue($this->vs->vote($bid, $uid, 1));
         $this->assertEquals(1, $this->vs->getVote($bid, $uid));
+
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals(1, $bm['bVoting']);
+        $this->assertEquals(1, $bm['bVotes']);
     }
 
 
@@ -351,6 +392,10 @@ class VoteTest extends TestBase
         $bid = $this->addBookmark();
         $this->assertTrue($this->vs->vote($bid, $uid, -1));
         $this->assertEquals(-1, $this->vs->getVote($bid, $uid));
+
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals(-1, $bm['bVoting']);
+        $this->assertEquals(1, $bm['bVotes']);
     }
 
 
@@ -372,6 +417,7 @@ class VoteTest extends TestBase
 
         $b = $this->bs->getBookmark($bid);
         $this->assertEquals(1, $b['bVoting']);
+        $this->assertEquals(1, $b['bVotes']);
 
         //change vote
         $this->assertTrue($this->vs->vote($bid, $uid, -1));
@@ -380,6 +426,7 @@ class VoteTest extends TestBase
 
         $b = $this->bs->getBookmark($bid);
         $this->assertEquals(-1, $b['bVoting']);
+        $this->assertEquals(1, $b['bVotes']);
     }
 
 
@@ -401,6 +448,7 @@ class VoteTest extends TestBase
 
         $b = $this->bs->getBookmark($bid);
         $this->assertEquals(-1, $b['bVoting']);
+        $this->assertEquals(1, $b['bVotes']);
 
         //change vote
         $this->assertTrue($this->vs->vote($bid, $uid, 1));
@@ -409,6 +457,7 @@ class VoteTest extends TestBase
 
         $b = $this->bs->getBookmark($bid);
         $this->assertEquals(1, $b['bVoting']);
+        $this->assertEquals(1, $b['bVotes']);
     }
 
 
@@ -430,6 +479,7 @@ class VoteTest extends TestBase
 
         $b = $this->bs->getBookmark($bid);
         $this->assertEquals(1, $b['bVoting']);
+        $this->assertEquals(1, $b['bVotes']);
 
         //change vote
         $this->assertTrue($this->vs->vote($bid, $uid, 1));
@@ -438,6 +488,7 @@ class VoteTest extends TestBase
 
         $b = $this->bs->getBookmark($bid);
         $this->assertEquals(1, $b['bVoting']);
+        $this->assertEquals(1, $b['bVotes']);
     }
 
 
@@ -459,6 +510,7 @@ class VoteTest extends TestBase
 
         $b = $this->bs->getBookmark($bid);
         $this->assertEquals(-1, $b['bVoting']);
+        $this->assertEquals(1, $b['bVotes']);
 
         //change vote to same value
         $this->assertTrue($this->vs->vote($bid, $uid, -1));
@@ -467,6 +519,7 @@ class VoteTest extends TestBase
 
         $b = $this->bs->getBookmark($bid);
         $this->assertEquals(-1, $b['bVoting']);
+        $this->assertEquals(1, $b['bVotes']);
     }
 
 
@@ -484,17 +537,20 @@ class VoteTest extends TestBase
 
         $bm = $this->bs->getBookmark($bid);
         $this->assertEquals(1, $bm['bVoting']);
+        $this->assertEquals(1, $bm['bVotes']);
 
         $this->vs->deleteAll();
         //we assume that $vs->deleteAll() does *not* reset
         //voting in bookmarks table
         $bm = $this->bs->getBookmark($bid);
         $this->assertEquals(1, $bm['bVoting']);
+        $this->assertEquals(1, $bm['bVotes']);
 
         $this->vs->rewriteVotings();
         $bm = $this->bs->getBookmark($bid);
         //now it should be reset to 0
         $this->assertEquals(0, $bm['bVoting']);
+        $this->assertEquals(0, $bm['bVotes']);
     }
 
 }//class VoteTest extends TestBase
