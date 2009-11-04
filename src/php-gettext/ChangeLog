@@ -1,3 +1,11 @@
+---- semanticscuttle-specific -----
+2009-11-03 Christian Weiske <cweiske@cweiske.de>
+	* fix magic detection on 64 bit systems, apply patch from:
+	  http://source.ibiblio.org/trac/lyceum/attachment/ticket/652/gettext-64bit-fix.diff
+
+
+---- version 1.07 -----
+
 2006-02-07  Danilo Šegan  <danilo@gnome.org>
 
 	* examples/pigs_dropin.php: comment-out bind_textdomain_codeset
