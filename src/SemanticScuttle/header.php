@@ -52,7 +52,7 @@ require_once 'SemanticScuttle/utf8.php';
 require_once 'php-gettext/gettext.inc';
 $domain = 'messages';
 T_setlocale(LC_MESSAGES, $locale);
-T_bindtextdomain($domain, dirname(__FILE__) . '/locales');
+T_bindtextdomain($domain, realpath($datadir . 'locales/'));
 T_bind_textdomain_codeset($domain, 'UTF-8');
 T_textdomain($domain);
 
@@ -83,7 +83,7 @@ $tplVars = array();
 $tplVars['currentUser'] = $currentUser;
 $tplVars['userservice'] = $userservice;
 
-// 6 // Force UTF-8 behaviour for server (cannot be move into top.inc.php which is not included into every file)
+// 6 // Force UTF-8 behaviour for server (cannot be moved into top.inc.php which is not included into every file)
 if (!defined('UNIT_TEST_MODE')) {
     header('Content-Type: text/html; charset=utf-8');
 }
