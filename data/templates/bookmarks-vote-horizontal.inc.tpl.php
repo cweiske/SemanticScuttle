@@ -20,16 +20,19 @@ if (!isset($row['hasVoted'])) {
     $classes = 'vote-horiz';
 }
 echo '<div class="' . $classes . '" id="bmv-' . $row['bId'] . '">';
-echo 'Voting <span class="voting">' . $row['bVoting'] . '</span> ';
+echo sprintf(
+    T_('Voting <span class="voting">%d</span>'), $row['bVoting']
+) . ' ';
 
 if (isset($row['hasVoted'])) {
     if ($row['vote'] != 1) {
         echo '<a class="vote-for" rel="nofollow" href="'
             . createVoteURL(true, $row['bId']) . '"'
             . ' onclick="javascript:vote(' . $row['bId'] . ',1); return false;"'
-            . '>Vote for</a> ';
+            . '>' . T_('Vote for') . '</a> ';
     } else {
-        echo '<span class="vote-for-inactive">Vote for</span> ';
+        echo '<span class="vote-for-inactive">'
+            . T_('Vote for') . '</span> ';
     }
     
     
@@ -37,9 +40,10 @@ if (isset($row['hasVoted'])) {
         echo '<a class="vote-against" rel="nofollow" href="'
             . createVoteURL(false, $row['bId']) . '"'
             . ' onclick="vote(' . $row['bId'] . ',-1); return false;"'
-            . '>Vote against</a>';
+            . '>' . T_('Vote against') . '</a>';
     } else {
-        echo '<span class="vote-against-inactive">Vote against</span>';
+        echo '<span class="vote-against-inactive">'
+            . T_('Vote against') . '</span>';
     }
 }
 echo '</div>';
