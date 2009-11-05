@@ -104,7 +104,6 @@ h1 {
     letter-spacing: 0.25em;
     margin: 0;
     padding: 1em;
-    text-transform: lowercase;
 }
 html > body h1 {
     background: url('images/logo.png') no-repeat 10px;
@@ -145,7 +144,6 @@ h2 {
     letter-spacing: 0.1em;
     margin: 0 0 1em 0;
     padding: 0.5em 1em;
-    text-transform: lowercase;
 }
 h2 a, h2 a:hover {
     color: #DDD;
@@ -162,7 +160,6 @@ ul#navigation {
     list-style-type: none;
     margin: 0;
     padding: 1.75em 1em;
-    text-transform: lowercase;
     width: auto;
 }
 ul#navigation a {
