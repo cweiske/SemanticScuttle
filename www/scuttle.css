@@ -239,6 +239,9 @@ li.xfolkentry.private {
 li.xfolkentry.shared {
     border-left: 3px solid #FA0;
 }
+li.below-threshold > div {
+    border-right: 5px dotted #F00;
+}
 
 li.xfolkentry div div.description span.anchorBookmark {
     /*font-family:monospace;*/

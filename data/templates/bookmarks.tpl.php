@@ -319,6 +319,12 @@ if($currenttag!= '') {
 			$privateNoteField = '';
 		}
 
+        if ($GLOBALS['enableVoting'] && $GLOBALS['hideBelowVoting'] !== null
+            && $row['bVoting'] < $GLOBALS['hideBelowVoting']
+        ) {
+            $access .= ' below-threshold';
+        }
+
 		// Output
 		echo '<li class="xfolkentry'. $access .'" >'."\n";
         include 'bookmarks-thumbnail.inc.tpl.php';
