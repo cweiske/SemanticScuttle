@@ -134,5 +134,18 @@ class SemanticScuttle_Service_Factory
         self::$db = $db;
     }
 
+
+
+    /**
+     * Returns sql database object
+     *
+     * @return void
+     */
+    public static function getDb()
+    {
+        self::loadDb();
+        return self::$db;
+    }
+
 }
 ?>
