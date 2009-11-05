@@ -10,6 +10,7 @@ ChangeLog for SemantiScuttle
   just add "?lucky=1" as parameter to search page
 - Hide bookmarks with vote < $threshold from users (not admins)
 - Update German translation to 100%
+- Fix OpenSearch file
 
 
 0.94 - 2009-10-02
