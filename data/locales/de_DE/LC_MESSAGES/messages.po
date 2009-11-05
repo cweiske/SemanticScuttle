@@ -68,25 +68,19 @@ msgstr "Debugmodus"
 msgid ""
 "<strong>Store</strong> all your favourite links in one place, accessible "
 "from anywhere."
-msgstr ""
-"<strong>Speichern</ strong> Sie Ihre sämtlichen Lesezeichen an einem Ort, "
-"von überall zugänglich."
+msgstr "<strong>Speichern</strong> Sie Ihre sämtlichen Lesezeichen an einem Ort, von überall zugänglich."
 
 #: data/templates/about.tpl.php:7
 msgid ""
 "<strong>Share</strong> your bookmarks with everyone, with friends on your "
 "watchlist or just keep them private."
-msgstr ""
-"<strong>Teilen</ strong> Sie Ihre Lesezeichen mit allen anderen, mit "
-"Freunden auf Ihrer Beobachtungsliste oder einfach privat für Sie persönlich."
+msgstr "<strong>Teilen</strong> Sie Ihre Lesezeichen mit allen anderen, mit Freunden auf Ihrer Beobachtungsliste oder einfach privat für Sie persönlich."
 
 #: data/templates/about.tpl.php:8
 msgid ""
 "<strong>Tag</strong> your bookmarks with as many labels as you want, instead "
 "of wrestling with folders."
-msgstr ""
-"<strong>Kategorisieren</ strong> Sie Ihre Lesezeichen mittels unbegrenzten "
-"Schlagwörtern, anstatt Sie in unübersichtlichen Ordnern zu speichern."
+msgstr "<strong>Kategorisieren</strong> Sie Ihre Lesezeichen mittels unbegrenzten Schlagwörtern, anstatt Sie in unübersichtlichen Ordnern zu speichern."
 
 #: data/templates/about.tpl.php:9
 msgid "Register now"
