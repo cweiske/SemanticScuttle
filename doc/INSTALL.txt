@@ -14,7 +14,7 @@ Installation instructions
 1. Create a new MySQL database
 2. Import tables.sql into that database, i.e.
    run
-   > mysql -umyusername semanticscuttle < tables.sql
+   > mysql -umyusername semanticscuttle < data/tables.sql
    on the shell ("semanticscuttle" being the database name)
 3. Copy data/config.php.dist to data/config.php and modify it as
    necessary.
