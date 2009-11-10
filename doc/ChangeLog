@@ -1,16 +1,24 @@
 ChangeLog for SemantiScuttle
 ============================
 
-0.95 - FIXME: IN THE FUTURE
+0.95 - 2009-11-10
 -----------------
-- Implement request #2878169: Voting system
+- Implement request #2878169: Voting system with two layouts
 - Fix bug #2881886: PHP notice when viewing tags
 - Configuration option to disable registration
 - Implement request #2874049: "Feeling lucky" button
   just add "?lucky=1" as parameter to search page
 - Hide bookmarks with vote < $threshold from users (not admins)
+- Fix many more unfreed mysql results, but there are still many left
+- Improve documentation of many service methods
+- All unit tests run now
 - Update German translation to 100%
+- Helper scripts for translators and translation documentation
+- Beginning of developer documentation
+- Fix gettext/translation on 64bit systems
 - Fix OpenSearch file
+- Re-add de_AT which is a rather ugly "official-style" german
+  translation. Choose the translation you like most.
 
 
 0.94 - 2009-10-02

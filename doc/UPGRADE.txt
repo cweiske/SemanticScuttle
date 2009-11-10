@@ -1,10 +1,25 @@
 Upgrading SemanticScuttle from a previous version
 =================================================
 
-From versin 0.94 to 0.10.0
+From versin 0.94 to 0.95.0
 --------------------------
-- ALTER TABLE `sc_bookmarks` ADD `bVoting` INT NOT NULL ;
+The file structure completely changed in 0.95.0 compared
+to previous versions. We recommend that you start with a
+fresh installation, just copying over your config.php file.
+Set your web server document root directory to www/.
+
+Update your database:
+- ALTER TABLE `sc_bookmarks` ADD `bVoting` INT NOT NULL;
+- ALTER TABLE `sc_bookmarks` ADD `bVotes` INT NOT NULL;
 - Add the new votes database table. See data/tables.sql.
+
+Currently, only MySQL can be used as database backend.
+All other DBMS (database management systems) have not been
+tested except for PostgreSQL, and SemanticScuttle fails there.
+
+The de_AT translation has been re-added. This is because
+de_AT provides a rather ugly "official German" style,
+while the normal de_DE is friendlier. Choose what you like.
 
 
 From version 0.93 to 0.94
