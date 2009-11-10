@@ -6,14 +6,34 @@
     tasks around SemanticScuttle, like creating a release version,
     tagging a release, running unit tests etc.
   -->
+  <property name="version" value="0.95.0"/>
+
   <target name="dist"><!-- depends="build">-->
-    <echo msg="Creating distribution zip for SemanticScuttle {$version}"/>
-    <zip destfile="SemanticScuttle-{$version}.zip">
+    <!--
+      The release file is for end users, so it is safe to
+      remove anything developer-related.
+
+      Test your zip with: unzip -l SemanticScuttle-0.95.0.zip
+    -->
+    <echo msg="Creating distribution zip for SemanticScuttle ${version}"/>
+    <delete file="SemanticScuttle-${version}.zip" failonerror="false"/>
+    <zip destfile="SemanticScuttle-${version}.zip" prefix="SemanticScuttle-${version}/">
       <fileset dir=".">
         <include name="**"/>
+        <exclude name="**/.gitignore"/>
+        <exclude name="**/.svn/"/>
+        <exclude name=".git/"/>
+        <exclude name="cache/"/>
+        <exclude name="tests/"/>
+        <exclude name="scripts/"/>
         <exclude name="build.xml"/>
-        <exclude name="cache"/>
         <exclude name="data/config.php"/>
+        <exclude name="data/locales/messages.po"/>
+        <exclude name="data/locales/*/LC_MESSAGES/messages.po"/>
+        <exclude name="doc/developers/"/>
+        <exclude name="SemanticScuttle-*"/>
+        <exclude name="src/php-gettext/examples/" />
+        <exclude name="src/php-gettext/bin/"/>
       </fileset>
     </zip>
   </target>
