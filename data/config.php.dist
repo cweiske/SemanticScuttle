@@ -22,19 +22,6 @@ $sitename = 'SemanticScuttle';
 $welcomeMessage = 'Welcome to SemanticScuttle! Social bookmarking for small communities.';
 
 /**
- * SemanticScuttle root directory.
- *
- * Set to NULL to autodetect the root url of the website.
- *
- * If your installation is in a subdirectory like
- * "http://www.example.com/semanticscuttle/" then
- * replace NULL by your address (between "" and with trailing '/')
- *
- * @var string
- */
-$root = null;
-
-/**
  * Translation from locales/ folder.
  *
  * Examples: de_DE, en_GB, fr_FR
@@ -128,4 +115,9 @@ $adminemail = 'admin@example.org';
  */
 $admin_users = array();
 
+
+/**
+* You have completed the basic configuration!
+* More options can be found in config.default.php.
+*/
 ?>

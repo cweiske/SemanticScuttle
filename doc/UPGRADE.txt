@@ -8,6 +8,11 @@ to previous versions. We recommend that you start with a
 fresh installation, just copying over your config.php file.
 Set your web server document root directory to www/.
 
+Yes, we kind of lost the ability to run SemanticScuttle
+in a subdirectory of a hostname. This functionality will
+be back in one of the next releases, but for now, you have
+to live with it.
+
 Update your database:
 - ALTER TABLE `sc_bookmarks` ADD `bVoting` INT NOT NULL;
 - ALTER TABLE `sc_bookmarks` ADD `bVotes` INT NOT NULL;
