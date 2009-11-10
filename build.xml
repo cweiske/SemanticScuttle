@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="SemanticScuttle" default="dist" basedir=".">
+  <!--
+    SemanticScuttle phing build file.
+    This script should provide a one-stop tool for all administrative
+    tasks around SemanticScuttle, like creating a release version,
+    tagging a release, running unit tests etc.
+  -->
+  <target name="dist"><!-- depends="build">-->
+    <echo msg="Creating distribution zip for SemanticScuttle {$version}"/>
+    <zip destfile="SemanticScuttle-{$version}.zip">
+      <fileset dir=".">
+        <include name="**"/>
+        <exclude name="build.xml"/>
+        <exclude name="cache"/>
+        <exclude name="data/config.php"/>
+      </fileset>
+    </zip>
+  </target>
+
+</project>
