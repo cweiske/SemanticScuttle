@@ -9,7 +9,8 @@
   <property file="build.properties" />
 
   <property name="version"    value="0.95" />
-  <property name="distfile"   value="dist/${phing.project.name}-${version}.zip" />
+  <property name="zipfile"    value="${phing.project.name}-${version}.zip" />
+  <property name="distfile"   value="dist/${zipfile}" />
   <property name="sfproject"  value="SemanticScuttle" />
   <property name="sffilepath" value="s/se/semanticscuttle/" />
 
@@ -55,7 +56,7 @@
     <delete dir="dist/deploy-sf" /><!-- make empty -->
     <mkdir dir="dist/deploy-sf" />
     <mkdir dir="dist/deploy-sf/v${version}" />
-    <copy file="${distfile}" tofile="dist/deploy-sf/v${version}/${distfile}"/>
+    <copy file="${distfile}" tofile="dist/deploy-sf/v${version}/${zipfile}"/>
     <!-- test
     <exec command="rsync -av dist/deploy-sf/ /tmp/test/" escape="false" />
     -->
