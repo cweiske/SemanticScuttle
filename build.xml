@@ -6,18 +6,26 @@
     tasks around SemanticScuttle, like creating a release version,
     tagging a release, running unit tests etc.
   -->
-  <property name="version" value="0.95.0"/>
+  <property file="build.properties" />
 
-  <target name="dist"><!-- depends="build">-->
+  <property name="version"    value="0.95" />
+  <property name="distfile"   value="dist/${phing.project.name}-${version}.zip" />
+  <property name="sfproject"  value="SemanticScuttle" />
+  <property name="sffilepath" value="s/se/semanticscuttle/" />
+
+  <target name="dist" depends="check"
+   description="Create zip file for release"
+   >
     <!--
       The release file is for end users, so it is safe to
       remove anything developer-related.
 
       Test your zip with: unzip -l SemanticScuttle-0.95.0.zip
     -->
+    <mkdir dir="dist" />
     <echo msg="Creating distribution zip for SemanticScuttle ${version}"/>
-    <delete file="SemanticScuttle-${version}.zip" failonerror="false"/>
-    <zip destfile="SemanticScuttle-${version}.zip" prefix="SemanticScuttle-${version}/">
+    <delete file="${distfile}" failonerror="false"/>
+    <zip destfile="${distfile}" prefix="${phing.project.name}-${version}/">
       <fileset dir=".">
         <include name="**"/>
         <exclude name="**/.gitignore"/>
@@ -36,6 +44,38 @@
         <exclude name="src/php-gettext/bin/"/>
       </fileset>
     </zip>
+  </target>
+
+
+  <!--
+  /home/frs/project/s/se/semanticscuttle/SemanticScuttle/v0.94/
+  /home/frs/project/s/se/semanticscuttle/SemanticScuttle/v0.94/SemanticScuttle-v0.94.zip
+  /home/frs/project/s/se/semanticscuttle/SemanticScuttle/v0.94/SemanticScuttle-v0.94.1.zip
+  -->
+  <target name="deploy-sf" depends="check,dist"
+   description="Upload release to sourceforge"
+   >
+    <delete dir="dist/deploy-sf" /><!-- make empty -->
+    <mkdir dir="dist/deploy-sf" />
+    <mkdir dir="dist/deploy-sf/v${version}" />
+    <copy file="${distfile}" tofile="dist/deploy-sf/v${version}/${distfile}"/>
+    <!-- test
+    <exec command="rsync -av dist/deploy-sf/ /tmp/test/" escape="false" />
+    -->
+    <exec
+     command="rsync -av -e ssh dist/deploy-sf/ ${sfuser},${sfproject}@frs.sourceforge.net:/home/frs/project/${sffilepath}/${sfproject}/"
+     escape="false" checkreturn="true"
+     />
+  </target>
+
+
+  <target name="check"
+   description="Check variables"
+   >
+    <fail unless="version" message="Version not defined!" />
+    <fail unless="sfuser" message="Sourceforge username not defined!" />
+    <fail unless="sfproject" message="Sourceforge project name not defined!" />
+    <fail unless="sffilepath" message="Sourceforge project file path not defined!" />
   </target>
 
 </project>
