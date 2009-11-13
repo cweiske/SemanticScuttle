@@ -49,6 +49,7 @@
   /home/frs/project/s/se/semanticscuttle/SemanticScuttle/v0.94/
   /home/frs/project/s/se/semanticscuttle/SemanticScuttle/v0.94/SemanticScuttle-v0.94.zip
   /home/frs/project/s/se/semanticscuttle/SemanticScuttle/v0.94/SemanticScuttle-v0.94.1.zip
+  https://sourceforge.net/apps/trac/sourceforge/wiki/Release%20files%20for%20download
   -->
   <target name="deploy-sf" depends="check,dist"
    description="Upload release to sourceforge"
