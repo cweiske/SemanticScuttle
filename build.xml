@@ -27,19 +27,16 @@
     <delete file="${distfile}" failonerror="false"/>
     <zip destfile="${distfile}" prefix="${phing.project.name}-${version}/">
       <fileset dir=".">
-        <include name="**"/>
-        <exclude name="**/.gitignore"/>
+        <include name="data/**"/>
+        <include name="doc/**"/>
+        <include name="src/**"/>
+        <include name="www/**"/>
+        <exclude name="**/.gitignore/"/>
         <exclude name="**/.svn/"/>
-        <exclude name=".git/"/>
-        <exclude name="cache/"/>
-        <exclude name="tests/"/>
-        <exclude name="scripts/"/>
-        <exclude name="build.xml"/>
         <exclude name="data/config.php"/>
         <exclude name="data/locales/messages.po"/>
         <exclude name="data/locales/*/LC_MESSAGES/messages.po"/>
         <exclude name="doc/developers/"/>
-        <exclude name="SemanticScuttle-*"/>
         <exclude name="src/php-gettext/examples/" />
         <exclude name="src/php-gettext/bin/"/>
       </fileset>
