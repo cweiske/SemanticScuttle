@@ -4,14 +4,19 @@ How to release a new version of SemanticScuttle
 0. Run unit tests and verify that all of them pass
 1. Update doc/ChangeLog
 2. Update version in data/templates/about.tpl.php
-3. Create a zip file with all contents, and make sure
-   the zip file root directory is SemanticScuttle-$version/
-4. Make a test installtion from your zip file with a fresh
-   database, register, add bookmarks etc.
+3. Create a release zip file via the build script:
+   Just type "phing".
+4. Make a test installation from your zip file with a fresh
+   database. Register a user, add bookmarks etc.
+5. When all is fine, it's time to release.
+   The build script takes care for most of the
+   tasks.
+   Run "phing release", and it will upload the release to
+   sourceforge and create a svn tag.
 5. Tag the release in svn:
    svn cp https://semanticscuttle.svn.sourceforge.net/svnroot/semanticscuttle/trunk https://semanticscuttle.svn.sourceforge.net/svnroot/semanticscuttle/tags/$version
-6. Upload release to sourceforge
-7. Write announcement mail to the SemanticScuttle mailing list
+6. Write announcement mail to the SemanticScuttle mailing list
    semanticscuttle-devel@lists.sourceforge.net
-8. Announce the new release in the sourceforge project news
+7. Announce the new release in the sourceforge project news
+   https://sourceforge.net/apps/trac/sourceforge/wiki/News
 
