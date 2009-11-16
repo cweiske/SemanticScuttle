@@ -1,6 +1,12 @@
 ChangeLog for SemantiScuttle
 ============================
 
+0.95.1 - 2009-11-16
+-------------------
+- Fix bug: admin tags were not shown because javascript include was broken.
+  Thanks, Jean-Luc!
+
+
 0.95 - 2009-11-10
 -----------------
 - Implement request #2878169: Voting system with two layouts
@@ -19,6 +25,14 @@ ChangeLog for SemantiScuttle
 - Fix OpenSearch file
 - Re-add de_AT which is a rather ugly "official-style" german
   translation. Choose the translation you like most.
+
+
+0.94.1 - 2009-10-29
+-------------------
+This is a security release! We do highly recommend to update
+your SemanticScuttle installations!
+
+- Fix several XSS possibilities
 
 
 0.94 - 2009-10-02
