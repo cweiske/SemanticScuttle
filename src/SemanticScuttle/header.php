@@ -1,6 +1,6 @@
 <?php
 if (!file_exists(dirname(__FILE__) .'/../../data/config.php')) {
-	die('Please copy "config.php.dist" to "config.php"');
+	die('Please copy "config.php.dist" to "config.php" in data/ folder.');
 }
 set_include_path(
     get_include_path() . PATH_SEPARATOR
