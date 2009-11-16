@@ -520,7 +520,7 @@ $maxSizeMenuBlock = 7;
  * @var array
  */
 $menu2Tags = array(
-    'menu2', 'tags', 'configurable', 'in', 'configincphp'
+    'menu2', 'tags', 'configurable', 'in', 'data/config.php'
 );
 
 
