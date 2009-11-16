@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-04 10:50+0200\n"
-"PO-Revision-Date: 2009-06-04 10:52+0100\n"
+"POT-Creation-Date: 2009-11-16 20:55+0100\n"
+"PO-Revision-Date: 2009-11-16 21:14+0100\n"
 "Last-Translator: BenjaminHKB <benjamin.huynh-kim-bang@loria.fr>\n"
 "Language-Team: fr-FR <toony.sf@chezouam.net>\n"
 "MIME-Version: 1.0\n"
@@ -19,1381 +19,1424 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../../../about.php:23
-#: ../../../about.php:24
-#: ../../../templates/bottom.inc.php:5
-#: ../../../templates/toolbar.inc.php:15
-#: ../../../templates/toolbar.inc.php:28
-msgid "About"
-msgstr "À propos"
-
-#: ../../../admin.php:32
-msgid "Manage users"
-msgstr "Gérer les utilisateurs"
-
-#: ../../../admin.php:68
-#, php-format
-msgid "%s and all his bookmarks and tags were deleted."
-msgstr "%s, ses signets et ses tags ont été effacés."
-
-#: ../../../admin.php:75
-msgid "Problem with "
-msgstr "Problème avec "
-
-#: ../../../ajaxDelete.php:37
-msgid "You are not allowed to delete this bookmark"
-msgstr "Vous n'êtes pas autorisés à supprimer ce signet"
-
-#: ../../../ajaxDelete.php:41
-#: ../../../edit.php:103
-msgid "Failed to delete bookmark"
-msgstr "Erreur dans la suppression du signet"
-
-#: ../../../alltags.php:49
-msgid "All Tags"
-msgstr "Tous les tags"
-
-#: ../../../alltags.php:55
-#: ../../../bookmarks.php:96
-#: ../../../populartags.php:52
-#: ../../../profile.php:51
-#: ../../../rss.php:67
-#: ../../../search.php:101
-#: ../../../watch.php:45
-#: ../../../watchlist.php:61
-#, php-format
-msgid "User with username %s was not found"
-msgstr "L'utilisateur %s n'a pas été trouvé."
-
-#: ../../../bookmarkcommondescriptionedit.php:51
-#: ../../../tag2tagadd.php:37
-#: ../../../tag2tagdelete.php:41
-#: ../../../tag2tagedit.php:33
-#: ../../../tagcommondescriptionedit.php:43
-#: ../../../tagedit.php:43
-msgid "Permission denied."
-msgstr "Permission non accordée."
-
-#: ../../../bookmarkcommondescriptionedit.php:60
-msgid "Bookmark common description updated"
-msgstr "Description commune du signet mise à jour."
-
-#: ../../../bookmarkcommondescriptionedit.php:63
-msgid "Failed to update the bookmark common description"
-msgstr "Erreur dans la mise à jour de la description du signet"
-
-#: ../../../bookmarkcommondescriptionedit.php:71
-msgid "Edit Bookmark Common Description"
-msgstr "Editer la description commune du signet"
-
-#: ../../../bookmarks.php:111
-#: ../../../tags.php:47
-msgid "Remove the tag from the selection"
-msgstr "Retirer le tag de la sélection"
-
-#: ../../../bookmarks.php:131
-#: ../../../edit.php:65
-msgid "Your bookmark must have a title and an address"
-msgstr "Votre signet doit avoir un titre et une adresse."
-
-#: ../../../bookmarks.php:152
-#: ../../../edit.php:83
-#: ../../../edit.php:86
-msgid "Bookmark saved"
-msgstr "Signet enregistré."
-
-#: ../../../bookmarks.php:152
-msgid "(Come back to previous page.)"
-msgstr "(Revenir à la page précédente.)"
-
-#: ../../../bookmarks.php:159
-#: ../../../import.php:106
-#: ../../../importNetscape.php:108
-msgid "There was an error saving your bookmark. Please try again or contact the administrator."
-msgstr "Il y a eu une erreur en enregistrant ce signet. Veuillez rééssayer ou contacter votre administrateur."
-
-#: ../../../bookmarks.php:209
-#: ../../../templates/toolbar.inc.php:13
-msgid "Add a Bookmark"
-msgstr "Ajouter un signet"
-
-#: ../../../bookmarks.php:213
-msgid "Add Bookmark"
-msgstr "Ajouter signet"
-
-#: ../../../bookmarks.php:216
-msgid "You must be logged in before you can add bookmarks."
-msgstr "Vous devez être authentifié avant de pouvoir ajouter des signets."
-
-#: ../../../bookmarks.php:270
-#: ../../../bookmarks.php:271
-msgid "My Bookmarks"
-msgstr "Mes signets"
-
-#: ../../../edit.php:44
-#: ../../../edit.php:45
-msgid "Edit Bookmark"
-msgstr "Editer le signet"
-
-#: ../../../edit.php:51
-#, php-format
-msgid "Bookmark with id %s not was not found"
-msgstr "Signet %s non trouvé"
-
-#: ../../../edit.php:57
-msgid "You are not allowed to edit this bookmark"
-msgstr "Vous n'êtes pas autorisé à éditer ce signet."
-
-#: ../../../edit.php:77
-msgid "Error while saving your bookmark"
-msgstr "Erreur pendant l'enregistrement de votre signet."
-
-#: ../../../edit.php:113
-#: ../../../templates/editprofile.tpl.php:52
-msgid "Save Changes"
-msgstr "Enregistrer les modifications"
-
-#: ../../../functions.inc.php:144
+#: src/SemanticScuttle/functions.php:163
 msgid "message_die() was called multiple times."
 msgstr "message_die() was called multiple times. ?"
 
-#: ../../../functions.inc.php:156
+#: src/SemanticScuttle/functions.php:175
 msgid "SQL Error"
 msgstr "Erreur SQL"
 
-#: ../../../functions.inc.php:162
+#: src/SemanticScuttle/functions.php:181
 msgid "Line"
 msgstr "Ligne"
 
-#: ../../../functions.inc.php:162
-#: ../../../templates/importDelicious.tpl.php:8
-#: ../../../templates/importNetscape.tpl.php:9
-#: ../../../templates/importStructure.tpl.php:10
+#: src/SemanticScuttle/functions.php:181
+#: data/templates/importDelicious.tpl.php:8
+#: data/templates/importNetscape.tpl.php:9
+#: data/templates/importStructure.tpl.php:10
 msgid "File"
 msgstr "Fichier"
 
-#: ../../../functions.inc.php:168
+#: src/SemanticScuttle/functions.php:189
 msgid "Information"
 msgstr "Information"
 
-#: ../../../functions.inc.php:173
+#: src/SemanticScuttle/functions.php:194
 msgid "Critical Information"
 msgstr "Information critique."
 
-#: ../../../functions.inc.php:178
+#: src/SemanticScuttle/functions.php:199
 msgid "An error occured"
 msgstr "Une erreur s'est produite."
 
-#: ../../../functions.inc.php:181
+#: src/SemanticScuttle/functions.php:202
 msgid "General Error"
 msgstr "Erreur générale."
 
-#: ../../../functions.inc.php:189
+#: src/SemanticScuttle/functions.php:210
 msgid "An critical error occured"
 msgstr "Une erreur critique s'est produite."
 
-#: ../../../functions.inc.php:192
+#: src/SemanticScuttle/functions.php:213
 msgid "Critical Error"
 msgstr "Erreur critique."
 
-#: ../../../functions.inc.php:201
+#: src/SemanticScuttle/functions.php:222
 msgid "DEBUG MODE"
 msgstr "Mode de débogage."
 
-#: ../../../history.php:61
-msgid "History"
-msgstr "Historique"
-
-#: ../../../history.php:62
-#, php-format
-msgid "History for %s"
-msgstr "Historique de %s"
-
-#: ../../../history.php:84
-msgid "Address was not found"
-msgstr "L'adresse n'a pas été trouvée."
-
-#: ../../../import.php:47
-msgid "Could not open XML input"
-msgstr "Impossible d'ouvrir le flux XML."
-
-#: ../../../import.php:51
-#, php-format
-msgid "XML error: %s at line %d"
-msgstr "Erreur XML: %s à la ligne %d"
-
-#: ../../../import.php:60
-msgid "Import Bookmarks from del.icio.us"
-msgstr "Importer les signet depuis del.icio.us"
-
-#: ../../../import.php:93
-msgid "You have already submitted this bookmark."
-msgstr "Vous avez déjà enregistré ce signet."
-
-#: ../../../import.php:104
-msgid "Bookmark imported."
-msgstr "Signet importé."
-
-#: ../../../importNetscape.php:95
-msgid "You have already submitted some of these bookmarks."
-msgstr "Vous avez déjà enregistré certains de ces signets."
-
-#: ../../../importNetscape.php:115
-msgid "Bookmarks found: "
-msgstr "Signets trouvés :"
-
-#: ../../../importNetscape.php:116
-msgid "Bookmarks imported: "
-msgstr "Signets importés :"
-
-#: ../../../importNetscape.php:117
-#: ../../../importNetscape.php:122
-msgid "Import Bookmarks from Browser File"
-msgstr "Importer les signets depuis un fichier"
-
-#: ../../../importStructure.php:61
-msgid "Bad indentation"
-msgstr "Mauvaise indentation"
-
-#: ../../../importStructure.php:67
-msgid "New links between tags: "
-msgstr "Nouveau lien entre tags :"
-
-#: ../../../importStructure.php:72
-msgid "Import Structure"
-msgstr "Importer une structure"
-
-#: ../../../index.php:38
-msgid "You have now logged out"
-msgstr "Vous êtes maintenant déconnecté."
-
-#: ../../../index.php:45
-#, php-format
-msgid "%s: Recent bookmarks"
-msgstr "%s: Signets récents"
-
-#: ../../../index.php:78
-msgid "Store, share and tag your favourite links"
-msgstr "Conservez, partagez et taggez vos liens favoris"
-
-#: ../../../index.php:79
-msgid "All Bookmarks"
-msgstr "Tous les signets"
-
-#: ../../../jsScuttle.php:22
-#: ../../../templates/admin.tpl.php:19
-#: ../../../templates/tag2tagadd.tpl.php:21
-#: ../../../templates/tag2tagdelete.tpl.php:13
-#: ../../../templates/tag2tagedit.tpl.php:14
-#: ../../../templates/tag2tagedit.tpl.php:35
-#: ../../../templates/tagdelete.tpl.php:6
-msgid "Are you sure?"
-msgstr "Etes-vous sûr ?"
-
-#: ../../../jsScuttle.php:22
-#: ../../../templates/tag2tagdelete.tpl.php:15
-#: ../../../templates/tag2tagedit.tpl.php:16
-#: ../../../templates/tagdelete.tpl.php:8
-msgid "Yes"
-msgstr "Oui"
-
-#: ../../../jsScuttle.php:22
-#: ../../../templates/tag2tagdelete.tpl.php:16
-#: ../../../templates/tag2tagedit.tpl.php:17
-#: ../../../templates/tagdelete.tpl.php:9
-msgid "No"
-msgstr "Non"
-
-#: ../../../jsScuttle.php:69
-msgid "Available"
-msgstr "Disponible"
-
-#: ../../../jsScuttle.php:72
-msgid "Not Available"
-msgstr "Non Disponible"
-
-#: ../../../login.php:48
-msgid "The details you have entered are incorrect. Please try again."
-msgstr "Les informations que vous avez entrées sont incorrectes. Veuillez recommencer."
-
-#: ../../../login.php:57
-#: ../../../templates/login.tpl.php:26
-#: ../../../templates/toolbar.inc.php:29
-msgid "Log In"
-msgstr "Se connecter"
-
-#: ../../../password.php:36
-msgid "You must enter your username."
-msgstr "Vous devez entrer votre nom d'utilisateur."
-
-#: ../../../password.php:40
-msgid "You must enter your <abbr title=\"electronic mail\">e-mail</abbr> address."
-msgstr "Vous <em>devez</em> saisir une <abbr title=\"adresse électronique\">E-mail</abbr>."
-
-#: ../../../password.php:48
-msgid "No matches found for that username."
-msgstr "Rien de trouvé pour ce nom d'utilisateur."
-
-#: ../../../password.php:51
-msgid "No matches found for that combination of username and <abbr title=\"electronic mail\">e-mail</abbr> address."
-msgstr "Pas d'entrée pour ce nom d'utilisateur et cet <abbr title=\"adresse mail\">e-mail</abbr>."
-
-#: ../../../password.php:59
-msgid "There was an error while generating your new password. Please try again."
-msgstr "Il y a eu une erreur en enregistrant ce signet. Veuillez rééssayer ou contacter votre administrateur."
-
-#: ../../../password.php:63
-msgid "Your new password is:"
-msgstr "Votre nouveau mot de passe est:"
-
-#: ../../../password.php:63
-msgid "To keep your bookmarks secure, you should change this password in your profile the next time you log in."
-msgstr "Pour garder vos signets sûrs, vous devriez changer ce mot de passe dans votre profil lors de votre prochaine authentification."
-
-#: ../../../password.php:66
-#, php-format
-msgid "%s Account Information"
-msgstr "Informations du compte de %s"
-
-#: ../../../password.php:68
-#, php-format
-msgid "New password generated and sent to %s"
-msgstr "Nouveau mot de passe généré et envoyé à l'adresse %s"
-
-#: ../../../password.php:75
-msgid "Forgotten Password"
-msgstr "Mot de passe oublié"
-
-#: ../../../populartags.php:46
-#: ../../../templates/dynamictags.inc.php:128
-#: ../../../templates/sidebar.block.common.php:9
-#: ../../../templates/sidebar.block.menu.php:74
-#: ../../../templates/sidebar.block.popular.php:23
-#: ../../../templates/sidebar.block.recent.php:34
-#: ../../../templates/toolbar.inc.php:27
-msgid "Popular Tags"
-msgstr "Tags populaires"
-
-#: ../../../profile.php:59
-#: ../../../watchlist.php:119
-msgid "Username was not specified"
-msgstr "Le nom d'utilisateur n'a pas été spécifié."
-
-#: ../../../profile.php:65
-msgid "My Profile"
-msgstr "Mon Profil"
-
-#: ../../../profile.php:67
-#: ../../../templates/toolbar.inc.php:12
-msgid "Profile"
-msgstr "Profil"
-
-#: ../../../profile.php:89
-msgid "Invalid Token"
-msgstr "Token invalide"
-
-#: ../../../profile.php:94
-msgid "Password and confirmation do not match."
-msgstr "Le mot de passe et sa vérification ne correspondent pas."
-
-#: ../../../profile.php:98
-msgid "Password must be at least 6 characters long."
-msgstr "Le mot de passe doit avoir au moins 6 caractères."
-
-#: ../../../profile.php:102
-msgid "E-mail address is not valid."
-msgstr "Adresse de courrier électronique invalide."
-
-#: ../../../profile.php:106
-msgid "An error occurred while saving your changes."
-msgstr "Une erreur s'est produite pendant l'enregistrement de vos modifications."
-
-#: ../../../profile.php:108
-msgid "Changes saved."
-msgstr "Modifications enregistrées."
-
-#: ../../../register.php:40
-msgid "You <em>must</em> enter a username, password and e-mail address."
-msgstr "Vous <em>devez</em> saisir un nom d'utilisateur, un mot de passe, un nom et un <abbr title=\"adresse électronique\">e-mail</abbr>"
-
-#: ../../../register.php:44
-msgid "This username has been reserved, please make another choice."
-msgstr "Ce nom d'utilisateur existe déjà, veuillez en choisir un autre."
-
-#: ../../../register.php:48
-msgid "This username already exists, please make another choice."
-msgstr "Ce nom d'utilisateur existe déjà, veuillez en choisir un autre."
-
-#: ../../../register.php:52
-msgid "This username is not valid (too short, too long, forbidden characters...), please make another choice."
-msgstr "Ce nom d'utilisateur n'est pas valide (trop court, trop long, caractères interdits...), Merci de faire un autre choix."
-
-#: ../../../register.php:56
-msgid "E-mail address is not valid. Please try again."
-msgstr "Adresse de courrier électronique invalide. Veuillez réessayer."
-
-#: ../../../register.php:60
-msgid "Antispam answer is not valid. Please try again."
-msgstr "La réponse antispam n'est pas valide. Veuillez réessayer."
-
-#: ../../../register.php:69
-msgid "You have successfully registered. Enjoy!"
-msgstr "Votre inscription a bien été prise en compte !"
-
-#: ../../../register.php:71
-msgid "Registration failed. Please try again."
-msgstr "Enregistrement raté. Veuillez rééssayer."
-
-#: ../../../register.php:77
-#: ../../../templates/register.tpl.php:41
-#: ../../../templates/toolbar.inc.php:30
-msgid "Register"
-msgstr "S'enregistrer"
-
-#: ../../../rss.php:84
-#, php-format
-msgid "Recent bookmarks posted to %s"
-msgstr "Signets ajoutés récemment à %s"
-
-#: ../../../search.inc.php:23
-msgid "Search..."
-msgstr "Chercher..."
-
-#: ../../../search.inc.php:24
-msgid "in"
-msgstr "dans"
-
-#: ../../../search.inc.php:30
-msgid "this user's bookmarks"
-msgstr "les signets de cet utilisateur"
-
-#: ../../../search.inc.php:35
-msgid "my bookmarks"
-msgstr "mes signets"
-
-#: ../../../search.inc.php:36
-msgid "my watchlist"
-msgstr "mes contacts"
-
-#: ../../../search.inc.php:40
-msgid "all bookmarks"
-msgstr "tous les signets"
-
-#: ../../../search.inc.php:50
-msgid "Search"
-msgstr "Chercher"
-
-#: ../../../search.php:73
-#: ../../../search.php:123
-msgid "Search Bookmarks"
-msgstr "Recherche de signets"
-
-#: ../../../search.php:79
-msgid "Search Results"
-msgstr "Résultats de recherche"
-
-#: ../../../search.php:114
-msgid "Unsatisfied? You can also try our "
-msgstr "Insatisfait ? Vous pouvez aussi essayer notre "
-
-#: ../../../tag2tagadd.php:50
-msgid "Tag link created"
-msgstr "Lien entre tags créé."
-
-#: ../../../tag2tagadd.php:53
-msgid "Failed to create the link"
-msgstr "Impossible de créer le lien"
-
-#: ../../../tag2tagadd.php:65
-msgid "Add Tag Link"
-msgstr "Ajout d'un lien entre tags"
-
-#: ../../../tag2tagdelete.php:66
-msgid "Tag link deleted"
-msgstr "Effacement d'un lien entre tags"
-
-#: ../../../tag2tagdelete.php:69
-msgid "Failed to delete the link"
-msgstr "Impossible d'effacer le lien"
-
-#: ../../../tag2tagdelete.php:81
-msgid "Delete Link Between Tags"
-msgstr "Effacer un lien entre tags"
-
-#: ../../../tag2tagedit.php:55
-msgid "Edit Link Between Tags"
-msgstr "Editer un lien entre tags"
-
-#: ../../../tagcommondescriptionedit.php:55
-msgid "Tag common description updated"
-msgstr "Editer la description commune du tag"
-
-#: ../../../tagcommondescriptionedit.php:58
-msgid "Failed to update the tag common description"
-msgstr "Impossible de mettre à jour la description commune du tag"
-
-#: ../../../tagcommondescriptionedit.php:64
-#: ../../../templates/sidebar.block.tagactions.php:26
-msgid "Edit Tag Common Description"
-msgstr "Editer la description commune du tag"
-
-#: ../../../tagdelete.php:43
-msgid "Tag deleted"
-msgstr "Tag effacé"
-
-#: ../../../tagdelete.php:46
-msgid "Failed to delete the tag"
-msgstr "Impossible d'effacer le tag"
-
-#: ../../../tagdelete.php:54
-#: ../../../templates/sidebar.block.tagactions.php:22
-msgid "Delete Tag"
-msgstr "Supprimer le tag"
-
-#: ../../../tagedit.php:52
-msgid "Tag description updated"
-msgstr "Description du tag mise à jour"
-
-#: ../../../tagedit.php:55
-msgid "Failed to update the tag description"
-msgstr "Impossible de mettre à jour la description du tag"
-
-#: ../../../tagedit.php:61
-#: ../../../templates/sidebar.block.tagactions.php:24
-msgid "Edit Tag Description"
-msgstr "Editer la description du tag"
-
-#: ../../../tagrename.php:63
-msgid "Tag renamed"
-msgstr "Tag renommé"
-
-#: ../../../tagrename.php:66
-msgid "Failed to rename the tag"
-msgstr "Erreur dans le renommage du tag"
-
-#: ../../../tagrename.php:72
-#: ../../../templates/sidebar.block.tagactions.php:9
-msgid "Rename Tag"
-msgid_plural "Rename Tags"
-msgstr[0] "Renommer le tag"
-msgstr[1] "Renommer les tags"
-
-#: ../../../tags.php:45
-#: ../../../tags.php:67
-#: ../../../templates/editbookmark.tpl.php:69
-#: ../../../templates/toolbar.inc.php:10
-msgid "Tags"
-msgstr "Tags"
-
-#: ../../../users.php:35
-msgid "Users"
-msgstr "Utilisateurs"
-
-#: ../../../watch.php:54
-msgid "User removed from your watchlist"
-msgstr "Utilisateur enlevé de vos contacts"
-
-#: ../../../watch.php:56
-msgid "User added to your watchlist"
-msgstr "Utilisateur ajouté à vos contacts"
-
-#: ../../../watchlist.php:104
-msgid "My Watchlist"
-msgstr "Mes Contacts"
-
-#: ../../../watchlist.php:106
-#: ../../../templates/toolbar.inc.php:11
-msgid "Watchlist"
-msgstr "Contacts"
-
-#: ../../../templates/about.tpl.php:6
+#: data/templates/about.tpl.php:6
 msgid "<strong>Store</strong> all your favourite links in one place, accessible from anywhere."
 msgstr "<strong>Conservez</strong> tous vos signets au même endroit, accessibles de partout. "
 
-#: ../../../templates/about.tpl.php:7
+#: data/templates/about.tpl.php:7
 msgid "<strong>Share</strong> your bookmarks with everyone, with friends on your watchlist or just keep them private."
 msgstr "<strong>Partagez</strong> vos signets avec tout le monde, avec vos contacts ou gardez-les pour vous."
 
-#: ../../../templates/about.tpl.php:8
+#: data/templates/about.tpl.php:8
 msgid "<strong>Tag</strong> your bookmarks with as many labels as you want, instead of wrestling with folders."
 msgstr "<strong>Taggez</strong> vos signets avec autant de labels que vous le souhaitez au lieu de les hiérarchiser avec des dossiers."
 
-#: ../../../templates/about.tpl.php:9
+#: data/templates/about.tpl.php:9
 msgid "Register now"
 msgstr "S'enregistrer maintenant"
 
-#: ../../../templates/about.tpl.php:9
+#: data/templates/about.tpl.php:9
 #, php-format
 msgid " to start using %s!"
 msgstr "pour commencer à employer %s !"
 
-#: ../../../templates/about.tpl.php:12
+#: data/templates/about.tpl.php:12
 msgid "Geek Stuff"
 msgstr "Pour les Geeks"
 
-#: ../../../templates/about.tpl.php:14
+#: data/templates/about.tpl.php:14
 msgid "is licensed under the "
 msgstr "est sous licence"
 
-#: ../../../templates/about.tpl.php:14
+#: data/templates/about.tpl.php:14
 msgid "you can freely host it on your own web server."
 msgstr "vous pouvez librement l'installer sur votre serveur Web"
 
-#: ../../../templates/about.tpl.php:15
+#: data/templates/about.tpl.php:15
 #, php-format
 msgid "%1$s supports most of the <a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
 msgstr "%1$s supporte la plupart de l'<a href=\"http://del.icio.us/doc/api\"><abbr title=\"Application Programming Interface\">API</abbr> del.icio.us</a>."
 
-#: ../../../templates/about.tpl.php:24
+#: data/templates/about.tpl.php:24
 msgid "Tips"
 msgstr "Astuces"
 
-#: ../../../templates/about.tpl.php:26
+#: data/templates/about.tpl.php:26
 msgid "Add search plugin into your browser:"
 msgstr "Ajouter un plugin de recherche à votre navigateur :"
 
-#: ../../../templates/about.tpl.php:27
+#: data/templates/about.tpl.php:27
 msgid "The secret tag \"system:unfiled\" allows you to find bookmarks without tags."
 msgstr "Le tag secret \"system:unfiled\" vous permet de trouver les signets sans tags."
 
-#: ../../../templates/about.tpl.php:28
+#: data/templates/about.tpl.php:28
 msgid "The secret tag \"system:imported\" allows you to find imported bookmarks."
 msgstr "Le tag secret \"system:imported\" vous permet de trouver les signets importés."
 
-#: ../../../templates/admin.tpl.php:5
+#: data/templates/admin.tpl.php:5
 msgid "Users management"
 msgstr "Gestion des utilisateurs"
 
-#: ../../../templates/admin.tpl.php:14
+#: data/templates/admin.tpl.php:14
 msgid "Public/Shared/Private"
 msgstr "Publique/Partagé/Privé"
 
-#: ../../../templates/admin.tpl.php:14
-#: ../../../templates/bookmarks.tpl.php:93
+#: data/templates/admin.tpl.php:14
+#: data/templates/bookmarks.tpl.php:93
 msgid "bookmark(s)"
 msgstr "signet(s)"
 
-#: ../../../templates/admin.tpl.php:19
-#: ../../../templates/bookmarks.tpl.php:231
+#: data/templates/admin.tpl.php:19
+#: data/templates/tag2tagadd.tpl.php:21
+#: data/templates/tag2tagdelete.tpl.php:13
+#: data/templates/tag2tagedit.tpl.php:14
+#: data/templates/tag2tagedit.tpl.php:35
+#: data/templates/tagdelete.tpl.php:6
+#: www/jsScuttle.php:23
+msgid "Are you sure?"
+msgstr "Etes-vous sûr ?"
+
+#: data/templates/admin.tpl.php:19
+#: data/templates/bookmarks.tpl.php:251
 msgid "Delete"
 msgstr "Supprimer"
 
-#: ../../../templates/admin.tpl.php:27
+#: data/templates/admin.tpl.php:27
 msgid "Other actions"
 msgstr "Autres actions"
 
-#: ../../../templates/admin.tpl.php:29
+#: data/templates/admin.tpl.php:29
 msgid "Check all URLs (May take some time)"
 msgstr "Vérifier toutes les URLs (Peut prendre du temps)"
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:16
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:16
 msgid "Collaborative description: these fields can be viewed and modified by every users"
 msgstr "Description collaborative : ces champs peuvent être vus et modifiés par tous les utilisateurs."
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:18
-#: ../../../templates/bookmarks.tpl.php:123
-#: ../../../templates/editbookmark.tpl.php:38
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:18
+#: data/templates/bookmarks.tpl.php:137
+#: data/templates/editbookmark.tpl.php:38
 msgid "Title"
 msgstr "Titre"
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:23
-#: ../../../templates/editbookmark.tpl.php:44
-#: ../../../templates/editprofile.tpl.php:47
-#: ../../../templates/profile.tpl.php:33
-#: ../../../templates/tagcommondescriptionedit.tpl.php:13
-#: ../../../templates/tagedit.tpl.php:12
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:23
+#: data/templates/editbookmark.tpl.php:44
+#: data/templates/editprofile.tpl.php:47
+#: data/templates/profile.tpl.php:33
+#: data/templates/tagcommondescriptionedit.tpl.php:13
+#: data/templates/tagedit.tpl.php:12
 msgid "Description"
 msgstr "Description"
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:31
-#: ../../../templates/tagcommondescriptionedit.tpl.php:21
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:31
+#: data/templates/tagcommondescriptionedit.tpl.php:21
 msgid "Last modification:"
 msgstr "Dernière modification :"
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:42
-#: ../../../templates/tagcommondescriptionedit.tpl.php:32
-#: ../../../templates/tagedit.tpl.php:18
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:42
+#: data/templates/tagcommondescriptionedit.tpl.php:32
+#: data/templates/tagedit.tpl.php:18
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:43
-#: ../../../templates/editbookmark.tpl.php:98
-#: ../../../templates/tag2tagadd.tpl.php:24
-#: ../../../templates/tag2tagedit.tpl.php:38
-#: ../../../templates/tagcommondescriptionedit.tpl.php:33
-#: ../../../templates/tagedit.tpl.php:19
-#: ../../../templates/tagrename.tpl.php:25
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:43
+#: data/templates/editbookmark.tpl.php:98
+#: data/templates/tag2tagadd.tpl.php:24
+#: data/templates/tag2tagedit.tpl.php:38
+#: data/templates/tagcommondescriptionedit.tpl.php:33
+#: data/templates/tagedit.tpl.php:19
+#: data/templates/tagrename.tpl.php:25
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../../../templates/bookmarks.tpl.php:26
+#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:24
+#, php-format
+msgid "Voting <span class=\"voting\">%d</span>"
+msgstr "Vote <span class=\"voting\">%d</span>"
+
+#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:32
+#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:35
+msgid "Vote for"
+msgstr "Vote pour"
+
+#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:43
+#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:46
+msgid "Vote against"
+msgstr "Vote contre"
+
+#: data/templates/bookmarks.tpl.php:26
 msgid "Bookmarks on this page are managed by an admin user."
 msgstr "Les signets de cette page sont gérés par un administrateur."
 
-#: ../../../templates/bookmarks.tpl.php:51
-#: ../../../templates/bookmarks.tpl.php:52
+#: data/templates/bookmarks.tpl.php:51
+#: data/templates/bookmarks.tpl.php:52
 msgid "Edit the common description of this tag"
 msgstr "Editer la description commune de ce tag"
 
-#: ../../../templates/bookmarks.tpl.php:55
-#: ../../../templates/bookmarks.tpl.php:56
+#: data/templates/bookmarks.tpl.php:55
+#: data/templates/bookmarks.tpl.php:56
 msgid "Edit the common description of this bookmark"
 msgstr "Editer la description commune de ce signet"
 
-#: ../../../templates/bookmarks.tpl.php:76
-#: ../../../templates/bookmarks.tpl.php:77
+#: data/templates/bookmarks.tpl.php:76
+#: data/templates/bookmarks.tpl.php:77
 msgid "Edit your personal description of this tag"
 msgstr "Editer votre description personnelle de ce tag"
 
-#: ../../../templates/bookmarks.tpl.php:93
-#: ../../../templates/tags.tpl.php:10
-#: ../../../templates/users.tpl.php:8
+#: data/templates/bookmarks.tpl.php:93
+#: data/templates/tags.tpl.php:10
+#: data/templates/users.tpl.php:8
 msgid "Sort by:"
 msgstr "Classer par :"
 
-#: ../../../templates/bookmarks.tpl.php:122
+#: data/templates/bookmarks.tpl.php:135
 msgid "Date"
 msgstr "Date"
 
-#: ../../../templates/bookmarks.tpl.php:129
+#: data/templates/bookmarks.tpl.php:140
+msgid "Voting"
+msgstr "Vote"
+
+#: data/templates/bookmarks.tpl.php:149
 msgid "Bookmarks from other users for this tag"
 msgstr "Signets des autres utilisateurs pour ce tag"
 
-#: ../../../templates/bookmarks.tpl.php:134
+#: data/templates/bookmarks.tpl.php:154
 msgid "Only your bookmarks for this tag"
 msgstr "Uniquement vos signets pour ce tag"
 
-#: ../../../templates/bookmarks.tpl.php:157
-#: ../../../templates/bookmarks.tpl.php:163
+#: data/templates/bookmarks.tpl.php:177
+#: data/templates/bookmarks.tpl.php:183
 msgid "First"
 msgstr "Première"
 
-#: ../../../templates/bookmarks.tpl.php:158
-#: ../../../templates/bookmarks.tpl.php:164
+#: data/templates/bookmarks.tpl.php:178
+#: data/templates/bookmarks.tpl.php:184
 msgid "Previous"
 msgstr "Précédent"
 
-#: ../../../templates/bookmarks.tpl.php:171
-#: ../../../templates/bookmarks.tpl.php:174
+#: data/templates/bookmarks.tpl.php:191
+#: data/templates/bookmarks.tpl.php:194
 msgid "Next"
 msgstr "Suivant"
 
-#: ../../../templates/bookmarks.tpl.php:172
-#: ../../../templates/bookmarks.tpl.php:175
+#: data/templates/bookmarks.tpl.php:192
+#: data/templates/bookmarks.tpl.php:195
 msgid "Last"
 msgstr "Dernière"
 
-#: ../../../templates/bookmarks.tpl.php:185
+#: data/templates/bookmarks.tpl.php:205
 #, php-format
 msgid "Page %d of %d"
 msgstr "Page %d de %d"
 
-#: ../../../templates/bookmarks.tpl.php:225
+#: data/templates/bookmarks.tpl.php:245
 msgid "Tags:"
 msgstr "Tags:"
 
-#: ../../../templates/bookmarks.tpl.php:231
+#: data/templates/bookmarks.tpl.php:251
 msgid "Edit"
 msgstr "Editer"
 
-#: ../../../templates/bookmarks.tpl.php:235
+#: data/templates/bookmarks.tpl.php:255
 msgid "Last update"
 msgstr "Date de dernière mise à jour"
 
-#: ../../../templates/bookmarks.tpl.php:238
+#: data/templates/bookmarks.tpl.php:258
 msgid "by"
 msgstr "par"
 
-#: ../../../templates/bookmarks.tpl.php:240
+#: data/templates/bookmarks.tpl.php:260
 msgid "you"
 msgstr "vous"
 
-#: ../../../templates/bookmarks.tpl.php:254
+#: data/templates/bookmarks.tpl.php:274
 #, php-format
 msgid " and %s1 other%s"
 msgstr " et %s1 autre%s"
 
-#: ../../../templates/bookmarks.tpl.php:257
+#: data/templates/bookmarks.tpl.php:277
 #, php-format
 msgid " and %2$s%1$s others%3$s"
 msgstr " et %2$s%1$s autres%3$s"
 
-#: ../../../templates/bookmarks.tpl.php:265
+#: data/templates/bookmarks.tpl.php:288
 msgid "Copy this bookmark to YOUR bookmarks."
 msgstr "Copier ce signet dans VOS signets."
 
-#: ../../../templates/bookmarks.tpl.php:265
+#: data/templates/bookmarks.tpl.php:289
 msgid "Copy"
 msgstr "Copier"
 
-#: ../../../templates/bookmarks.tpl.php:284
+#: data/templates/bookmarks.tpl.php:309
 msgid "This bookmark is certified by an admin user."
 msgstr "Ce signet est certifié par un administrateur."
 
-#: ../../../templates/bookmarks.tpl.php:323
+#: data/templates/bookmarks.tpl.php:351
 msgid "Private Note on this bookmark"
 msgstr "Note privée sur ce signet"
 
-#: ../../../templates/bookmarks.tpl.php:334
+#: data/templates/bookmarks.tpl.php:363
 msgid "Come back to the top of this page."
 msgstr "Revenir en haut de cette page."
 
-#: ../../../templates/bookmarks.tpl.php:334
+#: data/templates/bookmarks.tpl.php:363
 msgid "Top of the page"
 msgstr "Haut de page"
 
-#: ../../../templates/bookmarks.tpl.php:340
+#: data/templates/bookmarks.tpl.php:369
 msgid "No bookmarks available"
 msgstr "Pas de signets disponibles."
 
-#: ../../../templates/bottom.inc.php:7
+#: data/templates/bottom.inc.php:5
+#: data/templates/toolbar.inc.php:15
+#: data/templates/toolbar.inc.php:28
+#: www/about.php:23
+#: www/about.php:24
+msgid "About"
+msgstr "À propos"
+
+#: data/templates/bottom.inc.php:7
 msgid "Propulsed by "
 msgstr "Propulsé par "
 
-#: ../../../templates/dynamictags.inc.php:47
-#: ../../../templates/sidebar.block.common.php:19
-#: ../../../templates/sidebar.block.popular.php:34
-#: ../../../templates/sidebar.block.recent.php:29
-#: ../../../templates/tags.tpl.php:19
+#: data/templates/dynamictags.inc.php:47
+#: data/templates/sidebar.block.common.php:19
+#: data/templates/sidebar.block.popular.php:34
+#: data/templates/sidebar.block.recent.php:29
+#: data/templates/tags.tpl.php:19
 msgid "bookmark"
 msgid_plural "bookmarks"
 msgstr[0] "signet"
 msgstr[1] "Signets"
 
-#: ../../../templates/dynamictags.inc.php:131
+#: data/templates/dynamictags.inc.php:128
+#: data/templates/sidebar.block.common.php:9
+#: data/templates/sidebar.block.menu.php:74
+#: data/templates/sidebar.block.popular.php:23
+#: data/templates/sidebar.block.recent.php:34
+#: data/templates/toolbar.inc.php:27
+#: www/populartags.php:46
+msgid "Popular Tags"
+msgstr "Tags populaires"
+
+#: data/templates/dynamictags.inc.php:131
 msgid "Popular Tags From All Users"
 msgstr "Tags populaires pour tous les utilisateurs"
 
-#: ../../../templates/editbookmark.tpl.php:33
+#: data/templates/editbookmark.tpl.php:33
 msgid "Address"
 msgstr "Adresse"
 
-#: ../../../templates/editbookmark.tpl.php:35
-#: ../../../templates/editbookmark.tpl.php:40
-#: ../../../templates/editprofile.tpl.php:31
-#: ../../../templates/tagrename.tpl.php:14
-#: ../../../templates/tagrename.tpl.php:19
+#: data/templates/editbookmark.tpl.php:35
+#: data/templates/editbookmark.tpl.php:40
+#: data/templates/editprofile.tpl.php:31
+#: data/templates/tagrename.tpl.php:14
+#: data/templates/tagrename.tpl.php:19
 msgid "Required"
 msgstr "Requis"
 
-#: ../../../templates/editbookmark.tpl.php:45
+#: data/templates/editbookmark.tpl.php:45
 msgid "Add Note"
 msgstr "Ajouter une note"
 
-#: ../../../templates/editbookmark.tpl.php:48
+#: data/templates/editbookmark.tpl.php:48
 msgid "You can use anchors to delimite attributes. for example: [publisher]blah[/publisher] "
 msgstr "Vous pouvez utiliser des balises pour délimiter des attributs. Par exemple : [publisher]blah[/publisher]"
 
-#: ../../../templates/editbookmark.tpl.php:51
+#: data/templates/editbookmark.tpl.php:51
 msgid "Suggested anchors: "
 msgstr "Balises suggérées : "
 
-#: ../../../templates/editbookmark.tpl.php:63
+#: data/templates/editbookmark.tpl.php:63
 msgid "Private Note"
 msgstr "Note privée"
 
-#: ../../../templates/editbookmark.tpl.php:65
+#: data/templates/editbookmark.tpl.php:65
 msgid "Just visible by you and your contacts."
 msgstr "Visible uniquement par vous et vos contacts."
 
-#: ../../../templates/editbookmark.tpl.php:73
+#: data/templates/editbookmark.tpl.php:69
+#: data/templates/toolbar.inc.php:10
+#: www/tags.php:45
+#: www/tags.php:67
+msgid "Tags"
+msgstr "Tags"
+
+#: data/templates/editbookmark.tpl.php:73
 msgid "Comma-separated"
 msgstr "Séparés par des virgules"
 
-#: ../../../templates/editbookmark.tpl.php:77
-#: ../../../templates/tag2tagadd.tpl.php:9
+#: data/templates/editbookmark.tpl.php:77
+#: data/templates/tag2tagadd.tpl.php:9
 msgid "Note: use \">\" to include one tag in another. e.g.: europe>france>paris"
 msgstr "Note: utiliser \">\" pour inclure un tag dans un autre. ex: europe>france>paris"
 
-#: ../../../templates/editbookmark.tpl.php:81
-#: ../../../templates/tag2tagadd.tpl.php:8
+#: data/templates/editbookmark.tpl.php:81
+#: data/templates/tag2tagadd.tpl.php:8
 msgid "Note: use \"=\" to make synonym two tags. e.g.: france=frenchcountry"
 msgstr "Note : utiliser \"=\" pour rendre deux tags synonymes ex: europe=eu"
 
-#: ../../../templates/editbookmark.tpl.php:84
-#: ../../../templates/importDelicious.tpl.php:15
-#: ../../../templates/importNetscape.tpl.php:16
+#: data/templates/editbookmark.tpl.php:84
+#: data/templates/importDelicious.tpl.php:15
+#: data/templates/importNetscape.tpl.php:16
 msgid "Privacy"
 msgstr "Accès"
 
-#: ../../../templates/editbookmark.tpl.php:87
-#: ../../../templates/importDelicious.tpl.php:18
-#: ../../../templates/importNetscape.tpl.php:19
+#: data/templates/editbookmark.tpl.php:87
+#: data/templates/importDelicious.tpl.php:18
+#: data/templates/importNetscape.tpl.php:19
 msgid "Public"
 msgstr "Publique"
 
-#: ../../../templates/editbookmark.tpl.php:88
+#: data/templates/editbookmark.tpl.php:88
 msgid "Shared with Watch List"
 msgstr "Partagé avec mes contacts"
 
-#: ../../../templates/editbookmark.tpl.php:89
-#: ../../../templates/importDelicious.tpl.php:20
-#: ../../../templates/importNetscape.tpl.php:21
+#: data/templates/editbookmark.tpl.php:89
+#: data/templates/importDelicious.tpl.php:20
+#: data/templates/importNetscape.tpl.php:21
 msgid "Private"
 msgstr "Privée"
 
-#: ../../../templates/editbookmark.tpl.php:102
+#: data/templates/editbookmark.tpl.php:102
 msgid "Delete Bookmark"
 msgstr "Supprimer le signet"
 
-#: ../../../templates/editbookmark.tpl.php:107
+#: data/templates/editbookmark.tpl.php:107
 msgid "edit common description"
 msgstr "éditer la description commune"
 
-#: ../../../templates/editbookmark.tpl.php:134
+#: data/templates/editbookmark.tpl.php:134
 msgid "Bookmarklet"
 msgstr "Bookmarklet"
 
-#: ../../../templates/editbookmark.tpl.php:140
+#: data/templates/editbookmark.tpl.php:140
 #, php-format
 msgid "Click one of the following bookmarklets to add a button you can click whenever you want to add the page you are on to %s"
 msgstr "Déplacez l'un des 'bookmarklet' suivants dans les marques-pages de votre navigateur et cliquez dessus chaque fois que vous souhaitez ajouter un signet pour la page courante dans %s "
 
-#: ../../../templates/editbookmark.tpl.php:144
+#: data/templates/editbookmark.tpl.php:144
 #, php-format
 msgid "Drag one of the following bookmarklets to your browser's bookmarks and click it whenever you want to add the page you are on to %s"
 msgstr "Déplacez l'un des 'bookmarklet' suivants dans les marques-pages de votre navigateur et cliquez dessus chaque fois que vous souhaitez ajouter un signet pour la page courante dans %s "
 
-#: ../../../templates/editbookmark.tpl.php:157
-#: ../../../templates/editbookmark.tpl.php:162
+#: data/templates/editbookmark.tpl.php:157
+#: data/templates/editbookmark.tpl.php:162
 #, php-format
 msgid "Post to %s"
 msgstr "Ajouter à %s"
 
-#: ../../../templates/editbookmark.tpl.php:158
-#: ../../../templates/editbookmark.tpl.php:163
+#: data/templates/editbookmark.tpl.php:158
+#: data/templates/editbookmark.tpl.php:163
 #, php-format
 msgid "Post to %s (Pop-up)"
 msgstr "Ajouter à %s (Pop-up)"
 
-#: ../../../templates/editbookmark.tpl.php:168
-#: ../../../templates/importDelicious.tpl.php:26
-#: ../../../templates/importNetscape.tpl.php:27
-#: ../../../templates/importStructure.tpl.php:16
+#: data/templates/editbookmark.tpl.php:168
+#: data/templates/importDelicious.tpl.php:26
+#: data/templates/importNetscape.tpl.php:27
+#: data/templates/importStructure.tpl.php:16
 msgid "Import"
 msgstr "Importer"
 
-#: ../../../templates/editbookmark.tpl.php:170
+#: data/templates/editbookmark.tpl.php:170
 msgid "Import bookmarks from bookmark file"
 msgstr "Importer les signets depuis un fichier"
 
-#: ../../../templates/editbookmark.tpl.php:170
+#: data/templates/editbookmark.tpl.php:170
 msgid "Internet Explorer, Mozilla Firefox and Netscape"
 msgstr "Internet Explorer, Mozilla Firefox et Netscape"
 
-#: ../../../templates/editbookmark.tpl.php:171
+#: data/templates/editbookmark.tpl.php:171
 msgid "Import bookmarks from del.icio.us"
 msgstr "Importer les signets depuis del.icio.us"
 
-#: ../../../templates/editprofile.tpl.php:10
+#: data/templates/editprofile.tpl.php:10
 msgid "Account Details"
 msgstr "Détail du compte"
 
-#: ../../../templates/editprofile.tpl.php:14
-#: ../../../templates/login.tpl.php:15
-#: ../../../templates/password.tpl.php:10
-#: ../../../templates/profile.tpl.php:6
-#: ../../../templates/register.tpl.php:16
+#: data/templates/editprofile.tpl.php:14
+#: data/templates/login.tpl.php:21
+#: data/templates/password.tpl.php:10
+#: data/templates/profile.tpl.php:6
+#: data/templates/register.tpl.php:16
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: ../../../templates/editprofile.tpl.php:19
+#: data/templates/editprofile.tpl.php:19
 msgid "New Password"
 msgstr "Nouveau mot de passe"
 
-#: ../../../templates/editprofile.tpl.php:24
+#: data/templates/editprofile.tpl.php:24
 msgid "Confirm Password"
 msgstr "Confirmer le mot de passe"
 
-#: ../../../templates/editprofile.tpl.php:29
-#: ../../../templates/password.tpl.php:14
-#: ../../../templates/register.tpl.php:26
+#: data/templates/editprofile.tpl.php:29
+#: data/templates/password.tpl.php:14
+#: data/templates/register.tpl.php:26
 msgid "E-mail"
 msgstr "E-mail"
 
-#: ../../../templates/editprofile.tpl.php:35
+#: data/templates/editprofile.tpl.php:35
 msgid "Personal Details"
 msgstr "Détails personnels"
 
-#: ../../../templates/editprofile.tpl.php:39
-#: ../../../templates/profile.tpl.php:17
+#: data/templates/editprofile.tpl.php:39
+#: data/templates/profile.tpl.php:17
 msgid "Name"
 msgstr "Nom"
 
-#: ../../../templates/editprofile.tpl.php:43
-#: ../../../templates/profile.tpl.php:23
+#: data/templates/editprofile.tpl.php:43
+#: data/templates/profile.tpl.php:23
 msgid "Homepage"
 msgstr "Page personnelle"
 
-#: ../../../templates/editprofile.tpl.php:55
-#: ../../../templates/sidebar.block.tagactions.php:17
-#: ../../../templates/sidebar.block.watchstatus.php:18
+#: data/templates/editprofile.tpl.php:52
+#: www/edit.php:113
+msgid "Save Changes"
+msgstr "Enregistrer les modifications"
+
+#: data/templates/editprofile.tpl.php:55
+#: data/templates/sidebar.block.tagactions.php:17
+#: data/templates/sidebar.block.watchstatus.php:18
 msgid "Actions"
 msgstr "Actions"
 
-#: ../../../templates/editprofile.tpl.php:58
+#: data/templates/editprofile.tpl.php:58
 msgid "Export bookmarks"
 msgstr "Exporter les signets"
 
-#: ../../../templates/editprofile.tpl.php:60
+#: data/templates/editprofile.tpl.php:60
 msgid "HTML file (for browsers)"
 msgstr "Fichier HTML (pour navigateurs)"
 
-#: ../../../templates/editprofile.tpl.php:61
+#: data/templates/editprofile.tpl.php:61
 msgid "XML file (like del.icio.us)"
 msgstr "Fichier XML (comme del.icio.us)"
 
-#: ../../../templates/editprofile.tpl.php:62
+#: data/templates/editprofile.tpl.php:62
 msgid "CSV file (for spreadsheet tools)"
 msgstr "Fichier CSV (pour tableurs)"
 
-#: ../../../templates/error.404.tpl.php:5
+#: data/templates/error.404.tpl.php:5
 msgid "Not Found"
 msgstr "Non trouvé"
 
-#: ../../../templates/error.404.tpl.php:6
+#: data/templates/error.404.tpl.php:6
 msgid "The requested URL was not found on this server"
 msgstr "L'URL demandée n'a pas été trouvée sur ce serveur."
 
-#: ../../../templates/error.500.tpl.php:5
+#: data/templates/error.500.tpl.php:5
 msgid "General server error"
 msgstr "Erreur généralisée du serveur."
 
-#: ../../../templates/error.500.tpl.php:6
+#: data/templates/error.500.tpl.php:6
 msgid "The requested URL could not be processed"
 msgstr "L'URL demandée n'a pas été trouvée."
 
-#: ../../../templates/importDelicious.tpl.php:19
-#: ../../../templates/importNetscape.tpl.php:20
+#: data/templates/importDelicious.tpl.php:19
+#: data/templates/importNetscape.tpl.php:20
 msgid "Shared with Watchlist"
 msgstr "Partagé avec mes contacts"
 
-#: ../../../templates/importDelicious.tpl.php:31
-#: ../../../templates/importNetscape.tpl.php:32
-#: ../../../templates/importStructure.tpl.php:21
+#: data/templates/importDelicious.tpl.php:31
+#: data/templates/importNetscape.tpl.php:32
+#: data/templates/importStructure.tpl.php:21
 msgid "Instructions"
 msgstr "Instructions"
 
-#: ../../../templates/importDelicious.tpl.php:33
+#: data/templates/importDelicious.tpl.php:33
 msgid "Log in to the <a href=\"http://del.icio.us/api/posts/all\">export page at del.icio.us</a>"
 msgstr "Se connecter à la <a href=\"http://del.icio.us/api/posts/all\">page d'export de del.icio.us</a>"
 
-#: ../../../templates/importDelicious.tpl.php:34
+#: data/templates/importDelicious.tpl.php:34
 msgid "Save the resulting <abbr title=\"Extensible Markup Language\">XML</abbr> file to your computer"
 msgstr "Enregistrer le fichier <abbr title=\"Extensible Markup Language\">XML</abbr> résultant sur votre ordinateur"
 
-#: ../../../templates/importDelicious.tpl.php:35
+#: data/templates/importDelicious.tpl.php:35
 msgid "Click <kbd>Browse...</kbd> to find this file on your computer. The maximum size the file can be is 1MB"
 msgstr "Cliquez sur <kbd>Parcourir...</kbd> pour trouver le fichier sur votre ordinateur. La taille maximale du fichier ne peut excèder 1Mo"
 
-#: ../../../templates/importDelicious.tpl.php:36
-#: ../../../templates/importNetscape.tpl.php:43
+#: data/templates/importDelicious.tpl.php:36
+#: data/templates/importNetscape.tpl.php:43
 msgid "Select the default privacy setting for your imported bookmarks"
 msgstr "Selectionnez la vision par défaut à appliquer à vos signets importés"
 
-#: ../../../templates/importDelicious.tpl.php:37
-#: ../../../templates/importNetscape.tpl.php:44
+#: data/templates/importDelicious.tpl.php:37
+#: data/templates/importNetscape.tpl.php:44
 msgid "Click <kbd>Import</kbd> to start importing the bookmarks; it may take a minute"
 msgstr "Cliquez sur <kbd>Importer</kbd> pour débuter l'import des signets; cette opération peut prendre quelques minutes"
 
-#: ../../../templates/importNetscape.tpl.php:35
+#: data/templates/importNetscape.tpl.php:35
 msgid "Export your bookmarks from your browser to a file"
 msgstr "Exporter vos signets dans un fichier depuis votre navigateur"
 
-#: ../../../templates/importNetscape.tpl.php:37
+#: data/templates/importNetscape.tpl.php:37
 msgid "Internet Explorer: <kbd>File &gt; Import and Export... &gt; Export Favorites"
 msgstr "Internet Explorer: <kbd>Ficher &gt; Importer et Exporter... &gt; Exporter les favoris"
 
-#: ../../../templates/importNetscape.tpl.php:38
+#: data/templates/importNetscape.tpl.php:38
 msgid "Mozilla Firefox: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; File &gt; Export..."
 msgstr "Mozilla Firefox: <kbd>Marques-pages &gt; Gérer les marques-pages... &gt; Fichier &gt; Exporter..."
 
-#: ../../../templates/importNetscape.tpl.php:39
+#: data/templates/importNetscape.tpl.php:39
 msgid "Netscape: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; Tools &gt; Export..."
 msgstr "Netscape: <kbd>Marques-pages &gt; Gérer les marques-pages... &gt; Outils &gt; Exporter..."
 
-#: ../../../templates/importNetscape.tpl.php:42
+#: data/templates/importNetscape.tpl.php:42
 msgid "Click <kbd>Browse...</kbd> to find the saved bookmark file on your computer. The maximum size the file can be is 1MB"
 msgstr "Cliquez sur <kbd>Parcourir...</kbd> pour trouver le fichier sur votre ordinateur. La taille maximale du fichier ne peut excèder 1Mo"
 
-#: ../../../templates/importStructure.tpl.php:24
+#: data/templates/importStructure.tpl.php:24
 msgid "Create your structure into a simple text file and following this model:"
 msgstr ""
 
-#: ../../../templates/importStructure.tpl.php:35
+#: data/templates/importStructure.tpl.php:35
 msgid "Then import the file. The tags and their relations will be added to your profile."
 msgstr ""
 
-#: ../../../templates/login.tpl.php:20
-#: ../../../templates/register.tpl.php:21
+#: data/templates/login.tpl.php:13
+msgid "Please activate cookies"
+msgstr "SVP activez les cookies"
+
+#: data/templates/login.tpl.php:26
+#: data/templates/register.tpl.php:21
 msgid "Password"
 msgstr "Mot de passe"
 
-#: ../../../templates/login.tpl.php:22
+#: data/templates/login.tpl.php:28
 msgid "Don't ask for my password for 2 weeks"
 msgstr "Ne pas demander mon mot de passe pendant 2 semaines"
 
-#: ../../../templates/login.tpl.php:30
+#: data/templates/login.tpl.php:32
+#: data/templates/toolbar.inc.php:29
+#: www/login.php:57
+msgid "Log In"
+msgstr "Se connecter"
+
+#: data/templates/login.tpl.php:36
 msgid "Forgotten your password?"
 msgstr "Avez-vous oublié votre mot de passe ?"
 
-#: ../../../templates/password.tpl.php:5
+#: data/templates/password.tpl.php:5
 #, php-format
 msgid "If you have forgotten your password, %s can generate a new one. Enter the username and e-mail address of your account into the form below and we will e-mail your new password to you."
 msgstr "Si vous avez oublié votre mot de passe, %s peut en générer un nouveau. Entrez le nom d'utilisateur et l'adresse email de votre compte dans le formulaire ci-dessous et nous vous enverrons un nouveau mot de passe."
 
-#: ../../../templates/password.tpl.php:19
+#: data/templates/password.tpl.php:19
 msgid "Generate Password"
 msgstr "Générer un mot de passe"
 
-#: ../../../templates/profile.tpl.php:11
+#: data/templates/profile.tpl.php:11
 msgid "Email"
 msgstr "E-mail"
 
-#: ../../../templates/profile.tpl.php:28
+#: data/templates/profile.tpl.php:28
 msgid "Member Since"
 msgstr "Membre depuis"
 
-#: ../../../templates/profile.tpl.php:40
-#: ../../../templates/sidebar.block.watchlist.php:30
+#: data/templates/profile.tpl.php:40
+#: data/templates/sidebar.block.watchlist.php:30
 msgid "Watching"
 msgstr "Mes contacts"
 
-#: ../../../templates/profile.tpl.php:55
-#: ../../../templates/sidebar.block.watchlist.php:52
+#: data/templates/profile.tpl.php:55
+#: data/templates/sidebar.block.watchlist.php:52
 msgid "Watched By"
 msgstr "Dans les contacts de"
 
-#: ../../../templates/profile.tpl.php:68
-#: ../../../templates/toolbar.inc.php:9
+#: data/templates/profile.tpl.php:68
+#: data/templates/toolbar.inc.php:9
 msgid "Bookmarks"
 msgstr "Signets"
 
-#: ../../../templates/profile.tpl.php:69
+#: data/templates/profile.tpl.php:69
 msgid "Go to bookmarks"
 msgstr "Aller aux signets"
 
-#: ../../../templates/register.tpl.php:11
+#: data/templates/register.tpl.php:11
 #, php-format
 msgid "Sign up here to create a free %s account. All the information requested below is required"
 msgstr "Enregistrez-vous ici pour créer un compte gratuit %s. Toutes les informations requises ci-dessous sont nécessaires."
 
-#: ../../../templates/register.tpl.php:18
+#: data/templates/register.tpl.php:18
 msgid " at least 5 characters, alphanumeric (no spaces, no dots or other special ones)"
 msgstr " au moins 5 caractères, alphanumériques (pas d'espaces, pas de points ou autre caractère spécial)"
 
-#: ../../../templates/register.tpl.php:28
+#: data/templates/register.tpl.php:28
 msgid " to send you your password if you forget it"
 msgstr " pour vous envoyer votre mot de passe en cas de perte"
 
-#: ../../../templates/register.tpl.php:33
+#: data/templates/register.tpl.php:33
 msgid "Antispam question"
 msgstr "Question antispam"
 
-#: ../../../templates/sidebar.block.linked.php:51
+#: data/templates/register.tpl.php:41
+#: data/templates/toolbar.inc.php:31
+#: www/register.php:83
+msgid "Register"
+msgstr "S'enregistrer"
+
+#: data/templates/search.menu.php:27
+msgid "Search..."
+msgstr "Chercher..."
+
+#: data/templates/search.menu.php:28
+msgid "in"
+msgstr "dans"
+
+#: data/templates/search.menu.php:34
+msgid "this user's bookmarks"
+msgstr "les signets de cet utilisateur"
+
+#: data/templates/search.menu.php:39
+msgid "my bookmarks"
+msgstr "mes signets"
+
+#: data/templates/search.menu.php:40
+msgid "my watchlist"
+msgstr "mes contacts"
+
+#: data/templates/search.menu.php:44
+msgid "all bookmarks"
+msgstr "tous les signets"
+
+#: data/templates/search.menu.php:54
+msgid "Search"
+msgstr "Chercher"
+
+#: data/templates/sidebar.block.linked.php:51
 msgid "Linked Tags"
 msgstr "Tags structurés"
 
-#: ../../../templates/sidebar.block.linked.php:62
-#: ../../../templates/sidebar.block.menu.php:46
+#: data/templates/sidebar.block.linked.php:62
+#: data/templates/sidebar.block.menu.php:46
 msgid "Add new link"
 msgstr "Créer un lien"
 
-#: ../../../templates/sidebar.block.linked.php:63
-#: ../../../templates/sidebar.block.menu.php:47
+#: data/templates/sidebar.block.linked.php:63
+#: data/templates/sidebar.block.menu.php:47
 msgid "Delete link"
 msgstr "Supprimer un lien"
 
-#: ../../../templates/sidebar.block.menu.php:35
+#: data/templates/sidebar.block.menu.php:35
 #, php-format
 msgid "Tags included into the tag '%s'"
 msgstr "Tags inclus dans le tag '%s'"
 
-#: ../../../templates/sidebar.block.menu.php:35
+#: data/templates/sidebar.block.menu.php:35
 msgid "Menu Tags"
 msgstr "Tags Menu"
 
-#: ../../../templates/sidebar.block.menu.php:68
+#: data/templates/sidebar.block.menu.php:68
 msgid "See all your tags"
 msgstr "Voir tous vos tags"
 
-#: ../../../templates/sidebar.block.menu.php:68
+#: data/templates/sidebar.block.menu.php:68
 msgid "all your tags"
 msgstr "Tous vos tags"
 
-#: ../../../templates/sidebar.block.menu.php:70
+#: data/templates/sidebar.block.menu.php:70
 msgid "See all tags from this user"
 msgstr "Voir tous les tags de cet utilisateur"
 
-#: ../../../templates/sidebar.block.menu.php:70
+#: data/templates/sidebar.block.menu.php:70
 msgid "all tags from this user"
 msgstr "tous les tags de cet utilisateur"
 
-#: ../../../templates/sidebar.block.menu.php:74
+#: data/templates/sidebar.block.menu.php:74
 msgid "See popular tags"
 msgstr "Voir les tags populaires"
 
-#: ../../../templates/sidebar.block.menu2.php:25
+#: data/templates/sidebar.block.menu2.php:25
 msgid "Featured Menu Tags"
 msgstr "Tags Principaux"
 
-#: ../../../templates/sidebar.block.menu2.php:29
+#: data/templates/sidebar.block.menu2.php:29
 msgid "This menu is composed of keywords (tags) organized by admins."
 msgstr "Ce menu est composé de mots-clefs (tags) organisés par les administrateurs."
 
-#: ../../../templates/sidebar.block.recent.php:18
+#: data/templates/sidebar.block.recent.php:18
 msgid "Recent Tags"
 msgstr "Tags récents"
 
-#: ../../../templates/sidebar.block.related.php:26
+#: data/templates/sidebar.block.related.php:26
 msgid "Related Tags"
 msgstr "Tags en relation"
 
-#: ../../../templates/sidebar.block.search.php:15
+#: data/templates/sidebar.block.search.php:15
 msgid "Last Searches"
 msgstr "Dernières recherches"
 
-#: ../../../templates/sidebar.block.search.php:24
+#: data/templates/sidebar.block.search.php:24
 msgid "Number of bookmarks for this query"
 msgstr "Nombre de signets pour cette recherche"
 
-#: ../../../templates/sidebar.block.tagactions.php:28
+#: data/templates/sidebar.block.tagactions.php:9
+#: www/tagrename.php:72
+msgid "Rename Tag"
+msgid_plural "Rename Tags"
+msgstr[0] "Renommer le tag"
+msgstr[1] "Renommer les tags"
+
+#: data/templates/sidebar.block.tagactions.php:22
+#: www/tagdelete.php:54
+msgid "Delete Tag"
+msgstr "Supprimer le tag"
+
+#: data/templates/sidebar.block.tagactions.php:24
+#: www/tagedit.php:61
+msgid "Edit Tag Description"
+msgstr "Editer la description du tag"
+
+#: data/templates/sidebar.block.tagactions.php:26
+#: www/tagcommondescriptionedit.php:64
+msgid "Edit Tag Common Description"
+msgstr "Editer la description commune du tag"
+
+#: data/templates/sidebar.block.tagactions.php:28
 msgid "Create a link to another tag"
 msgstr "Créer un lien vers un autre tag"
 
-#: ../../../templates/sidebar.block.users.php:14
+#: data/templates/sidebar.block.users.php:14
 msgid "New Users"
 msgstr "Nouveaux Utilisateurs"
 
-#: ../../../templates/sidebar.block.users.php:23
-#: ../../../templates/users.tpl.php:17
+#: data/templates/sidebar.block.users.php:23
+#: data/templates/users.tpl.php:17
 msgid "bookmarks"
 msgstr "signets"
 
-#: ../../../templates/sidebar.block.users.php:30
+#: data/templates/sidebar.block.users.php:30
 msgid "See all users"
 msgstr "Voir tous les utilisateurs"
 
-#: ../../../templates/sidebar.block.users.php:30
+#: data/templates/sidebar.block.users.php:30
 msgid "All users"
 msgstr "Tous les utilisateurs"
 
-#: ../../../templates/sidebar.block.watchlist.php:19
+#: data/templates/sidebar.block.watchlist.php:19
 msgid "Close contacts are mutual contacts"
 msgstr "Les contacts proches sont des contacts mutuels"
 
-#: ../../../templates/sidebar.block.watchlist.php:19
+#: data/templates/sidebar.block.watchlist.php:19
 msgid "Close contacts"
 msgstr "Contacts proches"
 
-#: ../../../templates/sidebar.block.watchlist.php:36
+#: data/templates/sidebar.block.watchlist.php:36
 msgid "Add a contact..."
 msgstr "Ajouter un contact..."
 
-#: ../../../templates/sidebar.block.watchlist.php:36
+#: data/templates/sidebar.block.watchlist.php:36
 msgid "Type a username to add it to your contacts."
 msgstr "Entrer un nom d'utilisateur pour l'ajouter à vos contacts."
 
-#: ../../../templates/sidebar.block.watchlist.php:44
+#: data/templates/sidebar.block.watchlist.php:44
 msgid "Remove this contact"
 msgstr "Enlever ce contact"
 
-#: ../../../templates/sidebar.block.watchstatus.php:11
+#: data/templates/sidebar.block.watchstatus.php:11
 msgid "Remove from Watchlist"
 msgstr "Enlever des contacts"
 
-#: ../../../templates/sidebar.block.watchstatus.php:13
+#: data/templates/sidebar.block.watchstatus.php:13
 msgid "Add to Watchlist"
 msgstr "Ajouter aux contacts"
 
-#: ../../../templates/sidebar.linkedtags.inc.php:18
+#: data/templates/sidebar.linkedtags.inc.php:18
 msgid "Edit link"
 msgstr "Editer un lien"
 
-#: ../../../templates/sidebar.linkedtags.inc.php:47
+#: data/templates/sidebar.linkedtags.inc.php:47
 msgid "Synonyms:"
 msgstr "Synonymes :"
 
-#: ../../../templates/tag2tagadd.tpl.php:12
+#: data/templates/tag2tagadd.tpl.php:12
 msgid "Create new link:"
 msgstr "Créer un nouveau lien"
 
-#: ../../../templates/tag2tagadd.tpl.php:19
+#: data/templates/tag2tagadd.tpl.php:19
 #, php-format
 msgid "Note: include a tag into '%s' tag (e.g. %s>countries) display the tag into the menu box"
 msgstr "Note : inclure un tag dans le tag '%s' (e.g. %s>countries) affiche ce tag dans la boîte de menu"
 
-#: ../../../templates/tag2tagadd.tpl.php:23
-#: ../../../templates/tag2tagedit.tpl.php:37
+#: data/templates/tag2tagadd.tpl.php:23
+#: data/templates/tag2tagedit.tpl.php:37
 msgid "Create"
 msgstr "Créer"
 
-#: ../../../templates/tag2tagadd.tpl.php:35
-#: ../../../templates/tag2tagdelete.tpl.php:27
-#: ../../../templates/tag2tagedit.tpl.php:51
+#: data/templates/tag2tagadd.tpl.php:35
+#: data/templates/tag2tagdelete.tpl.php:27
+#: data/templates/tag2tagedit.tpl.php:51
 msgid "Existing links:"
 msgstr "Liens existants :"
 
-#: ../../../templates/tag2tagadd.tpl.php:53
-#: ../../../templates/tag2tagdelete.tpl.php:45
-#: ../../../templates/tag2tagedit.tpl.php:69
+#: data/templates/tag2tagadd.tpl.php:53
+#: data/templates/tag2tagdelete.tpl.php:45
+#: data/templates/tag2tagedit.tpl.php:69
 msgid "No links"
 msgstr "Pas de liens"
 
-#: ../../../templates/tag2tagedit.tpl.php:6
+#: data/templates/tag2tagdelete.tpl.php:15
+#: data/templates/tag2tagedit.tpl.php:16
+#: data/templates/tagdelete.tpl.php:8
+#: www/jsScuttle.php:23
+msgid "Yes"
+msgstr "Oui"
+
+#: data/templates/tag2tagdelete.tpl.php:16
+#: data/templates/tag2tagedit.tpl.php:17
+#: data/templates/tagdelete.tpl.php:9
+#: www/jsScuttle.php:23
+msgid "No"
+msgstr "Non"
+
+#: data/templates/tag2tagedit.tpl.php:6
 msgid "Delete the link"
 msgstr "Supprimer le lien"
 
-#: ../../../templates/tag2tagedit.tpl.php:29
+#: data/templates/tag2tagedit.tpl.php:29
 msgid "Create new link"
 msgstr "Créer un nouveau lien"
 
-#: ../../../templates/tagrename.tpl.php:12
+#: data/templates/tagrename.tpl.php:12
 msgid "Old"
 msgstr "Ancien"
 
-#: ../../../templates/tagrename.tpl.php:17
+#: data/templates/tagrename.tpl.php:17
 msgid "New"
 msgstr "Nouveau"
 
-#: ../../../templates/tagrename.tpl.php:24
+#: data/templates/tagrename.tpl.php:24
 msgid "Rename"
 msgstr "Renommer"
 
-#: ../../../templates/tags.tpl.php:11
-#: ../../../templates/users.tpl.php:9
+#: data/templates/tags.tpl.php:11
+#: data/templates/users.tpl.php:9
 msgid "Alphabet"
 msgstr "Alphabet"
 
-#: ../../../templates/tags.tpl.php:12
-#: ../../../templates/users.tpl.php:10
+#: data/templates/tags.tpl.php:12
+#: data/templates/users.tpl.php:10
 msgid "Popularity"
 msgstr "Popularité"
 
-#: ../../../templates/toolbar.inc.php:8
-#: ../../../templates/toolbar.inc.php:26
+#: data/templates/toolbar.inc.php:8
+#: data/templates/toolbar.inc.php:26
 msgid "Home"
 msgstr "Accueil"
 
-#: ../../../templates/toolbar.inc.php:14
+#: data/templates/toolbar.inc.php:11
+#: www/watchlist.php:106
+msgid "Watchlist"
+msgstr "Contacts"
+
+#: data/templates/toolbar.inc.php:12
+#: www/profile.php:67
+msgid "Profile"
+msgstr "Profil"
+
+#: data/templates/toolbar.inc.php:13
+#: www/bookmarks.php:209
+msgid "Add a Bookmark"
+msgstr "Ajouter un signet"
+
+#: data/templates/toolbar.inc.php:14
 msgid "Log Out"
 msgstr "Quitter"
 
-#: ../../../templates/toolbar.inc.php:17
+#: data/templates/toolbar.inc.php:17
 msgid "Admin"
 msgstr "Admin"
 
-#: ../../../templates/top.inc.php:51
-msgid "Admins, your installation is in \"Debug Mode\" ($debugMode = true). To go in \"Normal Mode\" and hide debugging messages, change $debugMode to false into config.inc.php."
+#: data/templates/top.inc.php:49
+msgid "Admins, your installation is in \"Debug Mode\" ($debugMode = true). To go in \"Normal Mode\" and hide debugging messages, change $debugMode to false into config.php."
 msgstr "Admins, votre installation est en \"Mode Debug\" ($debugMode = true). Pour passer en \"Mode Normal\" et cacher les messages de debuggage, changez $debugMode à false dans config.inc.php."
 
-#: ../../../templates/users.tpl.php:17
+#: data/templates/users.tpl.php:17
 msgid "profile"
 msgstr "Profil"
 
-#: ../../../templates/users.tpl.php:17
+#: data/templates/users.tpl.php:17
 msgid "created in"
 msgstr "Créé en "
+
+#: www/admin.php:32
+msgid "Manage users"
+msgstr "Gérer les utilisateurs"
+
+#: www/admin.php:68
+#, php-format
+msgid "%s and all his bookmarks and tags were deleted."
+msgstr "%s, ses signets et ses tags ont été effacés."
+
+#: www/admin.php:75
+msgid "Problem with "
+msgstr "Problème avec "
+
+#: www/ajaxDelete.php:37
+msgid "You are not allowed to delete this bookmark"
+msgstr "Vous n'êtes pas autorisés à supprimer ce signet"
+
+#: www/ajaxDelete.php:41
+#: www/edit.php:103
+msgid "Failed to delete bookmark"
+msgstr "Erreur dans la suppression du signet"
+
+#: www/alltags.php:49
+msgid "All Tags"
+msgstr "Tous les tags"
+
+#: www/alltags.php:55
+#: www/bookmarks.php:96
+#: www/populartags.php:52
+#: www/profile.php:51
+#: www/rss.php:67
+#: www/search.php:109
+#: www/watch.php:45
+#: www/watchlist.php:61
+#, php-format
+msgid "User with username %s was not found"
+msgstr "L'utilisateur %s n'a pas été trouvé."
+
+#: www/bookmarkcommondescriptionedit.php:51
+#: www/tag2tagadd.php:37
+#: www/tag2tagdelete.php:41
+#: www/tag2tagedit.php:33
+#: www/tagcommondescriptionedit.php:43
+#: www/tagedit.php:43
+msgid "Permission denied."
+msgstr "Permission non accordée."
+
+#: www/bookmarkcommondescriptionedit.php:60
+msgid "Bookmark common description updated"
+msgstr "Description commune du signet mise à jour."
+
+#: www/bookmarkcommondescriptionedit.php:63
+msgid "Failed to update the bookmark common description"
+msgstr "Erreur dans la mise à jour de la description du signet"
+
+#: www/bookmarkcommondescriptionedit.php:71
+msgid "Edit Bookmark Common Description"
+msgstr "Editer la description commune du signet"
+
+#: www/bookmarks.php:111
+#: www/tags.php:47
+msgid "Remove the tag from the selection"
+msgstr "Retirer le tag de la sélection"
+
+#: www/bookmarks.php:131
+#: www/edit.php:65
+msgid "Your bookmark must have a title and an address"
+msgstr "Votre signet doit avoir un titre et une adresse."
+
+#: www/bookmarks.php:152
+#: www/edit.php:83
+#: www/edit.php:86
+msgid "Bookmark saved"
+msgstr "Signet enregistré."
+
+#: www/bookmarks.php:152
+msgid "(Come back to previous page.)"
+msgstr "(Revenir à la page précédente.)"
+
+#: www/bookmarks.php:159
+#: www/import.php:106
+#: www/importNetscape.php:108
+msgid "There was an error saving your bookmark. Please try again or contact the administrator."
+msgstr "Il y a eu une erreur en enregistrant ce signet. Veuillez rééssayer ou contacter votre administrateur."
+
+#: www/bookmarks.php:216
+msgid "Add Bookmark"
+msgstr "Ajouter signet"
+
+#: www/bookmarks.php:219
+msgid "You must be logged in before you can add bookmarks."
+msgstr "Vous devez être authentifié avant de pouvoir ajouter des signets."
+
+#: www/bookmarks.php:274
+#: www/bookmarks.php:275
+msgid "My Bookmarks"
+msgstr "Mes signets"
+
+#: www/edit.php:44
+#: www/edit.php:45
+msgid "Edit Bookmark"
+msgstr "Editer le signet"
+
+#: www/edit.php:51
+#, php-format
+msgid "Bookmark with id %s not was not found"
+msgstr "Signet %s non trouvé"
+
+#: www/edit.php:57
+msgid "You are not allowed to edit this bookmark"
+msgstr "Vous n'êtes pas autorisé à éditer ce signet."
+
+#: www/edit.php:77
+msgid "Error while saving your bookmark"
+msgstr "Erreur pendant l'enregistrement de votre signet."
+
+#: www/history.php:61
+msgid "History"
+msgstr "Historique"
+
+#: www/history.php:62
+#, php-format
+msgid "History for %s"
+msgstr "Historique de %s"
+
+#: www/history.php:84
+msgid "Address was not found"
+msgstr "L'adresse n'a pas été trouvée."
+
+#: www/import.php:47
+msgid "Could not open XML input"
+msgstr "Impossible d'ouvrir le flux XML."
+
+#: www/import.php:51
+#, php-format
+msgid "XML error: %s at line %d"
+msgstr "Erreur XML: %s à la ligne %d"
+
+#: www/import.php:60
+msgid "Import Bookmarks from del.icio.us"
+msgstr "Importer les signet depuis del.icio.us"
+
+#: www/import.php:93
+msgid "You have already submitted this bookmark."
+msgstr "Vous avez déjà enregistré ce signet."
+
+#: www/import.php:104
+msgid "Bookmark imported."
+msgstr "Signet importé."
+
+#: www/importNetscape.php:95
+msgid "You have already submitted some of these bookmarks."
+msgstr "Vous avez déjà enregistré certains de ces signets."
+
+#: www/importNetscape.php:115
+msgid "Bookmarks found: "
+msgstr "Signets trouvés :"
+
+#: www/importNetscape.php:116
+msgid "Bookmarks imported: "
+msgstr "Signets importés :"
+
+#: www/importNetscape.php:117
+#: www/importNetscape.php:122
+msgid "Import Bookmarks from Browser File"
+msgstr "Importer les signets depuis un fichier"
+
+#: www/importStructure.php:61
+msgid "Bad indentation"
+msgstr "Mauvaise indentation"
+
+#: www/importStructure.php:67
+msgid "New links between tags: "
+msgstr "Nouveau lien entre tags :"
+
+#: www/importStructure.php:72
+msgid "Import Structure"
+msgstr "Importer une structure"
+
+#: www/index.php:38
+msgid "You have now logged out"
+msgstr "Vous êtes maintenant déconnecté."
+
+#: www/index.php:45
+#, php-format
+msgid "%s: Recent bookmarks"
+msgstr "%s: Signets récents"
+
+#: www/index.php:78
+msgid "Store, share and tag your favourite links"
+msgstr "Conservez, partagez et taggez vos liens favoris"
+
+#: www/index.php:79
+msgid "All Bookmarks"
+msgstr "Tous les signets"
+
+#: www/jsScuttle.php:70
+msgid "Available"
+msgstr "Disponible"
+
+#: www/jsScuttle.php:73
+msgid "Not Available"
+msgstr "Non Disponible"
+
+#: www/login.php:48
+msgid "The details you have entered are incorrect. Please try again."
+msgstr "Les informations que vous avez entrées sont incorrectes. Veuillez recommencer."
+
+#: www/password.php:36
+msgid "You must enter your username."
+msgstr "Vous devez entrer votre nom d'utilisateur."
+
+#: www/password.php:40
+msgid "You must enter your <abbr title=\"electronic mail\">e-mail</abbr> address."
+msgstr "Vous <em>devez</em> saisir une <abbr title=\"adresse électronique\">E-mail</abbr>."
+
+#: www/password.php:48
+msgid "No matches found for that username."
+msgstr "Rien de trouvé pour ce nom d'utilisateur."
+
+#: www/password.php:51
+msgid "No matches found for that combination of username and <abbr title=\"electronic mail\">e-mail</abbr> address."
+msgstr "Pas d'entrée pour ce nom d'utilisateur et cet <abbr title=\"adresse mail\">e-mail</abbr>."
+
+#: www/password.php:59
+msgid "There was an error while generating your new password. Please try again."
+msgstr "Il y a eu une erreur en enregistrant ce signet. Veuillez rééssayer ou contacter votre administrateur."
+
+#: www/password.php:63
+msgid "Your new password is:"
+msgstr "Votre nouveau mot de passe est:"
+
+#: www/password.php:63
+msgid "To keep your bookmarks secure, you should change this password in your profile the next time you log in."
+msgstr "Pour garder vos signets sûrs, vous devriez changer ce mot de passe dans votre profil lors de votre prochaine authentification."
+
+#: www/password.php:66
+#, php-format
+msgid "%s Account Information"
+msgstr "Informations du compte de %s"
+
+#: www/password.php:68
+#, php-format
+msgid "New password generated and sent to %s"
+msgstr "Nouveau mot de passe généré et envoyé à l'adresse %s"
+
+#: www/password.php:75
+msgid "Forgotten Password"
+msgstr "Mot de passe oublié"
+
+#: www/profile.php:59
+#: www/watchlist.php:119
+msgid "Username was not specified"
+msgstr "Le nom d'utilisateur n'a pas été spécifié."
+
+#: www/profile.php:65
+msgid "My Profile"
+msgstr "Mon Profil"
+
+#: www/profile.php:89
+msgid "Invalid Token"
+msgstr "Token invalide"
+
+#: www/profile.php:94
+msgid "Password and confirmation do not match."
+msgstr "Le mot de passe et sa vérification ne correspondent pas."
+
+#: www/profile.php:98
+msgid "Password must be at least 6 characters long."
+msgstr "Le mot de passe doit avoir au moins 6 caractères."
+
+#: www/profile.php:102
+msgid "E-mail address is not valid."
+msgstr "Adresse de courrier électronique invalide."
+
+#: www/profile.php:106
+msgid "An error occurred while saving your changes."
+msgstr "Une erreur s'est produite pendant l'enregistrement de vos modifications."
+
+#: www/profile.php:108
+msgid "Changes saved."
+msgstr "Modifications enregistrées."
+
+#: www/register.php:46
+msgid "You <em>must</em> enter a username, password and e-mail address."
+msgstr "Vous <em>devez</em> saisir un nom d'utilisateur, un mot de passe, un nom et un <abbr title=\"adresse électronique\">e-mail</abbr>"
+
+#: www/register.php:50
+msgid "This username has been reserved, please make another choice."
+msgstr "Ce nom d'utilisateur existe déjà, veuillez en choisir un autre."
+
+#: www/register.php:54
+msgid "This username already exists, please make another choice."
+msgstr "Ce nom d'utilisateur existe déjà, veuillez en choisir un autre."
+
+#: www/register.php:58
+msgid "This username is not valid (too short, too long, forbidden characters...), please make another choice."
+msgstr "Ce nom d'utilisateur n'est pas valide (trop court, trop long, caractères interdits...), Merci de faire un autre choix."
+
+#: www/register.php:62
+msgid "E-mail address is not valid. Please try again."
+msgstr "Adresse de courrier électronique invalide. Veuillez réessayer."
+
+#: www/register.php:66
+msgid "Antispam answer is not valid. Please try again."
+msgstr "La réponse antispam n'est pas valide. Veuillez réessayer."
+
+#: www/register.php:75
+msgid "You have successfully registered. Enjoy!"
+msgstr "Votre inscription a bien été prise en compte !"
+
+#: www/register.php:77
+msgid "Registration failed. Please try again."
+msgstr "Enregistrement raté. Veuillez rééssayer."
+
+#: www/rss.php:84
+#, php-format
+msgid "Recent bookmarks posted to %s"
+msgstr "Signets ajoutés récemment à %s"
+
+#: www/search.php:81
+#: www/search.php:145
+msgid "Search Bookmarks"
+msgstr "Recherche de signets"
+
+#: www/search.php:87
+msgid "Search Results"
+msgstr "Résultats de recherche"
+
+#: www/search.php:135
+msgid "Unsatisfied? You can also try our "
+msgstr "Insatisfait ? Vous pouvez aussi essayer notre "
+
+#: www/tag2tagadd.php:50
+msgid "Tag link created"
+msgstr "Lien entre tags créé."
+
+#: www/tag2tagadd.php:53
+msgid "Failed to create the link"
+msgstr "Impossible de créer le lien"
+
+#: www/tag2tagadd.php:65
+msgid "Add Tag Link"
+msgstr "Ajout d'un lien entre tags"
+
+#: www/tag2tagdelete.php:66
+msgid "Tag link deleted"
+msgstr "Effacement d'un lien entre tags"
+
+#: www/tag2tagdelete.php:69
+msgid "Failed to delete the link"
+msgstr "Impossible d'effacer le lien"
+
+#: www/tag2tagdelete.php:81
+msgid "Delete Link Between Tags"
+msgstr "Effacer un lien entre tags"
+
+#: www/tag2tagedit.php:55
+msgid "Edit Link Between Tags"
+msgstr "Editer un lien entre tags"
+
+#: www/tagcommondescriptionedit.php:55
+msgid "Tag common description updated"
+msgstr "Editer la description commune du tag"
+
+#: www/tagcommondescriptionedit.php:58
+msgid "Failed to update the tag common description"
+msgstr "Impossible de mettre à jour la description commune du tag"
+
+#: www/tagdelete.php:43
+msgid "Tag deleted"
+msgstr "Tag effacé"
+
+#: www/tagdelete.php:46
+msgid "Failed to delete the tag"
+msgstr "Impossible d'effacer le tag"
+
+#: www/tagedit.php:52
+msgid "Tag description updated"
+msgstr "Description du tag mise à jour"
+
+#: www/tagedit.php:55
+msgid "Failed to update the tag description"
+msgstr "Impossible de mettre à jour la description du tag"
+
+#: www/tagrename.php:63
+msgid "Tag renamed"
+msgstr "Tag renommé"
+
+#: www/tagrename.php:66
+msgid "Failed to rename the tag"
+msgstr "Erreur dans le renommage du tag"
+
+#: www/users.php:31
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: www/watch.php:54
+msgid "User removed from your watchlist"
+msgstr "Utilisateur enlevé de vos contacts"
+
+#: www/watch.php:56
+msgid "User added to your watchlist"
+msgstr "Utilisateur ajouté à vos contacts"
+
+#: www/watchlist.php:104
+msgid "My Watchlist"
+msgstr "Mes Contacts"
+
+#: www/api/httpauth.inc.php:11
+msgid "Use of the API calls requires authentication."
+msgstr "L'utilisation de l'API requiert une authentification."
+
+#: www/gsearch/index.php:27
+msgid "Come back to "
+msgstr "Revenir à"
+
+#: www/gsearch/index.php:32
+msgid "Admin tips: "
+msgstr "Conseil pour admin:"
+
+#: www/gsearch/index.php:33
+msgid "To refresh manually Google Custom Search Engine, goes to: "
+msgstr "Pour rafraîchir manuellement le moteur de Google Custom Search, allez à :"
+
+#: www/gsearch/index.php:35
+msgid "If no result appears, check that all the urls are valid in the admin section."
+msgstr "Si aucun résultat apparaît, vérifier que toutes les urls sont valides dans la section admin."
 
 #~ msgid "Add this tag to the query"
 #~ msgstr "Ajouter ce tag à la requête"
