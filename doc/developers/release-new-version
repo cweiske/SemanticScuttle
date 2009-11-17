@@ -14,8 +14,6 @@ How to release a new version of SemanticScuttle
    tasks.
    Run "phing release", and it will upload the release to
    sourceforge and create a svn tag.
-5. Tag the release in svn:
-   svn cp https://semanticscuttle.svn.sourceforge.net/svnroot/semanticscuttle/trunk https://semanticscuttle.svn.sourceforge.net/svnroot/semanticscuttle/tags/$version
 6. Write announcement mail to the SemanticScuttle mailing list
    semanticscuttle-devel@lists.sourceforge.net
 7. Announce the new release in the sourceforge project news
