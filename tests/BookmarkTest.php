@@ -294,6 +294,10 @@ class BookmarkTest extends TestBase
      */
     public function testEditAllowedBookmarkId()
     {
+        $uid = $this->addUser();
+        $bid = $this->addBookmark();
+        $this->us->setCurrentUserId($uid);
+        $this->assertTrue($this->bs->editAllowed($bid));
     }
 
 
