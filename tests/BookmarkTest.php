@@ -135,6 +135,106 @@ class BookmarkTest extends TestBase
 
 
     /**
+     * Tests if bookmarkExists() returns false when the given
+     * parameter is invalid.
+     *
+     * @return void
+     */
+    public function testBookmarkExistsInvalidParam()
+    {
+        $this->assertFalse($this->bs->bookmarkExists(false));
+        $this->assertFalse($this->bs->bookmarkExists(null));
+    }
+
+
+
+    /**
+     * Tests if bookmarkExists() returns true when a bookmark
+     * exists
+     *
+     * @return void
+     */
+    public function testBookmarkExistsTrue()
+    {
+        $bid = $this->addBookmark();
+        $bookmark = $this->bs->getBookmark($bid);
+
+        $this->assertTrue($this->bs->bookmarkExists($bookmark['bAddress']));
+    }
+
+
+
+    /**
+     * Tests if bookmarkExists() returns false when a bookmark
+     * does not exist
+     *
+     * @return void
+     */
+    public function testBookmarkExistsFalse()
+    {
+        $this->assertFalse($this->bs->bookmarkExists('does-not-exist'));
+    }
+
+
+
+    /**
+     * Tests if bookmarkExists() returns true when a bookmark
+     * exists for a user
+     *
+     * @return void
+     */
+    public function testBookmarkExistsUserTrue()
+    {
+        $bid = $this->addBookmark();
+        $bookmark = $this->bs->getBookmark($bid);
+
+        $this->assertTrue(
+            $this->bs->bookmarkExists(
+                $bookmark['bAddress'],
+                $bookmark['uId']
+            )
+        );
+    }
+
+
+
+    /**
+     * Tests if bookmarkExists() returns false when a bookmark
+     * does not exist for a user
+     *
+     * @return void
+     */
+    public function testBookmarkExistsUserFalse()
+    {
+        $this->assertFalse(
+            $this->bs->bookmarkExists('does-not-exist', 1234)
+        );
+    }
+
+
+
+    /**
+     * Tests if bookmarkExists() returns false when a bookmark
+     * does not exist for a user but for another user
+     *
+     * @return void
+     */
+    public function testBookmarkExistsOtherUser()
+    {
+        $bid = $this->addBookmark();
+        $bookmark = $this->bs->getBookmark($bid);
+
+        $this->assertFalse(
+            $this->bs->bookmarkExists(
+                $bookmark['bAddress'],
+                $bookmark['uId'] + 1
+            )
+        );
+    }
+
+
+
+    /**
      * Test if countBookmarks() works with no bookmarks
      *
      * @return void

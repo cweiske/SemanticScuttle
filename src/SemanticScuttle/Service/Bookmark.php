@@ -236,10 +236,21 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
 
 
-    function bookmarkExists($address = false, $uid = NULL)
+    /**
+     * Checks if a bookmark for the given URL exists
+     * already
+     *
+     * @param string  $address URL of bookmark to check
+     * @param integer $uid     User id the bookmark has to belong to.
+     *                         null for all users
+     *
+     * @return boolean True when the bookmark with the given URL
+     *                 exists for the user, false if not.
+     */
+    function bookmarkExists($address = false, $uid = null)
     {
         if (!$address) {
-            return;
+            return false;
         }
 
         $address = $this->normalize($address);
