@@ -295,9 +295,42 @@ class BookmarkTest extends TestBase
     public function testEditAllowedBookmarkId()
     {
         $uid = $this->addUser();
-        $bid = $this->addBookmark();
+        $bid = $this->addBookmark($uid);
         $this->us->setCurrentUserId($uid);
         $this->assertTrue($this->bs->editAllowed($bid));
+    }
+
+
+
+    /**
+     * Test if editAllowed() works when passing the ID of
+     * an existing bookmark that does not belong to the current
+     * user.
+     *
+     * @return void
+     */
+    public function testEditAllowedBookmarkIdNotOwn()
+    {
+        $uid = $this->addUser();
+        $bid = $this->addBookmark();
+        $this->us->setCurrentUserId($uid);
+        $this->assertFalse($this->bs->editAllowed($bid));
+    }
+
+
+
+    /**
+     * Test if editAllowed() works when passing the ID of
+     * an existing bookmark that does not belong to the current
+     * user.
+     *
+     * @return void
+     */
+    public function testEditAllowedBookmarkIdNoUser()
+    {
+        $bid = $this->addBookmark();
+        $this->us->setCurrentUserId(null);
+        $this->assertFalse($this->bs->editAllowed($bid));
     }
 
 
@@ -310,6 +343,12 @@ class BookmarkTest extends TestBase
      */
     public function testEditAllowedBookmarkRow()
     {
+        $uid = $this->addUser();
+        $this->us->setCurrentUserId($uid);
+
+        $bid = $this->addBookmark($uid);
+        $bookmark = $this->bs->getBookmark($bid);
+        $this->assertTrue($this->bs->editAllowed($bookmark));
     }
 
 
@@ -323,6 +362,25 @@ class BookmarkTest extends TestBase
     public function testEditAllowedIdNotFound()
     {
         $this->assertFalse($this->bs->editAllowed(98765));
+    }
+
+
+
+    /**
+     * Test if editAllowed() works when the user is an administrator.
+     *
+     * @return void
+     */
+    public function testEditAllowedBookmarkAdmin()
+    {
+        //make the user admin
+        $uid = $this->addUser();
+        $user = $this->us->getUser($uid);
+        $GLOBALS['admin_users'][] = $user['username'];
+
+        $bid = $this->addBookmark($uid);
+        $this->us->setCurrentUserId($uid);
+        $this->assertTrue($this->bs->editAllowed($bid));
     }
 
 
