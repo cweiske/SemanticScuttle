@@ -146,6 +146,7 @@ class BookmarkTest extends TestBase
         $this->assertEquals(0, $this->bs->countBookmarks($uid, 'public'));
         $this->assertEquals(0, $this->bs->countBookmarks($uid, 'private'));
         $this->assertEquals(0, $this->bs->countBookmarks($uid, 'shared'));
+        $this->assertEquals(0, $this->bs->countBookmarks($uid, 'all'));
     }
 
 
@@ -163,6 +164,7 @@ class BookmarkTest extends TestBase
         $this->assertEquals(1, $this->bs->countBookmarks($uid, 'public'));
         $this->assertEquals(0, $this->bs->countBookmarks($uid, 'private'));
         $this->assertEquals(0, $this->bs->countBookmarks($uid, 'shared'));
+        $this->assertEquals(1, $this->bs->countBookmarks($uid, 'all'));
     }
 
 
@@ -184,6 +186,7 @@ class BookmarkTest extends TestBase
         $this->assertEquals(0, $this->bs->countBookmarks($uid, 'public'));
         $this->assertEquals(1, $this->bs->countBookmarks($uid, 'private'));
         $this->assertEquals(0, $this->bs->countBookmarks($uid, 'shared'));
+        $this->assertEquals(1, $this->bs->countBookmarks($uid, 'all'));
     }
 
 
@@ -205,6 +208,7 @@ class BookmarkTest extends TestBase
         $this->assertEquals(0, $this->bs->countBookmarks($uid, 'public'));
         $this->assertEquals(0, $this->bs->countBookmarks($uid, 'private'));
         $this->assertEquals(1, $this->bs->countBookmarks($uid, 'shared'));
+        $this->assertEquals(1, $this->bs->countBookmarks($uid, 'all'));
     }
 
 
@@ -261,6 +265,54 @@ class BookmarkTest extends TestBase
         $this->assertTrue($this->bs->deleteBookmark($bid));
         $this->assertFalse($this->vs->hasVoted($bid, $uid));
         $this->assertTrue($this->vs->hasVoted($bid2, $uid));
+    }
+
+
+
+    /**
+     * Verify that getBookmark() returns false when the
+     * bookmark cannot be found.
+     *
+     * @return void
+     */
+    public function testGetBookmarkNotFound()
+    {
+        $this->assertFalse($this->bs->getBookmark(987654));
+    }
+
+
+
+    /**
+     * Verify that getBookmark() returns false when the
+     * bookmark ID is not numeric
+     *
+     * @return void
+     */
+    public function testGetBookmarkInvalidParam()
+    {
+        $this->assertFalse($this->bs->getBookmark('foo'));
+    }
+
+
+
+    /**
+     * Check tag loading functionality of getBookmark()
+     *
+     * @return void
+     */
+    public function testGetBookmarkIncludeTags()
+    {
+        $uid = $this->addUser();
+        $bid = $this->addBookmark($uid);
+        $this->b2ts->attachTags($bid, array('foo', 'bar'));
+        $bid2 = $this->addBookmark($uid);
+        $this->b2ts->attachTags($bid2, array('fuu', 'baz'));
+
+        $bm = $this->bs->getBookmark($bid, true);
+        $this->assertArrayHasKey('tags', $bm);
+        $this->assertType('array', $bm['tags']);
+        $this->assertContains('foo', $bm['tags']);
+        $this->assertContains('bar', $bm['tags']);
     }
 
 
