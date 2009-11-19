@@ -206,8 +206,11 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      */
     function editAllowed($bookmark)
     {
-        if (!is_numeric($bookmark) && (!is_array($bookmark)
-            || !is_numeric($bookmark['bId']))
+        if (!is_numeric($bookmark)
+            && (!is_array($bookmark)
+                || !isset($bookmark['bId'])
+                || !is_numeric($bookmark['bId'])
+            )
         ) {
             return false;
         }

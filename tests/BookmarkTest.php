@@ -270,6 +270,60 @@ class BookmarkTest extends TestBase
 
 
     /**
+     * Test if editAllowed() returns false when the bookmark
+     * id is invalid.
+     *
+     * @return void
+     */
+    public function testEditAllowedInvalidBookmarkId()
+    {
+        $this->assertFalse($this->bs->editAllowed('invalid'));
+        $this->assertFalse($this->bs->editAllowed(array()));
+        $this->assertFalse($this->bs->editAllowed(array('some', 'where')));
+        $this->assertFalse($this->bs->editAllowed(array('bId' => false)));
+        $this->assertFalse($this->bs->editAllowed(array('bId' => 'foo')));
+    }
+
+
+
+    /**
+     * Test if editAllowed() works when passing the ID of
+     * an existing bookmark.
+     *
+     * @return void
+     */
+    public function testEditAllowedBookmarkId()
+    {
+    }
+
+
+
+    /**
+     * Test if editAllowed() works when passing a bookmark
+     * row.
+     *
+     * @return void
+     */
+    public function testEditAllowedBookmarkRow()
+    {
+    }
+
+
+
+    /**
+     * Test if editAllowed() returns false when the bookmark
+     * specified by the ID does not exist.
+     *
+     * @return void
+     */
+    public function testEditAllowedIdNotFound()
+    {
+        $this->assertFalse($this->bs->editAllowed(98765));
+    }
+
+
+
+    /**
      * Verify that getBookmark() returns false when the
      * bookmark cannot be found.
      *
