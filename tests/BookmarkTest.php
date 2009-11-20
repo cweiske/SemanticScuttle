@@ -652,6 +652,35 @@ class BookmarkTest extends TestBase
         );
     }
 
+
+
+    /**
+     * test if updating an existing bookmark works
+     */
+    public function testUpdateBookmark()
+    {
+        $bid = $this->addBookmark();
+        $this->assertTrue(
+            $this->bs->updateBookmark(
+                $bid,
+                'http://example.org/foo',
+                'my new title',
+                'new description',
+                'new private note',
+                1,
+                array('new')
+            )
+        );
+        $bm = $this->bs->getBookmark($bid, true);
+        $this->assertEquals('http://example.org/foo', $bm['bAddress']);
+        $this->assertEquals('my new title', $bm['bTitle']);
+        $this->assertEquals('new description', $bm['bDescription']);
+        $this->assertEquals('new private note', $bm['bPrivateNote']);
+        $this->assertEquals(1, $bm['bStatus']);
+        $this->assertType('array', $bm['tags']);
+        $this->assertEquals(1, count($bm['tags']));
+        $this->assertContains('new', $bm['tags']);
+    }
 }
 
 
