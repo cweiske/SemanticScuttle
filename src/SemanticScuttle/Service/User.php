@@ -76,26 +76,6 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         $this->updateSessionStability();
     }
 
-    function _checkdns($host) {
-        if (function_exists('checkdnsrr')) {
-            return checkdnsrr($host);
-        } else {
-            return $this->_checkdnsrr($host);
-        }
-    }
-
-    function _checkdnsrr($host, $type = "MX") {
-        if(!empty($host)) {
-            @exec("nslookup -type=$type $host", $output);
-            while(list($k, $line) = each($output)) {
-                if(eregi("^$host", $line)) {
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
-
     function _getuser($fieldname, $value) {
         $query = 'SELECT * FROM '. $this->getTableName() .' WHERE '. $fieldname .' = "'. $this->db->sql_escape($value) .'"';
 
@@ -700,16 +680,16 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
 
 
 
-    function isValidEmail($email) {
-        if (eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,6})$", $email)) {
-            list($emailUser, $emailDomain) = split("@", $email);
-
-            // Check if the email domain has a DNS record
-            //if ($this->_checkdns($emailDomain)) {
-            return true;
-            //}
-        }
-        return false;
+    /**
+     * Checks if the given email address is valid
+     *
+     * @param string $email Email address
+     *
+     * @return boolean True if it is valid, false if not
+     */
+    public function isValidEmail($email)
+    {
+        return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
     }
 
     /**
