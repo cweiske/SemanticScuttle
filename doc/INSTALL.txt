@@ -5,7 +5,7 @@ SemanticScuttle installation
 Prerequisites
 -------------
 To run SemanticScuttle, you need:
-- PHP5
+- PHP5 with filter functions enabled
 - A web server, for example Apache
 
 
