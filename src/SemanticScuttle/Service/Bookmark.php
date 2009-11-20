@@ -778,6 +778,13 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
 
 
+    /**
+     * Deletes all bookmarks of the given user
+     *
+     * @param integer $uId User ID
+     *
+     * @return boolean true when all went well
+     */
     public function deleteBookmarksForUser($uId)
     {
         $query = 'DELETE FROM '. $GLOBALS['tableprefix'] .'bookmarks WHERE uId = '. intval($uId);

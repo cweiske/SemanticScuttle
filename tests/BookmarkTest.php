@@ -343,6 +343,59 @@ class BookmarkTest extends TestBase
 
 
     /**
+     * Test if deleting all bookmarks for a user works.
+     *
+     * @return void
+     */
+    public function testDeleteBookmarksForUser()
+    {
+        $uid = $this->addUser();
+        $bookmarks = $this->bs->getBookmarks(0, null, $uid);
+        $this->assertEquals(0, $bookmarks['total']);
+
+        $this->addBookmark($uid);
+        $this->addBookmark($uid);
+        $bookmarks = $this->bs->getBookmarks(0, null, $uid);
+        $this->assertEquals(2, $bookmarks['total']);
+
+        $this->bs->deleteBookmarksForUser($uid);
+        $bookmarks = $this->bs->getBookmarks(0, null, $uid);
+        $this->assertEquals(0, $bookmarks['total']);
+    }
+
+
+
+    /**
+     * Test if deleting all bookmarks for a user works
+     * and does not damage other user's bookmarks.
+     *
+     * @return void
+     */
+    public function testDeleteBookmarksForUserOthers()
+    {
+        $uidOther = $this->addUser();
+        $this->addBookmark($uidOther);
+
+        $uid = $this->addUser();
+        $bookmarks = $this->bs->getBookmarks(0, null, $uid);
+        $this->assertEquals(0, $bookmarks['total']);
+
+        $this->addBookmark($uid);
+        $this->addBookmark($uid);
+        $bookmarks = $this->bs->getBookmarks(0, null, $uid);
+        $this->assertEquals(2, $bookmarks['total']);
+
+        $this->bs->deleteBookmarksForUser($uid);
+        $bookmarks = $this->bs->getBookmarks(0, null, $uid);
+        $this->assertEquals(0, $bookmarks['total']);
+
+        $bookmarks = $this->bs->getBookmarks(0, null, $uidOther);
+        $this->assertEquals(1, $bookmarks['total']);
+    }
+
+
+
+    /**
      * Test if deleting a bookmark with a vote works.
      *
      * @return void
