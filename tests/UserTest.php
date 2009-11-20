@@ -164,6 +164,42 @@ class UserTest extends TestBase
         $this->assertType('SemanticScuttle_Model_User', reset($users));
     }
 
+
+
+    /**
+     * Test if the email validation function works
+     *
+     * @return void
+     */
+    public function testIsValidEmail()
+    {
+        $this->assertTrue(
+            $this->us->isValidEmail('foo@example.org')
+        );
+        $this->assertTrue(
+            $this->us->isValidEmail('foo-bar@semantic-scuttle.example.net')
+        );
+        $this->assertTrue(
+            $this->us->isValidEmail('2334ABC@302.example.org')
+        );
+
+        $this->assertFalse(
+            $this->us->isValidEmail('302.example.org')
+        );
+        $this->assertFalse(
+            $this->us->isValidEmail('foo@302')
+        );
+        $this->assertFalse(
+            $this->us->isValidEmail('foo@example!org')
+        );
+        $this->assertFalse(
+            $this->us->isValidEmail('foo@@example.org')
+        );
+        $this->assertFalse(
+            $this->us->isValidEmail('f@oo@example.org')
+        );
+    }
+
 }
 
 
