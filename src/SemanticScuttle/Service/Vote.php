@@ -89,7 +89,6 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
                 '', __LINE__, __FILE__, $query, $this->db
             );
             //FIXME: throw exception
-            return false;
         }
 
         $row = $this->db->sql_fetchrow($dbres);
@@ -126,7 +125,6 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
                 '', __LINE__, __FILE__, $query, $this->db
             );
             //FIXME: throw exception
-            return false;
         }
 
         $row = $this->db->sql_fetchrow($dbres);
@@ -160,7 +158,6 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
                 '', __LINE__, __FILE__, $query, $this->db
             );
             //FIXME: throw exception
-            return null;
         }
 
         $row = $this->db->sql_fetchrow($dbres);
@@ -193,7 +190,6 @@ class SemanticScuttle_Service_Vote extends SemanticScuttle_DbService
                 '', __LINE__, __FILE__, $query, $this->db
             );
             //FIXME: throw exception
-            return false;
         }
 
         $row = $this->db->sql_fetchrow($dbres);

@@ -66,7 +66,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         if (!($dbresult = & $this->db->sql_query_limit($query, 1, 0))) {
             message_die(GENERAL_ERROR, 'Could not get bookmark', '', __LINE__, __FILE__, $query, $this->db);
-            return false;
         }
 
         if ($row =& $this->db->sql_fetchrow($dbresult)) {
@@ -353,7 +352,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
                 'Could not insert bookmark',
                 '', __LINE__, __FILE__, $sql, $this->db
             );
-            return false;
         }
 
         // Get the resultant row ID for the bookmark.
@@ -365,7 +363,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
                 'Could not insert bookmark',
                 '', __LINE__, __FILE__, $sql, $this->db
             );
-            return false;
         }
 
         $uriparts  = explode('.', $address);
@@ -383,7 +380,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
                 'Could not insert bookmark',
                 '', __LINE__, __FILE__, $sql, $this->db
             );
-            return false;
         }
         $this->db->sql_transaction('commit');
 
@@ -456,7 +452,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         if (!($dbresult = & $this->db->sql_query($sql))) {
             $this->db->sql_transaction('rollback');
             message_die(GENERAL_ERROR, 'Could not update bookmark', '', __LINE__, __FILE__, $sql, $this->db);
-            return false;
         }
 
         $uriparts = explode('.', $address);
@@ -467,7 +462,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         if (!$b2tservice->attachTags($bId, $categories, $fromApi, $extension)) {
             $this->db->sql_transaction('rollback');
             message_die(GENERAL_ERROR, 'Could not update bookmark', '', __LINE__, __FILE__, $sql, $this->db);
-            return false;
         }
 
         $this->db->sql_transaction('commit');
@@ -700,7 +694,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         if (!($dbresult = & $this->db->sql_query_limit($query, intval($perpage), intval($start)))) {
             message_die(GENERAL_ERROR, 'Could not get bookmarks', '', __LINE__, __FILE__, $query, $this->db);
-            return false;
         }
 
         if (SQL_LAYER == 'mysql4') {
@@ -715,7 +708,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         if (!($totalresult = & $this->db->sql_query($totalquery)) || (!($row = & $this->db->sql_fetchrow($totalresult)))) {
             message_die(GENERAL_ERROR, 'Could not get total bookmarks', '', __LINE__, __FILE__, $totalquery, $this->db);
-            return false;
         }
 
         $total = $row['total'];
@@ -755,7 +747,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
                 GENERAL_ERROR, 'Could not delete bookmark',
                 '', __LINE__, __FILE__, $query, $this->db
             );
-            return false;
         }
 
         $query = 'DELETE FROM ' . $GLOBALS['tableprefix'] . 'bookmarks2tags'
@@ -767,7 +758,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
                 GENERAL_ERROR, 'Could not delete tags for bookmark',
                 '', __LINE__, __FILE__, $query, $this->db
             );
-            return false;
         }
 
         $query = 'DELETE FROM '. $GLOBALS['tableprefix'] .'votes'
@@ -779,7 +769,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
                 GENERAL_ERROR, 'Could not delete votes for bookmark',
                 '', __LINE__, __FILE__, $query, $this->db
             );
-            return false;
         }
 
         $this->db->sql_transaction('commit');
@@ -795,7 +784,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         if (!($dbresult = & $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not delete bookmarks', '', __LINE__, __FILE__, $query, $this->db);
-            return false;
         }
 
         return true;
@@ -837,9 +825,18 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
 
 
-    function normalize($address)
+    /**
+     * Normalizes a given address.
+     * Prepends http:// if there is no protocol specified,
+     * and removes the trailing slash
+     *
+     * @param string $address URL to check
+     *
+     * @return string Fixed URL
+     */
+    public function normalize($address)
     {
-        // If bookmark address doesn't contain ":", add "http://" to the start as a default protocol
+        //you know, there is "callto:" and "mailto:"
         if (strpos($address, ':') === false) {
             $address = 'http://'. $address;
         }
