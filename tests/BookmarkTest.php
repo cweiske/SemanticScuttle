@@ -630,6 +630,28 @@ class BookmarkTest extends TestBase
         $this->assertEquals(-1, $bm['vote']);
     }
 
+
+
+    public function testNormalize()
+    {
+        $this->assertEquals(
+            'http://example.org', $this->bs->normalize('http://example.org')
+        );
+        $this->assertEquals(
+            'ftp://example.org', $this->bs->normalize('ftp://example.org')
+        );
+        $this->assertEquals(
+            'http://example.org', $this->bs->normalize('http://example.org/')
+        );
+        $this->assertEquals(
+            'http://example.org', $this->bs->normalize('example.org')
+        );
+        $this->assertEquals(
+            'mailto:foo@example.org',
+            $this->bs->normalize('mailto:foo@example.org')
+        );
+    }
+
 }
 
 
