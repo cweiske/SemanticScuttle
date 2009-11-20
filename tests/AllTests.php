@@ -19,6 +19,8 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
 require_once 'prepare.php';
 require_once 'PHPUnit/Framework/TestSuite.php';
 
+PHPUnit_Util_Filter::addFileToFilter(__FILE__);
+
 /**
  * SemanticScuttle unit tests.
  *
