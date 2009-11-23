@@ -274,7 +274,7 @@ class Tag2TagTest extends TestBase
         $uid  = $this->addUser();
         $bs->addBookmark(
             "http://google.com", "title", "description", 'note',
-            0, $tags, null, false, false,
+            0, $tags, null, null, false, false,
             $uid
         );
         $bookmark = $bs->getBookmarkByAddress("http://google.com");
@@ -312,17 +312,17 @@ class Tag2TagTest extends TestBase
         $tags = array('aa>bb>cc', 'dd');
         $bs->addBookmark(
             "web1.com", "B1", "description", 'note', 0,
-            $tags, null, false, false, 1
+            $tags, null, null, false, false, 1
         );
         $tags = array('bb>gg', 'ee>ff');
         $bs->addBookmark(
             "web2.com", "B2", "description", 'note', 0,
-            $tags, null, false, false, 1
+            $tags, null, null, false, false, 1
         );
         $tags = array('ee=ii');
         $bs->addBookmark(
             "web3.com", "B3", "description", 'note', 0,
-            $tags, null, false, false, 1
+            $tags, null, null, false, false, 1
         );
 
         // Query format:
@@ -489,12 +489,12 @@ class Tag2TagTest extends TestBase
         // with classic tags (users 10 & 20)
         $bid1 = $bs->addBookmark(
             "http://site1.com", "title", "description", 'note', 0,
-            array('tag1', 'tag11', 'tag111'), null, false, false,
+            array('tag1', 'tag11', 'tag111'), null, null, false, false,
             $uid1
         );
         $bid2 = $bs->addBookmark(
             "http://site1.com", "title2", "description2", 'note', 0,
-            array('tag2', 'tag22', 'tag222'), null, false, false,
+            array('tag2', 'tag22', 'tag222'), null, null, false, false,
             $uid2
         );
 

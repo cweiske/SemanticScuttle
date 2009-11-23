@@ -286,6 +286,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      *                             1 - shared
      *                             2 - private
      * @param array   $tags        Array of tags
+     * @param string  $short       Short URL name. May be null
      * @param string  $date        Date when the bookmark has been created
      *                             originally. Used in combination with
      *                             $fromImport. Has to be a strtotime()
@@ -298,6 +299,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      */
     public function addBookmark(
         $address, $title, $description, $privateNote, $status, $tags,
+        $short = null,
         $date = null, $fromApi = false, $fromImport = false, $sId = null
     ) {
         if ($sId === null) {
@@ -327,6 +329,10 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         }
         $datetime = gmdate('Y-m-d H:i:s', $time);
 
+        if ($short === '') {
+            $short = null;
+        }
+
         // Set up the SQL insert statement and execute it.
         $values = array(
             'uId' => intval($sId),
@@ -338,7 +344,8 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             'bDescription' => $description,
             'bPrivateNote' => $privateNote,
             'bStatus' => intval($status),
-            'bHash' => md5($address)
+            'bHash' => md5($address),
+            'bShort' => $short
         );
 
         $sql = 'INSERT INTO '. $this->getTableName()
@@ -402,6 +409,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      *                             1 - shared
      *                             2 - private
      * @param array   $categories  Array of tags
+     * @param string  $short       Short URL name. May be null.
      * @param string  $date        Date when the bookmark has been created
      *                             originally. Used in combination with
      *                             $fromImport. Has to be a strtotime()
@@ -412,7 +420,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      */
     public function updateBookmark(
         $bId, $address, $title, $description, $privateNote, $status,
-        $categories, $date = NULL, $fromApi = false
+        $categories, $short = null, $date = null, $fromApi = false
     ) {
         if (!is_numeric($bId)) {
             return false;
@@ -431,15 +439,31 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         $address = $this->normalize($address);
 
-        //check if a new address ($address) doesn't already exist for another bookmark from the same user
+        //check if a new address ($address) doesn't already exist
+        // for another bookmark from the same user
         $bookmark = $this->getBookmark($bId);
-        if($bookmark['bAddress'] != $address && $this->bookmarkExists($address, $bookmark['uId'])) {
+        if ($bookmark['bAddress'] != $address
+            && $this->bookmarkExists($address, $bookmark['uId'])
+        ) {
             message_die(GENERAL_ERROR, 'Could not update bookmark (URL already existing = '.$address.')', '', __LINE__, __FILE__);
             return false;
         }
 
+        if ($short === '') {
+            $short = null;
+        }
+
         // Set up the SQL update statement and execute it.
-        $updates = array('bModified' => $moddatetime, 'bTitle' => $title, 'bAddress' => $address, 'bDescription' => $description, 'bPrivateNote' => $privateNote, 'bStatus' => $status, 'bHash' => md5($address));
+        $updates = array(
+            'bModified' => $moddatetime,
+            'bTitle' => $title,
+            'bAddress' => $address,
+            'bDescription' => $description,
+            'bPrivateNote' => $privateNote,
+            'bStatus' => $status,
+            'bHash' => md5($address),
+            'bShort' => $short
+        );
 
         if (!is_null($date)) {
             $datetime = gmdate('Y-m-d H:i:s', strtotime($date));

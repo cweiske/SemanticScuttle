@@ -20,7 +20,7 @@ for ($nA = 0; $nA < 10; $nA++) {
         null,
         0,
         array('unittest'),
-        null, false, false,
+        null, null, false, false,
         $uid
     );
 }

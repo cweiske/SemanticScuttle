@@ -1,7 +1,17 @@
 Upgrading SemanticScuttle from a previous version
 =================================================
 
-From versin 0.94 to 0.95.0
+From version 0.95 to 0.96
+-------------------------
+Update your database:
+- ALTER TABLE `sc_bookmarks` ADD `bShort` VARCHAR(16) NULL DEFAULT NULL;
+
+API:
+The method signatures of addBookmark() and updateBookmark()
+changed due to the addition of the $short parameter.
+
+
+From version 0.94 to 0.95
 --------------------------
 The file structure completely changed in 0.95.0 compared
 to previous versions. We recommend that you start with a

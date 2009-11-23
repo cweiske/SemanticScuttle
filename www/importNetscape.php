@@ -102,7 +102,7 @@ if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['si
 					$bDatetime = gmdate('Y-m-d H:i:s');
 				}
 
-				if ($bookmarkservice->addBookmark($bAddress, $bTitle, $bDescription, $bPrivateNote, $status, $bCategories, $bDatetime, false, true)) {
+				if ($bookmarkservice->addBookmark($bAddress, $bTitle, $bDescription, $bPrivateNote, $status, $bCategories, null, $bDatetime, false, true)) {
 					$countImportedBookmarks++;
 				} else {
 					$tplVars['error'] = T_('There was an error saving your bookmark. Please try again or contact the administrator.');

@@ -19,6 +19,7 @@ CREATE TABLE `sc_bookmarks` (
   `bHash` varchar(32) NOT NULL default '',
   `bVotes` int(11) NOT NULL,
   `bVoting` int(11) NOT NULL,
+  `bShort` varchar(16) default NULL,
   PRIMARY KEY  (`bId`),
   KEY `sc_bookmarks_usd` (`uId`,`bStatus`,`bDatetime`),
   KEY `sc_bookmarks_hui` (`bHash`,`uId`,`bId`),

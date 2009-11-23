@@ -69,6 +69,24 @@ class BookmarkTest extends TestBase
         $this->vs->deleteAll();
     }
 
+    /**
+     * Tests if adding a bookmark with short url name
+     * saves it in the database.
+     *
+     * @return void
+     */
+    public function testAddBookmarkShort()
+    {
+        $bid = $this->bs->addBookmark(
+            'http://example.org', 'title', 'desc', 'priv',
+            0, array(), 'myShortName'
+        );
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals('http://example.org', $bm['bAddress']);
+        $this->assertArrayHasKey('bShort', $bm);
+        $this->assertEquals('myShortName', $bm['bShort']);
+    }
+
     public function testHardCharactersInBookmarks()
     {
         $bs = $this->bs;
@@ -81,7 +99,7 @@ class BookmarkTest extends TestBase
         $bid = $bs->addBookmark(
             'http://site1.com', $title, $desc, 'note',
             0, array($tag1, $tag2),
-            null, false, false, $uid
+            null, null, false, false, $uid
         );
 
         $bookmarks = $bs->getBookmarks(0, 1);
@@ -108,12 +126,12 @@ class BookmarkTest extends TestBase
 
         $bs->addBookmark(
             'http://site1.com', "title", "description", 'note',
-            0, array('tag1'), null, false, false,
+            0, array('tag1'), null, null, false, false,
             $uid
         );
         $bs->addBookmark(
             "http://site1.com", "title2", "description2", 'note',
-            0, array('tag2'), null, false, false,
+            0, array('tag2'), null, null, false, false,
             $uid2
         );
 
@@ -280,7 +298,7 @@ class BookmarkTest extends TestBase
         $this->bs->addBookmark(
             'http://test', 'test', 'desc', 'note',
             2,//private
-            array(), null, false, false, $uid
+            array(), null, null, false, false, $uid
         );
         $this->assertEquals(0, $this->bs->countBookmarks($uid));
         $this->assertEquals(0, $this->bs->countBookmarks($uid, 'public'));
@@ -302,7 +320,7 @@ class BookmarkTest extends TestBase
         $this->bs->addBookmark(
             'http://test', 'test', 'desc', 'note',
             1,//shared
-            array(), null, false, false, $uid
+            array(), null, null, false, false, $uid
         );
         $this->assertEquals(0, $this->bs->countBookmarks($uid));
         $this->assertEquals(0, $this->bs->countBookmarks($uid, 'public'));
@@ -734,6 +752,32 @@ class BookmarkTest extends TestBase
         $this->assertEquals(1, count($bm['tags']));
         $this->assertContains('new', $bm['tags']);
     }
+
+    /**
+     * Tests if updating a bookmark's short url name
+     * saves it in the database.
+     *
+     * @return void
+     */
+    public function testUpdateBookmarkShort()
+    {
+        $bid = $this->bs->addBookmark(
+            'http://example.org', 'title', 'desc', 'priv',
+            0, array(), 'myShortName'
+        );
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals('myShortName', $bm['bShort']);
+
+        $this->assertTrue(
+            $this->bs->updateBookmark(
+                $bid, 'http://example2.org', 'my title', 'desc',
+                'priv', 0, array(), 'newShortNambb'
+            )
+        );
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals('newShortNambb', $bm['bShort']);
+    }
+
 }
 
 

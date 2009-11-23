@@ -48,7 +48,7 @@ class TestBase extends PHPUnit_Framework_TestCase
             null,
             0,
             array('unittest'),
-            null, false, false,
+            null, null, false, false,
             $user
         );
         return $bid;
