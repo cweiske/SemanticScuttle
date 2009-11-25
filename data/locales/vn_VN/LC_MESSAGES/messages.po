@@ -1,0 +1,1481 @@
+# Scuttle fr-FR Translation
+# Copyright (C) 2005 - 2006 Scuttle project
+# This file is distributed under the same license as the Scuttle package.
+# <toony.sf@chezouam.net>
+# nitram <nitram@no-log.org>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scuttle\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-11-16 20:55+0100\n"
+"PO-Revision-Date: 2009-11-18 15:42+0100\n"
+"Last-Translator: Nguyen Thi Hong Thai <thaichv@yahoo.com>\n"
+"Language-Team: fr-FR <toony.sf@chezouam.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/SemanticScuttle/functions.php:163
+msgid "message_die() was called multiple times."
+msgstr "message_die() bị gọi nhiều lần."
+
+#: src/SemanticScuttle/functions.php:175
+msgid "SQL Error"
+msgstr "Lỗi cấu trúc truy vấn"
+
+#: src/SemanticScuttle/functions.php:181
+msgid "Line"
+msgstr "mạng"
+
+#: src/SemanticScuttle/functions.php:181
+#: data/templates/importDelicious.tpl.php:8
+#: data/templates/importNetscape.tpl.php:9
+#: data/templates/importStructure.tpl.php:10
+msgid "File"
+msgstr "File"
+
+#: src/SemanticScuttle/functions.php:189
+msgid "Information"
+msgstr "Thông tin"
+
+#: src/SemanticScuttle/functions.php:194
+msgid "Critical Information"
+msgstr "Thông tin nguy cấp"
+
+#: src/SemanticScuttle/functions.php:199
+msgid "An error occured"
+msgstr "Một lỗi đã xảy ra"
+
+#: src/SemanticScuttle/functions.php:202
+msgid "General Error"
+msgstr "Lỗi thông thường"
+
+#: src/SemanticScuttle/functions.php:210
+msgid "An critical error occured"
+msgstr "Một lỗi nguy cấp đã xảy ra"
+
+#: src/SemanticScuttle/functions.php:213
+msgid "Critical Error"
+msgstr "Lỗi nguy cấp"
+
+#: src/SemanticScuttle/functions.php:222
+msgid "DEBUG MODE"
+msgstr "Chế độ gỡ rối"
+
+#: data/templates/about.tpl.php:6
+msgid "<strong>Store</strong> all your favourite links in one place, accessible from anywhere."
+msgstr "<strong>Lưu trữ</strong>tất cả các đường links ở một nơi, có thể truy cập tại mọi nơi"
+
+#: data/templates/about.tpl.php:7
+msgid "<strong>Share</strong> your bookmarks with everyone, with friends on your watchlist or just keep them private."
+msgstr "<strong>Chia xẻ</strong> các trang ghi nhớ của bạn với tất cả mọi ngườii, bạn có thể chia xẻ với bạn bè trong danh sách hoặc giữ cá nhân."
+
+#: data/templates/about.tpl.php:8
+msgid "<strong>Tag</strong> your bookmarks with as many labels as you want, instead of wrestling with folders."
+msgstr "<strong>Gắn từ khoá/strong> những trang ghi nhớ của bạn với  bất kì tên nào mà bạn muốn mà không phải làm việc với các thư mục"
+
+#: data/templates/about.tpl.php:9
+msgid "Register now"
+msgstr "Đăng kí ngay bây giờ"
+
+#: data/templates/about.tpl.php:9
+#, php-format
+msgid " to start using %s!"
+msgstr "Bắt đầu sử dụng %s !"
+
+#: data/templates/about.tpl.php:12
+msgid "Geek Stuff"
+msgstr "Pour les Geeks"
+
+#: data/templates/about.tpl.php:14
+msgid "is licensed under the "
+msgstr "phân dưới quyền"
+
+#: data/templates/about.tpl.php:14
+msgid "you can freely host it on your own web server."
+msgstr "Bạn có thể thoải mái cài đặt nó trên Web server của bạn"
+
+#: data/templates/about.tpl.php:15
+#, php-format
+msgid "%1$s supports most of the <a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
+msgstr "%1$s hỗ trợ phần lớn từ'<a href=\"http://del.icio.us/doc/api\"><abbr title=\"Ứng dụng lập trình giao diện\">API</abbr> del.icio.us</a>."
+
+#: data/templates/about.tpl.php:24
+msgid "Tips"
+msgstr "Mẹo"
+
+#: data/templates/about.tpl.php:26
+msgid "Add search plugin into your browser:"
+msgstr "Thêm một nút tìm kiếm vào trong trình duyệt của bạn:"
+
+#: data/templates/about.tpl.php:27
+msgid "The secret tag \"system:unfiled\" allows you to find bookmarks without tags."
+msgstr "Thẻ bí mật \"system:unfiled\" cho phép bạn tìm thấy những trang ghi nhớ không có thẻ."
+
+#: data/templates/about.tpl.php:28
+msgid "The secret tag \"system:imported\" allows you to find imported bookmarks."
+msgstr "Từ khoá bí mật \"system:imported\" cho phép bạn tìm thấy những trang ghi nhớ quan trọng."
+
+#: data/templates/admin.tpl.php:5
+msgid "Users management"
+msgstr "Quản lí những người dùng"
+
+#: data/templates/admin.tpl.php:14
+msgid "Public/Shared/Private"
+msgstr "Công cộng/Chia xẻ/Cá nhân"
+
+#: data/templates/admin.tpl.php:14
+#: data/templates/bookmarks.tpl.php:93
+msgid "bookmark(s)"
+msgstr "Những trang ghi nhớ"
+
+#: data/templates/admin.tpl.php:19
+#: data/templates/tag2tagadd.tpl.php:21
+#: data/templates/tag2tagdelete.tpl.php:13
+#: data/templates/tag2tagedit.tpl.php:14
+#: data/templates/tag2tagedit.tpl.php:35
+#: data/templates/tagdelete.tpl.php:6
+#: www/jsScuttle.php:23
+msgid "Are you sure?"
+msgstr "Bạn có chắc chắn không ?"
+
+#: data/templates/admin.tpl.php:19
+#: data/templates/bookmarks.tpl.php:251
+msgid "Delete"
+msgstr "Xoá"
+
+#: data/templates/admin.tpl.php:27
+msgid "Other actions"
+msgstr "Những hành động khác"
+
+#: data/templates/admin.tpl.php:29
+msgid "Check all URLs (May take some time)"
+msgstr "Kiểm tra tất cả đường link (Có thể mất ít thời gian)"
+
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:16
+msgid "Collaborative description: these fields can be viewed and modified by every users"
+msgstr "Sự mô tả cộng tác : những trường này có thể được nhìn thấy và được sửa đổi bởi tất cả những người dùng."
+
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:18
+#: data/templates/bookmarks.tpl.php:137
+#: data/templates/editbookmark.tpl.php:38
+msgid "Title"
+msgstr "Tiêu đề"
+
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:23
+#: data/templates/editbookmark.tpl.php:44
+#: data/templates/editprofile.tpl.php:47
+#: data/templates/profile.tpl.php:33
+#: data/templates/tagcommondescriptionedit.tpl.php:13
+#: data/templates/tagedit.tpl.php:12
+msgid "Description"
+msgstr "Mô tả"
+
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:31
+#: data/templates/tagcommondescriptionedit.tpl.php:21
+msgid "Last modification:"
+msgstr "Những thay đổi cuối:"
+
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:42
+#: data/templates/tagcommondescriptionedit.tpl.php:32
+#: data/templates/tagedit.tpl.php:18
+msgid "Update"
+msgstr "Cập nhật"
+
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:43
+#: data/templates/editbookmark.tpl.php:98
+#: data/templates/tag2tagadd.tpl.php:24
+#: data/templates/tag2tagedit.tpl.php:38
+#: data/templates/tagcommondescriptionedit.tpl.php:33
+#: data/templates/tagedit.tpl.php:19
+#: data/templates/tagrename.tpl.php:25
+msgid "Cancel"
+msgstr "Huỷ bỏ"
+
+#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:24
+#, php-format
+msgid "Voting <span class=\"voting\">%d</span>"
+msgstr "Sự ủng hộ <span class=\"voting\">%d</span>"
+
+#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:32
+#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:35
+msgid "Vote for"
+msgstr "Ủng hộ cho"
+
+#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:43
+#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:46
+msgid "Vote against"
+msgstr "Không ủng hộ"
+
+#: data/templates/bookmarks.tpl.php:26
+msgid "Bookmarks on this page are managed by an admin user."
+msgstr "Những trang ghi nhớ trên trang này được quản lí bởi một người quản trị."
+
+#: data/templates/bookmarks.tpl.php:51
+#: data/templates/bookmarks.tpl.php:52
+msgid "Edit the common description of this tag"
+msgstr "Sửa mô tả chung của từ khoá này"
+
+#: data/templates/bookmarks.tpl.php:55
+#: data/templates/bookmarks.tpl.php:56
+msgid "Edit the common description of this bookmark"
+msgstr "Sửa mô tả chung của trang ghi nhớ này"
+
+#: data/templates/bookmarks.tpl.php:76
+#: data/templates/bookmarks.tpl.php:77
+msgid "Edit your personal description of this tag"
+msgstr "Sửa mô tả cá nhân của bạn của thẻ này"
+
+#: data/templates/bookmarks.tpl.php:93
+#: data/templates/tags.tpl.php:10
+#: data/templates/users.tpl.php:8
+msgid "Sort by:"
+msgstr "Sắp xếp bởi :"
+
+#: data/templates/bookmarks.tpl.php:135
+msgid "Date"
+msgstr "Ngày"
+
+#: data/templates/bookmarks.tpl.php:140
+msgid "Voting"
+msgstr "Sự bầu cử"
+
+#: data/templates/bookmarks.tpl.php:149
+msgid "Bookmarks from other users for this tag"
+msgstr "Ghi nhớ trang từ những người dùng khác cho thẻ này"
+
+#: data/templates/bookmarks.tpl.php:154
+msgid "Only your bookmarks for this tag"
+msgstr "Chỉ có những trang ghi nhớ của bạn"
+
+#: data/templates/bookmarks.tpl.php:177
+#: data/templates/bookmarks.tpl.php:183
+msgid "First"
+msgstr "Đầu tiên"
+
+#: data/templates/bookmarks.tpl.php:178
+#: data/templates/bookmarks.tpl.php:184
+msgid "Previous"
+msgstr "Trước"
+
+#: data/templates/bookmarks.tpl.php:191
+#: data/templates/bookmarks.tpl.php:194
+msgid "Next"
+msgstr "Sau"
+
+#: data/templates/bookmarks.tpl.php:192
+#: data/templates/bookmarks.tpl.php:195
+msgid "Last"
+msgstr "Cuối cùng"
+
+#: data/templates/bookmarks.tpl.php:205
+#, php-format
+msgid "Page %d of %d"
+msgstr "Trang %d của %d"
+
+#: data/templates/bookmarks.tpl.php:245
+msgid "Tags:"
+msgstr "Những từ khoá:"
+
+#: data/templates/bookmarks.tpl.php:251
+msgid "Edit"
+msgstr "Sửa"
+
+#: data/templates/bookmarks.tpl.php:255
+msgid "Last update"
+msgstr "Lần cập nhật cuối"
+
+#: data/templates/bookmarks.tpl.php:258
+msgid "by"
+msgstr "bởi"
+
+#: data/templates/bookmarks.tpl.php:260
+msgid "you"
+msgstr "bạn"
+
+#: data/templates/bookmarks.tpl.php:274
+#, php-format
+msgid " and %s1 other%s"
+msgstr "và %s1 khác%s"
+
+#: data/templates/bookmarks.tpl.php:277
+#, php-format
+msgid " and %2$s%1$s others%3$s"
+msgstr " và %2$s%1$s những cái khác%3$s"
+
+#: data/templates/bookmarks.tpl.php:288
+msgid "Copy this bookmark to YOUR bookmarks."
+msgstr "Copy trang ghi nhớ này vào những trang ghi nhớ của bạn."
+
+#: data/templates/bookmarks.tpl.php:289
+msgid "Copy"
+msgstr "Copy"
+
+#: data/templates/bookmarks.tpl.php:309
+msgid "This bookmark is certified by an admin user."
+msgstr "Trang ghi nhớ này được bảo đảm bởi một người quản trị."
+
+#: data/templates/bookmarks.tpl.php:351
+msgid "Private Note on this bookmark"
+msgstr "Ghi chú cá nhân trên trang ghi nhớ này"
+
+#: data/templates/bookmarks.tpl.php:363
+msgid "Come back to the top of this page."
+msgstr "Quay trở lại đầu trang này."
+
+#: data/templates/bookmarks.tpl.php:363
+msgid "Top of the page"
+msgstr "Đầu trang"
+
+#: data/templates/bookmarks.tpl.php:369
+msgid "No bookmarks available"
+msgstr "Không có trang ghi nhớ nào có sẵn."
+
+#: data/templates/bottom.inc.php:5
+#: data/templates/toolbar.inc.php:15
+#: data/templates/toolbar.inc.php:28
+#: www/about.php:23
+#: www/about.php:24
+msgid "About"
+msgstr "Về"
+
+#: data/templates/bottom.inc.php:7
+msgid "Propulsed by "
+msgstr "Đã đẩy bởi"
+
+#: data/templates/dynamictags.inc.php:47
+#: data/templates/sidebar.block.common.php:19
+#: data/templates/sidebar.block.popular.php:34
+#: data/templates/sidebar.block.recent.php:29
+#: data/templates/tags.tpl.php:19
+msgid "bookmark"
+msgid_plural "bookmarks"
+msgstr[0] "Trang ghi nhớ"
+msgstr[1] "Signets"
+
+#: data/templates/dynamictags.inc.php:128
+#: data/templates/sidebar.block.common.php:9
+#: data/templates/sidebar.block.menu.php:74
+#: data/templates/sidebar.block.popular.php:23
+#: data/templates/sidebar.block.recent.php:34
+#: data/templates/toolbar.inc.php:27
+#: www/populartags.php:46
+msgid "Popular Tags"
+msgstr "Những thẻ phổ biến"
+
+#: data/templates/dynamictags.inc.php:131
+msgid "Popular Tags From All Users"
+msgstr "Những thẻ phổ biến cho tất cả những người dùng"
+
+#: data/templates/editbookmark.tpl.php:33
+msgid "Address"
+msgstr "Địa chỉ"
+
+#: data/templates/editbookmark.tpl.php:35
+#: data/templates/editbookmark.tpl.php:40
+#: data/templates/editprofile.tpl.php:31
+#: data/templates/tagrename.tpl.php:14
+#: data/templates/tagrename.tpl.php:19
+msgid "Required"
+msgstr "Yêu cầu"
+
+#: data/templates/editbookmark.tpl.php:45
+msgid "Add Note"
+msgstr "Thêm vào ghi chú"
+
+#: data/templates/editbookmark.tpl.php:48
+msgid "You can use anchors to delimite attributes. for example: [publisher]blah[/publisher] "
+msgstr "Bạn có thể sử dụng những nguồn tin cậy để xác định phạm vi những thuộc tính. Ví dụ : [publisher]blah[/publisher]"
+
+#: data/templates/editbookmark.tpl.php:51
+msgid "Suggested anchors: "
+msgstr "Những gợi ý tin cậy : "
+
+#: data/templates/editbookmark.tpl.php:63
+msgid "Private Note"
+msgstr "Ghi chú cá nhân"
+
+#: data/templates/editbookmark.tpl.php:65
+msgid "Just visible by you and your contacts."
+msgstr "Chỉ được xem bới bạn và danh sách liên lạc của bạn"
+
+#: data/templates/editbookmark.tpl.php:69
+#: data/templates/toolbar.inc.php:10
+#: www/tags.php:45
+#: www/tags.php:67
+msgid "Tags"
+msgstr "Thẻ"
+
+#: data/templates/editbookmark.tpl.php:73
+msgid "Comma-separated"
+msgstr "Phân tách bởi những dấu phẩy"
+
+#: data/templates/editbookmark.tpl.php:77
+#: data/templates/tag2tagadd.tpl.php:9
+msgid "Note: use \">\" to include one tag in another. e.g.: europe>france>paris"
+msgstr "Chú ý: sử dụng \">\" để cho một mô tả mối liên hệ giữa các thẻ. Ví dụ: Chau_Au>Phap>paris"
+
+#: data/templates/editbookmark.tpl.php:81
+#: data/templates/tag2tagadd.tpl.php:8
+msgid "Note: use \"=\" to make synonym two tags. e.g.: france=frenchcountry"
+msgstr "Chú ý : sử dụng \"=\" để diễn tả hai thẻ tương đương nhau. Ví dụ: europe=eu"
+
+#: data/templates/editbookmark.tpl.php:84
+#: data/templates/importDelicious.tpl.php:15
+#: data/templates/importNetscape.tpl.php:16
+msgid "Privacy"
+msgstr "Riêng tư"
+
+#: data/templates/editbookmark.tpl.php:87
+#: data/templates/importDelicious.tpl.php:18
+#: data/templates/importNetscape.tpl.php:19
+msgid "Public"
+msgstr "Công cộng"
+
+#: data/templates/editbookmark.tpl.php:88
+msgid "Shared with Watch List"
+msgstr "Chia xẻ với danh sách liên hệ của tôi"
+
+#: data/templates/editbookmark.tpl.php:89
+#: data/templates/importDelicious.tpl.php:20
+#: data/templates/importNetscape.tpl.php:21
+msgid "Private"
+msgstr "cá nhân"
+
+#: data/templates/editbookmark.tpl.php:102
+msgid "Delete Bookmark"
+msgstr "Xoá trang ghi nhớ này"
+
+#: data/templates/editbookmark.tpl.php:107
+msgid "edit common description"
+msgstr "Sửa mô tả chung"
+
+#: data/templates/editbookmark.tpl.php:134
+msgid "Bookmarklet"
+msgstr "Bookmarklet"
+
+#: data/templates/editbookmark.tpl.php:140
+#, php-format
+msgid "Click one of the following bookmarklets to add a button you can click whenever you want to add the page you are on to %s"
+msgstr "Click theo một trong những bookmarklets để thêm một nút, bạn có thể click bất cứ khi nào bạn muốn thêm một trang cho trang hiện tại %s "
+
+#: data/templates/editbookmark.tpl.php:144
+#, php-format
+msgid "Drag one of the following bookmarklets to your browser's bookmarks and click it whenever you want to add the page you are on to %s"
+msgstr "Click theo một trong những bookmarklets vào trình duyệt bookmark của bạn và click nó bất cứ khi nào bạn muốn thêm một trang cho trang hiện tại %s "
+
+#: data/templates/editbookmark.tpl.php:157
+#: data/templates/editbookmark.tpl.php:162
+#, php-format
+msgid "Post to %s"
+msgstr "Thêm vào %s"
+
+#: data/templates/editbookmark.tpl.php:158
+#: data/templates/editbookmark.tpl.php:163
+#, php-format
+msgid "Post to %s (Pop-up)"
+msgstr "Thêm vào %s (Pop-up)"
+
+#: data/templates/editbookmark.tpl.php:168
+#: data/templates/importDelicious.tpl.php:26
+#: data/templates/importNetscape.tpl.php:27
+#: data/templates/importStructure.tpl.php:16
+msgid "Import"
+msgstr "Nhập "
+
+#: data/templates/editbookmark.tpl.php:170
+msgid "Import bookmarks from bookmark file"
+msgstr "Nạp những trang ghi nhớ từ một file "
+
+#: data/templates/editbookmark.tpl.php:170
+msgid "Internet Explorer, Mozilla Firefox and Netscape"
+msgstr "Internet Explorer, Mozilla Firefox et Netscape"
+
+#: data/templates/editbookmark.tpl.php:171
+msgid "Import bookmarks from del.icio.us"
+msgstr "Nạp những trang ghi nhớ từ del.icio.us"
+
+#: data/templates/editprofile.tpl.php:10
+msgid "Account Details"
+msgstr "Tài khoản cụ thể"
+
+#: data/templates/editprofile.tpl.php:14
+#: data/templates/login.tpl.php:21
+#: data/templates/password.tpl.php:10
+#: data/templates/profile.tpl.php:6
+#: data/templates/register.tpl.php:16
+msgid "Username"
+msgstr "Tên người dùng"
+
+#: data/templates/editprofile.tpl.php:19
+msgid "New Password"
+msgstr "Mật khẩu mới"
+
+#: data/templates/editprofile.tpl.php:24
+msgid "Confirm Password"
+msgstr "Xác nhận mật khẩu"
+
+#: data/templates/editprofile.tpl.php:29
+#: data/templates/password.tpl.php:14
+#: data/templates/register.tpl.php:26
+msgid "E-mail"
+msgstr "E-mail"
+
+#: data/templates/editprofile.tpl.php:35
+msgid "Personal Details"
+msgstr "Chi tiết cá nhân"
+
+#: data/templates/editprofile.tpl.php:39
+#: data/templates/profile.tpl.php:17
+msgid "Name"
+msgstr "Tên"
+
+#: data/templates/editprofile.tpl.php:43
+#: data/templates/profile.tpl.php:23
+msgid "Homepage"
+msgstr "Trang chủ"
+
+#: data/templates/editprofile.tpl.php:52
+#: www/edit.php:113
+msgid "Save Changes"
+msgstr "Lưu lại sự thay đổi"
+
+#: data/templates/editprofile.tpl.php:55
+#: data/templates/sidebar.block.tagactions.php:17
+#: data/templates/sidebar.block.watchstatus.php:18
+msgid "Actions"
+msgstr "Những thao tác"
+
+#: data/templates/editprofile.tpl.php:58
+msgid "Export bookmarks"
+msgstr "Xuất những trang ghi nhớ"
+
+#: data/templates/editprofile.tpl.php:60
+msgid "HTML file (for browsers)"
+msgstr "file HTML (để duyệt)"
+
+#: data/templates/editprofile.tpl.php:61
+msgid "XML file (like del.icio.us)"
+msgstr "file XML (như del.icio.us)"
+
+#: data/templates/editprofile.tpl.php:62
+msgid "CSV file (for spreadsheet tools)"
+msgstr "file CSV (cho những công cụ lan truyền)"
+
+#: data/templates/error.404.tpl.php:5
+msgid "Not Found"
+msgstr "Không tìm thấy"
+
+#: data/templates/error.404.tpl.php:6
+msgid "The requested URL was not found on this server"
+msgstr "Yêu cầu đường link đã không được tìm thấy trên server này."
+
+#: data/templates/error.500.tpl.php:5
+msgid "General server error"
+msgstr "Lỗi tác độgn từ serveur."
+
+#: data/templates/error.500.tpl.php:6
+msgid "The requested URL could not be processed"
+msgstr "Yêu cầu đường link không thể  tìm thấy trên server này"
+
+#: data/templates/importDelicious.tpl.php:19
+#: data/templates/importNetscape.tpl.php:20
+msgid "Shared with Watchlist"
+msgstr "Chia xẻ với danh sách liên lạc"
+
+#: data/templates/importDelicious.tpl.php:31
+#: data/templates/importNetscape.tpl.php:32
+#: data/templates/importStructure.tpl.php:21
+msgid "Instructions"
+msgstr "Giới thiệu"
+
+#: data/templates/importDelicious.tpl.php:33
+msgid "Log in to the <a href=\"http://del.icio.us/api/posts/all\">export page at del.icio.us</a>"
+msgstr "Đăng nhập vào <a href=\"http://del.icio.us/api/posts/all\">trang trích xuất từ del.icio.us</a>"
+
+#: data/templates/importDelicious.tpl.php:34
+msgid "Save the resulting <abbr title=\"Extensible Markup Language\">XML</abbr> file to your computer"
+msgstr "Lưu file kết quả <abbr title=\"Extensible Markup Language\">XML</abbr> trên máy tính của bạn"
+
+#: data/templates/importDelicious.tpl.php:35
+msgid "Click <kbd>Browse...</kbd> to find this file on your computer. The maximum size the file can be is 1MB"
+msgstr "Click <kbd>Browse...</kbd> để tìm thấy file trên máy tính của bạn. Kích cỡ tối đa của file không được vượt quá 1 MB"
+
+#: data/templates/importDelicious.tpl.php:36
+#: data/templates/importNetscape.tpl.php:43
+msgid "Select the default privacy setting for your imported bookmarks"
+msgstr "Lựa chọn cài đặt mặc định cho những trang ghi nhớ được nạp vào"
+
+#: data/templates/importDelicious.tpl.php:37
+#: data/templates/importNetscape.tpl.php:44
+msgid "Click <kbd>Import</kbd> to start importing the bookmarks; it may take a minute"
+msgstr "Click vào <kbd>Importer</kbd> để bắt đầu nạp những trang ghi nhớ; thao tác này có thể mất vài phút"
+
+#: data/templates/importNetscape.tpl.php:35
+msgid "Export your bookmarks from your browser to a file"
+msgstr "Xuất những trang ghi nhớ ra một file từ danh sách duyệt của bạn"
+
+#: data/templates/importNetscape.tpl.php:37
+msgid "Internet Explorer: <kbd>File &gt; Import and Export... &gt; Export Favorites"
+msgstr "Internet Explorer: <kbd>File &gt; Nạp và Đưa ra... &gt; Đưa ra những cái được ưa chuộng"
+
+#: data/templates/importNetscape.tpl.php:38
+msgid "Mozilla Firefox: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; File &gt; Export..."
+msgstr "Mozilla Firefox: <kbd>Những trang đánh dấu &gt;Quản lí những trang được đánh dấu... &gt;File &gt; Đưa rar..."
+
+#: data/templates/importNetscape.tpl.php:39
+msgid "Netscape: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; Tools &gt; Export..."
+msgstr "Netscape: <kbd>Những trang đánh dấu &gt; Quản lí những trang đánh dấu... &gt; Những công cụ &gt; Đưa ra..."
+
+#: data/templates/importNetscape.tpl.php:42
+msgid "Click <kbd>Browse...</kbd> to find the saved bookmark file on your computer. The maximum size the file can be is 1MB"
+msgstr "Click <kbd>Browse...</kbd> để tìm thấy file chứa những trang ghi nhớ đã được lưu trên máy tính của bạn. Kích thước tối đa của file không vượt quá 1MB"
+
+#: data/templates/importStructure.tpl.php:24
+msgid "Create your structure into a simple text file and following this model:"
+msgstr "Tạo cấu trúc của bạn vào một file văn bản đơn giản theo mô hình sau"
+
+#: data/templates/importStructure.tpl.php:35
+msgid "Then import the file. The tags and their relations will be added to your profile."
+msgstr "Sau khi nạp vào file này. Những thẻ này và mối liên hệ giữa chúng sẽ được thêm vào thông tin của bạn"
+
+#: data/templates/login.tpl.php:13
+msgid "Please activate cookies"
+msgstr "Hãy kích hoạt việc xác nhận sử dụng dịch vụ"
+
+#: data/templates/login.tpl.php:26
+#: data/templates/register.tpl.php:21
+msgid "Password"
+msgstr "Mật khẩu"
+
+#: data/templates/login.tpl.php:28
+msgid "Don't ask for my password for 2 weeks"
+msgstr "Đừng hỏi mật khẩu của tôi trong 2 tuần"
+
+#: data/templates/login.tpl.php:32
+#: data/templates/toolbar.inc.php:29
+#: www/login.php:57
+msgid "Log In"
+msgstr "Đăng nhập"
+
+#: data/templates/login.tpl.php:36
+msgid "Forgotten your password?"
+msgstr "Có phải bạn đã quên mật khẩu ?"
+
+#: data/templates/password.tpl.php:5
+#, php-format
+msgid "If you have forgotten your password, %s can generate a new one. Enter the username and e-mail address of your account into the form below and we will e-mail your new password to you."
+msgstr "Nếu bạn đã  quên mật khẩu, %s có thể tạo ra một mật khẩu mới. Nhập vào tên đăng nhập và địa chỉ email của bạn trong mẫu dưới đây và chúng tôi sẽ gửi cho bạn một mật khẩu mới."
+
+#: data/templates/password.tpl.php:19
+msgid "Generate Password"
+msgstr "Phát sinh một mật khẩu"
+
+#: data/templates/profile.tpl.php:11
+msgid "Email"
+msgstr "E-mail"
+
+#: data/templates/profile.tpl.php:28
+msgid "Member Since"
+msgstr "Thành viên trước đây"
+
+#: data/templates/profile.tpl.php:40
+#: data/templates/sidebar.block.watchlist.php:30
+msgid "Watching"
+msgstr "Những danh sách liên lạc của tôi"
+
+#: data/templates/profile.tpl.php:55
+#: data/templates/sidebar.block.watchlist.php:52
+msgid "Watched By"
+msgstr "Được xem bởi"
+
+#: data/templates/profile.tpl.php:68
+#: data/templates/toolbar.inc.php:9
+msgid "Bookmarks"
+msgstr "Những trang ghi nhớ"
+
+#: data/templates/profile.tpl.php:69
+msgid "Go to bookmarks"
+msgstr "Vào những trang ghi nhớ"
+
+#: data/templates/register.tpl.php:11
+#, php-format
+msgid "Sign up here to create a free %s account. All the information requested below is required"
+msgstr "Bạn đăng kí ở đây để tạo ra một tài khoản miến phí %s. Tất cả những thông tin yêu cầu dưới đây là cần thiết."
+
+#: data/templates/register.tpl.php:18
+msgid " at least 5 characters, alphanumeric (no spaces, no dots or other special ones)"
+msgstr " ít nhất  5 kí tự, chứa chữ và số  (không khoảng trống, không dấu chấm hoặc kí tự đặc biệt khác)"
+
+#: data/templates/register.tpl.php:28
+msgid " to send you your password if you forget it"
+msgstr "để gửi cho bạn mật khẩu của bạn nếu bạn quên nó"
+
+#: data/templates/register.tpl.php:33
+msgid "Antispam question"
+msgstr "Câu hỏi chống thư rác"
+
+#: data/templates/register.tpl.php:41
+#: data/templates/toolbar.inc.php:31
+#: www/register.php:83
+msgid "Register"
+msgstr "Đăng kí"
+
+#: data/templates/search.menu.php:27
+msgid "Search..."
+msgstr "Tìm kiếm..."
+
+#: data/templates/search.menu.php:28
+msgid "in"
+msgstr "trong"
+
+#: data/templates/search.menu.php:34
+msgid "this user's bookmarks"
+msgstr "những trang ghi nhớ của người dùng"
+
+#: data/templates/search.menu.php:39
+msgid "my bookmarks"
+msgstr "những trang ghi nhớ của tôi"
+
+#: data/templates/search.menu.php:40
+msgid "my watchlist"
+msgstr "danh sách liên lạc của tôi"
+
+#: data/templates/search.menu.php:44
+msgid "all bookmarks"
+msgstr "tất cả những trang được ghi nhớ "
+
+#: data/templates/search.menu.php:54
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#: data/templates/sidebar.block.linked.php:51
+msgid "Linked Tags"
+msgstr "Liên kết những từ khoá"
+
+#: data/templates/sidebar.block.linked.php:62
+#: data/templates/sidebar.block.menu.php:46
+msgid "Add new link"
+msgstr "Tạo một liên kết"
+
+#: data/templates/sidebar.block.linked.php:63
+#: data/templates/sidebar.block.menu.php:47
+msgid "Delete link"
+msgstr "Xoá một liên kết"
+
+#: data/templates/sidebar.block.menu.php:35
+#, php-format
+msgid "Tags included into the tag '%s'"
+msgstr "Những từ khoá chứa trong từ khoá '%s'"
+
+#: data/templates/sidebar.block.menu.php:35
+msgid "Menu Tags"
+msgstr "Danh sách từ khoá"
+
+#: data/templates/sidebar.block.menu.php:68
+msgid "See all your tags"
+msgstr "Nhìn thấy tất cả thẻ của bạn"
+
+#: data/templates/sidebar.block.menu.php:68
+msgid "all your tags"
+msgstr "Tất cả thẻ của bạn"
+
+#: data/templates/sidebar.block.menu.php:70
+msgid "See all tags from this user"
+msgstr "Nhìn thấy tất cả từ khoá của người dùng này"
+
+#: data/templates/sidebar.block.menu.php:70
+msgid "all tags from this user"
+msgstr "tất cả từ khoá  từ người dùng này"
+
+#: data/templates/sidebar.block.menu.php:74
+msgid "See popular tags"
+msgstr "Nhìn thấy những từ khoá thông thường"
+
+#: data/templates/sidebar.block.menu2.php:25
+msgid "Featured Menu Tags"
+msgstr "Danh sách những từ khoá chính"
+
+#: data/templates/sidebar.block.menu2.php:29
+msgid "This menu is composed of keywords (tags) organized by admins."
+msgstr "Danh mục này đã được tạo từ các từ khoá (thẻ) và được sắp xếp bởi những người quản trị."
+
+#: data/templates/sidebar.block.recent.php:18
+msgid "Recent Tags"
+msgstr "Những từ khoá gần đây"
+
+#: data/templates/sidebar.block.related.php:26
+msgid "Related Tags"
+msgstr "Quan hệ các từ khoá"
+
+#: data/templates/sidebar.block.search.php:15
+msgid "Last Searches"
+msgstr "Những tìm kiếm trước"
+
+#: data/templates/sidebar.block.search.php:24
+msgid "Number of bookmarks for this query"
+msgstr "Tổng số trang ghi nhớ tìm thấy cho truy vấn này"
+
+#: data/templates/sidebar.block.tagactions.php:9
+#: www/tagrename.php:72
+msgid "Rename Tag"
+msgid_plural "Rename Tags"
+msgstr[0] "Thay đổi tên từ khoá"
+msgstr[1] "Renommer les tags"
+
+#: data/templates/sidebar.block.tagactions.php:22
+#: www/tagdelete.php:54
+msgid "Delete Tag"
+msgstr "Xoá từ khoá"
+
+#: data/templates/sidebar.block.tagactions.php:24
+#: www/tagedit.php:61
+msgid "Edit Tag Description"
+msgstr "Sửa mô tả của từ khoá"
+
+#: data/templates/sidebar.block.tagactions.php:26
+#: www/tagcommondescriptionedit.php:64
+msgid "Edit Tag Common Description"
+msgstr "Sửa mô tả chung của từ khoá"
+
+#: data/templates/sidebar.block.tagactions.php:28
+msgid "Create a link to another tag"
+msgstr "Tạo một liên kết với một từ khoá khác"
+
+#: data/templates/sidebar.block.users.php:14
+msgid "New Users"
+msgstr "Những người dùng mới"
+
+#: data/templates/sidebar.block.users.php:23
+#: data/templates/users.tpl.php:17
+msgid "bookmarks"
+msgstr "Danh mục những trang ghi nhớ"
+
+#: data/templates/sidebar.block.users.php:30
+msgid "See all users"
+msgstr "Nhìn thấy tất cả người dùng"
+
+#: data/templates/sidebar.block.users.php:30
+msgid "All users"
+msgstr "Tất cả người dùng"
+
+#: data/templates/sidebar.block.watchlist.php:19
+msgid "Close contacts are mutual contacts"
+msgstr "Những danh sách liên lạc gần nhau là những danh sách liên lạc tương hỗ với nhau"
+
+#: data/templates/sidebar.block.watchlist.php:19
+msgid "Close contacts"
+msgstr "Danh sách liên lạc gần nhau"
+
+#: data/templates/sidebar.block.watchlist.php:36
+msgid "Add a contact..."
+msgstr "Thêm một liên lạc..."
+
+#: data/templates/sidebar.block.watchlist.php:36
+msgid "Type a username to add it to your contacts."
+msgstr "Nhập vào tên truy cập để thêm vào danh sách liên lạc của bạn."
+
+#: data/templates/sidebar.block.watchlist.php:44
+msgid "Remove this contact"
+msgstr "Bỏ liên lạc này"
+
+#: data/templates/sidebar.block.watchstatus.php:11
+msgid "Remove from Watchlist"
+msgstr "Rời bỏ từ danh sách liên lạc"
+
+#: data/templates/sidebar.block.watchstatus.php:13
+msgid "Add to Watchlist"
+msgstr "Thêm vào danh sách liên lạc"
+
+#: data/templates/sidebar.linkedtags.inc.php:18
+msgid "Edit link"
+msgstr "Sửa một liên kết"
+
+#: data/templates/sidebar.linkedtags.inc.php:47
+msgid "Synonyms:"
+msgstr "Đồng nghĩa :"
+
+#: data/templates/tag2tagadd.tpl.php:12
+msgid "Create new link:"
+msgstr "Tạo một mối liên kết mới"
+
+#: data/templates/tag2tagadd.tpl.php:19
+#, php-format
+msgid "Note: include a tag into '%s' tag (e.g. %s>countries) display the tag into the menu box"
+msgstr "Chú ý : gồm có một từ khoá chứa trong trong từ khoá'%s' (e.g. %s>Những lĩnh vực) để hiển thị từ khoá này trong hộp danh mục"
+
+#: data/templates/tag2tagadd.tpl.php:23
+#: data/templates/tag2tagedit.tpl.php:37
+msgid "Create"
+msgstr "Tạo "
+
+#: data/templates/tag2tagadd.tpl.php:35
+#: data/templates/tag2tagdelete.tpl.php:27
+#: data/templates/tag2tagedit.tpl.php:51
+msgid "Existing links:"
+msgstr "Những liên kết hiện có :"
+
+#: data/templates/tag2tagadd.tpl.php:53
+#: data/templates/tag2tagdelete.tpl.php:45
+#: data/templates/tag2tagedit.tpl.php:69
+msgid "No links"
+msgstr "Không có liên kết nào"
+
+#: data/templates/tag2tagdelete.tpl.php:15
+#: data/templates/tag2tagedit.tpl.php:16
+#: data/templates/tagdelete.tpl.php:8
+#: www/jsScuttle.php:23
+msgid "Yes"
+msgstr "Đúng"
+
+#: data/templates/tag2tagdelete.tpl.php:16
+#: data/templates/tag2tagedit.tpl.php:17
+#: data/templates/tagdelete.tpl.php:9
+#: www/jsScuttle.php:23
+msgid "No"
+msgstr "Không"
+
+#: data/templates/tag2tagedit.tpl.php:6
+msgid "Delete the link"
+msgstr "Xoá liên kết này"
+
+#: data/templates/tag2tagedit.tpl.php:29
+msgid "Create new link"
+msgstr "Tạo một liên kết mới"
+
+#: data/templates/tagrename.tpl.php:12
+msgid "Old"
+msgstr "Cũ"
+
+#: data/templates/tagrename.tpl.php:17
+msgid "New"
+msgstr "Mới"
+
+#: data/templates/tagrename.tpl.php:24
+msgid "Rename"
+msgstr "Đổi tên"
+
+#: data/templates/tags.tpl.php:11
+#: data/templates/users.tpl.php:9
+msgid "Alphabet"
+msgstr "Bảng chữ cái"
+
+#: data/templates/tags.tpl.php:12
+#: data/templates/users.tpl.php:10
+msgid "Popularity"
+msgstr "Phổ biến"
+
+#: data/templates/toolbar.inc.php:8
+#: data/templates/toolbar.inc.php:26
+msgid "Home"
+msgstr "Chủ"
+
+#: data/templates/toolbar.inc.php:11
+#: www/watchlist.php:106
+msgid "Watchlist"
+msgstr "Danh mục liên lạc"
+
+#: data/templates/toolbar.inc.php:12
+#: www/profile.php:67
+msgid "Profile"
+msgstr "Mô tả cá nhân"
+
+#: data/templates/toolbar.inc.php:13
+#: www/bookmarks.php:209
+msgid "Add a Bookmark"
+msgstr "Thêm một trang ghi nhớ"
+
+#: data/templates/toolbar.inc.php:14
+msgid "Log Out"
+msgstr "Thoát"
+
+#: data/templates/toolbar.inc.php:17
+msgid "Admin"
+msgstr "Quản trị"
+
+#: data/templates/top.inc.php:49
+msgid "Admins, your installation is in \"Debug Mode\" ($debugMode = true). To go in \"Normal Mode\" and hide debugging messages, change $debugMode to false into config.php."
+msgstr "Quản trị, sự cài đặt của bạn o trong \"Mode Debug\" ($debugMode = true). Để đến  \"Mode Normal\"  và  ẩn những thông báo gỡ rối, thay đổi $debugMode thành false ở trong config.inc.php."
+
+#: data/templates/users.tpl.php:17
+msgid "profile"
+msgstr "thông tin cá nhân"
+
+#: data/templates/users.tpl.php:17
+msgid "created in"
+msgstr "Tạo trong"
+
+#: www/admin.php:32
+msgid "Manage users"
+msgstr "Quản lí những người dùng"
+
+#: www/admin.php:68
+#, php-format
+msgid "%s and all his bookmarks and tags were deleted."
+msgstr "%s, tất cả những trang ghi nhớ và những thẻ bị xoá."
+
+#: www/admin.php:75
+msgid "Problem with "
+msgstr "Có vấn đề với "
+
+#: www/ajaxDelete.php:37
+msgid "You are not allowed to delete this bookmark"
+msgstr "Bạn đã không cho phép xoá trang ghi nhớ này"
+
+#: www/ajaxDelete.php:41
+#: www/edit.php:103
+msgid "Failed to delete bookmark"
+msgstr "Có lỗi trong việc xoá trang ghi nhớ này"
+
+#: www/alltags.php:49
+msgid "All Tags"
+msgstr "Tất cả từ khoá"
+
+#: www/alltags.php:55
+#: www/bookmarks.php:96
+#: www/populartags.php:52
+#: www/profile.php:51
+#: www/rss.php:67
+#: www/search.php:109
+#: www/watch.php:45
+#: www/watchlist.php:61
+#, php-format
+msgid "User with username %s was not found"
+msgstr "Tên đăng nhập %s đã không tìm thấy."
+
+#: www/bookmarkcommondescriptionedit.php:51
+#: www/tag2tagadd.php:37
+#: www/tag2tagdelete.php:41
+#: www/tag2tagedit.php:33
+#: www/tagcommondescriptionedit.php:43
+#: www/tagedit.php:43
+msgid "Permission denied."
+msgstr "Cho phép từ chối."
+
+#: www/bookmarkcommondescriptionedit.php:60
+msgid "Bookmark common description updated"
+msgstr "Cập nhật mô tả trang ghi nhớ."
+
+#: www/bookmarkcommondescriptionedit.php:63
+msgid "Failed to update the bookmark common description"
+msgstr "Có lỗi trong việc cập nhật mô tả trang ghi nhớ"
+
+#: www/bookmarkcommondescriptionedit.php:71
+msgid "Edit Bookmark Common Description"
+msgstr "Sửa mô tả trang ghi nhớ"
+
+#: www/bookmarks.php:111
+#: www/tags.php:47
+msgid "Remove the tag from the selection"
+msgstr "Huỷ bỏ từ khoá đã chọn"
+
+#: www/bookmarks.php:131
+#: www/edit.php:65
+msgid "Your bookmark must have a title and an address"
+msgstr "Trang ghi nhớ của bạn phải có một tiêu đề tóm tắt và một địa chỉ của trang đó."
+
+#: www/bookmarks.php:152
+#: www/edit.php:83
+#: www/edit.php:86
+msgid "Bookmark saved"
+msgstr "Lưu lại trang ghi nhớ này."
+
+#: www/bookmarks.php:152
+msgid "(Come back to previous page.)"
+msgstr "(Quay lại trang trước đó.)"
+
+#: www/bookmarks.php:159
+#: www/import.php:106
+#: www/importNetscape.php:108
+msgid "There was an error saving your bookmark. Please try again or contact the administrator."
+msgstr "Có lỗi trong việc lưu lại trang ghi nhớ này. Hãy thử lại hoặc liên lạc với người quản trị."
+
+#: www/bookmarks.php:216
+msgid "Add Bookmark"
+msgstr "Thêm một trang ghi nhớ"
+
+#: www/bookmarks.php:219
+msgid "You must be logged in before you can add bookmarks."
+msgstr "Để thêm một trang ghi nhớ bạn phải đăng nhập."
+
+#: www/bookmarks.php:274
+#: www/bookmarks.php:275
+msgid "My Bookmarks"
+msgstr "Những trang ghi nhớ của tôi"
+
+#: www/edit.php:44
+#: www/edit.php:45
+msgid "Edit Bookmark"
+msgstr "Sửa trang ghi nhớ"
+
+#: www/edit.php:51
+#, php-format
+msgid "Bookmark with id %s not was not found"
+msgstr "Trang ghi nhớ với tên %s đã không tìm thấy"
+
+#: www/edit.php:57
+msgid "You are not allowed to edit this bookmark"
+msgstr "Bạn đã không cho phép sửa trang ghi nhớ này."
+
+#: www/edit.php:77
+msgid "Error while saving your bookmark"
+msgstr "Có lỗi trong khi lưu lại trang ghi nhớ của bạn."
+
+#: www/history.php:61
+msgid "History"
+msgstr "Lưu vết quá trình"
+
+#: www/history.php:62
+#, php-format
+msgid "History for %s"
+msgstr "Lưu vết quá trình cho %s"
+
+#: www/history.php:84
+msgid "Address was not found"
+msgstr "Địa chỉ này đã không tìm thấy."
+
+#: www/import.php:47
+msgid "Could not open XML input"
+msgstr "Không thể mở dữ liệu XML."
+
+#: www/import.php:51
+#, php-format
+msgid "XML error: %s at line %d"
+msgstr "Lỗi XML: %s tại đường truyền %d"
+
+#: www/import.php:60
+msgid "Import Bookmarks from del.icio.us"
+msgstr "Nạp vào những trang ghi nhớ từ del.icio.us"
+
+#: www/import.php:93
+msgid "You have already submitted this bookmark."
+msgstr "Bạn vừa nhập trang ghi nhớ này."
+
+#: www/import.php:104
+msgid "Bookmark imported."
+msgstr "Trang ghi nhớ này đã nạp."
+
+#: www/importNetscape.php:95
+msgid "You have already submitted some of these bookmarks."
+msgstr "Bạn vừa nhập một trong số những trang ghi nhớ này."
+
+#: www/importNetscape.php:115
+msgid "Bookmarks found: "
+msgstr "Trang ghi nhớ này đã được tìm thấy :"
+
+#: www/importNetscape.php:116
+msgid "Bookmarks imported: "
+msgstr "Những trang ghi nhớ đã nạp :"
+
+#: www/importNetscape.php:117
+#: www/importNetscape.php:122
+msgid "Import Bookmarks from Browser File"
+msgstr "Nạp những trang ghi nhớ này từ một  file trong danh sách duyệt"
+
+#: www/importStructure.php:61
+msgid "Bad indentation"
+msgstr "Xác định kém"
+
+#: www/importStructure.php:67
+msgid "New links between tags: "
+msgstr "Liên kết mới giữa các từ khoá :"
+
+#: www/importStructure.php:72
+msgid "Import Structure"
+msgstr "Nạp một cấu trúc"
+
+#: www/index.php:38
+msgid "You have now logged out"
+msgstr "Bạn vừa thoátt khỏi"
+
+#: www/index.php:45
+#, php-format
+msgid "%s: Recent bookmarks"
+msgstr "%s: Những trang ghi nhớ gần đây"
+
+#: www/index.php:78
+msgid "Store, share and tag your favourite links"
+msgstr "Lưu trữ, chia xẻ và  gán từ khoá cho những liên kết yêu thích của bạn"
+
+#: www/index.php:79
+msgid "All Bookmarks"
+msgstr "Tất cả các trang ghi nhớ"
+
+#: www/jsScuttle.php:70
+msgid "Available"
+msgstr "Có giá trị"
+
+#: www/jsScuttle.php:73
+msgid "Not Available"
+msgstr "Không có giá trị"
+
+#: www/login.php:48
+msgid "The details you have entered are incorrect. Please try again."
+msgstr "Những thông tin bạn đã nhập không chính xác. Hãy thử lại."
+
+#: www/password.php:36
+msgid "You must enter your username."
+msgstr "Bạn phải nhập vào tên truy cập."
+
+#: www/password.php:40
+msgid "You must enter your <abbr title=\"electronic mail\">e-mail</abbr> address."
+msgstr "Bạn <em>phải</em> đưa ra một <abbr title=\"địa chỉ \">E-mail</abbr>."
+
+#: www/password.php:48
+msgid "No matches found for that username."
+msgstr "Không có tên truy cập này."
+
+#: www/password.php:51
+msgid "No matches found for that combination of username and <abbr title=\"electronic mail\">e-mail</abbr> address."
+msgstr "Không phù hợp giữa tên người dùng này và  <abbr title=\"địachỉ email nàyl\">e-mail</abbr>."
+
+#: www/password.php:59
+msgid "There was an error while generating your new password. Please try again."
+msgstr "Đã có lỗi trong khi nhập trang ghi nhớ này. Hãy thử lại hoặc liên lạc với người quản trị."
+
+#: www/password.php:63
+msgid "Your new password is:"
+msgstr "Mật khẩu mới của bạn là:"
+
+#: www/password.php:63
+msgid "To keep your bookmarks secure, you should change this password in your profile the next time you log in."
+msgstr "Để giữ an toàn và bảo mật cho những trang ghi nhớ của bạn, bạn nên thay đổi mật khẩu trong mô tả cá nhân cho lần đăng nhập sau."
+
+#: www/password.php:66
+#, php-format
+msgid "%s Account Information"
+msgstr "Thông tin tài khoản %s"
+
+#: www/password.php:68
+#, php-format
+msgid "New password generated and sent to %s"
+msgstr "Mật khẩu mới sẽ được gửi đến địa chỉ email  %s"
+
+#: www/password.php:75
+msgid "Forgotten Password"
+msgstr "Quên mật khẩu"
+
+#: www/profile.php:59
+#: www/watchlist.php:119
+msgid "Username was not specified"
+msgstr "Tên truy cập đã không chỉ rõ ."
+
+#: www/profile.php:65
+msgid "My Profile"
+msgstr "Hồ sơ cá nhân"
+
+#: www/profile.php:89
+msgid "Invalid Token"
+msgstr "Token không có hiệu lực"
+
+#: www/profile.php:94
+msgid "Password and confirmation do not match."
+msgstr "Mật khẩu không tương thích với tên truy cập."
+
+#: www/profile.php:98
+msgid "Password must be at least 6 characters long."
+msgstr "Mật khẩu phải chứa ít nhất 6 kí tự."
+
+#: www/profile.php:102
+msgid "E-mail address is not valid."
+msgstr "Địa chỉ email không có giá trị."
+
+#: www/profile.php:106
+msgid "An error occurred while saving your changes."
+msgstr "Có một lỗi xuất hiện trong khi lưu lại những sửa đổi của bạn."
+
+#: www/profile.php:108
+msgid "Changes saved."
+msgstr "Lưu lại những thay đổi."
+
+#: www/register.php:46
+msgid "You <em>must</em> enter a username, password and e-mail address."
+msgstr "Bạn <em>phải</em> đưa ra một tên truy cập, một mật khẩu, một <abbr title=\"điạ chỉ email\">e-mail</abbr>"
+
+#: www/register.php:50
+msgid "This username has been reserved, please make another choice."
+msgstr "Tên truy cập này đã được đăng kí, hãy chọn tên khác."
+
+#: www/register.php:54
+msgid "This username already exists, please make another choice."
+msgstr "Tên truy cập này đã tồn tại, hãy chọn một tên khác."
+
+#: www/register.php:58
+msgid "This username is not valid (too short, too long, forbidden characters...), please make another choice."
+msgstr "Tên truy cập này không được xác nhận (quá ngắn, quá dài, kí tự cấm...), hãy tạo tên khác."
+
+#: www/register.php:62
+msgid "E-mail address is not valid. Please try again."
+msgstr "Địa chỉ email không được xác nhận. Hãy thử lại."
+
+#: www/register.php:66
+msgid "Antispam answer is not valid. Please try again."
+msgstr "Câu trả lời chống thư rác không được xác nhận. hãy thử lại."
+
+#: www/register.php:75
+msgid "You have successfully registered. Enjoy!"
+msgstr "Bạn đã đăng kí thành công!"
+
+#: www/register.php:77
+msgid "Registration failed. Please try again."
+msgstr "Đăng kí thất bại. hãy thử làm lại."
+
+#: www/rss.php:84
+#, php-format
+msgid "Recent bookmarks posted to %s"
+msgstr "Những trang ghi nhớ gần đây %s"
+
+#: www/search.php:81
+#: www/search.php:145
+msgid "Search Bookmarks"
+msgstr "Tìm kiếm trang ghi nhớ"
+
+#: www/search.php:87
+msgid "Search Results"
+msgstr "Kêt quả tìm kiếm"
+
+#: www/search.php:135
+msgid "Unsatisfied? You can also try our "
+msgstr "Có phải bạn không vừa lòng? Bạn có thể thử của chúng tôi "
+
+#: www/tag2tagadd.php:50
+msgid "Tag link created"
+msgstr "Liên kết giữa các từ khoá được tạo."
+
+#: www/tag2tagadd.php:53
+msgid "Failed to create the link"
+msgstr "Không thể tạo liên kết này"
+
+#: www/tag2tagadd.php:65
+msgid "Add Tag Link"
+msgstr "Thêm một liên kết giữa các từ khoá"
+
+#: www/tag2tagdelete.php:66
+msgid "Tag link deleted"
+msgstr "Xoá một liên kết từ khoá"
+
+#: www/tag2tagdelete.php:69
+msgid "Failed to delete the link"
+msgstr "Không thể xoá liên kết này"
+
+#: www/tag2tagdelete.php:81
+msgid "Delete Link Between Tags"
+msgstr "Xoá một liên kết giữa các từ khoá"
+
+#: www/tag2tagedit.php:55
+msgid "Edit Link Between Tags"
+msgstr "Sửa một liên kết giữa các từ khoá"
+
+#: www/tagcommondescriptionedit.php:55
+msgid "Tag common description updated"
+msgstr "Sửa mô tả chung của từ khoá"
+
+#: www/tagcommondescriptionedit.php:58
+msgid "Failed to update the tag common description"
+msgstr "Không thể cập nhật mô tả chung của từ khoá"
+
+#: www/tagdelete.php:43
+msgid "Tag deleted"
+msgstr "Từ khoá đã được xoá"
+
+#: www/tagdelete.php:46
+msgid "Failed to delete the tag"
+msgstr "Không thể xoá từ khoá này"
+
+#: www/tagedit.php:52
+msgid "Tag description updated"
+msgstr "Mô tả của từ khoá đã được cập nhật"
+
+#: www/tagedit.php:55
+msgid "Failed to update the tag description"
+msgstr "Không thể cập nhật mô tả của từ khoá"
+
+#: www/tagrename.php:63
+msgid "Tag renamed"
+msgstr "Từ khoá đã được đổi tên"
+
+#: www/tagrename.php:66
+msgid "Failed to rename the tag"
+msgstr "Lỗi trong việc đổi tên từ khoá"
+
+#: www/users.php:31
+msgid "Users"
+msgstr "Những người tham gia"
+
+#: www/watch.php:54
+msgid "User removed from your watchlist"
+msgstr "Tên truy cập đã dời khỏi danh sách liên lạc của bạn"
+
+#: www/watch.php:56
+msgid "User added to your watchlist"
+msgstr "Tên truy cập đã được thêm vào danh sách liên lạc của bạn"
+
+#: www/watchlist.php:104
+msgid "My Watchlist"
+msgstr "Danh sách liên lạc của tôi"
+
+#: www/api/httpauth.inc.php:11
+msgid "Use of the API calls requires authentication."
+msgstr "Sử dụng API để gọi yêu cầu chính thức."
+
+#: www/gsearch/index.php:27
+msgid "Come back to "
+msgstr "Quay lại"
+
+#: www/gsearch/index.php:32
+msgid "Admin tips: "
+msgstr "Lời khuyên của quản trị:"
+
+#: www/gsearch/index.php:33
+msgid "To refresh manually Google Custom Search Engine, goes to: "
+msgstr "Để khởi động lại điều khiển bằng tay của máy tìm kiếm Google, hãy đến :"
+
+#: www/gsearch/index.php:35
+msgid "If no result appears, check that all the urls are valid in the admin section."
+msgstr "Nếu không có kết quả nào xuất hiệnt, hãy kiểm tra lại tất cả các đường link được xác nhận trong phần quản lí."
+
+#~ msgid "Add this tag to the query"
+#~ msgstr "Ajouter ce tag à la requête"
+#~ msgid "Last Users"
+#~ msgstr "Derniers utilisateurs"
+
+#, fuzzy
+#~ msgid "Watched by"
+#~ msgstr "Consultés"
+#~ msgid "URL"
+#~ msgstr "URL"
+#~ msgid "for"
+#~ msgstr "pour"
+#~ msgid "Recent Bookmarks"
+#~ msgstr "Signets récents"
+#~ msgid "plus"
+#~ msgstr "plus"
+#~ msgid ""
+#~ "<strong><a href=\"register.php\">Register now</a></strong> to start using "
+#~ "%s!"
+#~ msgstr ""
+#~ "<a href=\"register.php\">Enregistrez-vous maintenant</a> pour poster vos "
+#~ "propres signets sur %s !"
+#~ msgid ""
+#~ "<a href=\"http://sourceforge.net/projects/semanticscuttle/\">Semantic "
+#~ "Scuttle</a> is licensed under the <a href=\"http://www.gnu.org/copyleft/"
+#~ "gpl.html\"><acronym title=\"GNU's Not Unix\">GNU</acronym> General Public "
+#~ "License</a> (you can host it on your own web server)."
+#~ msgstr ""
+#~ "<a href=\"http://sourceforge.net/projects/semanticscuttle/\">Semantic "
+#~ "Scuttle</a>, sous license <a href=\"http://www.gnu.org/copyleft/gpl.html"
+#~ "\"><acronym title=\"GNU's Not Unix\">GNU</acronym> General Public "
+#~ "License</a> (vous pouvez donc l'héberger sur votre propre serveur)."
+#~ msgid "edit"
+#~ msgstr "éditer"
+#~ msgid "User with username %s not was not found"
+#~ msgstr "L'utilisateur %s n'a pas été trouvé."
+#~ msgid "%s Bookmarks"
+#~ msgstr "Signets de %s"
+#~ msgid "<abbr title=\"Electronic mail\">E-mail</abbr>"
+#~ msgstr "<abbr title=\"Adresse électronique\">E-mail</abbr>"
+
