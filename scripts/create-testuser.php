@@ -9,4 +9,5 @@ require_once dirname(__FILE__) . '/../src/SemanticScuttle/header.php';
 
 $us = SemanticScuttle_Service_Factory::get('User');
 $us->addUser('test', 'test', 'test@example.org');
+$us->addUser('admin', 'admin', 'admin@example.org');
 ?>
