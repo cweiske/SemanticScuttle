@@ -52,26 +52,46 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
 
 
-    function _getbookmark($fieldname, $value, $all = false)
+    /**
+     * Retrieves the first bookmark whose $fieldname equals
+     * the given $value.
+     *
+     * @param string  $fieldname Name of database field
+     * @param mixed   $value     Desired value of $fieldname
+     * @param boolean $all       Retrieve from all users (true)
+     *                           or only bookmarks owned by the current
+     *                           user (false)
+     *
+     * @return mixed Database row array when found, boolean false
+     *               when no bookmark matched.
+     */
+    protected function _getbookmark($fieldname, $value, $all = false)
     {
         if (!$all) {
-            $userservice = SemanticScuttle_Service_Factory :: get('User');
-            $sId = $userservice->getCurrentUserId();
-            $range = ' AND uId = '. $sId;
+            $userservice = SemanticScuttle_Service_Factory::get('User');
+            $uId   = $userservice->getCurrentUserId();
+            $range = ' AND uId = '. $uId;
         } else {
             $range = '';
         }
 
-        $query = 'SELECT * FROM '. $this->getTableName() .' WHERE '. $fieldname .' = "'. $this->db->sql_escape($value) .'"'. $range;
+        $query = 'SELECT * FROM '. $this->getTableName()
+            . ' WHERE ' . $fieldname . ' ='
+            . ' "' . $this->db->sql_escape($value) .'"'
+            . $range;
 
         if (!($dbresult = & $this->db->sql_query_limit($query, 1, 0))) {
-            message_die(GENERAL_ERROR, 'Could not get bookmark', '', __LINE__, __FILE__, $query, $this->db);
+            message_die(
+                GENERAL_ERROR,
+                'Could not get bookmark', '', __LINE__, __FILE__,
+                $query, $this->db
+            );
         }
 
-        if ($row =& $this->db->sql_fetchrow($dbresult)) {
+        if ($row = $this->db->sql_fetchrow($dbresult)) {
             $output = $row;
         } else {
-            $output =  false;
+            $output = false;
         }
         $this->db->sql_freeresult($dbresult);
         return $output;
@@ -125,7 +145,9 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         if ($row = $this->db->sql_fetchrow($dbresult)) {
             if ($include_tags) {
-                $b2tservice = SemanticScuttle_Service_Factory::get('Bookmark2Tag');
+                $b2tservice = SemanticScuttle_Service_Factory::get(
+                    'Bookmark2Tag'
+                );
                 $row['tags'] = $b2tservice->getTagsForBookmark($bid);
             }
             $output = $row;
@@ -138,7 +160,19 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
 
 
-    function getBookmarkByAddress($address)
+    /**
+     * Retrieves a bookmark with the given URL.
+     * DOES NOT RESPECT PRIVACY SETTINGS!
+     *
+     * @param string $hash URL
+     *
+     * @return mixed Array with bookmark data or false in case
+     *               of an error (i.e. not found).
+     *
+     * @uses getBookmarkByHash()
+     * @see  getBookmarkByShortname()
+     */
+    public function getBookmarkByAddress($address)
     {
         $hash = md5($address);
         return $this->getBookmarkByHash($hash);
@@ -146,9 +180,34 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
 
 
-    function getBookmarkByHash($hash)
+    /**
+     * Retrieves a bookmark with the given hash.
+     * DOES NOT RESPECT PRIVACY SETTINGS!
+     *
+     * @param string $hash URL hash (MD5)
+     *
+     * @return mixed Array with bookmark data or false in case
+     *               of an error (i.e. not found).
+     */
+    public function getBookmarkByHash($hash)
     {
         return $this->_getbookmark('bHash', $hash, true);
+    }
+
+
+
+    /**
+     * Retrieves a bookmark that has a given short
+     * name.
+     *
+     * @param string $short Short URL name
+     *
+     * @return mixed Array with bookmark data or false in case
+     *               of an error (i.e. not found).
+     */
+    public function getBookmarkByShortname($short)
+    {
+        return $this->_getbookmark('bShort', $short, true);
     }
 
 
