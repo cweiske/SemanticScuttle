@@ -79,34 +79,39 @@ $tplVars['feedtitle'] = filter($GLOBALS['sitename'] . (isset($pagetitle) ? $page
 $tplVars['feedlink'] = ROOT;
 $tplVars['feeddescription'] = sprintf(T_('Recent bookmarks posted to %s'), $GLOBALS['sitename']);
 
-$bookmarks =& $bookmarkservice->getBookmarks(0, 15, $userid, $cat, null, getSortOrder(), $watchlist);
+$bookmarks = $bookmarkservice->getBookmarks(
+    0, 15, $userid, $cat,
+    null, getSortOrder(), $watchlist
+);
 
-$bookmarks_tmp =& filter($bookmarks['bookmarks']);
+$bookmarks_tmp = filter($bookmarks['bookmarks']);
 
 $bookmarks_tpl = array();
-foreach (array_keys($bookmarks_tmp) as $key) {
-    $row =& $bookmarks_tmp[$key];
-
+$latestdate    = null;
+foreach ($bookmarks_tmp as $key => $row) {
     $_link = $row['bAddress'];
     // Redirection option
     if ($GLOBALS['useredir']) {
         $_link = $GLOBALS['url_redir'] . $_link;
     }
-    $_pubdate = gmdate("r", strtotime($row['bDatetime']));
-    // array_walk($row['tags'], 'filter');
+    if ($row['bDatetime'] > $latestdate) {
+        $latestdate = $row['bDatetime'];
+    }
+    $_pubdate = gmdate('r', strtotime($row['bDatetime']));
 
     $bookmarks_tpl[] = array(
-        'title' => $row['bTitle'],
-        'link'  => $_link,
+        'title'       => $row['bTitle'],
+        'link'        => $_link,
         'description' => $row['bDescription'],
-        'creator' => $row['username'],
-        'pubdate' => $_pubdate,
-        'tags' => $row['tags']
+        'creator'     => $row['username'],
+        'pubdate'     => $_pubdate,
+        'tags'        => $row['tags']
     );
 }
 unset($bookmarks_tmp);
 unset($bookmarks);
-$tplVars['bookmarks'] =& $bookmarks_tpl;
+$tplVars['bookmarks']      = $bookmarks_tpl;
+$tplVars['feedlastupdate'] = date('r', strtotime($latestdate));
 
 $templateservice->loadTemplate('rss.tpl', $tplVars);
 
