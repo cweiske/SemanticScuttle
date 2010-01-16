@@ -390,12 +390,28 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
 
 
 
-    function login($username, $password, $remember = FALSE) {
+    /**
+     * Try to authenticate and login a user with
+     * username and password.
+     *
+     * @param string  $username Name of user
+     * @param string  $password Password
+     * @param boolean $remember If a long-time cookie shall be set
+     *
+     * @return boolean True if the user could be authenticated,
+     *                 false if not.
+     */
+    public function login($username, $password, $remember = false)
+    {
         $password = $this->sanitisePassword($password);
         $query = 'SELECT '. $this->getFieldName('primary') .' FROM '. $this->getTableName() .' WHERE '. $this->getFieldName('username') .' = "'. $this->db->sql_escape($username) .'" AND '. $this->getFieldName('password') .' = "'. $this->db->sql_escape($password) .'"';
 
-        if (! ($dbresult =& $this->db->sql_query($query)) ) {
-            message_die(GENERAL_ERROR, 'Could not get user', '', __LINE__, __FILE__, $query, $this->db);
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR,
+                'Could not get user',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
             return false;
         }
 
@@ -403,10 +419,14 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         $this->db->sql_freeresult($dbresult);
 
         if ($row) {
-            $id = $_SESSION[$this->getSessionKey()] = $row[$this->getFieldName('primary')];
+            $id = $_SESSION[$this->getSessionKey()]
+                = $row[$this->getFieldName('primary')];
             if ($remember) {
                 $cookie = $id .':'. md5($username.$password);
-                setcookie($this->cookiekey, $cookie, time() + $this->cookietime, '/');
+                setcookie(
+                    $this->cookiekey, $cookie,
+                    time() + $this->cookietime, '/'
+                );
             }
             return true;
         } else {
