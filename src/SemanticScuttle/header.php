@@ -1,6 +1,21 @@
 <?php
+/**
+ * Base file that every other file in www/ should include.
+ *
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
 if (!file_exists(dirname(__FILE__) .'/../../data/config.php')) {
-	die('Please copy "config.php.dist" to "config.php" in data/ folder.');
+    die('Please copy "config.php.dist" to "config.php" in data/ folder.');
 }
 set_include_path(
     get_include_path() . PATH_SEPARATOR
@@ -26,13 +41,13 @@ require_once 'SemanticScuttle/constants.php';
 
 // Debug Management using constants
 if (DEBUG_MODE) {
-	ini_set('display_errors', '1');
-	ini_set('mysql.trace_mode', '1');
-	error_reporting(E_ALL);
+    ini_set('display_errors', '1');
+    ini_set('mysql.trace_mode', '1');
+    error_reporting(E_ALL);
 } else {
-	ini_set('display_errors', '0');
-	ini_set('mysql.trace_mode', '0');
-	error_reporting(0);
+    ini_set('display_errors', '0');
+    ini_set('mysql.trace_mode', '0');
+    error_reporting(0);
 }
 
 // 2 // Second requirements part which could display bugs
