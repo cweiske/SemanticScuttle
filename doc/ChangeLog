@@ -9,6 +9,8 @@ ChangeLog for SemantiScuttle
   - Fix HTTP content type header for RSS
   - Add config option to allow sorting by bookmark creation date
     instead of modification date
+- Fix bug #2887063: Common tag combination description feels broken
+
 
 0.95.1 - 2009-11-16
 -------------------

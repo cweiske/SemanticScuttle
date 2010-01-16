@@ -49,6 +49,8 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
     }
 
     function addTagDescription($tag, $desc, $uId, $time) {
+        $tag = self::getSortedTag($tag);
+
         // Check if no modification
         $lastDesc = $this->getLastTagDescription($tag);
         if($lastDesc['cdDescription'] == $desc) {
@@ -70,6 +72,8 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
     }
 
     function getLastTagDescription($tag) {
+        $tag = self::getSortedTag($tag);
+
         $query = "SELECT *";
         $query.= " FROM `". $this->getTableName() ."`";
         $query.= " WHERE tag='".$tag."'";
@@ -198,6 +202,27 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
     function deleteAll() {
         $query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';
         $this->db->sql_query($query);
+    }
+
+
+
+    /**
+     * Sorts a tag combination.
+     *
+     * Multiple tags are separated by "+" signs. Semantically,
+     * tag combinations like "blue+flower" and "flower+blue" are identical.
+     * This method sorts the single tags so i.e. the common bookmark description
+     * of "blue+flower" is also shown for "flower+blue".
+     *
+     * @param string $tag Single tag or tag combination ("+")
+     *
+     * @return string Sorted tag combination
+     */
+    protected static function getSortedTag($tag)
+    {
+        $tags = explode('+', $tag);
+        sort($tags);
+        return implode('+', $tags);
     }
 
 }
