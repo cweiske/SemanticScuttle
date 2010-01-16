@@ -2,6 +2,11 @@
 /**
  * SemanticScuttle - your social bookmark manager.
  *
+ * Short URL redirection service.
+ * Just call http://example.org/go/shortname
+ * to get redirected to it. Helpful to get static URLs for
+ * moving targets.
+ *
  * PHP version 5.
  *
  * @category Bookmarking
