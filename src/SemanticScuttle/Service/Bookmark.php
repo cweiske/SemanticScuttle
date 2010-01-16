@@ -693,7 +693,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         switch($sortOrder) {
         case 'date_asc':
-            $query_5 .= ' ORDER BY B.bModified ASC ';
+            $query_5 .= ' ORDER BY B.' . $GLOBALS['dateOrderField'] . ' ASC ';
             break;
         case 'title_desc':
             $query_5 .= ' ORDER BY B.bTitle DESC ';
@@ -714,7 +714,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             $query_5 .= ' ORDER BY B.bAddress ASC ';
             break;
         default:
-            $query_5 .= ' ORDER BY B.bModified DESC ';
+            $query_5 .= ' ORDER BY B.' . $GLOBALS['dateOrderField'] . ' DESC ';
         }
 
         // Handle the parts of the query that depend on any tags that are present.

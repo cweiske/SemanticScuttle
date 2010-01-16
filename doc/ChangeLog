@@ -7,6 +7,8 @@ ChangeLog for SemantiScuttle
 - Implement part of request #2928950:
   - User adjustable entry count: rss.php?count=20
   - Fix HTTP content type header for RSS
+  - Add config option to allow sorting by bookmark creation date
+    instead of modification date
 
 0.95.1 - 2009-11-16
 -------------------

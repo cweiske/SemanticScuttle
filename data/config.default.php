@@ -379,6 +379,16 @@ $defaultRecentDays = 14;
 $defaultOrderBy = 'date_desc';
 
 /**
+ * Database field to use when sorting by date.
+ * Options here are 'bModified' to sort after
+ * modification date, and 'bDatetime' to sort
+ * after creation date
+ *
+ * @var string
+ */
+$dateOrderField = 'bModified';
+
+/**
  * Number of entries that are shown in
  * the RSS feed by default.
  *
