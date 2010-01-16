@@ -70,7 +70,7 @@ if (POST_CONFIRM) {
 } else {
     $tplVars['subtitle']    = T_('Edit Tag Common Description') .': '. $tag;
     $tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $tag;
-    $tplVars['referrer']    = $_SERVER['HTTP_REFERER'];
+    $tplVars['referrer']    = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
     $tplVars['tag']         = $tag;
     $tplVars['description'] = $cdservice->getLastTagDescription($tag);
 }
