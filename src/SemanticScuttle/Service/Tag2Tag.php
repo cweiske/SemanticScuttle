@@ -127,19 +127,19 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
         $query.= " FROM `". $this->getTableName() ."`";
         $query.= " WHERE 1=1";
         if($tag !=null) {
-            $query.= " AND ". $givenTag ." = '". $tag ."'";
+            $query.= " AND ". $givenTag ." = '". $this->db->sql_escape($tag) ."'";
         }
         if($relationType) {
-            $query.= " AND relationType = '". $relationType ."'";
+            $query.= " AND relationType = '". $this->db->sql_escape($relationType) ."'";
         }
         if(is_array($uId)) {
             $query.= " AND ( 1=0 "; //tricks always false
             foreach($uId as $u) {
-                $query.= " OR uId = '".$u."'";
+                $query.= " OR uId = '".intval($u)."'";
             }
             $query.= " ) ";
         } elseif($uId != null) {
-            $query.= " AND uId = '".$uId."'";
+            $query.= " AND uId = '".intval($uId)."'";
         }
         //die($query);
         if (! ($dbresult =& $this->db->sql_query($query)) ){
@@ -241,44 +241,44 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
         }
         $query.= " WHERE tts.tag1 <> ALL";
         $query.= " (SELECT DISTINCT tag2 FROM `". $this->getTableName() ."`";
-        $query.= " WHERE relationType = '".$relationType."'";
+        $query.= " WHERE relationType = '" . $this->db->sql_escape($relationType) . "'";
         if($uId > 0) {
-            $query.= " AND uId = '".$uId."'";
+            $query.= " AND uId = '".intval($uId)."'";
         }
         $query.= ")";
         if($uId > 0) {
-            $query.= " AND tts.uId = '".$uId."'";
+            $query.= " AND tts.uId = '".intval($uId)."'";
         }
 
         switch($orderBy) {
       case "nb":
           $query.= " AND tts.tag1 = tsts.tag1";
-          $query.= " AND tsts.relationType = '".$relationType."'";
+          $query.= " AND tsts.relationType = '" . $this->db->sql_escape($relationType) . "'";
           if($uId > 0) {
-              $query.= " AND tsts.uId = ".$uId;
+              $query.= " AND tsts.uId = " . intval($uId);
           }
           $query.= " ORDER BY tsts.nb DESC";
           break;
       case "depth": // by nb of descendants
           $query.= " AND tts.tag1 = tsts.tag1";
-          $query.= " AND tsts.relationType = '".$relationType."'";
+          $query.= " AND tsts.relationType = '" . $this->db->sql_escape($relationType) . "'";
           if($uId > 0) {
-              $query.= " AND tsts.uId = ".$uId;
+              $query.= " AND tsts.uId = " . intval($uId);
           }
           $query.= " ORDER BY tsts.depth DESC";
           break;
       case "nbupdate":
           $query.= " AND tts.tag1 = tsts.tag1";
-          $query.= " AND tsts.relationType = '".$relationType."'";
+          $query.= " AND tsts.relationType = '" . $this->db->sql_escape($relationType) . "'";
           if($uId > 0) {
-              $query.= " AND tsts.uId = ".$uId;
+              $query.= " AND tsts.uId = " . intval($uId);
           }
           $query.= " ORDER BY tsts.nbupdate DESC";
           break;
         }
 
         if($limit != null) {
-            $query.= " LIMIT 0,".$limit;
+            $query.= " LIMIT 0," . intval($limit);
         }
 
         if (! ($dbresult =& $this->db->sql_query($query)) ){
@@ -297,14 +297,14 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
             // we don't use the getAllLinkedTags function in order to improve performance
             $query = "SELECT tag2 as 'tag', COUNT(tag2) as 'count'";
             $query.= " FROM `". $this->getTableName() ."`";
-            $query.= " WHERE tag1 = '".$GLOBALS['menuTag']."'";
+            $query.= " WHERE tag1 = '" . $this->db->sql_escape($GLOBALS['menuTag']) . "'";
             $query.= " AND relationType = '>'";
             if($uId > 0) {
-                $query.= " AND uId = '".$uId."'";
+                $query.= " AND uId = " . intval($uId);
             }
             $query.= " GROUP BY tag2";
             $query.= " ORDER BY count DESC";
-            $query.= " LIMIT 0, ".$GLOBALS['maxSizeMenuBlock'];
+            $query.= " LIMIT 0, " . intval($GLOBALS['maxSizeMenuBlock']);
 
             if (! ($dbresult =& $this->db->sql_query($query)) ){
                 message_die(GENERAL_ERROR, 'Could not get linked tags', '', __LINE__, __FILE__, $query, $this->db);
@@ -323,10 +323,10 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
         //$tag2 = mysql_real_escape_string($tag2);
 
         $query = "SELECT tag1, tag2, relationType, uId FROM `". $this->getTableName() ."`";
-        $query.= " WHERE tag1 = '" .$tag1 ."'";
-        $query.= " AND tag2 = '".$tag2."'";
-        $query.= " AND relationType = '". $relationType ."'";
-        $query.= " AND uId = '".$uId."'";
+        $query.= " WHERE tag1 = '" . $this->db->sql_escape($tag1) . "'";
+        $query.= " AND tag2 = '" . $this->db->sql_escape($tag2) . "'";
+        $query.= " AND relationType = '" . $this->db->sql_escape($relationType) . "'";
+        $query.= " AND uId = " . intval($uId);
 
         //echo($query."<br>\n");
 
@@ -340,7 +340,7 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
         $query = "SELECT tag1, tag2, relationType, uId FROM `". $this->getTableName() ."`";
         $query.= " WHERE 1=1";
         if($uId > 0) {
-            $query.= " AND uId = '".$uId."'";
+            $query.= " AND uId = " . intval($uId);
         }
 
         $dbres = $this->db->sql_query($query);
@@ -357,10 +357,10 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
         }
         $query = 'DELETE FROM '. $this->getTableName();
         $query.= ' WHERE 1=1';
-        $query.= strlen($tag1)>0 ? ' AND tag1 = "'. $tag1 .'"' : '';
-        $query.= strlen($tag2)>0 ? ' AND tag2 = "'. $tag2 .'"' : '';
-        $query.= strlen($relationType)>0 ? ' AND relationType = "'. $relationType .'"' : '';
-        $query.= strlen($uId)>0 ? ' AND uId = "'. $uId .'"' : '';
+        $query.= strlen($tag1)>0 ? ' AND tag1 = \''. $this->db->sql_escape($tag1) . "'" : '';
+        $query.= strlen($tag2)>0 ? ' AND tag2 = \''. $this->db->sql_escape($tag2) . "'" : '';
+        $query.= strlen($relationType)>0 ? ' AND relationType = \''. $this->db->sql_escape($relationType) . "'" : '';
+        $query.= strlen($uId)>0 ? ' AND uId = '. intval($uId) : '';
 
         if (!($dbresult =& $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not remove tag relation', '', __LINE__, __FILE__, $query, $this->db);
@@ -377,7 +377,7 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
 
     function removeLinkedTagsForUser($uId) {
         $query = 'DELETE FROM '. $this->getTableName();
-        $query.= ' WHERE uId = "'. $uId .'"';
+        $query.= ' WHERE uId = '. intval($uId);
 
         if (!($dbresult =& $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not remove tag relation', '', __LINE__, __FILE__, $query, $this->db);
@@ -397,15 +397,15 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
         $newName = $tagservice->normalize($newName);
 
         $query = 'UPDATE `'. $this->getTableName() .'`';
-        $query.= ' SET tag1="'.$newName.'"';
-        $query.= ' WHERE tag1="'.$oldName.'"';
-        $query.= ' AND uId="'.$uId.'"';
+        $query.= ' SET tag1=\'' . $this->db->sql_escape($newName) ."'";
+        $query.= ' WHERE tag1=\'' . $this->db->sql_escape($oldName) . "'";
+        $query.= ' AND uId=' . intval($uId);
         $this->db->sql_query($query);
 
         $query = 'UPDATE `'. $this->getTableName() .'`';
-        $query.= ' SET tag2="'.$newName.'"';
-        $query.= ' WHERE tag2="'.$oldName.'"';
-        $query.= ' AND uId="'.$uId.'"';
+        $query.= ' SET tag2=\'' . $this->db->sql_escape($newName) . "'";
+        $query.= ' WHERE tag2=\'' . $this->db->sql_escape($oldName) . "'";
+        $query.= ' AND uId=' . intval($uId);
         $this->db->sql_query($query);
 
 

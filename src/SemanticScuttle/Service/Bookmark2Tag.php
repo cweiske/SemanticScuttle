@@ -380,7 +380,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
             $privacy = ' AND B.bStatus = 0 ';
         }
 
-        $query = 'SELECT T.tag, COUNT(T.tag) AS bCount FROM '.$GLOBALS['tableprefix'].'bookmarks AS B LEFT JOIN '.$GLOBALS['tableprefix'].'bookmarks2tags AS T ON B.bId = T.bId WHERE B.bHash = "'. $hash .'" '. $privacy .'AND LEFT(T.tag, 7) <> "system:" GROUP BY T.tag ORDER BY bCount DESC';
+        $query = 'SELECT T.tag, COUNT(T.tag) AS bCount FROM '.$GLOBALS['tableprefix'].'bookmarks AS B LEFT JOIN '.$GLOBALS['tableprefix'].'bookmarks2tags AS T ON B.bId = T.bId WHERE B.bHash = \''. $this->db->sql_escape($hash) .'\' '. $privacy .'AND LEFT(T.tag, 7) <> "system:" GROUP BY T.tag ORDER BY bCount DESC';
 
         if (!($dbresult =& $this->db->sql_query_limit($query, $limit))) {
             message_die(GENERAL_ERROR, 'Could not get related tags for this hash', '', __LINE__, __FILE__, $query, $this->db);

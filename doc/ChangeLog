@@ -10,6 +10,7 @@ ChangeLog for SemantiScuttle
   - Add config option to allow sorting by bookmark creation date
     instead of modification date
 - Fix bug #2887063: Common tag combination description feels broken
+- Fix several SQL injection possibilities
 
 
 0.95.1 - 2009-11-16

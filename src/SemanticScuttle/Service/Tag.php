@@ -51,8 +51,8 @@ class SemanticScuttle_Service_Tag extends SemanticScuttle_DbService
     function getDescription($tag, $uId) {
         $query = 'SELECT tag, uId, tDescription';
         $query.= ' FROM '.$this->getTableName();
-        $query.= ' WHERE tag = "'.$tag.'"';
-        $query.= ' AND uId = "'.$uId.'"';
+        $query.= ' WHERE tag = \''. $this->db->sql_escape($tag) . "'";
+        $query.= ' AND uId = ' . intval($uId);
 
         if (!($dbresult = & $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not get tag description', '', __LINE__, __FILE__, $query, $this->db);
@@ -71,8 +71,8 @@ class SemanticScuttle_Service_Tag extends SemanticScuttle_DbService
     function existsDescription($tag, $uId) {
             $query = 'SELECT tag, uId, tDescription';
         $query.= ' FROM '.$this->getTableName();
-        $query.= ' WHERE tag = "'.$tag.'"';
-        $query.= ' AND uId = "'.$uId.'"';
+        $query.= ' WHERE tag = \'' . $this->db->sql_escape($tag) . "'";
+        $query.= ' AND uId = "' . intval($uId) . '"';
 
         if (!($dbresult = & $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not get tag description', '', __LINE__, __FILE__, $query, $this->db);
@@ -91,7 +91,7 @@ class SemanticScuttle_Service_Tag extends SemanticScuttle_DbService
     function getAllDescriptions($tag) {
         $query = 'SELECT tag, uId, tDescription';
         $query.= ' FROM '.$this->getTableName();
-        $query.= ' WHERE tag = "'.$tag.'"';
+        $query.= ' WHERE tag = \''. $this->db->sql_escape($tag) . "'";
 
         if (!($dbresult = & $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not get tag description', '', __LINE__, __FILE__, $query, $this->db);
@@ -106,8 +106,8 @@ class SemanticScuttle_Service_Tag extends SemanticScuttle_DbService
     function updateDescription($tag, $uId, $desc) {
         if($this->existsDescription($tag, $uId)) {
             $query = 'UPDATE '.$this->getTableName();
-            $query.= ' SET tDescription="'.$this->db->sql_escape($desc).'"';
-            $query.= ' WHERE tag="'.$tag.'" AND uId="'.$uId.'"';
+            $query.= ' SET tDescription= \'' . $this->db->sql_escape($desc) . "'";
+            $query.= ' WHERE tag=\'' . $this->db->sql_escape($tag) . "' AND uId=" . intval($uId);
         } else {
             $values = array('tag'=>$tag, 'uId'=>$uId, 'tDescription'=>$desc);
             $query = 'INSERT INTO '. $this->getTableName() .' '. $this->db->sql_build_array('INSERT', $values);
@@ -127,9 +127,9 @@ class SemanticScuttle_Service_Tag extends SemanticScuttle_DbService
         $newname = $this->normalize($newName);
 
         $query = 'UPDATE `'. $this->getTableName() .'`';
-        $query.= ' SET tag="'.$newName.'"';
-        $query.= ' WHERE tag="'.$oldName.'"';
-        $query.= ' AND uId="'.$uId.'"';
+        $query.= ' SET tag=\'' . $this->db->sql_escape($newName) . "'";
+        $query.= ' WHERE tag=\'' . $this->db->sql_escape($oldName) . "'";
+        $query.= ' AND uId=' . intval($uId);
         $this->db->sql_query($query);
         return true;
     }

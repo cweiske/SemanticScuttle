@@ -68,8 +68,8 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
         $query = "SELECT DISTINCT tag2 as 'tag'";
         $query.= " FROM `". $this->getTableName() ."`";
         $query.= " WHERE relationType = '>'";
-        $query.= " AND tag1 = '".$tag1."'";
-        $query.= " AND uId = '".$uId."'";
+        $query.= " AND tag1 = '" . $this->db->sql_escape($tag1) . "'";
+        $query.= " AND uId = " . intval($uId);
 
         //die($query);
         if (! ($dbresult =& $this->db->sql_query($query)) ){
@@ -117,10 +117,10 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
 
         $query = 'DELETE FROM '. $this->getTableName();
         $query.= ' WHERE 1=1';
-        $query.= strlen($tag1)>0 ? ' AND tag1 = "'. $tag1 .'"' : '';
-        $query.= strlen($tag2)>0 ? ' AND tag2 = "'. $tag2 .'"' : '';
+        $query.= strlen($tag1)>0 ? ' AND tag1 = \''. $this->db->sql_escape($tag1) . "'" : '';
+        $query.= strlen($tag2)>0 ? ' AND tag2 = \''. $this->db->sql_escape($tag2) . "'" : '';
         $query.= ' AND relationType = ">"';
-        $query.= strlen($uId)>0 ? ' AND uId = "'. $uId .'"' : '';
+        $query.= strlen($uId)>0 ? ' AND uId = ' . intval($uId) : '';
 
         if (!($dbresult =& $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not remove tag cache inference', '', __LINE__, __FILE__, $query, $this->db);
@@ -138,10 +138,10 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
         $tag2 = $tagservice->normalize($tag2);
 
         $query = "SELECT tag1, tag2, relationType, uId FROM `". $this->getTableName() ."`";
-        $query.= " WHERE tag1 = '" .$tag1 ."'";
-        $query.= " AND tag2 = '".$tag2."'";
+        $query.= " WHERE tag1 = '" . $this->db->sql_escape($tag1) . "'";
+        $query.= " AND tag2 = '" . $this->db->sql_escape($tag2) . "'";
         $query.= " AND relationType = '>'";
-        $query.= " AND uId = '".$uId."'";
+        $query.= " AND uId = " . intval($uId);
 
         //echo($query."<br>\n");
 
@@ -228,9 +228,9 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
     function removeSynonymGroup($tag1, $uId) {
         $query = 'DELETE FROM '. $this->getTableName();
         $query.= ' WHERE 1=1';
-        $query.= ' AND tag1 = "'. $tag1 .'"';
+        $query.= ' AND tag1 = \''. $this->db->sql_escape($tag1) . "'";
         $query.= ' AND relationType = "="';
-        $query.= ' AND uId = "'. $uId .'"';
+        $query.= ' AND uId = ' . intval($uId);
 
         if (!($dbresult =& $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not remove tag cache inference', '', __LINE__, __FILE__, $query, $this->db);
@@ -243,9 +243,9 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
         $tag1 = $tagservice->normalize($tag1);
 
         $query = "SELECT tag1 FROM `". $this->getTableName() ."`";
-        $query.= " WHERE tag1 = '" .$tag1 ."'";
+        $query.= " WHERE tag1 = '" . $this->db->sql_escape($tag1) ."'";
         $query.= " AND relationType = '='";
-        $query.= " AND uId = '".$uId."'";
+        $query.= " AND uId = " . intval($uId);
 
         $dbres = $this->db->sql_query($query);
         $rows = $this->db->sql_numrows($dbres);
@@ -258,9 +258,9 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
         $tag2 = $tagservice->normalize($tag2);
 
         $query = "SELECT tag2 FROM `". $this->getTableName() ."`";
-        $query.= " WHERE tag2 = '" .$tag2 ."'";
+        $query.= " WHERE tag2 = '" . $this->db->sql_escape($tag2) . "'";
         $query.= " AND relationType = '='";
-        $query.= " AND uId = '".$uId."'";
+        $query.= " AND uId = " . intval($uId);
 
         $dbres = $this->db->sql_query($query);
         $rows = $this->db->sql_numrows($dbres);
@@ -291,8 +291,8 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
         $query = "SELECT DISTINCT tag1 as 'tag'";
         $query.= " FROM `". $this->getTableName() ."`";
         $query.= " WHERE relationType = '='";
-        $query.= " AND tag2 = '".$tag2."'";
-        $query.= " AND uId = '".$uId."'";
+        $query.= " AND tag2 = '" . $this->db->sql_escape($tag2) . "'";
+        $query.= " AND uId = " . intval($uId);
 
         //die($query);
         if (! ($dbresult =& $this->db->sql_query($query)) ){
@@ -319,9 +319,9 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
         $query = "SELECT DISTINCT tag2 as 'tag'";
         $query.= " FROM `". $this->getTableName() ."`";
         $query.= " WHERE relationType = '='";
-        $query.= " AND tag1 = '".$tag1."'";
-        $query.= " AND uId = '".$uId."'";
-        $query.= $tagExcepted!=''?" AND tag2!='".$tagExcepted."'":"";
+        $query.= " AND tag1 = '" . $this->db->sql_escape($tag1) . "'";
+        $query.= " AND uId = " . intval($uId);
+        $query.= $tagExcepted!=''?" AND tag2!='" . $this->db->sql_escape($tagExcepted) . "'" : '';
 
         if (! ($dbresult =& $this->db->sql_query($query)) ){
             message_die(GENERAL_ERROR, 'Could not get related tags', '', __LINE__, __FILE__, $query, $this->db);

@@ -76,7 +76,7 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
 
         $query = "SELECT *";
         $query.= " FROM `". $this->getTableName() ."`";
-        $query.= " WHERE tag='".$tag."'";
+        $query.= ' WHERE tag=\'' . $this->db->sql_escape($tag) . "'";
         $query.= " ORDER BY cdDatetime DESC";
 
         if (!($dbresult = & $this->db->sql_query_limit($query, 1, 0))) {
@@ -96,7 +96,7 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
     function getAllTagsDescription($tag) {
         $query = "SELECT *";
         $query.= " FROM `". $this->getTableName() ."`";
-        $query.= " WHERE tag='".$tag."'";
+        $query.= ' WHERE tag=\'' . $this->db->sql_escape($tag) . "'";
         $query.= " ORDER BY cdDatetime DESC";
 
         if (!($dbresult = & $this->db->sql_query($query))) {
@@ -112,7 +112,7 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
     function getDescriptionById($cdId) {
         $query = "SELECT *";
         $query.= " FROM `". $this->getTableName() ."`";
-        $query.= " WHERE cdId='".$cdId."'";
+        $query.= ' WHERE cdId=\'' . $this->db->sql_escape($cdId) . "'";
 
         if (!($dbresult = & $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not get tag descriptions', '', __LINE__, __FILE__, $query, $this->db);
@@ -151,7 +151,7 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
     function getLastBookmarkDescription($bHash) {
         $query = "SELECT *";
         $query.= " FROM `". $this->getTableName() ."`";
-        $query.= " WHERE bHash='".$bHash."'";
+        $query.= ' WHERE bHash=\'' . $this->db->sql_escape($bHash) . "'";
         $query.= " ORDER BY cdDatetime DESC";
 
         if (!($dbresult = & $this->db->sql_query_limit($query, 1, 0))) {
@@ -171,7 +171,7 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
     function getAllBookmarksDescription($bHash) {
         $query = "SELECT *";
         $query.= " FROM `". $this->getTableName() ."`";
-        $query.= " WHERE bHash='".$bHash."'";
+        $query.= ' WHERE bHash=\'' . $this->db->sql_escape($bHash) . "'";
         $query.= " ORDER BY cdDatetime DESC";
 
         if (!($dbresult = & $this->db->sql_query($query))) {
