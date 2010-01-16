@@ -21,6 +21,14 @@ your SemanticScuttle installations!
 - Fix several XSS possibilities related to tagging
 
 
+0.94.2 - 2010-01-16
+-------------------
+This is a security release! We do highly recommend to update
+your SemanticScuttle installations!
+
+- Fix several XSS possibilities related to tagging
+
+
 0.95.1 - 2009-11-16
 -------------------
 - Fix bug: admin tags were not shown because javascript include was broken.
