@@ -1,38 +1,56 @@
 <?php
-// Implements the del.icio.us API request for a user's recent posts, optionally filtered by
-// tag and/or number of posts (default 15, max 100, just like del.icio.us).
+/**
+ * Implements the del.icio.us API request for a user's recent posts,
+ * optionally filtered by tag and/or number of posts
+ * (default 15, max 100, just like del.icio.us).
+ *
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
 
 // Set default and max number of posts
 $countDefault = 15;
-$countMax = 100;
+$countMax     = 100;
 
 // Force HTTP authentication first!
-require_once('httpauth.inc.php');
-require_once '../../src/SemanticScuttle/header.php';
+require_once 'httpauth.inc.php';
 
 /* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
+$bookmarkservice = SemanticScuttle_Service_Factory::get('Bookmark');
 
 
 // Check to see if a tag was specified.
-if (isset($_REQUEST['tag']) && (trim($_REQUEST['tag']) != ''))
+if (isset($_REQUEST['tag']) && (trim($_REQUEST['tag']) != '')) {
     $tag = trim($_REQUEST['tag']);
-else
-    $tag = NULL;
+} else {
+    $tag = null;
+}
 
 // Check to see if the number of items was specified.
-if (isset($_REQUEST['count']) && (intval($_REQUEST['count']) != 0))  {
+if (isset($_REQUEST['count']) && (intval($_REQUEST['count']) != 0)) {
     $count = intval($_REQUEST['count']);
-    if ($count > $countMax)
+    if ($count > $countMax) {
         $count = $countMax;
-    elseif ($count < 0)
+    } else if ($count < 0) {
         $count = 0;
+    }
 } else {
     $count = $countDefault;
 }
 
 // Get the posts relevant to the passed-in variables.
-$bookmarks =& $bookmarkservice->getBookmarks(0, $count, $userservice->getCurrentUserId(), $tag);
+$bookmarks = $bookmarkservice->getBookmarks(
+    0, $count, $userservice->getCurrentUserId(), $tag
+);
 
 
 // Set up the XML file and output all the tags.
@@ -40,16 +58,18 @@ header('Content-Type: text/xml');
 echo '<?xml version="1.0" standalone="yes" ?'.">\r\n";
 echo '<posts tag="'. (is_null($tag) ? '' : filter($tag, 'xml')) .'" user="'. filter($currentUser->getUsername(), 'xml') ."\">\r\n";
 
-foreach($bookmarks['bookmarks'] as $row) {
-    if (is_null($row['bDescription']) || (trim($row['bDescription']) == ''))
+foreach ($bookmarks['bookmarks'] as $row) {
+    if (is_null($row['bDescription']) || (trim($row['bDescription']) == '')) {
         $description = '';
-    else
+    } else {
         $description = 'extended="'. filter($row['bDescription'], 'xml') .'" ';
+    }
 
     $taglist = '';
     if (count($row['tags']) > 0) {
-        foreach($row['tags'] as $tag)
+        foreach ($row['tags'] as $tag) {
             $taglist .= convertTag($tag) .' ';
+        }
         $taglist = substr($taglist, 0, -1);
     } else {
         $taglist = 'system:unfiled';
