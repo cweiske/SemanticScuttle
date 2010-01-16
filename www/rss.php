@@ -2,6 +2,10 @@
 /**
  * RSS output of the latest posts.
  *
+ * Parameter:
+ * - count=15
+ *   Sets the number of RSS entries to export
+ *
  * SemanticScuttle - your social bookmark manager.
  *
  * PHP version 5.
@@ -46,6 +50,16 @@ if ($usecache) {
     $cacheservice->Start($hash, 3600);
 }
 
+if (isset($_GET['count'])) {
+    $rssEntries = (int)$_GET['count'];
+}
+if ($rssEntries <= 0) {
+    $rssEntries = $defaultRssEntries;
+} else if ($rssEntries > $maxRssEntries) {
+    $rssEntries = $maxRssEntries;
+}
+
+
 $watchlist = null;
 $pagetitle = '';
 if ($user && $user != 'all') {
@@ -80,7 +94,7 @@ $tplVars['feedlink'] = ROOT;
 $tplVars['feeddescription'] = sprintf(T_('Recent bookmarks posted to %s'), $GLOBALS['sitename']);
 
 $bookmarks = $bookmarkservice->getBookmarks(
-    0, 15, $userid, $cat,
+    0, $rssEntries, $userid, $cat,
     null, getSortOrder(), $watchlist
 );
 

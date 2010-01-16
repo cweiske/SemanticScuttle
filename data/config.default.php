@@ -379,6 +379,22 @@ $defaultRecentDays = 14;
 $defaultOrderBy = 'date_desc';
 
 /**
+ * Number of entries that are shown in
+ * the RSS feed by default.
+ *
+ * @var integer
+ */
+$defaultRssEntries = 15;
+
+/**
+ * Number of entries the RSS puts out
+ * at maximum.
+ *
+ * @var integer
+ */
+$maxRssEntries = 100;
+
+/**
  * Redirect all bookmarks through $url_redir to improve privacy.
  *
  * @var boolean
