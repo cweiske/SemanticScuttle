@@ -21,7 +21,8 @@ require_once '../src/SemanticScuttle/header.php';
 $bookmarkservice = SemanticScuttle_Service_Factory::get('Bookmark');
 $cacheservice    = SemanticScuttle_Service_Factory::get('Cache');
 
-header('Content-Type: application/xml');
+header('Content-Type: application/rss+xml; charset=utf-8');
+
 if (isset($_SERVER['PATH_INFO']) && strlen($_SERVER['PATH_INFO']) >1) {
     list($url, $user, $cat) = explode('/', $_SERVER['PATH_INFO']);
 } else {
