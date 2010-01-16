@@ -1,6 +1,10 @@
 ChangeLog for SemantiScuttle
 ============================
 
+0.95.2 - 2010-FIXME
+-------------------
+- Fix bug #2928905: API was broken when no user was logged in
+
 0.95.1 - 2009-11-16
 -------------------
 - Fix bug: admin tags were not shown because javascript include was broken.
