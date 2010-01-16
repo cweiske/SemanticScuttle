@@ -12,6 +12,13 @@
  */
 require_once '../src/SemanticScuttle/header.php';
 
+if (!$GLOBALS['shorturl']) {
+    header('HTTP/1.0 500 Internal Server Error');
+    header('Content-Type: text/plain');
+    echo 'Short URL service deactivated';
+    exit();
+}
+
 if (!isset($_SERVER['PATH_INFO'])) {
     header('HTTP/1.0 400 Bad Request');
     header('Content-Type: text/plain');

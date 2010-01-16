@@ -395,6 +395,14 @@ $useredir = false;
 $url_redir = 'http://www.google.com/url?sa=D&q=';
 
 /**
+ * Enable short URL service.
+ * Can be used to visit urls using http://example.org/go/shortname
+ *
+ * @var boolean
+ */
+$shorturl = true;
+
+/**
  * Array of bookmark extensions that Scuttle should add system tags for.
  * When adding an URL with one of the given extensions, a system
  * tag is automatically assigned.
