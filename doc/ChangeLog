@@ -4,6 +4,9 @@ ChangeLog for SemantiScuttle
 0.95.2 - 2010-FIXME
 -------------------
 - Fix bug #2928905: API was broken when no user was logged in
+- Implement part ofrequest #2928950:
+  - User adjustable entry count: rss.php?count=20
+  - Fix HTTP content type header for RSS
 
 0.95.1 - 2009-11-16
 -------------------
