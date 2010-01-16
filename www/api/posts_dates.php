@@ -41,6 +41,7 @@ echo '<?xml version="1.0" standalone="yes" ?'.">\r\n";
 echo '<dates tag="'. (is_null($tag) ? '' : filter($tag, 'xml')) .'" user="'. filter($currentUser->getUsername(), 'xml') ."\">\r\n";
 
 $lastdate = null;
+$count    = 0;
 foreach ($bookmarks['bookmarks'] as $row) {
     $thisdate = gmdate('Y-m-d', strtotime($row['bDatetime']));
     if ($thisdate != $lastdate && $lastdate != null) {
@@ -50,6 +51,9 @@ foreach ($bookmarks['bookmarks'] as $row) {
         ++$count;
     }
     $lastdate = $thisdate;
+}
+if ($lastdate !== null) {
+    echo "\t<date count=\"". $count .'" date="'. $lastdate ."\" />\r\n";
 }
 
 echo "</dates>";
