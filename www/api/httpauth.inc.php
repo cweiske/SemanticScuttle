@@ -27,7 +27,9 @@ if (!$userservice->isLoggedOn()) {
         authenticate();
     } else {
         $login = $userservice->login($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
-        if (!$login) {
+        if ($login) {
+            $currentUser = $userservice->getCurrentObjectUser();
+        } else {
             authenticate();
         }
     }
