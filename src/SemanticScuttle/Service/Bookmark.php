@@ -64,6 +64,8 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      *
      * @return mixed Database row array when found, boolean false
      *               when no bookmark matched.
+     *
+     * @TODO: merge with getBookmark()
      */
     protected function _getbookmark($fieldname, $value, $all = false)
     {
@@ -103,6 +105,8 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      * Load a single bookmark and return it.
      * When a user is logged on, the returned array will contain
      * keys "hasVoted" and "vote".
+     *
+     * DOES NOT RESPECT PRIVACY SETTINGS!
      *
      * @param integer $bid          Bookmark ID
      * @param boolean $include_tags If tags shall be loaded
