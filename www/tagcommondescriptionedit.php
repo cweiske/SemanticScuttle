@@ -60,19 +60,23 @@ if (POST_CONFIRM) {
         && $cdservice->addTagDescription($tag, stripslashes(POST_DESCRIPTION), $currentUser->getId(), time())
     ) {
         $tplVars['msg'] = T_('Tag common description updated');
-        header('Location: '. POST_REFERRER);
+        if (POST_REFERRER) {
+            header('Location: '. POST_REFERRER);
+        }
     } else {
         $tplVars['error'] = T_('Failed to update the tag common description');
         $template         = 'error.500.tpl';
     }
 } else if (POST_CANCEL) {
-    header('Location: '. POST_REFERRER);
-} else {
-    $tplVars['subtitle']    = T_('Edit Tag Common Description') .': '. $tag;
-    $tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $tag;
-    $tplVars['referrer']    = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
-    $tplVars['tag']         = $tag;
-    $tplVars['description'] = $cdservice->getLastTagDescription($tag);
+    if (POST_REFERRER) {
+        header('Location: '. POST_REFERRER);
+    }
 }
+
+$tplVars['subtitle']    = T_('Edit Tag Common Description') .': '. $tag;
+$tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $tag;
+$tplVars['referrer']    = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+$tplVars['tag']         = $tag;
+$tplVars['description'] = $cdservice->getLastTagDescription($tag);
 $templateservice->loadTemplate($template, $tplVars);
 ?>
