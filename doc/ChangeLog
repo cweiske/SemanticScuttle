@@ -18,6 +18,7 @@ ChangeLog for SemantiScuttle
 - Fix bug #2934891: RSS XML was sometimes invalid because
   special characters did not get escaped.
 - Special header file for shell scripts (header-standalone.php)
+- Fix E_NOTICE when calling alltags.php without any parameter
 
 
 0.95.2 - 2010-01-16

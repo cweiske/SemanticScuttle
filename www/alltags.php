@@ -22,12 +22,13 @@
 require_once '../src/SemanticScuttle/header.php';
 
 /* Service creation: only useful services are created */
-$b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
-$cacheservice =SemanticScuttle_Service_Factory::get('Cache');
+$b2tservice   = SemanticScuttle_Service_Factory::get('Bookmark2Tag');
+$cacheservice = SemanticScuttle_Service_Factory::get('Cache');
 
-
-
-list($url, $user) = explode('/', $_SERVER['PATH_INFO']);
+list($url, $user) = explode(
+    '/',
+    isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/'
+);
 if (!$user) {
 	header('Location: '. createURL('populartags'));
 	exit;
