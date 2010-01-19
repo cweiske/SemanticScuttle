@@ -53,7 +53,7 @@ if ($usecache) {
 if (isset($_GET['count'])) {
     $rssEntries = (int)$_GET['count'];
 }
-if ($rssEntries <= 0) {
+if (!isset($rssEntries) || $rssEntries <= 0) {
     $rssEntries = $defaultRssEntries;
 } else if ($rssEntries > $maxRssEntries) {
     $rssEntries = $maxRssEntries;
