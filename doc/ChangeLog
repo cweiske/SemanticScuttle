@@ -17,6 +17,7 @@ ChangeLog for SemantiScuttle
   description. Patch by fnorder@users.sourceforge.net
 - Fix bug #2934891: RSS XML was sometimes invalid because
   special characters did not get escaped.
+- Special header file for shell scripts (header-standalone.php)
 
 
 0.95.2 - 2010-01-16

@@ -2,10 +2,7 @@
 /**
  * Simply create some test bookmarks
  */
-$_SERVER['HTTP_HOST'] = 'http://localhost/';
-define('UNIT_TEST_MODE', true);
-
-require_once dirname(__FILE__) . '/../src/SemanticScuttle/header.php';
+require_once dirname(__FILE__) . '/../src/SemanticScuttle/header-standalone.php';
 
 $us  = SemanticScuttle_Service_Factory::get('User');
 $uid = $us->addUser('dummy', 'dummy', 'dummy@example.org');
