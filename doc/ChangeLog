@@ -15,6 +15,8 @@ ChangeLog for SemantiScuttle
   Patch by fnorder@users.sourceforge.net
 - Implement request #2934872: Option to set the "no description"
   description. Patch by fnorder@users.sourceforge.net
+- Fix bug #2934891: RSS XML was sometimes invalid because
+  special characters did not get escaped.
 
 
 0.95.2 - 2010-01-16
