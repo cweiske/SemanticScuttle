@@ -296,8 +296,8 @@ if($currenttag!= '') {
 			$rel = ' rel="nofollow"';
 		}
 
-		$address = filter($row['bAddress']);
-
+		$address  = filter($row['bAddress']);
+		$oaddress = $address;
 		// Redirection option
 		if ($GLOBALS['useredir']) {
 			$address = $GLOBALS['url_redir'] . $address;
@@ -344,7 +344,7 @@ if($currenttag!= '') {
 		}
 		echo '<div class="description">'. nl2br($bkDescription) ."</div>\n";
 		//if(!isset($hash)) {
-			echo '<div class="address">'.shortenString($address).'</div>';
+			echo '<div class="address">' . shortenString($oaddress) . '</div>';
 		//}
 
 		echo '<div class="meta">'.  $cats . $copy . $edit . $update ."</div>\n";

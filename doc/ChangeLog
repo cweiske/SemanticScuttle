@@ -11,6 +11,8 @@ ChangeLog for SemantiScuttle
     instead of modification date
 - Fix bug #2887063: Common tag combination description feels broken
 - Fix several SQL injection possibilities
+- Implement request #2934868: Do not display full redirection URL
+  Patch by fnorder@users.sourceforge.net
 
 
 0.95.2 - 2010-01-16
