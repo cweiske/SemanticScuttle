@@ -19,6 +19,8 @@ ChangeLog for SemantiScuttle
   special characters did not get escaped.
 - Special header file for shell scripts (header-standalone.php)
 - Fix E_NOTICE when calling alltags.php without any parameter
+- Implement request #2833793: Export to avahi config files
+  - we support zeroconf networking!
 
 
 0.95.2 - 2010-01-16

@@ -630,4 +630,35 @@ $descriptionAnchors = array(
  */
 $googleAnalyticsCode = null;
 
+
+
+
+/****************************
+ * avahi export script
+ */
+
+/**
+ * Location of avahi service files,
+ * often /etc/avahi/services/
+ *
+ * @var string
+ */
+$avahiServiceFilePath = '/etc/avahi/services/';
+
+/**
+ * File name prefix of SemanticScuttle-generated
+ * service files
+ *
+ * @var string
+ */
+$avahiServiceFilePrefix = 'semanticscuttle-';
+
+/**
+ * Name of tag that bookmarks need to have to
+ * get exported into avahi service files.
+ *
+ * @var string
+ */
+$avahiTagName = 'zeroconf';
+
 ?>
