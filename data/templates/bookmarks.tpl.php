@@ -334,7 +334,7 @@ if($currenttag!= '') {
 
 		echo '<div class="link"><a href="'. $address .'"'. $rel .' class="taggedlink" target="_blank">'. filter($row['bTitle']) ."</a>" . $adminStar . "</div>\n";
 		if ($row['bDescription'] == '') {
-			$bkDescription = '-';
+			$bkDescription = $GLOBALS['blankDescription'];
 		} else {
 			// Improve description display (anchors, links, ...)
 			$bkDescription = preg_replace('|\[\/.*?\]|', '', filter($row['bDescription'])); // remove final anchor

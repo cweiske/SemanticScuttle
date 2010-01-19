@@ -13,6 +13,8 @@ ChangeLog for SemantiScuttle
 - Fix several SQL injection possibilities
 - Implement request #2934868: Do not display full redirection URL
   Patch by fnorder@users.sourceforge.net
+- Implement request #2934872: Option to set the "no description"
+  description. Patch by fnorder@users.sourceforge.net
 
 
 0.95.2 - 2010-01-16

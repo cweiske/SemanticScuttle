@@ -389,6 +389,17 @@ $defaultOrderBy = 'date_desc';
 $dateOrderField = 'bModified';
 
 /**
+ * What to show instead of a description if
+ * a bookmark has none.
+ * Default is '-'. Setting this to '' will collapse
+ * the description row for bookmarks without
+ * a description.
+ *
+ * @var string
+ */
+$blankDescription = '-';
+
+/**
  * Number of entries that are shown in
  * the RSS feed by default.
  *
