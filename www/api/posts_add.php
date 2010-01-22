@@ -1,5 +1,6 @@
 <?php
 // Implements the del.icio.us API request to add a new post.
+// http://delicious.com/help/api#posts_add
 
 // del.icio.us behavior:
 // - tags can't have spaces
