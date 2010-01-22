@@ -65,6 +65,10 @@ if (isset($_REQUEST['status'])) {
     }
 }
 
+if (isset($_REQUEST['shared']) && (trim($_REQUEST['shared']) == 'no')) {
+    $status = 2;
+}
+
 // Error out if there's no address or description
 if (is_null($url) || is_null($description)) {
     $added = false;

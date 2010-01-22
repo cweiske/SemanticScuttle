@@ -21,6 +21,8 @@ ChangeLog for SemantiScuttle
 - Fix E_NOTICE when calling alltags.php without any parameter
 - Implement request #2833793: Export to avahi config files
   - we support zeroconf networking!
+- Fix bug #2936833: api fix: shared=no
+  Patch by fnorder@users.sourceforge.net
 
 
 0.95.2 - 2010-01-16
