@@ -23,6 +23,8 @@ ChangeLog for SemantiScuttle
   - we support zeroconf networking!
 - Fix bug #2936833: api fix: shared=no
   Patch by fnorder@users.sourceforge.net
+- Fix bug #2843523: ArtViper thumbnail license change
+  reflected by using the javascript backlink
 
 
 0.95.2 - 2010-01-16
