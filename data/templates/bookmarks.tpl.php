@@ -91,7 +91,7 @@ window.onload = playerLoad;
 </script>
 
 <p id="sort"><?php echo $total.' '.T_("bookmark(s)"); ?> - <?php echo T_("Sort by:"); ?>
-<?php
+ <?php
 $titleArrow  = '';
 $dateArrow   = '';
 $votingArrow = '';
