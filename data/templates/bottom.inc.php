@@ -5,7 +5,7 @@
 echo '<a href="'.createURL('about').'">'.T_('About').'</a>';
 echo ' - ';
 echo T_("Propulsed by ");
-echo "<a href=\"https://sourceforge.net/projects/semanticscuttle/\">SemanticScuttle</a>";
+echo " <a href=\"https://sourceforge.net/projects/semanticscuttle/\">SemanticScuttle</a>";
 
 if($GLOBALS['enableWebsiteThumbnails']) {
 	// Licence to the thumbnails provider (OBLIGATORY IF YOU USE ARTVIPER SERVICE)
