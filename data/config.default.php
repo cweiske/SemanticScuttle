@@ -661,4 +661,48 @@ $avahiServiceFilePrefix = 'semanticscuttle-';
  */
 $avahiTagName = 'zeroconf';
 
+
+
+/**
+ * Array of key value pairs to override service class names.
+ * Key is the old service name ("User"), value the new class
+ * name.
+ *
+ * @var array
+ */
+$serviceoverrides = array();
+
+
+
+
+/****************************
+ * External user authentication
+ */
+
+/**
+ * Type of external authentication via PEAR Auth
+ * To use this, you also need to set
+ * $serviceoverrides['User'] = 'SemanticScuttle_Service_AuthUser';
+ *
+ * @link http://pear.php.net/manual/en/package.authentication.auth.intro-storage.php
+ *
+ * @var string
+ */
+$authType = null;
+
+/**
+ * Options for external authentication via PEAR Auth
+ *
+ * @link http://pear.php.net/manual/en/package.authentication.auth.intro.php
+ *
+ * @var array
+ */
+$authOptions = null;
+
+/**
+ * Enable debugging for PEAR Authentication
+ *
+ * @var boolean
+ */
+$authDebug = false;
 ?>
