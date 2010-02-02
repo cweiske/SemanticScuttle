@@ -57,6 +57,10 @@ require_once 'SemanticScuttle/DbService.php';
 require_once 'SemanticScuttle/Service/Factory.php';
 require_once 'SemanticScuttle/functions.php';
 
+if (count($GLOBALS['serviceoverrides']) > 0) {
+    SemanticScuttle_Service_Factory::$serviceoverrides
+        = $GLOBALS['serviceoverrides'];
+}
 
 // 3 // Third requirements part which import functions from includes/ directory
 

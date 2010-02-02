@@ -51,7 +51,7 @@ class SemanticScuttle_Service_Factory
      *
      * @var array
      */
-    protected static $serviceoverrides = array();
+    public static $serviceoverrides = array();
 
 
 
