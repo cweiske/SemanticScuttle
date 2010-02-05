@@ -57,7 +57,9 @@ require_once 'SemanticScuttle/DbService.php';
 require_once 'SemanticScuttle/Service/Factory.php';
 require_once 'SemanticScuttle/functions.php';
 
-if (count($GLOBALS['serviceoverrides']) > 0) {
+if (count($GLOBALS['serviceoverrides']) > 0
+    && !defined('UNIT_TEST_MODE')
+) {
     SemanticScuttle_Service_Factory::$serviceoverrides
         = $GLOBALS['serviceoverrides'];
 }
