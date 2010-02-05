@@ -160,6 +160,19 @@ class SemanticScuttle_Service_AuthUser extends SemanticScuttle_Service_User
         }
 
         //utilize real login method to get longtime cookie support etc.
+        $ok = parent::login($username, $password, $remember);
+        if ($ok) {
+            return $ok;
+        }
+
+        //user must have changed password in external auth.
+        //we need to update the local database.
+        $user = $this->getUserByUsername($username);
+        $this->_updateuser(
+            $user['uId'], 'password',
+            $this->sanitisePassword($password)
+        );
+
         return parent::login($username, $password, $remember);
     }
 
@@ -172,7 +185,7 @@ class SemanticScuttle_Service_AuthUser extends SemanticScuttle_Service_User
     * @param string $username Username to check
     * @param string $password Password to check
     *
-    * @return boolean If the user has been authenticated or not
+    * @return boolean If the user has been successfully authenticated or not
     */
     public function loginAuth($username, $password)
     {
@@ -193,8 +206,6 @@ class SemanticScuttle_Service_AuthUser extends SemanticScuttle_Service_User
                 $username . $GLOBALS['authEmailSuffix']
             );
         }
-        //FIXME: what if the user changed his password?
-        //FIXME: what if the user does not need an email domain?
 
         return true;
      }
