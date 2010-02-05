@@ -645,8 +645,6 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         return true;
     }
 
-
-
     /**
      * Delete all bookmarks.
      * Mainly used in unit tests.
@@ -659,22 +657,43 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         $this->db->sql_query($query);
     }
 
-
-
-    function sanitisePassword($password) {
+    /**
+     * Hashes the password for storage in/querying the database.
+     *
+     * @param string $password Password to hash
+     *
+     * @return string Hashed password
+     */
+    public function sanitisePassword($password)
+    {
         return sha1(trim($password));
     }
 
-    function generatePassword($uId) {
-        if (!is_numeric($uId))
-        return false;
+    /**
+     * Changes the password for the given user to a new, random one.
+     *
+     * @param integer $uId User ID
+     *
+     * @return string New password of false if something went wrong
+     */
+    public function generatePassword($uId)
+    {
+        if (!is_numeric($uId)) {
+            return false;
+        }
 
         $password = $this->_randompassword();
 
-        if ($this->_updateuser($uId, $this->getFieldName('password'), $this->sanitisePassword($password)))
-        return $password;
-        else
-        return false;
+        $ok = $this->_updateuser(
+            $uId, $this->getFieldName('password'),
+            $this->sanitisePassword($password)
+        );
+
+        if ($ok) {
+            return $password;
+        } else {
+            return false;
+        }
     }
 
     function isReserved($username) {
