@@ -155,9 +155,12 @@ class SemanticScuttle_Service_AuthUser extends SemanticScuttle_Service_User
         }
 
         $ok = $this->loginAuth($username, $password);
-        $password = $this->sanitisePassword($password);
-        $id       = $this->getIdFromUser($username);
-        //FIXME: check against auth
+        if (!$ok) {
+            return false;
+        }
+
+        //utilize real login method to get longtime cookie support etc.
+        return parent::login($username, $password, $remember);
     }
 
 
@@ -187,7 +190,7 @@ class SemanticScuttle_Service_AuthUser extends SemanticScuttle_Service_User
         if (!$this->getUserByUsername($username)) {
             $this->addUser(
                 $username, $password,
-                $username . '@' . $GLOBALS['authemaildomain']
+                $username . $GLOBALS['authEmailSuffix']
             );
         }
         //FIXME: what if the user changed his password?

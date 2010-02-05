@@ -705,4 +705,13 @@ $authOptions = null;
  * @var boolean
  */
 $authDebug = false;
+
+/**
+ * Optional prefix to create email addresses from user names.
+ * i.e. "@example.org" to create "user@example.org" email address
+ * from "user" username.
+ *
+ * @var string
+ */
+$authEmailSuffix = null;
 ?>
