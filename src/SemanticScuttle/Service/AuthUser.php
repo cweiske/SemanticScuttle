@@ -169,7 +169,7 @@ class SemanticScuttle_Service_AuthUser extends SemanticScuttle_Service_User
         //we need to update the local database.
         $user = $this->getUserByUsername($username);
         $this->_updateuser(
-            $user['uId'], 'password',
+            $user['uId'], $this->getFieldName('password'),
             $this->sanitisePassword($password)
         );
 
