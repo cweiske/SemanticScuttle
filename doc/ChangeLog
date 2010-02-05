@@ -4,27 +4,29 @@ ChangeLog for SemantiScuttle
 0.96.0 - 2010-FIXME
 -------------------
 - Fix bug #2928905: API was broken when no user was logged in
+- Fix bug #2887063: Common tag combination description feels broken
+- Fix bug #2934891: RSS XML was sometimes invalid because
+  special characters did not get escaped.
+- Fix bug #2936833: api fix: shared=no
+  Patch by fnorder@users.sourceforge.net
+- Fix bug #2843523: ArtViper thumbnail license change
+  reflected by using the javascript backlink
+- Fix several SQL injection possibilities
+- Fix E_NOTICE when calling alltags.php without any parameter
 - Implement part of request #2928950:
   - User adjustable entry count: rss.php?count=20
   - Fix HTTP content type header for RSS
   - Add config option to allow sorting by bookmark creation date
     instead of modification date
-- Fix bug #2887063: Common tag combination description feels broken
-- Fix several SQL injection possibilities
+- Implement request #2833793: Export to avahi config files
+  - we support zeroconf networking!
 - Implement request #2934868: Do not display full redirection URL
   Patch by fnorder@users.sourceforge.net
 - Implement request #2934872: Option to set the "no description"
   description. Patch by fnorder@users.sourceforge.net
-- Fix bug #2934891: RSS XML was sometimes invalid because
-  special characters did not get escaped.
-- Special header file for shell scripts (header-standalone.php)
-- Fix E_NOTICE when calling alltags.php without any parameter
-- Implement request #2833793: Export to avahi config files
-  - we support zeroconf networking!
-- Fix bug #2936833: api fix: shared=no
-  Patch by fnorder@users.sourceforge.net
-- Fix bug #2843523: ArtViper thumbnail license change
-  reflected by using the javascript backlink
+- Implement request #2830234: Support for external authentication
+  services via PEAR's Auth package
+- Add special header file for shell scripts (header-standalone.php)
 
 
 0.95.2 - 2010-01-16
