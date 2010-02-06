@@ -173,3 +173,25 @@ function md5_mediawiki($password) {
     return ':A:' . md5($password);
 }
 -8<------------------
+
+
+Active Directory / LDAP
+-----------------------
+Here we authenticate against an active directory server.
+
+config.php settings:
+-8<------------------
+$serviceoverrides['User'] = 'SemanticScuttle_Service_AuthUser';
+$authType = 'LDAP';
+$authOptions = array(
+    'host'     => '192.168.1.4',
+    'version'  => 3,
+    'basedn'   => 'DC=EXAMPLE,DC=ORG',
+    'binddn'   => 'readuser',
+    'bindpw'   => 'readuser',
+    'userattr' => 'sAMAccountName',
+    'userfilter' => '(objectClass=user)',
+    'attributes' => array(''),
+);
+$authEmailSuffix = '@example.org';
+-8<------------------
