@@ -69,15 +69,6 @@ Tracker items:
   note: by changing getPerPageCount() in functions.inc.php in a similar
   manner, it should be possible to make the max-entries-per-page
   customizable
-#2887063 - Common tag combination description feels broken
-  When switching tags, the common tag description is only shown for the
-  "correct" order:
-  http://bookmarks/tags.php/foo+bar
-  http://bookmarks/tags.php/bar+foo
-
-  While both URLs are semantically the same, the common tag description I set
-  for "foo+bar" is not shown on the "bar+foo" page. Those descriptions should
-  be saved with alphabetically sorted tags.
 #1926991 - Admin Approval of New Users
   Create a way for admins to select if they have to approve all new users.
   Then have the following methods for new user approval:
