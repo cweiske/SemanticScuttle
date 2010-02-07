@@ -27,6 +27,7 @@ ChangeLog for SemantiScuttle
 - Implement request #2830234: Support for external authentication
   services via PEAR's Auth package
 - Add special header file for shell scripts (header-standalone.php)
+- Fix some problems when using mysqli database driver.
 
 
 0.95.2 - 2010-01-16
