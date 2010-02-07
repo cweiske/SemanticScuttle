@@ -21,4 +21,12 @@ define('UNIT_TEST_MODE', true);
 
 require_once dirname(__FILE__) . '/../src/SemanticScuttle/header.php';
 require_once dirname(__FILE__) . '/TestBase.php';
+
+if ($GLOBALS['debugMode'] == true
+    && $GLOBALS['dbtype'] == 'mysql4'
+) {
+    echo "\n"
+        . '!!! The combination of debugMode and dbtype==mysql4'
+        . ' will wreck some tests' . "\n\n";
+}
 ?>
