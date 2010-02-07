@@ -322,11 +322,15 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             $crit['uId'] = $uid;
         }
 
-        $sql = 'SELECT COUNT(*) FROM '. $GLOBALS['tableprefix'] .'bookmarks WHERE '. $this->db->sql_build_array('SELECT', $crit);
-        if (!($dbresult = & $this->db->sql_query($sql))) {
-            message_die(GENERAL_ERROR, 'Could not get vars', '', __LINE__, __FILE__, $sql, $this->db);
+        $sql = 'SELECT COUNT(*) as "0" FROM '. $GLOBALS['tableprefix'] .'bookmarks WHERE '. $this->db->sql_build_array('SELECT', $crit);
+
+        if (!($dbresult = $this->db->sql_query($sql))) {
+            message_die(
+                GENERAL_ERROR, 'Could not get vars', '',
+                __LINE__, __FILE__, $sql, $this->db
+            );
         }
-        if($this->db->sql_fetchfield(0, 0) > 0) {
+        if ($this->db->sql_fetchfield(0, 0) > 0) {
             $output = true;
         } else {
             $output = false;
