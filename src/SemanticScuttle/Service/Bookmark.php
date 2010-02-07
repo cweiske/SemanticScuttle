@@ -228,7 +228,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      */
     public function countBookmarks($uId, $range = 'public')
     {
-        $sql = 'SELECT COUNT(*) FROM '. $this->getTableName();
+        $sql = 'SELECT COUNT(*) as "0" FROM '. $this->getTableName();
         $sql.= ' WHERE uId = ' . intval($uId);
         switch ($range) {
         case 'all':
