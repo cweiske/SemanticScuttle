@@ -3,14 +3,14 @@ ChangeLog for SemantiScuttle
 
 0.96.0 - 2010-FIXME
 -------------------
-- Fix bug #2928905: API was broken when no user was logged in
+- Fix bug #2843523: ArtViper thumbnail license change
+  reflected by using the javascript backlink
 - Fix bug #2887063: Common tag combination description feels broken
+- Fix bug #2928905: API was broken when no user was logged in
 - Fix bug #2934891: RSS XML was sometimes invalid because
   special characters did not get escaped.
 - Fix bug #2936833: api fix: shared=no
   Patch by fnorder@users.sourceforge.net
-- Fix bug #2843523: ArtViper thumbnail license change
-  reflected by using the javascript backlink
 - Fix several SQL injection possibilities
 - Fix E_NOTICE when calling alltags.php without any parameter
 - Implement part of request #2928950:
