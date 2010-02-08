@@ -1,7 +1,7 @@
 ChangeLog for SemantiScuttle
 ============================
 
-0.96.0 - 2010-FIXME
+0.96.0 - 2010-02-08
 -------------------
 - Fix bug #2843523: ArtViper thumbnail license change
   reflected by using the javascript backlink
@@ -30,6 +30,7 @@ ChangeLog for SemantiScuttle
 - Add special header file for shell scripts (header-standalone.php)
 - Fix some problems when using mysqli database driver.
 - Make it easy to have www/ in any location one wants it to have
+- Send HTTP status code 500 when site has not been configured yet.
 
 
 0.95.2 - 2010-01-16

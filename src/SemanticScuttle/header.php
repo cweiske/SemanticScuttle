@@ -15,6 +15,7 @@
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
 if (!file_exists(dirname(__FILE__) .'/../../data/config.php')) {
+    header('HTTP/1.0 500 Internal Server Error');
     die('Please copy "config.php.dist" to "config.php" in data/ folder.');
 }
 set_include_path(
