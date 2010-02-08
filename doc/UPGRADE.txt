@@ -10,6 +10,12 @@ API:
 The method signatures of addBookmark() and updateBookmark()
 changed due to the addition of the $short parameter.
 
+We got complaints about the changed file structure, and people told
+us that they just cannot set the document root to www/, because they
+are not admins on their http server. This is a valid point, and
+with 0.96.0 you can easily change it. See INSTALL.txt for more information
+about moving www/.
+
 
 From version 0.94 to 0.95
 --------------------------
