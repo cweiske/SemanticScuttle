@@ -11,6 +11,7 @@ ChangeLog for SemantiScuttle
   special characters did not get escaped.
 - Fix bug #2936833: api fix: shared=no
   Patch by fnorder@users.sourceforge.net
+- Fix bug #2899515: Bookmarklet broken when site title contains quote
 - Fix several SQL injection possibilities
 - Fix E_NOTICE when calling alltags.php without any parameter
 - Implement part of request #2928950:

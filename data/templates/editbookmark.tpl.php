@@ -17,6 +17,11 @@ switch ($row['bStatus']) {
 }
 
 $this->includeTemplate("dojo.inc");
+
+function jsEscTitle($title)
+{
+    return addcslashes($title, "'");
+}
 ?>
 
 
@@ -137,11 +142,11 @@ if (empty($_REQUEST['popup']) && (!isset($showdelete) || !$showdelete)) {
 var browser=navigator.appName;
 if (browser == "Opera")
     {
-    document.write("<?php echo sprintf(T_("Click one of the following bookmarklets to add a button you can click whenever you want to add the page you are on to %s"), $GLOBALS['sitename']); ?>:</p>");
+    document.write('<?php echo sprintf(T_("Click one of the following bookmarklets to add a button you can click whenever you want to add the page you are on to %s"), jsEscTitle($GLOBALS['sitename'])); ?>:</p>');
     }
 else
     {
-    document.write("<?php echo sprintf(T_("Drag one of the following bookmarklets to your browser's bookmarks and click it whenever you want to add the page you are on to %s"), $GLOBALS['sitename']); ?>:</p>");
+    document.write('<?php echo sprintf(T_("Drag one of the following bookmarklets to your browser's bookmarks and click it whenever you want to add the page you are on to %s"), jsEscTitle($GLOBALS['sitename'])); ?>:</p>');
     }
 var selection = '';
 if (window.getSelection) {
@@ -154,13 +159,13 @@ if (window.getSelection) {
 document.write('<ul>');
 if (browser == "Opera")
     {
-    document.write('<li><a class="bookmarklet" href="opera:/button/Go%20to%20page,%20%22javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');location.href=\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d;void 0%22;,,%22Post%20to%20<?php echo $GLOBALS['sitename']; ?>%22,%22Scuttle%22"><?php echo sprintf(T_('Post to %s'), $GLOBALS['sitename']); ?><\/a><\/li>');	
-    document.write('<li><a class="bookmarklet" href="opera:/button/Go%20to%20page,%20%22javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');open(\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;popup=1&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d,\'<?php echo $GLOBALS['sitename']; ?>\',\'modal=1,status=0,scrollbars=1,toolbar=0,resizable=1,width=790,height=465,left=\'+(screen.width-790)/2+\',top=\'+(screen.height-425)/2);void 0;%22,,%22Post%20to%20<?php echo $GLOBALS['sitename']; ?>%20(Pop-up)%22,%22Scuttle%22"><?php echo sprintf(T_('Post to %s (Pop-up)'), $GLOBALS['sitename']); ?><\/a><\/li>');
+    document.write('<li><a class="bookmarklet" href="opera:/button/Go%20to%20page,%20%22javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');location.href=\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d;void 0%22;,,%22Post%20to%20<?php echo jsEscTitle($GLOBALS['sitename']); ?>%22,%22Scuttle%22"><?php echo jsEscTitle(sprintf(T_('Post to %s'), $GLOBALS['sitename'])); ?><\/a><\/li>');
+    document.write('<li><a class="bookmarklet" href="opera:/button/Go%20to%20page,%20%22javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');open(\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;popup=1&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d,\'<?php echo jsEscTitle($GLOBALS['sitename']); ?>\',\'modal=1,status=0,scrollbars=1,toolbar=0,resizable=1,width=790,height=465,left=\'+(screen.width-790)/2+\',top=\'+(screen.height-425)/2);void 0;%22,,%22Post%20to%20<?php echo urlencode($GLOBALS['sitename']); ?>%20(Pop-up)%22,%22Scuttle%22"><?php echo jsEscTitle(sprintf(T_('Post to %s (Pop-up)'), $GLOBALS['sitename'])); ?><\/a><\/li>');
     }
 else
     {
-    document.write('<li><a class="bookmarklet" href="javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');location.href=\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d;void 0;"><?php echo sprintf(T_('Post to %s'), $GLOBALS['sitename']); ?><\/a><\/li>');
-    document.write('<li><a class="bookmarklet" href="javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');open(\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;popup=1&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d,\'<?php echo $GLOBALS['sitename']; ?>\',\'modal=1,status=0,scrollbars=1,toolbar=0,resizable=1,width=790,height=465,left=\'+(screen.width-790)/2+\',top=\'+(screen.height-425)/2);void 0;"><?php echo sprintf(T_('Post to %s (Pop-up)'), $GLOBALS['sitename']); ?><\/a><\/li>');
+    document.write('<li><a class="bookmarklet" href="javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');location.href=\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d;void 0;"><?php echo jsEscTitle(sprintf(T_('Post to %s'), $GLOBALS['sitename'])); ?><\/a><\/li>');
+    document.write('<li><a class="bookmarklet" href="javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');open(\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;popup=1&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d,\'<?php echo jsEscTitle($GLOBALS['sitename']); ?>\',\'modal=1,status=0,scrollbars=1,toolbar=0,resizable=1,width=790,height=465,left=\'+(screen.width-790)/2+\',top=\'+(screen.height-425)/2);void 0;"><?php echo jsEscTitle(sprintf(T_('Post to %s (Pop-up)'), $GLOBALS['sitename'])); ?><\/a><\/li>');
     }
 document.write('<\/ul>');
 </script>
