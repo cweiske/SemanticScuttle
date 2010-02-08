@@ -8,8 +8,8 @@
   -->
   <property file="build.properties" />
 
-  <property name="version-m"  value="0.95" />
-  <property name="version"    value="0.95.1" />
+  <property name="version-m"  value="0.96" />
+  <property name="version"    value="0.96.0" />
   <property name="zipfile"    value="${phing.project.name}-${version}.zip" />
   <property name="distfile"   value="dist/${zipfile}" />
   <property name="sfproject"  value="SemanticScuttle" />
