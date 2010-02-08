@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: text/javascript');
 $GLOBALS['saveInLastUrl'] = false;
-require_once '../src/SemanticScuttle/header.php';
+require_once 'www-header.php';
 require_once 'SemanticScuttle/functions.php';
 $player_root = ROOT .'includes/player/';
 ?>

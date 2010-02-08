@@ -7,7 +7,7 @@
  *
  * vote/for/123
  */
-require_once '../src/SemanticScuttle/header.php';
+require_once 'www-header.php';
 
 if (!$GLOBALS['enableVoting']) {
     header('HTTP/1.0 501 Not implemented');

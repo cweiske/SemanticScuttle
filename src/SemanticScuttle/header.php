@@ -1,6 +1,6 @@
 <?php
 /**
- * Base file that every other file in www/ should include.
+ * Base file that is used by shell scripts and www/www-header.php.
  *
  * SemanticScuttle - your social bookmark manager.
  *

@@ -12,7 +12,7 @@
 
 // Force HTTP authentication
 require_once('httpauth.inc.php');
-require_once '../../src/SemanticScuttle/header.php';
+require_once '../www-header.php';
 
 /* Service creation: only useful services are created */
 $bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');

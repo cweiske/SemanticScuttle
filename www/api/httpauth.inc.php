@@ -1,5 +1,5 @@
 <?php
-require_once '../../src/SemanticScuttle/header.php';
+require_once '../www-header.php';
 
 // Provides HTTP Basic authentication of a user
 // and logs the user in if necessary

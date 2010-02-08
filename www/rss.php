@@ -19,7 +19,7 @@
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
 
-require_once '../src/SemanticScuttle/header.php';
+require_once 'www-header.php';
 
 /* Service creation: only useful services are created */
 $bookmarkservice = SemanticScuttle_Service_Factory::get('Bookmark');

@@ -1,5 +1,5 @@
 <?php
-require_once '../../src/SemanticScuttle/header.php';
+require_once '../www-header.php';
 
 if($GLOBALS['enableGoogleCustomSearch'] == false) {
     echo "Google Custom Search disabled. You can enable it into the config.php file.";

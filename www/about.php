@@ -18,7 +18,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ***************************************************************************/
 
-require_once '../src/SemanticScuttle/header.php';
+require_once 'www-header.php';
 
 $tplVars['pagetitle'] = T_('About');
 $tplVars['subtitle'] = T_('About');

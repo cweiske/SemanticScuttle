@@ -28,6 +28,7 @@ ChangeLog for SemantiScuttle
   services via PEAR's Auth package
 - Add special header file for shell scripts (header-standalone.php)
 - Fix some problems when using mysqli database driver.
+- Make it easy to have www/ in any location one wants it to have
 
 
 0.95.2 - 2010-01-16

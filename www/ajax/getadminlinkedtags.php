@@ -21,7 +21,7 @@
 
 /* Return a json file with list of linked tags */
 
-require_once '../../src/SemanticScuttle/header.php';
+require_once '../www-header.php';
 
 /* Service creation: only useful services are created */
 $b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');

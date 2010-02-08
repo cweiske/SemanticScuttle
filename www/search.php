@@ -19,7 +19,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ***************************************************************************/
 
-require_once '../src/SemanticScuttle/header.php';
+require_once 'www-header.php';
 
 /* Managing all possible inputs */
 isset($_POST['terms']) ? define('POST_TERMS', $_POST['terms']): define('POST_TERMS', '');

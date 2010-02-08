@@ -1,7 +1,7 @@
 <?php
 /* Export data with semantic format (SIOC: http://sioc-project.org/, FOAF, SKOS, Annotea Ontology) */
 
-require_once '../../src/SemanticScuttle/header.php';
+require_once '../www-header.php';
 header('Content-Type: text/xml; charset=utf-8'); //we change headers html defined in headers.inc.php
 
 /* Service creation: only useful services are created */

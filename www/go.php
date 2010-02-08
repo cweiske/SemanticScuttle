@@ -15,7 +15,7 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-require_once '../src/SemanticScuttle/header.php';
+require_once 'www-header.php';
 
 if (!$GLOBALS['shorturl']) {
     header('HTTP/1.0 500 Internal Server Error');

@@ -20,7 +20,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 
-require_once '../src/SemanticScuttle/header.php';
+require_once 'www-header.php';
 
 /* Service creation: only useful services are created */
 $bookmarkservice = SemanticScuttle_Service_Factory :: get('Bookmark');
