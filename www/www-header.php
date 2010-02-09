@@ -15,5 +15,5 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-require_once '../src/SemanticScuttle/header.php';
+require_once dirname(__FILE__) . '/../src/SemanticScuttle/header.php';
 ?>
