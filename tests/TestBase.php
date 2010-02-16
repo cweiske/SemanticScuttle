@@ -29,11 +29,12 @@ class TestBase extends PHPUnit_Framework_TestCase
     /**
      * Create a new bookmark.
      *
-     * @param integer $user User ID the bookmark shall belong
+     * @param integer $user    User ID the bookmark shall belong
+     * @param string  $address Bookmark address to use
      *
      * @return integer ID of bookmark
      */
-    protected function addBookmark($user = null)
+    protected function addBookmark($user = null, $address = null)
     {
         if ($user === null) {
             $user = $this->addUser();
@@ -41,8 +42,13 @@ class TestBase extends PHPUnit_Framework_TestCase
 
         $bs   = SemanticScuttle_Service_Factory::get('Bookmark');
         $rand = rand();
+
+        if ($address === null) {
+            $address = 'http://example.org/' . $rand;
+        }
+
         $bid  = $bs->addBookmark(
-            'http://example.org/' . $rand,
+            $address,
             'unittest bookmark #' . $rand,
             'description',
             null,
