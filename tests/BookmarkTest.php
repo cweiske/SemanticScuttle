@@ -778,6 +778,107 @@ class BookmarkTest extends TestBase
         $this->assertEquals('newShortNambb', $bm['bShort']);
     }
 
+
+
+    /**
+     * Test what countOther() returns when the address does not exist
+     *
+     * @return void
+     */
+    public function testCountOthersAddressDoesNotExist()
+    {
+        $this->assertEquals(0, $this->bs->countOthers('http://example.org'));
+    }
+
+
+
+    /**
+     * Test what countOther() returns when nobody else has the same bookmark
+     *
+     * @return void
+     */
+    public function testCountOthersNone()
+    {
+        $uid = $this->addUser();
+        $address = 'http://example.org';
+        $this->addBookmark($uid, $address);
+        $this->assertEquals(0, $this->bs->countOthers($address));
+    }
+
+
+
+    /**
+     * Test what countOther() returns when the address exists only once
+     * and multiple bookmarks are in the database.
+     *
+     * @return void
+     */
+    public function testCountOthersMultipleNone()
+    {
+        $uid = $this->addUser();
+        $address = 'http://example.org';
+        $this->addBookmark($uid, $address);
+        $this->addBookmark($uid);
+        $this->addBookmark($uid);
+        $this->assertEquals(0, $this->bs->countOthers($address));
+    }
+
+
+
+    /**
+     * Test what countOther() returns when the address exists only once
+     * and the same user and other users have other bookmarks
+     *
+     * @return void
+     */
+    public function testCountOthersMultipleUsersNone()
+    {
+        $uid  = $this->addUser();
+        $uid2 = $this->addUser();
+        $address = 'http://example.org';
+        $this->addBookmark($uid, $address);
+        $this->addBookmark($uid);
+        $this->addBookmark($uid2);
+        $this->assertEquals(0, $this->bs->countOthers($address));
+    }
+
+
+
+    /**
+     * Test what countOther() returns when the address exists two
+     * times in the database.
+     *
+     * @return void
+     */
+    public function testCountOthersOne()
+    {
+        $uid  = $this->addUser();
+        $uid2 = $this->addUser();
+        $address = 'http://example.org';
+        $this->addBookmark($uid, $address);
+        $this->addBookmark($uid2, $address);
+        $this->assertEquals(1, $this->bs->countOthers($address));
+    }
+
+
+
+    /**
+     * Test what countOther() returns when the address exists four
+     * times in the database.
+     *
+     * @return void
+     */
+    public function testCountOthersThree()
+    {
+        $uid  = $this->addUser();
+        $address = 'http://example.org';
+        $this->addBookmark($uid, $address);
+        $this->addBookmark(null, $address);
+        $this->addBookmark(null, $address);
+        $this->addBookmark(null, $address);
+        $this->assertEquals(3, $this->bs->countOthers($address));
+    }
+
 }
 
 
