@@ -916,9 +916,10 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             message_die(GENERAL_ERROR, 'Could not get vars', '', __LINE__, __FILE__, $sql, $this->db);
         }
 
-        $output = $this->db->sql_fetchfield(0, 0) - 1;
+        $count = $this->db->sql_fetchfield(0, 0);
+        $count = ($count > 0) ? $count - 1 : (int)$count;
         $this->db->sql_freeresult($dbresult);
-        return $output;
+        return $count;
     }
 
 
