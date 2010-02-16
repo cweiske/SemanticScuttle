@@ -879,6 +879,70 @@ class BookmarkTest extends TestBase
         $this->assertEquals(3, $this->bs->countOthers($address));
     }
 
+
+
+    /**
+     * Test what countOther() returns when the user is logged in
+     * and friends (people on the watchlist) have bookmarked
+     * and shared the same address.
+     *
+     * @return void
+     */
+    public function testCountOthersWatchlist()
+    {
+        $uid  = $this->addUser();
+        $address = 'http://example.org';
+        //log user in
+        $this->us->setCurrentUserId($uid);
+
+        //setup users
+        $otherPublic1   = $this->addUser();
+        $otherPublic2   = $this->addUser();
+        $otherShared1   = $this->addUser();
+        $otherPrivate1  = $this->addUser();
+        $friendPublic1  = $this->addUser();
+        $friendShared1  = $this->addUser();
+        $friendShared2  = $this->addUser();
+        $friendPrivate1 = $this->addUser();
+        $friendSharing1 = $this->addUser();
+
+        //setup watchlists
+        $us = SemanticScuttle_Service_Factory::get('User');
+        $this->us->setCurrentUserId($friendPublic1);
+        $us->setWatchStatus($uid);
+        $this->us->setCurrentUserId($friendShared1);
+        $us->setWatchStatus($uid);
+        $this->us->setCurrentUserId($friendShared2);
+        $us->setWatchStatus($uid);
+        $this->us->setCurrentUserId($friendPrivate1);
+        $us->setWatchStatus($uid);
+
+        //back to login of main user
+        $this->us->setCurrentUserId($uid);
+        $us->setWatchStatus($friendSharing1);
+
+        //add bookmarks
+        $this->addBookmark($uid, $address, 0);
+        $this->addBookmark($otherPublic1,   $address, 0);
+        $this->addBookmark($otherPublic2,   $address, 0);
+        $this->addBookmark($otherShared1,   $address, 1);
+        $this->addBookmark($otherPrivate1,  $address, 2);
+        $this->addBookmark($friendPublic1,  $address, 0);
+        $this->addBookmark($friendShared1,  $address, 1);
+        $this->addBookmark($friendShared2,  $address, 1);
+        $this->addBookmark($friendPrivate1, $address, 2);
+        //this user is on our watchlist, but we not on his
+        $this->addBookmark($friendSharing1, $address, 1);
+
+        //2 public
+        //1 public (friend)
+        //2 shared
+        //-> 5
+        $this->assertEquals(5, $this->bs->countOthers($address));
+    }
+
+
+
 }
 
 
