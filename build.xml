@@ -48,6 +48,14 @@
 
 
 
+  <target name="package" depends="check"
+   description="Creates the pear package"
+  >
+   <!-- fixme: create package.xml with d51pearpkg2 -->
+  </target>
+
+
+
   <target name="release" depends="check,zip,deploy-sf,svntag"
    description="Release the version on sourceforge"
    >
