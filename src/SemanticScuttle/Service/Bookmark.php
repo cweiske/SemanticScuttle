@@ -911,7 +911,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             $privacy = ' AND B.bStatus = 0';
         }
 
-        $sql = 'SELECT COUNT(*) FROM '. $userservice->getTableName() .' AS U, '. $GLOBALS['tableprefix'] .'bookmarks AS B WHERE U.'. $userservice->getFieldName('primary') .' = B.uId AND B.bHash = "'. md5($address) .'"'. $privacy;
+        $sql = 'SELECT COUNT(*) as "0" FROM '. $userservice->getTableName() .' AS U, '. $GLOBALS['tableprefix'] .'bookmarks AS B WHERE U.'. $userservice->getFieldName('primary') .' = B.uId AND B.bHash = "'. md5($address) .'"'. $privacy;
         if (!($dbresult = & $this->db->sql_query($sql))) {
             message_die(GENERAL_ERROR, 'Could not get vars', '', __LINE__, __FILE__, $sql, $this->db);
         }
