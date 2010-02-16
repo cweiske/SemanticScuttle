@@ -889,31 +889,51 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
 
 
-    function countOthers($address)
+    /**
+     * Counts the number of bookmarks that have the same address
+     * as the given address
+     *
+     * @param string $address Address/URL to look for
+     *
+     * @return integer Number of bookmarks minus one that have the address
+     */
+    public function countOthers($address)
     {
         if (!$address) {
             return false;
         }
 
-        $userservice = SemanticScuttle_Service_Factory :: get('User');
-        $sId = $userservice->getCurrentUserId();
+        $us  = SemanticScuttle_Service_Factory::get('User');
+        $sId = (int)$us->getCurrentUserId();
 
-        if ($userservice->isLoggedOn()) {
-            // All public bookmarks, user's own bookmarks and any shared with user
-            $privacy = ' AND ((B.bStatus = 0) OR (B.uId = '. $sId .')';
-            $watchnames = $userservice->getWatchNames($sId, true);
-            foreach($watchnames as $watchuser) {
-                $privacy .= ' OR (U.username = "'. $watchuser .'" AND B.bStatus = 1)';
+        if ($us->isLoggedOn()) {
+            //All public bookmarks, user's own bookmarks
+            // and any shared with our user
+            $privacy    = ' AND ((B.bStatus = 0) OR (B.uId = ' . $sId . ')';
+            $watchnames = $us->getWatchNames($sId, true);
+            foreach ($watchnames as $watchuser) {
+                $privacy .= ' OR (U.username = "'
+                    . $this->db->sql_escape($watchuser)
+                    . '" AND B.bStatus = 1)';
             }
             $privacy .= ')';
         } else {
-            // Just public bookmarks
+            //Just public bookmarks
             $privacy = ' AND B.bStatus = 0';
         }
 
-        $sql = 'SELECT COUNT(*) as "0" FROM '. $userservice->getTableName() .' AS U, '. $GLOBALS['tableprefix'] .'bookmarks AS B WHERE U.'. $userservice->getFieldName('primary') .' = B.uId AND B.bHash = "'. md5($address) .'"'. $privacy;
-        if (!($dbresult = & $this->db->sql_query($sql))) {
-            message_die(GENERAL_ERROR, 'Could not get vars', '', __LINE__, __FILE__, $sql, $this->db);
+        $sql = 'SELECT COUNT(*) as "0" FROM '
+            . $us->getTableName() . ' AS U'
+            . ', '. $GLOBALS['tableprefix'] . 'bookmarks AS B'
+            . ' WHERE U.'. $us->getFieldName('primary') .' = B.uId'
+            . ' AND B.bHash = "'. md5($address) . '"'
+            . $privacy;
+
+        if (!($dbresult = $this->db->sql_query($sql))) {
+            message_die(
+                GENERAL_ERROR, 'Could not get other count',
+                '', __LINE__, __FILE__, $sql, $this->db
+            );
         }
 
         $count = $this->db->sql_fetchfield(0, 0);
