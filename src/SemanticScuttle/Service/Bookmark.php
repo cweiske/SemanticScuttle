@@ -804,10 +804,17 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         $total = $row['total'];
         $this->db->sql_freeresult($totalresult);
 
-        $bookmarks = array();
-        while ($row = & $this->db->sql_fetchrow($dbresult)) {
-            $row['tags'] = $b2tservice->getTagsForBookmark(intval($row['bId']));
-            $bookmarks[] = $row;
+        $bookmarks   = array();
+        $bookmarkids = array();
+        while ($row = $this->db->sql_fetchrow($dbresult)) {
+            $bookmarks[]   = $row;
+            $bookmarkids[] = $row['bId'];
+        }
+        if (count($bookmarkids)) {
+            $tags = $b2tservice->getTagsForBookmarks($bookmarkids);
+            foreach ($bookmarks as &$bookmark) {
+                $bookmark['tags'] = $tags[$bookmark['bId']];
+            }
         }
 
         $this->db->sql_freeresult($dbresult);
