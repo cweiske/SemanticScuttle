@@ -891,17 +891,29 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
     /**
      * Counts the number of bookmarks that have the same address
-     * as the given address
+     * as the given address.
      *
-     * @param string $address Address/URL to look for
+     * @internal
+     * We do support fetching counts for multiple addresses at once
+     * because that allows us to reduce the number of queries
+     * we need in the web interface when displaying i.e.
+     * 10 bookmarks - only one SQL query is needed then.
      *
-     * @return integer Number of bookmarks minus one that have the address
+     * @param string|array $addresses Address/URL to look for, string
+     *                                of one address or array with
+     *                                multiple ones
+     *
+     * @return integer Number of bookmarks minus one that have the address.
+     *                 In case $addresses was an array, key-value array
+     *                 with key being the address, value said number of
+     *                 bookmarks
      */
-    public function countOthers($address)
+    public function countOthers($addresses)
     {
-        if (!$address) {
+        if (!$addresses) {
             return false;
         }
+        $bArray = is_array($addresses);
 
         $us  = SemanticScuttle_Service_Factory::get('User');
         $sId = (int)$us->getCurrentUserId();
@@ -922,12 +934,22 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             $privacy = ' AND B.bStatus = 0';
         }
 
-        $sql = 'SELECT COUNT(*) as "0" FROM '
+        $addressesSql = ' AND (0';
+        foreach ((array)$addresses as $address) {
+            $addressesSql .= ' OR B.bHash = "'
+                . $this->db->sql_escape(md5($address))
+                . '"';
+        }
+        $addressesSql .= ')';
+
+
+        $sql = 'SELECT B.bAddress, COUNT(*) as count FROM '
             . $us->getTableName() . ' AS U'
             . ', '. $GLOBALS['tableprefix'] . 'bookmarks AS B'
             . ' WHERE U.'. $us->getFieldName('primary') .' = B.uId'
-            . ' AND B.bHash = "'. md5($address) . '"'
-            . $privacy;
+            . $addressesSql
+            . $privacy
+            . ' GROUP BY B.bHash';
 
         if (!($dbresult = $this->db->sql_query($sql))) {
             message_die(
@@ -936,10 +958,19 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             );
         }
 
-        $count = $this->db->sql_fetchfield(0, 0);
-        $count = ($count > 0) ? $count - 1 : (int)$count;
+        //be sure we also list urls in our array
+        // that are not found in the database
+        $counts = array_combine(
+            (array)$addresses,
+            array_fill(0, count((array)$addresses), 0)
+        );
+        while ($row = $this->db->sql_fetchrow($dbresult)) {
+            $counts[$row['bAddress']]
+                = $row['count'] > 0 ? $row['count'] - 1 : 0;
+        }
         $this->db->sql_freeresult($dbresult);
-        return $count;
+
+        return $bArray ? $counts : reset($counts);
     }
 
 

@@ -943,6 +943,86 @@ class BookmarkTest extends TestBase
 
 
 
+    /**
+     * Test what countOther() returns when multiple addresses are
+     * passed to it and none of them exists.
+     *
+     * @return void
+     */
+    public function testCountOthersArrayNone()
+    {
+        $this->assertEquals(
+            array('1' => 0, '2' => 0, '3' => 0),
+            $this->bs->countOthers(array('1', '2', '3'))
+        );
+    }
+
+
+
+    /**
+     * Test what countOther() returns when multiple addresses are
+     * passed to it and only one of them exists.
+     *
+     * @return void
+     */
+    public function testCountOthersArrayOneNone()
+    {
+        $uid  = $this->addUser();
+        $uid2 = $this->addUser();
+        $address1 = 'http://example.org/1';
+        $address2 = 'http://example.org/2';
+        $this->addBookmark($uid, $address1);
+        $this->addBookmark($uid, $address2);
+        $this->addBookmark($uid2, $address1);
+        $this->assertEquals(
+            array(
+                $address1 => 1,
+                $address2 => 0
+            ),
+            $this->bs->countOthers(
+                array($address1, $address2)
+            )
+        );
+    }
+
+
+
+    /**
+     * Test what countOther() returns when multiple addresses are passed
+     * to it and both of them exist with different numbers for each.
+     *
+     * @return void
+     */
+    public function testCountOthersArrayTwoOne()
+    {
+        $uid  = $this->addUser();
+        $uid2 = $this->addUser();
+        $uid3 = $this->addUser();
+
+        $address1 = 'http://example.org/1';
+        $address2 = 'http://example.org/2';
+
+        $this->addBookmark($uid, $address1);
+        $this->addBookmark($uid, $address2);
+
+        $this->addBookmark($uid2, $address1);
+        $this->addBookmark($uid2, $address2);
+
+        $this->addBookmark($uid3, $address1);
+
+        $this->assertEquals(
+            array(
+                $address1 => 2,
+                $address2 => 1
+            ),
+            $this->bs->countOthers(
+                array($address1, $address2)
+            )
+        );
+    }
+
+
+
 }
 
 
