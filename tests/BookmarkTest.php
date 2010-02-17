@@ -332,6 +332,40 @@ class BookmarkTest extends TestBase
 
 
     /**
+     * Check tag loading functionality of getBookmarks()
+     *
+     * @return void
+     */
+    public function testGetBookmarksIncludeTags()
+    {
+        $uid = $this->addUser();
+        $bid = $this->addBookmark($uid);
+        $this->b2ts->attachTags($bid, array('foo', 'bar'));
+        $bid2 = $this->addBookmark($uid);
+        $this->b2ts->attachTags($bid2, array('fuu', 'baz'));
+
+        $bms = $this->bs->getBookmarks();
+        $this->assertEquals(2, count($bms['bookmarks']));
+        $this->assertEquals(2, $bms['total']);
+
+        foreach ($bms['bookmarks'] as $bm) {
+            $this->assertArrayHasKey('tags', $bm);
+            $this->assertType('array', $bm['tags']);
+            if ($bm['bId'] == $bid) {
+                $this->assertContains('foo', $bm['tags']);
+                $this->assertContains('bar', $bm['tags']);
+            } else if ($bm['bId'] == $bid2) {
+                $this->assertContains('fuu', $bm['tags']);
+                $this->assertContains('baz', $bm['tags']);
+            } else {
+                $this->assertTrue(false, 'Unknown bookmark id');
+            }
+        }
+    }
+
+
+
+    /**
      * Test if deleting a bookmark works.
      *
      * @return void
