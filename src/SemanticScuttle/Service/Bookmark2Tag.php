@@ -305,6 +305,54 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         return $tags;
     }
 
+
+    /**
+     * Retrieves all tags for an array of bookmark IDs
+     *
+     * @param array $bookmarkids Array of bookmark IDs
+     *
+     * @return array Array of tag arrays. Key is bookmark ID.
+     */
+    public function getTagsForBookmarks($bookmarkids)
+    {
+        if (!is_array($bookmarkids)) {
+            message_die(
+                GENERAL_ERROR, 'Could not get tags (invalid bookmarkids)',
+                '', __LINE__, __FILE__, $query
+            );
+            return false;
+        }
+
+        $sql = '';
+        foreach ($bookmarkids as $bookmarkid) {
+            $sql .= ' OR bId = ' . intval($bookmarkid);
+        }
+
+        $query = 'SELECT tag, bId FROM ' . $this->getTableName()
+            . ' WHERE (1' . $sql . ')'
+            . ' AND LEFT(tag, 7) <> "system:"'
+            . ' ORDER BY id, bId ASC';
+
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR, 'Could not get tags',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            return false;
+        }
+
+        $tags = array_combine(
+            $bookmarkids,
+            array_fill(0, count($bookmarkids), array())
+        );
+        while ($row = $this->db->sql_fetchrow($dbresult)) {
+            $tags[$row['bId']][] = $row['tag'];
+        }
+        $this->db->sql_freeresult($dbresult);
+        return $tags;
+    }
+
+
     function &getTags($userid = NULL) {
         $userservice =SemanticScuttle_Service_Factory::get('User');
         $logged_on_user = $userservice->getCurrentUserId();

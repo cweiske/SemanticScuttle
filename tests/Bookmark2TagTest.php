@@ -126,6 +126,79 @@ class Bookmark2TagTest extends TestBase
         $this->assertContains('bar', $tags);
         $this->assertContains('fuu', $tags);
     }
+
+
+
+    /**
+     * Test getTagsForBookmarks() when no bookmarks have tags.
+     *
+     * @return void
+     */
+    public function testGetTagsForBookmarksNone()
+    {
+        $bid1 = $this->addBookmark(null, null, 0, array());
+        $bid2 = $this->addBookmark(null, null, 0, array());
+
+        $alltags = $this->b2ts->getTagsForBookmarks(
+            array($bid1, $bid2)
+        );
+        $this->assertType('array', $alltags);
+        $this->assertEquals(2, count($alltags));
+        $this->assertType('array', $alltags[$bid1]);
+        $this->assertType('array', $alltags[$bid2]);
+        $this->assertEquals(0, count($alltags[$bid1]));
+        $this->assertEquals(0, count($alltags[$bid2]));
+    }
+
+
+
+    /**
+     * Test getTagsForBookmarks() when most bookmarks have tags.
+     *
+     * @return void
+     */
+    public function testGetTagsForBookmarksMost()
+    {
+        $bid1 = $this->addBookmark(null, null, 0, array());
+        $this->b2ts->attachTags($bid1, array('foo', 'bar', 'fuu'));
+
+        $bid2 = $this->addBookmark(null, null, 0, array());
+        $this->b2ts->attachTags($bid2, array('foo', 'bar2', 'fuu2'));
+
+        $bid3 = $this->addBookmark(null, null, 0, array());
+        $this->b2ts->attachTags($bid3, array('foo', 'bar2', 'fuu3'));
+
+        $bid4 = $this->addBookmark(null, null, 0, array());
+        //no tags
+
+        $alltags = $this->b2ts->getTagsForBookmarks(
+            array($bid1, $bid2, $bid3, $bid4)
+        );
+        $this->assertType('array', $alltags);
+        foreach ($alltags as $bid => $btags) {
+            $this->assertType('array', $btags);
+            if ($bid == $bid1) {
+                $this->assertEquals(3, count($btags));
+                $this->assertContains('foo', $btags);
+                $this->assertContains('bar', $btags);
+                $this->assertContains('fuu', $btags);
+            } else if ($bid == $bid2) {
+                $this->assertEquals(3, count($btags));
+                $this->assertContains('foo', $btags);
+                $this->assertContains('bar2', $btags);
+                $this->assertContains('fuu2', $btags);
+            } else if ($bid == $bid3) {
+                $this->assertEquals(3, count($btags));
+                $this->assertContains('foo', $btags);
+                $this->assertContains('bar2', $btags);
+                $this->assertContains('fuu3', $btags);
+            } else if ($bid == $bid4) {
+                $this->assertEquals(0, count($btags));
+            } else {
+                $this->assertTrue(false, 'Unknown bookmark id');
+            }
+        }
+    }
 }
 
 if (PHPUnit_MAIN_METHOD == 'Bookmark2TagTest::main') {
