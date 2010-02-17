@@ -217,8 +217,7 @@ if($currenttag!= '') {
 	id="bookmarks">
 
 	<?php
-	foreach(array_keys($bookmarks) as $key) {
-		$row =& $bookmarks[$key];
+	foreach ($bookmarks as $key => &$row) {
 		switch ($row['bStatus']) {
 			case 0:
 				$access = '';
@@ -234,9 +233,7 @@ if($currenttag!= '') {
 		$cats = '';
 		$tagsForCopy = '';
 		$tags = $row['tags'];
-		foreach(array_keys($tags) as $key) {
-
-			$tag =& $tags[$key];
+		foreach ($tags as $tkey => &$tag) {
 			$cats .= '<a href="'. sprintf($cat_url, filter($row['username'], 'url'), filter($tag, 'url')) .'" rel="tag">'. filter($tag) .'</a>, ';
 			$tagsForCopy.= $tag.',';
 		}
