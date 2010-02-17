@@ -266,21 +266,39 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         return true;
     }
 
-    function &getTagsForBookmark($bookmarkid) {
+
+    /**
+     * Retrieves all tags for a given bookmark except system tags.
+     *
+     * @param integer $bookmarkid ID of the bookmark
+     *
+     * @return array Array of tags
+     */
+    public function getTagsForBookmark($bookmarkid)
+    {
         if (!is_numeric($bookmarkid)) {
-            message_die(GENERAL_ERROR, 'Could not get tags (invalid bookmarkid)', '', __LINE__, __FILE__, $query);
+            message_die(
+                GENERAL_ERROR, 'Could not get tags (invalid bookmarkid)',
+                '', __LINE__, __FILE__, $query
+            );
             return false;
         }
 
-        $query = 'SELECT tag FROM '. $this->getTableName() .' WHERE bId = '. intval($bookmarkid) .' AND LEFT(tag, 7) <> "system:" ORDER BY id ASC';
+        $query = 'SELECT tag FROM ' . $this->getTableName()
+            . ' WHERE bId = ' . intval($bookmarkid)
+            . ' AND LEFT(tag, 7) <> "system:"'
+            . ' ORDER BY id ASC';
 
-        if (!($dbresult =& $this->db->sql_query($query))) {
-            message_die(GENERAL_ERROR, 'Could not get tags', '', __LINE__, __FILE__, $query, $this->db);
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR, 'Could not get tags',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
             return false;
         }
 
         $tags = array();
-        while ($row =& $this->db->sql_fetchrow($dbresult)) {
+        while ($row = $this->db->sql_fetchrow($dbresult)) {
             $tags[] = $row['tag'];
         }
         $this->db->sql_freeresult($dbresult);
