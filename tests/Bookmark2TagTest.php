@@ -78,6 +78,8 @@ class Bookmark2TagTest extends TestBase
      */
     public function testGetTagsForBookmarkNone()
     {
+        $this->addBookmark(null, null, 0, array('forz', 'barz'));
+
         $bid = $this->addBookmark(null, null, 0, array());
         $this->assertEquals(
             array(),
@@ -94,6 +96,8 @@ class Bookmark2TagTest extends TestBase
      */
     public function testGetTagsForBookmarkOne()
     {
+        $this->addBookmark(null, null, 0, array('forz', 'barz'));
+
         $bid = $this->addBookmark(null, null, 0, array());
         $this->b2ts->attachTags($bid, array('foo'));
         $this->assertEquals(
@@ -111,6 +115,8 @@ class Bookmark2TagTest extends TestBase
      */
     public function testGetTagsForBookmarkThree()
     {
+        $this->addBookmark(null, null, 0, array('forz', 'barz'));
+
         $bid = $this->addBookmark(null, null, 0, array());
         $this->b2ts->attachTags($bid, array('foo', 'bar', 'fuu'));
 
