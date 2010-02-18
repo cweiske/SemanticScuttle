@@ -1,9 +1,16 @@
 ChangeLog for SemantiScuttle
 ============================
 
+0.97.0 - 2010-?????
+-------------------
+- Many SQL optimizations
+- New config option to skip "SET NAMES UTF8" call: $dbneedssetnames
+
+
 0.96.1 - 2010-02-09
 -------------------
 - Fix bug #2948410: API is broken in 0.96.0
+
 
 0.96.0 - 2010-02-08
 -------------------
