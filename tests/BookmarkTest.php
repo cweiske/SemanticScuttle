@@ -253,6 +253,128 @@ class BookmarkTest extends TestBase
 
 
     /**
+     * Tests if bookmarksExist() returns true when a bookmark
+     * exists
+     *
+     * @return void
+     */
+    public function testBookmarksExistTrueSingle()
+    {
+        $bid = $this->addBookmark();
+        $bookmark = $this->bs->getBookmark($bid);
+
+        $ret = $this->bs->bookmarksExist(array($bookmark['bAddress']));
+        $this->assertType('array', $ret);
+        $this->assertEquals(1, count($ret));
+        $this->assertTrue($ret[$bookmark['bAddress']]);
+    }
+
+
+
+    /**
+     * Tests if bookmarksExist() returns true when all bookmarks
+     * exist
+     *
+     * @return void
+     */
+    public function testBookmarksExistTrueMultiple()
+    {
+        $bid = $this->addBookmark();
+        $bookmark = $this->bs->getBookmark($bid);
+
+        $bid2 = $this->addBookmark();
+        $bookmark2 = $this->bs->getBookmark($bid2);
+
+
+        $ret = $this->bs->bookmarksExist(
+            array(
+                $bookmark['bAddress'],
+                $bookmark2['bAddress']
+            )
+        );
+        $this->assertType('array', $ret);
+        $this->assertEquals(2, count($ret));
+        $this->assertTrue($ret[$bookmark['bAddress']]);
+        $this->assertTrue($ret[$bookmark2['bAddress']]);
+    }
+
+
+
+    /**
+     * Tests if bookmarksExist() returns false when a bookmark
+     * does not exist
+     *
+     * @return void
+     */
+    public function testBookmarksExistFalseSingle()
+    {
+        $ret = $this->bs->bookmarksExist(array('does-not-exist'));
+        $this->assertType('array', $ret);
+        $this->assertEquals(1, count($ret));
+        $this->assertFalse($ret['does-not-exist']);
+    }
+
+
+
+    /**
+     * Tests if bookmarksExist() returns false when all bookmarks
+     * do not exist
+     *
+     * @return void
+     */
+    public function testBookmarksExistFalseMultiple()
+    {
+        $bms = array(
+            'does-not-exist',
+            'does-not-exist-2',
+            'does-not-exist-3',
+        );
+        $ret = $this->bs->bookmarksExist($bms);
+        $this->assertType('array', $ret);
+        $this->assertEquals(3, count($ret));
+        $this->assertFalse($ret['does-not-exist']);
+        $this->assertFalse($ret['does-not-exist-2']);
+        $this->assertFalse($ret['does-not-exist-3']);
+    }
+
+
+
+    /**
+     * Tests if bookmarksExist() returns true when some bookmarks
+     * exist.
+     *
+     * @return void
+     */
+    public function testBookmarksExistSome()
+    {
+        $bid = $this->addBookmark();
+        $bookmark = $this->bs->getBookmark($bid);
+
+        $bid2 = $this->addBookmark();
+        $bookmark2 = $this->bs->getBookmark($bid2);
+
+
+        $ret = $this->bs->bookmarksExist(
+            array(
+                $bookmark['bAddress'],
+                'does-not-exist',
+                $bookmark2['bAddress'],
+                'does-not-exist-2',
+                'does-not-exist-3'
+            )
+        );
+        $this->assertType('array', $ret);
+        $this->assertEquals(5, count($ret));
+        $this->assertTrue($ret[$bookmark['bAddress']]);
+        $this->assertTrue($ret[$bookmark2['bAddress']]);
+        $this->assertFalse($ret['does-not-exist']);
+        $this->assertFalse($ret['does-not-exist-2']);
+        $this->assertFalse($ret['does-not-exist-3']);
+    }
+
+
+
+    /**
      * Test if countBookmarks() works with no bookmarks
      *
      * @return void
