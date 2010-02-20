@@ -67,19 +67,16 @@ if (intval(GET_PAGE) > 1) {
 	$start = 0;
 }
 
-$dtend = date('Y-m-d H:i:s', strtotime('tomorrow'));
-/*$dtstart = date('Y-m-d H:i:s', strtotime($dtend .' -'. $defaultRecentDays .' days'));*/
-
-$tplVars['page'] = $page;
-$tplVars['start'] = $start;
+$tplVars['page']     = $page;
+$tplVars['start']    = $start;
 $tplVars['popCount'] = 30;
 $tplVars['sidebar_blocks'] = $GLOBALS["index_sidebar_blocks"];
-$tplVars['range'] = 'all';
+$tplVars['range']     = 'all';
 $tplVars['pagetitle'] = T_('Store, share and tag your favourite links');
-$tplVars['subtitle'] = T_('All Bookmarks');
+$tplVars['subtitle']  = T_('All Bookmarks');
 $tplVars['bookmarkCount'] = $start + 1;
 
-$bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, NULL, NULL, NULL, getSortOrder(), NULL, 0, $dtend);
+$bookmarks = $bookmarkservice->getBookmarks($start, $perpage, NULL, NULL, NULL, getSortOrder(), NULL, 0, NULL);
 
 $tplVars['total'] = $bookmarks['total'];
 $tplVars['bookmarks'] =& $bookmarks['bookmarks'];
