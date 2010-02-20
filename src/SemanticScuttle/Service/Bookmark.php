@@ -284,7 +284,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         }
 
         $userservice = SemanticScuttle_Service_Factory::get('User');
-        $user = $userservice->getCurrentUser();
+        $user = $userservice->getCurrentObjectUser();
 
         //user has to be either admin, or owner
         if ($GLOBALS['adminsCanModifyBookmarksFromOtherUsers']
@@ -292,7 +292,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         ) {
             return true;
         } else {
-            return ($bookmark['uId'] == $user['uId']);
+            return ($bookmark['uId'] == $user->id);
         }
     }
 
