@@ -35,10 +35,23 @@ function filter($data, $type = NULL) {
 	return $data;
 }
 
-function getPerPageCount($userObject = null) {
+/**
+ * Returns the number of bookmarks that shall be displayed on one page.
+ *
+ * @param SemanticScuttle_Model_User $userObject Object of the current user
+ *
+ * @return integer Number of bookmarks per page
+ *
+ * @uses $defaultPerPage
+ * @uses $defaultPerPageForAdmins
+ */
+function getPerPageCount($userObject = null)
+{
 	global $defaultPerPage, $defaultPerPageForAdmins;
 	
-	if(isset($defaultPerPageForAdmins) && $userObject != null && $userObject->isAdmin()) {		
+	if (isset($defaultPerPageForAdmins)
+        && $userObject != null && $userObject->isAdmin()
+    ) {
 		return $defaultPerPageForAdmins;
 	} else {
 		return $defaultPerPage;
