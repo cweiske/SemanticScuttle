@@ -216,7 +216,13 @@ if($currenttag!= '') {
 <ol <?php echo ($start > 0 ? ' start="'. ++$start .'"' : ''); ?>
 	id="bookmarks">
 
-	<?php
+    <?php
+    $addresses = array();
+    foreach ($bookmarks as $key => &$row) {
+        $addresses[$row['bId']] = $row['bAddress'];
+    }
+    $otherCounts = $bookmarkservice->countOthers($addresses);
+
 	foreach ($bookmarks as $key => &$row) {
 		switch ($row['bStatus']) {
 			case 0:
@@ -261,7 +267,7 @@ if($currenttag!= '') {
 
 		// Udders!
 		if (!isset($hash)) {
-			$others = $bookmarkservice->countOthers($row['bAddress']);
+			$others = $otherCounts[$row['bAddress']];
 			$ostart = '<a href="'. createURL('history', $row['bHash']) .'">';
 			$oend = '</a>';
 			switch ($others) {
