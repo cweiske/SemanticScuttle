@@ -113,7 +113,7 @@ class SemanticScuttle_Service_Factory
     protected static function loadDb()
     {
         global $dbhost, $dbuser, $dbpass, $dbname,
-            $dbport, $dbpersist, $dbtype;
+            $dbport, $dbpersist, $dbtype, $dbneedssetnames;
 
         if (self::$db !== null) {
             return;
@@ -130,7 +130,9 @@ class SemanticScuttle_Service_Factory
                 self::$db
             );
         }
-        $db->sql_query('SET NAMES UTF8');
+
+        $dbneedssetnames && $db->sql_query('SET NAMES UTF8');
+
         self::$db = $db;
     }
 
