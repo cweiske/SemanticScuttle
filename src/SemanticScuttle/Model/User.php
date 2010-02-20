@@ -158,7 +158,7 @@ class SemanticScuttle_Model_User
         // Look for value only if not already set
         if(!isset($this->isAdmin)) {
             $us = SemanticScuttle_Service_Factory::get('User');
-            $this->isAdmin = $us->isAdmin($this->id);
+            $this->isAdmin = $us->isAdmin($this->username);
         }
         return $this->isAdmin;
     }
