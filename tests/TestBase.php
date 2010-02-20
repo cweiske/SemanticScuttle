@@ -32,16 +32,22 @@ class TestBase extends PHPUnit_Framework_TestCase
      * @param integer $user    User ID the bookmark shall belong
      * @param string  $address Bookmark address to use
      * @param integer $status  Bookmark visibility
+     * @param array   $tags    Array of tags to attach. If "null" is given,
+     *                         it will automatically be "unittest"
      *
      * @return integer ID of bookmark
      *
      * @see SemanticScuttle_Service_Bookmark::addBookmark()
      */
     protected function addBookmark(
-        $user = null, $address = null, $status = 0
+        $user = null, $address = null, $status = 0,
+        $tags = null
     ) {
         if ($user === null) {
             $user = $this->addUser();
+        }
+        if ($tags === null) {
+            $tags = array('unittest');
         }
 
         $bs   = SemanticScuttle_Service_Factory::get('Bookmark');
@@ -57,7 +63,7 @@ class TestBase extends PHPUnit_Framework_TestCase
             'description',
             null,
             $status,
-            array('unittest'),
+            $tags,
             null, null, false, false,
             $user
         );
