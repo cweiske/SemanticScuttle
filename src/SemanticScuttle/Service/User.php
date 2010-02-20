@@ -305,9 +305,14 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     /**
      * Checks if the given user is an administrator.
      * Uses global admin_users property containing admin
-     * user names
+     * user names.
      *
-     * @param integer|array $user User ID or user row from DB
+     * Passing the user id makes this function load the user
+     * from database. For efficiency reasons, try to pass
+     * the user name or database row.
+     *
+     * @param integer|array|string $user User ID or user row from DB
+     *                                   or user name
      *
      * @return boolean True if the user is admin
      */
@@ -315,10 +320,13 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     {
         if (is_numeric($user)) {
             $user = $this->getUser($user);
+            $user = $user['username'];
+        } else if (is_array($user)) {
+            $user = $user['username'];
         }
 
         if (isset($GLOBALS['admin_users'])
-            && in_array($user['username'], $GLOBALS['admin_users'])
+            && in_array($user, $GLOBALS['admin_users'])
         ) {
             return true;
         } else {
