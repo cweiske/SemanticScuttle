@@ -325,7 +325,9 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             $crit['uId'] = $uid;
         }
 
-        $sql = 'SELECT COUNT(*) as "0" FROM '. $GLOBALS['tableprefix'] .'bookmarks WHERE '. $this->db->sql_build_array('SELECT', $crit);
+        $sql = 'SELECT COUNT(*) as "0" FROM '
+            . $GLOBALS['tableprefix'] . 'bookmarks'
+            . ' WHERE '. $this->db->sql_build_array('SELECT', $crit);
 
         if (!($dbresult = $this->db->sql_query($sql))) {
             message_die(
