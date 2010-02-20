@@ -321,6 +321,8 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
                 '', __LINE__, __FILE__, $query
             );
             return false;
+        } else if (count($bookmarkids) == 0) {
+            return array();
         }
 
         $sql = '';
