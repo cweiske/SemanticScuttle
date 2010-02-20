@@ -312,7 +312,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      * @return boolean True when the bookmark with the given URL
      *                 exists for the user, false if not.
      */
-    function bookmarkExists($address = false, $uid = null)
+    public function bookmarkExists($address = false, $uid = null)
     {
         if (!$address) {
             return false;
@@ -342,6 +342,60 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         }
         $this->db->sql_freeresult($dbresult);
         return $output;
+    }
+
+
+
+    /**
+     * Checks if the given addresses exist
+     *
+     * @param array   $addresses Array of addresses
+     * @param integer $uid       User ID the addresses shall belong to
+     *
+     * @return array Array with addresses as keys, true/false for existence
+     *               as value
+     */
+    public function bookmarksExist($addresses, $uid = null)
+    {
+        if (count($addresses) == 0) {
+            return array();
+        }
+
+        $hashes = array();
+        $sql = '(1';
+        foreach ($addresses as $key => $address) {
+            $hash = md5($this->normalize($address));
+            $hashes[$hash] = $address;
+            $sql .= ' OR bHash = "'
+                . $this->db->sql_escape($hash)
+                . '"';
+        }
+        $sql .= ')';
+        if ($uid !== null) {
+            $sql .= ' AND uId = ' . intval($uid);
+        }
+
+        $sql = 'SELECT bHash, COUNT(*) as "count" FROM '
+            . $this->getTableName()
+            . ' WHERE ' . $sql
+            . ' GROUP BY bHash';
+
+        if (!($dbresult = $this->db->sql_query($sql))) {
+            message_die(
+                GENERAL_ERROR, 'Could not get bookmark counts', '',
+                __LINE__, __FILE__, $sql, $this->db
+            );
+        }
+
+        $existence = array_combine(
+            $addresses,
+            array_fill(0, count($addresses), false)
+        );
+        while ($row = $this->db->sql_fetchrow($dbresult)) {
+            $existence[$hashes[$row['bHash']]] = $row['count'] > 0;
+        }
+
+        return $existence;
     }
 
 
