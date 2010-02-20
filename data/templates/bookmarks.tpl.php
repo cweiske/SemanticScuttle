@@ -222,6 +222,11 @@ if($currenttag!= '') {
         $addresses[$row['bId']] = $row['bAddress'];
     }
     $otherCounts = $bookmarkservice->countOthers($addresses);
+    if ($userservice->isLoggedOn()) {
+        $existence = $bookmarkservice->bookmarksExist(
+            $addresses, $currentUser->getId()
+        );
+    }
 
 	foreach ($bookmarks as $key => &$row) {
 		switch ($row['bStatus']) {
@@ -284,7 +289,7 @@ if($currenttag!= '') {
 		// Copy link
 		if ($userservice->isLoggedOn()
             && ($currentUser->getId() != $row['uId'])
-            && !$bookmarkservice->bookmarkExists($row['bAddress'], $currentUser->getId())
+            && !$existence[$row['bAddress']]
         ) {
 			$copy .= ' - <a href="'
                 . createURL('bookmarks', $currentUser->getUsername() .'?action=add&amp;copyOf='. $row['bId'])
