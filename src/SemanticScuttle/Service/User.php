@@ -407,6 +407,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         }
         //reload user object
         $this->getCurrentUser(true);
+        $this->getCurrentObjectUser(true);
     }
 
 
