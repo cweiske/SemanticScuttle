@@ -76,15 +76,28 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         $this->updateSessionStability();
     }
 
-    function _getuser($fieldname, $value) {
-        $query = 'SELECT * FROM '. $this->getTableName() .' WHERE '. $fieldname .' = "'. $this->db->sql_escape($value) .'"';
+    /**
+     * Fetches the desired user row from database, specified by column and value
+     *
+     * @param string $fieldname Name of database column to identify user
+     * @param string $value     Value of $fieldname
+     *
+     * @return array Database row or boolean false
+     */
+    protected function _getuser($fieldname, $value)
+    {
+        $query = 'SELECT * FROM '. $this->getTableName()
+            . ' WHERE ' . $fieldname . ' = "' . $this->db->sql_escape($value) . '"';
 
-        if (! ($dbresult =& $this->db->sql_query($query)) ) {
-            message_die(GENERAL_ERROR, 'Could not get user', '', __LINE__, __FILE__, $query, $this->db);
+        if (!($dbresult = $this->db->sql_query($query)) ) {
+            message_die(
+                GENERAL_ERROR, 'Could not get user',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
             return false;
         }
 
-        $row =& $this->db->sql_fetchrow($dbresult);
+        $row = $this->db->sql_fetchrow($dbresult);
         $this->db->sql_freeresult($dbresult);
         if ($row) {
             return $row;
