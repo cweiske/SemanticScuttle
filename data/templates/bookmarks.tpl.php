@@ -312,7 +312,7 @@ if($currenttag!= '') {
 		}
 
 		// Admin specific design
-		if ($userservice->isAdmin($row['username'])) {
+		if ($userservice->isAdmin($row['username']) && $GLOBALS['enableAdminColors']) {
 			$adminBgClass = 'class="adminBackground"';
 			$adminStar = ' <img src="'. ROOT .'images/logo_24.gif" width="12px" title="'. T_('This bookmark is certified by an admin user.') .'" />';
 		} else {

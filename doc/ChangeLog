@@ -5,6 +5,7 @@ ChangeLog for SemantiScuttle
 -------------------
 - Many SQL optimizations
 - New config option to skip "SET NAMES UTF8" call: $dbneedssetnames
+- Do not highlight admin bookmarks when $enableAdminColors is disabled
 
 
 0.96.1 - 2010-02-09
