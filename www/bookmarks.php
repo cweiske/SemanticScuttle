@@ -134,7 +134,7 @@ if ($userservice->isLoggedOn() && POST_SUBMITTED != '') {
 		$address = trim(POST_ADDRESS);
 		// If the bookmark exists already, edit the original
 		if ($bookmarkservice->bookmarkExists($address, $currentUserID)) {
-			$bookmark =& $bookmarkservice->getBookmarkByAddress($address);
+			$bookmark = $bookmarkservice->getBookmarkByAddress($address);
 			header('Location: '. createURL('edit', $bookmark['bId']));
 			exit();
 			// If it's new, save it
