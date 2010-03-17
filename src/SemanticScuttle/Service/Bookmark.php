@@ -178,7 +178,8 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      */
     public function getBookmarkByAddress($address)
     {
-        $hash = md5($address);
+        $address = $this->normalize($address);
+        $hash    = md5($address);
         return $this->getBookmarkByHash($hash);
     }
 
