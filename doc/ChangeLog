@@ -6,6 +6,7 @@ ChangeLog for SemantiScuttle
 - Many SQL optimizations
 - New config option to skip "SET NAMES UTF8" call: $dbneedssetnames
 - Do not highlight admin bookmarks when $enableAdminColors is disabled
+- Fix bug #2953732: faulty error message for duplicate bookmarks
 
 
 0.96.1 - 2010-02-09
