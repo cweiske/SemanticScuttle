@@ -5,8 +5,8 @@
 // - doesn't include the filtered tag as an attribute on the root element (we do)
 
 // Force HTTP authentication first!
-require_once('httpauth.inc.php');
-require_once '../www-header.php';
+$httpContentType = 'text/xml';
+require_once 'httpauth.inc.php';
 
 /* Service creation: only useful services are created */
 $bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
@@ -22,7 +22,6 @@ else
 $bookmarks =& $bookmarkservice->getBookmarks(0, NULL, $userservice->getCurrentUserId(), $tag);
 
 // Set up the XML file and output all the posts.
-header('Content-Type: text/xml');
 echo '<?xml version="1.0" standalone="yes" ?'.">\r\n";
 echo '<posts update="'. gmdate('Y-m-d\TH:i:s\Z') .'" user="'. htmlspecialchars($currentUser->getUsername()) .'"'. (is_null($tag) ? '' : ' tag="'. htmlspecialchars($tag) .'"') .">\r\n";
 

@@ -2,8 +2,9 @@
 // Export in CSV format in order to allow the import into a spreadsheet tool like Excel
 
 // Force HTTP authentication first!
-require_once('httpauth.inc.php');
-require_once '../www-header.php';
+$httpContentType = 'application/csv-tab-delimited-table';
+require_once 'httpauth.inc.php';
+header("Content-disposition: filename=exportBookmarks.csv");
 
 /* Service creation: only useful services are created */
 $bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
@@ -16,9 +17,6 @@ else
 
 // Get the posts relevant to the passed-in variables.
 $bookmarks =& $bookmarkservice->getBookmarks(0, NULL, $userservice->getCurrentUserId(), $tag, NULL, getSortOrder());
-
-header("Content-Type: application/csv-tab-delimited-table;charset=UTF-8");
-header("Content-disposition: filename=exportBookmarks.csv");
 
 //columns titles
 echo 'url;title;tags;description';

@@ -107,6 +107,12 @@ $tplVars['userservice'] = $userservice;
 
 // 6 // Force UTF-8 behaviour for server (cannot be moved into top.inc.php which is not included into every file)
 if (!defined('UNIT_TEST_MODE')) {
-    header('Content-Type: text/html; charset=utf-8');
+    //API files define that, so we need a way to support both of them
+    if (!isset($httpContentType)) {
+        $httpContentType = 'text/html';
+    }
+    if ($httpContentType !== false) {
+        header('Content-Type: ' . $httpContentType . '; charset=utf-8');
+    }
 }
 ?>

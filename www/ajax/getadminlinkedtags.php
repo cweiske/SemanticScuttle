@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /* Return a json file with list of linked tags */
-
+$httpContentType = 'application/json';
 require_once '../www-header.php';
 
 /* Service creation: only useful services are created */

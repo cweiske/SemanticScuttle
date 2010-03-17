@@ -1,6 +1,6 @@
 <?php
-header('Content-Type: text/javascript');
 $GLOBALS['saveInLastUrl'] = false;
+$httpContentType = 'text/javascript';
 require_once 'www-header.php';
 require_once 'SemanticScuttle/functions.php';
 $player_root = ROOT .'includes/player/';

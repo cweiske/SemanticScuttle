@@ -11,8 +11,8 @@
 // - No support for 'replace' variable
 
 // Force HTTP authentication
-require_once('httpauth.inc.php');
-require_once '../www-header.php';
+$httpContentType = 'text/xml';
+require_once 'httpauth.inc.php';
 
 /* Service creation: only useful services are created */
 $bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
@@ -82,7 +82,6 @@ if (is_null($url) || is_null($description)) {
 }
 
 // Set up the XML file and output the result.
-header('Content-Type: text/xml');
 echo '<?xml version="1.0" standalone="yes" ?'.">\r\n";
 echo '<result code="'. ($added ? 'done' : 'something went wrong') .'" />';
 ?>
