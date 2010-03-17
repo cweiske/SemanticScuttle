@@ -859,6 +859,50 @@ class BookmarkTest extends TestBase
 
 
 
+    /**
+     * Tests if getBookmarkByAddress() works correctly.
+     *
+     * @return void
+     */
+    public function testGetBookmarkByAddress()
+    {
+        $url = 'http://example.org';
+        $uid = $this->addUser();
+        $bid = $this->addBookmark($uid, $url);
+
+        $bm = $this->bs->getBookmarkByAddress($url);
+        $this->assertType('array', $bm);
+        $this->assertEquals($url, $bm['bAddress']);
+    }
+
+
+
+    /**
+     * Tests if getBookmarkByAddress() works correctly with aliases.
+     * When passing an incomplete address i.e. without protocol,
+     * the full URL needs to be searched for.
+     *
+     * The failure of this test lead to #2953732.
+     *
+     * @return void
+     *
+     * @link https://sourceforge.net/tracker/?func=detail&atid=1017430&aid=2953732&group_id=211356
+     */
+    public function testGetBookmarkByAddressAlias()
+    {
+        $url = 'http://example.org';
+        $incomplete = 'example.org';
+
+        $uid = $this->addUser();
+        $bid = $this->addBookmark($uid, $url);
+
+        $bm = $this->bs->getBookmarkByAddress($incomplete);
+        $this->assertType('array', $bm);
+        $this->assertEquals($url, $bm['bAddress']);
+    }
+
+
+
     public function testNormalize()
     {
         $this->assertEquals(
