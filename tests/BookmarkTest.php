@@ -353,6 +353,10 @@ class BookmarkTest extends TestBase
         $bid2 = $this->addBookmark();
         $bookmark2 = $this->bs->getBookmark($bid2);
 
+        //do not search for this one
+        $bid3 = $this->addBookmark();
+        $bookmark3 = $this->bs->getBookmark($bid3);
+
 
         $ret = $this->bs->bookmarksExist(
             array(
