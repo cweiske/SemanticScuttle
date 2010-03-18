@@ -380,7 +380,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         }
 
         $hashes = array();
-        $sql = '(1';
+        $sql = '(0';
         foreach ($addresses as $key => $address) {
             $hash = $this->getHash($address);
             $hashes[$hash] = $address;
