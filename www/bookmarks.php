@@ -167,7 +167,7 @@ if ($userservice->isLoggedOn() && POST_SUBMITTED != '') {
 if (GET_ACTION == "add") {
 	// If the bookmark exists already, edit the original
 	if ($bookmarkservice->bookmarkExists(stripslashes(GET_ADDRESS), $currentUserID)) {		
-		$bookmark =& $bookmarkservice->getBookmarks(0, NULL, $currentUserID, NULL, NULL, NULL, NULL, NULL, NULL, md5($bookmarkservice->normalize(stripslashes(GET_ADDRESS))));
+		$bookmark =& $bookmarkservice->getBookmarks(0, NULL, $currentUserID, NULL, NULL, NULL, NULL, NULL, NULL, $bookmarkservice->getHash(stripslashes(GET_ADDRESS)));
 		$popup = (GET_POPUP!='') ? '?popup=1' : '';
 		header('Location: '. createURL('edit', $bookmark['bookmarks'][0]['bId'] . $popup));
 		exit();

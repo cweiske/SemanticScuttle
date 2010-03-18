@@ -178,9 +178,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      */
     public function getBookmarkByAddress($address)
     {
-        $address = $this->normalize($address);
-        $hash    = md5($address);
-        return $this->getBookmarkByHash($hash);
+        return $this->getBookmarkByHash($this->getHash($address));
     }
 
 
@@ -189,14 +187,35 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      * Retrieves a bookmark with the given hash.
      * DOES NOT RESPECT PRIVACY SETTINGS!
      *
-     * @param string $hash URL hash (MD5)
+     * @param string $hash URL hash
      *
      * @return mixed Array with bookmark data or false in case
      *               of an error (i.e. not found).
+     *
+     * @see getHash()
      */
     public function getBookmarkByHash($hash)
     {
         return $this->_getbookmark('bHash', $hash, true);
+    }
+
+
+
+    /**
+     * Returns the hash value of a given address.
+     *
+     * @param string  $address    URL to hash
+     * @param boolean $bNormalize If the address shall be normalized before
+     *                            being hashed
+     *
+     * @return string Hash value
+     */
+    public function getHash($address, $bNormalize = true)
+    {
+        if ($bNormalize) {
+            $address = $this->normalize($address);
+        }
+        return md5($address);
     }
 
 
@@ -319,9 +338,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             return false;
         }
 
-        $address = $this->normalize($address);
-
-        $crit = array('bHash' => md5($address));
+        $crit = array('bHash' => $this->getHash($address));
         if (isset ($uid)) {
             $crit['uId'] = $uid;
         }
@@ -365,7 +382,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         $hashes = array();
         $sql = '(1';
         foreach ($addresses as $key => $address) {
-            $hash = md5($this->normalize($address));
+            $hash = $this->getHash($address);
             $hashes[$hash] = $address;
             $sql .= ' OR bHash = "'
                 . $this->db->sql_escape($hash)
@@ -462,17 +479,17 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         // Set up the SQL insert statement and execute it.
         $values = array(
-            'uId' => intval($sId),
-            'bIp' => $ip,
-            'bDatetime' => $datetime,
-            'bModified' => $datetime,
-            'bTitle' => $title,
-            'bAddress' => $address,
+            'uId'          => intval($sId),
+            'bIp'          => $ip,
+            'bDatetime'    => $datetime,
+            'bModified'    => $datetime,
+            'bTitle'       => $title,
+            'bAddress'     => $address,
             'bDescription' => $description,
             'bPrivateNote' => $privateNote,
-            'bStatus' => intval($status),
-            'bHash' => md5($address),
-            'bShort' => $short
+            'bStatus'      => intval($status),
+            'bHash'        => $this->getHash($address),
+            'bShort'       => $short
         );
 
         $sql = 'INSERT INTO '. $this->getTableName()
@@ -582,14 +599,14 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         // Set up the SQL update statement and execute it.
         $updates = array(
-            'bModified' => $moddatetime,
-            'bTitle' => $title,
-            'bAddress' => $address,
+            'bModified'    => $moddatetime,
+            'bTitle'       => $title,
+            'bAddress'     => $address,
             'bDescription' => $description,
             'bPrivateNote' => $privateNote,
-            'bStatus' => $status,
-            'bHash' => md5($address),
-            'bShort' => $short
+            'bStatus'      => $status,
+            'bHash'        => $this->getHash($address, false),
+            'bShort'       => $short
         );
 
         if (!is_null($date)) {
@@ -1004,7 +1021,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         $addressesSql = ' AND (0';
         foreach ((array)$addresses as $address) {
             $addressesSql .= ' OR B.bHash = "'
-                . $this->db->sql_escape(md5($address))
+                . $this->db->sql_escape($this->getHash($address))
                 . '"';
         }
         $addressesSql .= ')';
