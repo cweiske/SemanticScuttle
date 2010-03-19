@@ -228,6 +228,14 @@ if($currenttag!= '') {
         );
     }
 
+    if ($userservice->isLoggedOn()) {
+        $watchedNames = $userservice->getWatchNames(
+            $currentUser->getId(), true
+        );
+    } else {
+        $watchedNames = null;
+    }
+
 	foreach ($bookmarks as $key => &$row) {
 		switch ($row['bStatus']) {
 			case 0:
@@ -321,7 +329,11 @@ if($currenttag!= '') {
 		}
 
 		// Private Note (just visible by the owner and his/her contacts)
-		if($userservice->isLoggedOn() && ($currentUser->getId() == $row['uId'] || in_array($row['username'], $userservice->getWatchNames($currentUser->getId(), true)))) {
+        if ($watchedNames !== null
+            && ($currentUser->getId() == $row['uId']
+                || in_array($row['username'], $watchedNames)
+            )
+        ) {
 			$privateNoteField = $row['bPrivateNote'];
 		} else {
 			$privateNoteField = '';
