@@ -7,6 +7,7 @@ ChangeLog for SemantiScuttle
 - New config option to skip "SET NAMES UTF8" call: $dbneedssetnames
 - Do not highlight admin bookmarks when $enableAdminColors is disabled
 - Fix bug #2953732: faulty error message for duplicate bookmarks
+- Fix bug #2960663: do not send content-type headers twice for ajax/api scripts
 
 
 0.96.1 - 2010-02-09
