@@ -27,7 +27,8 @@ $bookmarkservice = SemanticScuttle_Service_Factory::get('Bookmark');
 
 // Check to see if a tag was specified.
 if (isset($_REQUEST['tag']) && (trim($_REQUEST['tag']) != '')) {
-    $tag = trim($_REQUEST['tag']);
+    //$_GET vars have + replaced to " " automatically
+    $tag = str_replace(' ', '+', trim($_REQUEST['tag']));
 } else {
     $tag = null;
 }
