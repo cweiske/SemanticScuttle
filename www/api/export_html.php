@@ -3,6 +3,9 @@
  * Implements the del.icio.us API request for all a user's posts,
  * optionally filtered by tag.
  *
+ * Netscape bookmark file format is documented at
+ * http://msdn.microsoft.com/en-us/library/aa753582(VS.85).aspx
+ *
  * SemanticScuttle - your social bookmark manager.
  *
  * PHP version 5.
@@ -46,7 +49,7 @@ echo '<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" />';
 echo '<!-- This is an automatically generated file. -->'."\r\n";
 echo '<TITLE>Bookmarks</TITLE>'."\r\n";
 echo '<H1 LAST_MODIFIED="'. date('U') .'">Bookmarks for '. htmlspecialchars($currentUser->getUsername()) .''. (is_null($tag) ? '' : ' tag="'. htmlspecialchars($tag) .'"') ." from " . $sitename ."</H1>\r\n";
-echo '<DL><p>'."\r\n";
+echo '<DL>'."\r\n";
 
 
 
@@ -68,9 +71,9 @@ foreach ($bookmarks['bookmarks'] as $row) {
         $taglist = 'system:unfiled';
     }
 
-    echo "\t<dt><a href=\"". filter($row['bAddress'], 'xml') .'" '. $description .' hash="'. md5($row['bAddress']) .'" tags="'. filter($taglist, 'xml') .'" ADD_DATE="'. date('U', strtotime($row['bDatetime'])) ."\" >" . filter($row['bTitle'], 'xml') ."</a>\r\n";
+    echo "\t<DT><A HREF=\"". filter($row['bAddress'], 'xml') .'" '. $description .' hash="'. md5($row['bAddress']) .'" tags="'. filter($taglist, 'xml') .'" ADD_DATE="'. date('U', strtotime($row['bDatetime'])) ."\" >" . filter($row['bTitle'], 'xml') ."</a>\r\n";
 }
 
 
-echo '</DL><p>';
+echo '</DL>';
 ?>
