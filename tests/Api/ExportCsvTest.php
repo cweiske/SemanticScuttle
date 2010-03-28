@@ -85,7 +85,7 @@ class Api_ExportCsvTest extends TestBaseApi
      */
     public function testMimeTypeFilename()
     {
-        $res = $this->getRequest()->send();
+        $res = reset($this->getAuthRequest())->send();
 
         $this->assertEquals(200, $res->getStatus());
         //verify MIME content type
@@ -95,6 +95,123 @@ class Api_ExportCsvTest extends TestBaseApi
         );
         //we need a file name
         $this->assertNotNull($res->getHeader('content-disposition'));
+    }
+
+
+
+    /**
+     * Test CSV export without bookmarks
+     */
+    public function testNoBookmarks()
+    {
+        list($req, $uid) = $this->getAuthRequest();
+        $body = $req->send()->getBody();
+        $csv  = $this->getCsvArray($body);
+
+        $this->assertEquals(1, count($csv));
+        $this->assertCsvHeader($csv);
+    }
+
+
+
+    /**
+     * Test CSV export with some bookmarks
+     */
+    public function testBookmarks()
+    {
+        list($req, $uid) = $this->getAuthRequest();
+        //public
+        $this->addBookmark(
+            $uid, 'http://example.org/testBookmarks', 0,
+            array('unittest', 'testBookmarks'), 'mytitle'
+        );
+        //shared
+        $this->addBookmark(
+            $uid, 'http://example.org/testBookmarks-shared', 1,
+            array('unittest', 'testBookmarks'), 'mytitle-shared'
+        );
+        //private
+        $this->addBookmark(
+            $uid, 'http://example.org/testBookmarks-private', 2,
+            array('unittest', 'testBookmarks'), 'mytitle-private'
+        );
+
+        //private other that should not in the export
+        $this->addBookmark(
+            null, 'http://example.org/testBookmarks-private2', 2
+        );
+
+        $body = $req->send()->getBody();
+        $csv  = $this->getCsvArray($body);
+
+        $this->assertEquals(4, count($csv));
+        $this->assertCsvHeader($csv);
+
+        $this->assertEquals('http://example.org/testBookmarks', $csv[1][0]);
+        $this->assertEquals('mytitle', $csv[1][1]);
+        $this->assertEquals('unittest,testbookmarks', $csv[1][2]);
+
+        $this->assertEquals('http://example.org/testBookmarks-shared', $csv[2][0]);
+        $this->assertEquals('mytitle-shared', $csv[2][1]);
+        $this->assertEquals('unittest,testbookmarks', $csv[2][2]);
+
+        $this->assertEquals('http://example.org/testBookmarks-private', $csv[3][0]);
+        $this->assertEquals('mytitle-private', $csv[3][1]);
+        $this->assertEquals('unittest,testbookmarks', $csv[3][2]);
+    }
+
+
+
+    /**
+     * Asserts that the CSV array contains the correct header
+     *
+     * @param array $csv CSV array from getCsvArray()
+     *
+     * @return void
+     */
+    protected function assertCsvHeader($csv)
+    {
+        $this->assertEquals(
+            array('url', 'title', 'tags', 'description'),
+            $csv[0]
+        );
+    }
+
+
+
+    /**
+     * Converts a string of CSV data to an array
+     *
+     * @param string $body String containing the full CSV file
+     *
+     * @return array Array of CSV data
+     */
+    protected function getCsvArray($body)
+    {
+        $v53 = (version_compare(PHP_VERSION, '5.3.0') === 1);
+
+        //dead simple implementation that does not work with
+        // advanced CSV files
+        $ar = array();
+        foreach (explode("\n", $body) as $line) {
+            if ($v53) {
+                $ar[] = str_getcsv($line, ';');
+            } else {
+                $arl = explode(';', $line);
+                foreach ($arl as &$str) {
+                    if (substr($str, 0, 1) == '"'
+                        && substr($str, -1) == '"'
+                    ) {
+                        $str = substr($str, 1, -1);
+                    }
+                }
+                $ar[] = $arl;
+            }
+        }
+        if (count(end($ar)) == 1 && reset(end($ar)) == '') {
+            unset($ar[key($ar)]);
+        }
+        return $ar;
     }
 }
 

@@ -34,6 +34,7 @@ class TestBase extends PHPUnit_Framework_TestCase
      * @param integer $status  Bookmark visibility
      * @param array   $tags    Array of tags to attach. If "null" is given,
      *                         it will automatically be "unittest"
+     * @param string  $title   Bookmark title
      *
      * @return integer ID of bookmark
      *
@@ -41,7 +42,7 @@ class TestBase extends PHPUnit_Framework_TestCase
      */
     protected function addBookmark(
         $user = null, $address = null, $status = 0,
-        $tags = null
+        $tags = null, $title = null
     ) {
         if ($user === null) {
             $user = $this->addUser();
@@ -56,10 +57,13 @@ class TestBase extends PHPUnit_Framework_TestCase
         if ($address === null) {
             $address = 'http://example.org/' . $rand;
         }
+        if ($title === null) {
+            $title = 'unittest bookmark #' . $rand;
+        }
 
         $bid  = $bs->addBookmark(
             $address,
-            'unittest bookmark #' . $rand,
+            $title,
             'description',
             null,
             $status,

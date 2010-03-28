@@ -42,8 +42,11 @@ class TestBaseApi extends TestBase
         $this->url = $GLOBALS['unittestUrl'] . $this->urlPart;
 
         $this->us = SemanticScuttle_Service_Factory::get('User');
+        $this->us->deleteAll();
         $this->bs = SemanticScuttle_Service_Factory::get('Bookmark');
         $this->bs->deleteAll();
+        $this->b2t = SemanticScuttle_Service_Factory::get('Bookmark2Tag');
+        $this->b2t->deleteAll();
     }
 
 
@@ -51,27 +54,46 @@ class TestBaseApi extends TestBase
     /**
      * Gets a HTTP request object
      *
-     * @param string  $urlSuffix Suffix for the URL
-     * @param boolean $auth      If user authentication is needed
+     * @param string $urlSuffix Suffix for the URL
      *
      * @return HTTP_Request2 HTTP request object
      */
-    protected function getRequest($urlSuffix = null, $auth = true)
+    protected function getRequest($urlSuffix = null)
     {
         $req = new HTTP_Request2(
             $this->url . $urlSuffix,
             HTTP_Request2::METHOD_GET
         );
 
-        if ($auth) {
-            $this->addUser('testuser', 'testpassword');
-            $req->setAuth(
-                'testuser', 'testpassword',
-                HTTP_Request2::AUTH_BASIC
-            );
-        }
-
         return $req;
+    }
+
+
+
+    /**
+     * Gets a HTTP request object
+     *
+     * @param string $urlSuffix Suffix for the URL
+     * @param mixed  $auth      If user authentication is needed (true/false)
+     *                          or array with username and password
+     *
+     * @return array(HTTP_Request2, integer) HTTP request object and user id
+     */
+    protected function getAuthRequest($urlSuffix = null, $auth = true)
+    {
+        $req = $this->getRequest($urlSuffix);
+        if (is_array($auth)) {
+            list($username, $password) = $auth;
+        } else {
+            $username = 'testuser';
+            $password = 'testpassword';
+        }
+        $uid = $this->addUser($username, $password);
+        $req->setAuth(
+            $username, $password,
+            HTTP_Request2::AUTH_BASIC
+        );
+        return array($req, $uid);
     }
 
 }
