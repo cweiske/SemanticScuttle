@@ -75,15 +75,26 @@ class TestBase extends PHPUnit_Framework_TestCase
     /**
      * Creates a new user in the database.
      *
+     * @param string $username Username
+     * @param string $password Password
+     *
      * @return integer ID of user
      */
-    protected function addUser()
+    protected function addUser($username = null, $password = null)
     {
         $us   = SemanticScuttle_Service_Factory::get('User');
         $rand = rand();
+
+        if ($username === null) {
+            $username = 'unittestuser-' . $rand;
+        }
+        if ($password === null) {
+            $password = $rand;
+        }
+
         $uid  = $us->addUser(
-            'unittestuser-' . $rand,
-            $rand,
+            $username,
+            $password,
             'unittest-' . $rand . '@example.org'
         );
         return $uid;
