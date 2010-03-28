@@ -140,6 +140,11 @@ class Api_ExportCsvTest extends TestBaseApi
         $this->addBookmark(
             null, 'http://example.org/testBookmarks-private2', 2
         );
+        //public bookmark from other people that should not be
+        // exported, too
+        $this->addBookmark(
+            null, 'http://example.org/testBookmarks-other', 0
+        );
 
         $body = $req->send()->getBody();
         $csv  = $this->getCsvArray($body);

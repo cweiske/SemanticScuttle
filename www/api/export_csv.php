@@ -1,5 +1,18 @@
 <?php
-// Export in CSV format in order to allow the import into a spreadsheet tool like Excel
+/**
+ * Export own bookmarks in CSV format in order to allow the import
+ * into a spreadsheet tool like Excel
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
 
 // Force HTTP authentication first!
 $httpContentType = 'application/csv-tab-delimited-table';
