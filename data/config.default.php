@@ -723,4 +723,16 @@ $authDebug = false;
  * @var string
  */
 $authEmailSuffix = null;
+
+
+
+
+/**
+ * URL unittests are being run against
+ * Has to have a trailing slash
+ *
+ * @var string
+ */
+$unittestUrl = null;
+
 ?>
