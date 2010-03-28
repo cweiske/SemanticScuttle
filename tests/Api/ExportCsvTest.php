@@ -163,6 +163,67 @@ class Api_ExportCsvTest extends TestBaseApi
 
 
     /**
+     * Test CSV export with tag filter
+     */
+    public function testTagFilter()
+    {
+        list($req, $uid) = $this->getAuthRequest('?tag=tag1');
+        $this->addBookmark(
+            $uid, 'http://example.org/tag-1', 0,
+            array('unittest', 'tag1')
+        );
+        $this->addBookmark(
+            $uid, 'http://example.org/tag-2', 0,
+            array('unittest', 'tag2')
+        );
+        $this->addBookmark(
+            $uid, 'http://example.org/tag-3', 0,
+            array('unittest', 'tag1', 'tag2')
+        );
+
+        $body = $req->send()->getBody();
+        $csv  = $this->getCsvArray($body);
+
+        $this->assertEquals(3, count($csv));
+        $this->assertCsvHeader($csv);
+
+        $this->assertEquals('http://example.org/tag-1', $csv[1][0]);
+        $this->assertEquals('http://example.org/tag-3', $csv[2][0]);
+    }
+
+
+
+    /**
+     * Test CSV export with tag filter for multiple tags
+     */
+    public function testTagFilterMultiple()
+    {
+        list($req, $uid) = $this->getAuthRequest('?tag=tag1+tag2');
+        $this->addBookmark(
+            $uid, 'http://example.org/tag-1', 0,
+            array('unittest', 'tag1')
+        );
+        $this->addBookmark(
+            $uid, 'http://example.org/tag-2', 0,
+            array('unittest', 'tag2')
+        );
+        $this->addBookmark(
+            $uid, 'http://example.org/tag-3', 0,
+            array('unittest', 'tag1', 'tag2')
+        );
+
+        $body = $req->send()->getBody();
+        $csv  = $this->getCsvArray($body);
+
+        $this->assertEquals(2, count($csv));
+        $this->assertCsvHeader($csv);
+
+        $this->assertEquals('http://example.org/tag-3', $csv[1][0]);
+    }
+
+
+
+    /**
      * Asserts that the CSV array contains the correct header
      *
      * @param array $csv CSV array from getCsvArray()

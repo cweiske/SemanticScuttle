@@ -10,13 +10,18 @@ header("Content-disposition: filename=exportBookmarks.csv");
 $bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
 
 // Check to see if a tag was specified.
-if (isset($_REQUEST['tag']) && (trim($_REQUEST['tag']) != ''))
-    $tag = trim($_REQUEST['tag']);
-else
-    $tag = NULL;
+if (isset($_REQUEST['tag']) && (trim($_REQUEST['tag']) != '')) {
+    //$_GET vars have + replaced to " " automatically
+    $tag = str_replace(' ', '+', trim($_REQUEST['tag']));
+} else {
+    $tag = null;
+}
 
 // Get the posts relevant to the passed-in variables.
-$bookmarks =& $bookmarkservice->getBookmarks(0, NULL, $userservice->getCurrentUserId(), $tag, NULL, getSortOrder());
+$bookmarks = $bookmarkservice->getBookmarks(
+    0, null, $userservice->getCurrentUserId(),
+    $tag, null, getSortOrder()
+);
 
 //columns titles
 echo 'url;title;tags;description';
