@@ -27,8 +27,156 @@ if (!$GLOBALS['enableRegistration']) {
     exit(1);
 }
 
-/* Service creation: only useful services are created */
-// No specific services
+require_once 'HTML/QuickForm2.php';
+require_once 'HTML/QuickForm2/Renderer.php';
+
+$form = new HTML_QuickForm2(
+    'registration', 'post',
+    array('action' => createURL('register')),
+    true
+);
+
+$form->addElement(
+    'text', 'username',
+    array(
+        'id'      => 'username',
+        'size'    => 20,
+        'onkeyup' => 'isAvailable(this, "")',
+        'class'   => 'required'
+    )
+)
+->setLabel(T_('Username'))
+->addRule(
+    'required',
+    T_('You <em>must</em> enter a username, password and e-mail address.')
+)->and_(
+    $form->createRule(
+        'callback',
+        T_('This username is not valid (too short, too long, forbidden characters...), please make another choice.'),
+        array($userservice, 'isValidUsername')
+    )
+)->and_(
+    $form->createRule(
+        'callback',
+        T_('This username already exists, please make another choice.'),
+        array($userservice, 'getUserByUsername')
+    )
+)->and_(
+    $form->createRule(
+        'callback',
+        T_('This username has been reserved, please make another choice.'),
+        array($userservice, 'isReserved')
+    )
+);
+//FIXME: ajax-verification
+
+$form->addElement(
+    'password', 'password',
+    array(
+        'id'    => 'password',
+        'size'  => 20,
+        'class' => 'required'
+    )
+)
+->setLabel(T_('Password'))
+->addRule(
+    'required',
+    T_('You <em>must</em> enter a username, password and e-mail address.')
+);
+
+$form->addElement(
+    'text', 'email',
+    array(
+        'id'    => 'email',
+        'size'  => 40,
+        'class' => 'required'
+    )
+)
+->setLabel(T_('E-mail'))
+->addRule(
+    'required',
+    T_('You <em>must</em> enter a username, password and e-mail address.')
+)->and_(
+    $form->createRule(
+        'callback',
+        T_('E-mail address is not valid. Please try again.'),
+        array($userservice, 'isValidEmail')
+    )
+);
+
+$form->addElement(
+    'text', 'antispamAnswer',
+    array(
+        'id'   => 'antispamAnswer',
+        'size' => 40
+    )
+    //FIXME: set antispam question text into value
+    // and automatically remove it (blur/focus)
+)
+->setLabel(T_('Antispam question'))
+->addRule(
+    'callback',
+    T_('E-mail address is not valid. Please try again.'),
+    'verifyAntiSpamAnswer'
+);
+//FIXME: custom rule or captcha element
+
+$form->addElement(
+    'submit', 'submitted', array('id' => 'submit')
+)
+->setLabel(T_('Register'));
+
+function verifyAntiSpamAnswer($userAnswer)
+{
+    return strcasecmp(
+        str_replace(' ', '', $userAnswer),
+        str_replace(' ', '', $GLOBALS['antispamAnswer'])
+    ) != 0;
+}
+
+$tplVars['error'] = '';
+if ($form->validate()) {
+    $arValues = $form->getValue();
+    //FIXME: how to fetch single values?
+    $bOk = $userservice->addUser(
+        $arValues['username'], $arValues['password'], $arValues['email']
+    );
+    if ($bOk) {
+        header('Location: '. createURL('bookmarks', $arValues['username']));
+        exit();
+    }
+    $tplVars['error'] .= T_('Registration failed. Please try again.');
+}
+
+HTML_QuickForm2_Renderer::register(
+    'coolarray',
+    'SemanticScuttle_QuickForm2_Renderer_CoolArray'
+);
+require_once 'SemanticScuttle/QuickForm2/Renderer/CoolArray.php';
+//$renderer = HTML_QuickForm2_Renderer::factory('coolarray')
+$renderer = new SemanticScuttle_QuickForm2_Renderer_CoolArray();
+$renderer->setOption(
+    array(
+        'group_hiddens' => true,
+        'group_errors'  => true
+    )
+);
+
+$tplVars['form'] = $form->render($renderer);
+//var_dump($tplVars['form']);
+$tplVars['loadjs']   = true;
+$tplVars['subtitle'] = T_('Register');
+$tplVars['error']   .= implode(
+    '<br/>', array_unique($tplVars['form']['errors'])
+);
+$templateservice->loadTemplate('register.tpl', $tplVars);
+
+exit();
+
+
+
+
+
 
 /* Managing all possible inputs */
 isset($_POST['submitted']) ? define('POST_SUBMITTED', $_POST['submitted']): define('POST_SUBMITTED', '');
