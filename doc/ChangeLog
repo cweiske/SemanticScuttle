@@ -6,8 +6,11 @@ ChangeLog for SemantiScuttle
 - Many SQL optimizations
 - New config option to skip "SET NAMES UTF8" call: $dbneedssetnames
 - Do not highlight admin bookmarks when $enableAdminColors is disabled
+- Add russian translation
+- Make HTML export follow the specifications a bit better
 - Fix bug #2953732: faulty error message for duplicate bookmarks
 - Fix bug #2960663: do not send content-type headers twice for ajax/api scripts
+- Fix bug #2976593: fr_FR locale is vietnamese
 
 
 0.96.1 - 2010-02-09
