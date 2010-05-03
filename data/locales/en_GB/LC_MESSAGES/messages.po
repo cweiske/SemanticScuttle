@@ -1,4 +1,4 @@
-# Scuttle en-GB Translation
+# SemanticScuttle en-GB Translation
 # Copyright (C) 2005 - 2009 SemanticScuttle project
 # This file is distributed under the same license as the SemanticScuttle package.
 # Ogee <ogee@ogee.de>
