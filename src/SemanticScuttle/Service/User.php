@@ -718,7 +718,17 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         }
     }
 
-    function isReserved($username) {
+    /**
+     * Checks if the given user name is one of the reserved ones
+     *
+     * @param string $username Username to check
+     *
+     * @return boolean True when it is reserved
+     *
+     * @uses $GLOBALS['reservedusers']
+     */
+    public function isReserved($username)
+    {
         if (in_array($username, $GLOBALS['reservedusers'])) {
             return true;
         } else {
