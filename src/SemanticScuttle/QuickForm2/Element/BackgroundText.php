@@ -48,7 +48,6 @@ class SemanticScuttle_QuickForm2_Element_BackgroundText
         //we add a invisible separator character to distiguish
         // user content from our default text
         $this->btText = $text . "\342\201\243";
-        $this->btUpdateAttributes();
 
         return $this;
     }
@@ -67,7 +66,6 @@ class SemanticScuttle_QuickForm2_Element_BackgroundText
     public function setBackgroundClass($class)
     {
         $this->btClass = $class;
-        $this->btUpdateAttributes();
 
         return $this;
     }
@@ -75,8 +73,8 @@ class SemanticScuttle_QuickForm2_Element_BackgroundText
 
 
     /**
-     * Updates the attributes array after.
-     * Used after setting the background text or background class.
+     * Updates the attributes array before rendering to prepare
+     * for the rendering process.
      *
      * @return void
      */    
@@ -96,7 +94,6 @@ class SemanticScuttle_QuickForm2_Element_BackgroundText
             $jOldClass = json_encode($this->attributes['class']);
         }
 
-        //FIXME: add and remove class only, store currently used class
         $this->attributes['onfocus']
             = 'if (this.value == ' . $jBtText . ') {'
             . 'this.value = "";'
@@ -113,6 +110,10 @@ class SemanticScuttle_QuickForm2_Element_BackgroundText
             || !$this->attributes['value']
         ) {
             $this->attributes['value'] = $this->btText;
+        }
+
+        if ($this->attributes['value'] == $this->btText) {
+            $this->attributes['class'] = $this->btClass;
         }
     }
 
@@ -152,9 +153,7 @@ class SemanticScuttle_QuickForm2_Element_BackgroundText
     */
     public function render(HTML_QuickForm2_Renderer $renderer)
     {
-        if ($this->attributes['value'] == $this->btText) {
-            $this->attributes['class'] = $this->btClass;
-        }
+        $this->btUpdateAttributes();
 
         $renderer->renderElement($this);
         return $renderer;
