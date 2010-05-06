@@ -3,7 +3,7 @@ require_once 'HTML/QuickForm2/Element/InputText.php';
 
 /**
  * Text input element with pre-set text that vanishes when
- * the user focuses it.
+ * the user focuses it. Setting a special class is also supported.
  *
  * Example:
  * before:
@@ -14,7 +14,11 @@ require_once 'HTML/QuickForm2/Element/InputText.php';
  *   Name:   [John Doe   ]
  *   E-Mail: [|                             ]
  *
- * @author Christian Weiske <cweiske@php.net>
+ * @category HTML
+ * @package  HTML_QuickForm2
+ * @author   Christian Weiske <cweiske@php.net>
+ * @license  http://opensource.org/licenses/bsd-license.php New BSD License
+ * @link     http://pear.php.net/package/HTML_QuickForm2
  */
 class SemanticScuttle_QuickForm2_Element_BackgroundText
     extends HTML_QuickForm2_Element_InputText
@@ -142,15 +146,15 @@ class SemanticScuttle_QuickForm2_Element_BackgroundText
 
 
 
-   /**
-    * Renders the element using the given renderer.
-    * Automatically sets the background CSS class if the value
-    * is the background text.
-    *
-    * @param HTML_QuickForm2_Renderer Renderer instance
-    *
-    * @return HTML_QuickForm2_Renderer
-    */
+    /**
+     * Renders the element using the given renderer.
+     * Automatically sets the background CSS class if the value
+     * is the background text.
+     *
+     * @param HTML_QuickForm2_Renderer $renderer Renderer instance
+     *
+     * @return HTML_QuickForm2_Renderer
+     */
     public function render(HTML_QuickForm2_Renderer $renderer)
     {
         $this->btUpdateAttributes();
