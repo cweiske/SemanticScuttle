@@ -540,6 +540,9 @@ form th {
 form table {
 	margin: 0 1em;
 }
+form input.inacttext {
+    color: #888;
+}
 h3 {
 	background: #DDD;
 	color: #555;
