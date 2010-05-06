@@ -29,6 +29,17 @@ if (!$GLOBALS['enableRegistration']) {
 
 require_once 'HTML/QuickForm2.php';
 require_once 'HTML/QuickForm2/Renderer.php';
+require_once 'SemanticScuttle/QuickForm2/Element/BackgroundText.php';
+require_once 'SemanticScuttle/QuickForm2/Rule/ICallback.php';
+
+HTML_QuickForm2_Factory::registerElement(
+    'backgroundtext', 
+    'SemanticScuttle_QuickForm2_Element_BackgroundText'
+);
+HTML_QuickForm2_Factory::registerRule(
+    'icallback',
+    'SemanticScuttle_QuickForm2_Rule_ICallback'
+);
 
 $form = new HTML_QuickForm2(
     'registration', 'post',
@@ -36,7 +47,7 @@ $form = new HTML_QuickForm2(
     true
 );
 
-$form->addElement(
+$user = $form->addElement(
     'text', 'username',
     array(
         'id'      => 'username',
@@ -44,31 +55,26 @@ $form->addElement(
         'onkeyup' => 'isAvailable(this, "")',
         'class'   => 'required'
     )
-)
-->setLabel(T_('Username'))
-->addRule(
+)->setLabel(T_('Username'));
+$user->addRule(
     'required',
     T_('You <em>must</em> enter a username, password and e-mail address.')
-)->and_(
-    $form->createRule(
-        'callback',
-        T_('This username is not valid (too short, too long, forbidden characters...), please make another choice.'),
-        array($userservice, 'isValidUsername')
-    )
-)->and_(
-    $form->createRule(
-        'callback',
-        T_('This username already exists, please make another choice.'),
-        array($userservice, 'getUserByUsername')
-    )
-)->and_(
-    $form->createRule(
-        'callback',
-        T_('This username has been reserved, please make another choice.'),
-        array($userservice, 'isReserved')
-    )
 );
-//FIXME: ajax-verification
+$user->addRule(
+    'callback',
+    T_('This username is not valid (too short, too long, forbidden characters...), please make another choice.'),
+    array($userservice, 'isValidUsername')
+);
+$user->addRule(
+    'icallback',
+    T_('This username has been reserved, please make another choice.'),
+    array($userservice, 'isReserved')
+);
+$user->addRule(
+    'icallback',
+    T_('This username already exists, please make another choice.'),
+    array($userservice, 'existsUserWithUsername')
+);
 
 $form->addElement(
     'password', 'password',
@@ -84,39 +90,37 @@ $form->addElement(
     T_('You <em>must</em> enter a username, password and e-mail address.')
 );
 
-$form->addElement(
+$email = $form->addElement(
     'text', 'email',
     array(
         'id'    => 'email',
         'size'  => 40,
         'class' => 'required'
     )
-)
-->setLabel(T_('E-mail'))
-->addRule(
+)->setLabel(T_('E-mail'));
+$email->addRule(
     'required',
     T_('You <em>must</em> enter a username, password and e-mail address.')
-)->and_(
-    $form->createRule(
-        'callback',
-        T_('E-mail address is not valid. Please try again.'),
-        array($userservice, 'isValidEmail')
-    )
+);
+$email->addRule(
+    'callback',
+    T_('E-mail address is not valid. Please try again.'),
+    array($userservice, 'isValidEmail')
 );
 
 $form->addElement(
-    'text', 'antispamAnswer',
+    'backgroundtext', 'antispamAnswer',
     array(
         'id'   => 'antispamAnswer',
         'size' => 40
     )
-    //FIXME: set antispam question text into value
-    // and automatically remove it (blur/focus)
 )
 ->setLabel(T_('Antispam question'))
+->setBackgroundText($GLOBALS['antispamQuestion'])
+->setBackgroundClass('deact')
 ->addRule(
     'callback',
-    T_('E-mail address is not valid. Please try again.'),
+    T_('Antispam answer is not valid. Please try again.'),
     'verifyAntiSpamAnswer'
 );
 //FIXME: custom rule or captcha element
@@ -131,7 +135,7 @@ function verifyAntiSpamAnswer($userAnswer)
     return strcasecmp(
         str_replace(' ', '', $userAnswer),
         str_replace(' ', '', $GLOBALS['antispamAnswer'])
-    ) != 0;
+    ) == 0;
 }
 
 $tplVars['error'] = '';
@@ -162,8 +166,7 @@ $renderer->setOption(
     )
 );
 
-$tplVars['form'] = $form->render($renderer);
-//var_dump($tplVars['form']);
+$tplVars['form']     = $form->render($renderer);
 $tplVars['loadjs']   = true;
 $tplVars['subtitle'] = T_('Register');
 $tplVars['error']   .= implode(
