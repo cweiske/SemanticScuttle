@@ -117,7 +117,7 @@ $form->addElement(
 )
 ->setLabel(T_('Antispam question'))
 ->setBackgroundText($GLOBALS['antispamQuestion'])
-->setBackgroundClass('deact')
+->setBackgroundClass('inacttext')
 ->addRule(
     'callback',
     T_('Antispam answer is not valid. Please try again.'),
