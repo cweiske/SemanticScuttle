@@ -19,8 +19,21 @@ require_once 'HTML/QuickForm2/Element/InputText.php';
 class SemanticScuttle_QuickForm2_Element_BackgroundText
     extends HTML_QuickForm2_Element_InputText
 {
+    /**
+     * Background text to use
+     *
+     * @var string
+     */
     protected $btText  = null;
+
+    /**
+     * Element class to use when background text is active
+     *
+     * @var string
+     */
     protected $btClass = null;
+
+
 
     /**
      * Sets the background text to show when the text element is
@@ -32,11 +45,15 @@ class SemanticScuttle_QuickForm2_Element_BackgroundText
      */
     public function setBackgroundText($text)
     {
-        $this->btText = $text;
+        //we add a invisible separator character to distiguish
+        // user content from our default text
+        $this->btText = $text . "\342\201\243";
         $this->btUpdateAttributes();
 
         return $this;
     }
+
+
 
     /**
      * Sets the HTML class to use when the text element is
@@ -46,8 +63,6 @@ class SemanticScuttle_QuickForm2_Element_BackgroundText
      *                      is not focused
      *
      * @return SemanticScuttle_QuickForm2_BackgroundText This object
-     *
-     * @FIXME: Class to set when it is focused
      */
     public function setBackgroundClass($class)
     {
@@ -74,33 +89,43 @@ class SemanticScuttle_QuickForm2_Element_BackgroundText
             return;
         }
 
+        $jBtText   = json_encode((string)$this->btText);
+        $jBtClass  = json_encode($this->btClass);
+        $jOldClass = json_encode('');
+        if (isset($this->attributes['class'])) {
+            $jOldClass = json_encode($this->attributes['class']);
+        }
+
+        //FIXME: add and remove class only, store currently used class
         $this->attributes['onfocus']
-            = 'if (this.value == '
-            . json_encode((string)$this->btText)
-            . ') this.value = "";';
+            = 'if (this.value == ' . $jBtText . ') {'
+            . 'this.value = "";'
+            . 'this.className = ' . $jOldClass . ';'
+            . '}';
         $this->attributes['onblur']
-            = 'if (this.value == "") this.value = '
-            . json_encode((string)$this->btText)
-            . ';';
+            = 'if (this.value == "") {'
+            . 'this.value = ' . $jBtText . ';'
+            . 'this.className = ' . $jBtClass . ';'
+            . '}';
 
         //default when loading the form
-        //FIXME: use some special char to distinguish that
-        //value from a user inputted one (i.e. UTF-8 empty character)
-        if (!isset($this->attributes['value']) || !$this->attributes['value']) {
+        if (!isset($this->attributes['value'])
+            || !$this->attributes['value']
+        ) {
             $this->attributes['value'] = $this->btText;
         }
-        //FIXME: class
     }
 
 
-   /**
-    * Called when the element needs to update its value
-    * from form's data sources.
-    * This method overwrites the parent one to skip the background text
-    * values.
-    *
-    * @return void
-    */
+
+    /**
+     * Called when the element needs to update its value
+     * from form's data sources.
+     * This method overwrites the parent one to skip the background text
+     * values.
+     *
+     * @return void
+     */
     protected function updateValue()
     {
         $name = $this->getName();
@@ -112,6 +137,27 @@ class SemanticScuttle_QuickForm2_Element_BackgroundText
                 return;
             }
         }
+    }
+
+
+
+   /**
+    * Renders the element using the given renderer.
+    * Automatically sets the background CSS class if the value
+    * is the background text.
+    *
+    * @param HTML_QuickForm2_Renderer Renderer instance
+    *
+    * @return HTML_QuickForm2_Renderer
+    */
+    public function render(HTML_QuickForm2_Renderer $renderer)
+    {
+        if ($this->attributes['value'] == $this->btText) {
+            $this->attributes['class'] = $this->btClass;
+        }
+
+        $renderer->renderElement($this);
+        return $renderer;
     }
 }
 ?>
