@@ -29,12 +29,12 @@ if (!$GLOBALS['enableRegistration']) {
 
 require_once 'HTML/QuickForm2.php';
 require_once 'HTML/QuickForm2/Renderer.php';
-require_once 'SemanticScuttle/QuickForm2/Element/BackgroundText.php';
+require_once 'HTML/QuickForm2/Element/BackgroundText.php';
 require_once 'SemanticScuttle/QuickForm2/Rule/ICallback.php';
 
 HTML_QuickForm2_Factory::registerElement(
     'backgroundtext', 
-    'SemanticScuttle_QuickForm2_Element_BackgroundText'
+    'HTML_QuickForm2_Element_BackgroundText'
 );
 HTML_QuickForm2_Factory::registerRule(
     'icallback',
