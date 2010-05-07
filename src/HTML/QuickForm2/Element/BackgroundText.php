@@ -20,7 +20,7 @@ require_once 'HTML/QuickForm2/Element/InputText.php';
  * @license  http://opensource.org/licenses/bsd-license.php New BSD License
  * @link     http://pear.php.net/package/HTML_QuickForm2
  */
-class SemanticScuttle_QuickForm2_Element_BackgroundText
+class HTML_QuickForm2_Element_BackgroundText
     extends HTML_QuickForm2_Element_InputText
 {
     /**
