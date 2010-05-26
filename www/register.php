@@ -30,15 +30,10 @@ if (!$GLOBALS['enableRegistration']) {
 require_once 'HTML/QuickForm2.php';
 require_once 'HTML/QuickForm2/Renderer.php';
 require_once 'HTML/QuickForm2/Element/BackgroundText.php';
-require_once 'SemanticScuttle/QuickForm2/Rule/ICallback.php';
 
 HTML_QuickForm2_Factory::registerElement(
     'backgroundtext', 
     'HTML_QuickForm2_Element_BackgroundText'
-);
-HTML_QuickForm2_Factory::registerRule(
-    'icallback',
-    'SemanticScuttle_QuickForm2_Rule_ICallback'
 );
 
 $form = new HTML_QuickForm2(
@@ -66,12 +61,12 @@ $user->addRule(
     array($userservice, 'isValidUsername')
 );
 $user->addRule(
-    'icallback',
+    'notcallback',
     T_('This username has been reserved, please make another choice.'),
     array($userservice, 'isReserved')
 );
 $user->addRule(
-    'icallback',
+    'notcallback',
     T_('This username already exists, please make another choice.'),
     array($userservice, 'existsUserWithUsername')
 );
