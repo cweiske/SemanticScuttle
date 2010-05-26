@@ -29,10 +29,10 @@ window.onload = function() {
     <td><?php echo '←'.T_(' to send you your password if you forget it')?></td>
 </tr>
 
-<?php if (isset($form['antispamAnswer'])) {?>
+<?php if (isset($form['captcha'])) {?>
 <tr>
-    <th align="left"><?php echo $form['antispamAnswer']['labelhtml']; ?></label></th>
-    <td><?php echo $form['antispamAnswer']['html']; ?></td>
+    <th align="left"><?php echo $form['captcha']['labelhtml']; ?></label></th>
+    <td><?php echo $form['captcha']['html']; ?></td>
     <td></td>
 </tr>
 <?php } ?>

@@ -237,31 +237,6 @@ $adminsAreAdvisedTagsFromOtherAdmins = false;
  */
 $reservedusers  = array('all', 'watchlist');
 
-
-
-
-/***************************************************
- * Anti SPAM measures
- */
-
-/**
- * A question to avoid spam.
- * Shown on user registration page.
- *
- * @var string
- * @see $antispamAnswer
- */
-$antispamQuestion = 'name of this application';
-
-/**
- * The answer to the antispam question
- * Users have to write exactly this string.
- *
- * @var string
- * @see $antispamQuestion
- */
-$antispamAnswer = 'semanticscuttle';
-
 /**
  * Enable or disable user registration
  *
