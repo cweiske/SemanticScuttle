@@ -30,11 +30,19 @@ if (!$GLOBALS['enableRegistration']) {
 require_once 'HTML/QuickForm2.php';
 require_once 'HTML/QuickForm2/Renderer.php';
 require_once 'HTML/QuickForm2/Element/BackgroundText.php';
+require_once 'HTML/QuickForm2/Element/NumeralCaptcha.php';
 
 HTML_QuickForm2_Factory::registerElement(
     'backgroundtext', 
     'HTML_QuickForm2_Element_BackgroundText'
 );
+//we register a strange name here so we can change the class
+// itself easily
+HTML_QuickForm2_Factory::registerElement(
+    'sc-captcha',
+    'HTML_QuickForm2_Element_NumeralCaptcha'
+);
+
 
 $form = new HTML_QuickForm2(
     'registration', 'post',
@@ -104,34 +112,22 @@ $email->addRule(
 );
 
 $form->addElement(
-    'backgroundtext', 'antispamAnswer',
+    'sc-captcha', 'captcha',
     array(
-        'id'   => 'antispamAnswer',
+        'id'   => 'captcha',
         'size' => 40
+    ),
+    array(
+        'captchaSolutionWrong' => T_('Antispam answer is not valid. Please try again.')
     )
 )
-->setLabel(T_('Antispam question'))
-->setBackgroundText($GLOBALS['antispamQuestion'])
-->setBackgroundClass('inacttext')
-->addRule(
-    'callback',
-    T_('Antispam answer is not valid. Please try again.'),
-    'verifyAntiSpamAnswer'
-);
-//FIXME: custom rule or captcha element
+->setLabel(T_('Antispam question'));
 
 $form->addElement(
     'submit', 'submitted', array('id' => 'submit')
 )
 ->setLabel(T_('Register'));
 
-function verifyAntiSpamAnswer($userAnswer)
-{
-    return strcasecmp(
-        str_replace(' ', '', $userAnswer),
-        str_replace(' ', '', $GLOBALS['antispamAnswer'])
-    ) == 0;
-}
 
 $tplVars['error'] = '';
 if ($form->validate()) {
