@@ -43,6 +43,8 @@ HTML_QuickForm2_Factory::registerElement(
     'HTML_QuickForm2_Element_NumeralCaptcha'
 );
 
+//do not append '-0' to IDs
+HTML_Common2::setOption('id_force_append_index', false);
 
 $form = new HTML_QuickForm2(
     'registration', 'post',
@@ -53,7 +55,6 @@ $form = new HTML_QuickForm2(
 $user = $form->addElement(
     'text', 'username',
     array(
-        'id'      => 'username',
         'size'    => 20,
         'onkeyup' => 'isAvailable(this, "")',
         'class'   => 'required'
@@ -82,7 +83,6 @@ $user->addRule(
 $form->addElement(
     'password', 'password',
     array(
-        'id'    => 'password',
         'size'  => 20,
         'class' => 'required'
     )
@@ -96,7 +96,6 @@ $form->addElement(
 $email = $form->addElement(
     'text', 'email',
     array(
-        'id'    => 'email',
         'size'  => 40,
         'class' => 'required'
     )
@@ -114,7 +113,6 @@ $email->addRule(
 $form->addElement(
     'sc-captcha', 'captcha',
     array(
-        'id'   => 'captcha',
         'size' => 40
     ),
     array(
@@ -124,7 +122,7 @@ $form->addElement(
 ->setLabel(T_('Antispam question'));
 
 $form->addElement(
-    'submit', 'submitted', array('id' => 'submit')
+    'submit', 'submit'
 )
 ->setLabel(T_('Register'));
 
