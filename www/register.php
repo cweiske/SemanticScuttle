@@ -130,7 +130,7 @@ $form->addElement(
 $tplVars['error'] = '';
 if ($form->validate()) {
     $arValues = $form->getValue();
-    //FIXME: how to fetch single values?
+
     $bOk = $userservice->addUser(
         $arValues['username'], $arValues['password'], $arValues['email']
     );
