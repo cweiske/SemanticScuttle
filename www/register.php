@@ -122,9 +122,9 @@ $form->addElement(
 ->setLabel(T_('Antispam question'));
 
 $form->addElement(
-    'submit', 'submit'
-)
-->setLabel(T_('Register'));
+    'submit', 'submit',
+    array('value' => T_('Register'))
+);
 
 
 $tplVars['error'] = '';
