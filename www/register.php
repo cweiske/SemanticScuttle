@@ -29,13 +29,8 @@ if (!$GLOBALS['enableRegistration']) {
 
 require_once 'HTML/QuickForm2.php';
 require_once 'HTML/QuickForm2/Renderer.php';
-require_once 'HTML/QuickForm2/Element/BackgroundText.php';
 require_once 'HTML/QuickForm2/Element/NumeralCaptcha.php';
 
-HTML_QuickForm2_Factory::registerElement(
-    'backgroundtext', 
-    'HTML_QuickForm2_Element_BackgroundText'
-);
 //we register a strange name here so we can change the class
 // itself easily
 HTML_QuickForm2_Factory::registerElement(
