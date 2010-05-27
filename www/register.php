@@ -1,24 +1,20 @@
 <?php
-/***************************************************************************
-Copyright (C) 2004 - 2006 Marcus Campbell
-http://sourceforge.net/projects/scuttle/
-http://scuttle.org/
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-***************************************************************************/
-
+/**
+ * SemanticScuttle - your social bookmark manager.
+ * New user registration form.
+ *
+ * PHP version 5.
+ *
+ * @category  Bookmarking
+ * @package   SemanticScuttle
+ * @author    Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author    Christian Weiske <cweiske@cweiske.de>
+ * @author    Eric Dane <ericdane@users.sourceforge.net>
+ * @author    Marcus Campbell <marcus.campbell@gmail.com>
+ * @copyright 2004-2006 Marcus Campbell
+ * @license   GPL http://www.gnu.org/licenses/gpl.html
+ * @link      http://sourceforge.net/projects/semanticscuttle
+ */
 require_once 'www-header.php';
 
 if (!$GLOBALS['enableRegistration']) {
@@ -111,7 +107,8 @@ $form->addElement(
         'size' => 40
     ),
     array(
-        'captchaSolutionWrong' => T_('Antispam answer is not valid. Please try again.')
+        'captchaSolutionWrong'
+            => T_('Antispam answer is not valid. Please try again.')
     )
 )
 ->setLabel(T_('Antispam question'));
