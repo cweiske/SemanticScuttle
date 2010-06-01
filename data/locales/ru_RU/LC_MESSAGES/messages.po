@@ -1,7 +1,7 @@
 # SemanticScuttle ru_RU Translation
 # Copyright (C) 2005 - 2009 SemanticScuttle project
 # This file is distributed under the same license as the SemanticScuttle package.
-# webii.ru <webii@yandex.ru>
+# Sergey Ulitin <serge.ulitin@gmail.com>
 #
 msgid ""
 msgstr ""
@@ -9,14 +9,14 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-04 11:33+0200\n"
 "PO-Revision-Date: 2010-04-30 02:35+0400\n"
-"Last-Translator: webii.ru <webii@yandex.ru>\n"
-"Language-Team: webii.ru <webii@yandex.ru>\n"
+"Last-Translator: Sergey Ulitin <serge.ulitin@gmail.com>\n"
+"Language-Team: Sergey Ulitin <serge.ulitin@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-Country: UNITED KINGDOM\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: Russia\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: ../../../about.php:23
