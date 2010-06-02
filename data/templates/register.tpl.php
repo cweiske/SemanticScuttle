@@ -31,7 +31,7 @@ window.onload = function() {
 
 <?php if (isset($form['captcha'])) {?>
 <tr>
-    <th align="left"><?php echo $form['captcha']['labelhtml']; ?></label></th>
+    <th align="left"><?php echo $form['captcha']['labelhtml']; ?></th>
     <td><?php echo $form['captcha']['html']; ?></td>
     <td></td>
 </tr>
