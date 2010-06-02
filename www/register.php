@@ -24,7 +24,7 @@ if (!$GLOBALS['enableRegistration']) {
 }
 
 require_once 'HTML/QuickForm2.php';
-require_once 'HTML/QuickForm2/Renderer.php';
+require_once 'SemanticScuttle/QuickForm2/Renderer/CoolArray.php';
 require_once 'HTML/QuickForm2/Element/NumeralCaptcha.php';
 
 //we register a strange name here so we can change the class
@@ -137,7 +137,6 @@ HTML_QuickForm2_Renderer::register(
     'coolarray',
     'SemanticScuttle_QuickForm2_Renderer_CoolArray'
 );
-require_once 'SemanticScuttle/QuickForm2/Renderer/CoolArray.php';
 //$renderer = HTML_QuickForm2_Renderer::factory('coolarray')
 $renderer = new SemanticScuttle_QuickForm2_Renderer_CoolArray();
 $renderer->setOption(
