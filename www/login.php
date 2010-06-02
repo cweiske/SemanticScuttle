@@ -10,7 +10,6 @@
  * @author    Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
  * @author    Christian Weiske <cweiske@cweiske.de>
  * @author    Eric Dane <ericdane@users.sourceforge.net>
- * @copyright 2004-2006 Marcus Campbell
  * @license   GPL http://www.gnu.org/licenses/gpl.html
  * @link      http://sourceforge.net/projects/semanticscuttle
  */
