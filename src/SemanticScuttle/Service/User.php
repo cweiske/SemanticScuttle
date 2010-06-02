@@ -736,7 +736,20 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         }
     }
 
-    function isValidUsername($username) {
+    /**
+     * Check if the given username is valid syntactically.
+     * This function does not check if the username is already
+     * in use or reserved.
+     *
+     * @param string $username Name to check
+     *
+     * @return boolean True if the username is valid
+     *
+     * @see isReserved()
+     * @see existsUserWithUsername()
+     */
+    public function isValidUsername($username)
+    {
         if (strlen($username) < 4) {
             return false;
         }elseif (strlen($username) > 24) {
