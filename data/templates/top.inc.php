@@ -5,12 +5,12 @@
   <title><?php echo filter($GLOBALS['sitename'] .(isset($pagetitle) ? ' » ' . $pagetitle : '')); ?></title>
   <link rel="icon" type="image/png" href="<?php echo ROOT ?>icon.png" />
   <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>scuttle.css" />
-  <link rel="search" type="application/opensearchdescription+xml" href="<?php echo ROOT ?>api/opensearch.php" title="<?php echo $GLOBALS['sitename'] ?>"/>
+  <link rel="search" type="application/opensearchdescription+xml" href="<?php echo ROOT ?>api/opensearch.php" title="<?php echo htmlspecialchars($GLOBALS['sitename']) ?>"/>
 <?php
 if(isset($rsschannels)) {
 	$size = count($rsschannels);
 	for ($i = 0; $i < $size; $i++) {
-		echo '  <link rel="alternate" type="application/rss+xml" title="'. $rsschannels[$i][0] .'" href="'. $rsschannels[$i][1] .'" />';
+		echo '  <link rel="alternate" type="application/rss+xml" title="' . htmlspecialchars($rsschannels[$i][0]) . '" href="'. $rsschannels[$i][1] .'" />';
 	}
 }
 ?>
