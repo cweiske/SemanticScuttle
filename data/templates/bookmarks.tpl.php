@@ -199,7 +199,7 @@ if($currenttag!= '') {
 	$brss = '';
 	$size = count($rsschannels);
 	for ($i = 0; $i < $size; $i++) {
-		$brss =  '<a style="background:#FFFFFF" href="'. $rsschannels[$i][1] .'" title="'. $rsschannels[$i][0] .'"><img src="'. ROOT .'images/rss.gif" width="16" height="16" alt="'. $rsschannels[$i][0] .'" /></a>';
+		$brss =  '<a style="background:#FFFFFF" href="'. $rsschannels[$i][1] .'" title="' . htmlspecialchars($rsschannels[$i][0]) . '"><img src="'. ROOT .'images/rss.gif" width="16" height="16" alt="'. htmlspecialchars($rsschannels[$i][0]) .'" /></a>';
 	}
 
 	$pagesBanner = '<p class="paging">'. $bfirst .'<span> / </span>'. $bprev .'<span> / </span>'. $bnext .'<span> / </span>'. $blast .'<span> / </span>'. sprintf(T_('Page %d of %d'), $page, $totalpages) ." ". $brss ." </p>\n";
@@ -352,7 +352,7 @@ if($currenttag!= '') {
 
 		echo '<div '.$adminBgClass.' >';;
 
-		echo '<div class="link"><a href="'. $address .'"'. $rel .' class="taggedlink" target="_blank">'. filter($row['bTitle']) ."</a>" . $adminStar . "</div>\n";
+		echo '<div class="link"><a href="'. htmlspecialchars($address) .'"'. $rel .' class="taggedlink" target="_blank">'. filter($row['bTitle']) ."</a>" . $adminStar . "</div>\n";
 		if ($row['bDescription'] == '') {
 			$bkDescription = $GLOBALS['blankDescription'];
 		} else {
