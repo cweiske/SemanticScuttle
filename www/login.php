@@ -52,7 +52,7 @@ $user = $login->addElement(
 )->setLabel(T_('Username'));
 $user->addRule(
     'required',
-    T_('You <em>must</em> enter your username and password')
+    T_('Please enter your username')
 );
 $user->addRule(
     'callback',
@@ -70,7 +70,7 @@ $login->addElement(
 ->setLabel(T_('Password'))
 ->addRule(
     'required',
-    T_('You <em>must</em> enter your username and password')
+    T_('Please enter your password')
 );
 
 $login->addElement(
