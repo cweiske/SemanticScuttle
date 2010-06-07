@@ -109,8 +109,8 @@ $tplVars['userservice'] = $userservice;
 if (!defined('UNIT_TEST_MODE')) {
     //API files define that, so we need a way to support both of them
     if (!isset($httpContentType)) {
-        //$httpContentType = 'text/html';
-        $httpContentType = 'application/xhtml+xml';
+        $httpContentType = 'text/html';
+        //$httpContentType = 'application/xhtml+xml';
     }
     if ($httpContentType !== false) {
         header('Content-Type: ' . $httpContentType . '; charset=utf-8');
