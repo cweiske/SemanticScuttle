@@ -1,9 +1,9 @@
 ChangeLog for SemantiScuttle
 ============================
 
-0.97.0 - 2010-?????
+0.97.0 - 2010-06-09
 -------------------
-- Many SQL optimizations
+- Many SQL optimizations - SemanticScuttle shows bookmarks 4 times faster now
 - New config option to skip "SET NAMES UTF8" call: $dbneedssetnames
 - Do not highlight admin bookmarks when $enableAdminColors is disabled
 - Add russian translation
