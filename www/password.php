@@ -157,33 +157,34 @@ if ($form->validate()) {
             $arValues['email']
         );
     }
+} else {
+    HTML_QuickForm2_Renderer::register(
+        'coolarray',
+        'SemanticScuttle_QuickForm2_Renderer_CoolArray'
+    );
+    //$renderer = HTML_QuickForm2_Renderer::factory('coolarray')
+    $renderer = new SemanticScuttle_QuickForm2_Renderer_CoolArray();
+    $renderer->setOption(
+        array(
+            'group_hiddens' => true,
+            'group_errors'  => true
+        )
+    );
+
+    $tplVars['form']     = $form->render($renderer);
+    //fscking form error is not in form|errors
+    $tplVars['error']   .= implode(
+        '<br/>',
+        array_unique(
+            array_merge(
+                $tplVars['form']['errors'],
+                array($form->getError())
+            )
+        )
+    );
 }
 
-HTML_QuickForm2_Renderer::register(
-    'coolarray',
-    'SemanticScuttle_QuickForm2_Renderer_CoolArray'
-);
-//$renderer = HTML_QuickForm2_Renderer::factory('coolarray')
-$renderer = new SemanticScuttle_QuickForm2_Renderer_CoolArray();
-$renderer->setOption(
-    array(
-        'group_hiddens' => true,
-        'group_errors'  => true
-    )
-);
-
-$tplVars['form']     = $form->render($renderer);
 $tplVars['loadjs']   = true;
 $tplVars['subtitle'] = T_('Forgotten Password');
-//fscking form error is not in form|errors
-$tplVars['error']   .= implode(
-    '<br/>',
-    array_unique(
-        array_merge(
-            $tplVars['form']['errors'],
-            array($form->getError())
-        )
-    )
-);
 $templateservice->loadTemplate('password.tpl', $tplVars);
 ?>
