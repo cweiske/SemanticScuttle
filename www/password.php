@@ -1,78 +1,189 @@
 <?php
-/***************************************************************************
- Copyright (C) 2005 Scuttle project
- https://sourceforge.net/projects/scuttle/
-
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with this program; if not, write to the Free Software
- Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- ***************************************************************************/
-
+/**
+ * SemanticScuttle - your social bookmark manager.
+ * User password reset form.
+ *
+ * PHP version 5.
+ *
+ * @category  Bookmarking
+ * @package   SemanticScuttle
+ * @author    Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author    Christian Weiske <cweiske@cweiske.de>
+ * @author    Eric Dane <ericdane@users.sourceforge.net>
+ * @author    Marcus Campbell <marcus.campbell@gmail.com>
+ * @license   GPL http://www.gnu.org/licenses/gpl.html
+ * @link      http://sourceforge.net/projects/semanticscuttle
+ */
 require_once 'www-header.php';
 
-/* Service creation: only useful services are created */
-// No specific services
+require_once 'HTML/QuickForm2.php';
+require_once 'SemanticScuttle/QuickForm2/Renderer/CoolArray.php';
+require_once 'HTML/QuickForm2/Element/NumeralCaptcha.php';
 
-/* Managing all possible inputs */
-isset($_POST['submitted']) ? define('POST_SUBMITTED', $_POST['submitted']): define('POST_SUBMITTED', '');
-isset($_POST['username']) ? define('POST_USERNAME', $_POST['username']): define('POST_USERNAME', '');
-isset($_POST['email']) ? define('POST_EMAIL', $_POST['email']): define('POST_EMAIL', '');
 
-// IF SUBMITTED
-if (POST_SUBMITTED != '') {
 
-	// NO USERNAME
-	if (!POST_USERNAME) {
-		$tplVars['error'] = T_('You must enter your username.');
+//we register a strange name here so we can change the class
+// itself easily
+HTML_QuickForm2_Factory::registerElement(
+    'sc-captcha',
+    'HTML_QuickForm2_Element_NumeralCaptcha'
+);
 
-		// NO E-MAIL
-	} elseif (!POST_EMAIL) {
-		$tplVars['error'] = T_('You must enter your <abbr title="electronic mail">e-mail</abbr> address.');
+//do not append '-0' to IDs
+HTML_Common2::setOption('id_force_append_index', false);
 
-		// USERNAME AND E-MAIL
-	} else {
+$form = new HTML_QuickForm2(
+    'registration', 'post',
+    array('action' => createURL('password')),
+    true
+);
 
-		// NO MATCH
-		$userinfo = $userservice->getObjectUserByUsername(POST_USERNAME);
-		if ($userinfo == NULL) {
-			$tplVars['error'] = T_('No matches found for that username.');
+$user = $form->addElement(
+    'text', 'username',
+    array(
+        'size'    => 20,
+        'class'   => 'required'
+    )
+)->setLabel(T_('Username'));
+$user->addRule(
+    'required',
+    T_('You <em>must</em> enter a username, password and e-mail address.')
+);
+$user->addRule(
+    'callback',
+    T_('This username is not valid (too short, too long, forbidden characters...), please make another choice.'),
+    array($userservice, 'isValidUsername')
+);
+$user->addRule(
+    'notcallback',
+    T_('This username has been reserved, please make another choice.'),
+    array($userservice, 'isReserved')
+);
+$user->addRule(
+    'callback',
+    T_('No matches found for that username.'),
+    array($userservice, 'existsUserWithUsername')
+);
+$form->addRule(
+    'callback',
+    T_('No matches found for that combination of username and <abbr title="electronic mail">e-mail</abbr> address.'),
+    'checkUserEmailCombination'
+);
 
-		} elseif (POST_EMAIL != $userinfo->getEmail()) {
-			$tplVars['error'] = T_('No matches found for that combination of username and <abbr title="electronic mail">e-mail</abbr> address.');
 
-			// MATCH
-		} else {
+$email = $form->addElement(
+    'text', 'email',
+    array(
+        'size'  => 40,
+        'class' => 'required'
+    )
+)->setLabel(T_('E-mail'));
+$email->addRule(
+    'required',
+    T_('You <em>must</em> enter a username, password and e-mail address.')
+);
+$email->addRule(
+    'callback',
+    T_('E-mail address is not valid. Please try again.'),
+    array($userservice, 'isValidEmail')
+);
 
-			// GENERATE AND STORE PASSWORD
-			$password = $userservice->generatePassword($userinfo->getId());
-			if (!($password = $userservice->generatePassword($userinfo->getId()))) {
-				$tplVars['error'] = T_('There was an error while generating your new password. Please try again.');
 
-			} else {
-				// SEND E-MAIL
-				$message = T_('Your new password is:') ."\n". $password ."\n\n". T_('To keep your bookmarks secure, you should change this password in your profile the next time you log in.');
-				$message = wordwrap($message, 70);
-				$headers = 'From: '. $adminemail;
-				$mail = mail(POST_EMAIL, sprintf(T_('%s Account Information'), $sitename), $message);
+$form->addElement(
+    'sc-captcha', 'captcha',
+    array(
+        'size' => 40
+    ),
+    array(
+        'captchaSolutionWrong'
+            => T_('Antispam answer is not valid. Please try again.')
+    )
+)
+->setLabel(T_('Antispam question'));
 
-				$tplVars['msg'] = sprintf(T_('New password generated and sent to %s'), POST_EMAIL);
-			}
-		}
-	}
+
+$form->addElement(
+    'submit', 'submit',
+    array('value' => T_('Generate Password'))
+);
+
+/**
+ * Checks if the user and email combination exists in the database.
+ *
+ * @param array $arValues Key-value array of form values
+ *
+ * @return boolean True if it exists, false if not
+ */
+function checkUserEmailCombination($arValues)
+{
+    //FIXME: remove this once HTML_QuickForm2 calls form rules
+    // only after element rules match
+    // http://pear.php.net/bugs/17576
+    if (trim($arValues['username']) == ''
+        || trim($arValues['email']) == ''
+    ) {
+        return false;
+    }
+
+    $userservice = SemanticScuttle_Service_Factory::get('User');
+    return $userservice->userEmailCombinationValid(
+        $arValues['username'], $arValues['email']
+    );
 }
 
-$templatename = 'password.tpl';
+
+
+$tplVars['error'] = '';
+if ($form->validate()) {
+    $arValues = $form->getValue();
+    $arUser   = $userservice->getUserByUsername($arValues['username']);
+    $password = $userservice->generatePassword($arUser['uId']);
+    if ($password === false) {
+        $tplVars['error'] = T_('There was an error while generating your new password. Please try again.');
+    } else {
+        //change password and send email out
+        $message = T_('Your new password is:')
+            . "\n" . $password . "\n\n"
+            . T_('To keep your bookmarks secure, you should change this password in your profile the next time you log in.');
+        $message = wordwrap($message, 70);
+        $headers = 'From: '. $adminemail;
+        $mail    = mail(
+            $arValues['email'],
+            sprintf(T_('%s Account Information'), $sitename),
+            $message
+        );
+        $tplVars['msg'] = sprintf(
+            T_('New password generated and sent to %s'),
+            $arValues['email']
+        );
+    }
+}
+
+HTML_QuickForm2_Renderer::register(
+    'coolarray',
+    'SemanticScuttle_QuickForm2_Renderer_CoolArray'
+);
+//$renderer = HTML_QuickForm2_Renderer::factory('coolarray')
+$renderer = new SemanticScuttle_QuickForm2_Renderer_CoolArray();
+$renderer->setOption(
+    array(
+        'group_hiddens' => true,
+        'group_errors'  => true
+    )
+);
+
+$tplVars['form']     = $form->render($renderer);
+$tplVars['loadjs']   = true;
 $tplVars['subtitle'] = T_('Forgotten Password');
-$tplVars['formaction']  = createURL('password');
-$templateservice->loadTemplate($templatename, $tplVars);
+//fscking form error is not in form|errors
+$tplVars['error']   .= implode(
+    '<br/>',
+    array_unique(
+        array_merge(
+            $tplVars['form']['errors'],
+            array($form->getError())
+        )
+    )
+);
+$templateservice->loadTemplate('password.tpl', $tplVars);
 ?>
