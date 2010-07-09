@@ -188,7 +188,15 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         return sprintf($this->profileurl, urlencode($id), urlencode($username));
     }
 
-    function getUserByUsername($username) {
+    /**
+     * Fetches a user by the given user name
+     *
+     * @param string $username Nickname of the user
+     *
+     * @return array Database row or boolean false on error
+     */
+    public function getUserByUsername($username)
+    {
         return $this->_getuser($this->getFieldName('username'), $username);
     }
 
@@ -299,13 +307,53 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         return $currentObjectUser;
     }
 
-    function existsUserWithUsername($username) {
-        if($this->getUserByUsername($username) != '') {
+
+
+    /**
+     * Checks if the user with the given username exists
+     * in database.
+     *
+     * @param string $username Nickname of user
+     *
+     * @return boolean True if it exists, false if not
+     */
+    public function existsUserWithUsername($username)
+    {
+        if ($this->getUserByUsername($username) != '') {
             return true;
         } else {
             return false;
         }
     }
+
+
+
+    /**
+     * Checks if the given username and email combination is
+     * valid (user with nickname and email address exists).
+     * Used on forgot-password page.
+     *
+     * @param string $username Nickname of user
+     * @param string $email    Email address of user
+     *
+     * @return boolean True if a user with both nickname and
+     *                 email address exists, false if not.
+     */
+    public function userEmailCombinationValid($username, $email)
+    {
+        $user = $this->getUserByUsername($username);
+        if ($user === false) {
+            //user does not exist
+            return false;
+        } else if ($user['email'] != $email) {
+            //email wrong
+            return false;
+        }
+
+        return true;
+    }
+
+
 
     function existsUser($id) {
         if($this->getUser($id) != '') {
