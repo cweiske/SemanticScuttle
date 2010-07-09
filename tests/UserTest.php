@@ -107,6 +107,73 @@ class UserTest extends TestBase
 
 
     /**
+     * Test userEmailCombinationValid() with valid user
+     * and valid email address.
+     *
+     * @return void
+     */
+    public function testUserEmailCombinationValid()
+    {
+        $this->us->deleteAll();
+
+        $uid   = $this->addUser();
+        $user  = $this->us->getUser($uid);
+        $email = $user['email'];
+        $name  = $user['username'];
+        $this->assertTrue(
+            $this->us->userEmailCombinationValid(
+                $name, $email
+            )
+        );
+    }
+
+
+
+    /**
+     * Test userEmailCombinationValid() with valid user and invalid email.
+     *
+     * @return void
+     */
+    public function testUserEmailCombinationValidInvalidEmail()
+    {
+        $this->us->deleteAll();
+
+        $uid   = $this->addUser();
+        $user  = $this->us->getUser($uid);
+        $email = $user['email'];
+        $name  = $user['username'];
+        $this->assertFalse(
+            $this->us->userEmailCombinationValid(
+                $name, 'not-' . $email
+            )
+        );
+    }
+
+
+
+    /**
+     * Test userEmailCombinationValid() with invalid user and invalid email.
+     *
+     * @return void
+     */
+    public function testUserEmailCombinationValidBothInvalid()
+    {
+        $this->us->deleteAll();
+
+        $uid   = $this->addUser();
+        $user  = $this->us->getUser($uid);
+        $email = $user['email'];
+        $name  = $user['username'];
+        $this->assertFalse(
+            $this->us->userEmailCombinationValid(
+                'not-' . $name, 'not-' . $email
+            )
+        );
+    }
+
+
+
+    /**
      * Test login() function with invalid creditentials
      *
      * @return void
