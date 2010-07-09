@@ -101,7 +101,7 @@ $email->addRule(
     array($userservice, 'isValidEmail')
 );
 
-$form->addElement(
+$captcha = $form->addElement(
     'sc-captcha', 'captcha',
     array(
         'size' => 40
@@ -127,6 +127,7 @@ if ($form->validate()) {
         $arValues['username'], $arValues['password'], $arValues['email']
     );
     if ($bOk) {
+        $captcha->clearCaptchaSession();
         header('Location: '. createURL('bookmarks', $arValues['username']));
         exit();
     }
