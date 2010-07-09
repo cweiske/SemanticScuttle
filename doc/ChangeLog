@@ -1,6 +1,11 @@
 ChangeLog for SemantiScuttle
 ============================
 
+0.9X.X - 2010-XX-XX
+-------------------
+- Fix bug getTagsForBookmarks() that fetched all tags
+
+
 0.97.0 - 2010-06-09
 -------------------
 - Many SQL optimizations - SemanticScuttle shows bookmarks 4 times faster now
