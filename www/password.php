@@ -89,7 +89,7 @@ $email->addRule(
 );
 
 
-$form->addElement(
+$captcha = $form->addElement(
     'sc-captcha', 'captcha',
     array(
         'size' => 40
@@ -156,6 +156,7 @@ if ($form->validate()) {
             T_('New password generated and sent to %s'),
             $arValues['email']
         );
+        $captcha->clearCaptchaSession();
     }
 } else {
     HTML_QuickForm2_Renderer::register(
