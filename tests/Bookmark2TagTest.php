@@ -171,6 +171,12 @@ class Bookmark2TagTest extends TestBase
         $bid4 = $this->addBookmark(null, null, 0, array());
         //no tags
 
+        //bookmark that does not get queried
+        //http://sourceforge.net/projects/semanticscuttle/forums/forum/759510/topic/3752670
+        $bid5 = $this->addBookmark(null, null, 0, array());
+        $this->b2ts->attachTags($bid5, array('foo', 'bar2', 'fuu5'));
+
+
         $alltags = $this->b2ts->getTagsForBookmarks(
             array($bid1, $bid2, $bid3, $bid4)
         );

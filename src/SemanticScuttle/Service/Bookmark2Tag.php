@@ -325,13 +325,8 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
             return array();
         }
 
-        $sql = '';
-        foreach ($bookmarkids as $bookmarkid) {
-            $sql .= ' OR bId = ' . intval($bookmarkid);
-        }
-
         $query = 'SELECT tag, bId FROM ' . $this->getTableName()
-            . ' WHERE (1' . $sql . ')'
+            . ' WHERE bId IN (' . implode(',', $bookmarkids) . ')'
             . ' AND LEFT(tag, 7) <> "system:"'
             . ' ORDER BY id, bId ASC';
 
