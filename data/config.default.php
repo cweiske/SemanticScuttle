@@ -138,7 +138,7 @@ $dbtype = 'mysql4';
  *
  * @var string
  */
-$dbhost = 'localhost';
+$dbhost = '127.0.0.1';
 
 /**
  * Database port.
