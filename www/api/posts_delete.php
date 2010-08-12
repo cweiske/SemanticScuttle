@@ -7,8 +7,8 @@
 // - doesn't set the Content-Type to text/xml (we do).
 
 // Force HTTP authentication first!
-require_once('httpauth.inc.php');
-require_once '../www-header.php';
+$httpContentType = 'text/xml';
+require_once 'httpauth.inc.php';
 
 /* Service creation: only useful services are created */
 $bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
@@ -28,7 +28,6 @@ if (is_null($_REQUEST['url'])) {
 }
 
 // Set up the XML file and output the result.
-header('Content-Type: text/xml');
 echo '<?xml version="1.0" standalone="yes" ?'.">\r\n";
 echo '<result code="'. ($deleted ? 'done' : 'something went wrong') .'" />';
 ?>

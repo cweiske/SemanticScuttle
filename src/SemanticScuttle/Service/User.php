@@ -76,15 +76,28 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         $this->updateSessionStability();
     }
 
-    function _getuser($fieldname, $value) {
-        $query = 'SELECT * FROM '. $this->getTableName() .' WHERE '. $fieldname .' = "'. $this->db->sql_escape($value) .'"';
+    /**
+     * Fetches the desired user row from database, specified by column and value
+     *
+     * @param string $fieldname Name of database column to identify user
+     * @param string $value     Value of $fieldname
+     *
+     * @return array Database row or boolean false
+     */
+    protected function _getuser($fieldname, $value)
+    {
+        $query = 'SELECT * FROM '. $this->getTableName()
+            . ' WHERE ' . $fieldname . ' = "' . $this->db->sql_escape($value) . '"';
 
-        if (! ($dbresult =& $this->db->sql_query($query)) ) {
-            message_die(GENERAL_ERROR, 'Could not get user', '', __LINE__, __FILE__, $query, $this->db);
+        if (!($dbresult = $this->db->sql_query($query)) ) {
+            message_die(
+                GENERAL_ERROR, 'Could not get user',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
             return false;
         }
 
-        $row =& $this->db->sql_fetchrow($dbresult);
+        $row = $this->db->sql_fetchrow($dbresult);
         $this->db->sql_freeresult($dbresult);
         if ($row) {
             return $row;
@@ -305,9 +318,14 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     /**
      * Checks if the given user is an administrator.
      * Uses global admin_users property containing admin
-     * user names
+     * user names.
      *
-     * @param integer|array $user User ID or user row from DB
+     * Passing the user id makes this function load the user
+     * from database. For efficiency reasons, try to pass
+     * the user name or database row.
+     *
+     * @param integer|array|string $user User ID or user row from DB
+     *                                   or user name
      *
      * @return boolean True if the user is admin
      */
@@ -315,10 +333,13 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     {
         if (is_numeric($user)) {
             $user = $this->getUser($user);
+            $user = $user['username'];
+        } else if (is_array($user)) {
+            $user = $user['username'];
         }
 
         if (isset($GLOBALS['admin_users'])
-            && in_array($user['username'], $GLOBALS['admin_users'])
+            && in_array($user, $GLOBALS['admin_users'])
         ) {
             return true;
         } else {
@@ -386,6 +407,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         }
         //reload user object
         $this->getCurrentUser(true);
+        $this->getCurrentObjectUser(true);
     }
 
 

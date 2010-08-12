@@ -12,7 +12,7 @@ Warning
 The unit tests are DESTRUCTIBLE! Never ever run them on your
 normal SemanticScuttle database! Always use a different database
 for testing - whole tables are emptied and re-filled during the
-tests, and you will definitely loose all data in there.
+tests, and you will definitely lose all data in there.
 
 
 Running the tests

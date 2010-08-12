@@ -5,8 +5,8 @@
 // - tags can't have spaces
 
 // Force HTTP authentication first!
-require_once('httpauth.inc.php');
-require_once '../www-header.php';
+$httpContentType = 'text/xml';
+require_once 'httpauth.inc.php';
 
 /* Service creation: only useful services are created */
 $b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
@@ -16,7 +16,6 @@ $b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
 $tags =& $b2tservice->getTags($userservice->getCurrentUserId());
 
 // Set up the XML file and output all the tags.
-header('Content-Type: text/xml');
 echo '<?xml version="1.0" standalone="yes" ?'.">\r\n";
 echo "<tags>\r\n";
 foreach($tags as $row) {

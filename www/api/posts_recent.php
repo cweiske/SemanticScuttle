@@ -22,6 +22,7 @@ $countDefault = 15;
 $countMax     = 100;
 
 // Force HTTP authentication first!
+$httpContentType = 'text/xml';
 require_once 'httpauth.inc.php';
 
 /* Service creation: only useful services are created */
@@ -54,7 +55,6 @@ $bookmarks = $bookmarkservice->getBookmarks(
 
 
 // Set up the XML file and output all the tags.
-header('Content-Type: text/xml');
 echo '<?xml version="1.0" standalone="yes" ?'.">\r\n";
 echo '<posts tag="'. (is_null($tag) ? '' : filter($tag, 'xml')) .'" user="'. filter($currentUser->getUsername(), 'xml') ."\">\r\n";
 

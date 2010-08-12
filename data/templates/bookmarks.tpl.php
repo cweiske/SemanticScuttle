@@ -216,9 +216,27 @@ if($currenttag!= '') {
 <ol <?php echo ($start > 0 ? ' start="'. ++$start .'"' : ''); ?>
 	id="bookmarks">
 
-	<?php
-	foreach(array_keys($bookmarks) as $key) {
-		$row =& $bookmarks[$key];
+    <?php
+    $addresses = array();
+    foreach ($bookmarks as $key => &$row) {
+        $addresses[$row['bId']] = $row['bAddress'];
+    }
+    $otherCounts = $bookmarkservice->countOthers($addresses);
+    if ($userservice->isLoggedOn()) {
+        $existence = $bookmarkservice->bookmarksExist(
+            $addresses, $currentUser->getId()
+        );
+    }
+
+    if ($userservice->isLoggedOn()) {
+        $watchedNames = $userservice->getWatchNames(
+            $currentUser->getId(), true
+        );
+    } else {
+        $watchedNames = null;
+    }
+
+	foreach ($bookmarks as $key => &$row) {
 		switch ($row['bStatus']) {
 			case 0:
 				$access = '';
@@ -234,9 +252,7 @@ if($currenttag!= '') {
 		$cats = '';
 		$tagsForCopy = '';
 		$tags = $row['tags'];
-		foreach(array_keys($tags) as $key) {
-
-			$tag =& $tags[$key];
+		foreach ($tags as $tkey => &$tag) {
 			$cats .= '<a href="'. sprintf($cat_url, filter($row['username'], 'url'), filter($tag, 'url')) .'" rel="tag">'. filter($tag) .'</a>, ';
 			$tagsForCopy.= $tag.',';
 		}
@@ -264,7 +280,7 @@ if($currenttag!= '') {
 
 		// Udders!
 		if (!isset($hash)) {
-			$others = $bookmarkservice->countOthers($row['bAddress']);
+			$others = $otherCounts[$row['bAddress']];
 			$ostart = '<a href="'. createURL('history', $row['bHash']) .'">';
 			$oend = '</a>';
 			switch ($others) {
@@ -281,7 +297,7 @@ if($currenttag!= '') {
 		// Copy link
 		if ($userservice->isLoggedOn()
             && ($currentUser->getId() != $row['uId'])
-            && !$bookmarkservice->bookmarkExists($row['bAddress'], $currentUser->getId())
+            && !$existence[$row['bAddress']]
         ) {
 			$copy .= ' - <a href="'
                 . createURL('bookmarks', $currentUser->getUsername() .'?action=add&amp;copyOf='. $row['bId'])
@@ -304,7 +320,7 @@ if($currenttag!= '') {
 		}
 
 		// Admin specific design
-		if($userservice->isAdmin($row['uId'])) {
+		if ($userservice->isAdmin($row['username']) && $GLOBALS['enableAdminColors']) {
 			$adminBgClass = 'class="adminBackground"';
 			$adminStar = ' <img src="'. ROOT .'images/logo_24.gif" width="12px" title="'. T_('This bookmark is certified by an admin user.') .'" />';
 		} else {
@@ -313,7 +329,11 @@ if($currenttag!= '') {
 		}
 
 		// Private Note (just visible by the owner and his/her contacts)
-		if($userservice->isLoggedOn() && ($currentUser->getId() == $row['uId'] || in_array($row['username'], $userservice->getWatchNames($currentUser->getId(), true)))) {
+        if ($watchedNames !== null
+            && ($currentUser->getId() == $row['uId']
+                || in_array($row['username'], $watchedNames)
+            )
+        ) {
 			$privateNoteField = $row['bPrivateNote'];
 		} else {
 			$privateNoteField = '';

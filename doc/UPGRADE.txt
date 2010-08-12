@@ -1,6 +1,12 @@
 Upgrading SemanticScuttle from a previous version
 =================================================
 
+
+From version 0.96 to 0.97
+-------------------------
+No database changes necessary.
+
+
 From version 0.95 to 0.96
 -------------------------
 Update your database:

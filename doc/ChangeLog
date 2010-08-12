@@ -1,9 +1,27 @@
 ChangeLog for SemantiScuttle
 ============================
 
+0.9X.X - 2010-XX-XX
+-------------------
+- Fix bug getTagsForBookmarks() that fetched all tags
+
+
+0.97.0 - 2010-06-09
+-------------------
+- Many SQL optimizations - SemanticScuttle shows bookmarks 4 times faster now
+- New config option to skip "SET NAMES UTF8" call: $dbneedssetnames
+- Do not highlight admin bookmarks when $enableAdminColors is disabled
+- Add russian translation
+- Make HTML export follow the specifications a bit better
+- Fix bug #2953732: faulty error message for duplicate bookmarks
+- Fix bug #2960663: do not send content-type headers twice for ajax/api scripts
+- Fix bug #2976593: fr_FR locale is vietnamese
+
+
 0.96.1 - 2010-02-09
 -------------------
 - Fix bug #2948410: API is broken in 0.96.0
+
 
 0.96.0 - 2010-02-08
 -------------------

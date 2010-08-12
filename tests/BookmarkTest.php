@@ -253,6 +253,132 @@ class BookmarkTest extends TestBase
 
 
     /**
+     * Tests if bookmarksExist() returns true when a bookmark
+     * exists
+     *
+     * @return void
+     */
+    public function testBookmarksExistTrueSingle()
+    {
+        $bid = $this->addBookmark();
+        $bookmark = $this->bs->getBookmark($bid);
+
+        $ret = $this->bs->bookmarksExist(array($bookmark['bAddress']));
+        $this->assertType('array', $ret);
+        $this->assertEquals(1, count($ret));
+        $this->assertTrue($ret[$bookmark['bAddress']]);
+    }
+
+
+
+    /**
+     * Tests if bookmarksExist() returns true when all bookmarks
+     * exist
+     *
+     * @return void
+     */
+    public function testBookmarksExistTrueMultiple()
+    {
+        $bid = $this->addBookmark();
+        $bookmark = $this->bs->getBookmark($bid);
+
+        $bid2 = $this->addBookmark();
+        $bookmark2 = $this->bs->getBookmark($bid2);
+
+
+        $ret = $this->bs->bookmarksExist(
+            array(
+                $bookmark['bAddress'],
+                $bookmark2['bAddress']
+            )
+        );
+        $this->assertType('array', $ret);
+        $this->assertEquals(2, count($ret));
+        $this->assertTrue($ret[$bookmark['bAddress']]);
+        $this->assertTrue($ret[$bookmark2['bAddress']]);
+    }
+
+
+
+    /**
+     * Tests if bookmarksExist() returns false when a bookmark
+     * does not exist
+     *
+     * @return void
+     */
+    public function testBookmarksExistFalseSingle()
+    {
+        $ret = $this->bs->bookmarksExist(array('does-not-exist'));
+        $this->assertType('array', $ret);
+        $this->assertEquals(1, count($ret));
+        $this->assertFalse($ret['does-not-exist']);
+    }
+
+
+
+    /**
+     * Tests if bookmarksExist() returns false when all bookmarks
+     * do not exist
+     *
+     * @return void
+     */
+    public function testBookmarksExistFalseMultiple()
+    {
+        $bms = array(
+            'does-not-exist',
+            'does-not-exist-2',
+            'does-not-exist-3',
+        );
+        $ret = $this->bs->bookmarksExist($bms);
+        $this->assertType('array', $ret);
+        $this->assertEquals(3, count($ret));
+        $this->assertFalse($ret['does-not-exist']);
+        $this->assertFalse($ret['does-not-exist-2']);
+        $this->assertFalse($ret['does-not-exist-3']);
+    }
+
+
+
+    /**
+     * Tests if bookmarksExist() returns true when some bookmarks
+     * exist.
+     *
+     * @return void
+     */
+    public function testBookmarksExistSome()
+    {
+        $bid = $this->addBookmark();
+        $bookmark = $this->bs->getBookmark($bid);
+
+        $bid2 = $this->addBookmark();
+        $bookmark2 = $this->bs->getBookmark($bid2);
+
+        //do not search for this one
+        $bid3 = $this->addBookmark();
+        $bookmark3 = $this->bs->getBookmark($bid3);
+
+
+        $ret = $this->bs->bookmarksExist(
+            array(
+                $bookmark['bAddress'],
+                'does-not-exist',
+                $bookmark2['bAddress'],
+                'does-not-exist-2',
+                'does-not-exist-3'
+            )
+        );
+        $this->assertType('array', $ret);
+        $this->assertEquals(5, count($ret));
+        $this->assertTrue($ret[$bookmark['bAddress']]);
+        $this->assertTrue($ret[$bookmark2['bAddress']]);
+        $this->assertFalse($ret['does-not-exist']);
+        $this->assertFalse($ret['does-not-exist-2']);
+        $this->assertFalse($ret['does-not-exist-3']);
+    }
+
+
+
+    /**
      * Test if countBookmarks() works with no bookmarks
      *
      * @return void
@@ -327,6 +453,40 @@ class BookmarkTest extends TestBase
         $this->assertEquals(0, $this->bs->countBookmarks($uid, 'private'));
         $this->assertEquals(1, $this->bs->countBookmarks($uid, 'shared'));
         $this->assertEquals(1, $this->bs->countBookmarks($uid, 'all'));
+    }
+
+
+
+    /**
+     * Check tag loading functionality of getBookmarks()
+     *
+     * @return void
+     */
+    public function testGetBookmarksIncludeTags()
+    {
+        $uid = $this->addUser();
+        $bid = $this->addBookmark($uid);
+        $this->b2ts->attachTags($bid, array('foo', 'bar'));
+        $bid2 = $this->addBookmark($uid);
+        $this->b2ts->attachTags($bid2, array('fuu', 'baz'));
+
+        $bms = $this->bs->getBookmarks();
+        $this->assertEquals(2, count($bms['bookmarks']));
+        $this->assertEquals(2, $bms['total']);
+
+        foreach ($bms['bookmarks'] as $bm) {
+            $this->assertArrayHasKey('tags', $bm);
+            $this->assertType('array', $bm['tags']);
+            if ($bm['bId'] == $bid) {
+                $this->assertContains('foo', $bm['tags']);
+                $this->assertContains('bar', $bm['tags']);
+            } else if ($bm['bId'] == $bid2) {
+                $this->assertContains('fuu', $bm['tags']);
+                $this->assertContains('baz', $bm['tags']);
+            } else {
+                $this->assertTrue(false, 'Unknown bookmark id');
+            }
+        }
     }
 
 
@@ -703,6 +863,50 @@ class BookmarkTest extends TestBase
 
 
 
+    /**
+     * Tests if getBookmarkByAddress() works correctly.
+     *
+     * @return void
+     */
+    public function testGetBookmarkByAddress()
+    {
+        $url = 'http://example.org';
+        $uid = $this->addUser();
+        $bid = $this->addBookmark($uid, $url);
+
+        $bm = $this->bs->getBookmarkByAddress($url);
+        $this->assertType('array', $bm);
+        $this->assertEquals($url, $bm['bAddress']);
+    }
+
+
+
+    /**
+     * Tests if getBookmarkByAddress() works correctly with aliases.
+     * When passing an incomplete address i.e. without protocol,
+     * the full URL needs to be searched for.
+     *
+     * The failure of this test lead to #2953732.
+     *
+     * @return void
+     *
+     * @link https://sourceforge.net/tracker/?func=detail&atid=1017430&aid=2953732&group_id=211356
+     */
+    public function testGetBookmarkByAddressAlias()
+    {
+        $url = 'http://example.org';
+        $incomplete = 'example.org';
+
+        $uid = $this->addUser();
+        $bid = $this->addBookmark($uid, $url);
+
+        $bm = $this->bs->getBookmarkByAddress($incomplete);
+        $this->assertType('array', $bm);
+        $this->assertEquals($url, $bm['bAddress']);
+    }
+
+
+
     public function testNormalize()
     {
         $this->assertEquals(
@@ -777,6 +981,251 @@ class BookmarkTest extends TestBase
         $bm = $this->bs->getBookmark($bid);
         $this->assertEquals('newShortNambb', $bm['bShort']);
     }
+
+
+
+    /**
+     * Test what countOther() returns when the address does not exist
+     *
+     * @return void
+     */
+    public function testCountOthersAddressDoesNotExist()
+    {
+        $this->assertEquals(0, $this->bs->countOthers('http://example.org'));
+    }
+
+
+
+    /**
+     * Test what countOther() returns when nobody else has the same bookmark
+     *
+     * @return void
+     */
+    public function testCountOthersNone()
+    {
+        $uid = $this->addUser();
+        $address = 'http://example.org';
+        $this->addBookmark($uid, $address);
+        $this->assertEquals(0, $this->bs->countOthers($address));
+    }
+
+
+
+    /**
+     * Test what countOther() returns when the address exists only once
+     * and multiple bookmarks are in the database.
+     *
+     * @return void
+     */
+    public function testCountOthersMultipleNone()
+    {
+        $uid = $this->addUser();
+        $address = 'http://example.org';
+        $this->addBookmark($uid, $address);
+        $this->addBookmark($uid);
+        $this->addBookmark($uid);
+        $this->assertEquals(0, $this->bs->countOthers($address));
+    }
+
+
+
+    /**
+     * Test what countOther() returns when the address exists only once
+     * and the same user and other users have other bookmarks
+     *
+     * @return void
+     */
+    public function testCountOthersMultipleUsersNone()
+    {
+        $uid  = $this->addUser();
+        $uid2 = $this->addUser();
+        $address = 'http://example.org';
+        $this->addBookmark($uid, $address);
+        $this->addBookmark($uid);
+        $this->addBookmark($uid2);
+        $this->assertEquals(0, $this->bs->countOthers($address));
+    }
+
+
+
+    /**
+     * Test what countOther() returns when the address exists two
+     * times in the database.
+     *
+     * @return void
+     */
+    public function testCountOthersOne()
+    {
+        $uid  = $this->addUser();
+        $uid2 = $this->addUser();
+        $address = 'http://example.org';
+        $this->addBookmark($uid, $address);
+        $this->addBookmark($uid2, $address);
+        $this->assertEquals(1, $this->bs->countOthers($address));
+    }
+
+
+
+    /**
+     * Test what countOther() returns when the address exists four
+     * times in the database.
+     *
+     * @return void
+     */
+    public function testCountOthersThree()
+    {
+        $uid  = $this->addUser();
+        $address = 'http://example.org';
+        $this->addBookmark($uid, $address);
+        $this->addBookmark(null, $address);
+        $this->addBookmark(null, $address);
+        $this->addBookmark(null, $address);
+        $this->assertEquals(3, $this->bs->countOthers($address));
+    }
+
+
+
+    /**
+     * Test what countOther() returns when the user is logged in
+     * and friends (people on the watchlist) have bookmarked
+     * and shared the same address.
+     *
+     * @return void
+     */
+    public function testCountOthersWatchlist()
+    {
+        $uid  = $this->addUser();
+        $address = 'http://example.org';
+        //log user in
+        $this->us->setCurrentUserId($uid);
+
+        //setup users
+        $otherPublic1   = $this->addUser();
+        $otherPublic2   = $this->addUser();
+        $otherShared1   = $this->addUser();
+        $otherPrivate1  = $this->addUser();
+        $friendPublic1  = $this->addUser();
+        $friendShared1  = $this->addUser();
+        $friendShared2  = $this->addUser();
+        $friendPrivate1 = $this->addUser();
+        $friendSharing1 = $this->addUser();
+
+        //setup watchlists
+        $us = SemanticScuttle_Service_Factory::get('User');
+        $this->us->setCurrentUserId($friendPublic1);
+        $us->setWatchStatus($uid);
+        $this->us->setCurrentUserId($friendShared1);
+        $us->setWatchStatus($uid);
+        $this->us->setCurrentUserId($friendShared2);
+        $us->setWatchStatus($uid);
+        $this->us->setCurrentUserId($friendPrivate1);
+        $us->setWatchStatus($uid);
+
+        //back to login of main user
+        $this->us->setCurrentUserId($uid);
+        $us->setWatchStatus($friendSharing1);
+
+        //add bookmarks
+        $this->addBookmark($uid, $address, 0);
+        $this->addBookmark($otherPublic1,   $address, 0);
+        $this->addBookmark($otherPublic2,   $address, 0);
+        $this->addBookmark($otherShared1,   $address, 1);
+        $this->addBookmark($otherPrivate1,  $address, 2);
+        $this->addBookmark($friendPublic1,  $address, 0);
+        $this->addBookmark($friendShared1,  $address, 1);
+        $this->addBookmark($friendShared2,  $address, 1);
+        $this->addBookmark($friendPrivate1, $address, 2);
+        //this user is on our watchlist, but we not on his
+        $this->addBookmark($friendSharing1, $address, 1);
+
+        //2 public
+        //1 public (friend)
+        //2 shared
+        //-> 5
+        $this->assertEquals(5, $this->bs->countOthers($address));
+    }
+
+
+
+    /**
+     * Test what countOther() returns when multiple addresses are
+     * passed to it and none of them exists.
+     *
+     * @return void
+     */
+    public function testCountOthersArrayNone()
+    {
+        $this->assertEquals(
+            array('1' => 0, '2' => 0, '3' => 0),
+            $this->bs->countOthers(array('1', '2', '3'))
+        );
+    }
+
+
+
+    /**
+     * Test what countOther() returns when multiple addresses are
+     * passed to it and only one of them exists.
+     *
+     * @return void
+     */
+    public function testCountOthersArrayOneNone()
+    {
+        $uid  = $this->addUser();
+        $uid2 = $this->addUser();
+        $address1 = 'http://example.org/1';
+        $address2 = 'http://example.org/2';
+        $this->addBookmark($uid, $address1);
+        $this->addBookmark($uid, $address2);
+        $this->addBookmark($uid2, $address1);
+        $this->assertEquals(
+            array(
+                $address1 => 1,
+                $address2 => 0
+            ),
+            $this->bs->countOthers(
+                array($address1, $address2)
+            )
+        );
+    }
+
+
+
+    /**
+     * Test what countOther() returns when multiple addresses are passed
+     * to it and both of them exist with different numbers for each.
+     *
+     * @return void
+     */
+    public function testCountOthersArrayTwoOne()
+    {
+        $uid  = $this->addUser();
+        $uid2 = $this->addUser();
+        $uid3 = $this->addUser();
+
+        $address1 = 'http://example.org/1';
+        $address2 = 'http://example.org/2';
+
+        $this->addBookmark($uid, $address1);
+        $this->addBookmark($uid, $address2);
+
+        $this->addBookmark($uid2, $address1);
+        $this->addBookmark($uid2, $address2);
+
+        $this->addBookmark($uid3, $address1);
+
+        $this->assertEquals(
+            array(
+                $address1 => 2,
+                $address2 => 1
+            ),
+            $this->bs->countOthers(
+                array($address1, $address2)
+            )
+        );
+    }
+
+
 
 }
 

@@ -15,6 +15,7 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
+$httpContentType = false;
 require_once 'www-header.php';
 
 if (!$GLOBALS['shorturl']) {

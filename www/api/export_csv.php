@@ -1,24 +1,40 @@
 <?php
-// Export in CSV format in order to allow the import into a spreadsheet tool like Excel
+/**
+ * Export own bookmarks in CSV format in order to allow the import
+ * into a spreadsheet tool like Excel
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
 
 // Force HTTP authentication first!
-require_once('httpauth.inc.php');
-require_once '../www-header.php';
+$httpContentType = 'application/csv-tab-delimited-table';
+require_once 'httpauth.inc.php';
+header("Content-disposition: filename=exportBookmarks.csv");
 
 /* Service creation: only useful services are created */
 $bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
 
 // Check to see if a tag was specified.
-if (isset($_REQUEST['tag']) && (trim($_REQUEST['tag']) != ''))
-    $tag = trim($_REQUEST['tag']);
-else
-    $tag = NULL;
+if (isset($_REQUEST['tag']) && (trim($_REQUEST['tag']) != '')) {
+    //$_GET vars have + replaced to " " automatically
+    $tag = str_replace(' ', '+', trim($_REQUEST['tag']));
+} else {
+    $tag = null;
+}
 
 // Get the posts relevant to the passed-in variables.
-$bookmarks =& $bookmarkservice->getBookmarks(0, NULL, $userservice->getCurrentUserId(), $tag, NULL, getSortOrder());
-
-header("Content-Type: application/csv-tab-delimited-table;charset=UTF-8");
-header("Content-disposition: filename=exportBookmarks.csv");
+$bookmarks = $bookmarkservice->getBookmarks(
+    0, null, $userservice->getCurrentUserId(),
+    $tag, null, getSortOrder()
+);
 
 //columns titles
 echo 'url;title;tags;description';

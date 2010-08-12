@@ -2,6 +2,7 @@
 /**
  * We re-use vote.php but set the ajax flag
  */
+$httpContentType = 'text/xml';
 $GLOBALS['ajaxRequest'] = true;
 require 'vote.php';
 
@@ -17,7 +18,6 @@ default:
     $template = 'bookmarks-vote.inc.tpl.php';
 }
 
-header('Content-Type: text/xml; charset=utf-8');
 echo '<voteresult><bookmark>' . $bookmark . '</bookmark>'
     . '<html xmlns="http://www.w3.org/1999/xhtml">';
 $ts->loadTemplate(

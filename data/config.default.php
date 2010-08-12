@@ -180,6 +180,15 @@ $dbname = 'scuttle';
  */
 $tableprefix = 'sc_';
 
+/*
+ * If the database needs to be switched to UTF8
+ * manually or not. If true, a "SET NAMES UTF8" query
+ * will be sent at the beginning. If you need performance,
+ * save this query and set it in your mysql server options.
+ *
+ * @var boolean
+ */
+$dbneedssetnames = true;
 
 
 /***************************************************
@@ -714,4 +723,16 @@ $authDebug = false;
  * @var string
  */
 $authEmailSuffix = null;
+
+
+
+
+/**
+ * URL unittests are being run against
+ * Has to have a trailing slash
+ *
+ * @var string
+ */
+$unittestUrl = null;
+
 ?>

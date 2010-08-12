@@ -19,9 +19,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 
-header('Content-Type: text/xml; charset=UTF-8');
 header('Last-Modified: '. gmdate("D, d M Y H:i:s") .' GMT');
 header('Cache-Control: no-cache, must-revalidate');
+$httpContentType = 'text/xml';
 require_once 'www-header.php';
 
 /* Service creation: only useful services are created */

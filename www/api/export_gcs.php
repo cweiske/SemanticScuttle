@@ -5,6 +5,7 @@
 
 // Force HTTP authentication first!
 //require_once('httpauth.inc.php');
+$httpContentType = false;
 require_once '../www-header.php';
 
 if($GLOBALS['enableGoogleCustomSearch'] == false) {
@@ -39,7 +40,7 @@ $bookmarks =& $bookmarkservice->getBookmarks(0, NULL, NULL, $tag, NULL, getSortO
 
 
 // Set up the plain file and output all the posts.
-header('Content-Type: text/plain');
+header('Content-Type: text/plain; charset=utf-8');
 if(!$xml) {
 	header('Content-Type: text/plain');
 	foreach($bookmarks['bookmarks'] as $row) {
@@ -48,7 +49,7 @@ if(!$xml) {
 		}
 	}
 } else {
-	header('Content-Type: application/xml');
+	header('Content-Type: text/xml');
 	echo '<GoogleCustomizations>'."\n";
 	echo '  <Annotations>'."\n";
 	foreach($bookmarks['bookmarks'] as $row) {

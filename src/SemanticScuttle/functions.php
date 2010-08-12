@@ -1,6 +1,19 @@
 <?php
-/* Define functions used into the application */
-
+/**
+ * Defines some commonly used functions.
+ *
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
 
 // Converts tags:
 // - direction = out: convert spaces to underscores;
@@ -35,10 +48,23 @@ function filter($data, $type = NULL) {
 	return $data;
 }
 
-function getPerPageCount($userObject = null) {
+/**
+ * Returns the number of bookmarks that shall be displayed on one page.
+ *
+ * @param SemanticScuttle_Model_User $userObject Object of the current user
+ *
+ * @return integer Number of bookmarks per page
+ *
+ * @uses $defaultPerPage
+ * @uses $defaultPerPageForAdmins
+ */
+function getPerPageCount($userObject = null)
+{
 	global $defaultPerPage, $defaultPerPageForAdmins;
-	
-	if(isset($defaultPerPageForAdmins) && $userObject != null && $userObject->isAdmin()) {		
+
+	if (isset($defaultPerPageForAdmins)
+        && $userObject != null && $userObject->isAdmin()
+    ) {
 		return $defaultPerPageForAdmins;
 	} else {
 		return $defaultPerPage;

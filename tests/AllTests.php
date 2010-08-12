@@ -56,6 +56,7 @@ class AllTests extends PHPUnit_Framework_TestSuite
         $suite = new AllTests();
         $tdir = dirname(__FILE__);
         $suite->addTestFile($tdir . '/BookmarkTest.php');
+        $suite->addTestFile($tdir . '/Bookmark2TagTest.php');
         $suite->addTestFile($tdir . '/Tag2TagTest.php');
         $suite->addTestFile($tdir . '/TagsCacheTest.php');
         $suite->addTestFile($tdir . '/CommonDescriptionTest.php');
