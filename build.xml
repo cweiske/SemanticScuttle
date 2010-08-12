@@ -10,6 +10,17 @@
 
   <property name="version-m"  value="0.97" />
   <property name="version"    value="0.97.0" />
+  <property name="stability"  value="beta" />
+  <property name="releasenotes" value="- Many SQL optimizations
+- SemanticScuttle shows bookmarks 4 times faster now
+- New config option to skip 'SET NAMES UTF8' call: $dbneedssetnames
+- Do not highlight admin bookmarks when $enableAdminColors is disabled
+- Add russian translation
+- Make HTML export follow the specifications a bit better
+- Fix bug #2953732: faulty error message for duplicate bookmarks
+- Fix bug #2960663: do not send content-type headers twice for ajax/api scripts
+- Fix bug #2976593: fr_FR locale is vietnamese
+" />
   <property name="zipfile"    value="${phing.project.name}-${version}.zip" />
   <property name="distfile"   value="dist/${zipfile}" />
   <property name="sfproject"  value="SemanticScuttle" />
@@ -52,6 +63,59 @@
    description="Creates the pear package"
   >
    <!-- fixme: create package.xml with d51pearpkg2 -->
+   <pearpkg2 name="SemanticScuttle" dir=".">
+     <option name="packagefile" value="package.xml" />
+     <option name="channel" value="__uri" />
+     <option name="summary" value="A social bookmarking tool"/>
+     <option name="description" value="A social bookmarking tool experimenting with new features like structured tags or collaborative descriptions of tags."/>
+     <option name="apiversion"       value="${version}" />
+     <option name="apistability"     value="${stability}" />
+     <option name="releaseversion"   value="${version}" />
+     <option name="releasestability" value="${stability}" />
+
+     <option name="license" value="http://www.gnu.org/licenses/gpl.html" />
+
+     <option name="phpdep" value="5.2.0" />
+     <option name="pearinstallerdep" value="1.8.1" />
+     <option name="packagetype" value="php" />
+
+     <option name="notes" value="${releasenotes}" />
+
+     <mapping name="maintainers">
+       <element>
+         <element key="handle" value="cweiske" />
+         <element key="name"   value="Christian Weiske" />
+         <element key="email"  value="cweiske@cweiske.de" />
+         <element key="role"   value="lead" />
+         <element key="active" value="no" />
+       </element>
+     </mapping>
+
+     <mapping name="deps">
+       <element>
+         <element key="channel" value="pear.php.net" />
+         <element key="name"    value="HTML_QuickForm2" />
+         <element key="version" value="0.4.0" />
+       </element>
+     </mapping>
+
+     <option name="baseinstalldir" value="/" />
+      <fileset dir=".">
+        <include name="data/**"/>
+        <include name="doc/**"/>
+        <include name="src/**"/>
+        <include name="www/**"/>
+        <exclude name="**/.gitignore/"/>
+        <exclude name="**/.svn/"/>
+        <exclude name="data/config.php"/>
+        <exclude name="data/locales/messages.po"/>
+        <exclude name="data/locales/*/LC_MESSAGES/messages.po"/>
+        <exclude name="doc/developers/"/>
+        <exclude name="src/php-gettext/examples/" />
+        <exclude name="src/php-gettext/bin/"/>
+      </fileset>
+
+   </pearpkg2>
   </target>
 
 
