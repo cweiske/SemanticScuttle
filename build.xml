@@ -102,9 +102,9 @@
 
      <!-- do not add the following file to the package -->
      <ignore>build*</ignore>
-     <ignore>dist</ignore>
+     <ignore>dist/**</ignore>
      <ignore>doc/developers</ignore>
-     <ignore>scripts</ignore>
+     <ignore>scripts/**</ignore>
      <ignore>**/messages.po</ignore>
 
      <changelog version="0.97" date="2010-06-09" license="GPL">
@@ -147,8 +147,24 @@
        />
       <!-- install-as for different directories -->
       <regexp
-       pattern="(&lt;file name=&quot;data/(.+)&quot;)"
+       pattern="(&lt;file name=&quot;data/(.+?)&quot;)"
+       replace="\1 install-as=&quot;\2&quot;"
+       />
+      <regexp
+       pattern="(&lt;file name=&quot;doc/(.+?)&quot;)"
+       replace="\1 install-as=&quot;\2&quot;"
+       />
+      <regexp
+       pattern="(&lt;file name=&quot;tests/(.+?)&quot;)"
+       replace="\1 install-as=&quot;\2&quot;"
+       />
+      <regexp
+       pattern="(&lt;file name=&quot;www/(.+?)&quot;)"
        replace="\1 install-as=&quot;SemanticScuttle/\2&quot;"
+       />
+      <regexp
+       pattern="(&lt;file name=&quot;src/(.+?)&quot;)"
+       replace="\1 install-as=&quot;\2&quot;"
        />
      </replaceregexp>
     </filterchain>
