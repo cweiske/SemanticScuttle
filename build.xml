@@ -100,12 +100,19 @@
      <dirroles key="src">php</dirroles>
      <dirroles key="tests">test</dirroles>
 
-     <!-- do not add the following file to the package -->
+     <!-- do not add the following files to the package.
+          copied from excludes above -->
+     <ignore>**/.gitignore</ignore>
+     <ignore>**/.svn</ignore>
      <ignore>build*</ignore>
+     <ignore>data/config.php</ignore>
+     <ignore>data/locales/messages.po</ignore>
+     <ignore>data/locales/*/LC_MESSAGES/messages.po</ignore>
      <ignore>dist/**</ignore>
-     <ignore>doc/developers</ignore>
+     <ignore>doc/developers/**</ignore>
      <ignore>scripts/**</ignore>
-     <ignore>**/messages.po</ignore>
+     <ignore>src/php-gettext/examples/**</ignore>
+     <ignore>src/php-gettext/bin/**</ignore>
 
      <changelog version="0.97" date="2010-06-09" license="GPL">
 - Many SQL optimizations - SemanticScuttle shows bookmarks 4 times faster now
