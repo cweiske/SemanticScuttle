@@ -22,6 +22,7 @@
 - Fix bug #2976593: fr_FR locale is vietnamese
 " />
   <property name="zipfile"    value="${phing.project.name}-${version}.zip" />
+  <property name="pkgfile"    value="${phing.project.name}-${version}.tgz" />
   <property name="distfile"   value="dist/${zipfile}" />
   <property name="sfproject"  value="SemanticScuttle" />
   <property name="sffilepath" value="s/se/semanticscuttle/" />
@@ -195,13 +196,16 @@
    </copy>
    <move file="package2.xml" tofile="package.xml" overwrite="true" />
 
-   <!-- <tar destfile="${dist.dir}/DoctrineORM-${version_name}.tgz" basedir="${build.dir}/orm" compression="gzip" />-->
+   <!-- package up -->
+   <exec command="pear package" passthru="true" />
+   <move file="${pkgfile}" todir="dist/pear/" />
 
+   <delete file="package.xml" failonerror="true" />
   </target>
 
 
 
-  <target name="release" depends="check,zip,deploy-sf,svntag"
+  <target name="release" depends="check,zip,package,deploy-sf,svntag"
    description="Release the version on sourceforge"
    >
    <!-- meta-target -->
