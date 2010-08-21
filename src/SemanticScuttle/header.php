@@ -20,7 +20,7 @@ if ('@data_dir@' == '@' . 'data_dir@') {
     $datadir = dirname(__FILE__) . '/../../data/';
 } else {
     //pear installation; files are in include path
-    $datadir = '@data_dir@';
+    $datadir = '@data_dir@/SemanticScuttle/';
 }
 
 if (!file_exists($datadir . '/config.php')) {
