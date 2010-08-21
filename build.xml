@@ -93,12 +93,14 @@
 
      </dependencies>
 
+     <!-- map directory (key) to role -->
      <dirroles key="www">www</dirroles>
      <dirroles key="data">data</dirroles>
      <dirroles key="doc">doc</dirroles>
      <dirroles key="src">php</dirroles>
      <dirroles key="tests">test</dirroles>
 
+     <!-- do not add the following file to the package -->
      <ignore>build*</ignore>
      <ignore>dist</ignore>
      <ignore>doc/developers</ignore>
@@ -122,6 +124,37 @@
             <install as="doctrine" name="bin/doctrine" />
             -->
    </d51pearpkg2>
+
+   <!-- time to fix the package.xml file since the task does not
+        allow everything we need:
+        - strip the base directory names like src, data and www
+        - remove that dumb baseinstalldir from files
+        - md5sums are generated automatically when packaging
+   -->
+   <!-- yes, we need to generate a 2nd file and move it back -->
+   <copy file="package.xml" tofile="package2.xml" overwrite="true">
+    <filterchain>
+     <replaceregexp>
+      <!-- remove md5sums -->
+      <regexp
+       pattern="md5sum=&quot;[a-z0-9]{32}&quot; "
+       replace=""
+       />
+      <!-- remove baseinstalldir for files -->
+      <regexp
+       pattern="&lt;file baseinstalldir=&quot;/&quot;"
+       replace="&lt;file"
+       />
+      <!-- install-as for different directories -->
+      <regexp
+       pattern="(&lt;file name=&quot;data/(.+)&quot;)"
+       replace="\1 install-as=&quot;SemanticScuttle/\2&quot;"
+       />
+     </replaceregexp>
+    </filterchain>
+   </copy>
+   <move file="package2.xml" tofile="package.xml" overwrite="true" />
+
    <!-- <tar destfile="${dist.dir}/DoctrineORM-${version_name}.tgz" basedir="${build.dir}/orm" compression="gzip" />-->
 
   </target>
