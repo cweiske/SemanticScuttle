@@ -14,9 +14,21 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-if (!file_exists(dirname(__FILE__) .'/../../data/config.php')) {
+
+if ('@data_dir@' == '@' . 'data_dir@') {
+    //non pear-install
+    $datadir = dirname(__FILE__) . '/../../data/';
+} else {
+    //pear installation; files are in include path
+    $datadir = '@data_dir@';
+}
+
+if (!file_exists($datadir . '/config.php')) {
     header('HTTP/1.0 500 Internal Server Error');
-    die('Please copy "config.php.dist" to "config.php" in data/ folder.');
+    die(
+        'Please copy "config.php.dist" to "config.php" in data/ folder.'
+        . "\n"
+    );
 }
 set_include_path(
     get_include_path() . PATH_SEPARATOR
@@ -24,7 +36,6 @@ set_include_path(
 );
 
 // 1 // First requirements part (before debug management)
-$datadir = dirname(__FILE__) . '/../../data/';
 require_once $datadir . '/config.default.php';
 require_once $datadir . '/config.php';
 

@@ -15,5 +15,11 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-require_once dirname(__FILE__) . '/../src/SemanticScuttle/header.php';
+if ('@data_dir@' == '@' . 'data_dir@') {
+    //non pear-install
+    require_once dirname(__FILE__) . '/../src/SemanticScuttle/header.php';
+} else {
+    //pear installation; files are in include path
+    require_once 'SemanticScuttle/header.php';
+}
 ?>
