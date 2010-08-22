@@ -117,6 +117,7 @@
      <ignore>src/php-gettext/examples/**</ignore>
      <ignore>src/php-gettext/bin/**</ignore>
      <ignore>*.tgz</ignore>
+     <ignore>*.properties</ignore>
 
      <replacement
       path="src/SemanticScuttle/header.php"
