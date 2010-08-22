@@ -256,12 +256,12 @@
         2. update channel with pirum update
         3. rsync to sourceforge
     -->
-    <!--<exec
-     command="rsync - -include-from=.rsync-include-files - -delete -avP -e ssh ${sfuser},${sfproject}@web.sourceforge.net:htdocs/ ."
+    <exec
+     command="rsync --include-from=.rsync-include-files --delete -avP -e ssh ${sfuser},${sfproject}@web.sourceforge.net:htdocs/ ."
      dir="${websitedir}"
      escape="false" checkreturn="false"
      passthru="true"
-     />-->
+     />
 
     <exec
      command="pirum add ${websitedir} ${distpkgfile}"
@@ -297,12 +297,12 @@
 
     <!-- rsync always returns code 23 on sourceforge releases, so we
          can't check return values -->
-    <!--<exec
-     command="rsync - -include-from=.rsync-include-files -avP -e ssh . ${sfuser},${sfproject}@web.sourceforge.net:htdocs/"
+    <exec
+     command="rsync --include-from=.rsync-include-files -avP -e ssh . ${sfuser},${sfproject}@web.sourceforge.net:htdocs/"
      dir="${websitedir}"
      escape="false" checkreturn="false"
      passthru="true"
-     />-->
+     />
   </target>
 
 
