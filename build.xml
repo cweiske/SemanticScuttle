@@ -240,7 +240,7 @@
 
 
 
-  <target name="deploy-sf-pear" depends="check"
+  <target name="deploy-sf-pear" depends="check,package"
    description="Update PEAR channel on sourceforge"
    >
     <available file="${websitedir}"
