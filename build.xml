@@ -7,6 +7,7 @@
     tagging a release, running unit tests etc.
   -->
   <property file="build.properties" />
+  <property file="html.properties" />
 
   <property name="version-m"  value="0.97" />
   <property name="version"    value="0.97.0" />
@@ -239,7 +240,7 @@
 
 
 
-  <target name="deploy-sf-pear" depends="check,package"
+  <target name="deploy-sf-pear" depends="check"
    description="Update PEAR channel on sourceforge"
    >
     <available file="${websitedir}"
@@ -255,25 +256,50 @@
         2. update channel with pirum update
         3. rsync to sourceforge
     -->
-    <exec
-     command="rsync --include-from=.rsync-include-files --delete -avP -e ssh ${sfuser},${sfproject}@web.sourceforge.net:htdocs/ ."
+    <!--<exec
+     command="rsync - -include-from=.rsync-include-files - -delete -avP -e ssh ${sfuser},${sfproject}@web.sourceforge.net:htdocs/ ."
      dir="${websitedir}"
      escape="false" checkreturn="false"
      passthru="true"
-     />
+     />-->
 
     <exec
      command="pirum add ${websitedir} ${distpkgfile}"
      passthru="true"
      />
+    <!-- fix the generated html -->
+   <!-- yes, we need to generate a 2nd file and move it back -->
+   <copy file="${websitedir}/index.html" tofile="${websitedir}/pirum.html" overwrite="true">
+    <filterchain>
+     <replaceregexp>
+      <!-- make meta links relative -->
+      <regexp
+       pattern="href=&quot;http://semanticscuttle.sourceforge.net/"
+       replace="href=&quot;"
+       />
+      <!-- add sourceforge logo -->
+      <regexp
+       pattern="powered by "
+       replace="powered by ${html.sflogo} and "
+       />
+     </replaceregexp>
+    </filterchain>
+   </copy>
+   <!--<move file="${websitedir}/pirum.html" tofile="${websitedir}/index.html" overwrite="true" />-->
+   <!-- add our custom css -->
+   <append
+    destFile="${websitedir}/pirum.css"
+    file="${websitedir}/pirum-custom.css"
+    />
+
     <!-- rsync always returns code 23 on sourceforge releases, so we
          can't check return values -->
-    <exec
-     command="rsync --include-from=.rsync-include-files -avP -e ssh . ${sfuser},${sfproject}@web.sourceforge.net:htdocs/"
+    <!--<exec
+     command="rsync - -include-from=.rsync-include-files -avP -e ssh . ${sfuser},${sfproject}@web.sourceforge.net:htdocs/"
      dir="${websitedir}"
      escape="false" checkreturn="false"
      passthru="true"
-     />
+     />-->
   </target>
 
 
