@@ -285,7 +285,10 @@
      </replaceregexp>
     </filterchain>
    </copy>
-   <!--<move file="${websitedir}/pirum.html" tofile="${websitedir}/index.html" overwrite="true" />-->
+
+   <!-- overwrite pirum generated index with our own -->
+   <copy file="${websitedir}/our-index.html" tofile="${websitedir}/index.html" overwrite="true" />
+
    <!-- add our custom css -->
    <append
     destFile="${websitedir}/pirum.css"
