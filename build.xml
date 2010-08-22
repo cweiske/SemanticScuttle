@@ -21,12 +21,13 @@
 - Fix bug #2960663: do not send content-type headers twice for ajax/api scripts
 - Fix bug #2976593: fr_FR locale is vietnamese
 " />
-  <property name="zipfile"    value="${phing.project.name}-${version}.zip" />
-  <property name="pkgfile"    value="${phing.project.name}-${version}.tgz" />
-  <property name="distfile"   value="dist/${zipfile}" />
-  <property name="sfproject"  value="SemanticScuttle" />
-  <property name="sffilepath" value="s/se/semanticscuttle/" />
-  <property name="svnpath"    value="https://semanticscuttle.svn.sourceforge.net/svnroot/semanticscuttle/" />
+  <property name="zipfile"     value="${phing.project.name}-${version}.zip" />
+  <property name="pkgfile"     value="${phing.project.name}-${version}.tgz" />
+  <property name="distfile"    value="dist/${zipfile}" />
+  <property name="distpkgfile" value="dist/pear/${pkgfile}" />
+  <property name="sfproject"   value="SemanticScuttle" />
+  <property name="sffilepath"  value="s/se/semanticscuttle/" />
+  <property name="svnpath"     value="https://semanticscuttle.svn.sourceforge.net/svnroot/semanticscuttle/" />
 
   <taskdef classname="phing.tasks.ext.d51PearPkg2Task" name="d51pearpkg2" />
 
@@ -73,7 +74,7 @@
        A social bookmarking tool experimenting with new features
        like structured tags or collaborative descriptions of tags.
      </description>
-     <channel>__uri</channel>
+     <channel>semanticscuttle.sourceforge.net</channel>
 
      <lead user="cweiske" name="Christian Weiske" email="cweiske@cweiske.de" />
      <license>GPL</license>
@@ -235,6 +236,46 @@
     <!-- rsync always returns code 23 on sourceforge releases, so we
          can't check return values -->
   </target>
+
+
+
+  <target name="deploy-sf-pear" depends="check,package"
+   description="Update PEAR channel on sourceforge"
+   >
+    <available file="${websitedir}"
+     type="dir" property="available.websitedir"
+     />
+    <fail unless="available.websitedir"
+     message="Website directory not set"
+     />
+    <!--
+        1. rsync channel data from sourceforge to local, deleting
+           superfluous channel files. Need to do that so pirum knows
+           all previous releases when adding the new package
+        2. update channel with pirum update
+        3. rsync to sourceforge
+    -->
+    <exec
+     command="rsync --include-from=.rsync-include-files --delete -avP -e ssh ${sfuser},${sfproject}@web.sourceforge.net:htdocs/ ."
+     dir="${websitedir}"
+     escape="false" checkreturn="false"
+     passthru="true"
+     />
+
+    <exec
+     command="pirum add ${websitedir} ${distpkgfile}"
+     passthru="true"
+     />
+    <!-- rsync always returns code 23 on sourceforge releases, so we
+         can't check return values -->
+    <exec
+     command="rsync --include-from=.rsync-include-files -avP -e ssh . ${sfuser},${sfproject}@web.sourceforge.net:htdocs/"
+     dir="${websitedir}"
+     escape="false" checkreturn="false"
+     passthru="true"
+     />
+  </target>
+
 
 
   <target name="svntag"
