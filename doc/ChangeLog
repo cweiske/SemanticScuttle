@@ -4,6 +4,7 @@ ChangeLog for SemantiScuttle
 0.9X.X - 2010-XX-XX
 -------------------
 - Fix bug getTagsForBookmarks() that fetched all tags
+- Show error message on mysqli connection errors
 
 
 0.97.0 - 2010-06-09
