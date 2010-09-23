@@ -1087,12 +1087,98 @@ class BookmarkTest extends TestBase
 
     /**
      * Test what countOther() returns when the user is logged in
+     * and a friend (people on the watchlist) has bookmarked
+     * and the same address with public status.
+     *
+     * @return void
+     */
+    public function testCountOthersWatchlistPublic()
+    {
+        $uid  = $this->addUser();
+        $address = 'http://example.org';
+
+        //create other user and add main user to his watchlist
+        $friendPublic1 = $this->addUser();
+        $this->us->setCurrentUserId($friendPublic1);
+        $this->us->setWatchStatus($uid);
+
+        //create bookmarks for main user and other one
+        $this->addBookmark($uid, $address, 0);
+        $this->addBookmark($friendPublic1,  $address, 0);//0 is public
+
+        //log main user in
+        $this->us->setCurrentUserId($uid);
+
+        $this->assertEquals(1, $this->bs->countOthers($address));
+    }
+
+
+
+    /**
+     * Test what countOther() returns when the user is logged in
+     * and a friend (people on the watchlist) has bookmarked
+     * and shared the same address for the watchlist.
+     *
+     * @return void
+     */
+    public function testCountOthersWatchlistShared()
+    {
+        $uid  = $this->addUser();
+        $address = 'http://example.org';
+
+        //create other user and add main user to his watchlist
+        $friendPublic1 = $this->addUser();
+        $this->us->setCurrentUserId($friendPublic1);
+        $this->us->setWatchStatus($uid);
+
+        //create bookmarks for main user and other one
+        $this->addBookmark($uid, $address, 0);
+        $this->addBookmark($friendPublic1,  $address, 1);//1 is shared
+
+        //log main user in
+        $this->us->setCurrentUserId($uid);
+
+        $this->assertEquals(1, $this->bs->countOthers($address));
+    }
+
+
+
+    /**
+     * Test what countOther() returns when the user is logged in
+     * and one friends (people on the watchlist) has bookmarked
+     * the same address but made it private.
+     *
+     * @return void
+     */
+    public function testCountOthersWatchlistPrivate()
+    {
+        $uid  = $this->addUser();
+        $address = 'http://example.org';
+
+        //create other user and add main user to his watchlist
+        $friendPublic1 = $this->addUser();
+        $this->us->setCurrentUserId($friendPublic1);
+        $this->us->setWatchStatus($uid);
+
+        //create bookmarks for main user and other one
+        $this->addBookmark($uid, $address, 0);
+        $this->addBookmark($friendPublic1,  $address, 2);//2 is private
+
+        //log main user in
+        $this->us->setCurrentUserId($uid);
+
+        $this->assertEquals(0, $this->bs->countOthers($address));
+    }
+
+
+    /**
+     * Test what countOther() returns when the user is logged in
      * and friends (people on the watchlist) have bookmarked
      * and shared the same address.
      *
      * @return void
      */
-    public function testCountOthersWatchlist()
+    public function testCountOthersWatchlistComplex()
     {
         $uid  = $this->addUser();
         $address = 'http://example.org';
