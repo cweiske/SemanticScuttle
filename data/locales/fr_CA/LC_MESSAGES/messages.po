@@ -234,7 +234,7 @@ msgstr ""
 #: data/templates/bookmarks.tpl.php:51 data/templates/bookmarks.tpl.php:52
 #, fuzzy
 msgid "Edit the common description of this tag"
-msgstr "éditer la description commune"
+msgstr "Modifier la description public de ce mot-cl&eacute;"
 
 #: data/templates/bookmarks.tpl.php:55 data/templates/bookmarks.tpl.php:56
 #, fuzzy
@@ -243,7 +243,7 @@ msgstr "éditer la description commune"
 
 #: data/templates/bookmarks.tpl.php:76 data/templates/bookmarks.tpl.php:77
 msgid "Edit your personal description of this tag"
-msgstr ""
+msgstr "Modifier la description priv&eacute;e de ce mot-cl&eacute;"
 
 #: data/templates/bookmarks.tpl.php:93 data/templates/tags.tpl.php:10
 #: data/templates/users.tpl.php:8
@@ -306,7 +306,7 @@ msgstr "par"
 
 #: data/templates/bookmarks.tpl.php:276
 msgid "you"
-msgstr ""
+msgstr "vous"
 
 #: data/templates/bookmarks.tpl.php:290
 #, fuzzy, php-format
@@ -581,7 +581,7 @@ msgstr "Fichier XML (comme del.icio.us)"
 
 #: data/templates/editprofile.tpl.php:62
 msgid "CSV file (for spreadsheet tools)"
-msgstr ""
+msgstr "Fichier CSV (pour les classeurs)"
 
 #: data/templates/error.404.tpl.php:5
 msgid "Not Found"
@@ -742,13 +742,13 @@ msgstr "Membre depuis"
 #: data/templates/sidebar.block.watchlist.php:30
 #, fuzzy
 msgid "Watching"
-msgstr "Liste des signets vus"
+msgstr "Él&eacute;ments surveill&eacute;s"
 
 #: data/templates/profile.tpl.php:55
 #: data/templates/sidebar.block.watchlist.php:52
 #, fuzzy
 msgid "Watched By"
-msgstr "Consultés"
+msgstr "Surveill&eacute; par"
 
 #: data/templates/profile.tpl.php:68 data/templates/toolbar.inc.php:9
 msgid "Bookmarks"
@@ -806,7 +806,7 @@ msgstr "mes signets"
 
 #: data/templates/search.menu.php:40
 msgid "my watchlist"
-msgstr "ma liste des consultés"
+msgstr "ma liste de suivi"
 
 #: data/templates/search.menu.php:44
 msgid "all bookmarks"
@@ -1493,7 +1493,7 @@ msgstr "Utilisateur ajouté à la liste des consultés."
 #: www/watchlist.php:104
 #, fuzzy
 msgid "My Watchlist"
-msgstr "Liste des signets vus"
+msgstr "Ma liste de suivi"
 
 #: www/api/httpauth.inc.php:11
 msgid "Use of the API calls requires authentication."
@@ -1522,8 +1522,8 @@ msgstr ""
 #~ msgid "URL"
 #~ msgstr "URL"
 
-#~ msgid "to"
-#~ msgstr "dans"
+msgid "to"
+msgstr "dans"
 
 #~ msgid "Last Users"
 #~ msgstr "Derniers utilisateurs"
