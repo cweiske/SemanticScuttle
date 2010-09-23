@@ -6,6 +6,7 @@ ChangeLog for SemantiScuttle
 - Fix bug getTagsForBookmarks() that fetched all tags
 - Show error message on mysqli connection errors
 - Implement patch #3059829: update FR_CA translation
+- Fix bug #3073215: Updating bookmark time does not work
 
 
 0.97.0 - 2010-06-09

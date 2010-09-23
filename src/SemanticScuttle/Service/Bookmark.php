@@ -611,7 +611,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         if (!is_null($date)) {
             $datetime = gmdate('Y-m-d H:i:s', strtotime($date));
-            $updates[] = array('bDateTime' => $datetime);
+            $updates['bDatetime'] = $datetime;
         }
 
         $sql = 'UPDATE '. $GLOBALS['tableprefix'] .'bookmarks SET '. $this->db->sql_build_array('UPDATE', $updates) .' WHERE bId = '. intval($bId);
