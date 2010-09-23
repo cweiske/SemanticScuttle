@@ -9,6 +9,9 @@
 - use recaptcha or alike -> quickform
 - tutorial about sidebar
 - update php-gettext
+- index on bookmarks->modified, since created is not used in selects/sort
+  - how to optimize sorts, to prevent mysql filesort? -> index enough?
+  - how to optimize DISTINCT bHash
 
 
 Tracker items:
