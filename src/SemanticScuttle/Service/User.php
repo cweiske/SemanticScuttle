@@ -668,7 +668,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     }
 
     /**
-     * Delete all bookmarks.
+     * Delete all users and their watch states.
      * Mainly used in unit tests.
      *
      * @return void
@@ -676,6 +676,9 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     public function deleteAll()
     {
         $query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';
+        $this->db->sql_query($query);
+
+        $query = 'TRUNCATE TABLE `' . $GLOBALS['tableprefix'] . 'watched' . '`';
         $this->db->sql_query($query);
     }
 
