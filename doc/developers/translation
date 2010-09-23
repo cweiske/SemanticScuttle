@@ -21,7 +21,7 @@ We keep one base translation file, data/locales/messages.po.
 This file is auto-generated via xgettext from all our php source files.
 In case you added a new string to the code that needs translation,
 update the base translation file by running
-> php scripts/update-translation-base.php.
+> php scripts/update-translation-base.php
 
 After that has been done, the changes to the base messages.po file
 need to be merged into the single language translation files,
