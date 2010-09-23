@@ -45,6 +45,13 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
 
 
+    /**
+     * Creates a new instance. Initializes the table name.
+     *
+     * @param DB $db Database object
+     *
+     * @uses $GLOBALS['tableprefix']
+     */
     public function __construct($db)
     {
         $this->db = $db;
@@ -169,7 +176,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      * Retrieves a bookmark with the given URL.
      * DOES NOT RESPECT PRIVACY SETTINGS!
      *
-     * @param string $hash URL
+     * @param string $address URL to get bookmarks for
      *
      * @return mixed Array with bookmark data or false in case
      *               of an error (i.e. not found).
@@ -574,7 +581,11 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         if ($bookmark['bAddress'] != $address
             && $this->bookmarkExists($address, $bookmark['uId'])
         ) {
-            message_die(GENERAL_ERROR, 'Could not update bookmark (URL already existing = '.$address.')', '', __LINE__, __FILE__);
+            message_die(
+                GENERAL_ERROR,
+                'Could not update bookmark (URL already exists: ' . $address . ')',
+                '', __LINE__, __FILE__
+            );
             return false;
         }
 
@@ -599,22 +610,30 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             $updates['bDatetime'] = $datetime;
         }
 
-        $sql = 'UPDATE '. $GLOBALS['tableprefix'] .'bookmarks SET '. $this->db->sql_build_array('UPDATE', $updates) .' WHERE bId = '. intval($bId);
+        $sql = 'UPDATE '. $GLOBALS['tableprefix'] . 'bookmarks'
+            . ' SET '. $this->db->sql_build_array('UPDATE', $updates)
+            . ' WHERE bId = ' . intval($bId);
         $this->db->sql_transaction('begin');
 
         if (!($dbresult = & $this->db->sql_query($sql))) {
             $this->db->sql_transaction('rollback');
-            message_die(GENERAL_ERROR, 'Could not update bookmark', '', __LINE__, __FILE__, $sql, $this->db);
+            message_die(
+                GENERAL_ERROR, 'Could not update bookmark',
+                '', __LINE__, __FILE__, $sql, $this->db
+            );
         }
 
-        $uriparts = explode('.', $address);
+        $uriparts  = explode('.', $address);
         $extension = end($uriparts);
         unset($uriparts);
 
         $b2tservice = SemanticScuttle_Service_Factory :: get('Bookmark2Tag');
         if (!$b2tservice->attachTags($bId, $categories, $fromApi, $extension)) {
             $this->db->sql_transaction('rollback');
-            message_die(GENERAL_ERROR, 'Could not update bookmark', '', __LINE__, __FILE__, $sql, $this->db);
+            message_die(
+                GENERAL_ERROR, 'Could not update bookmark',
+                '', __LINE__, __FILE__, $sql, $this->db
+            );
         }
 
         $this->db->sql_transaction('commit');
@@ -730,7 +749,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             $arrWatch = $userservice->getWatchlist($user);
             if (count($arrWatch) > 0) {
                 $query_3_1 = '';
-                foreach($arrWatch as $row) {
+                foreach ($arrWatch as $row) {
                     $query_3_1 .= 'B.uId = '. intval($row) .' OR ';
                 }
                 $query_3_1 = substr($query_3_1, 0, -3);
@@ -741,7 +760,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         }
 
         $query_5 = '';
-        if($hash == null) {
+        if ($hash == null) {
             $query_5.= ' GROUP BY B.bHash';
         }
 
@@ -789,7 +808,9 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             $query_2 .= ', '. $b2tservice->getTableName() .' AS T'. $i;
             $query_4 .= ' AND (';
 
-            $allLinkedTags = $tag2tagservice->getAllLinkedTags($this->db->sql_escape($tags[$i]), '>', $user);
+            $allLinkedTags = $tag2tagservice->getAllLinkedTags(
+                $this->db->sql_escape($tags[$i]), '>', $user
+            );
 
             while (is_array($allLinkedTags) && count($allLinkedTags)>0) {
                 $query_4 .= ' T'. $i .'.tag = "'. array_pop($allLinkedTags) .'"';
@@ -810,7 +831,8 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
             // Search terms in tags as well when none given
             if (!count($tags)) {
-                $query_2 .= ' LEFT JOIN '. $b2tservice->getTableName() .' AS T ON B.bId = T.bId';
+                $query_2 .= ' LEFT JOIN '. $b2tservice->getTableName() .' AS T'
+                    . ' ON B.bId = T.bId';
                 $dotags = true;
             } else {
                 $dotags = false;
@@ -818,12 +840,24 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
             $query_4 = '';
             for ($i = 0; $i < count($aTerms); $i++) {
-                $query_4 .= ' AND (B.bTitle LIKE "%'. $this->db->sql_escape($aTerms[$i]) .'%"';
-                $query_4 .= ' OR B.bDescription LIKE "%'. $this->db->sql_escape($aTerms[$i]) .'%"';
-                $query_4 .= ' OR B.bPrivateNote LIKE "'. $this->db->sql_escape($aTerms[$i]) .'%"'; //warning : search in private notes of everybody but private notes won't appear if not allowed.
-                $query_4 .= ' OR U.username = "'. $this->db->sql_escape($aTerms[$i]) .'"'; //exact match for username
+                $query_4 .= ' AND (B.bTitle LIKE "%'
+                    . $this->db->sql_escape($aTerms[$i])
+                    . '%"';
+                $query_4 .= ' OR B.bDescription LIKE "%'
+                    . $this->db->sql_escape($aTerms[$i])
+                    . '%"';
+                //warning : search in private notes of everybody
+                // but private notes won't appear if not allowed.
+                $query_4 .= ' OR B.bPrivateNote LIKE "'
+                    . $this->db->sql_escape($aTerms[$i])
+                    .'%"';
+                $query_4 .= ' OR U.username = "'
+                    . $this->db->sql_escape($aTerms[$i])
+                    . '"'; //exact match for username
                 if ($dotags) {
-                    $query_4 .= ' OR T.tag LIKE "'. $this->db->sql_escape($aTerms[$i]) .'%"';
+                    $query_4 .= ' OR T.tag LIKE "'
+                        . $this->db->sql_escape($aTerms[$i])
+                        . '%"';
                 }
                 $query_4 .= ')';
             }
@@ -845,22 +879,35 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         $query = $query_1 . $query_2 . $query_3 . $query_4 . $query_5;
 
-        if (!($dbresult = & $this->db->sql_query_limit($query, intval($perpage), intval($start)))) {
-            message_die(GENERAL_ERROR, 'Could not get bookmarks', '', __LINE__, __FILE__, $query, $this->db);
+        $dbresult = $this->db->sql_query_limit(
+            $query, intval($perpage), intval($start)
+        );
+        if (!$dbresult) {
+            message_die(
+                GENERAL_ERROR, 'Could not get bookmarks',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
         }
 
         if (SQL_LAYER == 'mysql4') {
             $totalquery = 'SELECT FOUND_ROWS() AS total';
         } else {
             if ($hash) {
-                $totalquery = 'SELECT COUNT(*) AS total'. $query_2 . $query_3 . $query_4;
+                $totalquery = 'SELECT COUNT(*) AS total'. $query_2
+                    . $query_3 . $query_4;
             } else {
-                $totalquery = 'SELECT COUNT(DISTINCT bAddress) AS total'. $query_2 . $query_3 . $query_4;
+                $totalquery = 'SELECT COUNT(DISTINCT bAddress) AS total'
+                    . $query_2 . $query_3 . $query_4;
             }
         }
 
-        if (!($totalresult = & $this->db->sql_query($totalquery)) || (!($row = & $this->db->sql_fetchrow($totalresult)))) {
-            message_die(GENERAL_ERROR, 'Could not get total bookmarks', '', __LINE__, __FILE__, $totalquery, $this->db);
+        if (!($totalresult = $this->db->sql_query($totalquery))
+            || (!($row = $this->db->sql_fetchrow($totalresult)))
+        ) {
+            message_die(
+                GENERAL_ERROR, 'Could not get total bookmarks',
+                '', __LINE__, __FILE__, $totalquery, $this->db
+            );
         }
 
         $total = $row['total'];
@@ -947,10 +994,14 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      */
     public function deleteBookmarksForUser($uId)
     {
-        $query = 'DELETE FROM '. $GLOBALS['tableprefix'] .'bookmarks WHERE uId = '. intval($uId);
+        $query = 'DELETE FROM '. $GLOBALS['tableprefix'] . 'bookmarks'
+            . ' WHERE uId = '. intval($uId);
 
-        if (!($dbresult = & $this->db->sql_query($query))) {
-            message_die(GENERAL_ERROR, 'Could not delete bookmarks', '', __LINE__, __FILE__, $query, $this->db);
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR, 'Could not delete bookmarks',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
         }
 
         return true;
@@ -962,12 +1013,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      * Counts the number of bookmarks that have the same address
      * as the given address.
      *
-     * @internal
-     * We do support fetching counts for multiple addresses at once
-     * because that allows us to reduce the number of queries
-     * we need in the web interface when displaying i.e.
-     * 10 bookmarks - only one SQL query is needed then.
-     *
      * @param string|array $addresses Address/URL to look for, string
      *                                of one address or array with
      *                                multiple ones
@@ -976,6 +1021,12 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      *                 In case $addresses was an array, key-value array
      *                 with key being the address, value said number of
      *                 bookmarks
+     *
+     * @internal
+     * We do support fetching counts for multiple addresses at once
+     * because that allows us to reduce the number of queries
+     * we need in the web interface when displaying i.e.
+     * 10 bookmarks - only one SQL query is needed then.
      */
     public function countOthers($addresses)
     {
