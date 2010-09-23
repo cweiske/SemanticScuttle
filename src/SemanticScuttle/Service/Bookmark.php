@@ -12,6 +12,7 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
+require_once 'SemanticScuttle/Model/RemoteUser.php';
 
 /**
  * SemanticScuttle bookmark service.
@@ -453,14 +454,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         $address = $this->normalize($address);
 
-        if (getenv('HTTP_CLIENT_IP')) {
-            $ip = getenv('HTTP_CLIENT_IP');
-        } else if (getenv('REMOTE_ADDR')) {
-            $ip = getenv('REMOTE_ADDR');
-        } else {
-            $ip = getenv('HTTP_X_FORWARDED_FOR');
-        }
-
         /*
          * Note that if date is NULL, then it's added with a date and
          * time of now, and if it's present,
@@ -480,7 +473,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         // Set up the SQL insert statement and execute it.
         $values = array(
             'uId'          => intval($sId),
-            'bIp'          => $ip,
+            'bIp'          => SemanticScuttle_Model_RemoteUser::getIp(),
             'bDatetime'    => $datetime,
             'bModified'    => $datetime,
             'bTitle'       => $title,
@@ -570,15 +563,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             return false;
         }
 
-        // Get the client's IP address and the date; note that the date is in GMT.
-        if (getenv('HTTP_CLIENT_IP'))
-        $ip = getenv('HTTP_CLIENT_IP');
-        else
-        if (getenv('REMOTE_ADDR'))
-        $ip = getenv('REMOTE_ADDR');
-        else
-        $ip = getenv('HTTP_X_FORWARDED_FOR');
-
+        // Get the the date; note that the date is in GMT.
         $moddatetime = gmdate('Y-m-d H:i:s', time());
 
         $address = $this->normalize($address);
