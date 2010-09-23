@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-16 20:55+0100\n"
+"POT-Creation-Date: 2010-09-15 19:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,50 +17,50 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: src/SemanticScuttle/functions.php:163
+#: src/SemanticScuttle/functions.php:189
 msgid "message_die() was called multiple times."
 msgstr ""
 
-#: src/SemanticScuttle/functions.php:175
+#: src/SemanticScuttle/functions.php:201
 msgid "SQL Error"
 msgstr ""
 
-#: src/SemanticScuttle/functions.php:181
+#: src/SemanticScuttle/functions.php:207
 msgid "Line"
 msgstr ""
 
-#: src/SemanticScuttle/functions.php:181
+#: src/SemanticScuttle/functions.php:207
 #: data/templates/importDelicious.tpl.php:8
 #: data/templates/importNetscape.tpl.php:9
 #: data/templates/importStructure.tpl.php:10
 msgid "File"
 msgstr ""
 
-#: src/SemanticScuttle/functions.php:189
+#: src/SemanticScuttle/functions.php:215
 msgid "Information"
 msgstr ""
 
-#: src/SemanticScuttle/functions.php:194
+#: src/SemanticScuttle/functions.php:220
 msgid "Critical Information"
 msgstr ""
 
-#: src/SemanticScuttle/functions.php:199
+#: src/SemanticScuttle/functions.php:225
 msgid "An error occured"
 msgstr ""
 
-#: src/SemanticScuttle/functions.php:202
+#: src/SemanticScuttle/functions.php:228
 msgid "General Error"
 msgstr ""
 
-#: src/SemanticScuttle/functions.php:210
+#: src/SemanticScuttle/functions.php:236
 msgid "An critical error occured"
 msgstr ""
 
-#: src/SemanticScuttle/functions.php:213
+#: src/SemanticScuttle/functions.php:239
 msgid "Critical Error"
 msgstr ""
 
-#: src/SemanticScuttle/functions.php:222
+#: src/SemanticScuttle/functions.php:248
 msgid "DEBUG MODE"
 msgstr ""
 
@@ -150,7 +150,7 @@ msgstr ""
 msgid "Are you sure?"
 msgstr ""
 
-#: data/templates/admin.tpl.php:19 data/templates/bookmarks.tpl.php:251
+#: data/templates/admin.tpl.php:19 data/templates/bookmarks.tpl.php:267
 msgid "Delete"
 msgstr ""
 
@@ -169,12 +169,12 @@ msgid ""
 msgstr ""
 
 #: data/templates/bookmarkcommondescriptionedit.tpl.php:18
-#: data/templates/bookmarks.tpl.php:137 data/templates/editbookmark.tpl.php:38
+#: data/templates/bookmarks.tpl.php:137 data/templates/editbookmark.tpl.php:43
 msgid "Title"
 msgstr ""
 
 #: data/templates/bookmarkcommondescriptionedit.tpl.php:23
-#: data/templates/editbookmark.tpl.php:44
+#: data/templates/editbookmark.tpl.php:49
 #: data/templates/editprofile.tpl.php:47 data/templates/profile.tpl.php:33
 #: data/templates/tagcommondescriptionedit.tpl.php:13
 #: data/templates/tagedit.tpl.php:12
@@ -193,8 +193,8 @@ msgid "Update"
 msgstr ""
 
 #: data/templates/bookmarkcommondescriptionedit.tpl.php:43
-#: data/templates/editbookmark.tpl.php:98 data/templates/tag2tagadd.tpl.php:24
-#: data/templates/tag2tagedit.tpl.php:38
+#: data/templates/editbookmark.tpl.php:103
+#: data/templates/tag2tagadd.tpl.php:24 data/templates/tag2tagedit.tpl.php:38
 #: data/templates/tagcommondescriptionedit.tpl.php:33
 #: data/templates/tagedit.tpl.php:19 data/templates/tagrename.tpl.php:25
 msgid "Cancel"
@@ -273,61 +273,61 @@ msgstr ""
 msgid "Page %d of %d"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:245
+#: data/templates/bookmarks.tpl.php:261
 msgid "Tags:"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:251
+#: data/templates/bookmarks.tpl.php:267
 msgid "Edit"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:255
+#: data/templates/bookmarks.tpl.php:271
 msgid "Last update"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:258
+#: data/templates/bookmarks.tpl.php:274
 msgid "by"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:260
+#: data/templates/bookmarks.tpl.php:276
 msgid "you"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:274
+#: data/templates/bookmarks.tpl.php:290
 #, php-format
 msgid " and %s1 other%s"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:277
+#: data/templates/bookmarks.tpl.php:293
 #, php-format
 msgid " and %2$s%1$s others%3$s"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:288
+#: data/templates/bookmarks.tpl.php:304
 msgid "Copy this bookmark to YOUR bookmarks."
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:289
+#: data/templates/bookmarks.tpl.php:305
 msgid "Copy"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:309
+#: data/templates/bookmarks.tpl.php:325
 msgid "This bookmark is certified by an admin user."
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:351
+#: data/templates/bookmarks.tpl.php:371
 msgid "Private Note on this bookmark"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:363
+#: data/templates/bookmarks.tpl.php:383
 msgid "Come back to the top of this page."
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:363
+#: data/templates/bookmarks.tpl.php:383
 msgid "Top of the page"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:369
+#: data/templates/bookmarks.tpl.php:389
 msgid "No bookmarks available"
 msgstr ""
 
@@ -362,133 +362,133 @@ msgstr ""
 msgid "Popular Tags From All Users"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:33
+#: data/templates/editbookmark.tpl.php:38
 msgid "Address"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:35
 #: data/templates/editbookmark.tpl.php:40
+#: data/templates/editbookmark.tpl.php:45
 #: data/templates/editprofile.tpl.php:31 data/templates/tagrename.tpl.php:14
 #: data/templates/tagrename.tpl.php:19
 msgid "Required"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:45
+#: data/templates/editbookmark.tpl.php:50
 msgid "Add Note"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:48
+#: data/templates/editbookmark.tpl.php:53
 msgid ""
 "You can use anchors to delimite attributes. for example: [publisher]blah[/"
 "publisher] "
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:51
+#: data/templates/editbookmark.tpl.php:56
 msgid "Suggested anchors: "
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:63
+#: data/templates/editbookmark.tpl.php:68
 msgid "Private Note"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:65
+#: data/templates/editbookmark.tpl.php:70
 msgid "Just visible by you and your contacts."
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:69 data/templates/toolbar.inc.php:10
+#: data/templates/editbookmark.tpl.php:74 data/templates/toolbar.inc.php:10
 #: www/tags.php:45 www/tags.php:67
 msgid "Tags"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:73
+#: data/templates/editbookmark.tpl.php:78
 msgid "Comma-separated"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:77 data/templates/tag2tagadd.tpl.php:9
+#: data/templates/editbookmark.tpl.php:82 data/templates/tag2tagadd.tpl.php:9
 msgid ""
 "Note: use \">\" to include one tag in another. e.g.: europe>france>paris"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:81 data/templates/tag2tagadd.tpl.php:8
+#: data/templates/editbookmark.tpl.php:86 data/templates/tag2tagadd.tpl.php:8
 msgid "Note: use \"=\" to make synonym two tags. e.g.: france=frenchcountry"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:84
+#: data/templates/editbookmark.tpl.php:89
 #: data/templates/importDelicious.tpl.php:15
 #: data/templates/importNetscape.tpl.php:16
 msgid "Privacy"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:87
+#: data/templates/editbookmark.tpl.php:92
 #: data/templates/importDelicious.tpl.php:18
 #: data/templates/importNetscape.tpl.php:19
 msgid "Public"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:88
+#: data/templates/editbookmark.tpl.php:93
 msgid "Shared with Watch List"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:89
+#: data/templates/editbookmark.tpl.php:94
 #: data/templates/importDelicious.tpl.php:20
 #: data/templates/importNetscape.tpl.php:21
 msgid "Private"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:102
+#: data/templates/editbookmark.tpl.php:107
 msgid "Delete Bookmark"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:107
+#: data/templates/editbookmark.tpl.php:112
 msgid "edit common description"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:134
+#: data/templates/editbookmark.tpl.php:139
 msgid "Bookmarklet"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:140
+#: data/templates/editbookmark.tpl.php:145
 #, php-format
 msgid ""
 "Click one of the following bookmarklets to add a button you can click "
 "whenever you want to add the page you are on to %s"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:144
+#: data/templates/editbookmark.tpl.php:149
 #, php-format
 msgid ""
 "Drag one of the following bookmarklets to your browser's bookmarks and click "
 "it whenever you want to add the page you are on to %s"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:157
 #: data/templates/editbookmark.tpl.php:162
+#: data/templates/editbookmark.tpl.php:167
 #, php-format
 msgid "Post to %s"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:158
 #: data/templates/editbookmark.tpl.php:163
+#: data/templates/editbookmark.tpl.php:168
 #, php-format
 msgid "Post to %s (Pop-up)"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:168
+#: data/templates/editbookmark.tpl.php:173
 #: data/templates/importDelicious.tpl.php:26
 #: data/templates/importNetscape.tpl.php:27
 #: data/templates/importStructure.tpl.php:16
 msgid "Import"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:170
+#: data/templates/editbookmark.tpl.php:175
 msgid "Import bookmarks from bookmark file"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:170
+#: data/templates/editbookmark.tpl.php:175
 msgid "Internet Explorer, Mozilla Firefox and Netscape"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:171
+#: data/templates/editbookmark.tpl.php:176
 msgid "Import bookmarks from del.icio.us"
 msgstr ""
 
@@ -841,7 +841,7 @@ msgid "Edit Tag Description"
 msgstr ""
 
 #: data/templates/sidebar.block.tagactions.php:26
-#: www/tagcommondescriptionedit.php:64
+#: www/tagcommondescriptionedit.php:76
 msgid "Edit Tag Common Description"
 msgstr ""
 
@@ -1028,12 +1028,12 @@ msgstr ""
 msgid "Failed to delete bookmark"
 msgstr ""
 
-#: www/alltags.php:49
+#: www/alltags.php:50
 msgid "All Tags"
 msgstr ""
 
-#: www/alltags.php:55 www/bookmarks.php:96 www/populartags.php:52
-#: www/profile.php:51 www/rss.php:67 www/search.php:109 www/watch.php:45
+#: www/alltags.php:56 www/bookmarks.php:96 www/populartags.php:52
+#: www/profile.php:51 www/rss.php:76 www/search.php:109 www/watch.php:45
 #: www/watchlist.php:61
 #, php-format
 msgid "User with username %s was not found"
@@ -1041,7 +1041,7 @@ msgstr ""
 
 #: www/bookmarkcommondescriptionedit.php:51 www/tag2tagadd.php:37
 #: www/tag2tagdelete.php:41 www/tag2tagedit.php:33
-#: www/tagcommondescriptionedit.php:43 www/tagedit.php:43
+#: www/tagcommondescriptionedit.php:51 www/tagedit.php:43
 msgid "Permission denied."
 msgstr ""
 
@@ -1179,11 +1179,11 @@ msgstr ""
 msgid "%s: Recent bookmarks"
 msgstr ""
 
-#: www/index.php:78
+#: www/index.php:75
 msgid "Store, share and tag your favourite links"
 msgstr ""
 
-#: www/index.php:79
+#: www/index.php:76
 msgid "All Bookmarks"
 msgstr ""
 
@@ -1313,7 +1313,7 @@ msgstr ""
 msgid "Registration failed. Please try again."
 msgstr ""
 
-#: www/rss.php:84
+#: www/rss.php:93
 #, php-format
 msgid "Recent bookmarks posted to %s"
 msgstr ""
@@ -1358,11 +1358,11 @@ msgstr ""
 msgid "Edit Link Between Tags"
 msgstr ""
 
-#: www/tagcommondescriptionedit.php:55
+#: www/tagcommondescriptionedit.php:62
 msgid "Tag common description updated"
 msgstr ""
 
-#: www/tagcommondescriptionedit.php:58
+#: www/tagcommondescriptionedit.php:67
 msgid "Failed to update the tag common description"
 msgstr ""
 
