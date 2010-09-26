@@ -149,7 +149,7 @@ class SemanticScuttle_Service_SearchHistory extends SemanticScuttle_DbService
         if ($uId != null) {
             $sql.= ' AND uId = '.$uId;
         }
-        if ($withResults = true) {
+        if ($withResults == true) {
             $sql.= ' AND shNbResults > 0';
         }
         if ($distinct) {
