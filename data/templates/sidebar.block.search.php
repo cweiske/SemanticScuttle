@@ -1,13 +1,26 @@
 <?php
+/**
+ * Show a list of the last searches.
+ *
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category    Bookmarking
+ * @package     SemanticScuttle
+ * @subcategory Templates
+ * @author      Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author      Christian Weiske <cweiske@cweiske.de>
+ * @author      Eric Dane <ericdane@users.sourceforge.net>
+ * @license     GPL http://www.gnu.org/licenses/gpl.html
+ * @link        http://sourceforge.net/projects/semanticscuttle
+ */
 /* Service creation: only useful services are created */
-$searchhistoryservice =SemanticScuttle_Service_Factory::get('SearchHistory');
+$searchhistoryservice = SemanticScuttle_Service_Factory::get('SearchHistory');
 
-$logged_on_userid = $userservice->getCurrentUserId();
-if ($logged_on_userid === false) {
-    $logged_on_userid = NULL;
-}
-
-$lastSearches = $searchhistoryservice->getAllSearches('all', NULL, 3, NULL, true, false);
+$lastSearches = $searchhistoryservice->getAllSearches(
+    'all', NULL, 3, NULL, true, false
+);
 
 if ($lastSearches && count($lastSearches) > 0) {
 ?>
@@ -18,11 +31,15 @@ if ($lastSearches && count($lastSearches) > 0) {
 <?php
 foreach ($lastSearches as $row) {
     echo '<tr><td>';
-    echo  '<a href="'.createURL('search', $range.'/'.$row['shTerms']).'">';
+    echo  '<a href="'
+        . htmlspecialchars(createURL('search', $range.'/'.$row['shTerms']))
+        . '">';
     echo $row['shTerms'];
     echo '</a>';
-    echo ' <span title="'.T_('Number of bookmarks for this query').'">('.$row['shNbResults'].')</span>';
-    echo '</td></tr>';
+    echo ' <span title="'
+        . T_('Number of bookmarks for this query')
+        . '">(' . $row['shNbResults'] . ')</span>';
+    echo '</td></tr>' . "\n";
 }
 //echo '<tr><td><a href="'.createURL('users').'">...</a></td></tr>';
 ?>
