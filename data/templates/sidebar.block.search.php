@@ -27,10 +27,10 @@ if ($lastSearches && count($lastSearches) > 0) {
 
 <h2><?php echo T_('Last Searches'); ?></h2>
 <div id="searches">
-<table>
+ <table>
 <?php
 foreach ($lastSearches as $row) {
-    echo '<tr><td>';
+    echo '  <tr><td>';
     echo  '<a href="'
         . htmlspecialchars(createURL('search', $range.'/'.$row['shTerms']))
         . '">';
@@ -44,7 +44,7 @@ foreach ($lastSearches as $row) {
 //echo '<tr><td><a href="'.createURL('users').'">...</a></td></tr>';
 ?>
 
-</table>
+ </table>
 </div>
 <?php
 }
