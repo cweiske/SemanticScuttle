@@ -1,14 +1,30 @@
 <?php
+/**
+ * Show a list of bookmarks.
+ *
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category    Bookmarking
+ * @package     SemanticScuttle
+ * @subcategory Templates
+ * @author      Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author      Christian Weiske <cweiske@cweiske.de>
+ * @author      Eric Dane <ericdane@users.sourceforge.net>
+ * @license     GPL http://www.gnu.org/licenses/gpl.html
+ * @link        http://sourceforge.net/projects/semanticscuttle
+ */
 
 /* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
-$tagservice =SemanticScuttle_Service_Factory::get('Tag');
-$cdservice =SemanticScuttle_Service_Factory::get('CommonDescription');
+$bookmarkservice = SemanticScuttle_Service_Factory::get('Bookmark');
+$tagservice      = SemanticScuttle_Service_Factory::get('Tag');
+$cdservice       = SemanticScuttle_Service_Factory::get('CommonDescription');
 
 
-$pageName = isset($pageName)?$pageName:"";
-$user = isset($user)?$user:"";
-$currenttag = isset($currenttag)?$currenttag:"";
+$pageName   = isset($pageName) ? $pageName : '';
+$user       = isset($user) ? $user : '';
+$currenttag = isset($currenttag) ? $currenttag : '';
 
 
 $this->includeTemplate($GLOBALS['top_include']);
@@ -132,23 +148,23 @@ default:
 	break;
 }
 ?>
-<a href="?sort=<?php echo $dateSort ?>"><?php echo T_("Date").$dateArrow; ?></a>
-<span>/</span>
-<a href="?sort=<?php echo $titleSort ?>"><?php echo T_("Title").$titleArrow; ?></a>
-<span>/</span>
+ <a href="?sort=<?php echo $dateSort ?>"><?php echo T_("Date").$dateArrow; ?></a>
+ <span>/</span>
+ <a href="?sort=<?php echo $titleSort ?>"><?php echo T_("Title").$titleArrow; ?></a>
+ <span>/</span>
 <?php if ($GLOBALS['enableVoting']) { ?>
-<a href="?sort=<?php echo $votingSort ?>"><?php echo T_("Voting").$votingArrow; ?></a>
-<span>/</span>
+ <a href="?sort=<?php echo $votingSort ?>"><?php echo T_("Voting").$votingArrow; ?></a>
+ <span>/</span>
 <?php } ?>
 
 <?php
-if($currenttag!= '') {
-	if($user!= '') {
+if ($currenttag!= '') {
+	if ($user!= '') {
 		echo ' - ';
 		echo '<a href="'. createURL('tags', $currenttag) .'">';
 		echo T_('Bookmarks from other users for this tag').'</a>';
 		//echo T_(' for these tags');
-	} else if($userservice->isLoggedOn()){
+	} else if ($userservice->isLoggedOn()){
 		echo ' - ';
 		echo '<a href="'. createURL('bookmarks', $currentUser->getUsername().'/'.$currenttag) .'">';
 		echo T_('Only your bookmarks for this tag').'</a>';
@@ -213,10 +229,8 @@ if($currenttag!= '') {
 
 
 
-<ol <?php echo ($start > 0 ? ' start="'. ++$start .'"' : ''); ?>
-	id="bookmarks">
-
-    <?php
+<ol<?php echo ($start > 0 ? ' start="'. ++$start .'"' : ''); ?> id="bookmarks">
+<?php
     $addresses = array();
     foreach ($bookmarks as $key => &$row) {
         $addresses[$row['bId']] = $row['bAddress'];
@@ -253,35 +267,52 @@ if($currenttag!= '') {
 		$tagsForCopy = '';
 		$tags = $row['tags'];
 		foreach ($tags as $tkey => &$tag) {
-			$cats .= '<a href="'. sprintf($cat_url, filter($row['username'], 'url'), filter($tag, 'url')) .'" rel="tag">'. filter($tag) .'</a>, ';
-			$tagsForCopy.= $tag.',';
+            $tagcaturl = sprintf(
+                $cat_url,
+                filter($row['username'], 'url'),
+                filter($tag, 'url')
+            );
+			$cats .= sprintf(
+                '<a href="%s" rel="tag">%s</a>, ',
+                $tagcaturl, filter($tag)
+            );
+			$tagsForCopy .= $tag . ',';
 		}
 		$cats = substr($cats, 0, -2);
 		if ($cats != '') {
-			$cats = ' '.T_('Tags:').' '. $cats;
+			$cats = T_('Tags:') . ' ' . $cats;
 		}
 
 		// Edit and delete links
 		$edit = '';
 		if ($bookmarkservice->editAllowed($row)) {
-			$edit = ' - <a href="'. createURL('edit', $row['bId']) .'">'. T_('Edit') .'</a><script type="text/javascript">document.write(" - <a href=\"#\" onclick=\"deleteBookmark(this, '. $row['bId'] .'); return false;\">'. T_('Delete') .'<\/a>");</script>';
+			$edit = ' - <a href="' . createURL('edit', $row['bId']) . '">'
+                . T_('Edit')
+                . '</a>'
+                . '<script type="text/javascript">'
+                . 'document.write(" - <a href=\"#\" onclick=\"deleteBookmark(this, '. $row['bId'] .'); return false;\">'
+                . T_('Delete')
+                .'<\/a>");</script>';
 		}
 
 		// Last update
-		$update = ' <small title="'. T_('Last update') .'">('. date($GLOBALS['shortdate'], strtotime($row['bModified'])). ') </small>';
+		$update = '   <small title="'. T_('Last update') .'">('. date($GLOBALS['shortdate'], strtotime($row['bModified'])). ') </small>';
 
 		// User attribution
-		$copy = ' '. T_('by'). ' ';
-		if($userservice->isLoggedOn() && $currentUser->getUsername() ==  $row['username']) {
-			$copy.= T_('you');
+		$copy = '   ' . T_('by') . ' ';
+		if ($userservice->isLoggedOn()
+            && $currentUser->getUsername() == $row['username']
+        ) {
+			$copy .= T_('you');
 		} else {
-			$copy.= '<a href="'. createURL('bookmarks', $row['username']) .'">'. $row['username'] .'</a>';
+			$copy .= '<a href="' . createURL('bookmarks', $row['username']) . '">'
+                . $row['username'] . '</a>';
 		}
 
 		// Udders!
 		if (!isset($hash)) {
 			$others = $otherCounts[$row['bAddress']];
-			$ostart = '<a href="'. createURL('history', $row['bHash']) .'">';
+			$ostart = '<a href="' . createURL('history', $row['bHash']) . '">';
 			$oend = '</a>';
 			switch ($others) {
 				case 0:
@@ -300,7 +331,10 @@ if($currenttag!= '') {
             && !$existence[$row['bAddress']]
         ) {
 			$copy .= ' - <a href="'
-                . createURL('bookmarks', $currentUser->getUsername() .'?action=add&amp;copyOf='. $row['bId'])
+                . createURL(
+                    'bookmarks',
+                    $currentUser->getUsername()
+                    . '?action=add&amp;copyOf=' . $row['bId'])
                 . '" title="'.T_('Copy this bookmark to YOUR bookmarks.').'">'
                 . T_('Copy')
                 . '</a>';
@@ -321,11 +355,11 @@ if($currenttag!= '') {
 
 		// Admin specific design
 		if ($userservice->isAdmin($row['username']) && $GLOBALS['enableAdminColors']) {
-			$adminBgClass = 'class="adminBackground"';
-			$adminStar = ' <img src="'. ROOT .'images/logo_24.gif" width="12px" title="'. T_('This bookmark is certified by an admin user.') .'" />';
+			$adminBgClass = ' class="adminBackground"';
+			$adminStar    = ' <img src="'. ROOT .'images/logo_24.gif" width="12px" title="'. T_('This bookmark is certified by an admin user.') .'" />';
 		} else {
 			$adminBgClass = '';
-			$adminStar = '';
+			$adminStar    = '';
 		}
 
 		// Private Note (just visible by the owner and his/her contacts)
@@ -346,13 +380,16 @@ if($currenttag!= '') {
         }
 
 		// Output
-		echo '<li class="xfolkentry'. $access .'" >'."\n";
+		echo ' <li class="xfolkentry'. $access .'">'."\n";
         include 'bookmarks-thumbnail.inc.tpl.php';
         include 'bookmarks-vote.inc.tpl.php';
 
-		echo '<div '.$adminBgClass.' >';;
+		echo '  <div' . $adminBgClass . '>' . "\n";
 
-		echo '<div class="link"><a href="'. $address .'"'. $rel .' class="taggedlink" target="_blank">'. filter($row['bTitle']) ."</a>" . $adminStar . "</div>\n";
+		echo '   <div class="link">'
+            . '<a href="'. $address .'"'. $rel .' class="taggedlink" target="_blank">'
+            . filter($row['bTitle'])
+            . '</a>' . $adminStar . "</div>\n";
 		if ($row['bDescription'] == '') {
 			$bkDescription = $GLOBALS['blankDescription'];
 		} else {
@@ -362,17 +399,23 @@ if($currenttag!= '') {
 			$bkDescription = preg_replace('@((http|https|ftp)://.*?)( |\r|$)@', '<a href="$1" rel="nofollow">$1</a>$3', $bkDescription); // make url clickable
 
 		}
-		echo '<div class="description">'. nl2br($bkDescription) ."</div>\n";
-		//if(!isset($hash)) {
-			echo '<div class="address">' . shortenString($oaddress) . '</div>';
-		//}
+		echo '   <div class="description">'. nl2br($bkDescription) ."</div>\n";
+        echo '   <div class="address">' . shortenString($oaddress) . "</div>\n";
 
-		echo '<div class="meta">'.  $cats . $copy . $edit . $update ."</div>\n";
-		echo $privateNoteField!=''?'<div class="privateNote" title="'. T_('Private Note on this bookmark') .'">'.$privateNoteField."</div>\n":'';
+		echo '   <div class="meta">'
+            . $cats . "\n"
+            . $copy . "\n"
+            . $edit . "\n"
+            . $update . "\n"
+            . "  </div>\n";
+		echo $privateNoteField != ''
+            ? '    <div class="privateNote" title="'. T_('Private Note on this bookmark') .'">'.$privateNoteField."</div>\n"
+            : '';
+        echo '  ';
         include 'bookmarks-vote-horizontal.inc.tpl.php';
-		echo '</div>';
+		echo " </div>\n";
 
-		echo "</li>\n";
+		echo " </li>\n";
 	}
 	?>
 
