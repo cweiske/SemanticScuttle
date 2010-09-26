@@ -81,6 +81,8 @@ class SearchHistoryTest extends TestBase
 
     /**
      * Tests if adding searches to the database works
+     *
+     * @covers SemanticScuttle_Service_SearchHistory::addSearch
      */
     public function testAddSearch()
     {
@@ -94,6 +96,8 @@ class SearchHistoryTest extends TestBase
 
     /**
      * Tests if adding a search without terms should fail
+     *
+     * @covers SemanticScuttle_Service_SearchHistory::addSearch
      */
     public function testAddSearchNoTerms()
     {
@@ -153,6 +157,8 @@ class SearchHistoryTest extends TestBase
 
     /**
      * Deleting the oldest search without any historical searches
+     *
+     * @covers SemanticScuttle_Service_SearchHistory::deleteOldestSearch
      */
     public function testDeleteOldestSearchNone()
     {
@@ -163,6 +169,8 @@ class SearchHistoryTest extends TestBase
 
     /**
      * Test deleting the oldest search
+     *
+     * @covers SemanticScuttle_Service_SearchHistory::deleteOldestSearch
      */
     public function testDeleteOldestSearchSome()
     {
