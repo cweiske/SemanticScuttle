@@ -26,6 +26,15 @@
  */
 class SemanticScuttle_Service_SearchHistory extends SemanticScuttle_DbService
 {
+    /**
+     * Size of the search history.
+     * If the number of logged searches is larger than this,
+     * adding a new search will delete the oldest one automatically.
+     *
+     * Use -1 to deactivate automatic deletion.
+     *
+     * @var integer
+     */
     public $sizeSearchHistory;
 
 
@@ -49,14 +58,17 @@ class SemanticScuttle_Service_SearchHistory extends SemanticScuttle_DbService
 
 
     /**
-     * Creates a new instance
+     * Creates a new instance.
+     *
+     * Sets $this->sizeSearchHistory to $GLOBALS['sizeSearchHistory'] or 10
+     * if the global variable is not defined.
      *
      * @param DB $db Database object
      */
     public function __construct($db)
     {
         $this->db = $db;
-        $this->tablename = $GLOBALS['tableprefix'] .'searchhistory';
+        $this->tablename = $GLOBALS['tableprefix'] . 'searchhistory';
         if (isset($GLOBALS['sizeSearchHistory'])) {
             $this->sizeSearchHistory = $GLOBALS['sizeSearchHistory'];
         } else {
@@ -67,7 +79,9 @@ class SemanticScuttle_Service_SearchHistory extends SemanticScuttle_DbService
 
 
     /**
-     * Adds a new search to the search history
+     * Adds a new search to the search history.
+     * Automatically deletes the oldest search when the number of
+     * searches is larger than $sizeSearchHistory.
      *
      * @param string  $terms     Search terms separated by spaces
      * @param string  $range     - 'all' - search was in all bookmarks
