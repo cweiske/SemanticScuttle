@@ -12,12 +12,11 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-
-require_once 'prepare.php';
-
 if (!defined('PHPUnit_MAIN_METHOD')) {
     define('PHPUnit_MAIN_METHOD', 'TagsCacheTest::main');
 }
+
+require_once 'prepare.php';
 
 /**
  * Unit tests for the SemanticScuttle tags cache service.
