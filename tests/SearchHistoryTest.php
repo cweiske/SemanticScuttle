@@ -136,50 +136,180 @@ class SearchHistoryTest extends TestBase
         $this->assertEquals(6, $this->shs->countSearches());
     }
 
-    public function testSearchHistory()
+    /**
+     * Test getAllSearches() without any parameters
+     */
+    public function testGetAllSearches()
     {
-        $shs = $this->shs;
+        $this->assertEquals(0, $this->shs->countSearches());
 
-        $terms = 'bbqsdkbb;,:,:q;,qddds&é"\'\\\\\(-è_çà)';
-        $terms2 = '~#{|`]';
-        $range = 'all';
-        $nbResults = 10908;
-        $uId = 10;
+        $this->shs->addSearch('eins', 'all', 1);
+        $this->shs->addSearch('zwei', 'all', 1);
+        $this->shs->addSearch('drei', 'all', 1);
 
-        $shs->addSearch($terms, $range, $nbResults, $uId);
-        $shs->addSearch($terms2, $range, $nbResults, $uId);
-        $shs->addSearch('', $range, $nbResults, $uId);    // A void search must not be saved
+        $rows = $this->shs->getAllSearches();
+        $this->assertEquals(3, count($rows));
 
-        $searches = $shs->getAllSearches();
-        $this->assertSame(2, count($searches));
-        $searches = $shs->getAllSearches($range, $uId);
-        $this->assertEquals(2, count($searches));
-        $searches = $shs->getAllSearches($range, 20);  // fake userid
-        $this->assertEquals(0, count($searches));
-        $searches = $shs->getAllSearches($range, $uId, 1);
-        $this->assertEquals(1, count($searches));
-        $searches = $shs->getAllSearches($range, null, 1, 1);
-        $this->assertEquals(1, count($searches));
+        $terms = array();
+        foreach ($rows as $row) {
+            $terms[] = $row['shTerms'];
+        }
+        sort($terms);
+        $this->assertEquals(
+            array('drei', 'eins', 'zwei'),
+            $terms
+        );
+    }
 
-        //test content of results
-        $searches = $shs->getAllSearches();
-        $this->assertSame($terms2, $searches[0]['shTerms']);
-        $this->assertSame($range, $searches[0]['shRange']);
-        $this->assertEquals($nbResults, $searches[0]['shNbResults']);
-        $this->assertEquals($uId, $searches[0]['uId']);
-        $this->assertSame($terms, $searches[1]['shTerms']);
-        $this->assertSame($range, $searches[1]['shRange']);
-        $this->assertEquals($nbResults, $searches[1]['shNbResults']);
-        $this->assertEquals($uId, $searches[1]['uId']);
+    /**
+     * Test getAllSearches() return value row array keys.
+     */
+    public function testGetAllSearchesTypes()
+    {
+        $this->assertEquals(0, $this->shs->countSearches());
 
-        //test distinct parameter
-        $shs->addSearch(
-            $terms, $range, $nbResults, 30
-        ); // we repeat a search (same terms)
-        $searches = $shs->getAllSearches();
-        $this->assertSame(3, count($searches));
-        $searches = $shs->getAllSearches(null, null, null, null, true);
-        $this->assertSame(2, count($searches));
+        $this->shs->addSearch('eins', 'all', 1);
+
+        $rows = $this->shs->getAllSearches();
+        $this->assertEquals(1, count($rows));
+        $row = reset($rows);
+
+        $this->assertArrayHasKey('shTerms', $row);
+        $this->assertArrayHasKey('shId', $row);
+        $this->assertArrayHasKey('shRange', $row);
+        $this->assertArrayHasKey('shNbResults', $row);
+        $this->assertArrayHasKey('shDatetime', $row);
+        $this->assertArrayHasKey('uId', $row);
+    }
+
+    /**
+     * Test getAllSearches() range parameter
+     */
+    public function testGetAllSearchesRange()
+    {
+        $this->assertEquals(0, $this->shs->countSearches());
+
+        $this->shs->addSearch('eins', 'all', 1);
+        $this->shs->addSearch('zwei', 'watchlist', 1);
+        $this->shs->addSearch('drei', 'watchlist', 1);
+        $this->shs->addSearch('vier', 'user1', 1);
+        $this->shs->addSearch('fünf', 'user2', 1);
+
+        $rows = $this->shs->getAllSearches('all');
+        $this->assertEquals(1, count($rows));
+
+        $rows = $this->shs->getAllSearches('watchlist');
+        $this->assertEquals(2, count($rows));
+
+        $rows = $this->shs->getAllSearches('user0');
+        $this->assertEquals(0, count($rows));
+
+        $rows = $this->shs->getAllSearches('user1');
+        $this->assertEquals(1, count($rows));
+        $this->assertEquals('vier', $rows[0]['shTerms']);
+    }
+
+    /**
+     * Test getAllSearches() uId parameter
+     */
+    public function testGetAllSearchesUid()
+    {
+        $this->assertEquals(0, $this->shs->countSearches());
+
+        $this->shs->addSearch('eins', 'all', 1, 0);
+        $this->shs->addSearch('zwei', 'all', 1, 0);
+        $this->shs->addSearch('drei', 'all', 1, 1);
+
+        $rows = $this->shs->getAllSearches(null, null);
+        $this->assertEquals(3, count($rows));
+
+        $rows = $this->shs->getAllSearches(null, 1);
+        $this->assertEquals(1, count($rows));
+        $this->assertEquals('drei', $rows[0]['shTerms']);
+    }
+
+    /**
+     * Test getAllSearches() number parameter
+     */
+    public function testGetAllSearchesNb()
+    {
+        $this->assertEquals(0, $this->shs->countSearches());
+
+        $this->shs->addSearch('eins', 'all', 1, 0);
+        $this->shs->addSearch('zwei', 'all', 1, 0);
+        $this->shs->addSearch('drei', 'all', 1, 1);
+
+        $rows = $this->shs->getAllSearches(null, null, 1);
+        $this->assertEquals(1, count($rows));
+
+        $rows = $this->shs->getAllSearches(null, null, 2);
+        $this->assertEquals(2, count($rows));
+
+        $rows = $this->shs->getAllSearches(null, null, 3);
+        $this->assertEquals(3, count($rows));
+
+        $rows = $this->shs->getAllSearches(null, null, 4);
+        $this->assertEquals(3, count($rows));
+    }
+
+    /**
+     * Test getAllSearches() paging start parameter
+     */
+    public function testGetAllSearchesStart()
+    {
+        $this->assertEquals(0, $this->shs->countSearches());
+
+        $this->shs->addSearch('eins', 'all', 1, 0);
+        $this->shs->addSearch('zwei', 'all', 1, 0);
+        $this->shs->addSearch('drei', 'all', 1, 1);
+
+        $rows = $this->shs->getAllSearches(null, null, 1, 0);
+        $this->assertEquals(1, count($rows));
+        $this->assertEquals('drei', $rows[0]['shTerms']);
+
+        $rows = $this->shs->getAllSearches(null, null, 1, 1);
+        $this->assertEquals(1, count($rows));
+        $this->assertEquals('zwei', $rows[0]['shTerms']);
+
+        $rows = $this->shs->getAllSearches(null, null, 3, 2);
+        $this->assertEquals(1, count($rows));
+        $this->assertEquals('eins', $rows[0]['shTerms']);
+    }
+
+    /**
+     * Test getAllSearches() distinct parameter
+     */
+    public function testGetAllSearchesDistinct()
+    {
+        $this->assertEquals(0, $this->shs->countSearches());
+
+        $this->shs->addSearch('eins', 'all', 1);
+        $this->shs->addSearch('eins', 'all', 1);
+        $this->shs->addSearch('drei', 'all', 1);
+
+        $rows = $this->shs->getAllSearches(null, null, null, null, false);
+        $this->assertEquals(3, count($rows));
+
+        $rows = $this->shs->getAllSearches(null, null, null, null, true);
+        $this->assertEquals(2, count($rows));
+    }
+
+    /**
+     * Test getAllSearches() withResults parameter
+     */
+    public function testGetAllSearchesWithResults()
+    {
+        $this->assertEquals(0, $this->shs->countSearches());
+
+        $this->shs->addSearch('eins', 'all', 0);
+        $this->shs->addSearch('zwei', 'all', 0);
+        $this->shs->addSearch('drei', 'all', 1);
+
+        $rows = $this->shs->getAllSearches(null, null, null, null, false, false);
+        $this->assertEquals(3, count($rows));
+
+        $rows = $this->shs->getAllSearches(null, null, null, null, false, true);
+        $this->assertEquals(1, count($rows));
     }
 
     /**
@@ -227,6 +357,27 @@ class SearchHistoryTest extends TestBase
         );
     }
 
+    /**
+     * Test if deleting the search history for a certain user works
+     */
+    public function testDeleteSearchHistoryForUser()
+    {
+        $this->assertEquals(0, $this->shs->countSearches());
+
+        $this->shs->addSearch('eins', 'all', 1, 0);
+        $this->shs->addSearch('zwei', 'all', 1, 22);
+        $this->shs->addSearch('drei', 'all', 1, 1);
+        $this->shs->addSearch('vier', 'all', 1, 22);
+
+        $this->shs->deleteSearchHistoryForUser(22);
+        $this->assertEquals(2, $this->shs->countSearches());
+
+        $this->shs->deleteSearchHistoryForUser(20);
+        $this->assertEquals(2, $this->shs->countSearches());
+
+        $this->shs->deleteSearchHistoryForUser(1);
+        $this->assertEquals(1, $this->shs->countSearches());
+    }
 
 
     /**

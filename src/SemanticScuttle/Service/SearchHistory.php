@@ -139,7 +139,7 @@ class SemanticScuttle_Service_SearchHistory extends SemanticScuttle_DbService
      *                             - 'watchlist' - searched in watchlist
      *                             - any username to show that the search happened
      *                               in his own bookmarks.
-     * @param integer $uId         Id of the user who searched. 0 for anonymous users
+     * @param integer $uId         Id of the user who searched. null for any users
      * @param integer $nb          Number of bookmarks to retrieve (paging)
      * @param integer $start       Number of bookmark to begin with (paging)
      * @param boolean $distinct    If the search terms shall be distinct
