@@ -12,12 +12,11 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-
-require_once 'prepare.php';
-
 if (!defined('PHPUnit_MAIN_METHOD')) {
     define('PHPUnit_MAIN_METHOD', 'SearchHistoryTest::main');
 }
+
+require_once 'prepare.php';
 
 /**
  * Unit tests for the SemanticScuttle search history service.
@@ -190,12 +189,27 @@ class SearchHistoryTest extends TestBase
 
         $this->shs->deleteOldestSearch();
 
+        $this->assertEquals(1, $this->shs->countSearches());
+
         $rows = $this->shs->getAllSearches();
         $this->assertEquals(1, count($rows));
         $this->assertEquals(
             $highestId,
             $rows[0]['shId']
         );
+    }
+
+
+
+    /**
+     * Test deleting all of the search history
+     */
+    public function testDeleteAll()
+    {
+        $this->shs->addSearch('testsearchterm1', 'all', 0);
+        $this->shs->addSearch('testsearchterm2', 'all', 0);
+        $this->shs->deleteAll();
+        $this->assertEquals(0, $this->shs->countSearches());
     }
 }
 
