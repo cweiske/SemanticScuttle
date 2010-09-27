@@ -7,6 +7,7 @@ ChangeLog for SemantiScuttle
 - Show error message on mysqli connection errors
 - Implement patch #3059829: update FR_CA translation
 - Fix bug #3073215: Updating bookmark time does not work
+- Fix bug #3074816: French translation breaks edit javascript
 
 
 0.97.0 - 2010-06-09

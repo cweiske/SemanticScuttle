@@ -140,14 +140,26 @@ if (empty($_REQUEST['popup']) && (!isset($showdelete) || !$showdelete)) {
 <p>
 <script type="text/javascript">
 var browser=navigator.appName;
-if (browser == "Opera")
-    {
-    document.write('<?php echo sprintf(T_("Click one of the following bookmarklets to add a button you can click whenever you want to add the page you are on to %s"), jsEscTitle($GLOBALS['sitename'])); ?>:</p>');
-    }
-else
-    {
-    document.write('<?php echo sprintf(T_("Drag one of the following bookmarklets to your browser's bookmarks and click it whenever you want to add the page you are on to %s"), jsEscTitle($GLOBALS['sitename'])); ?>:</p>');
-    }
+if (browser == "Opera") {
+    document.write(
+        <?php echo json_encode(
+            sprintf(
+                T_("Click one of the following bookmarklets to add a button you can click whenever you want to add the page you are on to %s"),
+                $GLOBALS['sitename']
+            )
+        ); ?> + ':</p>'
+    );
+} else {
+    document.write(
+        <?php echo json_encode(
+            sprintf(
+                T_("Drag one of the following bookmarklets to your browser's bookmarks and click it whenever you want to add the page you are on to %s"),
+                $GLOBALS['sitename']
+            )
+        );
+        ?> + ':</p>'
+    );
+}
 var selection = '';
 if (window.getSelection) {
     selection = 'window.getSelection()';
