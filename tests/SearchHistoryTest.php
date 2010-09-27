@@ -108,6 +108,34 @@ class SearchHistoryTest extends TestBase
         $this->assertEquals(0, $this->shs->countSearches());
     }
 
+    /**
+     * Tests if adding a search deletes the history if it is too
+     * large.
+     *
+     * @covers SemanticScuttle_Service_SearchHistory::addSearch
+     */
+    public function testAddSearchDeleteHistory()
+    {
+        $this->assertEquals(0, $this->shs->countSearches());
+
+        $this->shs->sizeSearchHistory = 5;
+        $this->shs->addSearch('eins', 'all', 1);
+        $this->shs->addSearch('zwei', 'all', 1);
+        $this->shs->addSearch('drei', 'all', 1);
+        $this->shs->addSearch('view', 'all', 1);
+        $this->shs->addSearch('fünf', 'all', 1);
+        $this->assertEquals(5, $this->shs->countSearches());
+
+        $this->shs->addSearch('sechs', 'all', 1);
+        $this->assertEquals(5, $this->shs->countSearches());
+
+        $this->shs->sizeSearchHistory = 6;
+        $this->shs->addSearch('sieben', 'all', 1);
+        $this->assertEquals(6, $this->shs->countSearches());
+        $this->shs->addSearch('acht', 'all', 1);
+        $this->assertEquals(6, $this->shs->countSearches());
+    }
+
     public function testSearchHistory()
     {
         $shs = $this->shs;
