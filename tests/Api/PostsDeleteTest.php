@@ -202,8 +202,9 @@ class Api_PostsDeleteTest extends TestBaseApi
         //send request
         $res = $req->send();
 
-        //401 - unauthorized
-        $this->assertEquals(401, $res->getStatus());
+        //404 - user does not have that bookmark
+        $this->assertEquals(404, $res->getStatus());
+
         //verify MIME content type
         $this->assertEquals(
             'text/xml; charset=utf-8',
@@ -211,10 +212,10 @@ class Api_PostsDeleteTest extends TestBaseApi
         );
 
         //verify xml
-        $this->assertNotTag(
+        $this->assertTag(
             array(
                 'tag'        => 'result',
-                'attributes' => array('code' => 'done')
+                'attributes' => array('code' => 'something went wrong')
             ),
             $res->getBody(),
             '', false
