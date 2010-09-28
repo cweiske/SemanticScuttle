@@ -29,6 +29,16 @@ class TestBaseApi extends TestBase
     protected $url;
     protected $urlPart = null;
 
+    /**
+     * @var SemanticScuttle_Service_User
+     */
+    protected $us;
+
+    /**
+     * @var SemanticScuttle_Service_Bookmark
+     */
+    protected $bs;
+
 
 
     protected function setUp()
@@ -52,11 +62,14 @@ class TestBaseApi extends TestBase
 
 
     /**
-     * Gets a HTTP request object
+     * Gets a HTTP request object.
+     * Uses $this->url plus $urlSuffix as request URL.
      *
      * @param string $urlSuffix Suffix for the URL
      *
      * @return HTTP_Request2 HTTP request object
+     *
+     * @uses $url
      */
     protected function getRequest($urlSuffix = null)
     {
@@ -71,13 +84,17 @@ class TestBaseApi extends TestBase
 
 
     /**
-     * Gets a HTTP request object
+     * Creates a user and a HTTP request object and prepares
+     * the request object with authentication details, so that
+     * the user is logged in.
      *
      * @param string $urlSuffix Suffix for the URL
      * @param mixed  $auth      If user authentication is needed (true/false)
      *                          or array with username and password
      *
      * @return array(HTTP_Request2, integer) HTTP request object and user id
+     *
+     * @uses getRequest()
      */
     protected function getAuthRequest($urlSuffix = null, $auth = true)
     {
