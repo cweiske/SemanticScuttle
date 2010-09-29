@@ -132,8 +132,8 @@ TXT;
         $this->assertEquals($bmDescription, $bm['bDescription']);
         $this->assertEquals($bmTags, $bm['tags']);
         $this->assertEquals(
-            strtotime($bmDatetime),
-            strtotime($bm['bDatetime'])
+            gmdate('Y-m-d H:i:s', strtotime($bmDatetime)),
+            $bm['bDatetime']
         );
     }
 
@@ -162,6 +162,7 @@ TXT;
             . '&description=' . urlencode($bmTitle)
             . '&extended=' . urlencode($bmDescription)
             . '&tags=' . urlencode(implode(' ', $bmTags))
+            . '&dt=' . urlencode($bmDatetime)
         );
         $res = $req->send();
 
@@ -192,6 +193,10 @@ TXT;
         $this->assertEquals($bmTitle, $bm['bTitle']);
         $this->assertEquals($bmDescription, $bm['bDescription']);
         $this->assertEquals($bmTags, $bm['tags']);
+        $this->assertEquals(
+            gmdate('Y-m-d H:i:s', strtotime($bmDatetime)),
+            $bm['bDatetime']
+        );
     }
 
 }
