@@ -1,69 +1,102 @@
 <?php
-// Implements the del.icio.us API request to add a new post.
-// http://delicious.com/help/api#posts_add
-
-// del.icio.us behavior:
-// - tags can't have spaces
-// - address and description are mandatory
-// - description == title in semanticscuttle
-// - extended == description in semanticscuttle
-
-// Scuttle behavior:
-// - Additional 'status' variable for privacy
-// - No support for 'replace' variable
+/**
+ * API for adding a new bookmark.
+ *
+ * The following POST and GET parameters are accepted:
+ * @param string  $url         URL of the bookmark (required)
+ * @param string  $description Bookmark title (required)
+ * @param string  $extended    Extended bookmark description (optional)
+ * @param string  $tags        Space-separated list of tags (optional)
+ * @param string  $dt          Date and time of bookmark creation (optional)
+ *                             Must be of format YYYY-MM-DDTHH:II:SSZ
+ * @param integer $status      Visibility status (optional):
+ *                             - 2 or 'private': Bookmark is totally private
+ *                             - 1 or 'shared': People on the user's watchlist
+ *                                              can see it
+ *                             - 0 or 'public': Everyone can see the bookmark
+ * @param string  $shared      "no" or "yes": Switches between private and
+ *                             public (optional)
+ *
+ * Notes:
+ * - tags cannot have spaces
+ * - URL and description (title) are mandatory
+ * - delicious "description" is the "title" in SemanticScuttle
+ * - delicious "extended" is the "description" in SemanticScuttle
+ * - "status" is a SemanticScuttle addition to this API method
+ * - SemanticScuttle currently ignores the "replace" parameter
+ *
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ * @link     http://www.delicious.com/help/api
+ */
 
 // Force HTTP authentication
 $httpContentType = 'text/xml';
 require_once 'httpauth.inc.php';
 
-/* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
+$bs = SemanticScuttle_Service_Factory::get('Bookmark');
 
 // Get all the bookmark's passed-in information
-if (isset($_REQUEST['url']) && (trim($_REQUEST['url']) != ''))
+if (isset($_REQUEST['url']) && (trim($_REQUEST['url']) != '')) {
     $url = trim(urldecode($_REQUEST['url']));
-else
-    $url = NULL;
+} else {
+    $url = null;
+}
 
-if (isset($_REQUEST['description']) && (trim($_REQUEST['description']) != ''))
+if (isset($_REQUEST['description']) && (trim($_REQUEST['description']) != '')) {
     $description = trim($_REQUEST['description']);
-else
-    $description = NULL;
+} else {
+    $description = null;
+}
 
-if (isset($_REQUEST['extended']) && (trim($_REQUEST['extended']) != ""))
+if (isset($_REQUEST['extended']) && (trim($_REQUEST['extended']) != '')) {
     $extended = trim($_REQUEST['extended']);
-else
-    $extended = NULL;
+} else {
+    $extended = null;
+}
 
-if (isset($_REQUEST['tags']) && (trim($_REQUEST['tags']) != '') && (trim($_REQUEST['tags']) != ','))
+if (isset($_REQUEST['tags']) && (trim($_REQUEST['tags']) != '')
+    && (trim($_REQUEST['tags']) != ',')
+) {
     $tags = trim($_REQUEST['tags']);
-else
-    $tags = NULL;
+} else {
+    $tags = null;
+}
 
-if (isset($_REQUEST['dt']) && (trim($_REQUEST['dt']) != ''))
+if (isset($_REQUEST['dt']) && (trim($_REQUEST['dt']) != '')) {
     $dt = trim($_REQUEST['dt']);
-else
-    $dt = NULL;
+} else {
+    $dt = null;
+}
 
 $status = 0;
 if (isset($_REQUEST['status'])) {
     $status_str = trim($_REQUEST['status']);
     if (is_numeric($status_str)) {
         $status = intval($status_str);
-        if($status < 0 || $status > 2) {
+        if ($status < 0 || $status > 2) {
             $status = 0;
         }
     } else {
         switch ($status_str) {
-            case 'private':
-                $status = 2;
-                break;
-            case 'shared':
-                $status = 1;
-                break;
-            default:
-                $status = 0;
-                break;
+        case 'private':
+            $status = 2;
+            break;
+        case 'shared':
+            $status = 1;
+            break;
+        default:
+            $status = 0;
+            break;
         }
     }
 }
@@ -81,10 +114,10 @@ if (is_null($url)) {
     $msg = 'Description missing';
 } else {
     // We're good with info; now insert it!
-    if ($bookmarkservice->bookmarkExists($url, $userservice->getCurrentUserId())) {
+    if ($bs->bookmarkExists($url, $userservice->getCurrentUserId())) {
         $msg = 'something went wrong';
     } else {
-        $added = $bookmarkservice->addBookmark(
+        $added = $bs->addBookmark(
             $url, $description, $extended, '', $status, $tags, null, $dt, true
         );
         $msg = 'done';
