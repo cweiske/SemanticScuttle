@@ -5,6 +5,8 @@
 // del.icio.us behavior:
 // - tags can't have spaces
 // - address and description are mandatory
+// - description == title in semanticscuttle
+// - extended == description in semanticscuttle
 
 // Scuttle behavior:
 // - Additional 'status' variable for privacy
