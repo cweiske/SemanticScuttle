@@ -19,6 +19,7 @@
  * @author   Eric Dane <ericdane@users.sourceforge.net>
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
+ * @link     http://www.delicious.com/help/api
  */
 
 // Force HTTP authentication first!
