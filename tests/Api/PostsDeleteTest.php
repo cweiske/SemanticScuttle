@@ -215,7 +215,7 @@ class Api_PostsDeleteTest extends TestBaseApi
         $this->assertTag(
             array(
                 'tag'        => 'result',
-                'attributes' => array('code' => 'something went wrong')
+                'attributes' => array('code' => 'item not found')
             ),
             $res->getBody(),
             '', false

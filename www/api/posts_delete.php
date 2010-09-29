@@ -4,8 +4,6 @@
  * The delicious API is implemented here.
  *
  * The delicious API behaves like that:
- * - returns "done" even if the bookmark doesn't exist
- *   - we do it correctly
  * - does NOT allow the hash for the url parameter
  * - doesn't set the Content-Type to text/xml
  *   - we do it correctly, too
@@ -35,26 +33,24 @@ $uId = $userservice->getCurrentUserId();
 if (!isset($_REQUEST['url'])
     || $_REQUEST['url'] == ''
 ) {
-    $deleted = false;
+    $msg = 'something went wrong';
 } else if (!$bs->bookmarkExists($_REQUEST['url'], $uId)) {
     //the user does not have such a bookmark
-    // Note that del.icio.us only errors out if no URL was passed in;
-    // there's no error on attempting to delete a bookmark you don't have.
-    // this sucks, and I don't care about being different but correct here.
     header('HTTP/1.0 404 Not Found');
-    $deleted = false;
-
+    $msg = 'item not found';
 } else {
     $bookmark = $bs->getBookmarkByAddress($_REQUEST['url'], false);
     $bId      = $bookmark['bId'];
     $deleted  = $bs->deleteBookmark($bId);
+    $msg      = 'done';
     if (!$deleted) {
         //something really went wrong
         header('HTTP/1.0 500 Internal Server Error');
+        $msg = 'something really went wrong';
     }
 }
 
 // Set up the XML file and output the result.
 echo '<?xml version="1.0" standalone="yes" ?' . ">\r\n";
-echo '<result code="' . ($deleted ? 'done' : 'something went wrong') . '" />';
+echo '<result code="' . $msg . '" />';
 ?>
