@@ -306,6 +306,127 @@ TXT;
         $data = $this->bs->getBookmarks(0, null, $uId);
         $this->assertEquals(0, $data['total']);
     }
+
+    /**
+     * Test that the replace=no parameter prevents the bookmark from being
+     * overwritten.
+     */
+    public function testReplaceNo()
+    {
+        $this->bs->deleteAll();
+
+        $url    = 'http://example.org/tag2';
+        $title1 = 'foo bar 1';
+        $title2 = 'bar 2 foo';
+
+        list($req, $uId) = $this->getAuthRequest();
+        $req->setMethod(HTTP_Request2::METHOD_POST);
+        $req->addPostParameter('url', $url);
+        $req->addPostParameter('description', $title1);
+        $res = $req->send();
+
+        //all should be well
+        $this->assertEquals(200, $res->getStatus());
+
+        //send it a second time, with different title
+        list($req, $dummy) = $this->getAuthRequest();
+        $req->setMethod(HTTP_Request2::METHOD_POST);
+        $req->addPostParameter('url', $url);
+        $req->addPostParameter('description', $title2);
+        $req->addPostParameter('replace', 'no');
+        $res = $req->send();
+
+        //this time we should get an error
+        $this->assertEquals(409, $res->getStatus());
+        //verify MIME content type
+        $this->assertEquals(
+            'text/xml; charset=utf-8',
+            $res->getHeader('content-type')
+        );
+
+        //verify xml
+        $this->assertTag(
+            array(
+                'tag'        => 'result',
+                'attributes' => array('code' => 'bookmark does already exist')
+            ),
+            $res->getBody(),
+            null, false
+        );
+
+        //user still has 1 bookmark now
+        $data = $this->bs->getBookmarks(0, null, $uId);
+        $this->assertEquals(1, $data['total']);
+        $this->assertEquals($title1, $data['bookmarks'][0]['bTitle']);
+
+        //send it a third time, without the replace parameter
+        // it defaults to "no", so the bookmark should not get overwritten
+        list($req, $dummy) = $this->getAuthRequest();
+        $req->setMethod(HTTP_Request2::METHOD_POST);
+        $req->addPostParameter('url', $url);
+        $req->addPostParameter('description', $title2);
+        $res = $req->send();
+
+        //this time we should get an error
+        $this->assertEquals(409, $res->getStatus());
+
+        //bookmark should not have changed
+        $data = $this->bs->getBookmarks(0, null, $uId);
+        $this->assertEquals(1, $data['total']);
+        $this->assertEquals($title1, $data['bookmarks'][0]['bTitle']);
+    }
+
+    /**
+     * Test that the replace=yes parameter causes the bookmark to be updated.
+     */
+    public function testReplaceYes()
+    {
+        $this->bs->deleteAll();
+
+        $url    = 'http://example.org/tag2';
+        $title1 = 'foo bar 1';
+        $title2 = 'bar 2 foo';
+
+        list($req, $uId) = $this->getAuthRequest();
+        $req->setMethod(HTTP_Request2::METHOD_POST);
+        $req->addPostParameter('url', $url);
+        $req->addPostParameter('description', $title1);
+        $res = $req->send();
+
+        //all should be well
+        $this->assertEquals(200, $res->getStatus());
+
+        //send it a second time, with different title
+        list($req, $dummy) = $this->getAuthRequest();
+        $req->setMethod(HTTP_Request2::METHOD_POST);
+        $req->addPostParameter('url', $url);
+        $req->addPostParameter('description', $title2);
+        $req->addPostParameter('replace', 'yes');
+        $res = $req->send();
+
+        //no error
+        $this->assertEquals(200, $res->getStatus());
+        //verify MIME content type
+        $this->assertEquals(
+            'text/xml; charset=utf-8',
+            $res->getHeader('content-type')
+        );
+
+        //verify xml
+        $this->assertTag(
+            array(
+                'tag'        => 'result',
+                'attributes' => array('code' => 'done')
+            ),
+            $res->getBody(),
+            null, false
+        );
+
+        //user still has 1 bookmark now, but with the new title
+        $data = $this->bs->getBookmarks(0, null, $uId);
+        $this->assertEquals(1, $data['total']);
+        $this->assertEquals($title2, $data['bookmarks'][0]['bTitle']);
+    }
 }
 
 if (PHPUnit_MAIN_METHOD == 'Api_PostsAddTest::main') {

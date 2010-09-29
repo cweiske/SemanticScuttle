@@ -16,6 +16,8 @@
  *                             - 0 or 'public': Everyone can see the bookmark
  * @param string  $shared      "no" or "yes": Switches between private and
  *                             public (optional)
+ * @param string  $replace     "yes" or "no" - replaces a bookmark with the
+ *                             same URL (optional)
  *
  * Notes:
  * - tags cannot have spaces
@@ -23,7 +25,6 @@
  * - delicious "description" is the "title" in SemanticScuttle
  * - delicious "extended" is the "description" in SemanticScuttle
  * - "status" is a SemanticScuttle addition to this API method
- * - SemanticScuttle currently ignores the "replace" parameter
  *
  * SemanticScuttle - your social bookmark manager.
  *
@@ -78,6 +79,8 @@ if (isset($_REQUEST['dt']) && (trim($_REQUEST['dt']) != '')) {
     $dt = null;
 }
 
+$replace = isset($_REQUEST['replace']) && ($_REQUEST['replace'] == 'yes');
+
 $status = 0;
 if (isset($_REQUEST['status'])) {
     $status_str = trim($_REQUEST['status']);
@@ -114,9 +117,22 @@ if (is_null($url)) {
     $msg = 'Description missing';
 } else {
     // We're good with info; now insert it!
-    if ($bs->bookmarkExists($url, $userservice->getCurrentUserId())) {
-        $msg = 'something went wrong';
-    } else {
+    $exists = $bs->bookmarkExists($url, $userservice->getCurrentUserId());
+    if ($exists) {
+        if (!$replace) {
+            header('HTTP/1.0 409 Conflict');
+            $msg = 'bookmark does already exist';
+        } else {
+            //delete it before we re-add it
+            $bookmark = $bs->getBookmarkByAddress($url, false);
+            $bId      = $bookmark['bId'];
+            $bs->deleteBookmark($bId);
+
+            $exists = false;
+        }
+    }
+
+    if (!$exists) {
         $added = $bs->addBookmark(
             $url, $description, $extended, '', $status, $tags, null, $dt, true
         );

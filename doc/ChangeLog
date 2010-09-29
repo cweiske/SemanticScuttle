@@ -3,12 +3,13 @@ ChangeLog for SemantiScuttle
 
 0.9X.X - 2010-XX-XX
 -------------------
-- Fix bug getTagsForBookmarks() that fetched all tags
+- Fix bug in getTagsForBookmarks() that fetched all tags
+- Fix bug #3073215: Updating bookmark time does not work
+- Fix bug #3074816: French translation breaks edit javascript
 - Show error message on mysqli connection errors
 - Implement patch #3059829: update FR_CA translation
 - Update php-gettext library to 1.0.10
-- Fix bug #3073215: Updating bookmark time does not work
-- Fix bug #3074816: French translation breaks edit javascript
+- api/posts/add respects the "replace" parameter now
 
 
 0.97.0 - 2010-06-09
