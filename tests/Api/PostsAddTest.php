@@ -101,6 +101,7 @@ TXT;
         $req->addPostParameter('description', $bmTitle);
         $req->addPostParameter('extended', $bmDescription);
         $req->addPostParameter('tags', implode(' ', $bmTags));
+        $req->addPostParameter('dt', $bmDatetime);
         $res = $req->send();
 
         //all should be well
@@ -130,6 +131,10 @@ TXT;
         $this->assertEquals($bmTitle, $bm['bTitle']);
         $this->assertEquals($bmDescription, $bm['bDescription']);
         $this->assertEquals($bmTags, $bm['tags']);
+        $this->assertEquals(
+            strtotime($bmDatetime),
+            strtotime($bm['bDatetime'])
+        );
     }
 
 
