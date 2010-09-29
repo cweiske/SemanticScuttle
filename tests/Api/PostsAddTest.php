@@ -199,6 +199,113 @@ TXT;
         );
     }
 
+    /**
+     * Verify that the URL and description/title are enough parameters
+     * to add a bookmark.
+     */
+    public function testUrlDescEnough()
+    {
+        $this->bs->deleteAll();
+
+        list($req, $uId) = $this->getAuthRequest();
+        $req->setMethod(HTTP_Request2::METHOD_POST);
+        $req->addPostParameter('url', 'http://example.org/tag2');
+        $req->addPostParameter('description', 'foo bar');
+        $res = $req->send();
+
+        //all should be well
+        $this->assertEquals(200, $res->getStatus());
+        //verify MIME content type
+        $this->assertEquals(
+            'text/xml; charset=utf-8',
+            $res->getHeader('content-type')
+        );
+
+        //verify xml
+        $this->assertTag(
+            array(
+                'tag'        => 'result',
+                'attributes' => array('code' => 'done')
+            ),
+            $res->getBody(),
+            null, false
+        );
+
+        //user has 1 bookmark now
+        $data = $this->bs->getBookmarks(0, null, $uId);
+        $this->assertEquals(1, $data['total']);
+    }
+
+    /**
+     * Verify that the URL is required
+     */
+    public function testUrlRequired()
+    {
+        $this->bs->deleteAll();
+
+        list($req, $uId) = $this->getAuthRequest();
+        $req->setMethod(HTTP_Request2::METHOD_POST);
+        //$req->addPostParameter('url', 'http://example.org/tag2');
+        $req->addPostParameter('description', 'foo bar');
+        $res = $req->send();
+
+        //all should be well
+        $this->assertEquals(400, $res->getStatus());
+        //verify MIME content type
+        $this->assertEquals(
+            'text/xml; charset=utf-8',
+            $res->getHeader('content-type')
+        );
+
+        //verify xml
+        $this->assertTag(
+            array(
+                'tag'        => 'result',
+                'attributes' => array('code' => 'URL missing')
+            ),
+            $res->getBody(),
+            null, false
+        );
+
+        //user still has 0 bookmarks
+        $data = $this->bs->getBookmarks(0, null, $uId);
+        $this->assertEquals(0, $data['total']);
+    }
+
+    /**
+     * Verify that the description/title is required
+     */
+    public function testDescriptionRequired()
+    {
+        $this->bs->deleteAll();
+
+        list($req, $uId) = $this->getAuthRequest();
+        $req->setMethod(HTTP_Request2::METHOD_POST);
+        $req->addPostParameter('url', 'http://example.org/tag2');
+        $res = $req->send();
+
+        //all should be well
+        $this->assertEquals(400, $res->getStatus());
+        //verify MIME content type
+        $this->assertEquals(
+            'text/xml; charset=utf-8',
+            $res->getHeader('content-type')
+        );
+
+        //verify xml
+        $this->assertTag(
+            array(
+                'tag'        => 'result',
+                'attributes' => array('code' => 'Description missing')
+            ),
+            $res->getBody(),
+            null, false
+        );
+
+        //user still has 0 bookmarks
+        $data = $this->bs->getBookmarks(0, null, $uId);
+        $this->assertEquals(0, $data['total']);
+    }
 }
 
 if (PHPUnit_MAIN_METHOD == 'Api_PostsAddTest::main') {

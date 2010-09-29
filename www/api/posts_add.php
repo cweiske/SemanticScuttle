@@ -73,17 +73,25 @@ if (isset($_REQUEST['shared']) && (trim($_REQUEST['shared']) == 'no')) {
 }
 
 // Error out if there's no address or description
-if (is_null($url) || is_null($description)) {
-    $added = false;
+if (is_null($url)) {
+    header('HTTP/1.0 400 Bad Request');
+    $msg = 'URL missing';
+} else if (is_null($description)) {
+    header('HTTP/1.0 400 Bad Request');
+    $msg = 'Description missing';
 } else {
-// We're good with info; now insert it!
-    if ($bookmarkservice->bookmarkExists($url, $userservice->getCurrentUserId()))
-        $added = false;
-    else
-        $added = $bookmarkservice->addBookmark($url, $description, $extended, '', $status, $tags, null, $dt, true);
+    // We're good with info; now insert it!
+    if ($bookmarkservice->bookmarkExists($url, $userservice->getCurrentUserId())) {
+        $msg = 'something went wrong';
+    } else {
+        $added = $bookmarkservice->addBookmark(
+            $url, $description, $extended, '', $status, $tags, null, $dt, true
+        );
+        $msg = 'done';
+    }
 }
 
 // Set up the XML file and output the result.
-echo '<?xml version="1.0" standalone="yes" ?'.">\r\n";
-echo '<result code="'. ($added ? 'done' : 'something went wrong') .'" />';
+echo '<?xml version="1.0" standalone="yes" ?' . ">\r\n";
+echo '<result code="' . $msg .'" />';
 ?>
