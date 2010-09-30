@@ -376,6 +376,7 @@ div#sidebar table td {
     padding-bottom: 0.25em;
     padding-right: 0.5em;
 }
+/*
 div#sidebar ul {
     list-style-type: none;
     margin: 0;
@@ -383,7 +384,7 @@ div#sidebar ul {
 }
 div#sidebar ul li {
     margin: 0.5em 0;
-}
+}*/
 
 div#related {
     padding: 0.5em;

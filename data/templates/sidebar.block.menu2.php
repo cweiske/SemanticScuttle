@@ -1,3 +1,5 @@
+<script type="text/javascript" src="<?php echo ROOT ?>js/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="<?php echo ROOT ?>js/jquery.jstree.js"></script>
 <?php
 /* Service creation: only useful services are created */
 $tag2tagservice =SemanticScuttle_Service_Factory::get('Tag2Tag');
@@ -31,7 +33,7 @@ if (count($menu2Tags) > 0) {
 foreach ($menu2Tags as $menu2Tag) {
     echo '  <li>'
         . sprintf(
-            '<a href="%s">%s</a>',
+            '<a href="%s">%s</a><ul><li><a href="#">foo</a></li><li><a href="#">bar</a></li></ul>',
             sprintf($cat_url, $menu2Tag),
             $menu2Tag
         )
@@ -46,10 +48,22 @@ foreach ($menu2Tags as $menu2Tag) {
 	echo '</div>';
     */
 }
+//ROOT.'ajax/getadminlinkedtags.php?tag='.filter($menu2Tag, 'url')
 ?>
  </ul>
 </div>
-
+<script type="text/javascript">
+jQuery("#maintagsmenu")
+.jstree({
+    "themes" : {
+        "theme": "default",
+        "dots": false,
+        "icons": true,
+        "url": '<?php echo ROOT ?>js/themes/default/style.css'
+    },
+    plugins : [ "themes", "html_data"],
+});
+</script>
 <?php
 }
 ?>
