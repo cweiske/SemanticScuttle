@@ -359,7 +359,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
             return $_SESSION[$this->getSessionKey()];
 
         } else if (isset($_COOKIE[$this->getCookieKey()])) {
-            $cook = split(':', $_COOKIE[$this->getCookieKey()]);
+            $cook = explode(':', $_COOKIE[$this->getCookieKey()]);
             //cookie looks like this: 'id:md5(username+password)'
             $query = 'SELECT * FROM '. $this->getTableName() .
                      ' WHERE MD5(CONCAT('.$this->getFieldName('username') .
