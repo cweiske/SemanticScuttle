@@ -17,17 +17,12 @@ if (isset($rsschannels)) {
 }
 ?>
 
-  <link rel="stylesheet" type="text/css"
-	href="http://ajax.googleapis.com/ajax/libs/dojo/1.2/dijit/themes/nihilo/nihilo.css" />
-
 <?php if (isset($loadjs)) :?>
   <script type="text/javascript" src="<?php echo ROOT ?>jsScuttle.php"></script>
 <?php endif ?>
 
  </head>
-
- <body class="nihilo">
-<!-- the class is used by Dojo widgets -->
+ <body>
 
 <?php
 $headerstyle = '';
