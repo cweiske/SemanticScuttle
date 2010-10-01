@@ -38,17 +38,7 @@ foreach ($menu2Tags as $menu2Tag) {
             $menu2Tag
         )
         . '</li>';
-    /*    
-	echo '<div dojoType="dojo.data.ItemFileReadStore" url="'.ROOT.'ajax/getadminlinkedtags.php?tag='.filter($menu2Tag, 'url').'" jsid="linkedTagStore" ></div>';
-	echo '<div dojoType="dijit.Tree" store="linkedTagStore" labelAttr="name" >';
-	echo '<script type="dojo/method" event="onClick" args="item">';
-	$returnUrl = sprintf($cat_url, filter($user, 'url'), filter('', 'url'));
-	echo 'window.location = "'.$returnUrl.'"+item.name';
-	echo '</script>';
-	echo '</div>';
-    */
 }
-//ROOT.'ajax/getadminlinkedtags.php?tag='.filter($menu2Tag, 'url')
 ?>
  </ul>
 </div>
