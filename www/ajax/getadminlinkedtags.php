@@ -21,44 +21,42 @@
 
 /* Return a json file with list of linked tags */
 $httpContentType = 'application/json';
+$httpContentType='text/plain';
 require_once '../www-header.php';
 
-/* Service creation: only useful services are created */
-$b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
-$bookmarkservice =SemanticScuttle_Service_Factory::get('Tag');
-$tagstatservice =SemanticScuttle_Service_Factory::get('TagStat');
+$tag = isset($_GET['tag']) ? trim($_GET['tag']) : '';
 
-/* Managing all possible inputs */
-isset($_GET['tag']) ? define('GET_TAG', $_GET['tag']): define('GET_TAG', '');
-isset($_GET['uId']) ? define('GET_UID', $_GET['uId']): define('GET_UID', '');
+function assembleTagData($tag, SemanticScuttle_Service_Tag2Tag $t2t)
+{
+    if ($tag == '') {
+        $linkedTags = $GLOBALS['menu2Tags'];
+    } else {
+        $linkedTags = $t2t->getAdminLinkedTags($tag, '>');
+    }
 
+    $tagData = array();
+    foreach ($linkedTags as $tag) {
+        $tagData[] = createTagArray($tag);
+    }
 
-function displayTag($tag, $uId) {
-	$uId = ($uId==0)?NULL:$uId;  // if user is nobody, NULL allows to look for every public tags
-	
-	$tag2tagservice =SemanticScuttle_Service_Factory::get('Tag2Tag');
-	$output =  '{ id:'.rand().', name:\''.$tag.'\'';
-
-	$linkedTags = $tag2tagservice->getAdminLinkedTags($tag, '>');
-	if(count($linkedTags) > 0) {
-		$output.= ', children: [';
-		foreach($linkedTags as $linkedTag) {
-			$output.= displayTag($linkedTag, $uId);
-		}
-		$output = substr($output, 0, -1); // remove final comma avoiding IE6 Dojo bug
-		$output.= "]";
-	}
-
-	$output.= '},';
-	return $output;
+	return $tagData;
 }
 
-?>
+function createTagArray($tag)
+{
+    return array(
+        'data' => $tag,
+        'attr' => array('rel' => $tag),
+        //'children' => array('foo', 'bar'),
+        'state' => 'closed'
+    );
+}
 
-{ label: 'name', identifier: 'id', items: [
-<?php
-$json = displayTag(GET_TAG, intval(GET_UID));
-$json = substr($json, 0, -1); // remove final comma avoiding IE6 Dojo bug
-echo $json;
+
+$tagData = assembleTagData(
+    $tag,
+    SemanticScuttle_Service_Factory::get('Tag2Tag')
+);
+//$json = substr($json, 0, -1); // remove final comma avoiding IE6 Dojo bug
+echo json_encode($tagData);
 ?>
-] }

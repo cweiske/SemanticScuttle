@@ -61,7 +61,22 @@ jQuery("#maintagsmenu")
         "icons": true,
         "url": '<?php echo ROOT ?>js/themes/default/style.css'
     },
-    plugins : [ "themes", "html_data"],
+    "json_data" : {
+        "ajax" : {
+            "url": function(node) {
+                //-1 is root
+                if (node == -1 ) {
+                    node = "";
+                } else if (node.attr('rel')) {
+                    node = node.attr('rel');
+                } else {
+                    return;
+                }
+                return "<?php echo ROOT ?>ajax/getadminlinkedtags.php?tag=" + node;
+            }
+        }
+    },
+    plugins : [ "themes", "json_data"]
 });
 </script>
 <?php
