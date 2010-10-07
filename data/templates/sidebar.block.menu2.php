@@ -1,9 +1,6 @@
 <script type="text/javascript" src="<?php echo ROOT ?>js/jquery-1.4.2.js"></script>
 <script type="text/javascript" src="<?php echo ROOT ?>js/jquery.jstree.js"></script>
 <?php
-/* Service creation: only useful services are created */
-$tag2tagservice =SemanticScuttle_Service_Factory::get('Tag2Tag');
-
 require_once('sidebar.linkedtags.inc.php');
 
 /* Manage input */
