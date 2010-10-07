@@ -17,7 +17,9 @@ if (!isset($GLOBALS['root'])) {
 	$rootTmp = '/';
 	foreach ($pieces as $piece) {
 		//we eliminate possible sscuttle subfolders (like gsearch for example)
-		if ($piece != '' && !strstr($piece, '.php') && $piece != 'gsearch') {
+        if ($piece != '' && !strstr($piece, '.php')
+            && $piece != 'gsearch' && $piece != 'ajax'
+        ) {
 			$rootTmp .= $piece .'/';
 		}
 	}

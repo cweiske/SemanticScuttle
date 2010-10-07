@@ -41,11 +41,28 @@ function assembleTagData($tag, SemanticScuttle_Service_Tag2Tag $t2t)
 	return $tagData;
 }
 
+/**
+ * Creates an jsTree json array for the given tag
+ *
+ * @param string  $tag         Tag name
+ * @param boolean $hasChildren If the tag has subtags (children) or not
+ *
+ * @return array Array to be sent back to the browser as json
+ */
 function createTagArray($tag, $hasChildren = true)
 {
     $ar = array(
-        'data' => $tag,
-        'attr' => array('rel' => $tag),
+        'data' => array(
+            //<a> attributes
+            'title' => $tag,
+            'attr' => array(
+                'href' => createUrl('tags', $tag)
+            )
+        ),
+        //<li> attributes
+        'attr' => array(
+            'rel'  => $tag,//needed for identifying the tag in html
+        ),
     );
     if ($hasChildren) {
         //jstree needs that to show the arrows
