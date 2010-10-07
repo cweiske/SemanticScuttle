@@ -30,14 +30,16 @@ if (count($menu2Tags) > 0) {
 <?php echo 'title="'.T_('This menu is composed of keywords (tags) organized by admins.').'"'?>>
  <ul>
 <?php
+//this is unneeded and replaced by the ajax tree anyway. we keep it for
+// non-js browsers
 foreach ($menu2Tags as $menu2Tag) {
     echo '  <li>'
         . sprintf(
-            '<a href="%s">%s</a><ul><li><a href="#">foo</a></li><li><a href="#">bar</a></li></ul>',
+            '<a href="%s">%s</a>',
             sprintf($cat_url, $menu2Tag),
             $menu2Tag
         )
-        . '</li>';
+        . '</li>' . "\n";
 }
 ?>
  </ul>
