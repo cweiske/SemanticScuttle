@@ -104,6 +104,34 @@ class TestBase extends PHPUnit_Framework_TestCase
         return $uid;
     }
 
+
+
+    /**
+     * Retrieves the UID of an admin user.
+     * If that user does not exist in the database, it is created.
+     *
+     * @return integer UID of admin user
+     */
+    protected function getAdminUser()
+    {
+        if (count($GLOBALS['admin_users']) == 0) {
+            $this->fail('No admin users configured');
+        }
+        $adminUserName = reset($GLOBALS['admin_users']);
+
+        $us  = SemanticScuttle_Service_Factory::get('User');
+        $uid = $us->getIdFromUser($adminUserName);
+        if ($uid === null) {
+            //that user does not exist in the database; create it
+            $uid = $us->addUser(
+                $adminUserName,
+                rand(),
+                'unittest-admin-' . $adminUserName . '@example.org'
+            );
+        }
+
+        return $uid;
+    }
 }
 
 ?>
