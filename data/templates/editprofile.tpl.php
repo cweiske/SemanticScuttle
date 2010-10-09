@@ -3,9 +3,7 @@ $this->includeTemplate($GLOBALS['top_include']);
 ?>
 
 <form action="<?php echo $formaction; ?>" method="post">
-<input type="hidden" name="token" value="<?php echo $token; ?>">
-
-</table>
+<input type="hidden" name="token" value="<?php echo $token; ?>"/>
 
 <h3><?php echo T_('Account Details'); ?></h3>
 
