@@ -22,7 +22,16 @@
 $httpContentType = 'application/json';
 require_once '../www-header.php';
 
-function assembleTagData($tag, SemanticScuttle_Service_Tag2Tag $t2t)
+/**
+ * Creates and returns an array of tags for the jsTree ajax loader.
+ * If the tag is empty, the configured menu2 (admin) main tags are used.
+ *
+ * @param string                          $tag Tag name to fetch subtags for
+ * @param SemanticScuttle_Service_Tag2Tag $t2t Tag relation service
+ *
+ * @return array Array of tag data suitable for the jsTree ajax loader
+ */
+function assembleAdminTagData($tag, SemanticScuttle_Service_Tag2Tag $t2t)
 {
     if ($tag == '') {
         $linkedTags = $GLOBALS['menu2Tags'];
@@ -45,7 +54,8 @@ function assembleTagData($tag, SemanticScuttle_Service_Tag2Tag $t2t)
  * Creates an jsTree json array for the given tag
  *
  * @param string  $tag         Tag name
- * @param boolean $hasChildren If the tag has subtags (children) or not
+ * @param boolean $hasChildren If the tag has subtags (children) or not.
+ *                             If unsure, set it to "true".
  *
  * @return array Array to be sent back to the browser as json
  */
@@ -74,7 +84,7 @@ function createTagArray($tag, $hasChildren = true)
 
 
 $tag     = isset($_GET['tag']) ? trim($_GET['tag']) : '';
-$tagData = assembleTagData(
+$tagData = assembleAdminTagData(
     $tag,
     SemanticScuttle_Service_Factory::get('Tag2Tag')
 );
