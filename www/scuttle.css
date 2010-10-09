@@ -641,11 +641,7 @@ a.bookmarklet {
 	background-color: #AAFAEE;
 }
 
-/* DOJO Style */
-
-/* DOJO Style */
-.scuttletheme .dijitInputField input,.scuttletheme .dijitTextBox,.scuttletheme .dijitComboBox,.scuttletheme .dijitSpinner
-	{
-	width: 100%;
-	margin: 0 0 0 0;
+/* tree styles */
+.jstree-default.jstree-focused {
+    background: none !important;
 }
