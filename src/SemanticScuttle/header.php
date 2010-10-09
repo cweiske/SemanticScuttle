@@ -120,7 +120,10 @@ $tplVars['userservice'] = $userservice;
 if (!defined('UNIT_TEST_MODE')) {
     //API files define that, so we need a way to support both of them
     if (!isset($httpContentType)) {
-        $httpContentType = 'text/html';
+        //$httpContentType = 'text/html';
+        //using that mime type makes all javascript nice in Chromium
+        // it also serves as test base if the pages really validate
+        $httpContentType = 'application/xhtml+xml';
     }
     if ($httpContentType !== false) {
         header('Content-Type: ' . $httpContentType . '; charset=utf-8');

@@ -32,7 +32,7 @@ if ($editingMode) {
 ?>
 <script type="text/javascript" src="<?php echo ROOT ?>js/jquery-1.4.2.js"></script>
 <script type="text/javascript" src="<?php echo ROOT ?>js/jquery.jstree.js"></script>
-<script type="text/javascript">
+<script type="text/javascript"><![CDATA[
 jQuery("#related")
 .jstree({
     "themes" : {
@@ -48,7 +48,7 @@ jQuery("#related")
                 parent = "";
                 if (node == -1 ) {
                     node = <?php echo json_encode($currenttag); ?>;
-                    parent = "&amp;parent=true";
+                    parent = "&parent=true";
                 } else if (node.attr('rel')) {
                     node = node.attr('rel');
                 } else {
@@ -60,5 +60,5 @@ jQuery("#related")
     },
     plugins : [ "themes", "json_data"]
 });
-</script>
+]]></script>
 </div>
