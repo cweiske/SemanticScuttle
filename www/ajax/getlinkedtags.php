@@ -26,7 +26,6 @@
  * @link       http://sourceforge.net/projects/semanticscuttle
  */
 $httpContentType = 'application/json';
-#$httpContentType = 'text/plain';
 require_once '../www-header.php';
 
 $tag            = isset($_GET['tag']) ? $_GET['tag'] : null;

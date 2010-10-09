@@ -30,10 +30,11 @@ if ($editingMode) {
 	echo '</p>';
 }
 ?>
+ <div id="related-content" />
 <script type="text/javascript" src="<?php echo ROOT ?>js/jquery-1.4.2.js"></script>
 <script type="text/javascript" src="<?php echo ROOT ?>js/jquery.jstree.js"></script>
 <script type="text/javascript"><![CDATA[
-jQuery("#related")
+jQuery("#related-content")
 .jstree({
     "themes" : {
         "theme": "default",
