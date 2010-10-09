@@ -2800,7 +2800,7 @@
  */
 (function ($) {
 	$.vakata.context = {
-		cnt		: $("<div id='vakata-contextmenu'>"),
+		cnt		: $("<div id='vakata-contextmenu'/>"),
 		vis		: false,
 		tgt		: false,
 		par		: false,
