@@ -62,12 +62,16 @@ if($currenttag!= '' && $cdservice->getLastTagDescription($currenttag)) {
 }
 
 //common tag description edit
-if($userservice->isLoggedOn()) {
-	if($currenttag!= '' && ($GLOBALS['enableCommonTagDescriptionEditedByAll'] || $currentUser->isAdmin())) {
+if ($userservice->isLoggedOn()) {
+	if ($currenttag != ''
+        && ($GLOBALS['enableCommonTagDescriptionEditedByAll']
+            || $currentUser->isAdmin()
+        )
+    ) {
 		echo ' <a href="'. createURL('tagcommondescriptionedit', $currenttag).'" title="'.T_('Edit the common description of this tag').'">';
 		echo !is_array($cDescription) || strlen($cDescription['cdDescription'])==0?T_('Edit the common description of this tag'):'';
 		echo ' <img src="'.ROOT.'images/b_edit.png" /></a>';
-	} elseif(isset($hash)) {
+	} else if (isset($hash)) {
 		echo ' (<a href="'.createURL('bookmarkcommondescriptionedit', $hash).'" title="'.T_('Edit the common description of this bookmark').'">';
 		echo T_('Edit the common description of this bookmark').'</a>)';
 	}
@@ -312,7 +316,7 @@ if ($currenttag!= '') {
                 . $row['username'] . '</a>';
 		}
 
-		// Udders!
+		// others
 		if (!isset($hash)) {
 			$others = $otherCounts[$row['bAddress']];
 			$ostart = '<a href="' . createURL('history', $row['bHash']) . '">';
@@ -390,7 +394,7 @@ if ($currenttag!= '') {
 		echo '  <div' . $adminBgClass . '>' . "\n";
 
 		echo '   <div class="link">'
-            . '<a href="'. $address .'"'. $rel .' class="taggedlink" target="_blank">'
+            . '<a href="'. htmlspecialchars($address) .'"'. $rel .' class="taggedlink">'
             . filter($row['bTitle'])
             . '</a>' . $adminStar . "</div>\n";
 		if ($row['bDescription'] == '') {
