@@ -296,10 +296,9 @@ if ($currenttag!= '') {
 			$edit = ' - <a href="' . createURL('edit', $row['bId']) . '">'
                 . T_('Edit')
                 . '</a>'
-                . '<script type="text/javascript">'
-                . 'document.write(" - <a href=\"#\" onclick=\"deleteBookmark(this, '. $row['bId'] .'); return false;\">'
+                . ' <a href="#" onclick="deleteBookmark(this, '. $row['bId'] .'); return false;">'
                 . T_('Delete')
-                .'<\/a>");</script>';
+                .'</a>';
 		}
 
 		// Last update
