@@ -41,7 +41,7 @@ foreach($watching as $watchuser) {
     <?php foreach($watching as $watchuser): ?>
         <li><a href="<?php echo createURL('bookmarks', $watchuser); ?>"><?php echo $watchuser; ?></a>
         <?php if($userservice->isLoggedOn() && $currentUser->getUsername() == $user): ?>
-         - <a href="<?php echo createUrl('watch','?contact='.$watchuser); ?>" title="<?php echo T_('Remove this contact'); ?>">x<a/>
+         - <a href="<?php echo createUrl('watch','?contact='.$watchuser); ?>" title="<?php echo T_('Remove this contact'); ?>">x</a>
         </li>
         <?php endif; ?>  
     <?php endforeach; ?>
