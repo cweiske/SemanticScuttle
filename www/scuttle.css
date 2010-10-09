@@ -642,6 +642,6 @@ a.bookmarklet {
 }
 
 /* tree styles */
-.jstree-default.jstree-focused {
+#related-content.jstree-default.jstree-focused {
     background: none !important;
 }
