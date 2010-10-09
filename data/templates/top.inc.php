@@ -19,6 +19,8 @@ if (isset($rsschannels)) {
 ?>
 
 <?php if (isset($loadjs)) :?>
+  <script type="text/javascript" src="<?php echo ROOT ?>js/jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="<?php echo ROOT ?>js/jquery.jstree.js"></script>
   <script type="text/javascript" src="<?php echo ROOT ?>jsScuttle.php"></script>
 <?php endif ?>
 
