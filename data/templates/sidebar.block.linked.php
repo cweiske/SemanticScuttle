@@ -44,16 +44,18 @@ jQuery("#related-content")
         "ajax" : {
             "url": function(node) {
                 //-1 is root
-                parent = "";
+                parentparam = "";
                 if (node == -1 ) {
                     node = <?php echo json_encode($currenttag); ?>;
-                    parent = "&parent=true";
+                    parentparam = "&parent=true";
                 } else if (node.attr('rel')) {
                     node = node.attr('rel');
                 } else {
                     return;
                 }
-                return "<?php echo ROOT ?>ajax/getlinkedtags.php?tag=" + node + parent;
+
+                return "<?php echo ROOT ?>ajax/getlinkedtags.php?tag=" + node
+                    + parentparam;
             }
         }
     },
