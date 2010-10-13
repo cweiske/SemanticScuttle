@@ -46,7 +46,7 @@ jQuery("#maintagsmenu")
         "theme": "default",
         "dots": false,
         "icons": true,
-        "url": '<?php echo ROOT ?>js/jstree-1.0-rc2/themes/default/style.css'
+        "url": '<?php echo ROOT_JS ?>themes/default/style.css'
     },
     "json_data" : {
         "ajax" : {
