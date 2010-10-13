@@ -19,8 +19,13 @@ if (isset($rsschannels)) {
 ?>
 
 <?php if (isset($loadjs)) :?>
-  <script type="text/javascript" src="<?php echo ROOT ?>js/jstree-1.0-rc2/jquery-1.4.2.js"></script>
-  <script type="text/javascript" src="<?php echo ROOT ?>js/jstree-1.0-rc2/jquery.jstree.js"></script>
+<?php if (DEBUG_MODE) : ?>
+  <script type="text/javascript" src="<?php echo ROOT_JS ?>jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="<?php echo ROOT_JS ?>jquery.jstree.js"></script>
+<?php else: ?>
+  <script type="text/javascript" src="<?php echo ROOT_JS ?>jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="<?php echo ROOT_JS ?>jquery.jstree.min.js"></script>
+<?php endif ?>
   <script type="text/javascript" src="<?php echo ROOT ?>jsScuttle.php"></script>
 <?php endif ?>
 

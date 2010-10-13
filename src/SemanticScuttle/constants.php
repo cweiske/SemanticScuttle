@@ -45,6 +45,7 @@ if (!isset($GLOBALS['root'])) {
 } else {
     define('ROOT', $GLOBALS['root']);
 }
+define('ROOT_JS', ROOT . 'js/jstree-1.0-rc2/');
 
 // Error codes
 define('GENERAL_MESSAGE', 200);
