@@ -30,8 +30,8 @@ if ($editingMode) {
 	echo '</p>';
 }
 ?>
- <div id="related-content" />
-<script type="text/javascript">//<![CDATA[
+ <div id="related-content"></div>
+ <script type="text/javascript">//<![CDATA[
 jQuery("#related-content")
 .jstree({
     "themes" : {
