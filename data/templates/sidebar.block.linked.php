@@ -31,7 +31,7 @@ if ($editingMode) {
 }
 ?>
  <div id="related-content" />
-<script type="text/javascript"><![CDATA[
+<script type="text/javascript">//<![CDATA[
 jQuery("#related-content")
 .jstree({
     "themes" : {
@@ -61,5 +61,6 @@ jQuery("#related-content")
     },
     plugins : [ "themes", "json_data"]
 });
-]]></script>
+//]]>
+ </script>
 </div>
