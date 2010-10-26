@@ -16,22 +16,11 @@ switch ($row['bStatus']) {
         break;
 }
 
-$this->includeTemplate("dojo.inc");
-
 function jsEscTitle($title)
 {
     return addcslashes($title, "'");
 }
 ?>
-
-
-
-<script type="text/javascript">
-//window.onload = function() {
-//    document.getElementById("address").focus();
-//}
-</script>
-
 <form action="<?php echo $formaction; ?>" method="post">
 <table>
 <tr>
@@ -73,17 +62,21 @@ function jsEscTitle($title)
 <tr>
     <th align="left"><?php echo T_('Tags'); ?></th>
     <td class="scuttletheme">
+<!--
     <span dojoType="dojo.data.ItemFileReadStore" jsId="memberTagStore" url="<?php echo ROOT?>ajax/<?php echo ($GLOBALS['adminsAreAdvisedTagsFromOtherAdmins'] && $currentUser->isAdmin())?'getadmintags':'getcontacttags'?>.php"></span>
-    <input type="text" dojoType="js.MultiComboBox" id="tags" name="tags" size="75" value="<?php echo filter(implode(', ', $row['tags']), 'xml'); ?>" store="memberTagStore" delimiter="," searchAttr="tag" hasDownArrow="false" queryExpr="*${0}*" autoComplete="false" highlightMatch="all"/></td>
+    <input type="text" dojoType="js.MultiComboBox" id="tags" name="tags" size="75" value="<?php echo filter(implode(', ', $row['tags']), 'xml'); ?>" store="memberTagStore" delimiter="," searchAttr="tag" hasDownArrow="false" queryExpr="*${0}*" autoComplete="false" highlightMatch="all"/>
+-->
+     <input type="text" id="tags" name="tags" size="75" value="<?php echo filter(implode(', ', $row['tags']), 'xml'); ?>"/>
+    </td>
     <td>&larr; <?php echo T_('Comma-separated'); ?></td>
 </tr>
 <tr>
     <th></th>
-    <td align="right"><small><?php echo T_('Note: use ">" to include one tag in another. e.g.: europe>france>paris')?><small></td>
+    <td align="right"><small><?php echo htmlspecialchars(T_('Note: use ">" to include one tag in another. e.g.: europe>france>paris'))?></small></td>
 </tr>
 <tr>
     <th></th>
-    <td align="right"><small><?php echo T_('Note: use "=" to make synonym two tags. e.g.: france=frenchcountry')?><small></td>
+    <td align="right"><small><?php echo T_('Note: use "=" to make synonym two tags. e.g.: france=frenchcountry')?></small></td>
 </tr>
 <tr>
     <th align="left"><?php echo T_('Privacy'); ?></th>
@@ -124,13 +117,28 @@ function jsEscTitle($title)
         ?>
     </td>
     <td></td>
-</tr>
-</table>
+  </tr>
+ </table>
 </form>
+
+<link href="<?php echo ROOT ?>js/jqueryui-1.8.5/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css"/>
+  
+<script type="text/javascript" src="<?php echo ROOT ?>js/jqueryui-1.8.5/jquery.ui.core.js"></script>
+<script type="text/javascript" src="<?php echo ROOT ?>js/jqueryui-1.8.5/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="<?php echo ROOT ?>js/jqueryui-1.8.5/jquery.ui.position.js"></script>
+<script type="text/javascript" src="<?php echo ROOT ?>js/jqueryui-1.8.5/jquery.ui.autocomplete.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    jQuery("input#tags").autocomplete({
+        source: ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"]
+    });
+});
+</script>
+
 
 <?php
 // Dynamic tag selection
-$this->includeTemplate('dynamictags.inc');
+  //FIXME$this->includeTemplate('dynamictags.inc');
 
 // Bookmarklets and import links
 if (empty($_REQUEST['popup']) && (!isset($showdelete) || !$showdelete)) {
@@ -139,17 +147,18 @@ if (empty($_REQUEST['popup']) && (!isset($showdelete) || !$showdelete)) {
 <h3><?php echo T_('Bookmarklet'); ?></h3>
 <p>
 <script type="text/javascript">
+//<![CDATA[
 var browser=navigator.appName;
-if (browser == "Opera") {
+if (false && browser == "Opera") {
     document.write(
         <?php echo json_encode(
             sprintf(
                 T_("Click one of the following bookmarklets to add a button you can click whenever you want to add the page you are on to %s"),
                 $GLOBALS['sitename']
             )
-        ); ?> + ':</p>'
+        ); ?>
     );
-} else {
+} else if (false) {
     document.write(
         <?php echo json_encode(
             sprintf(
@@ -157,9 +166,14 @@ if (browser == "Opera") {
                 $GLOBALS['sitename']
             )
         );
-        ?> + ':</p>'
+        ?>
     );
 }
+//]]>
+</script>
+:</p>
+<script type="text/javascript">
+//<![CDATA[
 var selection = '';
 if (window.getSelection) {
     selection = 'window.getSelection()';
@@ -168,18 +182,18 @@ if (window.getSelection) {
 } else if (document.selection) {
     selection = 'document.selection.createRange().text';
 }
-document.write('<ul>');
-if (browser == "Opera")
+if (false && browser == "Opera")
     {
     document.write('<li><a class="bookmarklet" href="opera:/button/Go%20to%20page,%20%22javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');location.href=\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d;void 0%22;,,%22Post%20to%20<?php echo jsEscTitle($GLOBALS['sitename']); ?>%22,%22Scuttle%22"><?php echo jsEscTitle(sprintf(T_('Post to %s'), $GLOBALS['sitename'])); ?><\/a><\/li>');
     document.write('<li><a class="bookmarklet" href="opera:/button/Go%20to%20page,%20%22javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');open(\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;popup=1&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d,\'<?php echo jsEscTitle($GLOBALS['sitename']); ?>\',\'modal=1,status=0,scrollbars=1,toolbar=0,resizable=1,width=790,height=465,left=\'+(screen.width-790)/2+\',top=\'+(screen.height-425)/2);void 0;%22,,%22Post%20to%20<?php echo urlencode($GLOBALS['sitename']); ?>%20(Pop-up)%22,%22Scuttle%22"><?php echo jsEscTitle(sprintf(T_('Post to %s (Pop-up)'), $GLOBALS['sitename'])); ?><\/a><\/li>');
     }
-else
+else if (false)
     {
     document.write('<li><a class="bookmarklet" href="javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');location.href=\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d;void 0;"><?php echo jsEscTitle(sprintf(T_('Post to %s'), $GLOBALS['sitename'])); ?><\/a><\/li>');
     document.write('<li><a class="bookmarklet" href="javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');open(\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;popup=1&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d,\'<?php echo jsEscTitle($GLOBALS['sitename']); ?>\',\'modal=1,status=0,scrollbars=1,toolbar=0,resizable=1,width=790,height=465,left=\'+(screen.width-790)/2+\',top=\'+(screen.height-425)/2);void 0;"><?php echo jsEscTitle(sprintf(T_('Post to %s (Pop-up)'), $GLOBALS['sitename'])); ?><\/a><\/li>');
     }
-document.write('<\/ul>');
+//document.write('<\/ul>');
+//]]>
 </script>
 
 <h3><?php echo T_('Import'); ?></h3>
