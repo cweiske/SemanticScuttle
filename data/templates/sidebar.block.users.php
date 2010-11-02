@@ -27,7 +27,7 @@ foreach ($lastUsers as $row) {
 ?>
 
 </table>
-<p style="text-align:right"><a href="<?php echo createURL('users'); ?>" title="<?php echo T_('See all users')?>"><?php echo T_('All users'); ?></a> &rarr;</p>
+<p style="text-align:right"><a href="<?php echo createURL('users'); ?>" title="<?php echo T_('See all users')?>"><?php echo T_('All users'); ?></a> →</p>
 </div>
 <?php
 }

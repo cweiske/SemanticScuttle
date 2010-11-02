@@ -11,12 +11,12 @@ window.onload = function() {
 <tr>
     <th align="left"><?php echo T_('Old'); ?></th>
     <td><input type="text" name="old" id="old" value="<?php echo $old; ?>" /></td>
-    <td>&larr; <?php echo T_('Required'); ?></td>
+    <td>← <?php echo T_('Required'); ?></td>
 </tr>
 <tr>
     <th align="left"><?php echo T_('New'); ?></th>
     <td><input type="text" name="new" id="new" value="" /></td>
-    <td>&larr; <?php echo T_('Required'); ?></td>
+    <td>← <?php echo T_('Required'); ?></td>
 </tr>
 <tr>
     <td></td>

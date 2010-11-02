@@ -121,33 +121,33 @@ $votingSort  = 'voting_desc';
 
 switch(getSortOrder()) {
 case 'date_asc':
-	$dateArrow = ' &uarr;';
+	$dateArrow = ' ↑';
 	$dateSort  = 'date_desc';
 	break;
 
 case 'title_asc':
-	$titleArrow = ' &uarr;';
+	$titleArrow = ' ↑';
 	$titleSort  = 'title_desc';
 	break;
 
 case 'title_desc':
-	$titleArrow = ' &darr;';
+	$titleArrow = ' ↓';
 	$titleSort  = 'title_asc';
 	break;
 
 case 'voting_asc':
-	$votingArrow = ' &uarr;';
+	$votingArrow = ' ↑';
 	$votingSort  = 'voting_desc';
 	break;
 
 case 'voting_desc':
-	$votingArrow = ' &darr;';
+	$votingArrow = ' ↓';
 	$votingSort  = 'voting_asc';
 	break;
 
 case 'date_desc':
 default:
-	$dateArrow = ' &darr;';
+	$dateArrow = ' ↓';
 	$dateSort = 'date_asc';
 	break;
 }

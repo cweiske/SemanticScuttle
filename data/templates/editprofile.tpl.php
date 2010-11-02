@@ -26,7 +26,7 @@ $this->includeTemplate($GLOBALS['top_include']);
 <tr>
     <th align="left"><?php echo T_('E-mail'); ?></th>
     <td><input type="text" name="pMail" size="75" value="<?php echo filter($objectUser->getEmail(), 'xml'); ?>" /></td>
-    <td>&larr; <?php echo T_('Required'); ?></td>
+    <td>← <?php echo T_('Required'); ?></td>
 </tr>
 </table>
 
