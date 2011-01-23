@@ -31,28 +31,37 @@ function authenticate()
 }
 
 if (!$userservice->isLoggedOn()) {
+	/* First check to see if a private key was sent */
+	if (isset($_POST['privatekey']) {
+		$login = $userservice->loginPK($_POST['privatekey']);
+		if ($login) {
+			$currentUser = $userservice->getCurrentObjectUser();
+			return;
+		} else {
+			/* is someone hacking? */
+			/* TODO: Track attempts */
+		}
+	}
+
 	/* Maybe we have caught authentication data in $_SERVER['REMOTE_USER']
 	 ( Inspired by http://www.yetanothercommunitysystem.com/article-321-regle-comment-utiliser-l-authentification-http-en-php-chez-ovh ) */
 	if ((!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']))
-        && isset($_SERVER['REMOTE_USER'])
-        && preg_match('/Basic\s+(.*)$/i', $_SERVER['REMOTE_USER'], $matches)
-    ) {
-        list($name, $password) = explode(':', base64_decode($matches[1]));
-        $_SERVER['PHP_AUTH_USER'] = strip_tags($name);
-        $_SERVER['PHP_AUTH_PW'] = strip_tags($password);
+	&& isset($_SERVER['REMOTE_USER'])
+	&& preg_match('/Basic\s+(.*)$/i', $_SERVER['REMOTE_USER'], $matches)) {
+	        list($name, $password) = explode(':', base64_decode($matches[1]));
+		$_SERVER['PHP_AUTH_USER'] = strip_tags($name);
+		$_SERVER['PHP_AUTH_PW'] = strip_tags($password);
 	}
 
-    if (!isset($_SERVER['PHP_AUTH_USER'])) {
-        authenticate();
-    } else {
-        $login = $userservice->login(
-            $_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']
-        );
-        if ($login) {
-            $currentUser = $userservice->getCurrentObjectUser();
-        } else {
-            authenticate();
-        }
-    }
+	if (!isset($_SERVER['PHP_AUTH_USER'])) {
+		authenticate();
+	} else {
+		$login = $userservice->login($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
+		if ($login) {
+			$currentUser = $userservice->getCurrentObjectUser();
+		} else {
+			authenticate();
+		}
+	}
 }
 ?>

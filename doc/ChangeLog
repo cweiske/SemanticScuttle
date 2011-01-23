@@ -11,6 +11,7 @@ ChangeLog for SemantiScuttle
 - Implement patch #3059829: update FR_CA translation
 - Update php-gettext library to 1.0.10
 - api/posts/add respects the "replace" parameter now
+- Implement Feature Request #3164013 adding ability to log in vi private key
 
 
 0.97.1 - 2010-09-30

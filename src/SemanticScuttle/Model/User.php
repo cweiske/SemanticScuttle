@@ -35,17 +35,20 @@ class SemanticScuttle_Model_User
     var $content;
     var $datetime;
     var $isAdmin;
+    var $privateKey;
 
     /**
      * Create a new user object
      *
-     * @param integer $id       User ID
-     * @param string  $username Username
+     * @param integer $id         User ID
+     * @param string  $username   Username
+     * @param string  $privateKey PrivateKey
      */
-    public function __construct($id, $username)
+    public function __construct($id, $username, $privateKey)
     {
         $this->id = $id;
         $this->username = $username;
+        $this->privateKey = $privateKey;
     }
 
     /**
@@ -66,6 +69,16 @@ class SemanticScuttle_Model_User
     public function getUsername()
     {
         return $this->username;
+    }
+
+    /**
+     * Returns private key
+     *
+     * @return string private key
+     */
+    public function getPrivateKey()
+    {
+        return $this->privateKey;
     }
 
     /**

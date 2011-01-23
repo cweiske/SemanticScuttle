@@ -72,7 +72,9 @@ CREATE TABLE `sc_users` (
   `email` varchar(50) NOT NULL default '',
   `homepage` varchar(255) default NULL,
   `uContent` text,
-  PRIMARY KEY  (`uId`)
+  `privateKey` varchar(32) NOT NULL,
+  PRIMARY KEY  (`uId`),
+  UNIQUE KEY `privateKey` (`privateKey`)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 -- --------------------------------------------------------

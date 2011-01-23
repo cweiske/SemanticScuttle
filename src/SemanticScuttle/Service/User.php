@@ -42,7 +42,8 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     protected $fields = array(
         'primary'   =>  'uId',
         'username'  =>  'username',
-        'password'  =>  'password'
+        'password'  =>  'password',
+	'privatekey'=>  'privateKey'
     );
 
     protected $profileurl;
@@ -450,6 +451,45 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
                     time() + $this->cookietime, '/'
                 );
             }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Try to authenticate and login a user with
+     * private key.
+     *
+     * @param string  $privatekey Private Key
+     *
+     * @return boolean True if the user could be authenticated,
+     *                 false if not.
+     */
+    public function loginPK($privatekey)
+    {
+        $query = 'SELECT '. $this->getFieldName('primary') .' FROM '. $this->getTableName() .' WHERE '. $this->getFieldName('privatekey') .' = "'. $this->db->sql_escape($privatekey) .'"';
+
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR,
+                'Could not get user',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            return false;
+        }
+
+        $row = $this->db->sql_fetchrow($dbresult);
+        $this->db->sql_freeresult($dbresult);
+
+        if ($row) {
+            $id = $_SESSION[$this->getSessionKey()]
+                = $row[$this->getFieldName('primary')];
+            $cookie = $id .':'. md5($username.$password);
+            setcookie(
+                $this->cookiekey, $cookie,
+                time() + $this->cookietime, '/'
+            );
             return true;
         } else {
             return false;
