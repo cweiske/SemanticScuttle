@@ -29,9 +29,7 @@ $cacheservice =SemanticScuttle_Service_Factory::get('Cache');
 isset($_GET['page']) ? define('GET_PAGE', $_GET['page']): define('GET_PAGE', 0);
 isset($_GET['sort']) ? define('GET_SORT', $_GET['sort']): define('GET_SORT', '');
 
-@list($url, $hash) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
-
-
+@list($url, $hash) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : null;
 
 if ($usecache) {
     // Generate hash for caching on
@@ -57,7 +55,7 @@ if (intval(GET_PAGE) > 1) {
 
 if ($bookmark =& $bookmarkservice->getBookmarkByHash($hash)) {
     // Template variables
-    $bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, NULL, NULL, NULL, getSortOrder(), NULL, NULL, NULL, $hash);
+    $bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, null, null, null, getSortOrder(), null, null, null, $hash);
     $tplVars['pagetitle'] = T_('History') .': '. $bookmark['bAddress'];
     $tplVars['subtitle'] = sprintf(T_('History for %s'), $bookmark['bAddress']);
     $tplVars['loadjs'] = true;
@@ -73,10 +71,10 @@ if ($bookmark =& $bookmarkservice->getBookmarkByHash($hash)) {
     $tplVars['cat_url'] = createURL('bookmarks', '%1$s/%2$s');
     $tplVars['nav_url'] = createURL('history', $hash .'/%3$s');
     $tplVars['rsschannels'] = array();
-    if($userservice->isLoggedOn()) {
-    	$tplVars['user'] = $currentUser->getUsername();
+    if ($userservice->isLoggedOn()) {
+        $tplVars['user'] = $currentUser->getUsername();
     } else {
-    	$tplVars['user'] = '';
+        $tplVars['user'] = '';
     }
     $templateservice->loadTemplate('bookmarks.tpl', $tplVars);
 } else {

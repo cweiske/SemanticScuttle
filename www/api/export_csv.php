@@ -20,7 +20,7 @@ require_once 'httpauth.inc.php';
 header("Content-disposition: filename=exportBookmarks.csv");
 
 /* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
+$bookmarkservice = SemanticScuttle_Service_Factory::get('Bookmark');
 
 // Check to see if a tag was specified.
 if (isset($_REQUEST['tag']) && (trim($_REQUEST['tag']) != '')) {
@@ -40,22 +40,27 @@ $bookmarks = $bookmarkservice->getBookmarks(
 echo 'url;title;tags;description';
 echo "\n";
 
-foreach($bookmarks['bookmarks'] as $row) {
-    if (is_null($row['bDescription']) || (trim($row['bDescription']) == ''))
+foreach ($bookmarks['bookmarks'] as $row) {
+    if (is_null($row['bDescription']) || (trim($row['bDescription']) == '')) {
         $description = '';
-    else
-        $description = filter(str_replace(array("\r\n", "\n", "\r"),"", $row['bDescription']), 'xml');
+    } else {
+        $description = filter(
+            str_replace(array("\r\n", "\n", "\r"), "", $row['bDescription']), 'xml'
+        );
+    }
 
     $taglist = '';
     if (count($row['tags']) > 0) {
-        foreach($row['tags'] as $tag)
+        foreach ($row['tags'] as $tag) {
             $taglist .= convertTag($tag) .',';
+        }
         $taglist = substr($taglist, 0, -1);
     } else {
         $taglist = 'system:unfiled';
     }
 
-    echo '"'.filter($row['bAddress'], 'xml') .'";"'. filter($row['bTitle'], 'xml') .'";"'. filter($taglist, 'xml') .'";"'. $description .'"';
+    echo '"'.filter($row['bAddress'], 'xml') .'";"'. filter($row['bTitle'], 'xml') .
+        '";"'. filter($taglist, 'xml') .'";"'. $description .'"';
     echo "\n";
 }
 

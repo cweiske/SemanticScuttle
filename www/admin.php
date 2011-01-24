@@ -35,57 +35,56 @@ $tplVars['sidebar_blocks'] = array('users' );
 $tplVars['error'] = '';
 $tplVars['msg'] = '';
 
-if ( !$userservice->isLoggedOn() ) {
-	header('Location: '. createURL('login', ''));
-	exit();
+if (!$userservice->isLoggedOn()) {
+    header('Location: '. createURL('login', ''));
+    exit();
 }
 
-if ( !$currentUser->isAdmin() ) {
-	header('Location: '. createURL('bookmarks', $currentUser->getUsername()));
-	exit();
+if (!$currentUser->isAdmin()) {
+    header('Location: '. createURL('bookmarks', $currentUser->getUsername()));
+    exit();
 }
 
-@list($url, $action, $user) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
+@list($url, $action, $user) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : null;
 
-if ( $action
-&& (strpos($_SERVER['HTTP_REFERER'], ROOT.'admin') === 0)  // Prevent CSRF attacks
-) {
-	switch ( $action ) {
-		case 'delete':
-			if ( $user && ($userinfo = $userservice->getUserByUsername($user)) ) {
-				$uId = $userinfo['uId'];
+// Prevent CSRF attacks
+if ($action && (strpos($_SERVER['HTTP_REFERER'], ROOT.'admin') === 0)) {
+    switch ($action) {
+    case 'delete':
+        if ($user && ($userinfo = $userservice->getUserByUsername($user))) {
+            $uId = $userinfo['uId'];
 
-				$tagcacheservice->deleteByUser($uId);
-				$tag2tagservice->removeLinkedTagsForUser($uId);
-				$userservice->deleteUser($uId);
-				$bookmark2tagservice->deleteTagsForUser($uId);
-				$commondescriptionservice->deleteDescriptionsForUser($uId);
-				$searchhistoryservice->deleteSearchHistoryForUser($uId);
-				$tagstatservice->deleteTagStatForUser($uId);				
-				// XXX: don't delete bookmarks before tags, else tags can't be deleted !!!
-				$bookmarkservice->deleteBookmarksForUser($uId);
+            $tagcacheservice->deleteByUser($uId);
+            $tag2tagservice->removeLinkedTagsForUser($uId);
+            $userservice->deleteUser($uId);
+            $bookmark2tagservice->deleteTagsForUser($uId);
+            $commondescriptionservice->deleteDescriptionsForUser($uId);
+            $searchhistoryservice->deleteSearchHistoryForUser($uId);
+            $tagstatservice->deleteTagStatForUser($uId);
+            // XXX: don't delete bookmarks before tags, else tags can't be deleted !!!
+            $bookmarkservice->deleteBookmarksForUser($uId);
 
-				$tplVars['msg'] = sprintf(T_('%s and all his bookmarks and tags were deleted.'), $user);
-			}
-			break;
-		case 'checkUrl' :
-			$bookmarks =& $bookmarkservice->getBookmarks(0, NULL, NULL, NULL, NULL, getSortOrder());
-			foreach($bookmarks['bookmarks'] as $bookmark) {
-				if(!checkUrl($bookmark['bAddress'])) {
-					$tplVars['error'].= T_('Problem with ').$bookmark['bAddress'].' ('. $bookmark['username'] .')<br/>';  
-				}
-			}
-			break;
-		default:
-			// DO NOTHING
-	}
+            $tplVars['msg'] = sprintf(T_('%s and all his bookmarks and tags were deleted.'), $user);
+        }
+        break;
+    case 'checkUrl' :
+        $bookmarks =& $bookmarkservice->getBookmarks(0, null, null, null, null, getSortOrder());
+        foreach ($bookmarks['bookmarks'] as $bookmark) {
+            if (!checkUrl($bookmark['bAddress'])) {
+                $tplVars['error'].= T_('Problem with ').$bookmark['bAddress'].' ('. $bookmark['username'] .')<br/>';  
+            }
+        }
+        break;
+    default:
+        // DO NOTHING
+    }
 }
 
 $templatename = 'admin.tpl';
 $users =& $userservice->getObjectUsers();
 
-if ( !is_array($users) ) {
-	$users = array();
+if (!is_array($users)) {
+    $users = array();
 }
 
 $tplVars['users'] =& $users;

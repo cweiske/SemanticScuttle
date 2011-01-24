@@ -21,8 +21,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 require_once 'www-header.php';
 
 /* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
-$cacheservice =SemanticScuttle_Service_Factory::get('Cache');
+$bookmarkservice = SemanticScuttle_Service_Factory::get('Bookmark');
+$cacheservice    = SemanticScuttle_Service_Factory::get('Cache');
 
 /* Managing all possible inputs */
 isset($_GET['page']) ? define('GET_PAGE', $_GET['page']): define('GET_PAGE', 0);
@@ -32,7 +32,7 @@ isset($_GET['sort']) ? define('GET_SORT', $_GET['sort']): define('GET_SORT', '')
 $currentUser = $userservice->getCurrentObjectUser();
 
 /* Managing path info */
-@list($url, $user, $page) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
+@list($url, $user, $page) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : null;
 
 
 if ($usecache) {
@@ -55,8 +55,8 @@ if ($user) {
     if (is_int($user)) {
         $userid = intval($user);
     } else {
-    	$userinfo = $userservice->getObjectUserByUsername($user);
-        if ($userinfo == NULL ) {
+        $userinfo = $userservice->getObjectUserByUsername($user);
+        if ($userinfo == null ) {
             // Throw a 404 error
             $tplVars['error'] = sprintf(T_('User with username %s was not found'), $user);
             $templateservice->loadTemplate('error.404.tpl', $tplVars);
@@ -91,7 +91,7 @@ if ($user) {
     $tplVars['start'] = $start;
     $tplVars['bookmarkCount'] = $start + 1;
     
-    $bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, $userid, NULL, NULL, getSortOrder(), true);
+    $bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, $userid, null, null, getSortOrder(), true);
 
     $tplVars['sidebar_blocks'] = array('watchlist');
     $tplVars['watched'] = true;

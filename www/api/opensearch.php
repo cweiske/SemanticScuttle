@@ -1,7 +1,22 @@
 <?php 
+/**
+ * Perform OpenSearch
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
+
 $httpContentType = 'text/xml';
 require_once '../www-header.php';
 ?>
+
 <?xml version="1.0" encoding="utf-8" ?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
   <ShortName><?php echo $GLOBALS['sitename']?></ShortName>

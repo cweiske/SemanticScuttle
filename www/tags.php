@@ -22,8 +22,8 @@
 require_once 'www-header.php';
 
 /* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
-$cacheservice =SemanticScuttle_Service_Factory::get('Cache');
+$bookmarkservice = SemanticScuttle_Service_Factory::get('Bookmark');
+$cacheservice    = SemanticScuttle_Service_Factory::get('Cache');
 
 /* Managing all possible inputs */
 isset($_GET['page']) ? define('GET_PAGE', $_GET['page']): define('GET_PAGE', 0);
@@ -35,49 +35,50 @@ $currentUser = $userservice->getCurrentObjectUser();
 /* Managing path info */
 list($url, $cat) = explode('/', $_SERVER['PATH_INFO']);
 
-
 if (!$cat) {
-	header('Location: '. createURL('populartags'));
-	exit;
+    header('Location: '. createURL('populartags'));
+    exit;
 }
 
 $titleTags = explode('+', filter($cat));
 $pagetitle = T_('Tags') .': ';
-for($i = 0; $i<count($titleTags);$i++) {
-	$pagetitle.= $titleTags[$i].'<a href="'.createUrl('tags', aggregateTags($titleTags, '+', $titleTags[$i])).'" title="'.T_('Remove the tag from the selection').'">*</a> + ';
+for ($i = 0; $i<count($titleTags);$i++) {
+    $pagetitle.= $titleTags[$i].'<a href="'.createUrl('tags', aggregateTags($titleTags, '+', $titleTags[$i])).'" title="'.T_('Remove the tag from the selection').'">*</a> + ';
 }
 $pagetitle = substr($pagetitle, 0, strlen($pagetitle) - strlen(' + ')); 
-
 
 //$cattitle = str_replace('+', ' + ', $cat);
 
 if ($usecache) {
-	// Generate hash for caching on
-	if ($userservice->isLoggedOn()) {
-		$hash = md5($_SERVER['REQUEST_URI'] . $currentUser->getId());
-	} else {
-		$hash = md5($_SERVER['REQUEST_URI']);
-	}
+    // Generate hash for caching on
+    if ($userservice->isLoggedOn()) {
+        $hash = md5($_SERVER['REQUEST_URI'] . $currentUser->getId());
+    } else {
+        $hash = md5($_SERVER['REQUEST_URI']);
+    }
 
-	// Cache for 30 minutes
-	$cacheservice->Start($hash, 1800);
+    // Cache for 30 minutes
+    $cacheservice->Start($hash, 1800);
 }
 
 // Header variables
 $tplVars['pagetitle'] = T_('Tags') .': '. $cat;
 $tplVars['loadjs'] = true;
 $tplVars['rsschannels'] = array(
-array(filter($sitename .': '. $pagetitle), createURL('rss', 'all/'. filter($cat, 'url')).'?sort='.getSortOrder())
+    array(
+        filter($sitename .': '. $pagetitle),
+        createURL('rss', 'all/'. filter($cat, 'url')).'?sort='.getSortOrder()
+    )
 );
 
 // Pagination
 $perpage = getPerPageCount($currentUser);
 if (intval(GET_PAGE) > 1) {
-	$page = intval(GET_PAGE);
-	$start = ($page - 1) * $perpage;
+    $page = intval(GET_PAGE);
+    $start = ($page - 1) * $perpage;
 } else {
-	$page = 0;
-	$start = 0;
+    $page = 0;
+    $start = 0;
 }
 
 $tplVars['page'] = $page;
@@ -87,7 +88,7 @@ $tplVars['currenttag'] = $cat;
 $tplVars['sidebar_blocks'] = array('linked', 'related', 'menu2');//array('linked', 'related', 'popular');
 $tplVars['subtitle'] = $pagetitle;
 $tplVars['bookmarkCount'] = $start + 1;
-$bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, NULL, $cat, NULL, getSortOrder());
+$bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, null, $cat, null, getSortOrder());
 $tplVars['total'] = $bookmarks['total'];
 $tplVars['bookmarks'] =& $bookmarks['bookmarks'];
 $tplVars['cat_url'] = createURL('bookmarks', '%1$s/%2$s');
@@ -96,8 +97,8 @@ $tplVars['nav_url'] = createURL('tags', '%2$s%3$s');
 $templateservice->loadTemplate('bookmarks.tpl', $tplVars);
 
 if ($usecache) {
-	// Cache output if existing copy has expired
-	$cacheservice->End($hash);
+    // Cache output if existing copy has expired
+    $cacheservice->End($hash);
 }
 
 ?>

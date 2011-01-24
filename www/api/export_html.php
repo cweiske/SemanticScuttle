@@ -48,9 +48,11 @@ echo '<!DOCTYPE NETSCAPE-Bookmark-file-1>'."\r\n";
 echo '<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" />';
 echo '<!-- This is an automatically generated file. -->'."\r\n";
 echo '<TITLE>Bookmarks</TITLE>'."\r\n";
-echo '<H1 LAST_MODIFIED="'. date('U') .'">Bookmarks for '. htmlspecialchars($currentUser->getUsername()) .''. (is_null($tag) ? '' : ' tag="'. htmlspecialchars($tag) .'"') ." from " . $sitename ."</H1>\r\n";
+echo '<H1 LAST_MODIFIED="'. date('U');
+echo '">Bookmarks for '. htmlspecialchars($currentUser->getUsername());
+echo (is_null($tag) ? '' : ' tag="'. htmlspecialchars($tag) .'"');
+echo ' from ' . $sitename .'</H1>\r\n';
 echo '<DL>'."\r\n";
-
 
 
 foreach ($bookmarks['bookmarks'] as $row) {
@@ -71,7 +73,11 @@ foreach ($bookmarks['bookmarks'] as $row) {
         $taglist = 'system:unfiled';
     }
 
-    echo "\t<DT><A HREF=\"". filter($row['bAddress'], 'xml') .'" '. $description .' hash="'. md5($row['bAddress']) .'" tags="'. filter($taglist, 'xml') .'" ADD_DATE="'. date('U', strtotime($row['bDatetime'])) ."\" >" . filter($row['bTitle'], 'xml') ."</a>\r\n";
+    echo "\t<DT><A HREF=\"". filter($row['bAddress'], 'xml') .'" ';
+    echo $description .' hash="'. md5($row['bAddress']) .'" tags="';
+    echo filter($taglist, 'xml') .'" ADD_DATE="';
+    echo date('U', strtotime($row['bDatetime']));
+    echo "\" >" . filter($row['bTitle'], 'xml') ."</a>\r\n";
 }
 
 

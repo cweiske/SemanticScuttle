@@ -1,12 +1,29 @@
 <?php
-/* Export data with semantic format (SIOC: http://sioc-project.org/, FOAF, SKOS, Annotea Ontology) */
+/**
+ * Export data with semantic format
+ *
+ * (SIOC: http://sioc-project.org/, FOAF, SKOS, Annotea Ontology)
+ *
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
+
 
 $httpContentType = 'text/xml';
 require_once '../www-header.php';
 
 /* Service creation: only useful services are created */
-$userservice =SemanticScuttle_Service_Factory::get('User');
-$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
+$userservice = SemanticScuttle_Service_Factory::get('User');
+$bookmarkservice = SemanticScuttle_Service_Factory::get('Bookmark');
 
 ?>
 <?php echo "<?xml version=\"1.0\" encoding=\"utf-8\"\n?>"; ?>
@@ -37,19 +54,17 @@ $bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
 $users = $userservice->getObjectUsers();
 
 $usersArray = array(); // useful for bookmarks display
-foreach($users as $user) {
-  $usersArray[$user->getId()] = $user->getUserName();
+foreach ($users as $user) {
+    $usersArray[$user->getId()] = $user->getUserName();
 }
-?>
 
-<?php foreach($users as $user) :?>
-<sioc:User rdf:about="<?php echo createUrl('profile', $user->getUserName())?>">
-  <sioc:name><?php echo $user->getUserName() ?></sioc:name>
-  <sioc:member_of rdf:resource="<?php echo ROOT?>" />
-</sioc:User>
-<?php endforeach; ?>
-
-<?php
+foreach ($users as $user) { ?>
+    <sioc:User rdf:about="<?php echo createUrl('profile', $user->getUserName())?>">
+        <sioc:name><?php echo $user->getUserName() ?></sioc:name>
+        <sioc:member_of rdf:resource="<?php echo ROOT?>" />
+    </sioc:User>
+    <?php
+}
 /*
 No page for usergroup (users/admin) for the moment
   <sioc:Usergroup rdf:ID="authors">
@@ -57,31 +72,33 @@ No page for usergroup (users/admin) for the moment
   <sioc:has_member rdf:nodeID="sioc-id2245901" />
  </sioc:Usergroup>
 */
-?>
 
-<?php 
 //bookmarks are described using Annotea ontology
-$bookmarks =& $bookmarkservice->getBookmarks(0, NULL, NULL, NULL);
-?>
+$bookmarks =& $bookmarkservice->getBookmarks(0, null, null, null);
 
-<?php foreach($bookmarks['bookmarks'] as $bookmark): ?>
-<bm:Bookmark rdf:about="<?php echo createUrl('history', $bookmark['bHash']) ?>">
-  <dc:title><?php echo filter($bookmark['bTitle']) ?></dc:title>
-  <dc:created><?php echo filter($bookmark['bCreated']) ?></dc:created>
-  <dc:description><?php echo filter(strip_tags($bookmark['bDescription'])) ?></dc:description>
-  <dc:date><?php echo $bookmark['bDateTime'] ?></dc:date>
-  <bm:recalls rdf:resource="<?php echo filter($bookmark['bAddress']) ?>"/>
-  <sioc:owner_of rdf:resource="<?php echo createUrl('profile', $usersArray[$bookmark['uId']]) ?>"/>
-  <?php foreach($bookmark['tags'] as $tag): ?>
-    <sioc:topic>
-      <skos:concept rdf:about="<?php echo createUrl('bookmarks', $usersArray[$bookmark['uId']].'/'.$tag) ?>" />
-    </sioc:topic>     
-  <?php endforeach; ?>  
-</bm:Bookmark>
 
-<?php endforeach; ?>
+foreach ($bookmarks['bookmarks'] as $bookmark) { ?>
+    <bm:Bookmark rdf:about="<?php echo createUrl('history', $bookmark['bHash']) ?>">
+        <dc:title><?php echo filter($bookmark['bTitle']) ?></dc:title>
+        <dc:created><?php echo filter($bookmark['bCreated']) ?></dc:created>
+        <dc:description><?php echo filter(strip_tags($bookmark['bDescription'])) ?>
+        </dc:description>
+        <dc:date><?php echo $bookmark['bDateTime'] ?></dc:date>
+        <bm:recalls rdf:resource="<?php echo filter($bookmark['bAddress']) ?>"/>
+        <sioc:owner_of rdf:resource="<?php
+            echo createUrl('profile', $usersArray[$bookmark['uId']])
+        ?>"/>
+        <?php foreach ($bookmark['tags'] as $tag) { ?>
+            <sioc:topic>
+                <skos:concept rdf:about="<?php
+                echo createUrl('bookmarks', $usersArray[$bookmark['uId']].'/'.$tag)
+                ?>" />
+            </sioc:topic>
+        <?php } ?>  
+    </bm:Bookmark>
+    <?php
+}
 
-<?php 
 // tags and concepts are described using SKOS ontology
 //concept for user/admins, preflabel, definition, top concept
 ?>

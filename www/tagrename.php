@@ -23,7 +23,7 @@ require_once 'www-header.php';
 
 /* Service creation: only useful services are created */
 $b2tservice       = SemanticScuttle_Service_Factory :: get('Bookmark2Tag');
-$tagservice   = SemanticScuttle_Service_Factory :: get('Tag');
+$tagservice       = SemanticScuttle_Service_Factory :: get('Tag');
 $tag2tagservice   = SemanticScuttle_Service_Factory :: get('Tag2Tag');
 
 /* Managing all possible inputs */
@@ -37,42 +37,41 @@ $currentUser = $userservice->getCurrentObjectUser();
 
 /* Managing path info */
 list ($url, $tag) = explode('/', $_SERVER['PATH_INFO']);
-//$tag        = isset($_GET['query']) ? $_GET['query'] : NULL;
-$template   = 'tagrename.tpl';
+//$tag        = isset($_GET['query']) ? $_GET['query'] : null;
+$template = 'tagrename.tpl';
 
 if (POST_CONFIRM) {
-	if (trim(POST_OLD) != '') {
-		$old = trim(POST_OLD);
-	} else {
-		$old = NULL;
-	}
+    if (trim(POST_OLD) != '') {
+        $old = trim(POST_OLD);
+    } else {
+        $old = null;
+    }
 
-	if (trim(POST_NEW) != '') {
-		$new = trim(POST_NEW);
-	} else {
-		$new = NULL;
-	}
+    if (trim(POST_NEW) != '') {
+        $new = trim(POST_NEW);
+    } else {
+        $new = null;
+    }
 
-	if (
-	!is_null($old) &&
-	!is_null($new) &&
-	$tagservice->renameTag($currentUser->getId(), $old, $new) &&
-	$b2tservice->renameTag($currentUser->getId(), $old, $new) &&
-	$tag2tagservice->renameTag($currentUser->getId(), $old, $new)
-	) {
-		$tplVars['msg'] = T_('Tag renamed');
-		header('Location: '. createURL('bookmarks', $currentUser->getUsername()));
-	} else {
-		$tplVars['error'] = T_('Failed to rename the tag');
-		$template         = 'error.500.tpl';
-	}
+    if (!is_null($old)
+        && !is_null($new)
+        && $tagservice->renameTag($currentUser->getId(), $old, $new)
+        && $b2tservice->renameTag($currentUser->getId(), $old, $new)
+        && $tag2tagservice->renameTag($currentUser->getId(), $old, $new)
+    ) {
+        $tplVars['msg'] = T_('Tag renamed');
+        header('Location: '. createURL('bookmarks', $currentUser->getUsername()));
+    } else {
+        $tplVars['error'] = T_('Failed to rename the tag');
+        $template         = 'error.500.tpl';
+    }
 } elseif (POST_CANCEL) {
-	header('Location: '. createURL('bookmarks', $currentUser->getUsername() .'/'. $tags));
+    header('Location: '. createURL('bookmarks', $currentUser->getUsername() .'/'. $tags));
 } else {
-	$tplVars['subtitle']    = T_('Rename Tag') .': '. $tag;
-	$tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $tag;
-	$tplVars['referrer']    = $_SERVER['HTTP_REFERER'];
-	$tplVars['old']         = $tag;
+    $tplVars['subtitle']    = T_('Rename Tag') .': '. $tag;
+    $tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $tag;
+    $tplVars['referrer']    = $_SERVER['HTTP_REFERER'];
+    $tplVars['old']         = $tag;
 }
 $templateservice->loadTemplate($template, $tplVars);
 ?>

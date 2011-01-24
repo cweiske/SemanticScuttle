@@ -33,46 +33,42 @@ isset($_POST['title']) ? define('POST_TITLE', $_POST['title']): define('POST_TIT
 isset($_POST['description']) ? define('POST_DESCRIPTION', $_POST['description']): define('POST_DESCRIPTION', '');
 
 // prevent cycle between personal and common edit page
-if(!isset($_POST['referrer'])) {
-	define('POST_REFERRER', '');
-} elseif(strpos($_POST['referrer'], ROOT.'edit.php') == 0) {
-	define('POST_REFERRER', createUrl('history', POST_HASH));
+if (!isset($_POST['referrer'])) {
+    define('POST_REFERRER', '');
+} elseif (strpos($_POST['referrer'], ROOT.'edit.php') == 0) {
+    define('POST_REFERRER', createUrl('history', POST_HASH));
 } else {
-	define('POST_REFERRER', $_POST['referrer']);
+    define('POST_REFERRER', $_POST['referrer']);
 }
-
 
 list ($url, $hash) = explode('/', $_SERVER['PATH_INFO']);
 $template   = 'bookmarkcommondescriptionedit.tpl';
 
-
 //permissions
-if(is_null($currentUser)) {
-	$tplVars['error'] = T_('Permission denied.');
-	$templateservice->loadTemplate('error.500.tpl', $tplVars);
-	exit();
+if (is_null($currentUser)) {
+    $tplVars['error'] = T_('Permission denied.');
+    $templateservice->loadTemplate('error.500.tpl', $tplVars);
+    exit();
 }
 
 if (POST_CONFIRM) {
-	if (strlen($hash)>0 &&
-	$cdservice->addBookmarkDescription(POST_HASH, stripslashes(POST_TITLE), stripslashes(POST_DESCRIPTION), $currentUser->getId(), time())
-	) {
-		$tplVars['msg'] = T_('Bookmark common description updated');
-		header('Location: '. POST_REFERRER);
-	} else {
-		$tplVars['error'] = T_('Failed to update the bookmark common description');
-		$template         = 'error.500.tpl';
-	}
+    if (strlen($hash)>0 && $cdservice->addBookmarkDescription(POST_HASH, stripslashes(POST_TITLE), stripslashes(POST_DESCRIPTION), $currentUser->getId(), time())) {
+        $tplVars['msg'] = T_('Bookmark common description updated');
+        header('Location: '. POST_REFERRER);
+    } else {
+        $tplVars['error'] = T_('Failed to update the bookmark common description');
+        $template         = 'error.500.tpl';
+    }
 } elseif (POST_CANCEL) {
-	header('Location: '. POST_REFERRER);
+    header('Location: '. POST_REFERRER);
 } else {
-	$bkm = $bookmarkservice->getBookmarkByHash($hash);
+    $bkm = $bookmarkservice->getBookmarkByHash($hash);
 
-	$tplVars['subtitle']    = T_('Edit Bookmark Common Description') .': '. $bkm['bAddress'];
-	$tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $hash;
-	$tplVars['referrer']    = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
-	$tplVars['hash']        = $hash;
-	$tplVars['description'] = $cdservice->getLastBookmarkDescription($hash);
+    $tplVars['subtitle']    = T_('Edit Bookmark Common Description') .': '. $bkm['bAddress'];
+    $tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $hash;
+    $tplVars['referrer']    = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+    $tplVars['hash']        = $hash;
+    $tplVars['description'] = $cdservice->getLastBookmarkDescription($hash);
 }
 $templateservice->loadTemplate($template, $tplVars);
 ?>

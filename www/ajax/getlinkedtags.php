@@ -24,33 +24,36 @@ $httpContentType = 'application/json';
 require_once '../www-header.php';
 
 /* Service creation: only useful services are created */
-$b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
-$bookmarkservice =SemanticScuttle_Service_Factory::get('Tag');
-$tagstatservice =SemanticScuttle_Service_Factory::get('TagStat');
+$b2tservice = SemanticScuttle_Service_Factory::get('Bookmark2Tag');
+$bookmarkservice = SemanticScuttle_Service_Factory::get('Tag');
+$tagstatservice = SemanticScuttle_Service_Factory::get('TagStat');
 
 /* Managing all possible inputs */
 isset($_GET['tag']) ? define('GET_TAG', $_GET['tag']): define('GET_TAG', '');
 isset($_GET['uId']) ? define('GET_UID', $_GET['uId']): define('GET_UID', '');
 
 
-function displayTag($tag, $uId) {
-	$uId = ($uId==0)?NULL:$uId;  // if user is nobody, NULL allows to look for every public tags
-	
-	$tag2tagservice =SemanticScuttle_Service_Factory::get('Tag2Tag');
-	$output =  '{ id:'.rand().', name:\''.$tag.'\'';
+function displayTag($tag, $uId)
+{
+    // if user is nobody, NULL allows to look for every public tags
+    $uId = ($uId==0) ? null : $uId;
 
-	$linkedTags = $tag2tagservice->getLinkedTags($tag, '>', $uId);
-	if(count($linkedTags) > 0) {
-		$output.= ', children: [';
-		foreach($linkedTags as $linkedTag) {
-			$output.= displayTag($linkedTag, $uId);
-		}
-		$output = substr($output, 0, -1); // remove final comma avoiding IE6 Dojo bug
-		$output.= "]";
-	}
+    $tag2tagservice =SemanticScuttle_Service_Factory::get('Tag2Tag');
+    $output =  '{ id:'.rand().', name:\''.$tag.'\'';
 
-	$output.= '},';
-	return $output;
+    $linkedTags = $tag2tagservice->getLinkedTags($tag, '>', $uId);
+    if (count($linkedTags) > 0) {
+        $output.= ', children: [';
+        foreach ($linkedTags as $linkedTag) {
+            $output.= displayTag($linkedTag, $uId);
+        }
+        // remove final comma avoiding IE6 Dojo bug
+        $output = substr($output, 0, -1);
+        $output.= "]";
+    }
+
+    $output.= '},';
+    return $output;
 }
 
 ?>
@@ -58,7 +61,8 @@ function displayTag($tag, $uId) {
 { label: 'name', identifier: 'id', items: [
 <?php
 $json = displayTag(GET_TAG, intval(GET_UID));
-$json = substr($json, 0, -1); // remove final comma avoiding IE6 Dojo bug
+// remove final comma avoiding IE6 Dojo bug
+$json = substr($json, 0, -1);
 echo $json;
 ?>
 ] }

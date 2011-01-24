@@ -22,7 +22,7 @@
 require_once 'www-header.php';
 
 /* Service creation: only useful services are created */
-$tag2tagservice =SemanticScuttle_Service_Factory::get('Tag2Tag');
+$tag2tagservice = SemanticScuttle_Service_Factory::get('Tag2Tag');
 
 /* Managing current logged user */
 $currentUser = $userservice->getCurrentObjectUser();
@@ -34,37 +34,37 @@ $currentUser = $userservice->getCurrentObjectUser();
 $tplVars['msg'] = '';
 
 if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['size'] > 0) {
-	$userinfo = $userservice->getCurrentObjectUser();
+    $userinfo = $userservice->getCurrentObjectUser();
 
 
-	// File handle
-	$html = file_get_contents($_FILES['userfile']['tmp_name']);
+    // File handle
+    $html = file_get_contents($_FILES['userfile']['tmp_name']);
 
-	// Create link array
-	preg_match_all('/(.*?)\n/', $html, $matches);
+    // Create link array
+    preg_match_all('/(.*?)\n/', $html, $matches);
 
-	//print_r($matches); die();
+    //print_r($matches); die();
 
-	$fatherTag = '';
-	$countNewLinks = 0;
-	foreach($matches[1] as $match) {
-		if($match == '') {
-			// do nothing because void line
-		}elseif(substr($match, 0, 2) == '//') {
-			// do nothing because commentary
-		} elseif(substr($match, 0, 2) == '  ') {
-			// add as child of previous tag
-			if($fatherTag != '') {
-				$tag2tagservice->addLinkedTags($fatherTag, $match, '>', $currentUser->getId());
-				$countNewLinks++;
-			} else {
-				$tplVars['error'] = T_('Bad indentation'). ' '.$match;
-			}
-		} else{
-			$fatherTag = $match;
-		}
-	}
-	$tplVars['msg'] = T_('New links between tags: ').$countNewLinks;
+    $fatherTag = '';
+    $countNewLinks = 0;
+    foreach ($matches[1] as $match) {
+        if ($match == '') {
+            // do nothing because void line
+        } elseif (substr($match, 0, 2) == '//') {
+            // do nothing because commentary
+        } elseif (substr($match, 0, 2) == '  ') {
+            // add as child of previous tag
+            if ($fatherTag != '') {
+                $tag2tagservice->addLinkedTags($fatherTag, $match, '>', $currentUser->getId());
+                $countNewLinks++;
+            } else {
+                $tplVars['error'] = T_('Bad indentation'). ' '.$match;
+            }
+        } else {
+            $fatherTag = $match;
+        }
+    }
+    $tplVars['msg'] = T_('New links between tags: ').$countNewLinks;
 
 }
 

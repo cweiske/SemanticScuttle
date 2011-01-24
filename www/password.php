@@ -31,44 +31,44 @@ isset($_POST['email']) ? define('POST_EMAIL', $_POST['email']): define('POST_EMA
 // IF SUBMITTED
 if (POST_SUBMITTED != '') {
 
-	// NO USERNAME
-	if (!POST_USERNAME) {
-		$tplVars['error'] = T_('You must enter your username.');
+    // NO USERNAME
+    if (!POST_USERNAME) {
+        $tplVars['error'] = T_('You must enter your username.');
 
-		// NO E-MAIL
-	} elseif (!POST_EMAIL) {
-		$tplVars['error'] = T_('You must enter your <abbr title="electronic mail">e-mail</abbr> address.');
+        // NO E-MAIL
+    } elseif (!POST_EMAIL) {
+        $tplVars['error'] = T_('You must enter your <abbr title="electronic mail">e-mail</abbr> address.');
 
-		// USERNAME AND E-MAIL
-	} else {
+        // USERNAME AND E-MAIL
+    } else {
 
-		// NO MATCH
-		$userinfo = $userservice->getObjectUserByUsername(POST_USERNAME);
-		if ($userinfo == NULL) {
-			$tplVars['error'] = T_('No matches found for that username.');
+        // NO MATCH
+        $userinfo = $userservice->getObjectUserByUsername(POST_USERNAME);
+        if ($userinfo == null) {
+            $tplVars['error'] = T_('No matches found for that username.');
 
-		} elseif (POST_EMAIL != $userinfo->getEmail()) {
-			$tplVars['error'] = T_('No matches found for that combination of username and <abbr title="electronic mail">e-mail</abbr> address.');
+        } elseif (POST_EMAIL != $userinfo->getEmail()) {
+            $tplVars['error'] = T_('No matches found for that combination of username and <abbr title="electronic mail">e-mail</abbr> address.');
 
-			// MATCH
-		} else {
+            // MATCH
+        } else {
 
-			// GENERATE AND STORE PASSWORD
-			$password = $userservice->generatePassword($userinfo->getId());
-			if (!($password = $userservice->generatePassword($userinfo->getId()))) {
-				$tplVars['error'] = T_('There was an error while generating your new password. Please try again.');
+            // GENERATE AND STORE PASSWORD
+            $password = $userservice->generatePassword($userinfo->getId());
+            if (!($password = $userservice->generatePassword($userinfo->getId()))) {
+                $tplVars['error'] = T_('There was an error while generating your new password. Please try again.');
 
-			} else {
-				// SEND E-MAIL
-				$message = T_('Your new password is:') ."\n". $password ."\n\n". T_('To keep your bookmarks secure, you should change this password in your profile the next time you log in.');
-				$message = wordwrap($message, 70);
-				$headers = 'From: '. $adminemail;
-				$mail = mail(POST_EMAIL, sprintf(T_('%s Account Information'), $sitename), $message);
+            } else {
+                // SEND E-MAIL
+                $message = T_('Your new password is:') ."\n". $password ."\n\n". T_('To keep your bookmarks secure, you should change this password in your profile the next time you log in.');
+                $message = wordwrap($message, 70);
+                $headers = 'From: '. $adminemail;
+                $mail = mail(POST_EMAIL, sprintf(T_('%s Account Information'), $sitename), $message);
 
-				$tplVars['msg'] = sprintf(T_('New password generated and sent to %s'), POST_EMAIL);
-			}
-		}
-	}
+                $tplVars['msg'] = sprintf(T_('New password generated and sent to %s'), POST_EMAIL);
+            }
+        }
+    }
 }
 
 $templatename = 'password.tpl';

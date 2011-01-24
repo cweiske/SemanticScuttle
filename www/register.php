@@ -42,7 +42,7 @@ if (POST_SUBMITTED != '') {
     $posteduser = trim(utf8_strtolower(POST_USERNAME));
 
     // Check if form is incomplete
-    if (!($posteduser) || POST_PASS == '' || POST_MAIL == '') {    	
+    if (!($posteduser) || POST_PASS == '' || POST_MAIL == '') {
         $tplVars['error'] = T_('You <em>must</em> enter a username, password and e-mail address.');
 
     // Check if username is reserved

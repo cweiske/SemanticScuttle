@@ -35,7 +35,7 @@ exit();
 // This part below will be executed once you comment the two lines above
 /////////////////
 require_once 'www-header.php';
-$tagstatservice   = SemanticScuttle_Service_Factory :: get('TagStat');
+$tagstatservice = SemanticScuttle_Service_Factory :: get('TagStat');
 ?>
 
 <h1>Upgrade</h1>
@@ -51,11 +51,11 @@ $tagstatservice   = SemanticScuttle_Service_Factory :: get('TagStat');
   <li>3/ Complete the upgrade by clicking on the following link : <a href="upgrade.php?action=upgrade">upgrade</a></li>
 </ul>
 <?php
-if($_GET['action']=="upgrade") {
-  // Update the stats
-  $tagstatservice->updateAllStat();
-  echo "Upgrade script executed: OK!<br/><br/>";
-  echo "For security reason, don't forget to uncomment back the first lines into \"upgrade.php\"<br/><br/>";
-  echo 'In case of problem during upgrade, please use our <a href="http://sourceforge.net/tracker/?group_id=211356&atid=1017431">sourceforge page</a> to inform us. Thank you.';
+if ($_GET['action']=="upgrade") {
+    // Update the stats
+    $tagstatservice->updateAllStat();
+    echo "Upgrade script executed: OK!<br/><br/>";
+    echo "For security reason, don't forget to uncomment back the first lines into \"upgrade.php\"<br/><br/>";
+    echo 'In case of problem during upgrade, please use our <a href="http://sourceforge.net/tracker/?group_id=211356&atid=1017431">sourceforge page</a> to inform us. Thank you.';
 }
 ?>

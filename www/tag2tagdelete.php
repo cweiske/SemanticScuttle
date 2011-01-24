@@ -37,47 +37,44 @@ isset($_SERVER['HTTP_REFERER']) ? define('HTTP_REFERER', $_SERVER['HTTP_REFERER'
 $currentUser = $userservice->getCurrentObjectUser();
 
 //permissions
-if(!$userservice->isloggedOn()) {
-	$tplVars['error'] = T_('Permission denied.');
-	$templateservice->loadTemplate('error.500.tpl', $tplVars);
-	exit();
+if (!$userservice->isloggedOn()) {
+    $tplVars['error'] = T_('Permission denied.');
+    $templateservice->loadTemplate('error.500.tpl', $tplVars);
+    exit();
 }
 
 /* Managing path info */
-if(isset($_SERVER['PATH_INFO'])) {
-	$exploded = explode('/', $_SERVER['PATH_INFO']);
-	if(count($exploded) == 3) {
-		list ($url, $tag1, $tag2) = explode('/', $_SERVER['PATH_INFO']);
-	} else {
-		list ($url, $tag1) = explode('/', $_SERVER['PATH_INFO']);
-		$tag2 = '';
-	}
+if (isset($_SERVER['PATH_INFO'])) {
+    $exploded = explode('/', $_SERVER['PATH_INFO']);
+    if (count($exploded) == 3) {
+        list ($url, $tag1, $tag2) = explode('/', $_SERVER['PATH_INFO']);
+    } else {
+        list ($url, $tag1) = explode('/', $_SERVER['PATH_INFO']);
+        $tag2 = '';
+    }
 } else {
-	$url = $tag1 =  $tag2 = '';
+    $url = $tag1 = $tag2 = '';
 }
-
-
 
 if (POST_CONFIRM) {
-	$tag = POST_TAG1;
-	$linkType = POST_LINKTYPE;
-	$newTag = POST_TAG2;
-	if ($tag2tagservice->removeLinkedTags(POST_TAG1, POST_TAG2, POST_LINKTYPE, $currentUser->getId())) {
-		$tplVars['msg'] = T_('Tag link deleted');
-		header('Location: '. createURL('bookmarks', $currentUser->getUsername().'/'.$tag));
-	} else {
-		$tplVars['error'] = T_('Failed to delete the link');
-		$templateservice->loadTemplate('error.500.tpl', $tplVars);
-		exit();
-	}
+    $tag = POST_TAG1;
+    $linkType = POST_LINKTYPE;
+    $newTag = POST_TAG2;
+    if ($tag2tagservice->removeLinkedTags(POST_TAG1, POST_TAG2, POST_LINKTYPE, $currentUser->getId())) {
+        $tplVars['msg'] = T_('Tag link deleted');
+        header('Location: '. createURL('bookmarks', $currentUser->getUsername().'/'.$tag));
+    } else {
+        $tplVars['error'] = T_('Failed to delete the link');
+        $templateservice->loadTemplate('error.500.tpl', $tplVars);
+        exit();
+    }
 } elseif (POST_CANCEL) {
-	header('Location: '. createURL('bookmarks', $currentUser->getUsername() .'/'. $tags));
+    header('Location: '. createURL('bookmarks', $currentUser->getUsername() .'/'. $tags));
 }
 
-$tplVars['links']	= $tag2tagservice->getLinks($currentUser->getId());
-
-$tplVars['tag1']	= $tag1;
-$tplVars['tag2']	= $tag2;
+$tplVars['links']       = $tag2tagservice->getLinks($currentUser->getId());
+$tplVars['tag1']        = $tag1;
+$tplVars['tag2']        = $tag2;
 $tplVars['subtitle']    = T_('Delete Link Between Tags') .': '. $tag1.' > '.$tag2;
 $tplVars['formaction']  = $_SERVER['SCRIPT_NAME'];
 $tplVars['referrer']    = HTTP_REFERER;

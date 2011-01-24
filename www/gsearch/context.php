@@ -1,7 +1,21 @@
 <?php
+/**
+ * Google custom search
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
+
 require_once '../www-header.php';
 
-if($GLOBALS['enableGoogleCustomSearch'] == false) {
+if ($GLOBALS['enableGoogleCustomSearch'] == false) {
     echo "Google Custom Search disabled. You can enable it into the config.php file.";
     die;
 }

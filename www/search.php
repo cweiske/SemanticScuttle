@@ -30,8 +30,8 @@ isset($_GET['sort']) ? define('GET_SORT', $_GET['sort']): define('GET_SORT', '')
 
 // POST
 if (POST_TERMS != '') {
-	// Redirect to GET
-	header(
+    // Redirect to GET
+    header(
         'Location: '
         . createURL('search', POST_RANGE .'/'. filter(POST_TERMS, 'url'))
     );
@@ -40,23 +40,21 @@ if (POST_TERMS != '') {
 }
 
 /* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
-$searchhistoryservice =SemanticScuttle_Service_Factory::get('SearchHistory');
+$bookmarkservice = SemanticScuttle_Service_Factory::get('Bookmark');
+$searchhistoryservice = SemanticScuttle_Service_Factory::get('SearchHistory');
 
 /* Managing current logged user */
 $currentUserId = $userservice->getCurrentUserId();
 
-
-$exploded = isset($_SERVER['PATH_INFO'])
-    ? explode('/', $_SERVER['PATH_INFO']) : null;
-if(count($exploded) == 4) {
+$exploded = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : null;
+if (count($exploded) == 4) {
     list($url, $range, $terms, $page) = $exploded;
-} else if (count($exploded) == 2) {
+} elseif (count($exploded) == 2) {
     list($url, $range) = $exploded;
-    $terms = $page= NULL;
+    $terms = $page= null;
 } else {
     list($url, $range, $terms) = $exploded;
-    $page= NULL;
+    $page= null;
 }
 
 $tplVars['loadjs'] = true;
@@ -71,10 +69,10 @@ if (intval(GET_PAGE) > 1) {
     $start = 0;
 }
 
-$s_user = NULL;
-$s_start = NULL;
-$s_end = NULL;
-$s_watchlist = NULL;
+$s_user = null;
+$s_start = null;
+$s_end = null;
+$s_watchlist = null;
 
 // No search terms
 if (is_null($terms)) {
@@ -90,7 +88,7 @@ if (is_null($terms)) {
     switch ($range) {
     case 'all':
         $tplVars['select_all'] = $selected;
-        $s_user = NULL;
+        $s_user = null;
         break;
     case 'watchlist':
         $tplVars['select_watchlist'] = $selected;
@@ -105,7 +103,7 @@ if (is_null($terms)) {
     if (isset($s_user)) {
         $tplVars['user'] = $range;
         $s_user = $userservice->getIdFromUser($s_user);
-        if($s_user == NULL) {
+        if ($s_user == null) {
             $tplVars['error'] = sprintf(T_('User with username %s was not found'), $s_user);
             $templateservice->loadTemplate('error.404.tpl', $tplVars);
             exit();
@@ -114,7 +112,7 @@ if (is_null($terms)) {
     }
 }
 $bookmarks =& $bookmarkservice->getBookmarks(
-    $start, $perpage, $s_user, NULL, $terms, getSortOrder(),
+    $start, $perpage, $s_user, null, $terms, getSortOrder(),
     $s_watchlist, $s_start, $s_end
 );
 
@@ -123,9 +121,7 @@ $searchhistoryservice->addSearch(
     $terms, $range, $bookmarks['total'], $currentUserId
 );
 
-if (isset($_GET['lucky']) && $_GET['lucky']
-    && isset($bookmarks['bookmarks'][0])
-) {
+if (isset($_GET['lucky']) && $_GET['lucky'] && isset($bookmarks['bookmarks'][0])) {
     $url = $bookmarks['bookmarks'][0]['bAddress'];
     header('Location: ' . $url);
     exit();

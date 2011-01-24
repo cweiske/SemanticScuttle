@@ -22,7 +22,7 @@
 require_once 'www-header.php';
 
 /* Service creation: only useful services are created */
-$tagservice       = SemanticScuttle_Service_Factory :: get('Tag');
+$tagservice = SemanticScuttle_Service_Factory :: get('Tag');
 
 /* Managing all possible inputs */
 isset($_POST['confirm']) ? define('POST_CONFIRM', $_POST['confirm']): define('POST_CONFIRM', '');
@@ -36,33 +36,31 @@ $currentUser = $userservice->getCurrentObjectUser();
 /* Managing path info */
 list ($url, $tag) = explode('/', $_SERVER['PATH_INFO']);
 
-$template   = 'tagedit.tpl';
+$template = 'tagedit.tpl';
 
 //permissions
-if(!$userservice->isLoggedOn()) {
-	$tplVars['error'] = T_('Permission denied.');
-	$templateservice->loadTemplate('error.500.tpl', $tplVars);
-	exit();
+if (!$userservice->isLoggedOn()) {
+    $tplVars['error'] = T_('Permission denied.');
+    $templateservice->loadTemplate('error.500.tpl', $tplVars);
+    exit();
 }
 
 if (POST_CONFIRM) {
-	if ( strlen($tag)>0 &&
-	$tagservice->updateDescription($tag, $currentUser->getId(), stripslashes(POST_DESCRIPTION))
-	) {
-		$tplVars['msg'] = T_('Tag description updated');
-		header('Location: '. POST_REFERRER);
-	} else {
-		$tplVars['error'] = T_('Failed to update the tag description');
-		$template         = 'error.500.tpl';
-	}
+    if (strlen($tag)>0 && $tagservice->updateDescription($tag, $currentUser->getId(), stripslashes(POST_DESCRIPTION))) {
+        $tplVars['msg'] = T_('Tag description updated');
+        header('Location: '. POST_REFERRER);
+    } else {
+        $tplVars['error'] = T_('Failed to update the tag description');
+        $template         = 'error.500.tpl';
+    }
 } elseif (POST_CANCEL) {
-	header('Location: '. POST_REFERRER);
+    header('Location: '. POST_REFERRER);
 } else {
-	$tplVars['subtitle']    = T_('Edit Tag Description') .': '. $tag;
-	$tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $tag;
-	$tplVars['referrer']    = $_SERVER['HTTP_REFERER'];
-	$tplVars['tag']         = $tag;
-	$tplVars['description'] = $tagservice->getDescription($tag, $currentUser->getId());
+    $tplVars['subtitle']    = T_('Edit Tag Description') .': '. $tag;
+    $tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $tag;
+    $tplVars['referrer']    = $_SERVER['HTTP_REFERER'];
+    $tplVars['tag']         = $tag;
+    $tplVars['description'] = $tagservice->getDescription($tag, $currentUser->getId());
 }
 $templateservice->loadTemplate($template, $tplVars);
 ?>

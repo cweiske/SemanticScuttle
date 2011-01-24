@@ -6,7 +6,8 @@
  * uses GMT dates -- so we do too.
  *
  * del.icio.us behavior:
- * - includes an empty tag attribute on the root element when it hasn't been specified
+ * - includes an empty tag attribute on the root element
+ *   when it hasn't been specified
  *
  * Scuttle behavior:
  * - Uses today, instead of the last bookmarked date, if no date is specified
@@ -56,7 +57,9 @@ $bookmarks = $bookmarkservice->getBookmarks(
 
 // Set up the XML file and output all the tags.
 echo '<?xml version="1.0" standalone="yes" ?'.">\r\n";
-echo '<posts'. (is_null($dtstart) ? '' : ' dt="'. $dtstart .'"') .' tag="'. (is_null($tag) ? '' : filter($tag, 'xml')) .'" user="'. filter($currentUser->getUsername(), 'xml') ."\">\r\n";
+echo '<posts'. (is_null($dtstart) ? '' : ' dt="'. $dtstart .'"') .' tag="';
+echo (is_null($tag) ? '' : filter($tag, 'xml')) .'" user="';
+echo filter($currentUser->getUsername(), 'xml') ."\">\r\n";
 
 foreach ($bookmarks['bookmarks'] as $row) {
     if (is_null($row['bDescription']) || (trim($row['bDescription']) == '')) {
@@ -75,7 +78,13 @@ foreach ($bookmarks['bookmarks'] as $row) {
         $taglist = 'system:unfiled';
     }
 
-    echo "\t<post href=\"". filter($row['bAddress'], 'xml') .'" description="'. filter($row['bTitle'], 'xml') .'" '. $description .'hash="'. $row['bHash'] .'" others="'. $bookmarkservice->countOthers($row['bAddress']) .'" tag="'. filter($taglist, 'xml') .'" time="'. gmdate('Y-m-d\TH:i:s\Z', strtotime($row['bDatetime'])) ."\" />\r\n";
+    echo "\t<post href=\"". filter($row['bAddress'], 'xml');
+    echo '" description="'. filter($row['bTitle'], 'xml');
+    echo '" '. $description .'hash="'. $row['bHash'];
+    echo '" others="'. $bookmarkservice->countOthers($row['bAddress']);
+    echo '" tag="'. filter($taglist, 'xml');
+    echo '" time="'. gmdate('Y-m-d\TH:i:s\Z', strtotime($row['bDatetime'])) ."\" />";
+    echo "\r\n";
 }
 
 echo '</posts>';

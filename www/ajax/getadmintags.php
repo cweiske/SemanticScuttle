@@ -19,26 +19,22 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 
-/* Return a json file with list of tags according to current user and sort by popularity*/
+/* Return a json file with list of tags according */
+/* to current user and sort by popularity */
 $httpContentType = 'application/json';
 require_once '../www-header.php';
 
 /* Service creation: only useful services are created */
-$b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
-$bookmarkservice =SemanticScuttle_Service_Factory::get('Tag');
+$b2tservice = SemanticScuttle_Service_Factory::get('Bookmark2Tag');
+$bookmarkservice = SemanticScuttle_Service_Factory::get('Tag');
 
 ?>
 
-{identifier:"tag",
-items: [
+{identifier:"tag", items: [
 <?php
-	$listTags = $b2tservice->getAdminTags(1000, $userservice->getCurrentUserId());
-	foreach($listTags as $t) {
-		echo "{tag: \"".$t['tag']."\"},";
-	}
+$listTags = $b2tservice->getAdminTags(1000, $userservice->getCurrentUserId());
+foreach ($listTags as $t) {
+    echo "{tag: \"".$t['tag']."\"},";
+}
 ?>
 ]}
-
-
-
-

@@ -33,7 +33,7 @@ isset($_POST['tag2']) ? define('POST_TAG2', $_POST['tag2']): define('POST_TAG2',
 
 
 //permissions
-if(!$userservice->isLoggedOn()) {
+if (!$userservice->isLoggedOn()) {
     $tplVars['error'] = T_('Permission denied.');
     $templateservice->loadTemplate('error.500.tpl', $tplVars);
     exit();
@@ -58,10 +58,9 @@ if (POST_CONFIRM != '') {
     header('Location: '. createURL('bookmarks', $currentUser->getUsername() .'/'. $tags));
 }
 
-$tplVars['links']	= $tag2tagservice->getLinks($currentUser->getId());
-
-$tplVars['tag1']		= $tag1;
-$tplVars['tag2']		= '';
+$tplVars['links']       = $tag2tagservice->getLinks($currentUser->getId());
+$tplVars['tag1']        = $tag1;
+$tplVars['tag2']        = '';
 $tplVars['subtitle']    = T_('Add Tag Link') .': '. $tag1;
 $tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $tag1;
 $tplVars['referrer']    = $_SERVER['HTTP_REFERER'];

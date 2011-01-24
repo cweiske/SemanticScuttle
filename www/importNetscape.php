@@ -34,93 +34,93 @@ $countImportedBookmarks = 0;
 $tplVars['msg'] = '';
 
 if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['size'] > 0) {
-	$userinfo = $userservice->getCurrentObjectUser();
+    $userinfo = $userservice->getCurrentObjectUser();
 
-	if (is_numeric(POST_STATUS)) {
-		$status = intval(POST_STATUS);
-	} else {
-		$status = 2;
-	}
+    if (is_numeric(POST_STATUS)) {
+        $status = intval(POST_STATUS);
+    } else {
+        $status = 2;
+    }
 
-	// File handle
-	$html = file_get_contents($_FILES['userfile']['tmp_name']);
+    // File handle
+    $html = file_get_contents($_FILES['userfile']['tmp_name']);
 
-	// Create link array
-	//preg_match_all('/<a\s+(.*?)\s*\/*>([^<]*)/si', $html, $matches);
-	preg_match_all('/<a\s+(.*?)>([^<]*?)<\/a>.*?(<dd>([^<]*)|<dt>)/si', $html, $matches);
+    // Create link array
+    //preg_match_all('/<a\s+(.*?)\s*\/*>([^<]*)/si', $html, $matches);
+    preg_match_all('/<a\s+(.*?)>([^<]*?)<\/a>.*?(<dd>([^<]*)|<dt>)/si', $html, $matches);
 
-	//var_dump($matches);die();
+    //var_dump($matches);die();
 
 
-	$links = $matches[1];
-	$titles = $matches[2];
-	$descriptions = $matches[4];
+    $links = $matches[1];
+    $titles = $matches[2];
+    $descriptions = $matches[4];
 
-	$size = count($links);
-	for ($i = 0; $i < $size; $i++) {
+    $size = count($links);
+    for ($i = 0; $i < $size; $i++) {
 
-		//    	echo "<hr/>";
-		//    	echo $links[$i]."<br/>";
-			
-		preg_match_all('/(\w*\s*=\s*"[^"]*")/', $links[$i], $attributes);
-		//$attributes = $attributes[0];  // we keep just one row
+        //        echo "<hr/>";
+        //        echo $links[$i]."<br/>";
+    
+        preg_match_all('/(\w*\s*=\s*"[^"]*")/', $links[$i], $attributes);
+        //$attributes = $attributes[0];  // we keep just one row
 
-		$bDatetime = ""; //bDateTime optional
-		$bCategories = ""; //bCategories optional
+        $bDatetime = ""; //bDateTime optional
+        $bCategories = ""; //bCategories optional
 
-		foreach ($attributes[0] as $attribute) {
-			$att = preg_split('/\s*=\s*/s', $attribute, 2);
-			$attrTitle = $att[0];
+        foreach ($attributes[0] as $attribute) {
+            $att = preg_split('/\s*=\s*/s', $attribute, 2);
+            $attrTitle = $att[0];
 
-			$attrVal = eregi_replace('"', '&quot;', preg_replace('/([\'"]?)(.*)\1/', '$2', $att[1]));
+            $attrVal = eregi_replace('"', '&quot;', preg_replace('/([\'"]?)(.*)\1/', '$2', $att[1]));
 
-			switch ($attrTitle) {
-				case "HREF":
-					$bAddress = $attrVal;
-					break;
-				case "ADD_DATE":
-					$bDatetime = gmdate('Y-m-d H:i:s', $attrVal);
-					break;
-				case "TAGS":
-					$bCategories = $attrVal;
-					break;
-				case "NOTE":
-					$bPrivateNote = $attrVal;
-			}
-		}
-		$bTitle = trim($titles[$i]);
-		$bDescription = trim($descriptions[$i]);
+            switch ($attrTitle) {
+            case "HREF":
+                $bAddress = $attrVal;
+                break;
+            case "ADD_DATE":
+                $bDatetime = gmdate('Y-m-d H:i:s', $attrVal);
+                break;
+            case "TAGS":
+                $bCategories = $attrVal;
+                break;
+            case "NOTE":
+                $bPrivateNote = $attrVal;
+            }
+        }
+        $bTitle = trim($titles[$i]);
+        $bDescription = trim($descriptions[$i]);
 
-		if ($bookmarkservice->bookmarkExists($bAddress, $userservice->getCurrentUserId())) {
-			$tplVars['error'] = T_('You have already submitted some of these bookmarks.');
-		} else {
-			// If bookmark is local (like javascript: or place: in Firefox3), do nothing
-			if(substr($bAddress, 0, 7) == "http://" || substr($bAddress, 0, 8) == "https://") {
+        if ($bookmarkservice->bookmarkExists($bAddress, $userservice->getCurrentUserId())) {
+            $tplVars['error'] = T_('You have already submitted some of these bookmarks.');
+        } else {
+            // If bookmark is local (like javascript: or place: in Firefox3), do nothing
+            if (substr($bAddress, 0, 7) == "http://" || substr($bAddress, 0, 8) == "https://") {
 
-				// If bookmark claims to be from the future, set it to be now instead
-				if (strtotime($bDatetime) > time()) {
-					$bDatetime = gmdate('Y-m-d H:i:s');
-				}
+                // If bookmark claims to be from the future, set it to be now instead
+                if (strtotime($bDatetime) > time()) {
+                    $bDatetime = gmdate('Y-m-d H:i:s');
+                }
 
-				if ($bookmarkservice->addBookmark($bAddress, $bTitle, $bDescription, $bPrivateNote, $status, $bCategories, null, $bDatetime, false, true)) {
-					$countImportedBookmarks++;
-				} else {
-					$tplVars['error'] = T_('There was an error saving your bookmark. Please try again or contact the administrator.');
-				}
-			}
-		}
-	}
-	//header('Location: '. createURL('bookmarks', $userinfo->getUsername()));
-	$templatename = 'importNetscape.tpl';
-	$tplVars['msg'].= T_('Bookmarks found: ').$size.' ';
-	$tplVars['msg'].= T_('Bookmarks imported: ').' '.$countImportedBookmarks;
-	$tplVars['subtitle'] = T_('Import Bookmarks from Browser File');
-	$tplVars['formaction'] = createURL('importNetscape');
-	$templateservice->loadTemplate($templatename, $tplVars);
+                if ($bookmarkservice->addBookmark($bAddress, $bTitle, $bDescription, $bPrivateNote, $status, $bCategories, null, $bDatetime, false, true)) {
+                    $countImportedBookmarks++;
+                } else {
+                    $tplVars['error'] = T_('There was an error saving your bookmark. Please try again or contact the administrator.');
+                }
+            }
+        }
+    }
+    //header('Location: '. createURL('bookmarks', $userinfo->getUsername()));
+    $templatename = 'importNetscape.tpl';
+    $tplVars['msg'].= T_('Bookmarks found: ').$size.' ';
+    $tplVars['msg'].= T_('Bookmarks imported: ').' '.$countImportedBookmarks;
+    $tplVars['subtitle'] = T_('Import Bookmarks from Browser File');
+    $tplVars['formaction'] = createURL('importNetscape');
+    $templateservice->loadTemplate($templatename, $tplVars);
 } else {
-	$templatename = 'importNetscape.tpl';
-	$tplVars['subtitle'] = T_('Import Bookmarks from Browser File');
-	$tplVars['formaction'] = createURL('importNetscape');
-	$templateservice->loadTemplate($templatename, $tplVars);
+    $templatename = 'importNetscape.tpl';
+    $tplVars['subtitle'] = T_('Import Bookmarks from Browser File');
+    $tplVars['formaction'] = createURL('importNetscape');
+    $templateservice->loadTemplate($templatename, $tplVars);
 }
 ?>

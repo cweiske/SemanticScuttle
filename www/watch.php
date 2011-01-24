@@ -28,34 +28,34 @@ isset($_POST['contact']) ? define('POST_CONTACT', $_POST['contact']): define('PO
 isset($_GET['contact']) ? define('GET_CONTACT', $_GET['contact']): define('GET_CONTACT', '');
 
 /* Managing path info */
-@list($url, $user) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
+@list($url, $user) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : null;
 
-if($user=='' && POST_CONTACT != '') {
-	$user = POST_CONTACT;
-} elseif($user=='' && GET_CONTACT != '') {
-	$user = GET_CONTACT;
+if ($user=='' && POST_CONTACT != '') {
+    $user = POST_CONTACT;
+} elseif ($user=='' && GET_CONTACT != '') {
+    $user = GET_CONTACT;
 }
 
 if ($userservice->isLoggedOn() && $user) {
-	$pagetitle = '';
+    $pagetitle = '';
 
-	$userid = $userservice->getIdFromUser($user);
-	
-	if($userid == NULL) {
-		$tplVars['error'] = sprintf(T_('User with username %s was not found'), $user);
-		$templateservice->loadTemplate('error.404.tpl', $tplVars);
-		exit();
-	}
+    $userid = $userservice->getIdFromUser($user);
 
-	$watched = $userservice->getWatchStatus($userid, $currentUser->getId());
-	$changed = $userservice->setWatchStatus($userid);
+    if ($userid == null) {
+        $tplVars['error'] = sprintf(T_('User with username %s was not found'), $user);
+        $templateservice->loadTemplate('error.404.tpl', $tplVars);
+        exit();
+    }
 
-	if ($watched) {
-		$tplVars['msg'] = T_('User removed from your watchlist');
-	} else {
-		$tplVars['msg'] = T_('User added to your watchlist');
-	}
+    $watched = $userservice->getWatchStatus($userid, $currentUser->getId());
+    $changed = $userservice->setWatchStatus($userid);
 
-	header('Location: '. createURL('watchlist', $currentUser->getUsername()));
+    if ($watched) {
+        $tplVars['msg'] = T_('User removed from your watchlist');
+    } else {
+        $tplVars['msg'] = T_('User added to your watchlist');
+    }
+
+    header('Location: '. createURL('watchlist', $currentUser->getUsername()));
 }
 ?>

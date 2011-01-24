@@ -22,22 +22,20 @@
 require_once 'www-header.php';
 
 /* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
-$cacheservice =SemanticScuttle_Service_Factory::get('Cache');
+$bookmarkservice = SemanticScuttle_Service_Factory::get('Bookmark');
+$cacheservice    = SemanticScuttle_Service_Factory::get('Cache');
 
 /* Managing all possible inputs */
 isset($_GET['action']) ? define('GET_ACTION', $_GET['action']): define('GET_ACTION', '');
 isset($_GET['page']) ? define('GET_PAGE', $_GET['page']): define('GET_PAGE', 0);
 isset($_GET['sort']) ? define('GET_SORT', $_GET['sort']): define('GET_SORT', '');
 
-
 // Logout action
 if (GET_ACTION == "logout") {
-	$userservice->logout();
-	$tplVars['currentUser'] = null;
-	$tplvars['msg'] = T_('You have now logged out');
+    $userservice->logout();
+    $tplVars['currentUser'] = null;
+    $tplvars['msg'] = T_('You have now logged out');
 }
-
 
 // Header variables
 $tplVars['loadjs'] = true;
@@ -46,25 +44,25 @@ array(sprintf(T_('%s: Recent bookmarks'), $sitename), createURL('rss').'?sort='.
 );
 
 if ($usecache) {
-	// Generate hash for caching on
-	$hashtext = $_SERVER['REQUEST_URI'];
-	if ($userservice->isLoggedOn()) {
-		$hashtext .= $userservice->getCurrentUserID();
-	}
-	$hash = md5($hashtext);
+    // Generate hash for caching on
+    $hashtext = $_SERVER['REQUEST_URI'];
+    if ($userservice->isLoggedOn()) {
+        $hashtext .= $userservice->getCurrentUserID();
+    }
+        $hash = md5($hashtext);
 
-	// Cache for 15 minutes
-	$cacheservice->Start($hash, 900);
+    // Cache for 15 minutes
+    $cacheservice->Start($hash, 900);
 }
 
 // Pagination
 $perpage = getPerPageCount($currentUser);
 if (intval(GET_PAGE) > 1) {
-	$page = intval(GET_PAGE);
-	$start = ($page - 1) * $perpage;
+    $page = intval(GET_PAGE);
+    $start = ($page - 1) * $perpage;
 } else {
-	$page = 0;
-	$start = 0;
+    $page = 0;
+    $start = 0;
 }
 
 $tplVars['page']     = $page;
@@ -76,7 +74,7 @@ $tplVars['pagetitle'] = T_('Store, share and tag your favourite links');
 $tplVars['subtitle']  = T_('All Bookmarks');
 $tplVars['bookmarkCount'] = $start + 1;
 
-$bookmarks = $bookmarkservice->getBookmarks($start, $perpage, NULL, NULL, NULL, getSortOrder(), NULL, 0, NULL);
+$bookmarks = $bookmarkservice->getBookmarks($start, $perpage, null, null, null, getSortOrder(), null, 0, null);
 
 $tplVars['total'] = $bookmarks['total'];
 $tplVars['bookmarks'] =& $bookmarks['bookmarks'];
@@ -90,7 +88,7 @@ $tplVars['currenttag'] = '';
 $templateservice->loadTemplate('bookmarks.tpl', $tplVars);
 
 if ($usecache) {
-	// Cache output if existing copy has expired
-	$cacheservice->End($hash);
+    // Cache output if existing copy has expired
+    $cacheservice->End($hash);
 }
 ?>

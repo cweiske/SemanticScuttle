@@ -33,17 +33,18 @@ isset($_POST['username']) ? define('POST_USERNAME', $_POST['username']): define(
 isset($_POST['password']) ? define('POST_PASSWORD', $_POST['password']): define('POST_PASSWORD', '');
 isset($_POST['query']) ? define('POST_QUERY', $_POST['query']): define('POST_QUERY', '');
 
-$keeppass = (POST_KEEPPASS=='yes')?true:false;
+$keeppass = (POST_KEEPPASS=='yes') ? true : false;
 
 $login = false;
 if (POST_SUBMITTED!='' && POST_USERNAME!='' && POST_PASSWORD!='') {
     $posteduser = trim(utf8_strtolower(POST_USERNAME));
     $login = $userservice->login($posteduser, POST_PASSWORD, $keeppass); 
     if ($login) {
-        if (POST_QUERY)
+        if (POST_QUERY) {
             header('Location: '. createURL('bookmarks', $posteduser .'?'. POST_QUERY));
-        else
+        } else {
             header('Location: '. createURL('bookmarks', $posteduser));
+        }
     } else {
         $tplVars['error'] = T_('The details you have entered are incorrect. Please try again.');
     }

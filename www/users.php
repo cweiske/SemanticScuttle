@@ -22,8 +22,8 @@
 require_once 'www-header.php';
 
 /* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
-$cacheservice =SemanticScuttle_Service_Factory::get('Cache');
+$bookmarkservice = SemanticScuttle_Service_Factory::get('Bookmark');
+$cacheservice    = SemanticScuttle_Service_Factory::get('Cache');
 
 /* Managing current logged user */
 $currentUser = $userservice->getCurrentObjectUser();
@@ -31,15 +31,15 @@ $currentUser = $userservice->getCurrentObjectUser();
 $pagetitle = T_('Users');
 
 if ($usecache) {
-	// Generate hash for caching on
-	if ($userservice->isLoggedOn()) {
-		$hash = md5($_SERVER['REQUEST_URI'] . $currentUser->getId());
-	} else {
-		$hash = md5($_SERVER['REQUEST_URI']);
-	}
+    // Generate hash for caching on
+    if ($userservice->isLoggedOn()) {
+        $hash = md5($_SERVER['REQUEST_URI'] . $currentUser->getId());
+    } else {
+        $hash = md5($_SERVER['REQUEST_URI']);
+    }
 
-	// Cache for 30 minutes
-	$cacheservice->Start($hash, 1800);
+    // Cache for 30 minutes
+    $cacheservice->Start($hash, 1800);
 }
 
 // Header variables
@@ -56,7 +56,7 @@ $tplVars['users'] =& $userservice->getUsers();
 $templateservice->loadTemplate('users.tpl', $tplVars);
 
 if ($usecache) {
-	// Cache output if existing copy has expired
-	$cacheservice->End($hash);
+    // Cache output if existing copy has expired
+    $cacheservice->End($hash);
 }
 ?>

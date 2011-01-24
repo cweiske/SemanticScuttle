@@ -1,32 +1,49 @@
 <?php
-// Implements the del.icio.us API request to rename a user's tag.
-
-// del.icio.us behavior:
-// - oddly, returns an entirely different result (<result></result>) than the other API calls.
+/**
+ * Implements the del.icio.us API request to rename a user's tag.
+ *
+ * del.icio.us behavior:
+ * - oddly, returns an entirely different result (<result></result>) than
+ *   the other API calls.
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
 
 // Force HTTP authentication first!
 $httpContentType = 'text/xml';
 require_once 'httpauth.inc.php';
 
 /* Service creation: only useful services are created */
-$b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
+$b2tservice = SemanticScuttle_Service_Factory::get('Bookmark2Tag');
 
 // Get the tag info.
-if (isset($_REQUEST['old']) && (trim($_REQUEST['old']) != ''))
+if (isset($_REQUEST['old']) && (trim($_REQUEST['old']) != '')) {
     $old = trim($_REQUEST['old']);
-else
-    $old = NULL;
+} else {
+    $old = null;
+}
 
-if (isset($_REQUEST['new']) && (trim($_REQUEST['new']) != ''))
+if (isset($_REQUEST['new']) && (trim($_REQUEST['new']) != '')) {
     $new = trim($_REQUEST['new']);
-else
-    $new = NULL;
+} else {
+    $new = null;
+}
 
 if (is_null($old) || is_null($new)) {
     $renamed = false;
 } else {
     // Rename the tag.
-    $result = $b2tservice->renameTag($userservice->getCurrentUserId(), $old, $new, true);
+    $result = $b2tservice->renameTag(
+        $userservice->getCurrentUserId(), $old, $new, true
+    );
     $renamed = $result;
 }
 

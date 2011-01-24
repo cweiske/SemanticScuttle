@@ -38,7 +38,8 @@ $bookmarks = $bookmarkservice->getBookmarks(
 
 //	Set up the XML file and output all the tags.
 echo '<?xml version="1.0" standalone="yes" ?'.">\r\n";
-echo '<dates tag="'. (is_null($tag) ? '' : filter($tag, 'xml')) .'" user="'. filter($currentUser->getUsername(), 'xml') ."\">\r\n";
+echo '<dates tag="'. (is_null($tag) ? '' : filter($tag, 'xml'));
+echo '" user="'. filter($currentUser->getUsername(), 'xml') ."\">\r\n";
 
 $lastdate = null;
 $count    = 0;

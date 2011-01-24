@@ -45,21 +45,18 @@ $tplVars['pagetitle'] = T_('Edit Bookmark');
 $tplVars['subtitle'] = T_('Edit Bookmark');
 $tplVars['loadjs'] = true;
 
-list ($url, $bookmark) = explode('/', $_SERVER['PATH_INFO']);	
+list ($url, $bookmark) = explode('/', $_SERVER['PATH_INFO']);
 
 if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
     $tplVars['error'] = sprintf(T_('Bookmark with id %s not was not found'), $bookmark);
     $templateservice->loadTemplate('error.404.tpl', $tplVars);
     exit();
 } else {
-
     if (!$bookmarkservice->editAllowed($row)) {
         $tplVars['error'] = T_('You are not allowed to edit this bookmark');
         $templateservice->loadTemplate('error.500.tpl', $tplVars);
         exit();
     } else if (POST_SUBMITTED != '') {
-    
-    	
     
         if (!POST_TITLE || !POST_ADDRESS) {
             $tplVars['error'] = T_('Your bookmark must have a title and an address');
@@ -80,10 +77,10 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
                     //$tplVars['msg'] = (POST_POPUP != '') ? '<script type="text/javascript">window.close();</script>' : T_('Bookmark saved');
                     $tplVars['msg'] = '<script type="text/javascript">window.close();</script>';
                 } elseif (POST_REFERRER != '') {
-                	$tplVars['msg'] = T_('Bookmark saved');
+                    $tplVars['msg'] = T_('Bookmark saved');
                     header('Location: '. POST_REFERRER);
                 } else {
-                	$tplVars['msg'] = T_('Bookmark saved');
+                    $tplVars['msg'] = T_('Bookmark saved');
                     header('Location: '. createURL('bookmarks', $currentUser->getUsername()));
                 }
             }
@@ -92,9 +89,9 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
         if (POST_DELETE != '') {
             // Delete bookmark
             if ($bookmarkservice->deleteBookmark($bookmark)) {
-            	if (POST_POPUP != '') {            		
-            		$tplVars['msg'] = '<script type="text/javascript">window.close();</script>';
-            	} elseif (POST_REFERRER != '') {
+                if (POST_POPUP != '') {
+                    $tplVars['msg'] = '<script type="text/javascript">window.close();</script>';
+                } elseif (POST_REFERRER != '') {
                     header('Location: '. POST_REFERRER);
                 } else {
                     header('Location: '. createURL('bookmarks', $currentUser->getUsername()));

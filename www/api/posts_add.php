@@ -2,7 +2,10 @@
 /**
  * API for adding a new bookmark.
  *
+ * PHP version 5.
+ *
  * The following POST and GET parameters are accepted:
+ *
  * @param string  $url         URL of the bookmark (required)
  * @param string  $description Bookmark title (required)
  * @param string  $extended    Extended bookmark description (optional)
@@ -28,8 +31,6 @@
  *
  * SemanticScuttle - your social bookmark manager.
  *
- * PHP version 5.
- *
  * @category Bookmarking
  * @package  SemanticScuttle
  * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
@@ -38,7 +39,7 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  * @link     http://www.delicious.com/help/api
- */
+*/
 
 // Force HTTP authentication
 $httpContentType = 'text/xml';

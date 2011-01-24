@@ -29,32 +29,31 @@ $tag2tagservice = SemanticScuttle_Service_Factory :: get('Tag2Tag');
 isset($_SERVER['HTTP_REFERER']) ? define('HTTP_REFERER', $_SERVER['HTTP_REFERER']): define('HTTP_REFERER', '');
 
 //permissions
-if(!$userservice->loggedOn()) {
+if (!$userservice->loggedOn()) {
     $tplVars['error'] = T_('Permission denied.');
     $templateservice->loadTemplate('error.500.tpl', $tplVars);
     exit();
 }
 
 /* Managing path info */
-if(isset($_SERVER['PATH_INFO'])) {
-	$exploded = explode('/', $_SERVER['PATH_INFO']);
-	if(count($exploded) == 3) {
-		list ($url, $tag1, $tag2) = explode('/', $_SERVER['PATH_INFO']);
-	} else {
-		list ($url, $tag1) = explode('/', $_SERVER['PATH_INFO']);
-		$tag2 = '';
-	}
+if (isset($_SERVER['PATH_INFO'])) {
+    $exploded = explode('/', $_SERVER['PATH_INFO']);
+    if (count($exploded) == 3) {
+        list ($url, $tag1, $tag2) = explode('/', $_SERVER['PATH_INFO']);
+    } else {
+        list ($url, $tag1) = explode('/', $_SERVER['PATH_INFO']);
+        $tag2 = '';
+    }
 } else {
-	$url = $tag1 =  $tag2 = '';
+    $url = $tag1 = $tag2 = '';
 }
 
-$tplVars['links']	= $tag2tagservice->getLinks($userservice->getCurrentUserId());
-
-$tplVars['tag1']	= $tag1;
-$tplVars['tag2']	= $tag2;
-$tplVars['subtitle']    = T_('Edit Link Between Tags') .': '. $tag1.' > '.$tag2;
-$tplVars['formaddaction']  = createUrl('tag2tagadd');
+$tplVars['links']             = $tag2tagservice->getLinks($userservice->getCurrentUserId());
+$tplVars['tag1']              = $tag1;
+$tplVars['tag2']              = $tag2;
+$tplVars['subtitle']          = T_('Edit Link Between Tags') .': '. $tag1.' > '.$tag2;
+$tplVars['formaddaction']     = createUrl('tag2tagadd');
 $tplVars['formdeleteaction']  = createUrl('tag2tagdelete');
-$tplVars['referrer']    = HTTP_REFERER;
+$tplVars['referrer']          = HTTP_REFERER;
 $templateservice->loadTemplate('tag2tagedit.tpl', $tplVars);
 ?>

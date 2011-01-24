@@ -56,7 +56,8 @@ $bookmarks = $bookmarkservice->getBookmarks(
 
 // Set up the XML file and output all the tags.
 echo '<?xml version="1.0" standalone="yes" ?'.">\r\n";
-echo '<posts tag="'. (is_null($tag) ? '' : filter($tag, 'xml')) .'" user="'. filter($currentUser->getUsername(), 'xml') ."\">\r\n";
+echo '<posts tag="'. (is_null($tag) ? '' : filter($tag, 'xml'));
+echo '" user="'. filter($currentUser->getUsername(), 'xml') ."\">\r\n";
 
 foreach ($bookmarks['bookmarks'] as $row) {
     if (is_null($row['bDescription']) || (trim($row['bDescription']) == '')) {
@@ -75,7 +76,12 @@ foreach ($bookmarks['bookmarks'] as $row) {
         $taglist = 'system:unfiled';
     }
 
-    echo "\t<post href=\"". filter($row['bAddress'], 'xml') .'" description="'. filter($row['bTitle'], 'xml') .'" '. $description .'hash="'. $row['bHash'] .'" tag="'. filter($taglist, 'xml') .'" time="'. gmdate('Y-m-d\TH:i:s\Z', strtotime($row['bDatetime'])) ."\" />\r\n";
+    echo "\t<post href=\"". filter($row['bAddress'], 'xml');
+    echo '" description="'. filter($row['bTitle'], 'xml');
+    echo '" '. $description .'hash="'. $row['bHash'];
+    echo '" tag="'. filter($taglist, 'xml');
+    echo '" time="'. gmdate('Y-m-d\TH:i:s\Z', strtotime($row['bDatetime'])) ."\" />";
+    echo "\r\n";
 }
 
 echo '</posts>';
