@@ -33,8 +33,6 @@ class SemanticScuttle_Service
      */
     protected $db;
 
-
-
     /**
      * Returns the single service instance
      *
@@ -47,14 +45,14 @@ class SemanticScuttle_Service
      *
      * @return SemanticScuttle_Service
      */
-	public static function getInstance($db)
+    public static function getInstance($db)
     {
-		static $instance;
-		if (!isset($instance)) {
+        static $instance;
+        if (!isset($instance)) {
             $instance = new self($db);
         }
-		return $instance;
-	}
+        return $instance;
+    }
 
 }
 ?>

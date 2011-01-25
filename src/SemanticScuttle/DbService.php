@@ -16,7 +16,7 @@
  *
  * @category Bookmarking
  * @package  SemanticScuttle
- * @author Christian Weiske <cweiske@cweiske.de>
+ * @author   Christian Weiske <cweiske@cweiske.de>
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */

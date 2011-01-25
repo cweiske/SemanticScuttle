@@ -4,7 +4,7 @@ $this->includeTemplate($GLOBALS['top_include']);
 
 <ul>
 <li><?php echo T_('<strong>Store</strong> all your favourite links in one place, accessible from anywhere.'); ?></li>
-<li><?php echo T_('<strong>Share</strong> your bookmarks with everyone, with friends on your watchlist or just keep them private.') ;?></li>
+<li><?php echo T_('<strong>Share</strong> your bookmarks with everyone, with friends on your watchlist or just keep them private.'); ?></li>
 <li><?php echo T_('<strong>Tag</strong> your bookmarks with as many labels as you want, instead of wrestling with folders.'); ?></li>
 <li><?php echo sprintf('<strong><a href="'.createURL('register').'">'.T_('Register now').'</a> </strong>'.T_(' to start using %s!'), $GLOBALS['sitename']); ?></li>
 </ul>
@@ -16,9 +16,11 @@ $this->includeTemplate($GLOBALS['top_include']);
 
 
 
-<?php if(!is_null($currentUser) && $currentUser->isAdmin()): ?>
-<li>SemanticScuttle v0.97.0</li>
-<?php endif ?>
+<?php
+if (!is_null($currentUser) && $currentUser->isAdmin()) {
+    echo "<li>SemanticScuttle v0.97.0</li>";
+}
+?>
 </ul>
 
 <h3><?php echo T_('Tips'); ?></h3>

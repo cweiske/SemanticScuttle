@@ -121,7 +121,7 @@ class SemanticScuttle_Model_User
     public function getHomepage()
     {
         // Look for value only if not already set
-        if(!isset($this->homepage)) {
+        if (!isset($this->homepage)) {
             $us = SemanticScuttle_Service_Factory::get('User');
             $user = $us->getUser($this->id);
             $this->homepage = $user['homepage'];
@@ -137,7 +137,7 @@ class SemanticScuttle_Model_User
     public function getContent()
     {
         // Look for value only if not already set
-        if(!isset($this->content)) {
+        if (!isset($this->content)) {
             $us = SemanticScuttle_Service_Factory::get('User');
             $user = $us->getUser($this->id);
             $this->content = $user['uContent'];
@@ -154,7 +154,7 @@ class SemanticScuttle_Model_User
     public function getDatetime()
     {
         // Look for value only if not already set
-        if(!isset($this->content)) {
+        if (!isset($this->content)) {
             $us = SemanticScuttle_Service_Factory::get('User');
             $user = $us->getUser($this->id);
             $this->datetime = $user['uDatetime'];
@@ -170,7 +170,7 @@ class SemanticScuttle_Model_User
     public function isAdmin()
     {
         // Look for value only if not already set
-        if(!isset($this->isAdmin)) {
+        if (!isset($this->isAdmin)) {
             $us = SemanticScuttle_Service_Factory::get('User');
             $this->isAdmin = $us->isAdmin($this->username);
         }

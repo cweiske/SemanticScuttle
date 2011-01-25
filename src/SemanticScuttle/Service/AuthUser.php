@@ -86,7 +86,7 @@ class SemanticScuttle_Service_AuthUser extends SemanticScuttle_Service_User
     /**
      * Create new instance
      *
-     * @var sql_db $db Database object
+     * @param sql_db $db Database object
      */
     protected function __construct($db)
     {
@@ -208,7 +208,7 @@ class SemanticScuttle_Service_AuthUser extends SemanticScuttle_Service_User
         }
 
         return true;
-     }
+    }
 
 
 

@@ -32,12 +32,12 @@ $this->includeTemplate($GLOBALS['top_include']);
 include('search.menu.php');
 ?>
 
-<?php if($pageName == PAGE_INDEX && $GLOBALS['welcomeMessage']):?>
+<?php if ($pageName == PAGE_INDEX && $GLOBALS['welcomeMessage']):?>
 <p id="welcome"><?php echo $GLOBALS['welcomeMessage'];?></p>
 <?php endif?>
 
 
-<?php if($GLOBALS['enableAdminColors']!=false && isset($userid) && $userservice->isAdmin($userid) && $pageName != PAGE_WATCHLIST) : ?>
+<?php if ($GLOBALS['enableAdminColors']!=false && isset($userid) && $userservice->isAdmin($userid) && $pageName != PAGE_WATCHLIST) : ?>
 <div style="width:70%;text-align:center;">
 <img src="<?php echo ROOT ?>images/logo_24.gif" width="12px"/> <?php echo T_('Bookmarks on this page are managed by an admin user.'); ?><img src="<?php echo ROOT ?>images/logo_24.gif" width="12px"/>
 </div>
@@ -46,31 +46,31 @@ include('search.menu.php');
 
 <?php
 // common tag description
-if(($currenttag!= '' && $GLOBALS['enableCommonTagDescription'])
+if (($currenttag!= '' && $GLOBALS['enableCommonTagDescription'])
 || (isset($hash) && $GLOBALS['enableCommonBookmarkDescription'])):?>
 
 
 <p class="commondescription"><?php
 $cDescription = '';
-if($currenttag!= '' && $cdservice->getLastTagDescription($currenttag)) {
-	$cDescription = $cdservice->getLastTagDescription($currenttag);
-	echo nl2br(filter($cDescription['cdDescription']));
-} elseif(isset($hash) && $cdservice->getLastBookmarkDescription($hash)) {
-	$cDescription = $cdservice->getLastBookmarkDescription($hash);
-	echo nl2br(filter($cDescription['cdTitle'])). "<br/>";
-	echo nl2br(filter($cDescription['cdDescription'])). "<br/>";
+if ($currenttag!= '' && $cdservice->getLastTagDescription($currenttag)) {
+    $cDescription = $cdservice->getLastTagDescription($currenttag);
+    echo nl2br(filter($cDescription['cdDescription']));
+} elseif (isset($hash) && $cdservice->getLastBookmarkDescription($hash)) {
+    $cDescription = $cdservice->getLastBookmarkDescription($hash);
+    echo nl2br(filter($cDescription['cdTitle'])). "<br/>";
+    echo nl2br(filter($cDescription['cdDescription'])). "<br/>";
 }
 
 //common tag description edit
-if($userservice->isLoggedOn()) {
-	if($currenttag!= '' && ($GLOBALS['enableCommonTagDescriptionEditedByAll'] || $currentUser->isAdmin())) {
-		echo ' <a href="'. createURL('tagcommondescriptionedit', $currenttag).'" title="'.T_('Edit the common description of this tag').'">';
-		echo !is_array($cDescription) || strlen($cDescription['cdDescription'])==0?T_('Edit the common description of this tag'):'';
-		echo ' <img src="'.ROOT.'images/b_edit.png" /></a>';
-	} elseif(isset($hash)) {
-		echo ' (<a href="'.createURL('bookmarkcommondescriptionedit', $hash).'" title="'.T_('Edit the common description of this bookmark').'">';
-		echo T_('Edit the common description of this bookmark').'</a>)';
-	}
+if ($userservice->isLoggedOn()) {
+    if ($currenttag!= '' && ($GLOBALS['enableCommonTagDescriptionEditedByAll'] || $currentUser->isAdmin())) {
+    echo ' <a href="'. createURL('tagcommondescriptionedit', $currenttag).'" title="'.T_('Edit the common description of this tag').'">';
+    echo !is_array($cDescription) || strlen($cDescription['cdDescription'])==0?T_('Edit the common description of this tag'):'';
+    echo ' <img src="'.ROOT.'images/b_edit.png" /></a>';
+    } elseif (isset($hash)) {
+    echo ' (<a href="'.createURL('bookmarkcommondescriptionedit', $hash).'" title="'.T_('Edit the common description of this bookmark').'">';
+    echo T_('Edit the common description of this bookmark').'</a>)';
+    }
 }
 ?></p>
 <?php endif ?>
@@ -78,26 +78,26 @@ if($userservice->isLoggedOn()) {
 
 <?php
 /* personal tag description */
-if($currenttag!= '' && $user!='') {
-	$userObject = $userservice->getUserByUsername($user);
-	if($tagservice->getDescription($currenttag, $userObject['uId'])) { ?>
+if ($currenttag!= '' && $user!='') {
+    $userObject = $userservice->getUserByUsername($user);
+    if ($tagservice->getDescription($currenttag, $userObject['uId'])) { ?>
 
 <p class="commondescription"><?php
 $pDescription = $tagservice->getDescription($currenttag, $userObject['uId']);
 echo nl2br(filter($pDescription['tDescription']));
 
 //personal tag description edit
-if($userservice->isLoggedOn()) {
-	if($currenttag!= '') {
-		echo ' <a href="'. createURL('tagedit', $currenttag).'" title="'.T_('Edit your personal description of this tag').'" >';
-		echo strlen($pDescription['tDescription'])==0?T_('Edit your personal description of this tag'):'';
-		echo ' <img src="'.ROOT.'images/b_edit.png" /></a>';
-	}
+if ($userservice->isLoggedOn()) {
+    if ($currenttag!= '') {
+    echo ' <a href="'. createURL('tagedit', $currenttag).'" title="'.T_('Edit your personal description of this tag').'" >';
+    echo strlen($pDescription['tDescription'])==0?T_('Edit your personal description of this tag'):'';
+    echo ' <img src="'.ROOT.'images/b_edit.png" /></a>';
+    }
 }
 ?></p>
 
 <?php
-	}
+    }
 }
 ?>
 
@@ -115,37 +115,37 @@ $dateSort    = 'date_desc';
 $titleSort   = 'title_asc';
 $votingSort  = 'voting_desc';
 
-switch(getSortOrder()) {
+switch (getSortOrder()) {
 case 'date_asc':
-	$dateArrow = ' &uarr;';
-	$dateSort  = 'date_desc';
-	break;
+    $dateArrow = ' &uarr;';
+    $dateSort  = 'date_desc';
+    break;
 
 case 'title_asc':
-	$titleArrow = ' &uarr;';
-	$titleSort  = 'title_desc';
-	break;
+    $titleArrow = ' &uarr;';
+    $titleSort  = 'title_desc';
+    break;
 
 case 'title_desc':
-	$titleArrow = ' &darr;';
-	$titleSort  = 'title_asc';
-	break;
+    $titleArrow = ' &darr;';
+    $titleSort  = 'title_asc';
+    break;
 
 case 'voting_asc':
-	$votingArrow = ' &uarr;';
-	$votingSort  = 'voting_desc';
-	break;
+    $votingArrow = ' &uarr;';
+    $votingSort  = 'voting_desc';
+    break;
 
 case 'voting_desc':
-	$votingArrow = ' &darr;';
-	$votingSort  = 'voting_asc';
-	break;
+    $votingArrow = ' &darr;';
+    $votingSort  = 'voting_asc';
+    break;
 
 case 'date_desc':
 default:
-	$dateArrow = ' &darr;';
-	$dateSort = 'date_asc';
-	break;
+    $dateArrow = ' &darr;';
+    $dateSort = 'date_asc';
+    break;
 }
 ?>
  <a href="?sort=<?php echo $dateSort ?>"><?php echo T_("Date").$dateArrow; ?></a>
@@ -159,73 +159,73 @@ default:
 
 <?php
 if ($currenttag!= '') {
-	if ($user!= '') {
-		echo ' - ';
-		echo '<a href="'. createURL('tags', $currenttag) .'">';
-		echo T_('Bookmarks from other users for this tag').'</a>';
-		//echo T_(' for these tags');
-	} else if ($userservice->isLoggedOn()){
-		echo ' - ';
-		echo '<a href="'. createURL('bookmarks', $currentUser->getUsername().'/'.$currenttag) .'">';
-		echo T_('Only your bookmarks for this tag').'</a>';
-		//echo T_(' for these tags');
-	}
+    if ($user!= '') {
+    echo ' - ';
+    echo '<a href="'. createURL('tags', $currenttag) .'">';
+    echo T_('Bookmarks from other users for this tag').'</a>';
+    //echo T_(' for these tags');
+    } else if ($userservice->isLoggedOn()){
+    echo ' - ';
+    echo '<a href="'. createURL('bookmarks', $currentUser->getUsername().'/'.$currenttag) .'">';
+    echo T_('Only your bookmarks for this tag').'</a>';
+    //echo T_(' for these tags');
+    }
 }
 ?></p>
 
 <?php
-	// PAGINATION
+    // PAGINATION
 
-	// Ordering
-	$sortOrder = '';
-	if (GET_SORT != '') {
-		$sortOrder = 'sort=' . getSortOrder();
-	}
+    // Ordering
+    $sortOrder = '';
+    if (GET_SORT != '') {
+        $sortOrder = 'sort=' . getSortOrder();
+    }
 
-	$sortAmp = (($sortOrder) ? '&amp;'. $sortOrder : '');
-	$sortQue = (($sortOrder) ? '?'. $sortOrder : '');
+    $sortAmp = (($sortOrder) ? '&amp;'. $sortOrder : '');
+    $sortQue = (($sortOrder) ? '?'. $sortOrder : '');
 
-	// Previous
-	$perpage = getPerPageCount($currentUser);
-	if (!$page || $page < 2) {
-		$page = 1;
-		$start = 0;
-		$bfirst = '<span class="disable">'. T_('First') .'</span>';
-		$bprev = '<span class="disable">'. T_('Previous') .'</span>';
-	} else {
-		$prev = $page - 1;
-		$prev = 'page='. $prev;
-		$start = ($page - 1) * $perpage;
-		$bfirst= '<a href="'. sprintf($nav_url, $user, $currenttag, '') . $sortQue .'">'. T_('First') .'</a>';
-		$bprev = '<a href="'. sprintf($nav_url, $user, $currenttag, '?') . $prev . $sortAmp .'">'. T_('Previous') .'</a>';
-	}
+    // Previous
+    $perpage = getPerPageCount($currentUser);
+    if (!$page || $page < 2) {
+        $page = 1;
+        $start = 0;
+        $bfirst = '<span class="disable">'. T_('First') .'</span>';
+        $bprev = '<span class="disable">'. T_('Previous') .'</span>';
+    } else {
+        $prev = $page - 1;
+        $prev = 'page='. $prev;
+        $start = ($page - 1) * $perpage;
+        $bfirst= '<a href="'. sprintf($nav_url, $user, $currenttag, '') . $sortQue .'">'. T_('First') .'</a>';
+        $bprev = '<a href="'. sprintf($nav_url, $user, $currenttag, '?') . $prev . $sortAmp .'">'. T_('Previous') .'</a>';
+    }
 
-	// Next
-	$next = $page + 1;
-	$totalpages = ceil($total / $perpage);
-	if (count($bookmarks) < $perpage || $perpage * $page == $total) {
-		$bnext = '<span class="disable">'. T_('Next') .'</span>';
-		$blast = '<span class="disable">'. T_('Last') ."</span>\n";
-	} else {
-		$bnext = '<a href="'. sprintf($nav_url, $user, $currenttag, '?page=') . $next . $sortAmp .'">'. T_('Next') .'</a>';
-		$blast = '<a href="'. sprintf($nav_url, $user, $currenttag, '?page=') . $totalpages . $sortAmp .'">'. T_('Last') ."</a>\n";
-	}
+    // Next
+    $next = $page + 1;
+    $totalpages = ceil($total / $perpage);
+    if (count($bookmarks) < $perpage || $perpage * $page == $total) {
+        $bnext = '<span class="disable">'. T_('Next') .'</span>';
+        $blast = '<span class="disable">'. T_('Last') ."</span>\n";
+    } else {
+        $bnext = '<a href="'. sprintf($nav_url, $user, $currenttag, '?page=') . $next . $sortAmp .'">'. T_('Next') .'</a>';
+        $blast = '<a href="'. sprintf($nav_url, $user, $currenttag, '?page=') . $totalpages . $sortAmp .'">'. T_('Last') ."</a>\n";
+    }
 
-	// RSS
-	$brss = '';
-	$size = count($rsschannels);
-	for ($i = 0; $i < $size; $i++) {
-		$brss =  '<a style="background:#FFFFFF" href="'. htmlspecialchars($rsschannels[$i][1]) . '"'
+    // RSS
+    $brss = '';
+    $size = count($rsschannels);
+    for ($i = 0; $i < $size; $i++) {
+        $brss =  '<a style="background:#FFFFFF" href="'. htmlspecialchars($rsschannels[$i][1]) . '"'
             . ' title="' . htmlspecialchars($rsschannels[$i][0]) . '">'
             . '<img src="' . ROOT . 'images/rss.gif" width="16" height="16" alt="' . htmlspecialchars($rsschannels[$i][0]) .'"/>'
             . '</a>';
-	}
+    }
 
-	$pagesBanner = '<p class="paging">'. $bfirst .'<span> / </span>'. $bprev .'<span> / </span>'. $bnext .'<span> / </span>'. $blast .'<span> / </span>'. sprintf(T_('Page %d of %d'), $page, $totalpages) ." ". $brss ." </p>\n";
+    $pagesBanner = '<p class="paging">'. $bfirst .'<span> / </span>'. $bprev .'<span> / </span>'. $bnext .'<span> / </span>'. $blast .'<span> / </span>'. sprintf(T_('Page %d of %d'), $page, $totalpages) ." ". $brss ." </p>\n";
 
-	if (getPerPageCount($currentUser) > 10) {
-		echo $pagesBanner; // display a page banner if too many bookmarks to manage
-	}
+    if (getPerPageCount($currentUser) > 10) {
+        echo $pagesBanner; // display a page banner if too many bookmarks to manage
+    }
 
 
 ?>
@@ -253,87 +253,87 @@ if ($currenttag!= '') {
         $watchedNames = null;
     }
 
-	foreach ($bookmarks as $key => &$row) {
-		switch ($row['bStatus']) {
-			case 0:
-				$access = '';
-				break;
-			case 1:
-				$access = ' shared';
-				break;
-			case 2:
-				$access = ' private';
-				break;
-		}
+    foreach ($bookmarks as $key => &$row) {
+        switch ($row['bStatus']) {
+        case 0:
+            $access = '';
+            break;
+        case 1:
+            $access = ' shared';
+            break;
+        case 2:
+            $access = ' private';
+            break;
+        }
 
-		$cats = '';
-		$tagsForCopy = '';
-		$tags = $row['tags'];
-		foreach ($tags as $tkey => &$tag) {
-            $tagcaturl = sprintf(
-                $cat_url,
-                filter($row['username'], 'url'),
-                filter($tag, 'url')
-            );
-			$cats .= sprintf(
-                '<a href="%s" rel="tag">%s</a>, ',
-                $tagcaturl, filter($tag)
-            );
-			$tagsForCopy .= $tag . ',';
-		}
-		$cats = substr($cats, 0, -2);
-		if ($cats != '') {
-			$cats = T_('Tags:') . ' ' . $cats;
-		}
+    $cats = '';
+    $tagsForCopy = '';
+    $tags = $row['tags'];
+    foreach ($tags as $tkey => &$tag) {
+        $tagcaturl = sprintf(
+            $cat_url,
+            filter($row['username'], 'url'),
+            filter($tag, 'url')
+        );
+        $cats .= sprintf(
+            '<a href="%s" rel="tag">%s</a>, ',
+            $tagcaturl, filter($tag)
+        );
+        $tagsForCopy .= $tag . ',';
+    }
+    $cats = substr($cats, 0, -2);
+    if ($cats != '') {
+        $cats = T_('Tags:') . ' ' . $cats;
+    }
 
-		// Edit and delete links
-		$edit = '';
-		if ($bookmarkservice->editAllowed($row)) {
-			$edit = ' - <a href="' . createURL('edit', $row['bId']) . '">'
+    // Edit and delete links
+    $edit = '';
+    if ($bookmarkservice->editAllowed($row)) {
+        $edit = ' - <a href="' . createURL('edit', $row['bId']) . '">'
                 . T_('Edit')
                 . '</a>'
                 . '<script type="text/javascript">'
                 . 'document.write(" - <a href=\"#\" onclick=\"deleteBookmark(this, '. $row['bId'] .'); return false;\">'
                 . T_('Delete')
                 .'<\/a>");</script>';
-		}
+    }
 
-		// Last update
-		$update = '   <small title="'. T_('Last update') .'">('. date($GLOBALS['shortdate'], strtotime($row['bModified'])). ') </small>';
+    // Last update
+    $update = '   <small title="'. T_('Last update') .'">('. date($GLOBALS['shortdate'], strtotime($row['bModified'])). ') </small>';
 
-		// User attribution
-		$copy = '   ' . T_('by') . ' ';
-		if ($userservice->isLoggedOn()
-            && $currentUser->getUsername() == $row['username']
+    // User attribution
+    $copy = '   ' . T_('by') . ' ';
+    if ($userservice->isLoggedOn()
+        && $currentUser->getUsername() == $row['username']
         ) {
-			$copy .= T_('you');
-		} else {
-			$copy .= '<a href="' . createURL('bookmarks', $row['username']) . '">'
+        $copy .= T_('you');
+    } else {
+        $copy .= '<a href="' . createURL('bookmarks', $row['username']) . '">'
                 . $row['username'] . '</a>';
-		}
+    }
 
-		// Udders!
-		if (!isset($hash)) {
-			$others = $otherCounts[$row['bAddress']];
-			$ostart = '<a href="' . createURL('history', $row['bHash']) . '">';
-			$oend = '</a>';
-			switch ($others) {
-				case 0:
-					break;
-				case 1:
-					$copy .= sprintf(T_(' and %s1 other%s'), $ostart, $oend);
-					break;
-				default:
-					$copy .= sprintf(T_(' and %2$s%1$s others%3$s'), $others, $ostart, $oend);
-			}
-		}
+    // Udders!
+    if (!isset($hash)) {
+        $others = $otherCounts[$row['bAddress']];
+        $ostart = '<a href="' . createURL('history', $row['bHash']) . '">';
+        $oend = '</a>';
+        switch ($others) {
+        case 0:
+            break;
+        case 1:
+            $copy .= sprintf(T_(' and %s1 other%s'), $ostart, $oend);
+            break;
+        default:
+            $copy .= sprintf(T_(' and %2$s%1$s others%3$s'), $others, $ostart, $oend);
+        }
+    }
 
-		// Copy link
-		if ($userservice->isLoggedOn()
+    // Copy link
+    if ($userservice->isLoggedOn()
             && ($currentUser->getId() != $row['uId'])
             && !$existence[$row['bAddress']]
         ) {
-			$copy .= ' - <a href="'
+    $copy .= ' - <a href="'
                 . createURL(
                     'bookmarks',
                     $currentUser->getUsername()
@@ -341,40 +341,40 @@ if ($currenttag!= '') {
                 . '" title="'.T_('Copy this bookmark to YOUR bookmarks.').'">'
                 . T_('Copy')
                 . '</a>';
-		}
+    }
 
-		// Nofollow option
-		$rel = '';
-		if ($GLOBALS['nofollow']) {
-			$rel = ' rel="nofollow"';
-		}
+    // Nofollow option
+    $rel = '';
+    if ($GLOBALS['nofollow']) {
+    $rel = ' rel="nofollow"';
+    }
 
-		$address  = filter($row['bAddress']);
-		$oaddress = $address;
-		// Redirection option
-		if ($GLOBALS['useredir']) {
-			$address = $GLOBALS['url_redir'] . $address;
-		}
+    $address  = filter($row['bAddress']);
+    $oaddress = $address;
+    // Redirection option
+    if ($GLOBALS['useredir']) {
+    $address = $GLOBALS['url_redir'] . $address;
+    }
 
-		// Admin specific design
-		if ($userservice->isAdmin($row['username']) && $GLOBALS['enableAdminColors']) {
-			$adminBgClass = ' class="adminBackground"';
-			$adminStar    = ' <img src="'. ROOT .'images/logo_24.gif" width="12px" title="'. T_('This bookmark is certified by an admin user.') .'" />';
-		} else {
-			$adminBgClass = '';
-			$adminStar    = '';
-		}
+    // Admin specific design
+    if ($userservice->isAdmin($row['username']) && $GLOBALS['enableAdminColors']) {
+    $adminBgClass = ' class="adminBackground"';
+    $adminStar    = ' <img src="'. ROOT .'images/logo_24.gif" width="12px" title="'. T_('This bookmark is certified by an admin user.') .'" />';
+    } else {
+    $adminBgClass = '';
+    $adminStar    = '';
+    }
 
-		// Private Note (just visible by the owner and his/her contacts)
+    // Private Note (just visible by the owner and his/her contacts)
         if ($watchedNames !== null
             && ($currentUser->getId() == $row['uId']
                 || in_array($row['username'], $watchedNames)
             )
         ) {
-			$privateNoteField = $row['bPrivateNote'];
-		} else {
-			$privateNoteField = '';
-		}
+    $privateNoteField = $row['bPrivateNote'];
+    } else {
+    $privateNoteField = '';
+    }
 
         if ($GLOBALS['enableVoting'] && $GLOBALS['hideBelowVoting'] !== null
             && $row['bVoting'] < $GLOBALS['hideBelowVoting']
@@ -382,57 +382,57 @@ if ($currenttag!= '') {
             $access .= ' below-threshold';
         }
 
-		// Output
-		echo ' <li class="xfolkentry'. $access .'">'."\n";
+    // Output
+    echo ' <li class="xfolkentry'. $access .'">'."\n";
         include 'bookmarks-thumbnail.inc.tpl.php';
         include 'bookmarks-vote.inc.tpl.php';
 
-		echo '  <div' . $adminBgClass . '>' . "\n";
+    echo '  <div' . $adminBgClass . '>' . "\n";
 
-		echo '   <div class="link">'
+    echo '   <div class="link">'
             . '<a href="'. $address .'"'. $rel .' class="taggedlink" target="_blank">'
             . filter($row['bTitle'])
             . '</a>' . $adminStar . "</div>\n";
-		if ($row['bDescription'] == '') {
-			$bkDescription = $GLOBALS['blankDescription'];
-		} else {
-			// Improve description display (anchors, links, ...)
-			$bkDescription = preg_replace('|\[\/.*?\]|', '', filter($row['bDescription'])); // remove final anchor
-			$bkDescription = preg_replace('|\[(.*?)\]|', ' <span class="anchorBookmark">$1</span> » ', $bkDescription); // highlight starting anchor
-			$bkDescription = preg_replace('@((http|https|ftp)://.*?)( |\r|$)@', '<a href="$1" rel="nofollow">$1</a>$3', $bkDescription); // make url clickable
+    if ($row['bDescription'] == '') {
+    $bkDescription = $GLOBALS['blankDescription'];
+    } else {
+    // Improve description display (anchors, links, ...)
+    $bkDescription = preg_replace('|\[\/.*?\]|', '', filter($row['bDescription'])); // remove final anchor
+    $bkDescription = preg_replace('|\[(.*?)\]|', ' <span class="anchorBookmark">$1</span> » ', $bkDescription); // highlight starting anchor
+    $bkDescription = preg_replace('@((http|https|ftp)://.*?)( |\r|$)@', '<a href="$1" rel="nofollow">$1</a>$3', $bkDescription); // make url clickable
 
-		}
-		echo '   <div class="description">'. nl2br($bkDescription) ."</div>\n";
+    }
+    echo '   <div class="description">'. nl2br($bkDescription) ."</div>\n";
         echo '   <div class="address">' . shortenString($oaddress) . "</div>\n";
 
-		echo '   <div class="meta">'
+    echo '   <div class="meta">'
             . $cats . "\n"
             . $copy . "\n"
             . $edit . "\n"
             . $update . "\n"
             . "  </div>\n";
-		echo $privateNoteField != ''
+    echo $privateNoteField != ''
             ? '    <div class="privateNote" title="'. T_('Private Note on this bookmark') .'">'.$privateNoteField."</div>\n"
             : '';
         echo '  ';
         include 'bookmarks-vote-horizontal.inc.tpl.php';
-		echo " </div>\n";
+    echo " </div>\n";
 
-		echo " </li>\n";
-	}
-	?>
+    echo " </li>\n";
+    }
+    ?>
 
 </ol>
 
-	<?php
-	if(getPerPageCount($currentUser)>7) {
-		echo '<p class="backToTop"><a href="#header" title="'.T_('Come back to the top of this page.').'">'.T_('Top of the page').'</a></p>';
-	}
-	echo $pagesBanner;  // display previous and next links pages + RSS link
+    <?php
+    if(getPerPageCount($currentUser)>7) {
+    echo '<p class="backToTop"><a href="#header" title="'.T_('Come back to the top of this page.').'">'.T_('Top of the page').'</a></p>';
+    }
+       echo $pagesBanner;  // display previous and next links pages + RSS link
 
 
 } else {
-	echo '<p class="error">'.T_('No bookmarks available').'</p>';
+    echo '<p class="error">'.T_('No bookmarks available').'</p>';
 }
 $this->includeTemplate('sidebar.tpl');
 $this->includeTemplate($GLOBALS['bottom_include']);
