@@ -89,6 +89,16 @@ function useAddress(ele) {
     }
 }
 
+function getNewPrivateKey(input, response){
+    var pk = document.getElementById('pPrivateKey');
+    if (response != null) {
+        pk.value = response.trim();
+    } else {
+        loadXMLDocProc('<?php echo ROOT; ?>ajaxGetNewPrivateKey.php');
+    }
+    return false;
+}
+
 function getTitle(input, response){
     var title = document.getElementById('titleField');
     if (title.value == '') {

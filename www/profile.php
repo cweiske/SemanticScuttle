@@ -29,6 +29,7 @@ isset($_POST['submitted']) ? define('POST_SUBMITTED', $_POST['submitted']): defi
 isset($_POST['pPass']) ? define('POST_PASS', $_POST['pPass']): define('POST_PASS', '');
 isset($_POST['pPassConf']) ? define('POST_PASSCONF', $_POST['pPassConf']): define('POST_PASSCONF', '');
 isset($_POST['pName']) ? define('POST_NAME', $_POST['pName']): define('POST_NAME', '');
+isset($_POST['pPrivateKey']) ? define('POST_PRIVATEKEY', $_POST['pPrivateKey']): define('POST_PRIVATEKEY', '');
 isset($_POST['pMail']) ? define('POST_MAIL', $_POST['pMail']): define('POST_MAIL', '');
 isset($_POST['pPage']) ? define('POST_PAGE', $_POST['pPage']): define('POST_PAGE', '');
 isset($_POST['pDesc']) ? define('POST_DESC', $_POST['pDesc']): define('POST_DESC', '');
@@ -76,6 +77,7 @@ if (POST_SUBMITTED!='' && $currentUser->getId() == $userid) {
     $detPass = trim(POST_PASS);
     $detPassConf = trim(POST_PASSCONF);
     $detName = trim(POST_NAME);
+    $detPrivateKey = trim(POST_PRIVATEKEY);
     $detMail = trim(POST_MAIL);
     $detPage = trim(POST_PAGE);
     $detDesc = filter(POST_DESC);
@@ -100,7 +102,7 @@ if (POST_SUBMITTED!='' && $currentUser->getId() == $userid) {
         $tplVars['error'] = T_('E-mail address is not valid.');
     }
     if (!$error) {
-        if (!$userservice->updateUser($userid, $detPass, $detName, $detMail, $detPage, $detDesc)) {
+        if (!$userservice->updateUser($userid, $detPass, $detName, $detPrivateKey, $detMail, $detPage, $detDesc)) {
             $tplvars['error'] = T_('An error occurred while saving your changes.');
         } else {
             $tplVars['msg'] = T_('Changes saved.');
@@ -122,5 +124,7 @@ if (!$userservice->isLoggedOn() || $currentUser->getId() != $userid) {
 }
 
 $tplVars['objectUser'] = $userinfo;
+$tplVars['loadjs'] = true;
+
 $templateservice->loadTemplate($templatename, $tplVars);
 ?>

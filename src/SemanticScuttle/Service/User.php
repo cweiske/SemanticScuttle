@@ -42,8 +42,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     protected $fields = array(
         'primary'   =>  'uId',
         'username'  =>  'username',
-        'password'  =>  'password',
-	'privatekey'=>  'privateKey'
+        'password'  =>  'password'
     );
 
     protected $profileurl;
@@ -457,45 +456,6 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         }
     }
 
-    /**
-     * Try to authenticate and login a user with
-     * private key.
-     *
-     * @param string  $privatekey Private Key
-     *
-     * @return boolean True if the user could be authenticated,
-     *                 false if not.
-     */
-    public function loginPK($privatekey)
-    {
-        $query = 'SELECT '. $this->getFieldName('primary') .' FROM '. $this->getTableName() .' WHERE '. $this->getFieldName('privatekey') .' = "'. $this->db->sql_escape($privatekey) .'"';
-
-        if (!($dbresult = $this->db->sql_query($query))) {
-            message_die(
-                GENERAL_ERROR,
-                'Could not get user',
-                '', __LINE__, __FILE__, $query, $this->db
-            );
-            return false;
-        }
-
-        $row = $this->db->sql_fetchrow($dbresult);
-        $this->db->sql_freeresult($dbresult);
-
-        if ($row) {
-            $id = $_SESSION[$this->getSessionKey()]
-                = $row[$this->getFieldName('primary')];
-            $cookie = $id .':'. md5($username.$password);
-            setcookie(
-                $this->cookiekey, $cookie,
-                time() + $this->cookietime, '/'
-            );
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     function logout() {
         @setcookie($this->getCookiekey(), '', time() - 1, '/');
         unset($_COOKIE[$this->getCookiekey()]);
@@ -644,16 +604,16 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         return $uId;
     }
 
-    function updateUser($uId, $password, $name, $email, $homepage, $uContent) {
+    function updateUser($uId, $password, $name, $privateKey, $email, $homepage, $uContent) {
         if (!is_numeric($uId))
         return false;
 
         // Set up the SQL UPDATE statement.
         $moddatetime = gmdate('Y-m-d H:i:s', time());
         if ($password == '')
-        $updates = array ('uModified' => $moddatetime, 'name' => $name, 'email' => $email, 'homepage' => $homepage, 'uContent' => $uContent);
+        $updates = array ('uModified' => $moddatetime, 'name' => $name, 'email' => $email, 'homepage' => $homepage, 'uContent' => $uContent, 'privateKey' => $privateKey);
         else
-        $updates = array ('uModified' => $moddatetime, 'password' => $this->sanitisePassword($password), 'name' => $name, 'email' => $email, 'homepage' => $homepage, 'uContent' => $uContent);
+        $updates = array ('uModified' => $moddatetime, 'password' => $this->sanitisePassword($password), 'name' => $name, 'email' => $email, 'homepage' => $homepage, 'uContent' => $uContent, 'privateKey' => $privateKey);
         $sql = 'UPDATE '. $this->getTableName() .' SET '. $this->db->sql_build_array('UPDATE', $updates) .' WHERE '. $this->getFieldName('primary') .'='. intval($uId);
 
         // Execute the statement.
@@ -759,6 +719,41 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         } else {
             return false;
         }
+    }
+
+
+    /**
+     * Checks if a private key already exists
+     *
+     * @param string  $privateKey key that has been generated
+     *
+     * @return boolean True when the private key exists,
+     *                 False if not.
+     */
+    public function PrivateKeyExists($privateKey)
+    {
+        if (!$privateKey) {
+            return false;
+        }
+        $crit = array('privateKey' => $privateKey);
+
+        $sql = 'SELECT COUNT(*) as "0" FROM '
+            . $GLOBALS['tableprefix'] . 'users'
+            . ' WHERE '. $this->db->sql_build_array('SELECT', $crit);
+
+        if (!($dbresult = $this->db->sql_query($sql))) {
+            message_die(
+                GENERAL_ERROR, 'Could not get vars', '',
+                __LINE__, __FILE__, $sql, $this->db
+            );
+        }
+        if ($this->db->sql_fetchfield(0, 0) > 0) {
+            $output = true;
+        } else {
+            $output = false;
+        }
+        $this->db->sql_freeresult($dbresult);
+        return $output;
     }
 
     function isReserved($username) {

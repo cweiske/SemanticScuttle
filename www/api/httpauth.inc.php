@@ -35,18 +35,6 @@ function authenticate()
 }
 
 if (!$userservice->isLoggedOn()) {
-    /* First check to see if a private key was sent */
-    if (isset($_POST['privatekey'])) {
-        $login = $userservice->loginPK($_POST['privatekey']);
-        if ($login) {
-            $currentUser = $userservice->getCurrentObjectUser();
-            return;
-        } else {
-            /* is someone hacking? */
-            /* TODO: Track attempts */
-        }
-    }
-
     /* Maybe we have caught authentication data in $_SERVER['REMOTE_USER']
     ( Inspired by http://www.yetanothercommunitysystem.com/article-321-regle-comment-utiliser-l-authentification-http-en-php-chez-ovh ) */
     if ((!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']))

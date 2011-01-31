@@ -27,7 +27,7 @@ $bookmarkservice = SemanticScuttle_Service_Factory::get('Bookmark');
 $cacheservice    = SemanticScuttle_Service_Factory::get('Cache');
 
 if (isset($_SERVER['PATH_INFO']) && strlen($_SERVER['PATH_INFO']) >1) {
-    list($url, $user, $cat) = explode('/', $_SERVER['PATH_INFO']);
+    @list($url, $user, $cat) = explode('/', $_SERVER['PATH_INFO']);
 } else {
     $url = '';
     $user = '';
@@ -58,6 +58,10 @@ if (!isset($rssEntries) || $rssEntries <= 0) {
     $rssEntries = $maxRssEntries;
 }
 
+$privatekey = null;
+if (isset($_GET['privatekey'])) {
+    $privatekey = $_GET['privatekey'];
+}
 
 $watchlist = null;
 $pagetitle = '';
@@ -94,7 +98,9 @@ $tplVars['feeddescription'] = sprintf(T_('Recent bookmarks posted to %s'), $GLOB
 
 $bookmarks = $bookmarkservice->getBookmarks(
     0, $rssEntries, $userid, $cat,
-    null, getSortOrder(), $watchlist
+    null, getSortOrder(), $watchlist,
+    null, null, null,
+    $privatekey
 );
 
 $bookmarks_tmp = filter($bookmarks['bookmarks']);

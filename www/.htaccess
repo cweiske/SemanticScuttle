@@ -3,15 +3,27 @@
 # (see $cleanurls in config.inc.php)
 #####################################
 
+Options +FollowSymLinks
+RewriteEngine On
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^bookmarks/(\d+)*$ ./bookmarks.php?id=$1
+RewriteRule ^users/(\d+)*$ ./profile.php?id=$1
+RewriteRule ^alltags/(\d+)*$ ./alltags.php?id=$1
+
+RewriteRule ^search/(.*)$ ./search.php?query=$1
+
 
 # Rewrite clean URLs onto real files
-<IfModule mod_rewrite.c>
-Options +FollowSymlinks
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^([^/.]+)/?(.*)$ /$1.php/$2 [QSA,L]
-RewriteRule ^api/([a-z]+)/([a-z]+) /api/$1_$2.php
-</IfModule>
+#<IfModule mod_rewrite.c>
+#Options +FollowSymlinks
+#RewriteEngine On
+#RewriteCond %{REQUEST_FILENAME}.php -f
+#RewriteRule ^([^/.]+)/?(.*)$ /$1.php/$2 [QSA,L]
+#RewriteRule ^api/([a-z]+)/([a-z]+) /api/$1_$2.php
+#</IfModule>
 
 
 #####################################

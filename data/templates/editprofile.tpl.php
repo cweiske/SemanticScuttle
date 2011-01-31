@@ -30,6 +30,10 @@ $this->includeTemplate($GLOBALS['top_include']);
     <td><input type="text" name="pMail" size="75" value="<?php echo filter($objectUser->getEmail(), 'xml'); ?>" /></td>
     <td>&larr; <?php echo T_('Required'); ?></td>
 </tr>
+<tr>
+    <th align="left"><?php echo T_('Private Key (for RSS)'); ?></th>
+    <td><input type="text" id="pPrivateKey" name="pPrivateKey" size="40" value="<?php echo filter($objectUser->getPrivateKey(), 'xml'); ?>" readonly /><input type="button" value="Generate New Key" onClick="getNewPrivateKey(this,null)" /></td>
+</tr>
 </table>
 
 <h3><?php echo T_('Personal Details'); ?></h3>

@@ -42,13 +42,11 @@ class SemanticScuttle_Model_User
      *
      * @param integer $id         User ID
      * @param string  $username   Username
-     * @param string  $privateKey PrivateKey
      */
-    public function __construct($id, $username, $privateKey)
+    public function __construct($id, $username)
     {
         $this->id = $id;
         $this->username = $username;
-        $this->privateKey = $privateKey;
     }
 
     /**
@@ -78,6 +76,12 @@ class SemanticScuttle_Model_User
      */
     public function getPrivateKey()
     {
+        // Look for value only if not already set
+        if (!isset($this->privateKey)) {
+            $us = SemanticScuttle_Service_Factory::get('User');
+            $user = $us->getUser($this->id);
+            $this->privateKey = $user['privateKey'];
+        }
         return $this->privateKey;
     }
 

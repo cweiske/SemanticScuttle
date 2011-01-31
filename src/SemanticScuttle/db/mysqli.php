@@ -550,7 +550,7 @@ class sql_db
 				}
 
 				$sql_report .= '</p>';
-
+				echo $sql_report;
 				$this->sql_time += $endtime - $curtime;
 				break;
 		}
