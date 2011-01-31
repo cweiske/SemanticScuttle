@@ -256,6 +256,10 @@ if ($templatename == 'editbookmark.tpl') {
         array(
             filter($sitename .': '. $pagetitle),
             createURL('rss', filter($user, 'url') . $rssCat.'?sort='.getSortOrder())
+        ),
+        array(
+            filter($sitename .': (private) '. $pagetitle),
+            createURL('rss', filter($user, 'url') . $rssCat.'?sort='.getSortOrder().'&privatekey='.$currentUser->getPrivateKey())
         )
     );
 
