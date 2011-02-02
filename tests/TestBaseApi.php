@@ -11,10 +11,6 @@
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
 
-require_once 'PHPUnit/Framework.php';
-
-PHPUnit_Util_Filter::addFileToFilter(__FILE__);
-
 /**
  * Base unittest class for web API tests.
  *
