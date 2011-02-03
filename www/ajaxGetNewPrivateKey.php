@@ -30,24 +30,6 @@ $us = SemanticScuttle_Service_Factory::get('User');
 /* Managing all possible inputs */
 isset($_GET['url']) ? define('GET_URL', $_GET['url']): define('GET_URL', '');
 
-/**
- * Generates a new private key and confirms it isn't being used
- *
- * @return string the new key value
- */
-function getNewPrivateKey()
-{
-    global $us;
-
-    // Generate a 32 char lowercase+numeric unique value
-    $newKey = md5(uniqid('SemanticScuttle',True));
-    // Check uniqueness in user table
-    while ($us->PrivateKeyExists($newKey)) {
-        $newKey = md5(uniqid('SemanticScuttle',True));
-    }
-    return $newKey;
-}
-
 echo '<?xml version="1.0" encoding="utf-8"?>';
 ?>
 <response>
@@ -55,6 +37,6 @@ echo '<?xml version="1.0" encoding="utf-8"?>';
 getNewPrivateKey
 </method>
 <result>
-<?php echo getNewPrivateKey(); ?>
+<?php echo $us->getNewPrivateKey(); ?>
 </result>
 </response>
