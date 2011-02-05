@@ -2,6 +2,13 @@ Upgrading SemanticScuttle from a previous version
 =================================================
 
 
+From version 0.97 to 0.9x
+-------------------------
+Update your database:
+- ALTER TABLE `sc_users` ADD `privateKey` VARCHAR(32) NULL;
+- CREATE INDEX `privateKey` ON `sc_users` (`privateKey`);
+
+
 From version 0.96 to 0.97
 -------------------------
 No database changes necessary.
