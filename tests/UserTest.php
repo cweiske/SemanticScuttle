@@ -143,7 +143,7 @@ class UserTest extends TestBase
         $uid = $this->addUser();
         $users = $this->us->getObjectUsers();
         $this->assertEquals(1, count($users));
-        $this->assertType('SemanticScuttle_Model_User', reset($users));
+        $this->assertInstanceOf('SemanticScuttle_Model_User', reset($users));
     }
 
 
@@ -160,7 +160,7 @@ class UserTest extends TestBase
         $uid3 = $this->addUser();
         $users = $this->us->getObjectUsers();
         $this->assertEquals(3, count($users));
-        $this->assertType('SemanticScuttle_Model_User', reset($users));
+        $this->assertInstanceOf('SemanticScuttle_Model_User', reset($users));
     }
 
 
@@ -199,7 +199,27 @@ class UserTest extends TestBase
         );
     }
 
+
+
+    /**
+     * Check if privateKeyExists() returns right
+     *
+     * @return void
+     */
+    public function testTestUniquePrivateId()
+    {
+        $this->assertFalse($this->us->privateKeyExists('-1'));
+
+        $this->us = SemanticScuttle_Service_Factory::get('User');
+        $randKey = $this->us->getNewPrivateKey();
+
+        $this->assertFalse($this->us->privateKeyExists($randKey));
+        $uid = $this->addUser(null, null, $randKey);
+
+        $this->assertTrue($this->us->privateKeyExists($randKey));
+    }
 }
+
 
 
 if (PHPUnit_MAIN_METHOD == 'UserTest::main') {

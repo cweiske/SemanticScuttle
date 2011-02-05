@@ -120,7 +120,7 @@ class Bookmark2TagTest extends TestBase
         $this->b2ts->attachTags($bid, array('foo', 'bar', 'fuu'));
 
         $tags = $this->b2ts->getTagsForBookmark($bid);
-        $this->assertType('array', $tags);
+        $this->assertInternalType('array', $tags);
         $this->assertContains('foo', $tags);
         $this->assertContains('bar', $tags);
         $this->assertContains('fuu', $tags);
@@ -141,10 +141,10 @@ class Bookmark2TagTest extends TestBase
         $alltags = $this->b2ts->getTagsForBookmarks(
             array($bid1, $bid2)
         );
-        $this->assertType('array', $alltags);
+        $this->assertInternalType('array', $alltags);
         $this->assertEquals(2, count($alltags));
-        $this->assertType('array', $alltags[$bid1]);
-        $this->assertType('array', $alltags[$bid2]);
+        $this->assertInternalType('array', $alltags[$bid1]);
+        $this->assertInternalType('array', $alltags[$bid2]);
         $this->assertEquals(0, count($alltags[$bid1]));
         $this->assertEquals(0, count($alltags[$bid2]));
     }
@@ -179,9 +179,9 @@ class Bookmark2TagTest extends TestBase
         $alltags = $this->b2ts->getTagsForBookmarks(
             array($bid1, $bid2, $bid3, $bid4)
         );
-        $this->assertType('array', $alltags);
+        $this->assertInternalType('array', $alltags);
         foreach ($alltags as $bid => $btags) {
-            $this->assertType('array', $btags);
+            $this->assertInternalType('array', $btags);
             if ($bid == $bid1) {
                 $this->assertEquals(3, count($btags));
                 $this->assertContains('foo', $btags);
