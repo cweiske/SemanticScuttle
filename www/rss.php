@@ -65,6 +65,7 @@ if (isset($_GET['privatekey'])) {
 
 $watchlist = null;
 $pagetitle = '';
+$isTempLogin = false;
 if ($user && $user != 'all') {
     if ($user == 'watchlist') {
         $user = $cat;
@@ -76,6 +77,14 @@ if ($user && $user != 'all') {
     } else {
         if ($userinfo = $userservice->getUserByUsername($user)) {
             $userid =& $userinfo[$userservice->getFieldName('primary')];
+            /* if user is not logged in and has valid privatekey */
+            if (!$userservice->isLoggedOn()) {
+                if ($privatekey != null) {
+                    if ($userservice->loginPrivateKey($user, $privatekey)) {
+                        $isTempLogin = true;
+                    }
+                }
+            }
         } else {
             $tplVars['error'] = sprintf(T_('User with username %s was not found'), $user);
             $templateservice->loadTemplate('error.404.tpl', $tplVars);
@@ -99,8 +108,7 @@ $tplVars['feeddescription'] = sprintf(T_('Recent bookmarks posted to %s'), $GLOB
 $bookmarks = $bookmarkservice->getBookmarks(
     0, $rssEntries, $userid, $cat,
     null, getSortOrder(), $watchlist,
-    null, null, null,
-    $privatekey
+    null, null, null
 );
 
 $bookmarks_tmp = filter($bookmarks['bookmarks']);
@@ -133,6 +141,11 @@ $tplVars['bookmarks']      = $bookmarks_tpl;
 $tplVars['feedlastupdate'] = date('r', strtotime($latestdate));
 
 $templateservice->loadTemplate('rss.tpl', $tplVars);
+
+/* If temporary login, please log out */
+if ($isTempLogin) {
+    $userservice->logout();
+}
 
 if ($usecache) {
     // Cache output if existing copy has expired

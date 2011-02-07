@@ -40,9 +40,10 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     protected $currentuser = null;
 
     protected $fields = array(
-        'primary'   =>  'uId',
-        'username'  =>  'username',
-        'password'  =>  'password'
+        'primary'    =>  'uId',
+        'username'   =>  'username',
+        'password'   =>  'password',
+        'privatekey' =>  'privatekey'
     );
 
     protected $profileurl;
@@ -70,8 +71,6 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      * Construct of Class
      *
      * @param sql_db $db Database object
-     *
-     * @return void
      */
     protected function __construct($db)
     {
@@ -118,11 +117,11 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      * Fetches the list of users from the database
      * optionally limiting the results set
      *
-     * @param integer $nb Max number of usrs
+     * @param integer $nb Max number of users to return
      *
-     * @return array Array of users
+     * @return array Data array from database
      */
-    function & getUsers($nb = 0)
+    public function & getUsers($nb = 0)
     {
         $query = 'SELECT * FROM '. $this->getTableName() .' ORDER BY `uId` DESC';
         if ($nb>0) {
@@ -248,6 +247,18 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     function getUserByUsername($username)
     {
         return $this->_getuser($this->getFieldName('username'), $username);
+    }
+
+    /**
+     * Returns user row from database.
+     *
+     * @param string $privatekey Private Key
+     *
+     * @return array User array from database
+     */
+    function getUserByPrivateKey($privatekey)
+    {
+        return $this->_getuser($this->getFieldName('privatekey'), $privatekey);
     }
 
     /**
@@ -555,6 +566,46 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     }
 
     /**
+     * Try to authenticate and login a user with
+     * username and privatekey.
+     *
+     * @param string $username   Name of User
+     * @param string $privatekey Private Key
+     *
+     * @return boolean true if the user could be authenticated,
+     *                 false if not.
+     */
+    public function loginPrivateKey($username, $privatekey)
+    {
+        $query = 'SELECT '. $this->getFieldName('primary') .' FROM '
+            . $this->getTableName() .' WHERE '
+            . $this->getFieldName('username') .' = "'
+            . $this->db->sql_escape($username) .'" AND '
+            . $this->getFieldName('privatekey') .' = "'
+            . $this->db->sql_escape($privatekey) .'"';
+
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR,
+                'Could not get user',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            return false;
+        }
+
+        $row = $this->db->sql_fetchrow($dbresult);
+        $this->db->sql_freeresult($dbresult);
+
+        if ($row) {
+            $id = $_SESSION[$this->getSessionKey()]
+                = $row[$this->getFieldName('primary')];
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Logout current user
      *
      * @return void
@@ -788,15 +839,15 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      * @param string $uId        User ID
      * @param string $password   User Password
      * @param string $name       User Name
-     * @param string $privateKey RSS Private Key
      * @param string $email      Email Address
      * @param string $homepage   Homepage URL
      * @param string $uContent   Content
+     * @param string $privateKey RSS Private Key
      *
      * @return boolean true if it successful, false if not
      */
     function updateUser(
-        $uId, $password, $name, $privateKey, $email, $homepage, $uContent
+        $uId, $password, $name, $email, $homepage, $uContent, $privateKey = null
     ) {
         if (!is_numeric($uId)) {
             return false;
@@ -966,7 +1017,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         // Generate a 32 char lowercase+numeric unique value
         $newKey = md5(uniqid('SemanticScuttle', true));
         // Check uniqueness in user table
-        while ($this->PrivateKeyExists($newKey)) {
+        while ($this->privateKeyExists($newKey)) {
             $newKey = md5(uniqid('SemanticScuttle', true));
         }
         return $newKey;
@@ -998,12 +1049,12 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
             );
         }
         if ($this->db->sql_fetchfield(0, 0) > 0) {
-            $output = true;
+            $exists = true;
         } else {
-            $output = false;
+            $exists = false;
         }
         $this->db->sql_freeresult($dbresult);
-        return $output;
+        return $exists;
     }
 
     /**

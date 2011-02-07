@@ -262,7 +262,7 @@ if ($templatename == 'editbookmark.tpl') {
         array_push(
             $tplVars['rsschannels'],
             array(
-                filter($sitename .': (private) '. $pagetitle),
+                filter($sitename . sprintf(T_(': (private) ')) . $pagetitle),
                 createURL('rss', filter($user, 'url') . $rssCat.'?sort='.getSortOrder().'&privatekey='.$currentUser->getPrivateKey())
             )
         );

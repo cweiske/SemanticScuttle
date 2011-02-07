@@ -216,6 +216,9 @@ class UserTest extends TestBase
         $this->assertFalse($this->us->privateKeyExists($randKey));
         $uid = $this->addUser(null, null, $randKey);
 
+        $this->us->setCurrentUserId($uid);
+        $this->assertEquals($uid, $this->us->getCurrentUserId());
+
         $this->assertTrue($this->us->privateKeyExists($randKey));
     }
 }

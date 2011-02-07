@@ -303,16 +303,13 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
     function editAllowed($bookmark)
     {
         if (!is_numeric($bookmark)
-            && (!is_array($bookmark)
-                || !isset($bookmark['bId'])
-                || !is_numeric($bookmark['bId'])
-            )
+            && (!is_array($bookmark) || !isset($bookmark['bId']) || !is_numeric($bookmark['bId']))
         ) {
             return false;
         }
 
         if (!is_array($bookmark)
-             && !($bookmark = $this->getBookmark($bookmark))
+            && !($bookmark = $this->getBookmark($bookmark))
         ) {
             return false;
         }
@@ -690,8 +687,6 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      *                            SQL-DateTime value
      *                            "YYYY-MM-DD hh:ii:ss'
      * @param string  $hash       Filter by URL hash
-     * @param string  $privatekey URL provided private key to
-     *                            return only private bookmarks
      *
      * @return array Array with two keys: 'bookmarks' and 'total'.
      *               First contains an array of bookmarks, 'total'
@@ -700,8 +695,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
     public function getBookmarks(
         $start = 0, $perpage = null, $user = null, $tags = null,
         $terms = null, $sortOrder = null, $watched = null,
-        $startdate = null, $enddate = null, $hash = null,
-        $privatekey = null
+        $startdate = null, $enddate = null, $hash = null
     ) {
         $userservice    = SemanticScuttle_Service_Factory::get('User');
         $b2tservice     = SemanticScuttle_Service_Factory::get('Bookmark2Tag');
@@ -718,14 +712,8 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             }
             $privacy .= ')';
         } else {
-            $userinfo = $userservice->getObjectUser($user);
-            if ($privatekey == $userinfo->getPrivateKey() && !is_null($privatekey)) {
-                // Just private bookmarks
-                $privacy = ' AND B.bStatus = 2';
-            } else {
-                // Just public bookmarks
-                $privacy = ' AND B.bStatus = 0';
-            }
+            // Just public bookmarks
+            $privacy = ' AND B.bStatus = 0';
         }
 
         // Set up the tags, if need be.
