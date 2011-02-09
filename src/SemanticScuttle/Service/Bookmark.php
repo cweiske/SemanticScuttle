@@ -253,18 +253,18 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
     /**
      * Counts bookmarks for a user.
      *
-     * @param integer $uId   User ID
-     * @param string  $range Range of bookmarks:
-     *                       'public', 'shared', 'private'
-     *                       or 'all'
+     * @param integer $uId    User ID
+     * @param string  $status Bookmark visibility/privacy settings:
+     *                        'public', 'shared', 'private'
+     *                        or 'all'
      *
      * @return integer Number of bookmarks
      */
-    public function countBookmarks($uId, $range = 'public')
+    public function countBookmarks($uId, $status = 'public')
     {
         $sql = 'SELECT COUNT(*) as "0" FROM '. $this->getTableName();
         $sql.= ' WHERE uId = ' . intval($uId);
-        switch ($range) {
+        switch ($status) {
         case 'all':
             //no constraints
             break;
@@ -439,7 +439,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      * @param string  $title       Bookmark title
      * @param string  $description Long bookmark description
      * @param string  $privateNote Private note for the user.
-     * @param string  $status      Bookmark visibility:
+     * @param string  $status      Bookmark visibility / privacy settings:
      *                             0 - public
      *                             1 - shared
      *                             2 - private
@@ -554,7 +554,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      * @param string  $title       Bookmark title
      * @param string  $description Long bookmark description
      * @param string  $privateNote Private note for the user.
-     * @param string  $status      Bookmark visibility:
+     * @param string  $status      Bookmark visibility / privacy setting:
      *                             0 - public
      *                             1 - shared
      *                             2 - private
