@@ -84,6 +84,7 @@ if (is_null($terms)) {
 
     // Search terms
 } else {
+    $terms = rawurlencode($terms);
     $tplVars['subtitle'] = T_('Search Results');
     $selected = ' selected="selected"';
 
