@@ -102,7 +102,7 @@ if (POST_SUBMITTED!='' && $currentUser->getId() == $userid) {
         $tplVars['error'] = T_('E-mail address is not valid.');
     }
     if (!$error) {
-        if (!$userservice->updateUser($userid, $detPass, $detName, $detPrivateKey, $detMail, $detPage, $detDesc)) {
+        if (!$userservice->updateUser($userid, $detPass, $detName, $detMail, $detPage, $detDesc, $detPrivateKey)) {
             $tplvars['error'] = T_('An error occurred while saving your changes.');
         } else {
             $tplVars['msg'] = T_('Changes saved.');
