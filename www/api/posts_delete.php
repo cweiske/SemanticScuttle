@@ -1,33 +1,57 @@
 <?php
-// Implements the del.icio.us API request to delete a post.
-
-// del.icio.us behavior:
-// - returns "done" even if the bookmark doesn't exist;
-// - does NOT allow the hash for the url parameter;
-// - doesn't set the Content-Type to text/xml (we do).
+/**
+ * API for deleting a bookmark.
+ * The delicious API is implemented here.
+ *
+ * The delicious API behaves like that:
+ * - does NOT allow the hash for the url parameter
+ * - doesn't set the Content-Type to text/xml
+ *   - we do it correctly, too
+ *
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ * @link     http://www.delicious.com/help/api
+ */
 
 // Force HTTP authentication first!
 $httpContentType = 'text/xml';
 require_once 'httpauth.inc.php';
 
-/* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
+$bs  = SemanticScuttle_Service_Factory::get('Bookmark');
+$uId = $userservice->getCurrentUserId();
 
-
-// Note that del.icio.us only errors out if no URL was passed in; there's no error on attempting
-// to delete a bookmark you don't have.
 
 // Error out if there's no address
-if (is_null($_REQUEST['url'])) {
-    $deleted = false;
+if (!isset($_REQUEST['url'])
+    || $_REQUEST['url'] == ''
+) {
+    $msg = 'something went wrong';
+} else if (!$bs->bookmarkExists($_REQUEST['url'], $uId)) {
+    //the user does not have such a bookmark
+    header('HTTP/1.0 404 Not Found');
+    $msg = 'item not found';
 } else {
-    $bookmark = $bookmarkservice->getBookmarkByAddress($_REQUEST['url']);
-    $bid = $bookmark['bId'];
-    $delete = $bookmarkservice->deleteBookmark($bid);
-    $deleted = true;
+    $bookmark = $bs->getBookmarkByAddress($_REQUEST['url'], false);
+    $bId      = $bookmark['bId'];
+    $deleted  = $bs->deleteBookmark($bId);
+    $msg      = 'done';
+    if (!$deleted) {
+        //something really went wrong
+        header('HTTP/1.0 500 Internal Server Error');
+        $msg = 'something really went wrong';
+    }
 }
 
 // Set up the XML file and output the result.
-echo '<?xml version="1.0" standalone="yes" ?'.">\r\n";
-echo '<result code="'. ($deleted ? 'done' : 'something went wrong') .'" />';
+echo '<?xml version="1.0" standalone="yes" ?' . ">\r\n";
+echo '<result code="' . $msg . '" />';
 ?>

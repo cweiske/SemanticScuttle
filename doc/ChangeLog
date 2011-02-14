@@ -1,6 +1,14 @@
 ChangeLog for SemantiScuttle
 ============================
 
+0.97.1 - 2010-09-30
+-------------------
+This is a security release! We do highly recommend to update
+your SemanticScuttle installations!
+
+- Fix bug #3077187: Permission problem when deleting bookmarks
+
+
 0.97.0 - 2010-06-09
 -------------------
 - Many SQL optimizations - SemanticScuttle shows bookmarks 4 times faster now

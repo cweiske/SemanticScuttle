@@ -168,7 +168,10 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      * Retrieves a bookmark with the given URL.
      * DOES NOT RESPECT PRIVACY SETTINGS!
      *
-     * @param string $hash URL
+     * @param string  $address URL to get bookmarks for
+     * @param boolean $all     Retrieve from all users (true)
+     *                         or only bookmarks owned by the current
+     *                         user (false)
      *
      * @return mixed Array with bookmark data or false in case
      *               of an error (i.e. not found).
@@ -176,9 +179,9 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      * @uses getBookmarkByHash()
      * @see  getBookmarkByShortname()
      */
-    public function getBookmarkByAddress($address)
+    public function getBookmarkByAddress($address, $all = true)
     {
-        return $this->getBookmarkByHash($this->getHash($address));
+        return $this->getBookmarkByHash($this->getHash($address), $all);
     }
 
 
@@ -187,16 +190,19 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      * Retrieves a bookmark with the given hash.
      * DOES NOT RESPECT PRIVACY SETTINGS!
      *
-     * @param string $hash URL hash
+     * @param string  $hash URL hash
+     * @param boolean $all  Retrieve from all users (true)
+     *                      or only bookmarks owned by the current
+     *                      user (false)
      *
      * @return mixed Array with bookmark data or false in case
      *               of an error (i.e. not found).
      *
      * @see getHash()
      */
-    public function getBookmarkByHash($hash)
+    public function getBookmarkByHash($hash, $all = true)
     {
-        return $this->_getbookmark('bHash', $hash, true);
+        return $this->_getbookmark('bHash', $hash, $all);
     }
 
 
