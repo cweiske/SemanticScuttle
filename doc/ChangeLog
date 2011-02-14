@@ -1,6 +1,11 @@
 ChangeLog for SemantiScuttle
 ============================
 
+0.97.2 - 2011-02-XX
+-------------------
+- Fix bug #3178597: Broken link to context in gsearch admin index page
+
+
 0.97.1 - 2010-09-30
 -------------------
 This is a security release! We do highly recommend to update
