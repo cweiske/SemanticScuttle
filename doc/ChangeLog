@@ -8,6 +8,7 @@ ChangeLog for SemantiScuttle
    This also fixes #3094047 and #3178592
 - Fix bug #3111254: Search in my_watchlist results in error
 - Fix bug #3073215: Updating bookmark time does not work
+- Make Unittests run with phpunit 3.5.x
 
 
 0.97.1 - 2010-09-30
