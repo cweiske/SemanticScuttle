@@ -48,7 +48,7 @@
 
 
 
-  <target name="release" depends="check,zip,deploy-sf,svntag"
+  <target name="release" depends="check,zip,deploy-sf"
    description="Release the version on sourceforge"
    >
    <!-- meta-target -->
@@ -77,16 +77,6 @@
      />
     <!-- rsync always returns code 23 on sourceforge releases, so we
          can't check return values -->
-  </target>
-
-
-  <target name="svntag"
-   description="create the svn tag for the current version"
-   >
-    <exec
-     command="svn cp ${svnpath}trunk ${svnpath}/tags/${version} -m 'tag version ${version}'"
-     escape="false" checkreturn="true"
-     />
   </target>
 
 
