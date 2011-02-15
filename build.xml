@@ -208,7 +208,7 @@
 
 
 
-  <target name="release" depends="check,zip,package,deploy-sf,svntag"
+  <target name="release" depends="check,zip,package,deploy-sf"
    description="Release the version on sourceforge"
    >
    <!-- meta-target -->
@@ -303,17 +303,6 @@
      dir="${websitedir}"
      escape="false" checkreturn="false"
      passthru="true"
-     />
-  </target>
-
-
-
-  <target name="svntag"
-   description="create the svn tag for the current version"
-   >
-    <exec
-     command="svn cp ${svnpath}trunk ${svnpath}/tags/${version} -m 'tag version ${version}'"
-     escape="false" checkreturn="true"
      />
   </target>
 
