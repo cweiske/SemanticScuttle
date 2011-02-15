@@ -982,6 +982,38 @@ class BookmarkTest extends TestBase
         $this->assertEquals('newShortNambb', $bm['bShort']);
     }
 
+    /**
+     * Tests if updating a bookmark's date works.
+     * This once was a bug, see bug #3073215.
+     *
+     * @return void
+     *
+     * @link https://sourceforge.net/tracker/?func=detail&atid=1017430&aid=3073215&group_id=211356
+     */
+    public function testUpdateBookmarkDate()
+    {
+        $bid = $this->bs->addBookmark(
+            'http://example.org', 'title', 'desc', 'priv',
+            0, array(), 'myShortName'
+        );
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals('myShortName', $bm['bShort']);
+
+        $this->assertTrue(
+            $this->bs->updateBookmark(
+                $bid, 'http://example2.org', 'my title', 'desc',
+                'priv', 0, array(), 'newShortNambb',
+                //we need to use zulu (GMT) time zone here
+                // since the dates/times are stored as that
+                // in the database
+                '2002-03-04T05:06:07Z'
+            )
+        );
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals('newShortNambb', $bm['bShort']);
+        $this->assertEquals('2002-03-04 05:06:07', $bm['bDatetime']);
+    }
+
 
 
     /**
