@@ -10,7 +10,7 @@ ChangeLog for SemantiScuttle
 - api/posts/add respects the "replace" parameter now
 
 
-0.97.2 - 2011-02-XX
+0.97.2 - 2011-02-17
 -------------------
 - Fix bug #3178597: Broken link to context in gsearch admin index page
 - Fix bug #3074816: French translation breaks edit javascript
