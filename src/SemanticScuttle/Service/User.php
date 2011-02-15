@@ -356,7 +356,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     public function getCurrentUserId()
     {
         if (isset($_SESSION[$this->getSessionKey()])) {
-            return $_SESSION[$this->getSessionKey()];
+            return (int)$_SESSION[$this->getSessionKey()];
 
         } else if (isset($_COOKIE[$this->getCookieKey()])) {
             $cook = split(':', $_COOKIE[$this->getCookieKey()]);
@@ -377,10 +377,10 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
 
             if ($row = $this->db->sql_fetchrow($dbresult)) {
                 $this->setCurrentUserId(
-                    $row[$this->getFieldName('primary')]
+                    (int)$row[$this->getFieldName('primary')]
                 );
                 $this->db->sql_freeresult($dbresult);
-                return $_SESSION[$this->getSessionKey()];
+                return (int)$_SESSION[$this->getSessionKey()];
             }
         }
         return false;
