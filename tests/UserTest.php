@@ -143,7 +143,7 @@ class UserTest extends TestBase
         $uid = $this->addUser();
         $users = $this->us->getObjectUsers();
         $this->assertEquals(1, count($users));
-        $this->assertType('SemanticScuttle_Model_User', reset($users));
+        $this->assertInstanceOf('SemanticScuttle_Model_User', reset($users));
     }
 
 
@@ -160,7 +160,7 @@ class UserTest extends TestBase
         $uid3 = $this->addUser();
         $users = $this->us->getObjectUsers();
         $this->assertEquals(3, count($users));
-        $this->assertType('SemanticScuttle_Model_User', reset($users));
+        $this->assertInstanceOf('SemanticScuttle_Model_User', reset($users));
     }
 
 
