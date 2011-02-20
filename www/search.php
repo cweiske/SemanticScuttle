@@ -76,6 +76,11 @@ $s_start = NULL;
 $s_end = NULL;
 $s_watchlist = NULL;
 
+if (isset($_GET['s'])) {
+	$terms = urldecode($_GET['s']);
+}
+
+
 // No search terms
 if (is_null($terms)) {
     $tplVars['subtitle'] = T_('Search Bookmarks');
