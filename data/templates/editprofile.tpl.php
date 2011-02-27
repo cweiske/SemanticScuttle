@@ -31,8 +31,8 @@ $this->includeTemplate($GLOBALS['top_include']);
     <td>&larr; <?php echo T_('Required'); ?></td>
 </tr>
 <tr>
-    <th align="left"><?php echo T_('Private Key (for RSS)'); ?></th>
-    <td><input type="text" id="pPrivateKey" name="pPrivateKey" size="40" value="<?php echo filter($objectUser->getPrivateKey(), 'xml'); ?>" readonly /><input type="button" value="Generate New Key" onClick="getNewPrivateKey(this,null)" /></td>
+    <th align="left"><?php echo T_('Private RSS Feed'); ?></th>
+    <td><input type="checkbox" id="pEnablePrivateKey" name="pEnablePrivateKey" value="1" <?php if ($objectUser->getEnablePrivateKey()==1) echo 'checked="checked"'; ?>><?php echo T_('Enable'); ?>&nbsp;&nbsp;&nbsp;<input type="text" id="pPrivateKey" name="pPrivateKey" size="40" value="<?php echo $privateKey;?>" readonly /><input type="submit" name="submittedPK" value="<?php echo T_('Generate New Key'); ?>" /></td>
 </tr>
 </table>
 

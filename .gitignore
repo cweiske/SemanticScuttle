@@ -1,3 +1,7 @@
 dist/
 build.properties
 package.xml
+.project
+html.properties
+.buildpath
+.settings

@@ -43,12 +43,13 @@ $tplVars['rsschannels'] = array(
     array(sprintf(T_('%s: Recent bookmarks'), $sitename), createURL('rss').'?sort='.getSortOrder())
 );
 if ($userservice->isLoggedOn()) {
-    if ($currentUser->getPrivateKey() <> null) {
+    $currentUsername = $currentUser->getUsername();
+    if ($currentUser->getPrivateKey() <> null && $currentUser->getEnablePrivateKey() == 1) {
         array_push(
             $tplVars['rsschannels'],
             array(
-                filter($sitename . sprintf(T_(': (private) ')) . $pagetitle),
-                createURL('rss', filter($user, 'url') . $rssCat.'?sort='.getSortOrder().'&privatekey='.$currentUser->getPrivateKey())
+                filter($sitename . sprintf(T_(': (private) ')) . $sitename),
+                createURL('rss', filter($currentUsername, 'url') . '?sort='.getSortOrder().'&privatekey='.$currentUser->getPrivateKey())
             )
         );
     }

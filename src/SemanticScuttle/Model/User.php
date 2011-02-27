@@ -36,12 +36,13 @@ class SemanticScuttle_Model_User
     var $datetime;
     var $isAdmin;
     var $privateKey;
+    var $enablePrivateKey;
 
     /**
      * Create a new user object
      *
-     * @param integer $id         User ID
-     * @param string  $username   Username
+     * @param integer $id       User ID
+     * @param string  $username Username
      */
     public function __construct($id, $username)
     {
@@ -83,6 +84,22 @@ class SemanticScuttle_Model_User
             $this->privateKey = $user['privateKey'];
         }
         return $this->privateKey;
+    }
+
+    /**
+     * Returns private key flag
+     *
+     * @return integer private key 1=enabled, 0=disabled
+     */
+    public function getEnablePrivateKey()
+    {
+        // Look for value only if not already set
+        if (!isset($this->enablePrivateKey)) {
+            $us = SemanticScuttle_Service_Factory::get('User');
+            $user = $us->getUser($this->id);
+            $this->enablePrivateKey = $user['enablePrivateKey'];
+        }
+        return $this->enablePrivateKey;
     }
 
     /**

@@ -258,14 +258,16 @@ if ($templatename == 'editbookmark.tpl') {
             createURL('rss', filter($user, 'url') . $rssCat.'?sort='.getSortOrder())
         )
     );
-    if ($currentUser->getPrivateKey() <> null) {
-        array_push(
-            $tplVars['rsschannels'],
-            array(
-                filter($sitename . sprintf(T_(': (private) ')) . $pagetitle),
-                createURL('rss', filter($user, 'url') . $rssCat.'?sort='.getSortOrder().'&privatekey='.$currentUser->getPrivateKey())
-            )
-        );
+    if ($userservice->isLoggedOn()) {
+        if ($currentUser->getPrivateKey() <> null && $currentUser->getEnablePrivateKey() == 1) {
+            array_push(
+                $tplVars['rsschannels'],
+                array(
+                    filter($sitename . sprintf(T_(': (private) ')) . $pagetitle),
+                    createURL('rss', filter($user, 'url') . $rssCat.'?sort='.getSortOrder().'&privatekey='.$currentUser->getPrivateKey())
+                )
+            );
+        }
     }
 
     $tplVars['page'] = $page;
