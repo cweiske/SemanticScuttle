@@ -705,15 +705,15 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         if ($userservice->isLoggedOn()) {
             // All public bookmarks, user's own bookmarks
             // and any shared with user
-            $privacy = ' AND ((B.bStatus = 0) OR (B.uId = '. $sId .')';
-            $watchnames = $userservice->getWatchNames($sId, true);
-            foreach ($watchnames as $watchuser) {
-                $privacy .= ' OR (U.username = "'. $watchuser .'" AND B.bStatus = 1)';
+            $privacy = ' ((B.bStatus = 0) OR (B.uId = '. $sId .')';
+            $watchlist = $userservice->getWatchlist($sId);
+            foreach ($watchlist as $watchuserID) {
+                $privacy .= ' OR (B.uId = '. $watchuserID .' AND B.bStatus = 1)';
             }
             $privacy .= ')';
         } else {
             // Just public bookmarks
-            $privacy = ' AND B.bStatus = 0';
+            $privacy = ' B.bStatus = 0';
         }
 
         // Set up the tags, if need be.
@@ -727,16 +727,20 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         }
 
         // Set up the SQL query.
-        $query_1 = 'SELECT DISTINCT ';
+        $query_1 = 'SELECT DISTINCT(B.bHash), ';
+        $query_1.= '(select '. $userservice->getFieldName('username');
+        $query_1.= ' from '. $userservice->getTableName();
+        $query_1.= ' where uId=B.uId';
+        $query_1.= ') as '. $userservice->getFieldName('username') .', ';
+
         if (SQL_LAYER == 'mysql4') {
             $query_1 .= 'SQL_CALC_FOUND_ROWS ';
         }
-        $query_1 .= 'B.*, U.'. $userservice->getFieldName('username');
+        $query_1 .= 'B.*';
 
-        $query_2 = ' FROM '. $userservice->getTableName() .' AS U'
-            . ', '. $this->getTableName() .' AS B';
+        $query_2 = ' FROM '. $this->getTableName() .' AS B';
 
-        $query_3 = ' WHERE B.uId = U.'. $userservice->getFieldName('primary') . $privacy;
+        $query_3 = ' WHERE '. $privacy;
 
         if ($GLOBALS['enableVoting'] && $GLOBALS['hideBelowVoting'] !== null
             && !$userservice->isAdmin($userservice->getCurrentUserId())
@@ -745,9 +749,11 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         }
 
         if (is_null($watched)) {
+/*
             if (!is_null($user)) {
                 $query_3 .= ' AND B.uId = '. $user;
             }
+*/
         } else {
             $arrWatch = $userservice->getWatchlist($user);
             if (count($arrWatch) > 0) {
@@ -763,20 +769,14 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         }
 
         $query_5 = '';
-        if ($hash == null) {
-            $query_5.= ' GROUP BY B.bHash';
-        }
-
 
         //Voting system
         //needs to be directly after FROM bookmarks
         if ($GLOBALS['enableVoting'] && $userservice->isLoggedOn()) {
             $cuid = $userservice->getCurrentUserId();
             $vs   = SemanticScuttle_Service_Factory::get('Vote');
-            $query_1 .= ', !ISNULL(V.bId) as hasVoted, V.vote as vote';
-            $query_2 .= ' LEFT JOIN ' . $vs->getTableName() . ' AS V'
-                . ' ON B.bId = V.bId'
-                . ' AND V.uId = ' . (int)$cuid;
+            $query_1 .= ', (select !ISNULL(bId) from '.$vs->getTableName().' where bId=B.bId and uId='.(int)$cuid.') as hasVoted, (select vote from '.$vs->getTableName().' where bId=B.bId and uId='.(int)$cuid.') as vote';
+
         }
 
         switch($sortOrder) {
@@ -803,6 +803,11 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             break;
         default:
             $query_5 .= ' ORDER BY B.' . $GLOBALS['dateOrderField'] . ' DESC ';
+        }
+
+        // Add GROUP BY only if tag is given
+        if ($tagcount > 0) {
+            $query_5 = ' GROUP BY B.bHash' . $query_5;
         }
 
         // Handle the parts of the query that depend on any tags that are present.
@@ -854,9 +859,9 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
                 $query_4 .= ' OR B.bPrivateNote LIKE "'
                     . $this->db->sql_escape($aTerms[$i])
                     .'%"';
-                $query_4 .= ' OR U.username = "'
+                $query_4 .= ' OR B.uId = (select '.$userservice->getFieldName('primary').' from '.$userservice->getTableName().' where '.$userservice->getFieldName('username').'="'
                     . $this->db->sql_escape($aTerms[$i])
-                    . '"'; //exact match for username
+                    . '")';
                 if ($dotags) {
                     $query_4 .= ' OR T.tag LIKE "'
                         . $this->db->sql_escape($aTerms[$i])
