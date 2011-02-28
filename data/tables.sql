@@ -23,7 +23,8 @@ CREATE TABLE `sc_bookmarks` (
   PRIMARY KEY  (`bId`),
   KEY `sc_bookmarks_usd` (`uId`,`bStatus`,`bDatetime`),
   KEY `sc_bookmarks_hui` (`bHash`,`uId`,`bId`),
-  KEY `sc_bookmarks_du` (`bDatetime`,`uId`)
+  KEY `sc_bookmarks_du` (`bDatetime`,`uId`).
+  KEY `sc_bookmarks_mod` (`bModified`)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci ;
 
 -- --------------------------------------------------------
@@ -73,6 +74,7 @@ CREATE TABLE `sc_users` (
   `homepage` varchar(255) default NULL,
   `uContent` text,
   `privateKey` varchar(32) NULL,
+  `enablePrivateKey` int(1) default '0',
   PRIMARY KEY  (`uId`),
   UNIQUE KEY `privateKey` (`privateKey`)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci ;
