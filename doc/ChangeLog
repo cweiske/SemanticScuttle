@@ -4,14 +4,20 @@ ChangeLog for SemantiScuttle
 0.9X.X - 2010-XX-XX
 -------------------
 - Fix bug in getTagsForBookmarks() that fetched all tags
-- Fix bug #3073215: Updating bookmark time does not work
-- Fix bug #3074816: French translation breaks edit javascript
-- Fix bug #3111254: Search in my_watchlist results in error
 - Show error message on mysqli connection errors
 - Implement patch #3059829: update FR_CA translation
 - Update php-gettext library to 1.0.10
 - api/posts/add respects the "replace" parameter now
 - Implement Feature Request #3164013 adding ability to log in vi private key
+
+
+0.97.2 - 2011-02-17
+-------------------
+- Fix bug #3178597: Broken link to context in gsearch admin index page
+- Fix bug #3074816: French translation breaks edit javascript
+- Fix bug #3111254: Search in my_watchlist results in error
+- Fix bug #3073215: Updating bookmark time does not work
+- Fix bug #3065284: AjaxVote problem with Webkit browsers
 
 
 0.97.1 - 2010-09-30
