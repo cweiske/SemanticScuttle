@@ -1343,6 +1343,30 @@ class BookmarkTest extends TestBase
     }
 
 
+    /**
+     * Test that the default privacy setting in 
+     * $GLOBALS['defaults']['privacy'] is used
+     * as expected.
+     *
+     * @return void
+     */
+    public function testDefaultPrivacy()
+    {
+        $GLOBALS['defaults']['privacy'] = 1;
+        $uid = $this->addUser();
+        $this->us->setCurrentUserId($uid);
+        $bid = $this->bs->addBookmark('http://www.somedomain.com', 'mybookmark1', 'descr1', 'privatenote1', $GLOBALS['defaults']['privacy'], array());
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals('1', $bm['bStatus']);
+        $GLOBALS['defaults']['privacy'] = 2;
+        $uid = $this->addUser();
+        $this->us->setCurrentUserId($uid);
+        $bid = $this->bs->addBookmark('http://www.anotherdomain.com', 'mybookmark2', 'descr2', 'privatenote2', $GLOBALS['defaults']['privacy'], array());
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals('2', $bm['bStatus']);
+    }//end function testDefaultPrivacy
+
+
 
 }
 

@@ -14,6 +14,13 @@
  * @link http://sourceforge.net/projects/semanticscuttle/
  */
 
+/**
+ * Array for defaults.
+ *
+ * @var array
+ */
+$defaults = array();
+
 
 /***************************************************
  * HTML output configuration
@@ -492,6 +499,16 @@ $votingMode = 2;
  * @var integer
  */
 $hideBelowVoting = null;
+
+/**
+ * Default privacy setting for bookmarks:
+ * 0 - Public
+ * 1 - Shared with Watchlist
+ * 2 - Private
+ *
+ * @var integer
+ */
+$defaults['privacy'] = 0;
 
 
 /****************************

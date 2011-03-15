@@ -33,7 +33,7 @@ isset($_POST['title']) ? define('POST_TITLE', $_POST['title']): define('POST_TIT
 isset($_POST['address']) ? define('POST_ADDRESS', $_POST['address']): define('POST_ADDRESS', '');
 isset($_POST['description']) ? define('POST_DESCRIPTION', $_POST['description']): define('POST_DESCRIPTION', '');
 isset($_POST['privateNote']) ? define('POST_PRIVATENOTE', $_POST['privateNote']): define('POST_PRIVATENOTE', '');
-isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_STATUS', '');
+isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_STATUS', $GLOBALS['defaults']['privacy']);
 isset($_POST['tags']) ? define('POST_TAGS', $_POST['tags']): define('POST_TAGS', '');
 
 isset($_GET['popup']) ? define('GET_POPUP', $_GET['popup']): define('GET_POPUP', '');

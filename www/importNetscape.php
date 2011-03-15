@@ -28,7 +28,7 @@ $bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
 /* Managing all possible inputs */
 // First input is $_FILES
 // Other inputs
-isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_STATUS', '');
+isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_STATUS', $GLOBALS['defaults']['privacy']);
 
 $countImportedBookmarks = 0;
 $tplVars['msg'] = '';
@@ -39,7 +39,7 @@ if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['si
 	if (is_numeric(POST_STATUS)) {
 		$status = intval(POST_STATUS);
 	} else {
-		$status = 2;
+		$status = $GLOBALS['defaults']['privacy'];
 	}
 
 	// File handle
