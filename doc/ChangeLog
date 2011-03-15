@@ -8,6 +8,7 @@ ChangeLog for SemantiScuttle
 - Implement patch #3059829: update FR_CA translation
 - Update php-gettext library to 1.0.10
 - api/posts/add respects the "replace" parameter now
+- Fix bug #3187177: Wrong URL / Export XML Bookmarks 
 
 
 0.97.2 - 2011-02-17
