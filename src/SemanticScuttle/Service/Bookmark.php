@@ -734,7 +734,8 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         if (SQL_LAYER == 'mysql4') {
             $query_1 .= 'SQL_CALC_FOUND_ROWS ';
         }
-        $query_1 .= 'B.*, U.'. $userservice->getFieldName('username');
+        $query_1 .= 'B.*, U.'. $userservice->getFieldName('username')
+            . ', U.name';
 
         $query_2 = ' FROM '. $userservice->getTableName() .' AS U'
             . ', '. $this->getTableName() .' AS B';

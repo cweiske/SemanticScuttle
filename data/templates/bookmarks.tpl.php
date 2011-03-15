@@ -309,7 +309,8 @@ if ($currenttag!= '') {
 			$copy .= T_('you');
 		} else {
 			$copy .= '<a href="' . createURL('bookmarks', $row['username']) . '">'
-                . $row['username'] . '</a>';
+                . SemanticScuttle_Model_UserArray::getName($row)
+                . '</a>';
 		}
 
 		// Udders!
