@@ -27,17 +27,19 @@ require_once '../www-header.php';
 $b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
 $bookmarkservice =SemanticScuttle_Service_Factory::get('Tag');
 
-?>
+$listTags = $b2tservice->getContactTags(
+    $userservice->getCurrentUserId(), 1000, $userservice->getCurrentUserId()
+);
+$tags = array();
+foreach($listTags as $t) {
+    $tags[] = array(
+        'caption' => $t['tag'],
+        'value'   => $t['tag'],
+    );
+}
 
-{identifier:"tag",
-items: [
-<?php
-	$listTags = $b2tservice->getContactTags($userservice->getCurrentUserId(), 1000, $userservice->getCurrentUserId());
-	foreach($listTags as $t) {
-		echo "{tag: \"".$t['tag']."\"},";
-	}
+echo json_encode($tags);
 ?>
-]}
 
 
 
