@@ -44,12 +44,12 @@ $tplVars['rsschannels'] = array(
 );
 if ($userservice->isLoggedOn()) {
     $currentUsername = $currentUser->getUsername();
-    if ($currentUser->getPrivateKey() <> null && $currentUser->getEnablePrivateKey() == 1) {
+    if ($currentUser->getPrivateKey() <> null && strlen($currentUser->getPrivateKey()) == 32) {
         array_push(
             $tplVars['rsschannels'],
             array(
                 filter($sitename . sprintf(T_(': (private) ')) . $sitename),
-                createURL('rss', filter($currentUsername, 'url') . '?sort='.getSortOrder().'&privatekey='.$currentUser->getPrivateKey())
+                createURL('rss', filter($currentUsername, 'url') . '?sort='.getSortOrder().'&amp;privatekey='.$currentUser->getPrivateKey())
             )
         );
     }

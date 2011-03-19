@@ -32,7 +32,7 @@ $this->includeTemplate($GLOBALS['top_include']);
 </tr>
 <tr>
     <th align="left"><?php echo T_('Private RSS Feed'); ?></th>
-    <td><input type="checkbox" id="pEnablePrivateKey" name="pEnablePrivateKey" value="1" <?php if ($objectUser->getEnablePrivateKey()==1) echo 'checked="checked"'; ?>><?php echo T_('Enable'); ?>&nbsp;&nbsp;&nbsp;<input type="text" id="pPrivateKey" name="pPrivateKey" size="40" value="<?php echo $privateKey;?>" readonly /><input type="submit" name="submittedPK" value="<?php echo T_('Generate New Key'); ?>" /></td>
+    <td><input type="checkbox" id="pEnablePrivateKey" name="pEnablePrivateKey" value="1" <?php if (strlen($privateKey)==32) echo 'checked="checked"'; ?>><?php echo T_('Enable'); ?>&nbsp;&nbsp;&nbsp;<input type="text" id="pPrivateKey" name="pPrivateKey" size="40" value="<?php echo substr($privateKey, -32);?>" readonly /><input type="submit" name="submittedPK" value="<?php echo T_('Generate New Key'); ?>" /></td>
 </tr>
 </table>
 

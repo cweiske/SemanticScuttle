@@ -221,6 +221,57 @@ class UserTest extends TestBase
 
         $this->assertTrue($this->us->privateKeyExists($randKey));
     }
+
+
+
+    /**
+     * Test loginPrivateKey() function returns righ
+     *
+     * @return void
+     */
+    public function testLoginWithPrivateKey()
+    {
+        /* normal user with enabled privatekey */
+        $randKey = $this->us->getNewPrivateKey();
+        $uid1 = $this->addUser('testusername', 'passw0rd', $randKey);
+        /* user that has disabled privatekey */
+        $randKey2 = '-'.$this->us->getNewPrivateKey();
+        $uid2 = $this->addUser('seconduser', 'passw0RD', $randKey2);
+
+        /* test invalid credentials - both invalid login and key */
+        $this->assertFalse(
+            $this->us->loginPrivateKey('userdoesnot', '02848248084082408240824802408248')
+        );
+
+        /* test valid credentials with private key enabled */
+        $this->assertTrue(
+            $this->us->loginPrivateKey('testusername', $randKey)
+        );
+
+        /* test valid credentials with private key enabled but invalid key */
+        $this->assertFalse(
+            $this->us->loginPrivateKey('testusername', '123')
+        );
+
+        /* confirm user exists so future fails should be due to randkey */
+        $this->assertTrue(
+            $this->us->login('seconduser', 'passw0RD', false)
+        );
+
+        /* test valid credentials with private key disabled */
+        $this->assertFalse(
+            $this->us->loginPrivateKey('seconduser', $randKey2)
+        );
+
+        /* test valid credentials with private key disabled and invalid key */
+        $this->assertFalse(
+            $this->us->loginPrivateKey('seconduser', '-1')
+        );
+        $this->assertFalse(
+            $this->us->loginPrivateKey('seconduser', null)
+        );
+    }
+
 }
 
 

@@ -82,6 +82,11 @@ if ($user && $user != 'all') {
                 if ($privatekey != null) {
                     if ($userservice->loginPrivateKey($user, $privatekey)) {
                         $isTempLogin = true;
+                    } else {
+                        $tplVars['error'] = sprintf(T_('Failed to Autenticate User with username %s using private key'), $user);
+                        $templateservice->loadTemplate('error.404.tpl', $tplVars);
+                        //throw a 404 error
+                        exit();
                     }
                 }
             }

@@ -66,7 +66,6 @@ if ($user) {
 if ($userservice->isLoggedOn() && $user == $currentUser->getUsername()) {
     $title = T_('My Profile');
     $tplVars['privateKey'] = $currentUser->getPrivateKey();
-    $tplVars['enablePrivateKey'] = $currentUser->getPrivateKey();
 } else {
     $title = T_('Profile') .': '. $user;
     $tplVars['privateKey'] = '';

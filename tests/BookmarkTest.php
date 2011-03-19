@@ -1164,7 +1164,7 @@ class BookmarkTest extends TestBase
 
         //create bookmarks for main user and other one
         $this->addBookmark($uid, $address, 0);
-        $this->addBookmark($friendPublic1,  $address, 1);//1 is shared
+        $this->addBookmark($friendPublic1, $address, 1);//1 is shared
 
         //log main user in
         $this->us->setCurrentUserId($uid);
@@ -1342,6 +1342,51 @@ class BookmarkTest extends TestBase
         );
     }
 
+    /**
+     * Test private bookmarks
+     *
+     * @return void
+     */
+    public function testPrivateBookmarks()
+    {
+        $uid = $this->addUser();
+        /* create private bookmark */
+        $this->bs->addBookmark(
+            'http://test', 'test', 'desc', 'note',
+            2,//private
+            array(), null, null, false, false, $uid
+        );
+        /* create public bookmark */
+        $this->bs->addBookmark(
+            'http://example.org', 'title', 'desc', 'priv',
+            0,//public
+            array(), null, null, false, false, $uid
+        );
+
+        $this->assertEquals(1, $this->bs->countBookmarks($uid, 'public'));
+        $this->assertEquals(1, $this->bs->countBookmarks($uid, 'private'));
+        $this->assertEquals(0, $this->bs->countBookmarks($uid, 'shared'));
+        $this->assertEquals(2, $this->bs->countBookmarks($uid, 'all'));
+
+        $this->us->setCurrentUserId($uid);
+        $bookmarks = $this->bs->getBookmarks();
+        // first record should be private bookmark
+        $b0 = $bookmarks['bookmarks'][0];
+        $this->assertEquals('test', $b0['bTitle']);
+        // second record should be public bookmark
+        $b0 = $bookmarks['bookmarks'][1];
+        $this->assertEquals('title', $b0['bTitle']);
+
+        // test non authenticated query
+        $this->us->setCurrentUserId(null);
+        $bookmarks = $this->bs->getBookmarks();
+        // should only result in one link - public
+        $b2 = $bookmarks['bookmarks'][0];
+        $this->assertEquals('title', $b2['bTitle']);
+        // there should be no second record
+        $this->assertNull($bookmarks['bookmarks'][1]);
+
+    }
 
 
 }

@@ -577,6 +577,13 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      */
     public function loginPrivateKey($username, $privatekey)
     {
+        /* Check for size, only 32 char keys will work */
+        /* Failsafe to hopefully lessen hackability and */
+        /* deactivated keys (preceded by dash) */
+        if (strlen($privatekey) != 32) {
+            return false;
+        }
+
         $query = 'SELECT '. $this->getFieldName('primary') .' FROM '
             . $this->getTableName() .' WHERE '
             . $this->getFieldName('username') .' = "'
@@ -789,33 +796,26 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      * No checks are done in here - you ought to have checked
      * everything before calling this method!
      *
-     * @param string  $username         Username to use
-     * @param string  $password         Password to use
-     * @param string  $email            Email to use
-     * @param string  $privateKey       Key for RSS auth
-     * @param integer $enablePrivateKey Flag to enable Private RSS
+     * @param string $username   Username to use
+     * @param string $password   Password to use
+     * @param string $email      Email to use
+     * @param string $privateKey Key for RSS auth
      *
      * @return mixed Integer user ID if all is well,
      *               boolean false if an error occured
      */
-    public function addUser(
-        $username, $password, $email, $privateKey=null, $enablePrivateKey=0
-    ) {
+    public function addUser($username, $password, $email, $privateKey=null)
+    {
         // Set up the SQL UPDATE statement.
         $datetime = gmdate('Y-m-d H:i:s', time());
         $password = $this->sanitisePassword($password);
-        // set new private key if enabled but user forgot to generate
-        if ($enablePrivateKey == 1) {
-            $privateKey = $this->getNewPrivateKey();
-        }
         $values   = array(
             'username'   => $username,
             'password'   => $password,
             'email'      => $email,
             'uDatetime'  => $datetime,
             'uModified'  => $datetime,
-            'privateKey' => $privateKey,
-            'enablePrivateKey' => $enablePrivateKey
+            'privateKey' => $privateKey
         );
         $sql = 'INSERT INTO '. $this->getTableName()
             . ' '. $this->db->sql_build_array('INSERT', $values);
@@ -839,23 +839,38 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     /**
      * Update User Record
      *
-     * @param string  $uId              User ID
-     * @param string  $password         User Password
-     * @param string  $name             User Name
-     * @param string  $email            Email Address
-     * @param string  $homepage         Homepage URL
-     * @param string  $uContent         Content
-     * @param string  $privateKey       RSS Private Key
-     * @param integer $enablePrivateKey Flag to enable RSS Private Key
+     * @param string $uId              User ID
+     * @param string $password         User Password
+     * @param string $name             User Name
+     * @param string $email            Email Address
+     * @param string $homepage         Homepage URL
+     * @param string $uContent         Content
+     * @param string $privateKey       RSS Private Key
+     * @param string $enablePrivateRSS RSS Private Key
      *
      * @return boolean true if it successful, false if not
      */
     function updateUser(
         $uId, $password, $name, $email, $homepage, $uContent,
-        $privateKey=null, $enablePrivateKey=0
+        $privateKey=null, $enablePrivateRSS=0
     ) {
         if (!is_numeric($uId)) {
             return false;
+        }
+
+        // prepend - to privateKey if disabled
+        if ($privateKey!=null and strlen($privateKey)==32 and $enablePrivateRSS==0) {
+            $privateKey = "-".$privateKey;
+        }
+
+        // remove - from privateKey if enabling
+        if ($privateKey!=null and strlen($privateKey)==33 and $enablePrivateRSS==1) {
+            $privateKey = substr($privateKey, 1, 32);
+        }
+
+        // if new user is enabling Private RSS, create new key
+        if ($privateKey==null and $enablePrivateRSS==1) {
+            $privateKey = $this->getNewPrivateKey();
         }
 
         // Set up the SQL UPDATE statement.
@@ -864,14 +879,12 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
             $updates = array (
                 'uModified' => $moddatetime, 'name' => $name,
                 'email' => $email, 'homepage' => $homepage,
-                'uContent' => $uContent, 'privateKey' => $privateKey,
-                'enablePrivateKey' => $enablePrivateKey);
+                'uContent' => $uContent, 'privateKey' => $privateKey);
         } else {
             $updates = array ('uModified' => $moddatetime,
                 'password' => $this->sanitisePassword($password),
                 'name' => $name, 'email' => $email, 'homepage' => $homepage,
-                'uContent' => $uContent, 'privateKey' => $privateKey,
-                'enablePrivateKey' => $enablePrivateKey);
+                'uContent' => $uContent, 'privateKey' => $privateKey);
         }
         $sql = 'UPDATE '. $this->getTableName() .' SET '
             . $this->db->sql_build_array('UPDATE', $updates) .' WHERE '

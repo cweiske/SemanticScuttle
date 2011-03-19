@@ -259,7 +259,7 @@ if ($templatename == 'editbookmark.tpl') {
         )
     );
     if ($userservice->isLoggedOn()) {
-        if ($currentUser->getPrivateKey() <> null && $currentUser->getEnablePrivateKey() == 1) {
+        if (strlen($currentUser->getPrivateKey()) == 32) {
             array_push(
                 $tplVars['rsschannels'],
                 array(
