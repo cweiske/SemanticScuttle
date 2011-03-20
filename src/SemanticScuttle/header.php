@@ -68,6 +68,7 @@ require_once 'SemanticScuttle/Service.php';
 require_once 'SemanticScuttle/DbService.php';
 require_once 'SemanticScuttle/Service/Factory.php';
 require_once 'SemanticScuttle/functions.php';
+require_once 'SemanticScuttle/Model/UserArray.php';
 
 if (count($GLOBALS['serviceoverrides']) > 0
     && !defined('UNIT_TEST_MODE')

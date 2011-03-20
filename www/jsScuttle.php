@@ -155,7 +155,10 @@ function processVotingResult() {
     var bmnode = document.getElementById('bmv-'+bookmark);
 
     bmnode.parentNode.replaceChild(
-        response.getElementsByTagName('html')[0].firstChild,
+        xmlhttp.responseXML.importNode(
+            response.getElementsByTagName('html')[0].firstChild,
+            true
+        ),
         bmnode
     );
 }

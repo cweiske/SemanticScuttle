@@ -31,7 +31,9 @@ if($GLOBALS['enableGoogleCustomSearch']==false) {
 	echo '<p><small>';
 	echo T_('Admin tips: ');
 	echo T_('To refresh manually Google Custom Search Engine, goes to: ');
-	echo '<a href="http://www.google.com/coop/cse/cref?cref='.ROOT.'search/context.php">http://www.google.com/coop/cse/cref</a><br/>';
+	echo '<a href="http://www.google.com/coop/cse/cref?cref='
+        . ROOT . 'gsearch/context.php">http://www.google.com/coop/cse/cref</a>'
+        . '<br/>';
 	echo T_('If no result appears, check that all the urls are valid in the admin section.');
 	echo '</small></p>';
 	

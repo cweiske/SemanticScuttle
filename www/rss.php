@@ -116,7 +116,7 @@ foreach ($bookmarks_tmp as $key => $row) {
         'title'       => $row['bTitle'],
         'link'        => $_link,
         'description' => $row['bDescription'],
-        'creator'     => $row['username'],
+        'creator'     => SemanticScuttle_Model_UserArray::getName($row),
         'pubdate'     => $_pubdate,
         'tags'        => $row['tags']
     );

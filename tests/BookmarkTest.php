@@ -263,7 +263,7 @@ class BookmarkTest extends TestBase
         $bookmark = $this->bs->getBookmark($bid);
 
         $ret = $this->bs->bookmarksExist(array($bookmark['bAddress']));
-        $this->assertType('array', $ret);
+        $this->assertInternalType('array', $ret);
         $this->assertEquals(1, count($ret));
         $this->assertTrue($ret[$bookmark['bAddress']]);
     }
@@ -291,7 +291,7 @@ class BookmarkTest extends TestBase
                 $bookmark2['bAddress']
             )
         );
-        $this->assertType('array', $ret);
+        $this->assertInternalType('array', $ret);
         $this->assertEquals(2, count($ret));
         $this->assertTrue($ret[$bookmark['bAddress']]);
         $this->assertTrue($ret[$bookmark2['bAddress']]);
@@ -308,7 +308,7 @@ class BookmarkTest extends TestBase
     public function testBookmarksExistFalseSingle()
     {
         $ret = $this->bs->bookmarksExist(array('does-not-exist'));
-        $this->assertType('array', $ret);
+        $this->assertInternalType('array', $ret);
         $this->assertEquals(1, count($ret));
         $this->assertFalse($ret['does-not-exist']);
     }
@@ -329,7 +329,7 @@ class BookmarkTest extends TestBase
             'does-not-exist-3',
         );
         $ret = $this->bs->bookmarksExist($bms);
-        $this->assertType('array', $ret);
+        $this->assertInternalType('array', $ret);
         $this->assertEquals(3, count($ret));
         $this->assertFalse($ret['does-not-exist']);
         $this->assertFalse($ret['does-not-exist-2']);
@@ -366,7 +366,7 @@ class BookmarkTest extends TestBase
                 'does-not-exist-3'
             )
         );
-        $this->assertType('array', $ret);
+        $this->assertInternalType('array', $ret);
         $this->assertEquals(5, count($ret));
         $this->assertTrue($ret[$bookmark['bAddress']]);
         $this->assertTrue($ret[$bookmark2['bAddress']]);
@@ -475,7 +475,7 @@ class BookmarkTest extends TestBase
 
         foreach ($bms['bookmarks'] as $bm) {
             $this->assertArrayHasKey('tags', $bm);
-            $this->assertType('array', $bm['tags']);
+            $this->assertInternalType('array', $bm['tags']);
             if ($bm['bId'] == $bid) {
                 $this->assertContains('foo', $bm['tags']);
                 $this->assertContains('bar', $bm['tags']);
@@ -756,7 +756,7 @@ class BookmarkTest extends TestBase
 
         $bm = $this->bs->getBookmark($bid, true);
         $this->assertArrayHasKey('tags', $bm);
-        $this->assertType('array', $bm['tags']);
+        $this->assertInternalType('array', $bm['tags']);
         $this->assertContains('foo', $bm['tags']);
         $this->assertContains('bar', $bm['tags']);
     }
@@ -874,7 +874,7 @@ class BookmarkTest extends TestBase
         $bid = $this->addBookmark($uid, $url);
 
         $bm = $this->bs->getBookmarkByAddress($url);
-        $this->assertType('array', $bm);
+        $this->assertInternalType('array', $bm);
         $this->assertEquals($url, $bm['bAddress']);
     }
 
@@ -900,7 +900,7 @@ class BookmarkTest extends TestBase
         $bid = $this->addBookmark($uid, $url);
 
         $bm = $this->bs->getBookmarkByAddress($incomplete);
-        $this->assertType('array', $bm);
+        $this->assertInternalType('array', $bm);
         $this->assertEquals($url, $bm['bAddress']);
     }
 
@@ -951,7 +951,7 @@ class BookmarkTest extends TestBase
         $this->assertEquals('new description', $bm['bDescription']);
         $this->assertEquals('new private note', $bm['bPrivateNote']);
         $this->assertEquals(1, $bm['bStatus']);
-        $this->assertType('array', $bm['tags']);
+        $this->assertInternalType('array', $bm['tags']);
         $this->assertEquals(1, count($bm['tags']));
         $this->assertContains('new', $bm['tags']);
     }
