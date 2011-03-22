@@ -117,12 +117,12 @@ function jsEscTitle($title)
  </table>
 </form>
 
-<link href="<?php echo ROOT ?>js/jqueryui-1.8.5/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo ROOT ?>js/jquery-ui-1.8.5/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css"/>
   
-<script type="text/javascript" src="<?php echo ROOT ?>js/jqueryui-1.8.5/jquery.ui.core.js"></script>
-<script type="text/javascript" src="<?php echo ROOT ?>js/jqueryui-1.8.5/jquery.ui.widget.js"></script>
-<script type="text/javascript" src="<?php echo ROOT ?>js/jqueryui-1.8.5/jquery.ui.position.js"></script>
-<script type="text/javascript" src="<?php echo ROOT ?>js/jqueryui-1.8.5/jquery.ui.autocomplete.js"></script>
+<script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.5/jquery.ui.core.js"></script>
+<script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.5/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.5/jquery.ui.position.js"></script>
+<script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.5/jquery.ui.autocomplete.js"></script>
 <script type="text/javascript">
 jQuery(document).ready(function() {
     jQuery("input#tags").autocomplete({
