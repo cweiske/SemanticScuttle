@@ -20,6 +20,10 @@ function jsEscTitle($title)
 {
     return addcslashes($title, "'");
 }
+
+if (is_array($row['tags'])) {
+    $row['tags'] = implode(', ', $row['tags']);
+}
 ?>
 <form action="<?php echo $formaction; ?>" method="post">
 <table>
@@ -62,7 +66,7 @@ function jsEscTitle($title)
 <tr>
     <th align="left"><?php echo T_('Tags'); ?></th>
     <td class="scuttletheme">
-     <input type="text" id="tags" name="tags" size="75" value="<?php echo filter(implode(', ', $row['tags']), 'xml'); ?>"/>
+     <input type="text" id="tags" name="tags" size="75" value="<?php echo filter($row['tags'], 'xml'); ?>"/>
     </td>
     <td>← <?php echo T_('Comma-separated'); ?></td>
 </tr>
