@@ -118,15 +118,52 @@ function jsEscTitle($title)
 </form>
 
 <link href="<?php echo ROOT ?>js/jquery-ui-1.8.5/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css"/>
-  
+
 <script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.5/jquery.ui.core.js"></script>
 <script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.5/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.5/jquery.ui.position.js"></script>
 <script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.5/jquery.ui.autocomplete.js"></script>
 <script type="text/javascript">
 jQuery(document).ready(function() {
+    function split(val)
+    {
+        return val.split(/,\s*/);
+    }
+
+    function extractLast(term)
+    {
+        return split(term).pop();
+    }
+    var availableTags = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"];
+
     jQuery("input#tags").autocomplete({
-        source: ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"]
+
+        minLength: 0,
+
+        source: function(request, response) {
+            // delegate back to autocomplete, but extract the last term
+            response(
+                $.ui.autocomplete.filter(
+                    availableTags, extractLast(request.term)
+                )
+            );
+        },
+
+        focus: function() {
+            // prevent value inserted on focus
+            return false;
+        },
+        select: function(event, ui) {
+            var terms = split(this.value);
+            // remove the current input
+            terms.pop();
+            // add the selected item
+            terms.push(ui.item.value);
+            // add placeholder to get the comma-and-space at the end
+            terms.push("");
+            this.value = terms.join(", ");
+            return false;
+        }
     });
 });
 </script>

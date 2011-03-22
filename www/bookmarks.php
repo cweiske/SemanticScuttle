@@ -146,7 +146,7 @@ if ($userservice->isLoggedOn() && POST_SUBMITTED != '') {
 			$description = trim(POST_DESCRIPTION);
 			$privateNote = trim(POST_PRIVATENOTE);
 			$status = intval(POST_STATUS);
-			$categories = trim(implode(',', $_POST['tags']));
+			$categories = explode(',', $_POST['tags']);
 			$saved = true;
 			if ($bookmarkservice->addBookmark($address, $title, $description, $privateNote, $status, $categories)) {
 				if (POST_POPUP != '') {
