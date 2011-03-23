@@ -56,6 +56,7 @@ class Bookmark2TagTest extends TestBase
     protected function setUp()
     {
         $this->us = SemanticScuttle_Service_Factory::get('User');
+        $this->us->deleteAll();
         $this->bs = SemanticScuttle_Service_Factory::get('Bookmark');
         $this->bs->deleteAll();
         $this->b2ts= SemanticScuttle_Service_Factory::get('Bookmark2Tag');
@@ -446,6 +447,25 @@ class Bookmark2TagTest extends TestBase
         $this->assertContains(array('tag' => 'one', 'bCount' => '2'), $arTags);
         $this->assertContains(array('tag' => 'two', 'bCount' => '1'), $arTags);
         $this->assertContains(array('tag' => 'thr', 'bCount' => '1'), $arTags);
+    }
+
+
+    public function testGetAdminTags()
+    {
+        $admin1 = $this->addUser('admin1');
+        $admin2 = $this->addUser('admin2');
+        $user1  = $this->addUser();
+        $this->addBookmark($admin1, null, 0, array('admintag', 'admintag1'));
+        $this->addBookmark($admin2, null, 0, array('admintag', 'admintag2'));
+        $this->addBookmark($user1, null, 0, array('usertag'));
+
+        $GLOBALS['admin_users'] = array('admin1', 'admin2');
+        
+        $arTags = $this->b2ts->getAdminTags(4);
+        $this->assertEquals(3, count($arTags));
+        $this->assertContains(array('tag' => 'admintag', 'bCount' => '2'), $arTags);
+        $this->assertContains(array('tag' => 'admintag1', 'bCount' => '1'), $arTags);
+        $this->assertContains(array('tag' => 'admintag2', 'bCount' => '1'), $arTags);
     }
 }
 

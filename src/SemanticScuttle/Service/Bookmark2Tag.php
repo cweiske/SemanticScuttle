@@ -454,14 +454,36 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         return $output;
     }
 
-    function &getAdminTags($limit = 30, $logged_on_user = NULL, $days = NULL) {
+
+
+    /**
+     * Returns the tags used by admin users
+     *
+     * @param integer $limit          Number of tags to return
+     * @param integer $logged_on_user ID of the user that's currently logged in.
+     *                                If the logged in user equals the $user to find
+     *                                tags for, tags of private bookmarks are
+     *                                returned.
+     * @param integer $days           Bookmarks have to be changed in the last X days
+     *                                if their tags shall count*
+     *
+     * @return array Array of found tags. Each tag entry is an array with two keys,
+     *               'tag' (tag name) and 'bCount'.
+     *
+     * @see getPopularTags()
+     */
+    public function getAdminTags(
+        $limit = 30, $logged_on_user = null, $days = null
+    ) {
         // look for admin ids
-        $userservice = SemanticScuttle_Service_Factory :: get('User');
-        $adminIds = $userservice->getAdminIds();
+        $userservice = SemanticScuttle_Service_Factory::get('User');
+        $adminIds    = $userservice->getAdminIds();
 
         // ask for their tags
         return $this->getPopularTags($adminIds, $limit, $logged_on_user, $days);
     }
+
+
 
     function &getContactTags($user, $limit = 30, $logged_on_user = NULL, $days = NULL) {
         // look for contact ids
@@ -476,6 +498,8 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         // ask for their tags
         return $this->getPopularTags($contacts, $limit, $logged_on_user, $days);
     }
+
+
 
     /**
      * The the most popular tags and their usage count
