@@ -228,6 +228,8 @@ class Bookmark2TagTest extends TestBase
 
     /**
      * Fetch the most popular tags in descending order
+     *
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getPopularTags
      */
     public function testGetPopularTagsOrder()
     {
@@ -254,6 +256,9 @@ class Bookmark2TagTest extends TestBase
 
 
 
+    /**
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getPopularTags
+     */
     public function testGetPopularTagsLimit()
     {
         $user = $this->addUser();
@@ -289,6 +294,9 @@ class Bookmark2TagTest extends TestBase
 
 
 
+    /**
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getPopularTags
+     */
     public function testGetPopularTagsDays()
     {
         $user = $this->addUser();
@@ -322,6 +330,122 @@ class Bookmark2TagTest extends TestBase
         $this->assertContains(array('tag' => 'one', 'bCount' => '4'), $arTags);
         $this->assertContains(array('tag' => 'two', 'bCount' => '2'), $arTags);
         $this->assertContains(array('tag' => 'three', 'bCount' => '2'), $arTags);
+    }
+
+
+
+    /**
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getPopularTags
+     */
+    public function testGetPopularTagsExcludesSystemTags()
+    {
+        $user = $this->addUser();
+        $this->addTagBookmark($user, array('one', 'system:test'));
+        $this->addTagBookmark($user, array('one', 'system:unittest'));
+        $this->addTagBookmark($user, array('one', 'sys:unittest'));
+
+        $arTags = $this->b2ts->getPopularTags();
+        $this->assertInternalType('array', $arTags);
+        $this->assertEquals(2, count($arTags));
+        $this->assertEquals(
+            array(
+                array('tag' => 'one', 'bCount' => '3'),
+                array('tag' => 'sys:unittest', 'bCount' => '1'),
+            ),
+            $arTags
+        );
+    }
+
+
+
+    /**
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getPopularTags
+     */
+    public function testGetPopularTagsUserTags()
+    {
+        $user1 = $this->addUser();
+        $user2 = $this->addUser();
+        $user3 = $this->addUser();
+        $this->addTagBookmark($user1, array('one'));
+        $this->addTagBookmark($user2, array('one', 'two'));
+        $this->addTagBookmark($user2, array('two'));
+        $this->addTagBookmark($user3, array('one', 'three'));
+
+        $arTags = $this->b2ts->getPopularTags($user1);
+        $this->assertEquals(1, count($arTags));
+        $this->assertEquals(
+            array(
+                array('tag' => 'one', 'bCount' => '1'),
+            ),
+            $arTags
+        );
+
+        $arTags = $this->b2ts->getPopularTags($user2);
+        $this->assertEquals(2, count($arTags));
+        $this->assertEquals(
+            array(
+                array('tag' => 'two', 'bCount' => '2'),
+                array('tag' => 'one', 'bCount' => '1'),
+            ),
+            $arTags
+        );
+
+        $arTags = $this->b2ts->getPopularTags(array($user2, $user3));
+        $this->assertEquals(3, count($arTags));
+        $this->assertContains(array('tag' => 'one', 'bCount' => '2'), $arTags);
+        $this->assertContains(array('tag' => 'two', 'bCount' => '2'), $arTags);
+        $this->assertContains(array('tag' => 'three', 'bCount' => '1'), $arTags);
+    }
+
+    /**
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getPopularTags
+     */
+    public function testGetPopularTagsPublicOnly()
+    {
+        $user1 = $this->addUser();
+        $this->addBookmark($user1, null, 0, array('one'));
+        $this->addBookmark($user1, null, 1, array('one', 'two'));
+        $this->addBookmark($user1, null, 2, array('three'));
+
+        $arTags = $this->b2ts->getPopularTags();
+        $this->assertEquals(1, count($arTags));
+        $this->assertEquals(
+            array(
+                array('tag' => 'one', 'bCount' => '1'),
+            ),
+            $arTags
+        );
+
+        $user1 = $this->addUser();
+        $this->addBookmark($user1, null, 0, array('one'));
+        $this->addBookmark($user1, null, 1, array('one', 'two'));
+        $this->addBookmark($user1, null, 2, array('three'));
+
+        $arTags = $this->b2ts->getPopularTags($user1);
+        $this->assertEquals(1, count($arTags));
+        $this->assertEquals(
+            array(
+                array('tag' => 'one', 'bCount' => '1'),
+            ),
+            $arTags
+        );
+    }
+
+    /**
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getPopularTags
+     */
+    public function testGetPopularTagsUserPrivatesWhenLoggedIn()
+    {
+        $user1 = $this->addUser();
+        $this->addBookmark($user1, null, 0, array('one'));
+        $this->addBookmark($user1, null, 1, array('one', 'two'));
+        $this->addBookmark($user1, null, 2, array('three'));
+
+        $arTags = $this->b2ts->getPopularTags($user1, 10, $user1);
+        $this->assertEquals(3, count($arTags));
+        $this->assertContains(array('tag' => 'one', 'bCount' => '2'), $arTags);
+        $this->assertContains(array('tag' => 'two', 'bCount' => '1'), $arTags);
+        $this->assertContains(array('tag' => 'three', 'bCount' => '1'), $arTags);
     }
 }
 
