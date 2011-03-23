@@ -286,6 +286,43 @@ class Bookmark2TagTest extends TestBase
             $arTags
         );
     }
+
+
+
+    public function testGetPopularTagsDays()
+    {
+        $user = $this->addUser();
+        $this->addTagBookmark($user, array('one', 'two'), 'today');
+        $this->addTagBookmark($user, array('one', 'three'), 'today');
+        $this->addTagBookmark($user, array('one', 'two'), '-1 day 1 hour');
+        $this->addTagBookmark($user, array('one', 'three'), '-3 days 1 hour');
+
+        $arTags = $this->b2ts->getPopularTags(null, 10, null, 1);
+        $this->assertInternalType('array', $arTags);
+        $this->assertEquals(3, count($arTags));
+        $this->assertContains(array('tag' => 'one', 'bCount' => '2'), $arTags);
+        $this->assertContains(array('tag' => 'two', 'bCount' => '1'), $arTags);
+        $this->assertContains(array('tag' => 'three', 'bCount' => '1'), $arTags);
+
+        $arTags = $this->b2ts->getPopularTags(null, 10, null, 2);
+        $this->assertInternalType('array', $arTags);
+        $this->assertEquals(3, count($arTags));
+        $this->assertEquals(
+            array(
+                array('tag' => 'one', 'bCount' => '3'),
+                array('tag' => 'two', 'bCount' => '2'),
+                array('tag' => 'three', 'bCount' => '1'),
+            ),
+            $arTags
+        );
+
+        $arTags = $this->b2ts->getPopularTags(null, 10, null, 5);
+        $this->assertInternalType('array', $arTags);
+        $this->assertEquals(3, count($arTags));
+        $this->assertContains(array('tag' => 'one', 'bCount' => '4'), $arTags);
+        $this->assertContains(array('tag' => 'two', 'bCount' => '2'), $arTags);
+        $this->assertContains(array('tag' => 'three', 'bCount' => '2'), $arTags);
+    }
 }
 
 if (PHPUnit_MAIN_METHOD == 'Bookmark2TagTest::main') {
