@@ -108,11 +108,11 @@ class Bookmark2TagTest extends TestBase
 
 
     /**
-     * Test getTagsForBookmark() when the bookmark has three tags
+     * Test getTagsForBookmark() when the bookmark has thr tags
      *
      * @return void
      */
-    public function testGetTagsForBookmarkThree()
+    public function testGetTagsForBookmarkThr()
     {
         $this->addBookmark(null, null, 0, array('forz', 'barz'));
 
@@ -235,7 +235,7 @@ class Bookmark2TagTest extends TestBase
     {
         $user = $this->addUser();
         $this->addTagBookmark($user, array('one', 'two'));
-        $this->addTagBookmark($user, array('one', 'three'));
+        $this->addTagBookmark($user, array('one', 'thr'));
         $this->addTagBookmark($user, array('one', 'two'));
 
         $arTags = $this->b2ts->getPopularTags();
@@ -248,7 +248,7 @@ class Bookmark2TagTest extends TestBase
             array(
                 array('tag' => 'one', 'bCount' => '3'),
                 array('tag' => 'two', 'bCount' => '2'),
-                array('tag' => 'three', 'bCount' => '1')
+                array('tag' => 'thr', 'bCount' => '1')
             ),
             $arTags
         );
@@ -263,7 +263,7 @@ class Bookmark2TagTest extends TestBase
     {
         $user = $this->addUser();
         $this->addTagBookmark($user, array('one', 'two'));
-        $this->addTagBookmark($user, array('one', 'three'));
+        $this->addTagBookmark($user, array('one', 'thr'));
         $this->addTagBookmark($user, array('one', 'two'));
 
         $arTags = $this->b2ts->getPopularTags();
@@ -301,16 +301,16 @@ class Bookmark2TagTest extends TestBase
     {
         $user = $this->addUser();
         $this->addTagBookmark($user, array('one', 'two'), 'today');
-        $this->addTagBookmark($user, array('one', 'three'), 'today');
+        $this->addTagBookmark($user, array('one', 'thr'), 'today');
         $this->addTagBookmark($user, array('one', 'two'), '-1 day 1 hour');
-        $this->addTagBookmark($user, array('one', 'three'), '-3 days 1 hour');
+        $this->addTagBookmark($user, array('one', 'thr'), '-3 days 1 hour');
 
         $arTags = $this->b2ts->getPopularTags(null, 10, null, 1);
         $this->assertInternalType('array', $arTags);
         $this->assertEquals(3, count($arTags));
         $this->assertContains(array('tag' => 'one', 'bCount' => '2'), $arTags);
         $this->assertContains(array('tag' => 'two', 'bCount' => '1'), $arTags);
-        $this->assertContains(array('tag' => 'three', 'bCount' => '1'), $arTags);
+        $this->assertContains(array('tag' => 'thr', 'bCount' => '1'), $arTags);
 
         $arTags = $this->b2ts->getPopularTags(null, 10, null, 2);
         $this->assertInternalType('array', $arTags);
@@ -319,7 +319,7 @@ class Bookmark2TagTest extends TestBase
             array(
                 array('tag' => 'one', 'bCount' => '3'),
                 array('tag' => 'two', 'bCount' => '2'),
-                array('tag' => 'three', 'bCount' => '1'),
+                array('tag' => 'thr', 'bCount' => '1'),
             ),
             $arTags
         );
@@ -329,7 +329,7 @@ class Bookmark2TagTest extends TestBase
         $this->assertEquals(3, count($arTags));
         $this->assertContains(array('tag' => 'one', 'bCount' => '4'), $arTags);
         $this->assertContains(array('tag' => 'two', 'bCount' => '2'), $arTags);
-        $this->assertContains(array('tag' => 'three', 'bCount' => '2'), $arTags);
+        $this->assertContains(array('tag' => 'thr', 'bCount' => '2'), $arTags);
     }
 
 
@@ -369,7 +369,7 @@ class Bookmark2TagTest extends TestBase
         $this->addTagBookmark($user1, array('one'));
         $this->addTagBookmark($user2, array('one', 'two'));
         $this->addTagBookmark($user2, array('two'));
-        $this->addTagBookmark($user3, array('one', 'three'));
+        $this->addTagBookmark($user3, array('one', 'thr'));
 
         $arTags = $this->b2ts->getPopularTags($user1);
         $this->assertEquals(1, count($arTags));
@@ -394,7 +394,7 @@ class Bookmark2TagTest extends TestBase
         $this->assertEquals(3, count($arTags));
         $this->assertContains(array('tag' => 'one', 'bCount' => '2'), $arTags);
         $this->assertContains(array('tag' => 'two', 'bCount' => '2'), $arTags);
-        $this->assertContains(array('tag' => 'three', 'bCount' => '1'), $arTags);
+        $this->assertContains(array('tag' => 'thr', 'bCount' => '1'), $arTags);
     }
 
     /**
@@ -405,7 +405,7 @@ class Bookmark2TagTest extends TestBase
         $user1 = $this->addUser();
         $this->addBookmark($user1, null, 0, array('one'));
         $this->addBookmark($user1, null, 1, array('one', 'two'));
-        $this->addBookmark($user1, null, 2, array('three'));
+        $this->addBookmark($user1, null, 2, array('thr'));
 
         $arTags = $this->b2ts->getPopularTags();
         $this->assertEquals(1, count($arTags));
@@ -419,7 +419,7 @@ class Bookmark2TagTest extends TestBase
         $user1 = $this->addUser();
         $this->addBookmark($user1, null, 0, array('one'));
         $this->addBookmark($user1, null, 1, array('one', 'two'));
-        $this->addBookmark($user1, null, 2, array('three'));
+        $this->addBookmark($user1, null, 2, array('thr'));
 
         $arTags = $this->b2ts->getPopularTags($user1);
         $this->assertEquals(1, count($arTags));
@@ -439,13 +439,13 @@ class Bookmark2TagTest extends TestBase
         $user1 = $this->addUser();
         $this->addBookmark($user1, null, 0, array('one'));
         $this->addBookmark($user1, null, 1, array('one', 'two'));
-        $this->addBookmark($user1, null, 2, array('three'));
+        $this->addBookmark($user1, null, 2, array('thr'));
 
         $arTags = $this->b2ts->getPopularTags($user1, 10, $user1);
         $this->assertEquals(3, count($arTags));
         $this->assertContains(array('tag' => 'one', 'bCount' => '2'), $arTags);
         $this->assertContains(array('tag' => 'two', 'bCount' => '1'), $arTags);
-        $this->assertContains(array('tag' => 'three', 'bCount' => '1'), $arTags);
+        $this->assertContains(array('tag' => 'thr', 'bCount' => '1'), $arTags);
     }
 }
 
