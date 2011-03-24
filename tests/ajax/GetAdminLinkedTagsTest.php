@@ -66,7 +66,7 @@ class ajax_GetAdminLinkedTagsTest extends TestBaseApi
         );
 
         $data = json_decode($res->getBody());
-        $this->assertType('array', $data);
+        $this->assertInternalType('array', $data);
 
         //same number of elements as the menu2Tags array
         $this->assertEquals(
@@ -106,7 +106,7 @@ class ajax_GetAdminLinkedTagsTest extends TestBaseApi
         );
 
         $data = json_decode($res->getBody());
-        $this->assertType('array', $data);
+        $this->assertInternalType('array', $data);
 
         //only one subtag
         $this->assertEquals(1, count($data));
@@ -146,7 +146,7 @@ class ajax_GetAdminLinkedTagsTest extends TestBaseApi
         );
 
         $data = json_decode($res->getBody());
-        $this->assertType('array', $data);
+        $this->assertInternalType('array', $data);
 
         //we should have only one subtag now, the admin one
         $this->assertEquals(1, count($data));
