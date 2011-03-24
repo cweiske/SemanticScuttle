@@ -674,7 +674,15 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         return $output;
     }
 
-    function deleteAll() {
+
+
+    /**
+     * Deletes all tags in bookmarks2tags
+     *
+     * @return void
+     */
+    public function deleteAll()
+    {
         $query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';
         $this->db->sql_query($query);
     }
