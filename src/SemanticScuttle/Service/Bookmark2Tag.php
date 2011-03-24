@@ -550,14 +550,6 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
             $privacy = '';
         }
 
-        if (is_null($days) || !is_int($days)) {
-            $span = '';
-        } else {
-            $span = ' AND B.bDatetime > "'
-                . date('Y-m-d H:i:s', time() - (86400 * $days))
-                . '"';
-        }
-
         $query = 'SELECT'
             . ' T.tag, COUNT(T.bId) AS bCount'
             . ' FROM '
@@ -579,7 +571,13 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
                 . ' AND B.bId = T.bId' . $privacy;
         }
 
-        $query .= $span . ' AND LEFT(T.tag, 7) <> "system:"'
+        if (is_int($days)) {
+            $query .= ' AND B.bDatetime > "'
+                . date('Y-m-d H:i:s', time() - (86400 * $days))
+                . '"';
+        }
+
+        $query .= ' AND LEFT(T.tag, 7) <> "system:"'
             . ' GROUP BY T.tag'
             . ' ORDER BY bCount DESC, tag';
 
