@@ -10,6 +10,7 @@ ChangeLog for SemantiScuttle
 - Show error message on mysqli connection errors
 - Update php-gettext library to 1.0.10
 - api/posts/add respects the "replace" parameter now
+- Fix privacy issue when fetching tags of several users
 
 
 0.97.2 - 2011-02-17
