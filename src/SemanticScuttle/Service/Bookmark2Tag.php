@@ -565,7 +565,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
                 $query .= ' OR B.uId = ' . $this->db->sql_escape($u)
                     . ' AND B.bId = T.bId';
             }
-            $query .= ' )';
+            $query .= ' )' . $privacy;
         } else {
             $query .= ' B.uId = ' . $this->db->sql_escape($user)
                 . ' AND B.bId = T.bId' . $privacy;

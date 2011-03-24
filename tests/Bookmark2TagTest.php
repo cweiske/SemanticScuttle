@@ -37,6 +37,26 @@ class Bookmark2TagTest extends TestBase
     protected $tts;
 
 
+    /**
+     * Create a bookmark. Like addBookmark(), just with other paramter order
+     * to make some tests in that class easier to write.
+     *
+     * @param integer $user    User ID the bookmark shall belong
+     * @param array   $tags    Array of tags to attach. If "null" is given,
+     *                         it will automatically be "unittest"
+     * @param string  $date    strtotime-compatible string
+     * @param string  $title   Bookmark title
+     *
+     * @return integer ID of bookmark
+     */
+    protected function addTagBookmark($user, $tags, $date = null, $title = null)
+    {
+        return $this->addBookmark(
+            $user, null, 0, $tags, $title, $date
+        );
+    }
+
+
 
     /**
      * Used to run this test class standalone
@@ -204,25 +224,6 @@ class Bookmark2TagTest extends TestBase
                 $this->assertTrue(false, 'Unknown bookmark id');
             }
         }
-    }
-
-
-    /**
-     * Create a bookmark
-     *
-     * @param integer $user    User ID the bookmark shall belong
-     * @param array   $tags    Array of tags to attach. If "null" is given,
-     *                         it will automatically be "unittest"
-     * @param string  $date    strtotime-compatible string
-     * @param string  $title   Bookmark title
-     *
-     * @return integer ID of bookmark
-     */
-    protected function addTagBookmark($user, $tags, $date = null, $title = null)
-    {
-        return $this->addBookmark(
-            $user, null, 0, $tags, $title, $date
-        );
     }
 
 
@@ -398,10 +399,12 @@ class Bookmark2TagTest extends TestBase
         $this->assertContains(array('tag' => 'thr', 'bCount' => '1'), $arTags);
     }
 
+
+
     /**
      * @covers SemanticScuttle_Service_Bookmark2Tag::getPopularTags
      */
-    public function testGetPopularTagsPublicOnly()
+    public function testGetPopularTagsPublicOnlyNoUser()
     {
         $user1 = $this->addUser();
         $this->addBookmark($user1, null, 0, array('one'));
@@ -416,7 +419,13 @@ class Bookmark2TagTest extends TestBase
             ),
             $arTags
         );
+    }
 
+    /**
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getPopularTags
+     */
+    public function testGetPopularTagsPublicOnlySingleUser()
+    {
         $user1 = $this->addUser();
         $this->addBookmark($user1, null, 0, array('one'));
         $this->addBookmark($user1, null, 1, array('one', 'two'));
@@ -430,6 +439,26 @@ class Bookmark2TagTest extends TestBase
             ),
             $arTags
         );
+    }
+
+    /**
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getPopularTags
+     */
+    public function testGetPopularTagsPublicOnlySeveralUsers()
+    {
+        $user1 = $this->addUser();
+        $user2 = $this->addUser();
+        $this->addBookmark($user1, null, 0, array('one'));
+        $this->addBookmark($user1, null, 1, array('one', 'two'));
+        $this->addBookmark($user1, null, 2, array('thr'));
+        $this->addBookmark($user2, null, 0, array('fou'));
+        $this->addBookmark($user2, null, 1, array('fiv'));
+        $this->addBookmark($user2, null, 2, array('six'));
+
+        $arTags = $this->b2ts->getPopularTags(array($user1, $user2));
+        $this->assertEquals(2, count($arTags));
+        $this->assertContains(array('tag' => 'one', 'bCount' => '1'), $arTags);
+        $this->assertContains(array('tag' => 'fou', 'bCount' => '1'), $arTags);
     }
 
     /**
