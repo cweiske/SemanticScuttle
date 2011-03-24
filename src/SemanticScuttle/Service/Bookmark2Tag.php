@@ -465,7 +465,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
      *                                tags for, tags of private bookmarks are
      *                                returned.
      * @param integer $days           Bookmarks have to be changed in the last X days
-     *                                if their tags shall count*
+     *                                if their tags shall count
      *
      * @return array Array of found tags. Each tag entry is an array with two keys,
      *               'tag' (tag name) and 'bCount'.
@@ -496,7 +496,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
      *                                If set, that user is added to the list of
      *                                people to get the tags from
      * @param integer $days           Bookmarks have to be changed in the last X days
-     *                                if their tags shall count*
+     *                                if their tags shall count
      *
      * @return array Array of found tags. Each tag entry is an array with two keys,
      *               'tag' (tag name) and 'bCount'.
@@ -532,7 +532,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
      *                                tags for, tags of private bookmarks are
      *                                returned.
      * @param integer $days           Bookmarks have to be changed in the last X days
-     *                                if their tags shall count*
+     *                                if their tags shall count
      *
      * @return array Array of found tags. Each tag entry is an array with two keys,
      *               'tag' (tag name) and 'bCount'.
