@@ -485,13 +485,33 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
 
 
 
-    function &getContactTags($user, $limit = 30, $logged_on_user = NULL, $days = NULL) {
+
+    /**
+     * Returns the tags used by users that are part of the user's watchlist,
+     * and the current user's own tags.
+     *
+     * @param integer $user           ID of the user to get the watchlist from
+     * @param integer $limit          Number of tags to return
+     * @param integer $logged_on_user ID of the user that's currently logged in.
+     *                                If set, that user is added to the list of
+     *                                people to get the tags from
+     * @param integer $days           Bookmarks have to be changed in the last X days
+     *                                if their tags shall count*
+     *
+     * @return array Array of found tags. Each tag entry is an array with two keys,
+     *               'tag' (tag name) and 'bCount'.
+     *
+     * @see getPopularTags()
+     */
+    public function getContactTags(
+        $user, $limit = 30, $logged_on_user = null, $days = null
+    ) {
         // look for contact ids
-        $userservice = SemanticScuttle_Service_Factory :: get('User');
+        $userservice = SemanticScuttle_Service_Factory::get('User');
         $contacts = $userservice->getWatchlist($user);
 
-        // add the user (to show him/her also his/her tags)
-        if(!is_null($logged_on_user)) {
+        // add the user (to show him also his own tags)
+        if (!is_null($logged_on_user)) {
             $contacts[] = $logged_on_user;
         }
 
@@ -516,6 +536,9 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
      *
      * @return array Array of found tags. Each tag entry is an array with two keys,
      *               'tag' (tag name) and 'bCount'.
+     *
+     * @see getAdminTags()
+     * @see getContactTags()
      */
     public function getPopularTags(
         $user = null, $limit = 30, $logged_on_user = null, $days = null

@@ -74,7 +74,7 @@ class Bookmark2TagTest extends TestBase
     /**
      * Test getTagsForBookmark() when the bookmark has no tags
      *
-     * @return void
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getTagsForBookmark
      */
     public function testGetTagsForBookmarkNone()
     {
@@ -92,7 +92,7 @@ class Bookmark2TagTest extends TestBase
     /**
      * Test getTagsForBookmark() when the bookmark has one tag
      *
-     * @return void
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getTagsForBookmark
      */
     public function testGetTagsForBookmarkOne()
     {
@@ -109,9 +109,9 @@ class Bookmark2TagTest extends TestBase
 
 
     /**
-     * Test getTagsForBookmark() when the bookmark has thr tags
+     * Test getTagsForBookmark() when the bookmark has three tags
      *
-     * @return void
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getTagsForBookmark
      */
     public function testGetTagsForBookmarkThr()
     {
@@ -132,7 +132,7 @@ class Bookmark2TagTest extends TestBase
     /**
      * Test getTagsForBookmarks() when no bookmarks have tags.
      *
-     * @return void
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getTagsForBookmarks
      */
     public function testGetTagsForBookmarksNone()
     {
@@ -155,7 +155,7 @@ class Bookmark2TagTest extends TestBase
     /**
      * Test getTagsForBookmarks() when most bookmarks have tags.
      *
-     * @return void
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getTagsForBookmarks
      */
     public function testGetTagsForBookmarksMost()
     {
@@ -450,6 +450,9 @@ class Bookmark2TagTest extends TestBase
     }
 
 
+    /**
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getAdminTags
+     */
     public function testGetAdminTags()
     {
         $admin1 = $this->addUser('admin1');
@@ -466,6 +469,53 @@ class Bookmark2TagTest extends TestBase
         $this->assertContains(array('tag' => 'admintag', 'bCount' => '2'), $arTags);
         $this->assertContains(array('tag' => 'admintag1', 'bCount' => '1'), $arTags);
         $this->assertContains(array('tag' => 'admintag2', 'bCount' => '1'), $arTags);
+    }
+
+
+
+    /**
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getContactTags
+     */
+    public function testGetContactTagsWatchlistOnly()
+    {
+        $user1 = $this->addUser();
+        $user2 = $this->addUser();
+        $user3 = $this->addUser();
+        $this->us->setCurrentUserId($user1);
+        $this->us->setWatchStatus($user2);
+        //user1 watches user2 now
+
+        $this->addBookmark($user1, null, 0, array('usertag', 'usertag1'));
+        $this->addBookmark($user2, null, 0, array('usertag', 'usertag2'));
+        $this->addBookmark($user3, null, 0, array('usertag', 'usertag3'));
+
+        $arTags = $this->b2ts->getContactTags($user1, 10);
+        $this->assertEquals(2, count($arTags));
+        $this->assertContains(array('tag' => 'usertag', 'bCount' => '1'), $arTags);
+        $this->assertContains(array('tag' => 'usertag2', 'bCount' => '1'), $arTags);
+    }
+
+    /**
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getContactTags
+     */
+    public function testGetContactTagsIncludingUser()
+    {
+        $user1 = $this->addUser();
+        $user2 = $this->addUser();
+        $user3 = $this->addUser();
+        $this->us->setCurrentUserId($user1);
+        $this->us->setWatchStatus($user2);
+        //user1 watches user2 now
+
+        $this->addBookmark($user1, null, 0, array('usertag', 'usertag1'));
+        $this->addBookmark($user2, null, 0, array('usertag', 'usertag2'));
+        $this->addBookmark($user3, null, 0, array('usertag', 'usertag3'));
+
+        $arTags = $this->b2ts->getContactTags($user1, 10, $user1);
+        $this->assertEquals(3, count($arTags));
+        $this->assertContains(array('tag' => 'usertag', 'bCount' => '2'), $arTags);
+        $this->assertContains(array('tag' => 'usertag1', 'bCount' => '1'), $arTags);
+        $this->assertContains(array('tag' => 'usertag2', 'bCount' => '1'), $arTags);
     }
 }
 
