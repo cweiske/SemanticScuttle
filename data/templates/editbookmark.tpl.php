@@ -150,6 +150,11 @@ jQuery(document).ready(function() {
                 $.ui.autocomplete.filter(
                     availableTags, extractLast(request.term)
                 )
+                /*
+                $.getJSON( "search.php", {
+                    term: extractLast( request.term )
+                }, response );
+                */
             );
         },
 
