@@ -427,6 +427,23 @@ class Bookmark2TagTest extends TestBase
 
 
     /**
+     * This may happen when the method is called with a problematic user array.
+     * In that case we may not generate invalid SQL or so.
+     *
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getPopularTags
+     */
+    public function testGetPopularTagsUserArrayWithNull()
+    {
+        $user1 = $this->addUser();
+        $this->addTagBookmark($user1, array('one'));
+
+        $arTags = $this->b2ts->getPopularTags(array(null));
+        $this->assertEquals(0, count($arTags));
+    }
+
+
+
+    /**
      * @covers SemanticScuttle_Service_Bookmark2Tag::getPopularTags
      */
     public function testGetPopularTagsPublicOnlyNoUser()

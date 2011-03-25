@@ -571,8 +571,10 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         } else if (is_array($user)) {
             $query .= ' (1 = 0';  //tricks
             foreach ($user as $u) {
-                $query .= ' OR B.uId = ' . $this->db->sql_escape($u)
-                    . ' AND B.bId = T.bId';
+                if (is_numeric($u)) {
+                    $query .= ' OR B.uId = ' . $this->db->sql_escape($u)
+                        . ' AND B.bId = T.bId';
+                }
             }
             $query .= ' )' . $privacy;
         } else {
