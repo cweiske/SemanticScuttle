@@ -466,6 +466,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
      *                                returned.
      * @param integer $days           Bookmarks have to be changed in the last X days
      *                                if their tags shall count
+     * @param string  $beginsWith     The tag name shall begin with that string
      *
      * @return array Array of found tags. Each tag entry is an array with two keys,
      *               'tag' (tag name) and 'bCount'.
@@ -473,14 +474,16 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
      * @see getPopularTags()
      */
     public function getAdminTags(
-        $limit = 30, $logged_on_user = null, $days = null
+        $limit = 30, $logged_on_user = null, $days = null, $beginsWith = null
     ) {
         // look for admin ids
         $userservice = SemanticScuttle_Service_Factory::get('User');
         $adminIds    = $userservice->getAdminIds();
 
         // ask for their tags
-        return $this->getPopularTags($adminIds, $limit, $logged_on_user, $days);
+        return $this->getPopularTags(
+            $adminIds, $limit, $logged_on_user, $days, $beginsWith
+        );
     }
 
 
@@ -497,6 +500,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
      *                                people to get the tags from
      * @param integer $days           Bookmarks have to be changed in the last X days
      *                                if their tags shall count
+     * @param string  $beginsWith     The tag name shall begin with that string
      *
      * @return array Array of found tags. Each tag entry is an array with two keys,
      *               'tag' (tag name) and 'bCount'.
@@ -504,7 +508,8 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
      * @see getPopularTags()
      */
     public function getContactTags(
-        $user, $limit = 30, $logged_on_user = null, $days = null
+        $user, $limit = 30, $logged_on_user = null, $days = null,
+        $beginsWith = null
     ) {
         // look for contact ids
         $userservice = SemanticScuttle_Service_Factory::get('User');
@@ -516,7 +521,9 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         }
 
         // ask for their tags
-        return $this->getPopularTags($contacts, $limit, $logged_on_user, $days);
+        return $this->getPopularTags(
+            $contacts, $limit, $logged_on_user, $days, $beginsWith
+        );
     }
 
 
@@ -533,6 +540,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
      *                                returned.
      * @param integer $days           Bookmarks have to be changed in the last X days
      *                                if their tags shall count
+     * @param string  $beginsWith     The tag name shall begin with that string
      *
      * @return array Array of found tags. Each tag entry is an array with two keys,
      *               'tag' (tag name) and 'bCount'.
@@ -541,7 +549,8 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
      * @see getContactTags()
      */
     public function getPopularTags(
-        $user = null, $limit = 30, $logged_on_user = null, $days = null
+        $user = null, $limit = 30, $logged_on_user = null, $days = null,
+        $beginsWith = null
     ) {
         // Only count the tags that are visible to the current user.
         if (($user != $logged_on_user) || is_null($user) || ($user === false)) {
@@ -575,6 +584,12 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
             $query .= ' AND B.bDatetime > "'
                 . date('Y-m-d H:i:s', time() - (86400 * $days))
                 . '"';
+        }
+
+        if (!is_null($beginsWith)) {
+            $query .= ' AND T.tag LIKE \''
+                . $this->db->sql_escape($beginsWith)
+                . '%\'';
         }
 
         $query .= ' AND LEFT(T.tag, 7) <> "system:"'

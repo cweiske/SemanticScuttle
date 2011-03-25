@@ -334,6 +334,31 @@ class Bookmark2TagTest extends TestBase
         $this->assertContains(array('tag' => 'thr', 'bCount' => '2'), $arTags);
     }
 
+    /**
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getPopularTags
+     */
+    public function testGetPopularTagsBeginsWith()
+    {
+        $user = $this->addUser();
+        $this->addTagBookmark($user, array('one', 'two'));
+        $this->addTagBookmark($user, array('one', 'thr'));
+        $this->addTagBookmark($user, array('one', 'two'));
+        $this->addTagBookmark($user, array('one', 'thr'));
+
+        $arTags = $this->b2ts->getPopularTags(null, 10, null, null, 'o');
+        $this->assertEquals(1, count($arTags));
+        $this->assertContains(array('tag' => 'one', 'bCount' => '4'), $arTags);
+
+        $arTags = $this->b2ts->getPopularTags(null, 10, null, null, 'tw');
+        $this->assertEquals(1, count($arTags));
+        $this->assertContains(array('tag' => 'two', 'bCount' => '2'), $arTags);
+
+        $arTags = $this->b2ts->getPopularTags(null, 10, null, null, 't');
+        $this->assertEquals(2, count($arTags));
+        $this->assertContains(array('tag' => 'two', 'bCount' => '2'), $arTags);
+        $this->assertContains(array('tag' => 'thr', 'bCount' => '2'), $arTags);
+    }
+
 
 
     /**
@@ -500,6 +525,23 @@ class Bookmark2TagTest extends TestBase
         $this->assertContains(array('tag' => 'admintag2', 'bCount' => '1'), $arTags);
     }
 
+    /**
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getAdminTags
+     */
+    public function testGetAdminTagsBeginsWith()
+    {
+        $admin1 = $this->addUser('admin1');
+        $this->addBookmark($admin1, null, 0, array('admintag', 'admintag1'));
+        $this->addBookmark($admin1, null, 0, array('tester', 'testos'));
+
+        $GLOBALS['admin_users'] = array('admin1');
+        
+        $arTags = $this->b2ts->getAdminTags(4, null, null, 'test');
+        $this->assertEquals(2, count($arTags));
+        $this->assertContains(array('tag' => 'tester', 'bCount' => '1'), $arTags);
+        $this->assertContains(array('tag' => 'testos', 'bCount' => '1'), $arTags);
+    }
+
 
 
     /**
@@ -545,6 +587,28 @@ class Bookmark2TagTest extends TestBase
         $this->assertContains(array('tag' => 'usertag', 'bCount' => '2'), $arTags);
         $this->assertContains(array('tag' => 'usertag1', 'bCount' => '1'), $arTags);
         $this->assertContains(array('tag' => 'usertag2', 'bCount' => '1'), $arTags);
+    }
+
+    /**
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getContactTags
+     */
+    public function testGetContactTagsBeginsWith()
+    {
+        $user1 = $this->addUser();
+        $this->addBookmark($user1, null, 0, array('usertag', 'usertag1'));
+        $this->addBookmark($user1, null, 0, array('usable', 'undefined'));
+        $this->addBookmark($user1, null, 0, array('fußbad', 'usable'));
+
+        $arTags = $this->b2ts->getContactTags($user1, 10, $user1, null, 'user');
+        $this->assertEquals(2, count($arTags));
+        $this->assertContains(array('tag' => 'usertag', 'bCount' => '1'), $arTags);
+        $this->assertContains(array('tag' => 'usertag1', 'bCount' => '1'), $arTags);
+
+        $arTags = $this->b2ts->getContactTags($user1, 10, $user1, null, 'us');
+        $this->assertEquals(3, count($arTags));
+        $this->assertContains(array('tag' => 'usertag', 'bCount' => '1'), $arTags);
+        $this->assertContains(array('tag' => 'usertag1', 'bCount' => '1'), $arTags);
+        $this->assertContains(array('tag' => 'usable', 'bCount' => '2'), $arTags);
     }
 }
 
