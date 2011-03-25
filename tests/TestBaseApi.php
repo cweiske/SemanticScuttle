@@ -84,6 +84,9 @@ class TestBaseApi extends TestBase
      * the request object with authentication details, so that
      * the user is logged in.
      *
+     * Useful for HTTP API methods only, cannot be used with
+     * "normal" HTML pages since they do not support HTTP auth.
+     *
      * @param string $urlSuffix Suffix for the URL
      * @param mixed  $auth      If user authentication is needed (true/false)
      *                          or array with username and password
@@ -106,6 +109,39 @@ class TestBaseApi extends TestBase
             $username, $password,
             HTTP_Request2::AUTH_BASIC
         );
+        return array($req, $uid);
+    }
+
+
+
+    /**
+     * Creates a user and a HTTP_Request2 object, does a normal login
+     * and prepares the cookies for the HTTP request object so that
+     * the user is seen as logged in when requesting any HTML page.
+     *
+     * Useful for testing HTML pages or ajax URLs.
+     *
+     * @param string $urlSuffix Suffix for the URL
+     * @param mixed  $auth      If user authentication is needed (true/false)
+     *                          or array with username and password
+     *
+     * @return array(HTTP_Request2, integer) HTTP request object and user id
+     *
+     * @uses getRequest()
+     */
+    protected function getLoggedInRequest($urlSuffix = null, $auth = true)
+    {
+        $req = $this->getRequest($urlSuffix);
+        if (is_array($auth)) {
+            list($username, $password) = $auth;
+        } else {
+            $username = 'testuser';
+            $password = 'testpassword';
+        }
+        $uid = $this->addUser($username, $password);
+
+        //FIXME: login via the login form, check if it worked
+        //FIXME: prepare new request with cookie
         return array($req, $uid);
     }
 
