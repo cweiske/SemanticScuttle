@@ -88,6 +88,30 @@ class ajax_GetContactTagsTest extends TestBaseApi
         $this->assertEquals(1, count($data));
         $this->assertContains('barmann', $data);
     }
+
+    public function testParameterLimit()
+    {
+        list($req, $uId) = $this->getLoggedInRequest('?limit=2');
+        $this->addBookmark($uId, null, 0, array('foo', 'bar', 'baz', 'omg'));
+
+        $res = $req->send();
+        $this->assertEquals(200, $res->getStatus());
+        $this->assertEquals(
+            'application/json; charset=utf-8',
+            $res->getHeader('content-type')
+        );
+        $data = json_decode($res->getBody());
+        $this->assertInternalType('array', $data);
+        $this->assertEquals(2, count($data));
+
+        $req2 = $this->getRequest('?limit=3');
+        $req2->setCookieJar($req->getCookieJar());
+        $res = $req2->send();
+        $this->assertEquals(200, $res->getStatus());
+        $data = json_decode($res->getBody());
+        $this->assertInternalType('array', $data);
+        $this->assertEquals(3, count($data));
+    }
 }
 
 
