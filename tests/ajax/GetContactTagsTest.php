@@ -71,6 +71,23 @@ class ajax_GetContactTagsTest extends TestBaseApi
         $this->assertContains('public2', $data);
         $this->assertContains('user2tag', $data);
     }
+
+    public function testParameterBeginsWith()
+    {
+        list($req, $uId) = $this->getLoggedInRequest('?beginsWith=bar');
+        $this->addBookmark($uId, null, 0, array('foobar', 'barmann'));
+
+        $res = $req->send();
+        $this->assertEquals(200, $res->getStatus());
+        $this->assertEquals(
+            'application/json; charset=utf-8',
+            $res->getHeader('content-type')
+        );
+        $data = json_decode($res->getBody());
+        $this->assertInternalType('array', $data);
+        $this->assertEquals(1, count($data));
+        $this->assertContains('barmann', $data);
+    }
 }
 
 

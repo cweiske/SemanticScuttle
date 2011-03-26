@@ -36,7 +36,7 @@ if (isset($_GET['beginsWith']) && strlen(trim($_GET['beginsWith']))) {
 }
 
 $listTags = SemanticScuttle_Service_Factory::get('Bookmark2Tag')->getContactTags(
-    $currentUserId, $limit, $currentUserId, $beginsWith
+    $currentUserId, $limit, $currentUserId, null, $beginsWith
 );
 $tags = array();
 foreach ($listTags as $t) {
