@@ -58,6 +58,18 @@ class TestBaseApi extends TestBase
 
 
     /**
+     * Clean up after test
+     */
+    public function tearDown()
+    {
+        if (file_exists($GLOBALS['datadir'] . '/config.unittest.php')) {
+            unlink($GLOBALS['datadir'] . '/config.unittest.php');
+        }
+    }
+
+
+
+    /**
      * Gets a HTTP request object.
      * Uses $this->url plus $urlSuffix as request URL.
      *
@@ -158,5 +170,37 @@ class TestBaseApi extends TestBase
         return array($req, $uid);
     }
 
+
+
+    /**
+     * Writes a special unittest configuration file.
+     * The unittest config file is read when a GET request with unittestMode=1
+     * is sent, and the user allowed unittestmode in config.php.
+     *
+     * @param array $arConfig Array with config names as key and their value as
+     *                        value
+     *
+     * @return void
+     */
+    protected function setUnittestConfig($arConfig)
+    {
+        $str = '<' . "?php\r\n";
+        foreach ($arConfig as $name => $value) {
+            $str .= '$' . $name . ' = '
+                . var_export($value, true) . ";\n";
+        }
+
+        if (!is_dir($GLOBALS['datadir'])) {
+            $this->fail(
+                'datadir not set or not a directory: ' . $GLOBALS['datadir']
+            );
+        }
+
+        $this->assertInternalType(
+            'integer',
+            file_put_contents($GLOBALS['datadir'] . '/config.unittest.php', $str),
+            'Writing config.unittest.php failed'
+        );
+    }
 }
 ?>
