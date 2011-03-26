@@ -131,7 +131,6 @@ class TestBaseApi extends TestBase
      */
     protected function getLoggedInRequest($urlSuffix = null, $auth = true)
     {
-        $req = $this->getRequest($urlSuffix);
         if (is_array($auth)) {
             list($username, $password) = $auth;
         } else {
@@ -140,8 +139,22 @@ class TestBaseApi extends TestBase
         }
         $uid = $this->addUser($username, $password);
 
-        //FIXME: login via the login form, check if it worked
-        //FIXME: prepare new request with cookie
+        $req = new HTTP_Request2(
+            $GLOBALS['unittestUrl'] . '/login.php',
+            HTTP_Request2::METHOD_POST
+        );
+        $cookies = $req->setCookieJar()->getCookieJar();
+        $req->addPostParameter('username', $username);
+        $req->addPostParameter('password', $password);
+        $req->addPostParameter('submitted', 'Log In');
+        $res = $req->send();
+
+        //after login, we normally get redirected
+        $this->assertEquals(302, $res->getStatus(), 'Login failure');
+
+        $req = $this->getRequest($urlSuffix);
+        $req->setCookieJar($cookies);
+
         return array($req, $uid);
     }
 

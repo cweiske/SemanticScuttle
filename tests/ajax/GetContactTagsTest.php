@@ -47,13 +47,17 @@ class ajax_GetContactTagsTest extends TestBaseApi
     }
 
 
-    public function testUserLoggedIn()
+    public function testUserLoggedInWatchlist()
     {
-        list($req, $uId) = $this->getAuthRequest();
-        $this->addBookmark($uId, null, 0, array('public'));
-        $this->addBookmark($uId, null, 1, array('shared'));
-        $this->addBookmark($uId, null, 2, array('private'));
-        
+        list($req, $uId) = $this->getLoggedInRequest();
+        $this->addBookmark($uId, null, 0, array('public', 'public2'));
+
+        $user2 = $this->addUser();
+        $this->us->setCurrentUserId($uId);
+        $this->us->setWatchStatus($user2);
+        //uId watches user2 now
+        $this->addBookmark($user2, null, 0, array('user2tag'));
+
         $res = $req->send();
         $this->assertEquals(200, $res->getStatus());
         $this->assertEquals(
@@ -64,8 +68,8 @@ class ajax_GetContactTagsTest extends TestBaseApi
         $this->assertInternalType('array', $data);
         $this->assertEquals(3, count($data));
         $this->assertContains('public', $data);
-        $this->assertContains('shared', $data);
-        $this->assertContains('private', $data);
+        $this->assertContains('public2', $data);
+        $this->assertContains('user2tag', $data);
     }
 }
 
