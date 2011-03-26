@@ -735,4 +735,12 @@ $authEmailSuffix = null;
  */
 $unittestUrl = null;
 
+/**
+ * Allow "unittestMode=1" in URLs.
+ * Should only be enabled on development systems
+ *
+ * @var boolean
+ */
+$allowUnittestMode = false;
+
 ?>
