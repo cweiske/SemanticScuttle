@@ -173,6 +173,25 @@ class TestBaseApi extends TestBase
 
 
     /**
+     * Verifies that the HTTP response has status code 200 and
+     * content-type application/json; charset=utf-8
+     *
+     * @param HTTP_Request2_Response $res HTTP Response object
+     *
+     * @return void
+     */
+    protected function assertResponseJson200(HTTP_Request2_Response $res)
+    {
+        $this->assertEquals(200, $res->getStatus());
+        $this->assertEquals(
+            'application/json; charset=utf-8',
+            $res->getHeader('content-type')
+        );
+    }
+
+
+
+    /**
      * Writes a special unittest configuration file.
      * The unittest config file is read when a GET request with unittestMode=1
      * is sent, and the user allowed unittestmode in config.php.

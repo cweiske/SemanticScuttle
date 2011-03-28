@@ -36,11 +36,7 @@ class ajax_GetContactTagsTest extends TestBaseApi
     public function testNoUserLoggedIn()
     {
         $res = $this->getRequest()->send();
-        $this->assertEquals(200, $res->getStatus());
-        $this->assertEquals(
-            'application/json; charset=utf-8',
-            $res->getHeader('content-type')
-        );
+        $this->assertResponseJson200($res);
         $data = json_decode($res->getBody());
         $this->assertInternalType('array', $data);
         $this->assertEquals(0, count($data));
@@ -59,11 +55,7 @@ class ajax_GetContactTagsTest extends TestBaseApi
         $this->addBookmark($user2, null, 0, array('user2tag'));
 
         $res = $req->send();
-        $this->assertEquals(200, $res->getStatus());
-        $this->assertEquals(
-            'application/json; charset=utf-8',
-            $res->getHeader('content-type')
-        );
+        $this->assertResponseJson200($res);
         $data = json_decode($res->getBody());
         $this->assertInternalType('array', $data);
         $this->assertEquals(3, count($data));
@@ -78,11 +70,7 @@ class ajax_GetContactTagsTest extends TestBaseApi
         $this->addBookmark($uId, null, 0, array('foobar', 'barmann'));
 
         $res = $req->send();
-        $this->assertEquals(200, $res->getStatus());
-        $this->assertEquals(
-            'application/json; charset=utf-8',
-            $res->getHeader('content-type')
-        );
+        $this->assertResponseJson200($res);
         $data = json_decode($res->getBody());
         $this->assertInternalType('array', $data);
         $this->assertEquals(1, count($data));
@@ -95,11 +83,7 @@ class ajax_GetContactTagsTest extends TestBaseApi
         $this->addBookmark($uId, null, 0, array('foo', 'bar', 'baz', 'omg'));
 
         $res = $req->send();
-        $this->assertEquals(200, $res->getStatus());
-        $this->assertEquals(
-            'application/json; charset=utf-8',
-            $res->getHeader('content-type')
-        );
+        $this->assertResponseJson200($res);
         $data = json_decode($res->getBody());
         $this->assertInternalType('array', $data);
         $this->assertEquals(2, count($data));
@@ -107,7 +91,7 @@ class ajax_GetContactTagsTest extends TestBaseApi
         $req2 = $this->getRequest('?limit=3');
         $req2->setCookieJar($req->getCookieJar());
         $res = $req2->send();
-        $this->assertEquals(200, $res->getStatus());
+        $this->assertResponseJson200($res);
         $data = json_decode($res->getBody());
         $this->assertInternalType('array', $data);
         $this->assertEquals(3, count($data));

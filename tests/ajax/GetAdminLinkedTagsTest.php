@@ -58,13 +58,7 @@ class ajax_GetAdminLinkedTagsTest extends TestBaseApi
     {
         $req = $this->getRequest();
         $res = $req->send();
-
-        $this->assertEquals(200, $res->getStatus());
-        $this->assertEquals(
-            'application/json; charset=utf-8',
-            $res->getHeader('content-type')
-        );
-
+        $this->assertResponseJson200($res);
         $data = json_decode($res->getBody());
         $this->assertInternalType('array', $data);
 
@@ -99,11 +93,7 @@ class ajax_GetAdminLinkedTagsTest extends TestBaseApi
         );
 
         $res = $this->getRequest('?tag=' . $menu2Tag)->send();
-        $this->assertEquals(200, $res->getStatus());
-        $this->assertEquals(
-            'application/json; charset=utf-8',
-            $res->getHeader('content-type')
-        );
+        $this->assertResponseJson200($res);
 
         $data = json_decode($res->getBody());
         $this->assertInternalType('array', $data);
@@ -139,11 +129,7 @@ class ajax_GetAdminLinkedTagsTest extends TestBaseApi
         );
 
         $res = $this->getRequest('?tag=' . $menu2Tag)->send();
-        $this->assertEquals(200, $res->getStatus());
-        $this->assertEquals(
-            'application/json; charset=utf-8',
-            $res->getHeader('content-type')
-        );
+        $this->assertResponseJson200($res);
 
         $data = json_decode($res->getBody());
         $this->assertInternalType('array', $data);

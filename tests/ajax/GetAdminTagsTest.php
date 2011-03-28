@@ -45,11 +45,7 @@ class ajax_GetAdminTagsTest extends TestBaseApi
 
         $req = $this->getRequest('?unittestMode=1');
         $res = $req->send();
-        $this->assertEquals(200, $res->getStatus());
-        $this->assertEquals(
-            'application/json; charset=utf-8',
-            $res->getHeader('content-type')
-        );
+        $this->assertResponseJson200($res);
         $data = json_decode($res->getBody());
         $this->assertInternalType('array', $data);
         $this->assertEquals(2, count($data));
@@ -70,12 +66,8 @@ class ajax_GetAdminTagsTest extends TestBaseApi
 
         $req = $this->getRequest('?unittestMode=1&beginsWith=foo');
         $res = $req->send();
-        $this->assertEquals(200, $res->getStatus());
-        $this->assertEquals(
-            'application/json; charset=utf-8',
-            $res->getHeader('content-type')
-        );
         $data = json_decode($res->getBody());
+        $this->assertResponseJson200($res);
         $this->assertInternalType('array', $data);
         $this->assertEquals(2, count($data));
         $this->assertContains('foo', $data);
@@ -99,11 +91,7 @@ class ajax_GetAdminTagsTest extends TestBaseApi
 
         $req = $this->getRequest('?unittestMode=1&limit=1');
         $res = $req->send();
-        $this->assertEquals(200, $res->getStatus());
-        $this->assertEquals(
-            'application/json; charset=utf-8',
-            $res->getHeader('content-type')
-        );
+        $this->assertResponseJson200($res);
         $data = json_decode($res->getBody());
         $this->assertInternalType('array', $data);
         $this->assertEquals(1, count($data));
@@ -111,11 +99,7 @@ class ajax_GetAdminTagsTest extends TestBaseApi
 
         $req = $this->getRequest('?unittestMode=1&limit=2');
         $res = $req->send();
-        $this->assertEquals(200, $res->getStatus());
-        $this->assertEquals(
-            'application/json; charset=utf-8',
-            $res->getHeader('content-type')
-        );
+        $this->assertResponseJson200($res);
         $data = json_decode($res->getBody());
         $this->assertInternalType('array', $data);
         $this->assertEquals(2, count($data));
@@ -123,11 +107,7 @@ class ajax_GetAdminTagsTest extends TestBaseApi
 
         $req = $this->getRequest('?unittestMode=1&limit=3');
         $res = $req->send();
-        $this->assertEquals(200, $res->getStatus());
-        $this->assertEquals(
-            'application/json; charset=utf-8',
-            $res->getHeader('content-type')
-        );
+        $this->assertResponseJson200($res);
         $data = json_decode($res->getBody());
         $this->assertInternalType('array', $data);
         $this->assertEquals(3, count($data));
