@@ -24,6 +24,13 @@ function jsEscTitle($title)
 if (is_array($row['tags'])) {
     $row['tags'] = implode(', ', $row['tags']);
 }
+
+$ajaxUrl = ROOT . 'ajax/'
+    . (
+        ($GLOBALS['adminsAreAdvisedTagsFromOtherAdmins'] && $currentUser->isAdmin())
+            ? 'getadmintags'
+            : 'getcontacttags'
+    ) . '.php';
 ?>
 <form action="<?php echo $formaction; ?>" method="post">
 <table>
@@ -138,7 +145,7 @@ jQuery(document).ready(function() {
     {
         return split(term).pop();
     }
-    var availableTags = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"];
+    //var availableTags = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"];
 
     jQuery("input#tags").autocomplete({
 
@@ -153,7 +160,7 @@ jQuery(document).ready(function() {
                 )
                 */
                 $.getJSON(
-                    "<?php echo ROOT ?>ajax/getcontacttags.php",
+                    "<?php echo $ajaxUrl; ?>",
                     { beginsWith: extractLast(request.term) },
                     response
                 )
