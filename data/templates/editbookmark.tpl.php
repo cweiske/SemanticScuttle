@@ -142,19 +142,21 @@ jQuery(document).ready(function() {
 
     jQuery("input#tags").autocomplete({
 
-        minLength: 0,
+        minLength: 1,
 
         source: function(request, response) {
             // delegate back to autocomplete, but extract the last term
             response(
+                /*
                 $.ui.autocomplete.filter(
                     availableTags, extractLast(request.term)
                 )
-                /*
-                $.getJSON( "search.php", {
-                    term: extractLast( request.term )
-                }, response );
                 */
+                $.getJSON(
+                    "<?php echo ROOT ?>ajax/getcontacttags.php",
+                    { beginsWith: extractLast(request.term) },
+                    response
+                )
             );
         },
 
