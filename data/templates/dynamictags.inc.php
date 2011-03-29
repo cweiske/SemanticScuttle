@@ -56,8 +56,8 @@ function writeTagsProposition($tagsCloud, $title) {
 
 
 if ($allPopularTagsCount > 0 || $userPopularTagsCount > 0 ) { ?>
-
 <script type="text/javascript">
+//<![CDATA[
 Array.prototype.contains = function (ele) {
     for (var i = 0; i < this.length; i++) {
         if (this[i] == ele) {
@@ -87,8 +87,7 @@ function addonload(addition) {
     }
 }
 
-addonload(
-    function () {
+jQuery(function($) {
         var taglist = document.getElementById('tags');
         var tags = taglist.value.split(', ');
         
@@ -99,8 +98,7 @@ addonload(
                 populartags[i].className = 'selected';
             }
         }
-    }
-);
+});
 
 function addTag(ele) {
     var thisTag = ele.innerHTML;
@@ -133,7 +131,7 @@ if( $allPopularTagsCount > 0) {
 
 
 ?>
-
+//]]>
 </script>
 
 <?php
