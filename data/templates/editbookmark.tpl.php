@@ -154,6 +154,10 @@ jQuery(document).ready(function() {
 
         source: function(request, response) {
             // delegate back to autocomplete, but extract the last term
+            var term = extractLast(request.term);
+            if (term.length < this.options.minLength) {
+                return;
+            }
             response(
                 /*
                 $.ui.autocomplete.filter(
@@ -162,7 +166,7 @@ jQuery(document).ready(function() {
                 */
                 $.getJSON(
                     "<?php echo $ajaxUrl; ?>",
-                    { beginsWith: extractLast(request.term) },
+                    { beginsWith: term },
                     response
                 )
             );
