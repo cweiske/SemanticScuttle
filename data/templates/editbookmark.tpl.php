@@ -135,10 +135,11 @@ $ajaxUrl = ROOT . 'ajax/'
 <script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.11/jquery.ui.position.js"></script>
 <script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.11/jquery.ui.autocomplete.js"></script>
 <script type="text/javascript">
+//<![CDATA[
 jQuery(document).ready(function() {
     function split(val)
     {
-        return val.split(/,\s*/);
+        return val.split(/[,=><]\s*/);
     }
 
     function extractLast(term)
@@ -184,6 +185,7 @@ jQuery(document).ready(function() {
         }
     });
 });
+//]]>
 </script>
 
 <?php
