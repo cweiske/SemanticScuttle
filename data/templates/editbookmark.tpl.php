@@ -128,12 +128,12 @@ $ajaxUrl = ROOT . 'ajax/'
  </table>
 </form>
 
-<link href="<?php echo ROOT ?>js/jquery-ui-1.8.5/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo ROOT ?>js/jquery-ui-1.8.11/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css"/>
 
-<script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.5/jquery.ui.core.js"></script>
-<script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.5/jquery.ui.widget.js"></script>
-<script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.5/jquery.ui.position.js"></script>
-<script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.5/jquery.ui.autocomplete.js"></script>
+<script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.11/jquery.ui.core.js"></script>
+<script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.11/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.11/jquery.ui.position.js"></script>
+<script type="text/javascript" src="<?php echo ROOT ?>js/jquery-ui-1.8.11/jquery.ui.autocomplete.js"></script>
 <script type="text/javascript">
 jQuery(document).ready(function() {
     function split(val)
@@ -148,7 +148,7 @@ jQuery(document).ready(function() {
     //var availableTags = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"];
 
     jQuery("input#tags").autocomplete({
-
+        autoFocus: true,
         minLength: 1,
 
         source: function(request, response) {
