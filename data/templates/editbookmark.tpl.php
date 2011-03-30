@@ -194,7 +194,7 @@ jQuery(document).ready(function() {
 
 <?php
 // Dynamic tag selection
-  //FIXME$this->includeTemplate('dynamictags.inc');
+$this->includeTemplate('dynamictags.inc');
 
 // Bookmarklets and import links
 if (empty($_REQUEST['popup']) && (!isset($showdelete) || !$showdelete)) {
