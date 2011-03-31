@@ -256,7 +256,7 @@ if ($currenttag!= '') {
 	foreach ($bookmarks as $key => &$row) {
 		switch ($row['bStatus']) {
 			case 0:
-				$access = '';
+				$access = ' public';
 				break;
 			case 1:
 				$access = ' shared';

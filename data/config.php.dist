@@ -8,6 +8,13 @@
  */
 
 /**
+ * Array for defaults.
+ *
+ * @var array 
+ */
+$defaults = array();
+
+/**
  * The name of this site.
  *
  * @var string

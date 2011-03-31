@@ -1352,93 +1352,18 @@ class BookmarkTest extends TestBase
      */
     public function testDefaultPrivacy()
     {
-        //For this test, the default privacy has been set to 2 (private) in the configuration file.
-        require_once 'HTTP/Request2.php';
-        require_once dirname(__FILE__) . '/../data/config.php';
-        $this->bs->deleteAll();
-        $this->us->deleteAll();
-        $request = new HTTP_Request2('http://localhost/api/posts_add.php', HTTP_Request2::METHOD_POST);
-        $dpuid = $this->addUser('dpuser', 'dpuserpassword');
-        $request->setAuth('dpuser', 'dpuserpassword'); 
-        $request->addPostParameter('url', 'http://www.testdefaultprivacyposts_add1.com');
-        $request->addPostParameter('description', 'Test bookmark 1 for default privacy.');
-        $request->send();
-        $bm = $this->bs->getBookmark('1');
+        $GLOBALS['defaults']['privacy'] = 1;
+        $uid = $this->addUser();
+        $this->us->setCurrentUserId($uid);
+        $bid = $this->bs->addBookmark('http://www.somedomain.com', 'mybookmark1', 'descr1', 'privatenote1', $GLOBALS['defaults']['privacy'], array());
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals('1', $bm['bStatus']);
+        $GLOBALS['defaults']['privacy'] = 2;
+        $uid = $this->addUser();
+        $this->us->setCurrentUserId($uid);
+        $bid = $this->bs->addBookmark('http://www.anotherdomain.com', 'mybookmark2', 'descr2', 'privatenote2', $GLOBALS['defaults']['privacy'], array());
+        $bm = $this->bs->getBookmark($bid);
         $this->assertEquals('2', $bm['bStatus']);
-
-        $request->addPostParameter('url', 'http://www.testdefaultprivacyposts_add2.com');
-        $request->addPostParameter('description', 'Test bookmark 2 for default privacy.');
-        $request->addPostParameter('status', '0');
-        $request->send();
-
-        $request = new HTTP_Request2('http://localhost/edit.php/2', HTTP_Request2::METHOD_POST);
-        $testcookiekey = md5($GLOBALS['dbname'].$GLOBALS['tableprefix']).'-login';
-        $userinfo = $this->us->getUser('1');
-        $testcookiepassword = $userinfo['password'];
-        $testcookievalue = '1:'.md5('dpuser'.$testcookiepassword);
-        $request->setCookieJar(true);
-        $request->addCookie($testcookiekey, $testcookievalue);
-        $request->addPostParameter('title', 'Test bookmark 2 for default privacy.');
-        $request->addPostParameter('address', 'http://www.testdefaultprivacyposts_add2.com');
-        $request->addPostParameter('submitted', '1');
-        $request->send();
-        $bm = $this->bs->getBookmark('2');
-        $this->assertEquals('2', $bm['bStatus']);
-
-        $request = new HTTP_Request2('http://localhost/importNetscape.php', HTTP_Request2::METHOD_POST);
-        $request->setCookieJar(true);
-        $request->addCookie($testcookiekey, $testcookievalue);
-        $request->addUpload('userfile', './data/BookmarkTest_netscapebookmarks.html');
-        $request->send();
-        $bm = $this->bs->getBookmark('3');
-        $this->assertEquals('2', $bm['bStatus']);
-        $bm = $this->bs->getBookmark('4');
-        $this->assertEquals('2', $bm['bStatus']);
-        $bm = $this->bs->getBookmark('5');
-        $this->assertEquals('2', $bm['bStatus']);
-
-        $request = new HTTP_Request2('http://localhost/import.php', HTTP_Request2::METHOD_POST);
-        $request->setCookieJar(true);
-        $request->addCookie($testcookiekey, $testcookievalue);
-        $request->addUpload('userfile', './data/BookmarkTest_deliciousbookmarks.xml');
-        $request->send();
-        $bm = $this->bs->getBookmark('6');
-        $this->assertEquals('2', $bm['bStatus']);
-        $bm = $this->bs->getBookmark('7');
-        $this->assertEquals('2', $bm['bStatus']);
-        $bm = $this->bs->getBookmark('8');
-        $this->assertEquals('2', $bm['bStatus']);
-
-        $request = new HTTP_Request2('http://localhost/bookmarks.php/dpuser?action=get', HTTP_Request2::METHOD_POST);
-        $request->setCookieJar(true);
-        $request->addCookie($testcookiekey, $testcookievalue);
-        $request->addPostParameter('submitted', '1');
-        $response = $request->send();
-        $response_body = $response->getBody();
-        $start = strpos($response_body, 'Privacy');
-        $end = strpos($response_body, 'referrer');
-        $length = $end - $start;
-        $response_body = substr($response_body, $start, $length);
-        $start = strpos($response_body, 'selected');
-        $start = $start - 3;
-        $length = 1;
-        $selected_privacy = substr($response_body, $start, $length);
-        $this->assertEquals('2', $selected_privacy);
-
-        $request = new HTTP_Request2('http://localhost/bookmarks.php/dpuser?action=add', HTTP_Request2::METHOD_POST);
-        $request->setCookieJar(true);
-        $request->addCookie($testcookiekey, $testcookievalue);
-        $response = $request->send();
-        $response_body = $response->getBody();
-        $start = strpos($response_body, 'Privacy');
-        $end = strpos($response_body, 'referrer');
-        $length = $end - $start;
-        $response_body = substr($response_body, $start, $length);
-        $start = strpos($response_body, 'selected');
-        $start = $start - 3;
-        $length = 1;
-        $selected_privacy = substr($response_body, $start, $length);
-        $this->assertEquals('2', $selected_privacy);
     }//end function testDefaultPrivacy
 
 
