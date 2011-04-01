@@ -20,6 +20,10 @@ function jsEscTitle($title)
 {
     return addcslashes($title, "'");
 }
+function jsEscTitleDouble($title)
+{
+    return addcslashes(addcslashes($title, "'"), "'\\");
+}
 
 if (is_array($row['tags'])) {
     $row['tags'] = implode(', ', $row['tags']);
@@ -261,7 +265,7 @@ if (browser == "Opera") {
         + 't=encodeURIComponent(x.title);'
         + 'd=encodeURIComponent('+selection+');'
         + 'open('
-        + '\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;popup=1&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d,\'<?php echo htmlspecialchars(jsEscTitle($GLOBALS['sitename'])); ?>\',\'modal=1,status=0,scrollbars=1,toolbar=0,resizable=1,width=790,height=465,left=\'+(screen.width-790)/2+\',top=\'+(screen.height-425)/2'
+        + '\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;popup=1&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d,\'<?php echo htmlspecialchars(jsEscTitleDouble($GLOBALS['sitename'])); ?>\',\'modal=1,status=0,scrollbars=1,toolbar=0,resizable=1,width=790,height=465,left=\'+(screen.width-790)/2+\',top=\'+(screen.height-425)/2'
         + ');void 0;">'
         + '<?php echo jsEscTitle(sprintf(T_('Post to %s (Pop-up)'), $GLOBALS['sitename'])); ?>'
         + '</a>'
