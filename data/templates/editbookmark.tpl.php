@@ -247,7 +247,27 @@ if (browser == "Opera") {
     $('#bookmarklet').append(
         '<ul>'
         + '<li>'
-        + '<a class="bookmarklet" href="opera:/button/Go%20to%20page,%20%22javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');location.href=\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d;void 0%22;,,%22Post%20to%20<?php echo htmlspecialchars(jsEscTitle($GLOBALS['sitename'])); ?>%22,%22Scuttle%22"><?php echo jsEscTitle(sprintf(T_('Post to %s'), $GLOBALS['sitename'])); ?></a>'
+        + '<a class="bookmarklet" href="'
+        + '<?php
+function fixOperaButtonName($name) {
+    //yes, opera has problems with double quotes in button names
+    return str_replace('"', "''", $name);
+}
+$popupLink = 'javascript:'
+    . "location.href='"
+        . createURL('bookmarks', $GLOBALS['user'])
+        . '?action=add'
+        . "&address='+encodeURIComponent(document.location.href)+'"
+        . "&title='+encodeURIComponent(document.title)+'"
+        . "&description='+encodeURIComponent(SELECTION)+'"
+        . "';";
+$link = 'opera:/button/Go to page,'
+    . '"' . rawurlencode($popupLink) . '"'
+    . ',,"Post to ' . fixOperaButtonName($GLOBALS['sitename']) . '",'
+    . '"Scuttle"';
+echo jsEscTitle(htmlspecialchars($link));
+?>'.replace('SELECTION', selection)
+        + '"><?php echo jsEscTitle(sprintf(T_('Post to %s'), $GLOBALS['sitename'])); ?></a>'
         + '</li>'
         + '<li>'
         + '<a class="bookmarklet" href="opera:/button/Go%20to%20page,%20%22javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');open(\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;popup=1&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d,\'<?php echo htmlspecialchars(jsEscTitle($GLOBALS['sitename'])); ?>\',\'modal=1,status=0,scrollbars=1,toolbar=0,resizable=1,width=790,height=465,left=\'+(screen.width-790)/2+\',top=\'+(screen.height-425)/2);void 0;%22,,%22Post%20to%20<?php echo urlencode($GLOBALS['sitename']); ?>%20(Pop-up)%22,%22Scuttle%22"><?php echo jsEscTitle(sprintf(T_('Post to %s (Pop-up)'), $GLOBALS['sitename'])); ?></a>'
