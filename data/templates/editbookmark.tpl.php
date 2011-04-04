@@ -24,6 +24,10 @@ function jsEscTitleDouble($title)
 {
     return addcslashes(addcslashes($title, "'"), "'\\");
 }
+function fixOperaButtonName($name) {
+    //yes, opera has problems with double quotes in button names
+    return str_replace('"', "''", $name);
+}
 
 if (is_array($row['tags'])) {
     $row['tags'] = implode(', ', $row['tags']);
@@ -249,10 +253,6 @@ if (browser == "Opera") {
         + '<li>'
         + '<a class="bookmarklet" href="'
         + '<?php
-function fixOperaButtonName($name) {
-    //yes, opera has problems with double quotes in button names
-    return str_replace('"', "''", $name);
-}
 $popupLink = 'javascript:'
     . "location.href='"
         . createURL('bookmarks', $GLOBALS['user'])
@@ -261,9 +261,16 @@ $popupLink = 'javascript:'
         . "&title='+encodeURIComponent(document.title)+'"
         . "&description='+encodeURIComponent(SELECTION)+'"
         . "';";
-$link = 'opera:/button/Go to page,'
-    . '"' . rawurlencode($popupLink) . '"'
-    . ',,"Post to ' . fixOperaButtonName($GLOBALS['sitename']) . '",'
+$link = 'opera:/button/'
+    //Opera command
+    . 'Go to page,'
+    //command parameter 1
+    . '"' . rawurlencode($popupLink) . '",'
+    //command parameter 2
+    . ','
+    //button title
+    . '"Post to ' . fixOperaButtonName($GLOBALS['sitename']) . '",'
+    //button icon
     . '"Scuttle"';
 echo jsEscTitle(htmlspecialchars($link));
 ?>'.replace('SELECTION', selection)
