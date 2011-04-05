@@ -645,3 +645,9 @@ a.bookmarklet {
 #related-content.jstree-default.jstree-focused {
     background: none !important;
 }
+
+
+/* add/edit bookmark */
+.ui-autocomplete {
+    width: 458px;
+}
