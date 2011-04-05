@@ -1,8 +1,9 @@
 ChangeLog for SemantiScuttle
 ============================
 
-0.9X.X - 2010-XX-XX
+0.98.0 - 2011-XX-XX
 -------------------
+- Switch to jQuery and drop dojo
 - Fix bug #3187177: Wrong URL / Export XML Bookmarks
 - Fix bug in getTagsForBookmarks() that fetched all tags
 - Implement request #3054906: Show user's full name instead of nickname
