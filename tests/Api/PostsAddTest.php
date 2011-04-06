@@ -420,6 +420,42 @@ TXT;
         $this->assertEquals(1, $data['total']);
         $this->assertEquals($title2, $data['bookmarks'][0]['bTitle']);
     }
+
+    public function testDefaultPrivacyPrivate()
+    {
+        $this->setUnittestConfig(
+            array('defaults' => array('privacy' => 2))
+        );
+        list($req, $uId) = $this->getAuthRequest('?unittestMode=1');
+        $req->setMethod(HTTP_Request2::METHOD_POST);
+        $req->addPostParameter('url', 'http://www.testdefaultprivacyposts_add1.com');
+        $req->addPostParameter('description', 'Test bookmark 1 for default privacy.');
+        $req->send();
+
+        $this->us->setCurrentUserId($uId);
+        $bms = $this->bs->getBookmarks(0, null, $uId);
+        $this->assertEquals(1, count($bms['bookmarks']));
+        $bm = reset($bms['bookmarks']);
+        $this->assertEquals('2', $bm['bStatus']);
+    }
+
+    public function testDefaultPrivacyPublic()
+    {
+        $this->setUnittestConfig(
+            array('defaults' => array('privacy' => 0))
+        );
+        list($req, $uId) = $this->getAuthRequest('?unittestMode=1');
+        $req->setMethod(HTTP_Request2::METHOD_POST);
+        $req->addPostParameter('url', 'http://www.testdefaultprivacyposts_add1.com');
+        $req->addPostParameter('description', 'Test bookmark 1 for default privacy.');
+        $req->send();
+
+        $this->us->setCurrentUserId($uId);
+        $bms = $this->bs->getBookmarks(0, null, $uId);
+        $this->assertEquals(1, count($bms['bookmarks']));
+        $bm = reset($bms['bookmarks']);
+        $this->assertEquals('0', $bm['bStatus']);
+    }
 }
 
 if (PHPUnit_MAIN_METHOD == 'Api_PostsAddTest::main') {

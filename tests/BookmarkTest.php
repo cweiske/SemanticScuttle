@@ -1357,19 +1357,6 @@ class BookmarkTest extends TestBase
         require_once dirname(__FILE__) . '/../data/config.php';
         $this->bs->deleteAll();
         $this->us->deleteAll();
-        $request = new HTTP_Request2('http://localhost/api/posts_add.php', HTTP_Request2::METHOD_POST);
-        $dpuid = $this->addUser('dpuser', 'dpuserpassword');
-        $request->setAuth('dpuser', 'dpuserpassword'); 
-        $request->addPostParameter('url', 'http://www.testdefaultprivacyposts_add1.com');
-        $request->addPostParameter('description', 'Test bookmark 1 for default privacy.');
-        $request->send();
-        $bm = $this->bs->getBookmark('1');
-        $this->assertEquals('2', $bm['bStatus']);
-
-        $request->addPostParameter('url', 'http://www.testdefaultprivacyposts_add2.com');
-        $request->addPostParameter('description', 'Test bookmark 2 for default privacy.');
-        $request->addPostParameter('status', '0');
-        $request->send();
 
         $request = new HTTP_Request2('http://localhost/edit.php/2', HTTP_Request2::METHOD_POST);
         $testcookiekey = md5($GLOBALS['dbname'].$GLOBALS['tableprefix']).'-login';
