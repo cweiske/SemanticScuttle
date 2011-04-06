@@ -39,6 +39,20 @@ set_include_path(
 require_once $datadir . '/config.default.php';
 require_once $datadir . '/config.php';
 
+if (isset($_GET['unittestMode']) && $_GET['unittestMode'] == 1
+) {
+    if ($allowUnittestMode !== true) {
+        header('HTTP/1.0 400 Bad Request');
+        die("Unittestmode is not allowed\n");
+    }
+
+    $unittestConfigFile = $datadir . '/config.unittest.php';
+    if (file_exists($unittestConfigFile)) {
+        require_once $unittestConfigFile;
+    }
+    define('HTTP_UNIT_TEST_MODE', true);
+    define('UNIT_TEST_MODE', true);
+}
 if (defined('UNIT_TEST_MODE')) {
     //make local config vars global - needed for unit tests
     //run with phpunit
@@ -117,7 +131,7 @@ $tplVars['currentUser'] = $currentUser;
 $tplVars['userservice'] = $userservice;
 
 // 6 // Force UTF-8 behaviour for server (cannot be moved into top.inc.php which is not included into every file)
-if (!defined('UNIT_TEST_MODE')) {
+if (!defined('UNIT_TEST_MODE') || defined('HTTP_UNIT_TEST_MODE')) {
     //API files define that, so we need a way to support both of them
     if (!isset($httpContentType)) {
         $httpContentType = 'text/html';
