@@ -16,7 +16,9 @@
 /**
  * Prepare the application for unit testing
  */
+//that's needed in constants.php
 $_SERVER['HTTP_HOST'] = 'http://localhost/';
+
 define('UNIT_TEST_MODE', true);
 
 if ('@data_dir@' == '@' . 'data_dir@') {
