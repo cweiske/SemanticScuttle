@@ -58,6 +58,18 @@ class TestBaseApi extends TestBase
 
 
     /**
+     * Clean up after test
+     */
+    public function tearDown()
+    {
+        if (file_exists($GLOBALS['datadir'] . '/config.unittest.php')) {
+            unlink($GLOBALS['datadir'] . '/config.unittest.php');
+        }
+    }
+
+
+
+    /**
      * Gets a HTTP request object.
      * Uses $this->url plus $urlSuffix as request URL.
      *
@@ -109,5 +121,83 @@ class TestBaseApi extends TestBase
         return array($req, $uid);
     }
 
+
+
+    /**
+     * Creates a user and a HTTP_Request2 object, does a normal login
+     * and prepares the cookies for the HTTP request object so that
+     * the user is seen as logged in when requesting any HTML page.
+     *
+     * Useful for testing HTML pages or ajax URLs.
+     *
+     * @param string $urlSuffix Suffix for the URL
+     * @param mixed  $auth      If user authentication is needed (true/false)
+     *                          or array with username and password
+     *
+     * @return array(HTTP_Request2, integer) HTTP request object and user id
+     *
+     * @uses getRequest()
+     */
+    protected function getLoggedInRequest($urlSuffix = null, $auth = true)
+    {
+        if (is_array($auth)) {
+            list($username, $password) = $auth;
+        } else {
+            $username = 'testuser';
+            $password = 'testpassword';
+        }
+        $uid = $this->addUser($username, $password);
+
+        $req = new HTTP_Request2(
+            $GLOBALS['unittestUrl'] . '/login.php',
+            HTTP_Request2::METHOD_POST
+        );
+        $cookies = $req->setCookieJar()->getCookieJar();
+        $req->addPostParameter('username', $username);
+        $req->addPostParameter('password', $password);
+        $req->addPostParameter('submitted', 'Log In');
+        $res = $req->send();
+
+        //after login, we normally get redirected
+        $this->assertEquals(302, $res->getStatus(), 'Login failure');
+
+        $req = $this->getRequest($urlSuffix);
+        $req->setCookieJar($cookies);
+
+        return array($req, $uid);
+    }
+
+
+
+    /**
+     * Writes a special unittest configuration file.
+     * The unittest config file is read when a GET request with unittestMode=1
+     * is sent, and the user allowed unittestmode in config.php.
+     *
+     * @param array $arConfig Array with config names as key and their value as
+     *                        value
+     *
+     * @return void
+     */
+    protected function setUnittestConfig($arConfig)
+    {
+        $str = '<' . "?php\r\n";
+        foreach ($arConfig as $name => $value) {
+            $str .= '$' . $name . ' = '
+                . var_export($value, true) . ";\n";
+        }
+
+        if (!is_dir($GLOBALS['datadir'])) {
+            $this->fail(
+                'datadir not set or not a directory: ' . $GLOBALS['datadir']
+            );
+        }
+
+        $this->assertInternalType(
+            'integer',
+            file_put_contents($GLOBALS['datadir'] . '/config.unittest.php', $str),
+            'Writing config.unittest.php failed'
+        );
+    }
 }
 ?>
