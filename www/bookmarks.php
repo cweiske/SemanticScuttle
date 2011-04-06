@@ -259,12 +259,12 @@ if ($templatename == 'editbookmark.tpl') {
         )
     );
     if ($userservice->isLoggedOn()) {
-        if (strlen($currentUser->getPrivateKey()) == 32) {
+        if ($userservice->isPrivateKeyValid($currentUser->getPrivateKey())) {
             array_push(
                 $tplVars['rsschannels'],
                 array(
                     filter($sitename . sprintf(T_(': (private) ')) . $pagetitle),
-                    createURL('rss', filter($user, 'url') . $rssCat.'?sort='.getSortOrder().'&privatekey='.$currentUser->getPrivateKey())
+                    createURL('rss', filter($user, 'url') . $rssCat.'?sort='.getSortOrder().'&amp;privatekey='.$currentUser->getPrivateKey())
                 )
             );
         }

@@ -84,6 +84,7 @@ if ($user && $user != 'all') {
                         $isTempLogin = true;
                     } else {
                         $tplVars['error'] = sprintf(T_('Failed to Autenticate User with username %s using private key'), $user);
+                        header('Content-type: text/html; charset=utf-8');
                         $templateservice->loadTemplate('error.404.tpl', $tplVars);
                         //throw a 404 error
                         exit();
@@ -92,6 +93,7 @@ if ($user && $user != 'all') {
             }
         } else {
             $tplVars['error'] = sprintf(T_('User with username %s was not found'), $user);
+            header('Content-type: text/html; charset=utf-8');
             $templateservice->loadTemplate('error.404.tpl', $tplVars);
             //throw a 404 error
             exit();

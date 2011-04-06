@@ -338,6 +338,22 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     }
 
     /**
+     * Tells you if the private key is enabled and valid
+     *
+     * @param string $privateKey Private Key
+     *
+     * @return boolean True if enabled and valid
+     */
+    public function isPrivateKeyValid($privateKey)
+    {
+        // check length of private key
+        if (strlen($privateKey) == 32) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Returns the current user object
      *
      * @param boolean $refresh Reload the user from database
@@ -577,10 +593,8 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      */
     public function loginPrivateKey($username, $privatekey)
     {
-        /* Check for size, only 32 char keys will work */
-        /* Failsafe to hopefully lessen hackability and */
-        /* deactivated keys (preceded by dash) */
-        if (strlen($privatekey) != 32) {
+        /* Check if private key valid and enabled */
+        if (!$this->isPrivateKeyValid($privatekey)) {
             return false;
         }
 
@@ -839,37 +853,37 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     /**
      * Update User Record
      *
-     * @param string $uId              User ID
-     * @param string $password         User Password
-     * @param string $name             User Name
-     * @param string $email            Email Address
-     * @param string $homepage         Homepage URL
-     * @param string $uContent         Content
-     * @param string $privateKey       RSS Private Key
-     * @param string $enablePrivateRSS RSS Private Key
+     * @param string  $uId              User ID
+     * @param string  $password         User Password
+     * @param string  $name             User Name
+     * @param string  $email            Email Address
+     * @param string  $homepage         Homepage URL
+     * @param string  $uContent         Content
+     * @param string  $privateKey       RSS Private Key
+     * @param boolean $enablePrivateKey RSS Private Key Flag
      *
      * @return boolean true if it successful, false if not
      */
     function updateUser(
         $uId, $password, $name, $email, $homepage, $uContent,
-        $privateKey=null, $enablePrivateRSS=0
+        $privateKey=null, $enablePrivateKey=false
     ) {
         if (!is_numeric($uId)) {
             return false;
         }
 
         // prepend - to privateKey if disabled
-        if ($privateKey!=null and strlen($privateKey)==32 and $enablePrivateRSS==0) {
+        if ($privateKey!=null and strlen($privateKey)==32 and $enablePrivateKey==false) {
             $privateKey = "-".$privateKey;
         }
 
         // remove - from privateKey if enabling
-        if ($privateKey!=null and strlen($privateKey)==33 and $enablePrivateRSS==1) {
+        if ($privateKey!=null and strlen($privateKey)==33 and $enablePrivateKey==true) {
             $privateKey = substr($privateKey, 1, 32);
         }
 
-        // if new user is enabling Private RSS, create new key
-        if ($privateKey==null and $enablePrivateRSS==1) {
+        // if new user is enabling Private Key, create new key
+        if ($privateKey==null and $enablePrivateKey==true) {
             $privateKey = $this->getNewPrivateKey();
         }
 
@@ -911,7 +925,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      *
      * @return array List of Users
      */
-    function getAllUsers ()
+    function getAllUsers()
     {
         $query = 'SELECT * FROM '. $this->getTableName();
 

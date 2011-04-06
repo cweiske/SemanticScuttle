@@ -63,9 +63,16 @@ if ($user) {
     exit();
 }
 
+$tplVars['privateKeyIsEnabled'] = '';
 if ($userservice->isLoggedOn() && $user == $currentUser->getUsername()) {
     $title = T_('My Profile');
-    $tplVars['privateKey'] = $currentUser->getPrivateKey();
+    $tplVars['privateKey'] = $currentUser->getPrivateKey(true);
+
+    if ($userservice->isPrivateKeyValid($currentUser->getPrivateKey())) {
+        $tplVars['privateKeyIsEnabled'] = 'checked="checked"';
+    } else {
+        $tplVars['privateKeyIsEnabled'] = '';
+    }
 } else {
     $title = T_('Profile') .': '. $user;
     $tplVars['privateKey'] = '';
@@ -120,7 +127,12 @@ if (POST_SUBMITTED!='' && $currentUser->getId() == $userid) {
         }
     }
     $userinfo = $userservice->getObjectUserByUsername($user);
-    $tplVars['privateKey'] = $userinfo->getPrivateKey();
+    $tplVars['privateKey'] = $userinfo->getPrivateKey(true);
+    if ($userservice->isPrivateKeyValid($userinfo->getPrivateKey())) {
+        $tplVars['privateKeyIsEnabled'] = 'checked="checked"';
+    } else {
+        $tplVars['privateKeyIsEnabled'] = '';
+    }
 }
 
 if (!$userservice->isLoggedOn() || $currentUser->getId() != $userid) {

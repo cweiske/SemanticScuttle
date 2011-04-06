@@ -40,15 +40,15 @@ if (GET_ACTION == "logout") {
 // Header variables
 $tplVars['loadjs'] = true;
 $tplVars['rsschannels'] = array(
-    array(sprintf(T_('%s: Recent bookmarks'), $sitename), createURL('rss').'?sort='.getSortOrder())
+    array(filter(sprintf(T_('%s: Recent bookmarks'), $sitename)), createURL('rss').'?sort='.getSortOrder())
 );
 if ($userservice->isLoggedOn()) {
     $currentUsername = $currentUser->getUsername();
-    if ($currentUser->getPrivateKey() <> null && strlen($currentUser->getPrivateKey()) == 32) {
+    if ($userservice->isPrivateKeyValid($currentUser->getPrivateKey())) {
         array_push(
             $tplVars['rsschannels'],
             array(
-                filter($sitename . sprintf(T_(': (private) ')) . $sitename),
+                filter($sitename . sprintf(T_(': (private) ')) . $currentUsername),
                 createURL('rss', filter($currentUsername, 'url') . '?sort='.getSortOrder().'&amp;privatekey='.$currentUser->getPrivateKey())
             )
         );

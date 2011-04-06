@@ -72,9 +72,12 @@ class SemanticScuttle_Model_User
     /**
      * Returns private key
      *
+     * @param boolean return sanitized value which basically drops
+     *                leading dash if exists
+     *
      * @return string private key
      */
-    public function getPrivateKey()
+    public function getPrivateKey($sanitized = false)
     {
         // Look for value only if not already set
         if (!isset($this->privateKey)) {
@@ -82,7 +85,11 @@ class SemanticScuttle_Model_User
             $user = $us->getUser($this->id);
             $this->privateKey = $user['privateKey'];
         }
-        return $this->privateKey;
+        if ($sanitized == true) {
+            return substr($this->privateKey, -32);
+        } else {
+            return $this->privateKey;
+        }
     }
 
     /**
