@@ -51,6 +51,13 @@ class Api_PostsAddTest extends TestBaseApi
     }
 
 
+    public function setUp()
+    {
+        parent::setUp();
+        $this->bs->deleteAll();
+    }
+
+
 
     /**
      * Test if authentication is required when sending no auth data
@@ -82,8 +89,6 @@ class Api_PostsAddTest extends TestBaseApi
      */
     public function testAddBookmarkPost()
     {
-        $this->bs->deleteAll();
-
         $bmUrl         = 'http://example.org/tag-1';
         $bmTags        = array('foo', 'bar', 'baz');
         $bmDatetime    = '2010-09-08T03:02:01Z';
@@ -144,8 +149,6 @@ TXT;
      */
     public function testAddBookmarkGet()
     {
-        $this->bs->deleteAll();
-
         $bmUrl         = 'http://example.org/tag-1';
         $bmTags        = array('foo', 'bar', 'baz');
         $bmDatetime    = '2010-09-08T03:02:01Z';
@@ -205,8 +208,6 @@ TXT;
      */
     public function testUrlDescEnough()
     {
-        $this->bs->deleteAll();
-
         list($req, $uId) = $this->getAuthRequest();
         $req->setMethod(HTTP_Request2::METHOD_POST);
         $req->addPostParameter('url', 'http://example.org/tag2');
@@ -241,8 +242,6 @@ TXT;
      */
     public function testUrlRequired()
     {
-        $this->bs->deleteAll();
-
         list($req, $uId) = $this->getAuthRequest();
         $req->setMethod(HTTP_Request2::METHOD_POST);
         //$req->addPostParameter('url', 'http://example.org/tag2');
@@ -277,8 +276,6 @@ TXT;
      */
     public function testDescriptionRequired()
     {
-        $this->bs->deleteAll();
-
         list($req, $uId) = $this->getAuthRequest();
         $req->setMethod(HTTP_Request2::METHOD_POST);
         $req->addPostParameter('url', 'http://example.org/tag2');
@@ -313,8 +310,6 @@ TXT;
      */
     public function testReplaceNo()
     {
-        $this->bs->deleteAll();
-
         $url    = 'http://example.org/tag2';
         $title1 = 'foo bar 1';
         $title2 = 'bar 2 foo';
@@ -381,8 +376,6 @@ TXT;
      */
     public function testReplaceYes()
     {
-        $this->bs->deleteAll();
-
         $url    = 'http://example.org/tag2';
         $title1 = 'foo bar 1';
         $title2 = 'bar 2 foo';
