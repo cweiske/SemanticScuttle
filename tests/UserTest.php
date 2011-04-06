@@ -12,12 +12,11 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-
-require_once 'prepare.php';
-
 if (!defined('PHPUnit_MAIN_METHOD')) {
     define('PHPUnit_MAIN_METHOD', 'UserTest::main');
 }
+
+require_once 'prepare.php';
 
 /**
  * Unit tests for the SemanticScuttle user service.
@@ -211,7 +210,7 @@ class UserTest extends TestBase
         $uid = $this->addUser();
         $users = $this->us->getObjectUsers();
         $this->assertEquals(1, count($users));
-        $this->assertType('SemanticScuttle_Model_User', reset($users));
+        $this->assertInstanceOf('SemanticScuttle_Model_User', reset($users));
     }
 
 
@@ -228,7 +227,7 @@ class UserTest extends TestBase
         $uid3 = $this->addUser();
         $users = $this->us->getObjectUsers();
         $this->assertEquals(3, count($users));
-        $this->assertType('SemanticScuttle_Model_User', reset($users));
+        $this->assertInstanceOf('SemanticScuttle_Model_User', reset($users));
     }
 
 

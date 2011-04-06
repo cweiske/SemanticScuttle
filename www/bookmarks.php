@@ -41,7 +41,6 @@ isset($_POST['address']) ? define('POST_ADDRESS', $_POST['address']): define('PO
 isset($_POST['description']) ? define('POST_DESCRIPTION', $_POST['description']): define('POST_DESCRIPTION', '');
 isset($_POST['privateNote']) ? define('POST_PRIVATENOTE', $_POST['privateNote']): define('POST_PRIVATENOTE', '');
 isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_STATUS', '');
-isset($_POST['tags']) ? define('POST_TAGS', $_POST['tags']): define('POST_TAGS', '');
 isset($_POST['referrer']) ? define('POST_REFERRER', $_POST['referrer']): define('POST_REFERRER', '');
 
 isset($_GET['popup']) ? define('GET_POPUP', $_GET['popup']): define('GET_POPUP', '');
@@ -50,6 +49,10 @@ isset($_POST['popup']) ? define('POST_POPUP', $_POST['popup']): define('POST_POP
 isset($_GET['page']) ? define('GET_PAGE', $_GET['page']): define('GET_PAGE', 0);
 isset($_GET['sort']) ? define('GET_SORT', $_GET['sort']): define('GET_SORT', '');
 
+if (!isset($_POST['tags'])) {
+    $_POST['tags'] = array();
+}
+//echo '<p>' . var_export($_POST, true) . '</p>';die();
 
 
 if ((GET_ACTION == "add") && !$userservice->isLoggedOn()) {
@@ -143,7 +146,7 @@ if ($userservice->isLoggedOn() && POST_SUBMITTED != '') {
 			$description = trim(POST_DESCRIPTION);
 			$privateNote = trim(POST_PRIVATENOTE);
 			$status = intval(POST_STATUS);
-			$categories = trim(POST_TAGS);
+			$categories = explode(',', $_POST['tags']);
 			$saved = true;
 			if ($bookmarkservice->addBookmark($address, $title, $description, $privateNote, $status, $categories)) {
 				if (POST_POPUP != '') {
@@ -184,10 +187,10 @@ if ($templatename == 'editbookmark.tpl') {
                 'bAddress' => stripslashes(POST_ADDRESS),
                 'bDescription' => stripslashes(POST_DESCRIPTION),
 			    'bPrivateNote' => stripslashes(POST_PRIVATENOTE),
-                'tags' => (POST_TAGS ? explode(',', stripslashes(POST_TAGS)) : array()),
+                'tags' => ($_POST['tags'] ? $_POST['tags'] : array()),
 				'bStatus' => 0,
 			);
-			$tplVars['tags'] = POST_TAGS;
+			$tplVars['tags'] = $_POST['tags'];
 		} else {
 			if(GET_COPYOF != '') {  //copy from bookmarks page
 				$tplVars['row'] = $bookmarkservice->getBookmark(intval(GET_COPYOF), true);

@@ -22,6 +22,8 @@
 // del.icio.us behavior:
 // - doesn't include the filtered tag as an attribute on the root element (we do)
 
+//this page here is really not valid in any way
+$httpContentType = 'text/html';
 // Force HTTP authentication first!
 require_once 'httpauth.inc.php';
 

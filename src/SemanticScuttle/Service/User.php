@@ -211,18 +211,26 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         }
     }
 
-    /* Takes an numerical "id" or a string "username"
-     and returns the numerical "id" if the user exists else returns NULL */
-    function getIdFromUser($user) {
+    /**
+     * Obtains the ID of the given user name.
+     * If a user ID is passed, it is returned.
+     * In case the user does not exist, NULL is returned.
+     *
+     * @param string|integer $user User name or user ID
+     *
+     * @return integer NULL if not found or the user ID
+     */
+    public function getIdFromUser($user)
+    {
         if (is_int($user)) {
             return intval($user);
         } else {
             $objectUser = $this->getObjectUserByUsername($user);
-            if($objectUser != NULL) {
+            if ($objectUser != null) {
                 return $objectUser->getId();
             }
         }
-        return NULL;
+        return null;
     }
 
     /**
@@ -404,10 +412,10 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     public function getCurrentUserId()
     {
         if (isset($_SESSION[$this->getSessionKey()])) {
-            return $_SESSION[$this->getSessionKey()];
+            return (int)$_SESSION[$this->getSessionKey()];
 
         } else if (isset($_COOKIE[$this->getCookieKey()])) {
-            $cook = split(':', $_COOKIE[$this->getCookieKey()]);
+            $cook = explode(':', $_COOKIE[$this->getCookieKey()]);
             //cookie looks like this: 'id:md5(username+password)'
             $query = 'SELECT * FROM '. $this->getTableName() .
                      ' WHERE MD5(CONCAT('.$this->getFieldName('username') .
@@ -425,10 +433,10 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
 
             if ($row = $this->db->sql_fetchrow($dbresult)) {
                 $this->setCurrentUserId(
-                    $row[$this->getFieldName('primary')]
+                    (int)$row[$this->getFieldName('primary')]
                 );
                 $this->db->sql_freeresult($dbresult);
-                return $_SESSION[$this->getSessionKey()];
+                return (int)$_SESSION[$this->getSessionKey()];
             }
         }
         return false;
@@ -716,7 +724,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     }
 
     /**
-     * Delete all bookmarks.
+     * Delete all users and their watch states.
      * Mainly used in unit tests.
      *
      * @return void
@@ -724,6 +732,9 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     public function deleteAll()
     {
         $query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';
+        $this->db->sql_query($query);
+
+        $query = 'TRUNCATE TABLE `' . $GLOBALS['tableprefix'] . 'watched' . '`';
         $this->db->sql_query($query);
     }
 

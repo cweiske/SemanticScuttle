@@ -14,7 +14,7 @@
  */
 
 /**
- * SemanticScuttle tag-to-tag service.
+ * SemanticScuttle tag-to-tag service which works with tag relations.
  *
  * @category Bookmarking
  * @package  SemanticScuttle
@@ -102,18 +102,49 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
         return true;
     }
 
-    // Return linked tags just for admin users
-    function getAdminLinkedTags($tag, $relationType, $inverseRelation = false, $stopList = array()) {
+
+
+    /**
+     * Same as getLinkedTags(), but only tags that have been created
+     * by admin users are returned.
+     *
+     * @param string  $tag             Tag to get related tags for
+     * @param string  $relationType    Type of tag-to-tag relation: >, < or =
+     * @param boolean $inverseRelation Reverse relation (parent -> child)
+     * @param array   $stopList        Array of tags that shall not be returned
+     *
+     * @return array Array of tag names
+     *
+     * @see getLinkedTags()
+     */
+    public function getAdminLinkedTags(
+        $tag, $relationType, $inverseRelation = false, $stopList = array()
+    ) {
         // look for admin ids
         $userservice = SemanticScuttle_Service_Factory :: get('User');
-        $adminIds = $userservice->getAdminIds();
+        $adminIds    = $userservice->getAdminIds();
 
         //ask for their linked tags
-        return $this->getLinkedTags($tag, $relationType, $adminIds, $inverseRelation, $stopList);
+        return $this->getLinkedTags(
+            $tag, $relationType, $adminIds, $inverseRelation, $stopList
+        );
     }
 
-    // Return the target linked tags. If inverseRelation is true, return the source linked tags.
-    function getLinkedTags($tag, $relationType, $uId = null, $inverseRelation = false, $stopList = array()) {
+
+
+    /**
+     * Returns an array of tags that are in relation to the given $tag.
+     *
+     * @param string  $tag             Tag to get related tags for
+     * @param string  $relationType    Type of tag-to-tag relation: >, < or =
+     * @param boolean $inverseRelation Reverse relation (parent -> child)
+     * @param array   $stopList        Array of tags that shall not be returned
+     *
+     * @return array Array of tag names
+     */
+    public function getLinkedTags(
+        $tag, $relationType, $uId = null, $inverseRelation = false, $stopList = array()
+    ) {
         // Set up the SQL query.
         if($inverseRelation) {
             $queriedTag = "tag1";

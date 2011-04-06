@@ -65,13 +65,13 @@ if (sizeof($menuTags) > 0 || ($userid != 0 && $userid === $logged_on_userid)) {
 <?php $cUser = $userservice->getUser($userid); ?>
 <?php if($userid>0): ?>
 <?php if($userid==$logged_on_userid): ?>
-<p style="text-align:right"><a href="<?php echo createURL('alltags', $cUser['username']); ?>" title="<?php echo T_('See all your tags')?>"><?php echo T_('all your tags'); ?></a> &rarr;</p>
+<p style="text-align:right"><a href="<?php echo createURL('alltags', $cUser['username']); ?>" title="<?php echo T_('See all your tags')?>"><?php echo T_('all your tags'); ?></a> →</p>
 <?php else: ?>
-<p style="text-align:right"><a href="<?php echo createURL('alltags', $cUser['username']); ?>" title="<?php echo T_('See all tags from this user')?>"><?php echo T_('all tags from this user'); ?></a> &rarr;</p>
+<p style="text-align:right"><a href="<?php echo createURL('alltags', $cUser['username']); ?>" title="<?php echo T_('See all tags from this user')?>"><?php echo T_('all tags from this user'); ?></a> →</p>
 <?php endif; ?>
 
 <?php else : ?>
-<p style="text-align:right"><a href="<?php echo createURL('populartags', $cUser['username']); ?>" title="<?php echo T_('See popular tags')?>"><?php echo T_('Popular Tags'); ?></a> &rarr;</p>
+<p style="text-align:right"><a href="<?php echo createURL('populartags', $cUser['username']); ?>" title="<?php echo T_('See popular tags')?>"><?php echo T_('Popular Tags'); ?></a> →</p>
 <?php endif; ?>
 </div>
 

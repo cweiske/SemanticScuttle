@@ -50,7 +50,7 @@ class sql_db
 			}
 		}
 
-		return $this->sql_error('');
+		return $this->sql_error(mysqli_connect_error());
 	}
 
 	//

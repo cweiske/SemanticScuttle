@@ -7,14 +7,30 @@
     tagging a release, running unit tests etc.
   -->
   <property file="build.properties" />
+  <property file="html.properties" />
 
   <property name="version-m"  value="0.97" />
   <property name="version"    value="0.97.0" />
-  <property name="zipfile"    value="${phing.project.name}-${version}.zip" />
-  <property name="distfile"   value="dist/${zipfile}" />
-  <property name="sfproject"  value="SemanticScuttle" />
-  <property name="sffilepath" value="s/se/semanticscuttle/" />
-  <property name="svnpath"    value="https://semanticscuttle.svn.sourceforge.net/svnroot/semanticscuttle/" />
+  <property name="stability"  value="beta" />
+  <property name="releasenotes" value="- Many SQL optimizations
+- SemanticScuttle shows bookmarks 4 times faster now
+- New config option to skip 'SET NAMES UTF8' call: $dbneedssetnames
+- Do not highlight admin bookmarks when $enableAdminColors is disabled
+- Add russian translation
+- Make HTML export follow the specifications a bit better
+- Fix bug #2953732: faulty error message for duplicate bookmarks
+- Fix bug #2960663: do not send content-type headers twice for ajax/api scripts
+- Fix bug #2976593: fr_FR locale is vietnamese
+" />
+  <property name="zipfile"     value="${phing.project.name}-${version}.zip" />
+  <property name="pkgfile"     value="${phing.project.name}-${version}.tgz" />
+  <property name="distfile"    value="dist/${zipfile}" />
+  <property name="distpkgfile" value="dist/pear/${pkgfile}" />
+  <property name="sfproject"   value="SemanticScuttle" />
+  <property name="sffilepath"  value="s/se/semanticscuttle/" />
+  <property name="svnpath"     value="https://semanticscuttle.svn.sourceforge.net/svnroot/semanticscuttle/" />
+
+  <taskdef classname="phing.tasks.ext.d51PearPkg2Task" name="d51pearpkg2" />
 
   <target name="zip" depends="check"
    description="Create zip file for release"
@@ -48,7 +64,151 @@
 
 
 
-  <target name="release" depends="check,zip,deploy-sf,svntag"
+  <target name="package" depends="check"
+   description="Creates the pear package"
+  >
+   <!-- fixme: create package.xml with d51pearpkg2 -->
+   <d51pearpkg2 dir="." baseinstalldir="/">
+     <name>SemanticScuttle</name>
+     <summary>A social bookmarking tool</summary>
+     <description>
+       A social bookmarking tool experimenting with new features
+       like structured tags or collaborative descriptions of tags.
+     </description>
+     <channel>semanticscuttle.sourceforge.net</channel>
+
+     <lead user="cweiske" name="Christian Weiske" email="cweiske@cweiske.de" />
+     <license>GPL</license>
+
+     <version   release="${version}"   api="${version}" />
+     <stability release="${stability}" api="${stability}" />
+
+     <notes>${releasenotes}</notes>
+
+     <dependencies>
+       <php minimum_version="5.2.0" />
+       <pear minimum_version="1.8.1" />
+
+       <package name="HTML_QuickForm2"
+                channel="pear.php.net"
+                minimum_version="0.4.0"
+                />
+
+     </dependencies>
+
+     <!-- map directory (key) to role -->
+     <dirroles key="www">www</dirroles>
+     <dirroles key="data">data</dirroles>
+     <dirroles key="doc">doc</dirroles>
+     <dirroles key="src">php</dirroles>
+     <dirroles key="tests">test</dirroles>
+
+     <!-- do not add the following files to the package.
+          copied from excludes above -->
+     <ignore>**/.gitignore</ignore>
+     <ignore>**/.svn</ignore>
+     <ignore>build*</ignore>
+     <ignore>data/config.php</ignore>
+     <ignore>data/locales/messages.po</ignore>
+     <ignore>data/locales/*/LC_MESSAGES/messages.po</ignore>
+     <ignore>dist/**</ignore>
+     <ignore>doc/developers/**</ignore>
+     <ignore>scripts/**</ignore>
+     <ignore>src/php-gettext/examples/**</ignore>
+     <ignore>src/php-gettext/bin/**</ignore>
+     <ignore>*.tgz</ignore>
+     <ignore>*.properties</ignore>
+
+     <replacement
+      path="src/SemanticScuttle/header.php"
+      type="pear-config"
+      from="@data_dir@" to="data_dir"
+      />
+     <replacement
+      path="www/www-header.php"
+      type="pear-config"
+      from="@data_dir@" to="data_dir"
+      />
+     <replacement
+      path="tests/prepare.php"
+      type="pear-config"
+      from="@data_dir@" to="data_dir"
+      />
+
+     <changelog version="0.97" date="2010-06-09" license="GPL">
+- Many SQL optimizations - SemanticScuttle shows bookmarks 4 times faster now
+- New config option to skip "SET NAMES UTF8" call: $dbneedssetnames
+- Do not highlight admin bookmarks when $enableAdminColors is disabled
+- Add russian translation
+- Make HTML export follow the specifications a bit better
+- Fix bug #2953732: faulty error message for duplicate bookmarks
+- Fix bug #2960663: do not send content-type headers twice for ajax/api scripts
+- Fix bug #2976593: fr_FR locale is vietnamese
+     </changelog>
+
+     <!-- <dirroles key="bin">script</dirroles> -->
+     <!-- <replacement path="bin/doctrine" type="pear-config" from="@php_bin@" to="php_bin" /> -->
+     <!-- <release>
+            <install as="doctrine" name="bin/doctrine" />
+            -->
+   </d51pearpkg2>
+
+   <!-- time to fix the package.xml file since the task does not
+        allow everything we need:
+        - strip the base directory names like src, data and www
+        - remove that dumb baseinstalldir from files
+        - md5sums are generated automatically when packaging
+   -->
+   <!-- yes, we need to generate a 2nd file and move it back -->
+   <copy file="package.xml" tofile="package2.xml" overwrite="true">
+    <filterchain>
+     <replaceregexp>
+      <!-- remove md5sums -->
+      <regexp
+       pattern="md5sum=&quot;[a-z0-9]{32}&quot; "
+       replace=""
+       />
+      <!-- remove baseinstalldir for files -->
+      <regexp
+       pattern="&lt;file baseinstalldir=&quot;/&quot;"
+       replace="&lt;file"
+       />
+      <!-- install-as for different directories -->
+      <regexp
+       pattern="(&lt;file name=&quot;data/(.+?)&quot;)"
+       replace="\1 install-as=&quot;\2&quot;"
+       />
+      <regexp
+       pattern="(&lt;file name=&quot;doc/(.+?)&quot;)"
+       replace="\1 install-as=&quot;\2&quot;"
+       />
+      <regexp
+       pattern="(&lt;file name=&quot;tests/(.+?)&quot;)"
+       replace="\1 install-as=&quot;\2&quot;"
+       />
+      <regexp
+       pattern="(&lt;file name=&quot;www/(.+?)&quot;)"
+       replace="\1 install-as=&quot;SemanticScuttle/\2&quot;"
+       />
+      <regexp
+       pattern="(&lt;file name=&quot;src/(.+?)&quot;)"
+       replace="\1 install-as=&quot;\2&quot;"
+       />
+     </replaceregexp>
+    </filterchain>
+   </copy>
+   <move file="package2.xml" tofile="package.xml" overwrite="true" />
+
+   <!-- package up -->
+   <exec command="pear package" passthru="true" />
+   <move file="${pkgfile}" todir="dist/pear/" />
+
+   <delete file="package.xml" failonerror="true" />
+  </target>
+
+
+
+  <target name="release" depends="check,zip,package,deploy-sf"
    description="Release the version on sourceforge"
    >
    <!-- meta-target -->
@@ -80,12 +240,69 @@
   </target>
 
 
-  <target name="svntag"
-   description="create the svn tag for the current version"
+
+  <target name="deploy-sf-pear" depends="check,package"
+   description="Update PEAR channel on sourceforge"
    >
+    <available file="${websitedir}"
+     type="dir" property="available.websitedir"
+     />
+    <fail unless="available.websitedir"
+     message="Website directory not set"
+     />
+    <!--
+        1. rsync channel data from sourceforge to local, deleting
+           superfluous channel files. Need to do that so pirum knows
+           all previous releases when adding the new package
+        2. update channel with pirum update
+        3. rsync to sourceforge
+    -->
     <exec
-     command="svn cp ${svnpath}trunk ${svnpath}/tags/${version} -m 'tag version ${version}'"
-     escape="false" checkreturn="true"
+     command="rsync --include-from=.rsync-include-files --delete -avP -e ssh ${sfuser},${sfproject}@web.sourceforge.net:htdocs/ ."
+     dir="${websitedir}"
+     escape="false" checkreturn="false"
+     passthru="true"
+     />
+
+    <exec
+     command="pirum add ${websitedir} ${distpkgfile}"
+     passthru="true"
+     />
+    <!-- fix the generated html -->
+   <!-- yes, we need to generate a 2nd file and move it back -->
+   <copy file="${websitedir}/index.html" tofile="${websitedir}/pirum.html" overwrite="true">
+    <filterchain>
+     <replaceregexp>
+      <!-- make meta links relative -->
+      <regexp
+       pattern="href=&quot;http://semanticscuttle.sourceforge.net/"
+       replace="href=&quot;"
+       />
+      <!-- add sourceforge logo -->
+      <regexp
+       pattern="powered by "
+       replace="powered by ${html.sflogo} and "
+       />
+     </replaceregexp>
+    </filterchain>
+   </copy>
+
+   <!-- overwrite pirum generated index with our own -->
+   <copy file="${websitedir}/our-index.html" tofile="${websitedir}/index.html" overwrite="true" />
+
+   <!-- add our custom css -->
+   <append
+    destFile="${websitedir}/pirum.css"
+    file="${websitedir}/pirum-custom.css"
+    />
+
+    <!-- rsync always returns code 23 on sourceforge releases, so we
+         can't check return values -->
+    <exec
+     command="rsync --include-from=.rsync-include-files -avP -e ssh . ${sfuser},${sfproject}@web.sourceforge.net:htdocs/"
+     dir="${websitedir}"
+     escape="false" checkreturn="false"
+     passthru="true"
      />
   </target>
 

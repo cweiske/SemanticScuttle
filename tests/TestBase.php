@@ -11,10 +11,6 @@
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
 
-require_once 'PHPUnit/Framework.php';
-
-PHPUnit_Util_Filter::addFileToFilter(__FILE__);
-
 /**
  * Base unittest class that provides several helper methods.
  *
@@ -35,6 +31,7 @@ class TestBase extends PHPUnit_Framework_TestCase
      * @param array   $tags    Array of tags to attach. If "null" is given,
      *                         it will automatically be "unittest"
      * @param string  $title   Bookmark title
+     * @param string  $date    strtotime-compatible string
      *
      * @return integer ID of bookmark
      *
@@ -42,7 +39,7 @@ class TestBase extends PHPUnit_Framework_TestCase
      */
     protected function addBookmark(
         $user = null, $address = null, $status = 0,
-        $tags = null, $title = null
+        $tags = null, $title = null, $date = null
     ) {
         if ($user === null) {
             $user = $this->addUser();
@@ -68,7 +65,7 @@ class TestBase extends PHPUnit_Framework_TestCase
             null,
             $status,
             $tags,
-            null, null, false, false,
+            null, $date, false, false,
             $user
         );
         return $bid;
@@ -83,8 +80,25 @@ class TestBase extends PHPUnit_Framework_TestCase
      * @param string $password Password
      *
      * @return integer ID of user
+     *
+     * @uses addUserData()
      */
     protected function addUser($username = null, $password = null)
+    {
+        return reset($this->addUserData($username, $password));
+    }
+
+
+
+    /**
+     * Creates a new user in the database and returns id, username and password.
+     *
+     * @param string $username Username
+     * @param string $password Password
+     *
+     * @return array ID of user, Name of user, password of user
+     */
+    protected function addUserData($username = null, $password = null)
     {
         $us   = SemanticScuttle_Service_Factory::get('User');
         $rand = rand();
@@ -101,9 +115,37 @@ class TestBase extends PHPUnit_Framework_TestCase
             $password,
             'unittest-' . $rand . '@example.org'
         );
-        return $uid;
+        return array($uid, $username, $password);
     }
 
+
+
+    /**
+     * Retrieves the UID of an admin user.
+     * If that user does not exist in the database, it is created.
+     *
+     * @return integer UID of admin user
+     */
+    protected function getAdminUser()
+    {
+        if (count($GLOBALS['admin_users']) == 0) {
+            $this->fail('No admin users configured');
+        }
+        $adminUserName = reset($GLOBALS['admin_users']);
+
+        $us  = SemanticScuttle_Service_Factory::get('User');
+        $uid = $us->getIdFromUser($adminUserName);
+        if ($uid === null) {
+            //that user does not exist in the database; create it
+            $uid = $us->addUser(
+                $adminUserName,
+                rand(),
+                'unittest-admin-' . $adminUserName . '@example.org'
+            );
+        }
+
+        return $uid;
+    }
 }
 
 ?>

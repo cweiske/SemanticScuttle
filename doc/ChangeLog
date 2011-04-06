@@ -1,9 +1,34 @@
 ChangeLog for SemantiScuttle
 ============================
 
-0.9X.X - 2010-XX-XX
+0.98.0 - 2011-XX-XX
 -------------------
-- Fix bug getTagsForBookmarks() that fetched all tags
+- Switch to jQuery and drop dojo
+- Fix bug #3187177: Wrong URL / Export XML Bookmarks
+- Fix bug in getTagsForBookmarks() that fetched all tags
+- Implement request #3054906: Show user's full name instead of nickname
+- Implement patch #3059829: update FR_CA translation
+- Show error message on mysqli connection errors
+- Update php-gettext library to 1.0.10
+- api/posts/add respects the "replace" parameter now
+- Fix privacy issue when fetching tags of several users
+
+
+0.97.2 - 2011-02-17
+-------------------
+- Fix bug #3178597: Broken link to context in gsearch admin index page
+- Fix bug #3074816: French translation breaks edit javascript
+- Fix bug #3111254: Search in my_watchlist results in error
+- Fix bug #3073215: Updating bookmark time does not work
+- Fix bug #3065284: AjaxVote problem with Webkit browsers
+
+
+0.97.1 - 2010-09-30
+-------------------
+This is a security release! We do highly recommend to update
+your SemanticScuttle installations!
+
+- Fix bug #3077187: Permission problem when deleting bookmarks
 
 
 0.97.0 - 2010-06-09

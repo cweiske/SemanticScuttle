@@ -15,7 +15,7 @@
 
 /**
  * SemanticScuttle user object.
- * Rare fields are filled if required.
+ * Rarely used fields are filled if required.
  *
  * @category Bookmarking
  * @package  SemanticScuttle
@@ -133,7 +133,8 @@ class SemanticScuttle_Model_User
     }
 
     /**
-     * Returns user creation time
+     * Returns user creation time.
+     * UTC/Zulu time zone is used.
      *
      * @return string Datetime value: "YYYY-MM-DD HH:MM:SS"
      */

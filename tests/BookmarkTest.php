@@ -12,12 +12,11 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-
-require_once 'prepare.php';
-
 if (!defined('PHPUnit_MAIN_METHOD')) {
     define('PHPUnit_MAIN_METHOD', 'BookmarkTest::main');
 }
+
+require_once 'prepare.php';
 
 /**
  * Unit tests for the SemanticScuttle bookmark service.
@@ -264,7 +263,7 @@ class BookmarkTest extends TestBase
         $bookmark = $this->bs->getBookmark($bid);
 
         $ret = $this->bs->bookmarksExist(array($bookmark['bAddress']));
-        $this->assertType('array', $ret);
+        $this->assertInternalType('array', $ret);
         $this->assertEquals(1, count($ret));
         $this->assertTrue($ret[$bookmark['bAddress']]);
     }
@@ -292,7 +291,7 @@ class BookmarkTest extends TestBase
                 $bookmark2['bAddress']
             )
         );
-        $this->assertType('array', $ret);
+        $this->assertInternalType('array', $ret);
         $this->assertEquals(2, count($ret));
         $this->assertTrue($ret[$bookmark['bAddress']]);
         $this->assertTrue($ret[$bookmark2['bAddress']]);
@@ -309,7 +308,7 @@ class BookmarkTest extends TestBase
     public function testBookmarksExistFalseSingle()
     {
         $ret = $this->bs->bookmarksExist(array('does-not-exist'));
-        $this->assertType('array', $ret);
+        $this->assertInternalType('array', $ret);
         $this->assertEquals(1, count($ret));
         $this->assertFalse($ret['does-not-exist']);
     }
@@ -330,7 +329,7 @@ class BookmarkTest extends TestBase
             'does-not-exist-3',
         );
         $ret = $this->bs->bookmarksExist($bms);
-        $this->assertType('array', $ret);
+        $this->assertInternalType('array', $ret);
         $this->assertEquals(3, count($ret));
         $this->assertFalse($ret['does-not-exist']);
         $this->assertFalse($ret['does-not-exist-2']);
@@ -367,7 +366,7 @@ class BookmarkTest extends TestBase
                 'does-not-exist-3'
             )
         );
-        $this->assertType('array', $ret);
+        $this->assertInternalType('array', $ret);
         $this->assertEquals(5, count($ret));
         $this->assertTrue($ret[$bookmark['bAddress']]);
         $this->assertTrue($ret[$bookmark2['bAddress']]);
@@ -476,7 +475,7 @@ class BookmarkTest extends TestBase
 
         foreach ($bms['bookmarks'] as $bm) {
             $this->assertArrayHasKey('tags', $bm);
-            $this->assertType('array', $bm['tags']);
+            $this->assertInternalType('array', $bm['tags']);
             if ($bm['bId'] == $bid) {
                 $this->assertContains('foo', $bm['tags']);
                 $this->assertContains('bar', $bm['tags']);
@@ -757,7 +756,7 @@ class BookmarkTest extends TestBase
 
         $bm = $this->bs->getBookmark($bid, true);
         $this->assertArrayHasKey('tags', $bm);
-        $this->assertType('array', $bm['tags']);
+        $this->assertInternalType('array', $bm['tags']);
         $this->assertContains('foo', $bm['tags']);
         $this->assertContains('bar', $bm['tags']);
     }
@@ -875,7 +874,7 @@ class BookmarkTest extends TestBase
         $bid = $this->addBookmark($uid, $url);
 
         $bm = $this->bs->getBookmarkByAddress($url);
-        $this->assertType('array', $bm);
+        $this->assertInternalType('array', $bm);
         $this->assertEquals($url, $bm['bAddress']);
     }
 
@@ -901,7 +900,7 @@ class BookmarkTest extends TestBase
         $bid = $this->addBookmark($uid, $url);
 
         $bm = $this->bs->getBookmarkByAddress($incomplete);
-        $this->assertType('array', $bm);
+        $this->assertInternalType('array', $bm);
         $this->assertEquals($url, $bm['bAddress']);
     }
 
@@ -952,7 +951,7 @@ class BookmarkTest extends TestBase
         $this->assertEquals('new description', $bm['bDescription']);
         $this->assertEquals('new private note', $bm['bPrivateNote']);
         $this->assertEquals(1, $bm['bStatus']);
-        $this->assertType('array', $bm['tags']);
+        $this->assertInternalType('array', $bm['tags']);
         $this->assertEquals(1, count($bm['tags']));
         $this->assertContains('new', $bm['tags']);
     }
@@ -980,6 +979,38 @@ class BookmarkTest extends TestBase
         );
         $bm = $this->bs->getBookmark($bid);
         $this->assertEquals('newShortNambb', $bm['bShort']);
+    }
+
+    /**
+     * Tests if updating a bookmark's date works.
+     * This once was a bug, see bug #3073215.
+     *
+     * @return void
+     *
+     * @link https://sourceforge.net/tracker/?func=detail&atid=1017430&aid=3073215&group_id=211356
+     */
+    public function testUpdateBookmarkDate()
+    {
+        $bid = $this->bs->addBookmark(
+            'http://example.org', 'title', 'desc', 'priv',
+            0, array(), 'myShortName'
+        );
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals('myShortName', $bm['bShort']);
+
+        $this->assertTrue(
+            $this->bs->updateBookmark(
+                $bid, 'http://example2.org', 'my title', 'desc',
+                'priv', 0, array(), 'newShortNambb',
+                //we need to use zulu (GMT) time zone here
+                // since the dates/times are stored as that
+                // in the database
+                '2002-03-04T05:06:07Z'
+            )
+        );
+        $bm = $this->bs->getBookmark($bid);
+        $this->assertEquals('newShortNambb', $bm['bShort']);
+        $this->assertEquals('2002-03-04 05:06:07', $bm['bDatetime']);
     }
 
 
@@ -1087,12 +1118,98 @@ class BookmarkTest extends TestBase
 
     /**
      * Test what countOther() returns when the user is logged in
+     * and a friend (people on the watchlist) has bookmarked
+     * and the same address with public status.
+     *
+     * @return void
+     */
+    public function testCountOthersWatchlistPublic()
+    {
+        $uid  = $this->addUser();
+        $address = 'http://example.org';
+
+        //create other user and add main user to his watchlist
+        $friendPublic1 = $this->addUser();
+        $this->us->setCurrentUserId($friendPublic1);
+        $this->us->setWatchStatus($uid);
+
+        //create bookmarks for main user and other one
+        $this->addBookmark($uid, $address, 0);
+        $this->addBookmark($friendPublic1,  $address, 0);//0 is public
+
+        //log main user in
+        $this->us->setCurrentUserId($uid);
+
+        $this->assertEquals(1, $this->bs->countOthers($address));
+    }
+
+
+
+    /**
+     * Test what countOther() returns when the user is logged in
+     * and a friend (people on the watchlist) has bookmarked
+     * and shared the same address for the watchlist.
+     *
+     * @return void
+     */
+    public function testCountOthersWatchlistShared()
+    {
+        $uid  = $this->addUser();
+        $address = 'http://example.org';
+
+        //create other user and add main user to his watchlist
+        $friendPublic1 = $this->addUser();
+        $this->us->setCurrentUserId($friendPublic1);
+        $this->us->setWatchStatus($uid);
+
+        //create bookmarks for main user and other one
+        $this->addBookmark($uid, $address, 0);
+        $this->addBookmark($friendPublic1,  $address, 1);//1 is shared
+
+        //log main user in
+        $this->us->setCurrentUserId($uid);
+
+        $this->assertEquals(1, $this->bs->countOthers($address));
+    }
+
+
+
+    /**
+     * Test what countOther() returns when the user is logged in
+     * and one friends (people on the watchlist) has bookmarked
+     * the same address but made it private.
+     *
+     * @return void
+     */
+    public function testCountOthersWatchlistPrivate()
+    {
+        $uid  = $this->addUser();
+        $address = 'http://example.org';
+
+        //create other user and add main user to his watchlist
+        $friendPublic1 = $this->addUser();
+        $this->us->setCurrentUserId($friendPublic1);
+        $this->us->setWatchStatus($uid);
+
+        //create bookmarks for main user and other one
+        $this->addBookmark($uid, $address, 0);
+        $this->addBookmark($friendPublic1,  $address, 2);//2 is private
+
+        //log main user in
+        $this->us->setCurrentUserId($uid);
+
+        $this->assertEquals(0, $this->bs->countOthers($address));
+    }
+
+
+    /**
+     * Test what countOther() returns when the user is logged in
      * and friends (people on the watchlist) have bookmarked
      * and shared the same address.
      *
      * @return void
      */
-    public function testCountOthersWatchlist()
+    public function testCountOthersWatchlistComplex()
     {
         $uid  = $this->addUser();
         $address = 'http://example.org';

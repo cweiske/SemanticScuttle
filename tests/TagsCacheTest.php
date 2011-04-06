@@ -12,12 +12,11 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-
-require_once 'prepare.php';
-
 if (!defined('PHPUnit_MAIN_METHOD')) {
     define('PHPUnit_MAIN_METHOD', 'TagsCacheTest::main');
 }
+
+require_once 'prepare.php';
 
 /**
  * Unit tests for the SemanticScuttle tags cache service.
@@ -54,9 +53,6 @@ class TagsCacheTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        global $dbhost, $dbuser, $dbpass, $dbname, $dbport, $dbpersist, $dbtype, $tableprefix, $TEMPLATES_DIR, $debugMode;
-        require_once dirname(__FILE__) . '/../src/SemanticScuttle/header.php';
-
         $this->us =SemanticScuttle_Service_Factory::get('User');
         $this->bs =SemanticScuttle_Service_Factory::get('Bookmark');
         $this->bs->deleteAll();

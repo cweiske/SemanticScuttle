@@ -138,7 +138,7 @@ $dbtype = 'mysql4';
  *
  * @var string
  */
-$dbhost = 'localhost';
+$dbhost = '127.0.0.1';
 
 /**
  * Database port.
@@ -302,7 +302,7 @@ $index_sidebar_blocks = array(
  * @var  string
  * @link http://php.net/date
  */
-$shortdate = 'd-m-Y';
+$shortdate = 'Y-m-d';
 
 /**
  * Format of long dates.
@@ -709,5 +709,13 @@ $authEmailSuffix = null;
  * @var string
  */
 $unittestUrl = null;
+
+/**
+ * Allow "unittestMode=1" in URLs.
+ * Should only be enabled on development systems
+ *
+ * @var boolean
+ */
+$allowUnittestMode = false;
 
 ?>

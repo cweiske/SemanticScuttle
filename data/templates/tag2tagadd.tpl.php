@@ -4,7 +4,7 @@ $this->includeTemplate($GLOBALS['top_include']);
 
 <form action="<?php echo $formaction; ?>" method="post">
 
-<p align=right" style="float:right">
+<p align="right" style="float:right">
 <small style="text-align:right"><?php echo T_('Note: use "=" to make synonym two tags. e.g.: france=frenchcountry')?></small><br/>
 <small style="text-align:right"><?php echo T_('Note: use ">" to include one tag in another. e.g.: europe>france>paris')?></small><br/>
 </p>
