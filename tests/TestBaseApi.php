@@ -47,24 +47,17 @@ class TestBaseApi extends TestBase
         }
         $this->url = $GLOBALS['unittestUrl'] . $this->urlPart;
 
+        //clean up before test
+        if (file_exists($GLOBALS['datadir'] . '/config.unittest.php')) {
+            unlink($GLOBALS['datadir'] . '/config.unittest.php');
+        }
+
         $this->us = SemanticScuttle_Service_Factory::get('User');
         $this->us->deleteAll();
         $this->bs = SemanticScuttle_Service_Factory::get('Bookmark');
         $this->bs->deleteAll();
         $this->b2t = SemanticScuttle_Service_Factory::get('Bookmark2Tag');
         $this->b2t->deleteAll();
-    }
-
-
-
-    /**
-     * Clean up after test
-     */
-    public function tearDown()
-    {
-        if (file_exists($GLOBALS['datadir'] . '/config.unittest.php')) {
-            unlink($GLOBALS['datadir'] . '/config.unittest.php');
-        }
     }
 
 
