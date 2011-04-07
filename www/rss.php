@@ -26,8 +26,14 @@ require_once 'www-header.php';
 $bookmarkservice = SemanticScuttle_Service_Factory::get('Bookmark');
 $cacheservice    = SemanticScuttle_Service_Factory::get('Cache');
 
-if (isset($_SERVER['PATH_INFO']) && strlen($_SERVER['PATH_INFO']) >1) {
-    list($url, $user, $cat) = explode('/', $_SERVER['PATH_INFO']);
+if (isset($_SERVER['PATH_INFO']) && strlen($_SERVER['PATH_INFO']) > 1) {
+    $parts = explode('/', $_SERVER['PATH_INFO']);
+    if (count($parts) == 3) {
+        list($url, $user, $cat) = $parts;
+    } else {
+        list($url, $user) = $parts;
+        $cat = null;
+    }
 } else {
     $url = '';
     $user = '';
