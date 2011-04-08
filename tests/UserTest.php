@@ -254,23 +254,25 @@ class UserTest extends TestBase
         $this->assertTrue($this->us->privateKeyExists($randKey));
     }
 
-    /**
-     * Test loginPrivateKey() function returns righ
-     *
-     * @return void
-     */
-    public function testIfPrivateKeyValid()
+
+    public function testIsPrivateKeyValid()
     {
-        /* null value for user who never setup privatekey */
-        $this->assertFalse($this->us->isPrivateKeyValid(null));
+        $this->assertFalse(
+            $this->us->isPrivateKeyValid(null),
+            'NULL is an invalid private key'
+        );
 
-        /* normal user with enabled privatekey */
         $randKey = $this->us->getNewPrivateKey();
-        $this->assertTrue($this->us->isPrivateKeyValid($randKey));
+        $this->assertTrue(
+            $this->us->isPrivateKeyValid($randKey),
+            'generated key should be valid'
+        );
 
-        /* user that has disabled privatekey */
         $randKey2 = '-'.$this->us->getNewPrivateKey();
-        $this->assertFalse($this->us->isPrivateKeyValid($randKey2));
+        $this->assertFalse(
+            $this->us->isPrivateKeyValid($randKey2),
+            'disabled privatekey should return false'
+        );
     }
 
     /**
