@@ -201,6 +201,40 @@ class UserTest extends TestBase
 
 
 
+    public function testGetUserByPrivateKeyEmptyKey()
+    {
+        $arUser = $this->us->getUserByPrivateKey(null);
+        $this->assertFalse($arUser);
+    }
+
+
+
+    public function testGetUserByPrivateKeyInvalid()
+    {
+        $arUser = $this->us->getUserByPrivateKey('foobar');
+        $this->assertFalse($arUser);
+
+        $arUser = $this->us->getUserByPrivateKey('%');
+        $this->assertFalse($arUser);
+    }
+
+
+
+    public function testGetUserByPrivateKeyValidKey()
+    {
+        $pkey = $this->us->getNewPrivateKey();
+        $uId = $this->addUser(null, null, $pkey);
+
+        $arUser = $this->us->getUserByPrivateKey($pkey);
+        $this->assertInternalType('array', $arUser);
+        $this->assertArrayHasKey('uId', $arUser);
+        $this->assertArrayHasKey('username', $arUser);
+
+        $this->assertEquals($uId, $arUser['uId']);
+    }
+
+
+
     /**
      * Check if privateKeyExists() returns right
      *

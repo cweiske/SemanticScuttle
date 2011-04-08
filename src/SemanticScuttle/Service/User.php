@@ -242,9 +242,9 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      *
      * @param string $username User Name
      *
-     * @return array User array from database
+     * @return array User array from database, false if no user was found
      */
-    function getUserByUsername($username)
+    public function getUserByUsername($username)
     {
         return $this->_getuser($this->getFieldName('username'), $username);
     }
@@ -254,9 +254,9 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      *
      * @param string $privatekey Private Key
      *
-     * @return array User array from database
+     * @return array User array from database, false if no user was found
      */
-    function getUserByPrivateKey($privatekey)
+    public function getUserByPrivateKey($privatekey)
     {
         return $this->_getuser($this->getFieldName('privatekey'), $privatekey);
     }
@@ -821,7 +821,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      * @return mixed Integer user ID if all is well,
      *               boolean false if an error occured
      */
-    public function addUser($username, $password, $email, $privateKey=null)
+    public function addUser($username, $password, $email, $privateKey = null)
     {
         // Set up the SQL UPDATE statement.
         $datetime = gmdate('Y-m-d H:i:s', time());
