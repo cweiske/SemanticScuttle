@@ -1,40 +1,47 @@
 <?php
-/***************************************************************************
-Copyright (C) 2004 - 2006 Scuttle project
-http://sourceforge.net/projects/scuttle/
-http://scuttle.org/
+/**
+ * Return a json file with list of public tags used by admins and sorted
+ * by popularity.
+ *
+ * The following GET parameters are accepted:
+ * @param string  $beginsWith The tag name shall start with that string.
+ *                            No default.
+ * @param integer $limit      Number of tags to return. Defaults to 1000
+ *
+ * Part of SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category Bookmarking
+ * @package  SemanticScuttle
+ * @author   Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author   Christian Weiske <cweiske@cweiske.de>
+ * @author   Eric Dane <ericdane@users.sourceforge.net>
+ * @license  GPL http://www.gnu.org/licenses/gpl.html
+ * @link     http://sourceforge.net/projects/semanticscuttle
+ */
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-***************************************************************************/
-
-/* Return a json file with list of tags according */
-/* to current user and sort by popularity */
 $httpContentType = 'application/json';
 require_once '../www-header.php';
 
-/* Service creation: only useful services are created */
-$b2tservice = SemanticScuttle_Service_Factory::get('Bookmark2Tag');
-$bookmarkservice = SemanticScuttle_Service_Factory::get('Tag');
+$limit         = 30;
+$beginsWith    = null;
+$currentUserId = $userservice->getCurrentUserId();
 
-?>
-
-{identifier:"tag", items: [
-<?php
-$listTags = $b2tservice->getAdminTags(1000, $userservice->getCurrentUserId());
-foreach ($listTags as $t) {
-    echo "{tag: \"".$t['tag']."\"},";
+if (isset($_GET['limit']) && is_numeric($_GET['limit'])) {
+    $limit = (int)$_GET['limit'];
 }
+if (isset($_GET['beginsWith']) && strlen(trim($_GET['beginsWith']))) {
+    $beginsWith = trim($_GET['beginsWith']);
+}
+
+$listTags = SemanticScuttle_Service_Factory::get('Bookmark2Tag')->getAdminTags(
+    $limit, $currentUserId, null, $beginsWith
+);
+$tags = array();
+foreach ($listTags as $t) {
+    $tags[] = $t['tag'];
+}
+
+echo json_encode($tags);
 ?>
-]}

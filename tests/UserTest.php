@@ -209,8 +209,6 @@ class UserTest extends TestBase
     public function testTestUniquePrivateId()
     {
         $this->assertFalse($this->us->privateKeyExists('-1'));
-
-        $this->us = SemanticScuttle_Service_Factory::get('User');
         $randKey = $this->us->getNewPrivateKey();
 
         $this->assertFalse($this->us->privateKeyExists($randKey));

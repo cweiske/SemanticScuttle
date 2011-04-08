@@ -1,7 +1,8 @@
 dist/
-build.properties
-package.xml
 .project
-html.properties
 .buildpath
 .settings
+build.properties
+html.properties
+package.xml
+semanticscuttle-dump.sql

@@ -18,7 +18,7 @@ if ($lastUsers && count($lastUsers) > 0) {
 foreach ($lastUsers as $row) {
     echo '<tr><td>';
     echo  '<a href="'.createURL('profile', $row['username']).'">';
-    echo $row['username'];
+    echo SemanticScuttle_Model_UserArray::getName($row);
     echo '</a>';
     echo ' (<a href="'.createURL('bookmarks', $row['username']).'">'.T_('bookmarks').'</a>)';
     echo '</td></tr>';
@@ -27,7 +27,7 @@ foreach ($lastUsers as $row) {
 ?>
 
 </table>
-<p style="text-align:right"><a href="<?php echo createURL('users'); ?>" title="<?php echo T_('See all users')?>"><?php echo T_('All users'); ?></a> &rarr;</p>
+<p style="text-align:right"><a href="<?php echo createURL('users'); ?>" title="<?php echo T_('See all users')?>"><?php echo T_('All users'); ?></a> →</p>
 </div>
 <?php
 }

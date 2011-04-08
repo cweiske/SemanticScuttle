@@ -63,14 +63,18 @@ if ($currenttag!= '' && $cdservice->getLastTagDescription($currenttag)) {
 
 //common tag description edit
 if ($userservice->isLoggedOn()) {
-    if ($currenttag!= '' && ($GLOBALS['enableCommonTagDescriptionEditedByAll'] || $currentUser->isAdmin())) {
-    echo ' <a href="'. createURL('tagcommondescriptionedit', $currenttag).'" title="'.T_('Edit the common description of this tag').'">';
-    echo !is_array($cDescription) || strlen($cDescription['cdDescription'])==0?T_('Edit the common description of this tag'):'';
-    echo ' <img src="'.ROOT.'images/b_edit.png" /></a>';
-    } elseif (isset($hash)) {
-    echo ' (<a href="'.createURL('bookmarkcommondescriptionedit', $hash).'" title="'.T_('Edit the common description of this bookmark').'">';
-    echo T_('Edit the common description of this bookmark').'</a>)';
-    }
+	if ($currenttag != ''
+        && ($GLOBALS['enableCommonTagDescriptionEditedByAll']
+            || $currentUser->isAdmin()
+        )
+    ) {
+		echo ' <a href="'. createURL('tagcommondescriptionedit', $currenttag).'" title="'.T_('Edit the common description of this tag').'">';
+		echo !is_array($cDescription) || strlen($cDescription['cdDescription'])==0?T_('Edit the common description of this tag'):'';
+		echo ' <img src="'.ROOT.'images/b_edit.png" /></a>';
+	} else if (isset($hash)) {
+		echo ' (<a href="'.createURL('bookmarkcommondescriptionedit', $hash).'" title="'.T_('Edit the common description of this bookmark').'">';
+		echo T_('Edit the common description of this bookmark').'</a>)';
+	}
 }
 ?></p>
 <?php endif ?>
@@ -117,35 +121,35 @@ $votingSort  = 'voting_desc';
 
 switch (getSortOrder()) {
 case 'date_asc':
-    $dateArrow = ' &uarr;';
-    $dateSort  = 'date_desc';
-    break;
+	$dateArrow = ' ↑';
+	$dateSort  = 'date_desc';
+	break;
 
 case 'title_asc':
-    $titleArrow = ' &uarr;';
-    $titleSort  = 'title_desc';
-    break;
+	$titleArrow = ' ↑';
+	$titleSort  = 'title_desc';
+	break;
 
 case 'title_desc':
-    $titleArrow = ' &darr;';
-    $titleSort  = 'title_asc';
-    break;
+	$titleArrow = ' ↓';
+	$titleSort  = 'title_asc';
+	break;
 
 case 'voting_asc':
-    $votingArrow = ' &uarr;';
-    $votingSort  = 'voting_desc';
-    break;
+	$votingArrow = ' ↑';
+	$votingSort  = 'voting_desc';
+	break;
 
 case 'voting_desc':
-    $votingArrow = ' &darr;';
-    $votingSort  = 'voting_asc';
-    break;
+	$votingArrow = ' ↓';
+	$votingSort  = 'voting_asc';
+	break;
 
 case 'date_desc':
 default:
-    $dateArrow = ' &darr;';
-    $dateSort = 'date_asc';
-    break;
+	$dateArrow = ' ↓';
+	$dateSort = 'date_asc';
+	break;
 }
 ?>
  <a href="?sort=<?php echo $dateSort ?>"><?php echo T_("Date").$dateArrow; ?></a>
@@ -159,17 +163,17 @@ default:
 
 <?php
 if ($currenttag!= '') {
-    if ($user!= '') {
-    echo ' - ';
-    echo '<a href="'. createURL('tags', $currenttag) .'">';
-    echo T_('Bookmarks from other users for this tag').'</a>';
-    //echo T_(' for these tags');
-    } else if ($userservice->isLoggedOn()){
-    echo ' - ';
-    echo '<a href="'. createURL('bookmarks', $currentUser->getUsername().'/'.$currenttag) .'">';
-    echo T_('Only your bookmarks for this tag').'</a>';
-    //echo T_(' for these tags');
-    }
+	if ($user!= '') {
+		echo ' - ';
+		echo '<a href="'. createURL('tags', $currenttag) .'">';
+		echo T_('Bookmarks from other users for this tag').'</a>';
+		//echo T_(' for these tags');
+	} else if ($userservice->isLoggedOn()){
+		echo ' - ';
+		echo '<a href="'. createURL('bookmarks', $currentUser->getUsername().'/'.$currenttag) .'">';
+		echo T_('Only your bookmarks for this tag').'</a>';
+		//echo T_(' for these tags');
+	}
 }
 ?></p>
 
@@ -282,48 +286,48 @@ if ($currenttag!= '') {
         $edit = ' - <a href="' . createURL('edit', $row['bId']) . '">'
                 . T_('Edit')
                 . '</a>'
-                . '<script type="text/javascript">'
-                . 'document.write(" - <a href=\"#\" onclick=\"deleteBookmark(this, '. $row['bId'] .'); return false;\">'
+                . ' <a href="#" onclick="deleteBookmark(this, '. $row['bId'] .'); return false;">'
                 . T_('Delete')
-                .'<\/a>");</script>';
-    }
+                .'</a>';
+		}
 
-    // Last update
-    $update = '   <small title="'. T_('Last update') .'">('. date($GLOBALS['shortdate'], strtotime($row['bModified'])). ') </small>';
+		// Last update
+		$update = '   <small title="'. T_('Last update') .'">('. date($GLOBALS['shortdate'], strtotime($row['bModified'])). ') </small>';
 
-    // User attribution
-    $copy = '   ' . T_('by') . ' ';
-    if ($userservice->isLoggedOn()
-        && $currentUser->getUsername() == $row['username']
+		// User attribution
+		$copy = '   ' . T_('by') . ' ';
+		if ($userservice->isLoggedOn()
+            && $currentUser->getUsername() == $row['username']
         ) {
-        $copy .= T_('you');
-    } else {
-        $copy .= '<a href="' . createURL('bookmarks', $row['username']) . '">'
-                . $row['username'] . '</a>';
-    }
+			$copy .= T_('you');
+		} else {
+			$copy .= '<a href="' . createURL('bookmarks', $row['username']) . '">'
+                . SemanticScuttle_Model_UserArray::getName($row)
+                . '</a>';
+		}
 
-    // Udders!
-    if (!isset($hash)) {
-        $others = $otherCounts[$row['bAddress']];
-        $ostart = '<a href="' . createURL('history', $row['bHash']) . '">';
-        $oend = '</a>';
-        switch ($others) {
-        case 0:
-            break;
-        case 1:
-            $copy .= sprintf(T_(' and %s1 other%s'), $ostart, $oend);
-            break;
-        default:
-            $copy .= sprintf(T_(' and %2$s%1$s others%3$s'), $others, $ostart, $oend);
-        }
-    }
+		// others
+		if (!isset($hash)) {
+			$others = $otherCounts[$row['bAddress']];
+			$ostart = '<a href="' . createURL('history', $row['bHash']) . '">';
+			$oend = '</a>';
+			switch ($others) {
+				case 0:
+					break;
+				case 1:
+					$copy .= sprintf(T_(' and %s1 other%s'), $ostart, $oend);
+					break;
+				default:
+					$copy .= sprintf(T_(' and %2$s%1$s others%3$s'), $others, $ostart, $oend);
+			}
+		}
 
-    // Copy link
-    if ($userservice->isLoggedOn()
+		// Copy link
+		if ($userservice->isLoggedOn()
             && ($currentUser->getId() != $row['uId'])
             && !$existence[$row['bAddress']]
         ) {
-    $copy .= ' - <a href="'
+            $copy .= ' - <a href="'
                 . createURL(
                     'bookmarks',
                     $currentUser->getUsername()
@@ -377,10 +381,10 @@ if ($currenttag!= '') {
         include 'bookmarks-thumbnail.inc.tpl.php';
         include 'bookmarks-vote.inc.tpl.php';
 
-    echo '  <div' . $adminBgClass . '>' . "\n";
+		echo '  <div' . $adminBgClass . '>' . "\n";
 
-    echo '   <div class="link">'
-            . '<a href="'. $address .'"'. $rel .' class="taggedlink" target="_blank">'
+		echo '   <div class="link">'
+            . '<a href="'. htmlspecialchars($address) .'"'. $rel .' class="taggedlink">'
             . filter($row['bTitle'])
             . '</a>' . $adminStar . "</div>\n";
     if ($row['bDescription'] == '') {

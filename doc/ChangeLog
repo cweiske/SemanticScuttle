@@ -1,13 +1,17 @@
 ChangeLog for SemantiScuttle
 ============================
 
-0.9X.X - 2010-XX-XX
+0.98.0 - 2011-XX-XX
 -------------------
+- Switch to jQuery and drop dojo
+- Fix bug #3187177: Wrong URL / Export XML Bookmarks
 - Fix bug in getTagsForBookmarks() that fetched all tags
-- Show error message on mysqli connection errors
+- Implement request #3054906: Show user's full name instead of nickname
 - Implement patch #3059829: update FR_CA translation
+- Show error message on mysqli connection errors
 - Update php-gettext library to 1.0.10
 - api/posts/add respects the "replace" parameter now
+- Fix privacy issue when fetching tags of several users
 - Implement Feature Request #3164013 adding ability to log in vi private key
 
 

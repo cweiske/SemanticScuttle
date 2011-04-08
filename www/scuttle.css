@@ -376,6 +376,7 @@ div#sidebar table td {
     padding-bottom: 0.25em;
     padding-right: 0.5em;
 }
+/*
 div#sidebar ul {
     list-style-type: none;
     margin: 0;
@@ -383,7 +384,7 @@ div#sidebar ul {
 }
 div#sidebar ul li {
     margin: 0.5em 0;
-}
+}*/
 
 div#related {
     padding: 0.5em;
@@ -640,11 +641,13 @@ a.bookmarklet {
 	background-color: #AAFAEE;
 }
 
-/* DOJO Style */
+/* tree styles */
+#related-content.jstree-default.jstree-focused {
+    background: none !important;
+}
 
-/* DOJO Style */
-.scuttletheme .dijitInputField input,.scuttletheme .dijitTextBox,.scuttletheme .dijitComboBox,.scuttletheme .dijitSpinner
-	{
-	width: 100%;
-	margin: 0 0 0 0;
+
+/* add/edit bookmark */
+.ui-autocomplete {
+    width: 458px;
 }

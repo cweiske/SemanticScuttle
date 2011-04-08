@@ -40,7 +40,11 @@ if (!$userservice->isLoggedOn()) {
 }
 
 /* Managing path info */
-list ($url, $tag1) = explode('/', $_SERVER['PATH_INFO']);
+if (isset($_SERVER['PATH_INFO'])) {
+    list ($url, $tag1) = explode('/', $_SERVER['PATH_INFO']);
+} else {
+    $url = $tag1 = null;
+}
 
 if (POST_CONFIRM != '') {
     $tag1 = POST_TAG1;

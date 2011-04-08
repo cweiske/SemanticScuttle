@@ -68,7 +68,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     }
 
     /**
-     * Construct of Class
+     * Create a new instance
      *
      * @param sql_db $db Database object
      */
@@ -281,13 +281,15 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     }
 
     /**
-     * Returns user ID from database.
+     * Obtains the ID of the given user name.
+     * If a user ID is passed, it is returned.
+     * In case the user does not exist, NULL is returned.
      *
-     * @param integer|string $user User ID or user name
+     * @param string|integer $user User name or user ID
      *
-     * @return mixed integer ID of user if exists, else null
+     * @return integer NULL if not found or the user ID
      */
-    function getIdFromUser($user)
+    public function getIdFromUser($user)
     {
         if (is_int($user)) {
             return intval($user);
@@ -480,7 +482,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
             return (int)$_SESSION[$this->getSessionKey()];
 
         } else if (isset($_COOKIE[$this->getCookieKey()])) {
-            $cook = split(':', $_COOKIE[$this->getCookieKey()]);
+            $cook = explode(':', $_COOKIE[$this->getCookieKey()]);
             //cookie looks like this: 'id:md5(username+password)'
             $query = 'SELECT * FROM '. $this->getTableName() .
                      ' WHERE MD5(CONCAT('.$this->getFieldName('username') .
@@ -512,9 +514,10 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     /**
      * Set the current user ID (i.e. when logging on)
      *
-     * @param integer $user User ID or null to unset the user
+     * @internal
+     * No ID verification is being done.
      *
-     * @internal  No ID verification is being done.
+     * @param integer $user User ID or null to unset the user
      *
      * @return void
      */
@@ -540,7 +543,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      * @param string  $password Password
      * @param boolean $remember If a long-time cookie shall be set
      *
-     * @return boolean true if the user could be authenticated,
+     * @return boolean True if the user could be authenticated,
      *                 false if not.
      */
     public function login($username, $password, $remember = false)

@@ -39,6 +39,20 @@ set_include_path(
 require_once $datadir . '/config.default.php';
 require_once $datadir . '/config.php';
 
+if (isset($_GET['unittestMode']) && $_GET['unittestMode'] == 1
+) {
+    if ($allowUnittestMode !== true) {
+        header('HTTP/1.0 400 Bad Request');
+        die("Unittestmode is not allowed\n");
+    }
+
+    $unittestConfigFile = $datadir . '/config.unittest.php';
+    if (file_exists($unittestConfigFile)) {
+        require_once $unittestConfigFile;
+    }
+    define('HTTP_UNIT_TEST_MODE', true);
+    define('UNIT_TEST_MODE', true);
+}
 if (defined('UNIT_TEST_MODE')) {
     //make local config vars global - needed for unit tests
     //run with phpunit
@@ -68,6 +82,7 @@ require_once 'SemanticScuttle/Service.php';
 require_once 'SemanticScuttle/DbService.php';
 require_once 'SemanticScuttle/Service/Factory.php';
 require_once 'SemanticScuttle/functions.php';
+require_once 'SemanticScuttle/Model/UserArray.php';
 
 if (count($GLOBALS['serviceoverrides']) > 0
     && !defined('UNIT_TEST_MODE')
@@ -117,10 +132,18 @@ $tplVars['currentUser'] = $currentUser;
 $tplVars['userservice'] = $userservice;
 
 // 6 // Force UTF-8 behaviour for server (cannot be moved into top.inc.php which is not included into every file)
-if (!defined('UNIT_TEST_MODE')) {
+if (!defined('UNIT_TEST_MODE') || defined('HTTP_UNIT_TEST_MODE')) {
     //API files define that, so we need a way to support both of them
     if (!isset($httpContentType)) {
-        $httpContentType = 'text/html';
+        if (DEBUG_MODE) {
+            //using that mime type makes all javascript nice in Chromium
+            // it also serves as test base if the pages really validate
+            $httpContentType = 'application/xhtml+xml';
+        } else {
+            //until we are sure that all pages validate, we
+            // keep the non-strict mode on for normal installations
+            $httpContentType = 'text/html';
+        }
     }
     if ($httpContentType !== false) {
         header('Content-Type: ' . $httpContentType . '; charset=utf-8');

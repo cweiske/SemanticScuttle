@@ -41,7 +41,6 @@ isset($_POST['address']) ? define('POST_ADDRESS', $_POST['address']): define('PO
 isset($_POST['description']) ? define('POST_DESCRIPTION', $_POST['description']): define('POST_DESCRIPTION', '');
 isset($_POST['privateNote']) ? define('POST_PRIVATENOTE', $_POST['privateNote']): define('POST_PRIVATENOTE', '');
 isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_STATUS', '');
-isset($_POST['tags']) ? define('POST_TAGS', $_POST['tags']): define('POST_TAGS', '');
 isset($_POST['referrer']) ? define('POST_REFERRER', $_POST['referrer']): define('POST_REFERRER', '');
 
 isset($_GET['popup']) ? define('GET_POPUP', $_GET['popup']): define('GET_POPUP', '');
@@ -50,6 +49,10 @@ isset($_POST['popup']) ? define('POST_POPUP', $_POST['popup']): define('POST_POP
 isset($_GET['page']) ? define('GET_PAGE', $_GET['page']): define('GET_PAGE', 0);
 isset($_GET['sort']) ? define('GET_SORT', $_GET['sort']): define('GET_SORT', '');
 
+if (!isset($_POST['tags'])) {
+    $_POST['tags'] = array();
+}
+//echo '<p>' . var_export($_POST, true) . '</p>';die();
 
 
 if ((GET_ACTION == "add") && !$userservice->isLoggedOn()) {
@@ -123,41 +126,41 @@ $tplVars['loadjs'] = true;
 $saved = false;
 $templatename = 'bookmarks.tpl';
 if ($userservice->isLoggedOn() && POST_SUBMITTED != '') {
-    if (!POST_TITLE || !POST_ADDRESS) {
-        $tplVars['error'] = T_('Your bookmark must have a title and an address');
-        $templatename = 'editbookmark.tpl';
-    } else {
-        $address = trim(POST_ADDRESS);
-        // If the bookmark exists already, edit the original
-        if ($bookmarkservice->bookmarkExists($address, $currentUserID)) {
-            $bookmark = $bookmarkservice->getBookmarkByAddress($address);
-            header('Location: '. createURL('edit', $bookmark['bId']));
-            exit();
-        } else {
-            // If it's new, save it
-            $title = trim(POST_TITLE);
-            $description = trim(POST_DESCRIPTION);
-            $privateNote = trim(POST_PRIVATENOTE);
-            $status = intval(POST_STATUS);
-            $categories = trim(POST_TAGS);
-            $saved = true;
-            if ($bookmarkservice->addBookmark($address, $title, $description, $privateNote, $status, $categories)) {
-                if (POST_POPUP != '') {
-                    $tplVars['msg'] = '<script type="text/javascript">window.close();</script>';
-                } else {
-                    $tplVars['msg'] = T_('Bookmark saved') . ' <a href="javascript:history.go(-2)">'.T_('(Come back to previous page.)').'</a>';
-                    // Redirection option
-                    if ($GLOBALS['useredir']) {
-                        $address = $GLOBALS['url_redir'] . $address;
-                    }
-                }
-            } else {
-                $tplVars['error'] = T_('There was an error saving your bookmark. Please try again or contact the administrator.');
-                $templatename = 'editbookmark.tpl';
-                $saved = false;
-            }
-        }
-    }
+	if (!POST_TITLE || !POST_ADDRESS) {
+		$tplVars['error'] = T_('Your bookmark must have a title and an address');
+		$templatename = 'editbookmark.tpl';
+	} else {
+		$address = trim(POST_ADDRESS);
+		// If the bookmark exists already, edit the original
+		if ($bookmarkservice->bookmarkExists($address, $currentUserID)) {
+			$bookmark = $bookmarkservice->getBookmarkByAddress($address);
+			header('Location: '. createURL('edit', $bookmark['bId']));
+			exit();
+			// If it's new, save it
+		} else {
+			$title = trim(POST_TITLE);
+			$description = trim(POST_DESCRIPTION);
+			$privateNote = trim(POST_PRIVATENOTE);
+			$status = intval(POST_STATUS);
+			$categories = explode(',', $_POST['tags']);
+			$saved = true;
+			if ($bookmarkservice->addBookmark($address, $title, $description, $privateNote, $status, $categories)) {
+				if (POST_POPUP != '') {
+					$tplVars['msg'] = '<script type="text/javascript">window.close();</script>';
+				} else {
+					$tplVars['msg'] = T_('Bookmark saved') . ' <a href="javascript:history.go(-2)">'.T_('(Come back to previous page.)').'</a>';
+					// Redirection option
+					if ($GLOBALS['useredir']) {
+						$address = $GLOBALS['url_redir'] . $address;
+					}
+				}
+			} else {
+				$tplVars['error'] = T_('There was an error saving your bookmark. Please try again or contact the administrator.');
+				$templatename = 'editbookmark.tpl';
+				$saved = false;
+			}
+		}
+	}
 }
 
 if (GET_ACTION == "add") {
@@ -179,113 +182,100 @@ if ($templatename == 'editbookmark.tpl') {
                 'bTitle' => stripslashes(POST_TITLE),
                 'bAddress' => stripslashes(POST_ADDRESS),
                 'bDescription' => stripslashes(POST_DESCRIPTION),
-                'bPrivateNote' => stripslashes(POST_PRIVATENOTE),
-                'tags' => (POST_TAGS ? explode(',', stripslashes(POST_TAGS)) : array()),
-                'bStatus' => 0,
-            );
-            $tplVars['tags'] = POST_TAGS;
-        } else {
-            if (GET_COPYOF != '') {  //copy from bookmarks page
-                $tplVars['row'] = $bookmarkservice->getBookmark(intval(GET_COPYOF), true);
-                if (!$currentUser->isAdmin()) {
-                    $tplVars['row']['bPrivateNote'] = ''; //only admin can copy private note
-                }
-            } else {  //copy from pop-up bookmarklet
-                $tplVars['row'] = array(
-                    'bTitle' => stripslashes(GET_TITLE),
-                    'bAddress' => stripslashes(GET_ADDRESS),
-                    'bDescription' => stripslashes(GET_DESCRIPTION),
-                    'bPrivateNote' => stripslashes(GET_PRIVATENOTE),
-                    'tags' => (GET_TAGS ? explode(',', stripslashes(GET_TAGS)) : array()),
-                    'bStatus' => 0
-                );
-            }
-        }
-        $title = T_('Add a Bookmark');
-        $tplVars['referrer'] = '';;
-        if (isset($_SERVER['HTTP_REFERER'])) {
-            $tplVars['referrer'] = $_SERVER['HTTP_REFERER'];
-        }
-        $tplVars['pagetitle'] = $title;
-        $tplVars['subtitle'] = $title;
-        $tplVars['btnsubmit'] = T_('Add Bookmark');
-        $tplVars['popup'] = (GET_POPUP!='') ? GET_POPUP : null;
-    } else {
-        $tplVars['error'] = T_('You must be logged in before you can add bookmarks.');
-    }
-} elseif ($user && GET_POPUP == '') {
+			    'bPrivateNote' => stripslashes(POST_PRIVATENOTE),
+                'tags' => ($_POST['tags'] ? $_POST['tags'] : array()),
+				'bStatus' => 0,
+			);
+			$tplVars['tags'] = $_POST['tags'];
+		} else {
+			if(GET_COPYOF != '') {  //copy from bookmarks page
+				$tplVars['row'] = $bookmarkservice->getBookmark(intval(GET_COPYOF), true);
+				if(!$currentUser->isAdmin()) {
+					$tplVars['row']['bPrivateNote'] = ''; //only admin can copy private note
+				}
+			}else {  //copy from pop-up bookmarklet
+			 $tplVars['row'] = array(
+			 	'bTitle' => stripslashes(GET_TITLE),
+                'bAddress' => stripslashes(GET_ADDRESS),
+                'bDescription' => stripslashes(GET_DESCRIPTION),
+                'bPrivateNote' => stripslashes(GET_PRIVATENOTE),
+                'tags' => (GET_TAGS ? explode(',', stripslashes(GET_TAGS)) : array()),
+                'bStatus' => 0
+			 );
+			}
+				
+		}
+		$title = T_('Add a Bookmark');
+		$tplVars['referrer'] = '';;
+		if (isset($_SERVER['HTTP_REFERER'])) {
+			$tplVars['referrer'] = $_SERVER['HTTP_REFERER'];
+		}
+		$tplVars['pagetitle'] = $title;
+		$tplVars['subtitle'] = $title;
+		$tplVars['btnsubmit'] = T_('Add Bookmark');
+		$tplVars['popup'] = (GET_POPUP!='') ? GET_POPUP : null;
+	} else {
+		$tplVars['error'] = T_('You must be logged in before you can add bookmarks.');
+	}
+} else if ($user && GET_POPUP == '') {
 
-    $tplVars['sidebar_blocks'] = array('watchstatus');
+	$tplVars['sidebar_blocks'] = array('watchstatus');
 
-    if (!$cat) { //user page without tags
-        $cat = null;
-        $tplVars['currenttag'] = null;
-        //$tplVars['sidebar_blocks'][] = 'menu2';
-        $tplVars['sidebar_blocks'][] = 'linked';
-        $tplVars['sidebar_blocks'][] = 'popular';
-    } else { //pages with tags
-        $rssCat = '/'. filter($cat, 'url');
-        $tplVars['currenttag'] = $cat;
-        $tplVars['sidebar_blocks'][] = 'tagactions';
-        //$tplVars['sidebar_blocks'][] = 'menu2';
-        $tplVars['sidebar_blocks'][] = 'linked';
-        $tplVars['sidebar_blocks'][] = 'related';
-        /*$tplVars['sidebar_blocks'][] = 'menu';*/
-    }
-    $tplVars['sidebar_blocks'][] = 'menu2';
-    $tplVars['popCount'] = 30;
-    //$tplVars['sidebar_blocks'][] = 'popular';
+	if (!$cat) { //user page without tags
+		$cat = NULL;
+		$tplVars['currenttag'] = NULL;
+		//$tplVars['sidebar_blocks'][] = 'menu2';
+		$tplVars['sidebar_blocks'][] = 'linked';
+		$tplVars['sidebar_blocks'][] = 'popular';
+	} else { //pages with tags
+		$rssCat = '/'. filter($cat, 'url');
+		$tplVars['currenttag'] = $cat;
+		$tplVars['sidebar_blocks'][] = 'tagactions';
+		//$tplVars['sidebar_blocks'][] = 'menu2';
+		$tplVars['sidebar_blocks'][] = 'linked';
+		$tplVars['sidebar_blocks'][] = 'related';
+		/*$tplVars['sidebar_blocks'][] = 'menu';*/
+	}
+	$tplVars['sidebar_blocks'][] = 'menu2';
+	$tplVars['popCount'] = 30;
+	//$tplVars['sidebar_blocks'][] = 'popular';
 
-    $tplVars['userid'] = $userid;
-    $tplVars['userinfo'] =& $userinfo;
-    $tplVars['user'] = $user;
-    $tplVars['range'] = 'user';
+	$tplVars['userid'] = $userid;
+	$tplVars['userinfo'] =& $userinfo;
+	$tplVars['user'] = $user;
+	$tplVars['range'] = 'user';
 
-    // Pagination
-    $perpage = getPerPageCount($currentUser);
-    if (intval(GET_PAGE) > 1) {
-        $page = intval(GET_PAGE);
-        $start = ($page - 1) * $perpage;
-    } else {
-        $page = 0;
-        $start = 0;
-    }
+	// Pagination
+	$perpage = getPerPageCount($currentUser);
+	if (intval(GET_PAGE) > 1) {
+		$page = intval(GET_PAGE);
+		$start = ($page - 1) * $perpage;
+	} else {
+		$page = 0;
+		$start = 0;
+	}
 
-    // Set template vars
-    $tplVars['rsschannels'] = array(
-        array(
-            filter($sitename .': '. $pagetitle),
-            createURL('rss', filter($user, 'url') . $rssCat.'?sort='.getSortOrder())
-        )
-    );
-    if ($userservice->isLoggedOn()) {
-        if ($userservice->isPrivateKeyValid($currentUser->getPrivateKey())) {
-            array_push(
-                $tplVars['rsschannels'],
-                array(
-                    filter($sitename . sprintf(T_(': (private) ')) . $pagetitle),
-                    createURL('rss', filter($user, 'url') . $rssCat.'?sort='.getSortOrder().'&amp;privatekey='.$currentUser->getPrivateKey())
-                )
-            );
-        }
-    }
+	// Set template vars
+	$tplVars['rsschannels'] = array(
+	array(filter($sitename .': '. $pagetitle), createURL('rss', filter($user, 'url') . $rssCat.'?sort='.getSortOrder()))
+	);
 
-    $tplVars['page'] = $page;
-    $tplVars['start'] = $start;
-    $tplVars['bookmarkCount'] = $start + 1;
+	$tplVars['page'] = $page;
+	$tplVars['start'] = $start;
+	$tplVars['bookmarkCount'] = $start + 1;
 
-    $bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, $userid, $cat, null, getSortOrder());
-    $tplVars['total'] = $bookmarks['total'];
-    $tplVars['bookmarks'] =& $bookmarks['bookmarks'];
-    $tplVars['cat_url'] = createURL('bookmarks', '%s/%s');
-    $tplVars['nav_url'] = createURL('bookmarks', '%s/%s%s');
-    if ($userservice->isLoggedOn() && $user == $currentUsername) {
-        $tplVars['pagetitle'] = T_('My Bookmarks') . $catTitle;
-        $tplVars['subtitle'] =  T_('My Bookmarks') . $catTitleWithUrls;
-    } else {
-        $tplVars['pagetitle'] = $user.': '.$cat;
-        $tplVars['subtitle'] = $pagetitle;
-    }
+	$bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, $userid, $cat, null, getSortOrder());
+	$tplVars['total'] = $bookmarks['total'];
+	$tplVars['bookmarks'] =& $bookmarks['bookmarks'];
+	$tplVars['cat_url'] = createURL('bookmarks', '%s/%s');
+	$tplVars['nav_url'] = createURL('bookmarks', '%s/%s%s');
+	if ($userservice->isLoggedOn() && $user == $currentUsername) {
+		$tplVars['pagetitle'] = T_('My Bookmarks') . $catTitle;
+		$tplVars['subtitle'] =  T_('My Bookmarks') . $catTitleWithUrls;
+	} else {
+		$tplVars['pagetitle'] = $user.': '.$cat;
+		$tplVars['subtitle'] = $pagetitle;
+	}
 }
 
 $tplVars['summarizeLinkedTags'] = true;

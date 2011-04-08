@@ -327,7 +327,7 @@ $index_sidebar_blocks = array(
  * @var  string
  * @link http://php.net/date
  */
-$shortdate = 'd-m-Y';
+$shortdate = 'Y-m-d';
 
 /**
  * Format of long dates.
@@ -734,5 +734,13 @@ $authEmailSuffix = null;
  * @var string
  */
 $unittestUrl = null;
+
+/**
+ * Allow "unittestMode=1" in URLs.
+ * Should only be enabled on development systems
+ *
+ * @var boolean
+ */
+$allowUnittestMode = false;
 
 ?>

@@ -454,58 +454,155 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         return $output;
     }
 
-    function &getAdminTags($limit = 30, $logged_on_user = NULL, $days = NULL) {
+
+
+    /**
+     * Returns the tags used by admin users
+     *
+     * @param integer $limit          Number of tags to return
+     * @param integer $logged_on_user ID of the user that's currently logged in.
+     *                                If the logged in user equals the $user to find
+     *                                tags for, tags of private bookmarks are
+     *                                returned.
+     * @param integer $days           Bookmarks have to be changed in the last X days
+     *                                if their tags shall count
+     * @param string  $beginsWith     The tag name shall begin with that string
+     *
+     * @return array Array of found tags. Each tag entry is an array with two keys,
+     *               'tag' (tag name) and 'bCount'.
+     *
+     * @see getPopularTags()
+     */
+    public function getAdminTags(
+        $limit = 30, $logged_on_user = null, $days = null, $beginsWith = null
+    ) {
         // look for admin ids
-        $userservice = SemanticScuttle_Service_Factory :: get('User');
-        $adminIds = $userservice->getAdminIds();
+        $userservice = SemanticScuttle_Service_Factory::get('User');
+        $adminIds    = $userservice->getAdminIds();
 
         // ask for their tags
-        return $this->getPopularTags($adminIds, $limit, $logged_on_user, $days);
+        return $this->getPopularTags(
+            $adminIds, $limit, $logged_on_user, $days, $beginsWith
+        );
     }
 
-    function &getContactTags($user, $limit = 30, $logged_on_user = NULL, $days = NULL) {
+
+
+
+    /**
+     * Returns the tags used by users that are part of the user's watchlist,
+     * and the current user's own tags.
+     *
+     * @param integer $user           ID of the user to get the watchlist from
+     * @param integer $limit          Number of tags to return
+     * @param integer $logged_on_user ID of the user that's currently logged in.
+     *                                If set, that user is added to the list of
+     *                                people to get the tags from
+     * @param integer $days           Bookmarks have to be changed in the last X days
+     *                                if their tags shall count
+     * @param string  $beginsWith     The tag name shall begin with that string
+     *
+     * @return array Array of found tags. Each tag entry is an array with two keys,
+     *               'tag' (tag name) and 'bCount'.
+     *
+     * @see getPopularTags()
+     */
+    public function getContactTags(
+        $user, $limit = 30, $logged_on_user = null, $days = null,
+        $beginsWith = null
+    ) {
         // look for contact ids
-        $userservice = SemanticScuttle_Service_Factory :: get('User');
+        $userservice = SemanticScuttle_Service_Factory::get('User');
         $contacts = $userservice->getWatchlist($user);
 
-        // add the user (to show him/her also his/her tags)
-        if(!is_null($logged_on_user)) {
+        // add the user (to show him also his own tags)
+        if (!is_null($logged_on_user)) {
             $contacts[] = $logged_on_user;
         }
 
         // ask for their tags
-        return $this->getPopularTags($contacts, $limit, $logged_on_user, $days);
+        return $this->getPopularTags(
+            $contacts, $limit, $logged_on_user, $days, $beginsWith
+        );
     }
 
-    // $users can be {NULL, an id, an array of id}
-    function &getPopularTags($user = NULL, $limit = 30, $logged_on_user = NULL, $days = NULL) {
+
+
+    /**
+     * The the most popular tags and their usage count
+     *
+     * @param mixed   $user           Integer user ID or array of user IDs to limit tag
+     *                                finding to
+     * @param integer $limit          Number of tags to return
+     * @param integer $logged_on_user ID of the user that's currently logged in.
+     *                                If the logged in user equals the $user to find
+     *                                tags for, tags of private bookmarks are
+     *                                returned.
+     * @param integer $days           Bookmarks have to be changed in the last X days
+     *                                if their tags shall count
+     * @param string  $beginsWith     The tag name shall begin with that string
+     *
+     * @return array Array of found tags. Each tag entry is an array with two keys,
+     *               'tag' (tag name) and 'bCount'.
+     *
+     * @see getAdminTags()
+     * @see getContactTags()
+     */
+    public function getPopularTags(
+        $user = null, $limit = 30, $logged_on_user = null, $days = null,
+        $beginsWith = null
+    ) {
         // Only count the tags that are visible to the current user.
-        if (($user != $logged_on_user) || is_null($user) || ($user === false))
-        $privacy = ' AND B.bStatus = 0';
-        else
-        $privacy = '';
-
-        if (is_null($days) || !is_int($days))
-        $span = '';
-        else
-        $span = ' AND B.bDatetime > "'. date('Y-m-d H:i:s', time() - (86400 * $days)) .'"';
-
-        $query = 'SELECT T.tag, COUNT(T.bId) AS bCount FROM '. $this->getTableName() .' AS T, '. $GLOBALS['tableprefix'] .'bookmarks AS B WHERE ';
-        if (is_null($user) || ($user === false)) {
-            $query .= 'B.bId = T.bId AND B.bStatus = 0';
-        } elseif(is_array($user)) {
-            $query .= ' (1 = 0';  //tricks
-            foreach($user as $u) {
-                $query .= ' OR B.uId = '. $this->db->sql_escape($u) .' AND B.bId = T.bId';
-            }
-            $query .= ' )';
+        if (($user != $logged_on_user) || is_null($user) || ($user === false)) {
+            $privacy = ' AND B.bStatus = 0';
         } else {
-            $query .= 'B.uId = '. $this->db->sql_escape($user) .' AND B.bId = T.bId'. $privacy;
+            $privacy = '';
         }
-        $query .= $span .' AND LEFT(T.tag, 7) <> "system:" GROUP BY T.tag ORDER BY bCount DESC, tag';
 
-        if (!($dbresult =& $this->db->sql_query_limit($query, $limit))) {
-            message_die(GENERAL_ERROR, 'Could not get popular tags', '', __LINE__, __FILE__, $query, $this->db);
+        $query = 'SELECT'
+            . ' T.tag, COUNT(T.bId) AS bCount'
+            . ' FROM '
+            . $this->getTableName() . ' AS T'
+            . ', ' . $GLOBALS['tableprefix'] . 'bookmarks AS B'
+            . ' WHERE';
+
+        if (is_null($user) || ($user === false)) {
+            $query .= ' B.bId = T.bId AND B.bStatus = 0';
+        } else if (is_array($user)) {
+            $query .= ' (1 = 0';  //tricks
+            foreach ($user as $u) {
+                if (is_numeric($u)) {
+                    $query .= ' OR B.uId = ' . $this->db->sql_escape($u)
+                        . ' AND B.bId = T.bId';
+                }
+            }
+            $query .= ' )' . $privacy;
+        } else {
+            $query .= ' B.uId = ' . $this->db->sql_escape($user)
+                . ' AND B.bId = T.bId' . $privacy;
+        }
+
+        if (is_int($days)) {
+            $query .= ' AND B.bDatetime > "'
+                . date('Y-m-d H:i:s', time() - (86400 * $days))
+                . '"';
+        }
+
+        if (!is_null($beginsWith)) {
+            $query .= ' AND T.tag LIKE \''
+                . $this->db->sql_escape($beginsWith)
+                . '%\'';
+        }
+
+        $query .= ' AND LEFT(T.tag, 7) <> "system:"'
+            . ' GROUP BY T.tag'
+            . ' ORDER BY bCount DESC, tag';
+
+        if (!($dbresult = $this->db->sql_query_limit($query, $limit))) {
+            message_die(
+                GENERAL_ERROR, 'Could not get popular tags',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
             return false;
         }
 
@@ -513,6 +610,8 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         $this->db->sql_freeresult($dbresult);
         return $output;
     }
+
+
 
     function hasTag($bookmarkid, $tag) {
         $query = 'SELECT COUNT(*) AS tCount FROM '. $this->getTableName() .' WHERE bId = '. intval($bookmarkid) .' AND tag ="'. $this->db->sql_escape($tag) .'"';
@@ -592,7 +691,15 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         return $output;
     }
 
-    function deleteAll() {
+
+
+    /**
+     * Deletes all tags in bookmarks2tags
+     *
+     * @return void
+     */
+    public function deleteAll()
+    {
         $query = 'TRUNCATE TABLE `'. $this->getTableName() .'`';
         $this->db->sql_query($query);
     }
