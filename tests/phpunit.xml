@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<phpunit>
+<phpunit strict="true" colors="true">
  <filter>
-  <blacklist>
-   <file>TestBase.php</file>
-   <file>TestBaseApi.php</file>
-  </blacklist>
+  <whitelist addUncoveredFilesFromWhitelist="false">
+   <directory suffix=".php">../src/SemanticScuttle/</directory>
+   <directory suffix=".php">../data/templates/</directory>
+   <directory suffix=".php">../www/</directory>
+  </whitelist>
  </filter>
 </phpunit>
