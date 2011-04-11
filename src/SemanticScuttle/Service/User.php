@@ -1053,18 +1053,18 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
 
 
     /**
-     * Generates a new private key and confirms it isn't being used
+     * Generates a new private key and confirms it isn't being used.
+     * Private key is 32 characters long, consisting of lowercase and
+     * numeric characters.
      *
      * @return string the new key value
      */
     public function getNewPrivateKey()
     {
-        // Generate a 32 char lowercase+numeric unique value
-        $newKey = md5(uniqid('SemanticScuttle', true));
-        // Check uniqueness in user table
-        while ($this->privateKeyExists($newKey)) {
+        do {
             $newKey = md5(uniqid('SemanticScuttle', true));
-        }
+        } while ($this->privateKeyExists($newKey));
+
         return $newKey;
     }
 
