@@ -514,12 +514,12 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     /**
      * Set the current user ID (i.e. when logging on)
      *
-     * @internal
-     * No ID verification is being done.
-     *
      * @param integer $user User ID or null to unset the user
      *
      * @return void
+     *
+     * @internal
+     * No ID verification is being done.
      */
     public function setCurrentUserId($user)
     {
@@ -856,7 +856,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     /**
      * Update User Record
      *
-     * @param string  $uId              User ID
+     * @param integer $uId              User ID
      * @param string  $password         User Password
      * @param string  $name             User Name
      * @param string  $email            Email Address
@@ -867,26 +867,30 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      *
      * @return boolean true if it successful, false if not
      */
-    function updateUser(
+    public function updateUser(
         $uId, $password, $name, $email, $homepage, $uContent,
-        $privateKey=null, $enablePrivateKey=false
+        $privateKey = null, $enablePrivateKey = false
     ) {
         if (!is_numeric($uId)) {
             return false;
         }
 
-        // prepend - to privateKey if disabled
-        if ($privateKey!=null and strlen($privateKey)==32 and $enablePrivateKey==false) {
-            $privateKey = "-".$privateKey;
+        // prepend '-' to privateKey if disabled
+        if ($privateKey != null && strlen($privateKey) == 32
+            && $enablePrivateKey == false
+        ) {
+            $privateKey = '-' . $privateKey;
         }
 
-        // remove - from privateKey if enabling
-        if ($privateKey!=null and strlen($privateKey)==33 and $enablePrivateKey==true) {
+        // remove '-' from privateKey if enabling
+        if ($privateKey != null && strlen($privateKey) == 33
+            && $enablePrivateKey == true
+        ) {
             $privateKey = substr($privateKey, 1, 32);
         }
 
         // if new user is enabling Private Key, create new key
-        if ($privateKey==null and $enablePrivateKey==true) {
+        if ($privateKey == null && $enablePrivateKey == true) {
             $privateKey = $this->getNewPrivateKey();
         }
 
