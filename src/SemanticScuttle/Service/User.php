@@ -307,7 +307,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      *
      * @param integer $id User ID
      *
-     * @return array User array from database
+     * @return array User array from database, false if not found
      */
     public function getUser($id)
     {
