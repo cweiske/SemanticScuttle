@@ -58,6 +58,26 @@ class UserTest extends TestBase
 
 
     /**
+     * @covers SemanticScuttle_Service_User::addUser
+     */
+    public function testAddUserPrivateKey()
+    {
+        $name = substr(md5(uniqid()), 0, 6);
+        $pkey = 'my-privatekey';
+        $id   = $this->us->addUser(
+            $name, uniqid(), 'foo@example.org', $pkey
+        );
+        $this->assertNotEquals(false, $id);
+        $this->assertInternalType('integer', $id);
+
+        $arUser = $this->us->getUserByPrivateKey($pkey);
+        $this->assertNotEquals(false, $arUser, 'user not found by private key');
+        $this->assertEquals($id, $arUser['uId'], 'wrong user loaded');
+    }
+
+
+
+    /**
      * Test that setting the current user ID is permanent.
      * and that the current user array is the same ID
      *
