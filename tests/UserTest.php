@@ -78,6 +78,113 @@ class UserTest extends TestBase
 
 
     /**
+     * @covers SemanticScuttle_Service_User::updateUser
+     */
+    public function testUpdateUserFalseWhenIdNotNumeric()
+    {
+        $this->assertFalse(
+            $this->us->updateUser('foo', null, null, null, null, null)
+        );
+    }
+
+
+
+    /**
+     * @covers SemanticScuttle_Service_User::updateUser
+     */
+    public function testUpdateUserPrivateKeyNewKeyEnabled()
+    {
+        $pkey = 'testUpdateUserPrivateKeyNewKey12';
+        $uid  = $this->addUser();
+
+        $this->assertTrue(
+            $this->us->updateUser(
+                $uid, 'password', 'name', 'test@example.org', '', '',
+                $pkey, true
+            )
+        );
+        $arUser = $this->us->getUser($uid);
+        $this->assertInternalType('array', $arUser);
+        $this->assertEquals($pkey, $arUser['privateKey']);
+    }
+
+
+
+    /**
+     * @covers SemanticScuttle_Service_User::updateUser
+     */
+    public function testUpdateUserPrivateKeyNewKeyDisabled()
+    {
+        $pkey = 'testUpdateUserPrivateKeyNewKeyDi';
+        $uid  = $this->addUser();
+
+        $this->assertTrue(
+            $this->us->updateUser(
+                $uid, 'password', 'name', 'test@example.org', '', '',
+                $pkey, false
+            )
+        );
+        $arUser = $this->us->getUser($uid);
+        $this->assertInternalType('array', $arUser);
+        $this->assertEquals(
+            '-' . $pkey, $arUser['privateKey'],
+            'private key did not get disabled'
+        );
+    }
+
+    /**
+     * Passing an empty string / NULL as key but enabling it
+     * should automatically create a new key.
+     *
+     * @covers SemanticScuttle_Service_User::updateUser
+     */
+    public function testUpdateUserPrivateKeyNoKeyEnabled()
+    {
+        $pkey = 'testUpdateUserPrivateKeyNoKeyEna';
+        $uid  = $this->addUser();
+
+        $this->assertTrue(
+            $this->us->updateUser(
+                $uid, 'password', 'name', 'test@example.org', '', '',
+                null, true
+            )
+        );
+        $arUser = $this->us->getUser($uid);
+        $this->assertInternalType('array', $arUser);
+        $this->assertNotEquals(
+            '', $arUser['privateKey'], 'private key was not created'
+        );
+    }
+
+    /**
+     * Passing an empty string / NULL as key and disabling it
+     * should keep no key
+     *
+     * @covers SemanticScuttle_Service_User::updateUser
+     */
+    public function testUpdateUserPrivateKeyNoKeyDisabled()
+    {
+        $pkey = 'testUpdateUserPrivateKeyNoKeyDis';
+        $uid  = $this->addUser();
+
+        $this->assertTrue(
+            $this->us->updateUser(
+                $uid, 'password', 'name', 'test@example.org', '', '',
+                null, false
+            )
+        );
+        $arUser = $this->us->getUser($uid);
+        $this->assertInternalType('array', $arUser);
+        $this->assertEquals(
+            '', $arUser['privateKey'], 'private key was set'
+        );
+    }
+
+    //FIXME: verify I cannot re-use private key of different user
+
+
+
+    /**
      * Test that setting the current user ID is permanent.
      * and that the current user array is the same ID
      *
