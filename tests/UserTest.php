@@ -180,6 +180,30 @@ class UserTest extends TestBase
         );
     }
 
+    /**
+     * Passing an empty string / NULL as key and disabling it
+     * should keep no key
+     *
+     * @covers SemanticScuttle_Service_User::updateUser
+     */
+    public function testUpdateUserPrivateKeyExistingKeyEnabled()
+    {
+        $pkey = '12345678901234567890123456789012';
+        $uid  = $this->addUser();
+
+        $this->assertTrue(
+            $this->us->updateUser(
+                $uid, 'password', 'name', 'test@example.org', '', '',
+                '-' . $pkey, true
+            )
+        );
+        $arUser = $this->us->getUser($uid);
+        $this->assertInternalType('array', $arUser);
+        $this->assertEquals(
+            $pkey, $arUser['privateKey'], 'private key was not enabled'
+        );
+    }
+
     //FIXME: verify I cannot re-use private key of different user
 
 

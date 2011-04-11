@@ -854,7 +854,11 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     }
 
     /**
-     * Update User Record
+     * Update user record.
+     * Updates all values even if they are empty, except passwords.
+     * An empty password is not set.
+     *
+     * No validation is made here.
      *
      * @param integer $uId              User ID
      * @param string  $password         User Password
