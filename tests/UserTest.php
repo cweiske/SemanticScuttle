@@ -405,7 +405,9 @@ class UserTest extends TestBase
         $this->assertTrue($this->us->privateKeyExists($randKey));
     }
 
-
+    /**
+     * @covers SemanticScuttle_Service_User::isPrivateKeyValid
+     */
     public function testIsPrivateKeyValid()
     {
         $this->assertFalse(
