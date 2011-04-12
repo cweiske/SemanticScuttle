@@ -12,13 +12,7 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-
-require_once dirname(__FILE__) . '/../prepare.php';
 require_once 'HTTP/Request2.php';
-
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Api_PostsAddTest::main');
-}
 
 /**
  * Unit tests for the SemanticScuttle post addition API.
@@ -34,21 +28,6 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
 class Api_PostsAddTest extends TestBaseApi
 {
     protected $urlPart = 'api/posts/add';
-
-
-
-    /**
-     * Used to run this test class standalone
-     *
-     * @return void
-     */
-    public static function main()
-    {
-        require_once 'PHPUnit/TextUI/TestRunner.php';
-        PHPUnit_TextUI_TestRunner::run(
-            new PHPUnit_Framework_TestSuite(__CLASS__)
-        );
-    }
 
 
 
@@ -427,9 +406,5 @@ TXT;
         $this->assertEquals(1, $data['total']);
         $this->assertEquals($title2, $data['bookmarks'][0]['bTitle']);
     }
-}
-
-if (PHPUnit_MAIN_METHOD == 'Api_PostsAddTest::main') {
-    Api_PostsAddTest::main();
 }
 ?>

@@ -12,13 +12,7 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-
-require_once dirname(__FILE__) . '/../prepare.php';
 require_once 'HTTP/Request2.php';
-
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'ajax_GetAdminLinkedTagsTest::main');
-}
 
 /**
  * Unit tests for the ajax linked admin tags script
@@ -32,22 +26,6 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
 class ajax_GetAdminLinkedTagsTest extends TestBaseApi
 {
     protected $urlPart = 'ajax/getadminlinkedtags.php';
-
-
-
-    /**
-     * Used to run this test class standalone
-     *
-     * @return void
-     */
-    public static function main()
-    {
-        require_once 'PHPUnit/TextUI/TestRunner.php';
-        PHPUnit_TextUI_TestRunner::run(
-            new PHPUnit_Framework_TestSuite(__CLASS__)
-        );
-    }
-
 
 
     /**
@@ -138,9 +116,5 @@ class ajax_GetAdminLinkedTagsTest extends TestBaseApi
         $this->assertEquals(1, count($data));
         $this->assertEquals('adminsubtag', $data[0]->data->title);
     }
-}
-
-if (PHPUnit_MAIN_METHOD == 'ajax_GetAdminLinkedTagsTest::main') {
-    ajax_GetAdminLinkedTagsTest::main();
 }
 ?>

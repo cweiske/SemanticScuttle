@@ -10,11 +10,6 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'VoteTest::main');
-}
-
-require_once 'prepare.php';
 
 /**
  * Unit tests for the SemanticScuttle voting system.
@@ -40,21 +35,6 @@ class VoteTest extends TestBase
      * @var SemanticScuttle_Service_Bookmark
      */
     protected $bs = null;
-
-
-
-    /**
-     * Used to run this test class standalone
-     *
-     * @return void
-     */
-    public static function main()
-    {
-        require_once 'PHPUnit/TextUI/TestRunner.php';
-        PHPUnit_TextUI_TestRunner::run(
-            new PHPUnit_Framework_TestSuite('VoteTest')
-        );
-    }
 
 
 
@@ -553,9 +533,4 @@ class VoteTest extends TestBase
     }
 
 }//class VoteTest extends TestBase
-
-
-if (PHPUnit_MAIN_METHOD == 'VoteTest::main') {
-    VoteTest::main();
-}
 ?>

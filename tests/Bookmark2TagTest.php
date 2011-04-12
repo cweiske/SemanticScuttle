@@ -12,11 +12,6 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Bookmark2TagTest::main');
-}
-
-require_once 'prepare.php';
 
 /**
  * Unit tests for the SemanticScuttle bookmark-tag combination service.
@@ -53,21 +48,6 @@ class Bookmark2TagTest extends TestBase
     {
         return $this->addBookmark(
             $user, null, 0, $tags, $title, $date
-        );
-    }
-
-
-
-    /**
-     * Used to run this test class standalone
-     *
-     * @return void
-     */
-    public static function main()
-    {
-        require_once 'PHPUnit/TextUI/TestRunner.php';
-        PHPUnit_TextUI_TestRunner::run(
-            new PHPUnit_Framework_TestSuite(__CLASS__)
         );
     }
 
@@ -627,9 +607,5 @@ class Bookmark2TagTest extends TestBase
         $this->assertContains(array('tag' => 'usertag1', 'bCount' => '1'), $arTags);
         $this->assertContains(array('tag' => 'usable', 'bCount' => '2'), $arTags);
     }
-}
-
-if (PHPUnit_MAIN_METHOD == 'Bookmark2TagTest::main') {
-    Bookmark2TagTest::main();
 }
 ?>

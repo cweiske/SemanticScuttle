@@ -12,13 +12,7 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-
-require_once dirname(__FILE__) . '/../prepare.php';
 require_once 'HTTP/Request2.php';
-
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Api_PostsUpdateTest::main');
-}
 
 /**
  * Unit tests for the SemanticScuttle last-update time API.
@@ -34,21 +28,6 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
 class Api_PostsUpdateTest extends TestBaseApi
 {
     protected $urlPart = 'api/posts/update';
-
-
-
-    /**
-     * Used to run this test class standalone
-     *
-     * @return void
-     */
-    public static function main()
-    {
-        require_once 'PHPUnit/TextUI/TestRunner.php';
-        PHPUnit_TextUI_TestRunner::run(
-            new PHPUnit_Framework_TestSuite(__CLASS__)
-        );
-    }
 
 
 
@@ -127,9 +106,5 @@ class Api_PostsUpdateTest extends TestBaseApi
         );
     }
 
-}
-
-if (PHPUnit_MAIN_METHOD == 'Api_PostsUpdateTest::main') {
-    Api_PostsUpdateTest::main();
 }
 ?>

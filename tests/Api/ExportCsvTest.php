@@ -12,13 +12,7 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-
-require_once dirname(__FILE__) . '/../prepare.php';
 require_once 'HTTP/Request2.php';
-
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Api_ExportCsvTest::main');
-}
 
 /**
  * Unit tests for the SemanticScuttle csv export API
@@ -36,21 +30,6 @@ class Api_ExportCsvTest extends TestBaseApi
     protected $us;
     protected $bs;
     protected $urlPart = 'api/export_csv.php';
-
-
-
-    /**
-     * Used to run this test class standalone
-     *
-     * @return void
-     */
-    public static function main()
-    {
-        require_once 'PHPUnit/TextUI/TestRunner.php';
-        PHPUnit_TextUI_TestRunner::run(
-            new PHPUnit_Framework_TestSuite(__CLASS__)
-        );
-    }
 
 
 
@@ -279,9 +258,5 @@ class Api_ExportCsvTest extends TestBaseApi
         }
         return $ar;
     }
-}
-
-if (PHPUnit_MAIN_METHOD == 'Api_ExportCsvTest::main') {
-    Api_ExportCsvTest::main();
 }
 ?>

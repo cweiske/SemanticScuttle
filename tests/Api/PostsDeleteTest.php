@@ -12,13 +12,7 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-
-require_once dirname(__FILE__) . '/../prepare.php';
 require_once 'HTTP/Request2.php';
-
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Api_PostsDeleteTest::main');
-}
 
 /**
  * Unit tests for the SemanticScuttle post deletion API.
@@ -34,21 +28,6 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
 class Api_PostsDeleteTest extends TestBaseApi
 {
     protected $urlPart = 'api/posts/delete';
-
-
-
-    /**
-     * Used to run this test class standalone
-     *
-     * @return void
-     */
-    public static function main()
-    {
-        require_once 'PHPUnit/TextUI/TestRunner.php';
-        PHPUnit_TextUI_TestRunner::run(
-            new PHPUnit_Framework_TestSuite(__CLASS__)
-        );
-    }
 
 
 
@@ -295,9 +274,5 @@ class Api_PostsDeleteTest extends TestBaseApi
         $this->assertEquals(1, $data['total']);
     }
 
-}
-
-if (PHPUnit_MAIN_METHOD == 'Api_PostsDeleteTest::main') {
-    Api_PostsDeleteTest::main();
 }
 ?>

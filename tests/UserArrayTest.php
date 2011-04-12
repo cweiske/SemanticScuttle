@@ -11,8 +11,6 @@
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
 
-require_once 'prepare.php';
-
 /**
  * Unit tests for the SemanticScuttle user array model.
  *
