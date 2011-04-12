@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<phpunit>
+<phpunit strict="true" colors="true"
+         bootstrap="prepare.php"
+>
  <filter>
-  <blacklist>
-   <directory suffix=".php">.</directory>
-  </blacklist>
+  <whitelist addUncoveredFilesFromWhitelist="false">
+   <directory suffix=".php">../src/SemanticScuttle/</directory>
+   <directory suffix=".php">../data/templates/</directory>
+   <directory suffix=".php">../www/</directory>
+  </whitelist>
  </filter>
 </phpunit>

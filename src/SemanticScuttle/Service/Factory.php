@@ -107,6 +107,7 @@ class SemanticScuttle_Service_Factory
 
     /**
      * Loads self::$db if it is not loaded already.
+     * Dies if the connection could not be established.
      *
      * @return void
      */
@@ -141,7 +142,7 @@ class SemanticScuttle_Service_Factory
     /**
      * Returns sql database object
      *
-     * @return void
+     * @return sql_db Database instance
      */
     public static function getDb()
     {
