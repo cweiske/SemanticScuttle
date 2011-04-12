@@ -387,15 +387,29 @@ class UserTest extends TestBase
 
 
     /**
-     * Check if privateKeyExists() returns right
-     *
-     * @return void
+     * @covers SemanticScuttle_Service_User::privateKeyExists
      */
-    public function testTestUniquePrivateId()
+    public function testPrivateKeyExistsEmpty()
+    {
+        $this->assertFalse($this->us->privateKeyExists(null));
+        $this->assertFalse($this->us->privateKeyExists(''));
+    }
+
+    /**
+     * @covers SemanticScuttle_Service_User::privateKeyExists
+     */
+    public function testPrivateKeyExistsInvalid()
     {
         $this->assertFalse($this->us->privateKeyExists('-1'));
-        $randKey = $this->us->getNewPrivateKey();
+    }
 
+    /**
+     * @covers SemanticScuttle_Service_User::privateKeyExists
+     */
+    public function testPrivateKeyExists()
+    {
+
+        $randKey = $this->us->getNewPrivateKey();
         $this->assertFalse($this->us->privateKeyExists($randKey));
         $uid = $this->addUser(null, null, $randKey);
 
