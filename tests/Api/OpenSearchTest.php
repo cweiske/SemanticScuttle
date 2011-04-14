@@ -31,7 +31,6 @@ class Api_OpenSearchTest extends TestBaseApi
         $searchDescUrl = (string)$arElements[0]['href'];
         $this->assertNotNull($searchDescUrl, 'Search description URL is empty');
 
-        //FIXME: verify that URL exists
         $req = new HTTP_Request2($searchDescUrl);
         $res = $req->send();
         $this->assertEquals(
