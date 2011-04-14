@@ -6,7 +6,6 @@ class Api_OpenSearchTest extends TestBaseApi
     protected $urlPart = '';
 
 
-
     public function testOpenSearchAvailable()
     {
         $req  = $this->getRequest();
@@ -43,6 +42,15 @@ class Api_OpenSearchTest extends TestBaseApi
             $searchDescUrl,
             'OpenSearch URL found, but it is not the expected one.'
             . ' It may be that you misconfigured the "unittestUrl" setting'
+        );
+    }
+
+    public function testOpenSearchContentType()
+    {
+        $res = $this->getRequest('api/opensearch.php')->send();
+        $this->assertEquals(
+            'text/xml; charset=utf-8',
+            $res->getHeader('content-type')
         );
     }
 
