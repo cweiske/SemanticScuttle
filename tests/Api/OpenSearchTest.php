@@ -54,6 +54,23 @@ class Api_OpenSearchTest extends TestBaseApi
         );
     }
 
+    public function testOpenSearchSearchUrl()
+    {
+        $xml = $this->getRequest('api/opensearch.php')->send()->getBody();
+        $x = simplexml_load_string($xml);
+        $x->registerXPathNamespace('os', reset($x->getDocNamespaces()));
+
+        $arElements = $x->xpath('//os:Url[@type="text/html"]');
+        $this->assertEquals(
+            1, count($arElements),
+            'Url in OpenSearch description is missing'
+        );
+        $this->assertEquals(
+            $GLOBALS['unittestUrl'] . 'search.php/all/{searchTerms}',
+            (string)$arElements[0]['template']
+        );
+    }
+
 }
 
 ?>
