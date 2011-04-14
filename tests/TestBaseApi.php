@@ -11,6 +11,8 @@
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
 
+require_once 'HTTP/Request2.php';
+
 /**
  * Base unittest class for web API tests.
  *
