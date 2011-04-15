@@ -35,7 +35,7 @@ class www_SearchTest extends TestBaseApi
     public function testMultipleTermsRawUrlEncoded()
     {
         $this->addBookmark(null, null, 0, null, 'unittest foo bar');
-        $res = $this->getRequest('/all/foo bar')->send();
+        $res = $this->getRequest('/all/foo%20bar')->send();
         $this->assertSelectCount(
             '.xfolkentry', true, $res->getBody(),
             'No bookmark found', false
