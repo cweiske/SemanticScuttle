@@ -40,8 +40,8 @@ if (POST_TERMS != '') {
 }
 
 /* Service creation: only useful services are created */
-$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
-$searchhistoryservice =SemanticScuttle_Service_Factory::get('SearchHistory');
+$bookmarkservice = SemanticScuttle_Service_Factory::get('Bookmark');
+$searchhistoryservice = SemanticScuttle_Service_Factory::get('SearchHistory');
 
 /* Managing current logged user */
 $currentUserId = $userservice->getCurrentUserId();
@@ -53,11 +53,13 @@ if(count($exploded) == 4) {
     list($url, $range, $terms, $page) = $exploded;
 } else if (count($exploded) == 2) {
     list($url, $range) = $exploded;
-    $terms = $page= NULL;
+    $terms = $page = NULL;
 } else {
     list($url, $range, $terms) = $exploded;
-    $page= NULL;
+    $page = NULL;
 }
+//some OpenSearch clients need that
+$terms = urldecode($terms);
 
 $tplVars['loadjs'] = true;
 
