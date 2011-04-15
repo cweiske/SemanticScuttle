@@ -7,6 +7,9 @@
    <directory suffix=".php">../src/SemanticScuttle/</directory>
    <directory suffix=".php">../data/templates/</directory>
    <directory suffix=".php">../www/</directory>
+   <exclude>
+    <directory suffix=".php">../src/SemanticScuttle/db/</directory>
+   </exclude>
   </whitelist>
  </filter>
 </phpunit>
