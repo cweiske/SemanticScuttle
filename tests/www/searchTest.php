@@ -16,13 +16,13 @@ class www_SearchTest extends TestBaseApi
         $res = $this->getRequest('/all/foo+bar')->send();
         $this->assertSelectCount(
             '.xfolkentry', true, $res->getBody(),
-            'No bookmark found'
+            'No bookmark found', false
         );
 
         $res = $this->getRequest('/all/baz+bat')->send();
         $this->assertSelectCount(
             '.xfolkentry', false, $res->getBody(),
-            'Bookmarks found'
+            'Bookmarks found', false
         );
     }
 
@@ -38,13 +38,13 @@ class www_SearchTest extends TestBaseApi
         $res = $this->getRequest('/all/foo bar')->send();
         $this->assertSelectCount(
             '.xfolkentry', true, $res->getBody(),
-            'No bookmark found'
+            'No bookmark found', false
         );
 
         $res = $this->getRequest('/all/baz bat')->send();
         $this->assertSelectCount(
             '.xfolkentry', false, $res->getBody(),
-            'Bookmarks found'
+            'Bookmarks found', false
         );
     }
 
