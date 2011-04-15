@@ -48,6 +48,21 @@ class www_SearchTest extends TestBaseApi
         );
     }
 
+
+    public function testMultipleTags()
+    {
+        $this->markTestSkipped(
+            'FIXME: SemanticScuttle currently does not search multiple tags'
+        );
+
+        $this->addBookmark(null, null, 0, array('foo', 'bar'));
+        $res = $this->getRequest('/all/foo+bar')->send();
+        $this->assertSelectCount(
+            '.xfolkentry', true, $res->getBody(),
+            'No bookmark found', false
+        );
+    }
+
 }
 
 ?>
