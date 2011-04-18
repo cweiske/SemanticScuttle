@@ -514,18 +514,13 @@ TXT;
         $this->setUnittestConfig(
             array('defaults' => array('privacy' => 1))
         );
-        list($req, $uId) = $this->getAuthRequest('?unittestMode=1');
+        list($req, $uId) = $this->getLoggedInRequest('?unittestMode=1');
         $req->setMethod(HTTP_Request2::METHOD_POST);
         $req->setUrl($GLOBALS['unittestUrl'] . 'importNetscape.php' . '?unittestMode=1');
-        $testcookiekey = md5($GLOBALS['dbname'].$GLOBALS['tableprefix']).'-login';
-        $userinfo = $this->us->getUser($uId);
-        $testcookiepassword = $userinfo['password'];
-        $testusername = $userinfo['username'];
-        $testcookievalue = $uId . ':' . md5($testusername . $testcookiepassword);
-        $req->setCookieJar(true);
-        $req->addCookie($testcookiekey, $testcookievalue);
         $req->addUpload('userfile', dirname(__FILE__) . '/../data/BookmarkTest_netscapebookmarks.html');
-        $req->send();
+        $res = $req->send();
+        $this->assertEquals(200, $res->getStatus(), 'Bookmark import failed');
+
         $this->us->setCurrentUserId($uId);
         $bms = $this->bs->getBookmarks(0, null, $uId);
         $this->assertEquals(3, count($bms['bookmarks']));
