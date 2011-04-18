@@ -63,7 +63,7 @@ class TestBaseApi extends TestBase
 
 
     /**
-     * Gets a HTTP request object.
+     * Creates and returns a HTTP GET request object.
      * Uses $this->url plus $urlSuffix as request URL.
      *
      * @param string $urlSuffix Suffix for the URL
@@ -85,7 +85,7 @@ class TestBaseApi extends TestBase
 
 
     /**
-     * Creates a user and a HTTP request object and prepares
+     * Creates a user and a HTTP GET request object and prepares
      * the request object with authentication details, so that
      * the user is logged in.
      *
@@ -118,7 +118,7 @@ class TestBaseApi extends TestBase
 
     /**
      * Creates a user and a HTTP_Request2 object, does a normal login
-     * and prepares the cookies for the HTTP request object so that
+     * and prepares the cookies for the HTTP GET request object so that
      * the user is seen as logged in when requesting any HTML page.
      *
      * Useful for testing HTML pages or ajax URLs.
