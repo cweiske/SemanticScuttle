@@ -37,12 +37,12 @@ function jsEscTitle($title)
 <tr>
     <th align="left"><?php echo T_('Address'); ?></th>
     <td><input type="text" id="address" name="address" size="75" maxlength="65535" value="<?php echo filter($row['bAddress'], 'xml'); ?>" onblur="useAddress(this)" /></td>
-    <td>&larr; <?php echo T_('Required'); ?></td>
+    <td>&#8592; <?php echo T_('Required'); ?></td>
 </tr>
 <tr>
     <th align="left"><?php echo T_('Title'); ?></th>
     <td><input type="text" id="titleField" name="title" size="75" maxlength="255" value="<?php echo filter($row['bTitle'], 'xml'); ?>" onkeypress="this.style.backgroundImage = 'none';" /></td>
-    <td>&larr; <?php echo T_('Required'); ?></td>
+    <td>&#8592; <?php echo T_('Required'); ?></td>
 </tr>
 <tr>
     <th align="left">
@@ -50,7 +50,7 @@ function jsEscTitle($title)
     <a onclick="var nz = document.getElementById('privateNoteZone'); nz.style.display='';this.style.display='none';"><?php echo T_("Add Note"); ?></a>
     </th>
     <td><textarea name="description" id="description" rows="5" cols="63" ><?php echo filter($row['bDescription'], 'xml'); ?></textarea></td>
-    <td>&larr; <?php echo T_('You can use anchors to delimite attributes. for example: [publisher]blah[/publisher] '); ?> 
+    <td>&#8592; <?php echo T_('You can use anchors to delimite attributes. for example: [publisher]blah[/publisher] '); ?>
     <?php if(count($GLOBALS['descriptionAnchors'])>0): ?>
     <br /><br />
     <?php echo T_('Suggested anchors: '); ?>
@@ -67,7 +67,7 @@ function jsEscTitle($title)
 <tr id="privateNoteZone" <?php if(strlen($row['bPrivateNote'])==0):?>style="display:none"<?php endif; ?>>
     <th align="left"><?php echo T_('Private Note'); ?></th>
     <td><textarea name="privateNote" id="privateNote" rows="1" cols="63" ><?php echo filter($row['bPrivateNote'], 'xml'); ?></textarea></td>
-    <td>&larr; <?php echo T_('Just visible by you and your contacts.'); ?> 
+    <td>&#8592; <?php echo T_('Just visible by you and your contacts.'); ?>
     </td>
 </tr>
 <tr>
@@ -75,15 +75,15 @@ function jsEscTitle($title)
     <td class="scuttletheme">
     <span dojoType="dojo.data.ItemFileReadStore" jsId="memberTagStore" url="<?php echo ROOT?>ajax/<?php echo ($GLOBALS['adminsAreAdvisedTagsFromOtherAdmins'] && $currentUser->isAdmin())?'getadmintags':'getcontacttags'?>.php"></span>
     <input type="text" dojoType="js.MultiComboBox" id="tags" name="tags" size="75" value="<?php echo filter(implode(', ', $row['tags']), 'xml'); ?>" store="memberTagStore" delimiter="," searchAttr="tag" hasDownArrow="false" queryExpr="*${0}*" autoComplete="false" highlightMatch="all"/></td>
-    <td>&larr; <?php echo T_('Comma-separated'); ?></td>
+    <td>&#8592; <?php echo T_('Comma-separated'); ?></td>
 </tr>
 <tr>
     <th></th>
-    <td align="right"><small><?php echo T_('Note: use ">" to include one tag in another. e.g.: europe>france>paris')?><small></td>
+    <td align="right"><small><?php echo T_('Note: use ">" to include one tag in another. e.g.: europe>france>paris')?></small></td>
 </tr>
 <tr>
     <th></th>
-    <td align="right"><small><?php echo T_('Note: use "=" to make synonym two tags. e.g.: france=frenchcountry')?><small></td>
+    <td align="right"><small><?php echo T_('Note: use "=" to make synonym two tags. e.g.: france=frenchcountry')?></small></td>
 </tr>
 <tr>
     <th align="left"><?php echo T_('Privacy'); ?></th>
@@ -111,7 +111,7 @@ function jsEscTitle($title)
 			echo ' (<a href="'.createURL('bookmarkcommondescriptionedit', $row['bHash']).'">';
 			echo T_('edit common description').'</a>)';
         }
-        
+
         if ($popup) {
         ?>
         <input type="hidden" name="popup" value="1" />
@@ -190,5 +190,5 @@ document.write('<\/ul>');
 
 <?php
 }
-$this->includeTemplate($GLOBALS['bottom_include']); 
+$this->includeTemplate($GLOBALS['bottom_include']);
 ?>
