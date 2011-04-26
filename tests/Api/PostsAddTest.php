@@ -573,12 +573,8 @@ TXT;
 
         $bms = $this->bs->getBookmarks(0, null, $uId);
         $this->assertEquals(1, count($bms['bookmarks']));
-        $bm = reset($bms['bookmarks']);
-        $bmId = $bm['bId'];
-        $oldUid = $uId;
         $user = $this->us->getUser($uId);
-        $userId = $user['username'];
-        $reqUrl = $GLOBALS['unittestUrl'] . 'bookmarks.php/' . $userId . '?action=get' . '&unittestMode=1'; 
+        $reqUrl = $GLOBALS['unittestUrl'] . 'bookmarks.php/' . $user['username'] . '?action=get' . '&unittestMode=1'; 
 
         list($req, $uId) = $this->getAuthRequest('?unittestMode=1');
         $req->setMethod(HTTP_Request2::METHOD_POST);
