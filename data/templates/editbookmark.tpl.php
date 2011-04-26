@@ -137,11 +137,11 @@ if (empty($_REQUEST['popup']) && (!isset($showdelete) || !$showdelete)) {
 ?>
 
 <h3><?php echo T_('Bookmarklet'); ?></h3>
-<p>
 <script type="text/javascript">
+//<![CDATA[
 var browser=navigator.appName;
 if (browser == "Opera") {
-    document.write(
+    document.write('<p>' +
         <?php echo json_encode(
             sprintf(
                 T_("Click one of the following bookmarklets to add a button you can click whenever you want to add the page you are on to %s"),
@@ -150,7 +150,7 @@ if (browser == "Opera") {
         ); ?> + ':</p>'
     );
 } else {
-    document.write(
+    document.write('<p>' +
         <?php echo json_encode(
             sprintf(
                 T_("Drag one of the following bookmarklets to your browser's bookmarks and click it whenever you want to add the page you are on to %s"),
@@ -180,6 +180,7 @@ else
     document.write('<li><a class="bookmarklet" href="javascript:x=document;a=encodeURIComponent(x.location.href);t=encodeURIComponent(x.title);d=encodeURIComponent('+selection+');open(\'<?php echo createURL('bookmarks', $GLOBALS['user']); ?>?action=add&amp;popup=1&amp;address=\'+a+\'&amp;title=\'+t+\'&amp;description=\'+d,\'<?php echo jsEscTitle($GLOBALS['sitename']); ?>\',\'modal=1,status=0,scrollbars=1,toolbar=0,resizable=1,width=790,height=465,left=\'+(screen.width-790)/2+\',top=\'+(screen.height-425)/2);void 0;"><?php echo jsEscTitle(sprintf(T_('Post to %s (Pop-up)'), $GLOBALS['sitename'])); ?><\/a><\/li>');
     }
 document.write('<\/ul>');
+//]]>
 </script>
 
 <h3><?php echo T_('Import'); ?></h3>
