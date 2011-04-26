@@ -563,12 +563,13 @@ TXT;
         $this->setUnittestConfig(
             array('defaults' => array('privacy' => 2))
         );
-        list($req, $uId) = $this->getAuthRequest('?unittestMode=1');
+        list($req, $uId) = $this->getLoggedInRequest();
         $req->setMethod(HTTP_Request2::METHOD_POST);
         $req->addPostParameter('url', 'http://www.example.org/testdefaultprivacyposts_bookmarksget');
         $req->addPostParameter('description', 'Test bookmark 1 for default privacy.');
         $req->addPostParameter('status', '0');
         $req->send();
+
         $bms = $this->bs->getBookmarks(0, null, $uId);
         $this->assertEquals(1, count($bms['bookmarks']));
         $bm = reset($bms['bookmarks']);
@@ -577,6 +578,7 @@ TXT;
         $user = $this->us->getUser($uId);
         $userId = $user['username'];
         $reqUrl = $GLOBALS['unittestUrl'] . 'bookmarks.php/' . $userId . '?action=get' . '&unittestMode=1'; 
+
         list($req, $uId) = $this->getAuthRequest('?unittestMode=1');
         $req->setMethod(HTTP_Request2::METHOD_POST);
         $req->setUrl($reqUrl);
@@ -590,15 +592,14 @@ TXT;
         $req->addPostParameter('submitted', '1');
         $response = $req->send();
         $response_body = $response->getBody();
-        $start = strpos($response_body, 'Privacy');
-        $end = strpos($response_body, 'referrer');
-        $length = $end - $start;
-        $response_body = substr($response_body, $start, $length);
-        $start = strpos($response_body, 'selected');
-        $start = $start - 3;
-        $length = 1;
-        $selected_privacy = substr($response_body, $start, $length);
-        $this->assertEquals('2', $selected_privacy);
+
+        $x = simplexml_load_string($response_body);
+        $ns = $x->getDocNamespaces();
+        $x->registerXPathNamespace('ns', reset($ns));
+
+        $elements = $x->xpath('//ns:select[@name="status"]/ns:option[@selected="selected"]');
+        $this->assertEquals(1, count($elements), 'No selected status option found');
+        $this->assertEquals(2, (string)$elements[0]['value']);
     }//end testDefaultPrivacyBookmarksGet
 
 
