@@ -423,8 +423,8 @@ TXT;
 
 
     /**
-     * Test that a default privacy setting of 2 (Private) is used in adding 
-     * a bookmark. 
+     * Test that a default privacy setting of 2 (Private) is used in adding
+     * a bookmark.
      */
     public function testDefaultPrivacyPrivate()
     {
@@ -445,8 +445,8 @@ TXT;
 
 
     /**
-     * Test that a default privacy setting of 0 (Public) is used in adding 
-     * a bookmark. 
+     * Test that a default privacy setting of 0 (Public) is used in adding
+     * a bookmark.
      */
     public function testDefaultPrivacyPublic()
     {
@@ -490,7 +490,7 @@ TXT;
         $bm  = reset($bms['bookmarks']);
         $bmId = $bm['bId'];
 
-        $reqUrl = $GLOBALS['unittestUrl'] . 'edit.php/' . $bmId . '?unittestMode=1'; 
+        $reqUrl = $GLOBALS['unittestUrl'] . 'edit.php/' . $bmId . '?unittestMode=1';
         $req2 = new HTTP_Request2($reqUrl, HTTP_Request2::METHOD_POST);
         $req2->setCookieJar($cookies);
         $req2->addPostParameter('address', 'http://www.example.org/testdefaultprivacyposts_edit');
@@ -502,7 +502,7 @@ TXT;
 
         $bm = $this->bs->getBookmark($bmId);
         $this->assertEquals('2', $bm['bStatus']);
-    }//end testDefaultPrivacyEdit 
+    }//end testDefaultPrivacyEdit
 
 
     /**
@@ -550,15 +550,15 @@ TXT;
         $this->assertEquals(3, count($bms['bookmarks']));
         $bm = reset($bms['bookmarks']);
         $this->assertEquals('2', $bm['bStatus']);
-    }//end testDefaultPrivacyImport 
+    }//end testDefaultPrivacyImport
 
 
     /**
-     * Test that the default privacy setting is selected in the Privacy 
-     * drop-down list when an existing bookmark is accessed with bookmarks.php
-     * and the get action. 
+     * Test that the default privacy setting is selected in the Privacy
+     * drop-down list when adding a new bookmark, sending the form and
+     * missing the title and the privacy setting.
      */
-    public function testDefaultPrivacyBookmarksGet()
+    public function testDefaultPrivacyBookmarksAddMissingTitleMissingPrivacy()
     {
         $this->setUnittestConfig(
             array('defaults' => array('privacy' => 2))
@@ -574,7 +574,7 @@ TXT;
         $bms = $this->bs->getBookmarks(0, null, $uId);
         $this->assertEquals(1, count($bms['bookmarks']));
         $user = $this->us->getUser($uId);
-        $reqUrl = $GLOBALS['unittestUrl'] . 'bookmarks.php/' . $user['username'] . '?action=get' . '&unittestMode=1'; 
+        $reqUrl = $GLOBALS['unittestUrl'] . 'bookmarks.php/' . $user['username'] . '?action=get' . '&unittestMode=1';
 
         list($req, $uId) = $this->getAuthRequest('?unittestMode=1');
         $req->setMethod(HTTP_Request2::METHOD_POST);
@@ -595,51 +595,32 @@ TXT;
 
 
     /**
-     * Test that the default privacy setting is selected in the Privacy 
-     * drop-down list when an existing bookmark is accessed with bookmarks.php
-     * and the add action. 
+     * Test that the default privacy setting is selected in the Privacy
+     * drop-down list when a new bookmark is being created.
      */
     public function testDefaultPrivacyBookmarksAdd()
     {
         $this->setUnittestConfig(
             array('defaults' => array('privacy' => 1))
         );
-        list($req, $uId) = $this->getAuthRequest('?unittestMode=1');
-        $req->setMethod(HTTP_Request2::METHOD_POST);
-        $req->addPostParameter('url', 'http://www.example.org/testdefaultprivacyposts_bookmarksadd');
-        $req->addPostParameter('description', 'Test bookmark 2 for default privacy.');
-        $req->addPostParameter('status', '0');
-        $req->send();
-        $bms = $this->bs->getBookmarks(0, null, $uId);
-        $this->assertEquals(1, count($bms['bookmarks']));
-        $bm = reset($bms['bookmarks']);
-        $bmId = $bm['bId'];
-        $oldUid = $uId;
+        list($req, $uId) = $this->getLoggedInRequest('?unittestMode=1');
+
         $user = $this->us->getUser($uId);
-        $userId = $user['username'];
-        $reqUrl = $GLOBALS['unittestUrl'] . 'bookmarks.php/' . $userId . '?action=add' . '&unittestMode=1'; 
-        list($req, $uId) = $this->getAuthRequest('?unittestMode=1');
-        $req->setMethod(HTTP_Request2::METHOD_POST);
+        $reqUrl = $GLOBALS['unittestUrl'] . 'bookmarks.php/'
+            . $user['username'] . '?action=add' . '&unittestMode=1';
         $req->setUrl($reqUrl);
-        $testcookiekey = md5($GLOBALS['dbname'].$GLOBALS['tableprefix']).'-login';
-        $userinfo = $this->us->getUser($oldUid);
-        $testcookiepassword = $userinfo['password'];
-        $testusername = $userinfo['username'];
-        $testcookievalue = $oldUid . ':' . md5($testusername . $testcookiepassword);
-        $req->setCookieJar(true);
-        $req->addCookie($testcookiekey, $testcookievalue);
-        $req->addPostParameter('submitted', '1');
+        $req->setMethod(HTTP_Request2::METHOD_GET);
         $response = $req->send();
         $response_body = $response->getBody();
-        $start = strpos($response_body, 'Privacy');
-        $end = strpos($response_body, 'referrer');
-        $length = $end - $start;
-        $response_body = substr($response_body, $start, $length);
-        $start = strpos($response_body, 'selected');
-        $start = $start - 3;
-        $length = 1;
-        $selected_privacy = substr($response_body, $start, $length);
-        $this->assertEquals('1', $selected_privacy);
+        $this->assertNotEquals('', $response_body, 'Response is empty');
+
+        $x = simplexml_load_string($response_body);
+        $ns = $x->getDocNamespaces();
+        $x->registerXPathNamespace('ns', reset($ns));
+
+        $elements = $x->xpath('//ns:select[@name="status"]/ns:option[@selected="selected"]');
+        $this->assertEquals(1, count($elements), 'No selected status option found');
+        $this->assertEquals(1, (string)$elements[0]['value']);
     }//end testDefaultPrivacyBookmarksAdd
 
 

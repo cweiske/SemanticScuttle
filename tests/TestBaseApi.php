@@ -89,6 +89,8 @@ class TestBaseApi extends TestBase
      * the request object with authentication details, so that
      * the user is logged in.
      *
+     * Only usable for API requests, not "normal" HTTP page requests
+     *
      * @param string $urlSuffix Suffix for the URL
      * @param mixed  $auth      If user authentication is needed (true/false)
      *                          or array with username and password
@@ -96,6 +98,7 @@ class TestBaseApi extends TestBase
      * @return array(HTTP_Request2, integer) HTTP request object and user id
      *
      * @uses getRequest()
+     * @see getLoggedInRequest()
      */
     protected function getAuthRequest($urlSuffix = null, $auth = true)
     {
