@@ -36,28 +36,40 @@ $allPopularTagsCount   = count($allPopularTags);
 
 
 // function printing the cloud
-function writeTagsProposition($tagsCloud, $title) {
-	echo 'document.write(\'<div class="collapsible">\');';
-	echo 'document.write(\'<h3>'. $title .'<\/h3>\');';
-	echo 'document.write(\'<p id="popularTags" class="tags">\');';
+function writeTagsProposition($tagsCloud, $title)
+{
+    static $id = 0;
+    ++$id;
+
+    echo <<<JS
+    $('.edit-tagclouds')
+        .append(
+'<div class="collapsible" id="edit-tagcloud-$id">'
++ '  <h3>$title</h3>'
++ '  <p class="popularTags tags"></p>'
++ '</div>');
+JS;
 	
 	$taglist = '';
-	foreach(array_keys($tagsCloud) as $key) {
-	    $row =& $tagsCloud[$key];
+	foreach (array_keys($tagsCloud) as $key) {
+	    $row = $tagsCloud[$key];
 	    $entries = T_ngettext('bookmark', 'bookmarks', $row['bCount']);
-	    $taglist .= '<span title="'. $row['bCount'] .' '. $entries .'" style="font-size:'. $row['size'] .'" onclick="addTag(this)">'. filter($row['tag']) .'<\/span> ';
+	    $taglist .= '<span'
+            . ' title="'. $row['bCount'] . ' ' . $entries . '"'
+            . ' style="font-size:' . $row['size'] . '"'
+            . ' onclick="addTag(this)">'
+            . filter($row['tag'])
+            . '</span> ';
 	}
-
-	echo 'document.write(\''. $taglist .'\');';
-	echo 'document.write(\'<\/p>\');';
-	echo 'document.write(\'<\/div>\');';
-	
+    echo '$(\'#edit-tagcloud-' . $id . ' p\').append('
+        . json_encode($taglist)
+        . ");\n";
 }
 
 
 if ($allPopularTagsCount > 0 || $userPopularTagsCount > 0 ) { ?>
-
 <script type="text/javascript">
+//<![CDATA[
 Array.prototype.contains = function (ele) {
     for (var i = 0; i < this.length; i++) {
         if (this[i] == ele) {
@@ -87,20 +99,26 @@ function addonload(addition) {
     }
 }
 
-addonload(
-    function () {
-        var taglist = document.getElementById('tags');
-        var tags = taglist.value.split(', ');
+jQuery(function($) {
+<?php
+if ($userPopularTagsCount > 0) {
+	writeTagsProposition($userPopularTagsCloud, T_('Popular Tags'));
+}
+if ($allPopularTagsCount > 0) {
+	writeTagsProposition($allPopularTagsCloud, T_('Popular Tags From All Users'));
+}
+?>
+        var taglist = $('#tags');
+        var tags = taglist.val().split(', ');
         
-        var populartags = document.getElementById('popularTags').getElementsByTagName('span');
+        var populartags = $('.edit-tagclouds span');
         
         for (var i = 0; i < populartags.length; i++) {
             if (tags.contains(populartags[i].innerHTML)) {
                 populartags[i].className = 'selected';
             }
         }
-    }
-);
+});
 
 function addTag(ele) {
     var thisTag = ele.innerHTML;
@@ -122,20 +140,9 @@ function addTag(ele) {
     
     document.getElementById('tags').focus();
 }
-
-<?php
-if( $userPopularTagsCount > 0) {
-	writeTagsProposition($userPopularTagsCloud, T_('Popular Tags'));
-}
-if( $allPopularTagsCount > 0) {
-	writeTagsProposition($allPopularTagsCloud, T_('Popular Tags From All Users'));
-}
-
-
-?>
-
+//]]>
 </script>
-
+<div class="edit-tagclouds"></div>
 <?php
 }
 ?>

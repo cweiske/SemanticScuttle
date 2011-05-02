@@ -1,64 +1,92 @@
 <?php
-/***************************************************************************
- Copyright (C) 2004 - 2006 Scuttle project
- http://sourceforge.net/projects/scuttle/
- http://scuttle.org/
+/**
+ * Returns a list of tags managed by the admins, in json format
+ * suitable for jsTree consumption.
+ *
+ * @param string $tag Tag for which the children tags shall be returned
+ *
+ * SemanticScuttle - your social bookmark manager.
+ *
+ * PHP version 5.
+ *
+ * @category    Bookmarking
+ * @package     SemanticScuttle
+ * @subcategory Templates
+ * @author      Benjamin Huynh-Kim-Bang <mensonge@users.sourceforge.net>
+ * @author      Christian Weiske <cweiske@cweiske.de>
+ * @author      Eric Dane <ericdane@users.sourceforge.net>
+ * @license     GPL http://www.gnu.org/licenses/gpl.html
+ * @link        http://sourceforge.net/projects/semanticscuttle
+ */
 
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with this program; if not, write to the Free Software
- Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- ***************************************************************************/
-
-/* Return a json file with list of linked tags */
 $httpContentType = 'application/json';
 require_once '../www-header.php';
 
-/* Service creation: only useful services are created */
-$b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
-$bookmarkservice =SemanticScuttle_Service_Factory::get('Tag');
-$tagstatservice =SemanticScuttle_Service_Factory::get('TagStat');
+/**
+ * Creates and returns an array of tags for the jsTree ajax loader.
+ * If the tag is empty, the configured menu2 (admin) main tags are used.
+ *
+ * @param string                          $tag Tag name to fetch subtags for
+ * @param SemanticScuttle_Service_Tag2Tag $t2t Tag relation service
+ *
+ * @return array Array of tag data suitable for the jsTree ajax loader
+ */
+function assembleAdminTagData($tag, SemanticScuttle_Service_Tag2Tag $t2t)
+{
+    if ($tag == '') {
+        $linkedTags = $GLOBALS['menu2Tags'];
+    } else {
+        $linkedTags = $t2t->getAdminLinkedTags($tag, '>');
+    }
 
-/* Managing all possible inputs */
-isset($_GET['tag']) ? define('GET_TAG', $_GET['tag']): define('GET_TAG', '');
-isset($_GET['uId']) ? define('GET_UID', $_GET['uId']): define('GET_UID', '');
+    $tagData = array();
+    foreach ($linkedTags as $tag) {
+        //FIXME: the hasChildren code is nasty, because it causes too many
+        // queries onto the database
+        $hasChildren = 0 < count($t2t->getAdminLinkedTags($tag, '>'));
+        $tagData[] = createTagArray($tag, $hasChildren);
+    }
 
-
-function displayTag($tag, $uId) {
-	$uId = ($uId==0)?NULL:$uId;  // if user is nobody, NULL allows to look for every public tags
-	
-	$tag2tagservice =SemanticScuttle_Service_Factory::get('Tag2Tag');
-	$output =  '{ id:'.rand().', name:\''.$tag.'\'';
-
-	$linkedTags = $tag2tagservice->getAdminLinkedTags($tag, '>');
-	if(count($linkedTags) > 0) {
-		$output.= ', children: [';
-		foreach($linkedTags as $linkedTag) {
-			$output.= displayTag($linkedTag, $uId);
-		}
-		$output = substr($output, 0, -1); // remove final comma avoiding IE6 Dojo bug
-		$output.= "]";
-	}
-
-	$output.= '},';
-	return $output;
+	return $tagData;
 }
 
-?>
+/**
+ * Creates an jsTree json array for the given tag
+ *
+ * @param string  $tag         Tag name
+ * @param boolean $hasChildren If the tag has subtags (children) or not.
+ *                             If unsure, set it to "true".
+ *
+ * @return array Array to be sent back to the browser as json
+ */
+function createTagArray($tag, $hasChildren = true)
+{
+    $ar = array(
+        'data' => array(
+            //<a> attributes
+            'title' => $tag,
+            'attr' => array(
+                'href' => createUrl('tags', $tag)
+            )
+        ),
+        //<li> attributes
+        'attr' => array(
+            'rel'  => $tag,//needed for identifying the tag in html
+        ),
+    );
+    if ($hasChildren) {
+        //jstree needs that to show the arrows
+        $ar['state'] = 'closed';
+    }
 
-{ label: 'name', identifier: 'id', items: [
-<?php
-$json = displayTag(GET_TAG, intval(GET_UID));
-$json = substr($json, 0, -1); // remove final comma avoiding IE6 Dojo bug
-echo $json;
+    return $ar;
+}
+
+
+$tag     = isset($_GET['tag']) ? trim($_GET['tag']) : '';
+$tagData = assembleAdminTagData(
+    $tag,
+    SemanticScuttle_Service_Factory::get('Tag2Tag')
+);
+echo json_encode($tagData);
 ?>
-] }

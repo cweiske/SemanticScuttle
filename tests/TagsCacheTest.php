@@ -12,11 +12,6 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'TagsCacheTest::main');
-}
-
-require_once 'prepare.php';
 
 /**
  * Unit tests for the SemanticScuttle tags cache service.
@@ -37,19 +32,6 @@ class TagsCacheTest extends PHPUnit_Framework_TestCase
     protected $tts;
 
 
-
-    /**
-     * Used to run this test class standalone
-     *
-     * @return void
-     */
-    public static function main()
-    {
-        require_once 'PHPUnit/TextUI/TestRunner.php';
-        PHPUnit_TextUI_TestRunner::run(
-            new PHPUnit_Framework_TestSuite(__CLASS__)
-        );
-    }
 
     protected function setUp()
     {
@@ -207,9 +189,4 @@ class TagsCacheTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(array(), $tcs->getSynonyms('d', 1));
     }
 }
-
-if (PHPUnit_MAIN_METHOD == 'TagsCacheTest::main') {
-    TagsCacheTest::main();
-}
-
 ?>

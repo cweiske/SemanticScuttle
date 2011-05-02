@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
  <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
   <title><?php echo filter($GLOBALS['sitename'] .(isset($pagetitle) ? ' » ' . $pagetitle : '')); ?></title>
   <link rel="icon" type="image/png" href="<?php echo ROOT ?>icon.png" />
   <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>scuttle.css" />
@@ -17,17 +18,19 @@ if (isset($rsschannels)) {
 }
 ?>
 
-  <link rel="stylesheet" type="text/css"
-	href="http://ajax.googleapis.com/ajax/libs/dojo/1.2/dijit/themes/nihilo/nihilo.css" />
-
 <?php if (isset($loadjs)) :?>
+<?php if (DEBUG_MODE) : ?>
+  <script type="text/javascript" src="<?php echo ROOT_JS ?>jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="<?php echo ROOT_JS ?>jquery.jstree.js"></script>
+<?php else: ?>
+  <script type="text/javascript" src="<?php echo ROOT_JS ?>jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="<?php echo ROOT_JS ?>jquery.jstree.min.js"></script>
+<?php endif ?>
   <script type="text/javascript" src="<?php echo ROOT ?>jsScuttle.php"></script>
 <?php endif ?>
 
  </head>
-
- <body class="nihilo">
-<!-- the class is used by Dojo widgets -->
+ <body>
 
 <?php
 $headerstyle = '';

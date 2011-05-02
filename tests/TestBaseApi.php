@@ -11,6 +11,8 @@
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
 
+require_once 'HTTP/Request2.php';
+
 /**
  * Base unittest class for web API tests.
  *
@@ -89,7 +91,8 @@ class TestBaseApi extends TestBase
      * the request object with authentication details, so that
      * the user is logged in.
      *
-     * Only usable for API requests, not "normal" HTTP page requests
+     * Useful for HTTP API methods only, cannot be used with
+     * "normal" HTML pages since they do not support HTTP auth.
      *
      * @param string $urlSuffix Suffix for the URL
      * @param mixed  $auth      If user authentication is needed (true/false)
@@ -161,6 +164,25 @@ class TestBaseApi extends TestBase
         $req->setCookieJar($cookies);
 
         return array($req, $uid);
+    }
+
+
+
+    /**
+     * Verifies that the HTTP response has status code 200 and
+     * content-type application/json; charset=utf-8
+     *
+     * @param HTTP_Request2_Response $res HTTP Response object
+     *
+     * @return void
+     */
+    protected function assertResponseJson200(HTTP_Request2_Response $res)
+    {
+        $this->assertEquals(200, $res->getStatus());
+        $this->assertEquals(
+            'application/json; charset=utf-8',
+            $res->getHeader('content-type')
+        );
     }
 
 

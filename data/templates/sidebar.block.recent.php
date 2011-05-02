@@ -31,7 +31,7 @@ if ($recentTags && count($recentTags) > 0) {
     }
     echo $contents ."</p>\n";
     ?>
-    <p style="text-align:right"><a href="<?php echo createURL('populartags'); ?>"><?php echo T_('Popular Tags'); ?></a> &rarr;</p>
+    <p style="text-align:right"><a href="<?php echo createURL('populartags'); ?>"><?php echo T_('Popular Tags'); ?></a> →</p>
 </div>
 
 <?php

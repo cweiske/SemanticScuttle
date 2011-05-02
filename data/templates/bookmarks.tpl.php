@@ -62,12 +62,16 @@ if($currenttag!= '' && $cdservice->getLastTagDescription($currenttag)) {
 }
 
 //common tag description edit
-if($userservice->isLoggedOn()) {
-	if($currenttag!= '' && ($GLOBALS['enableCommonTagDescriptionEditedByAll'] || $currentUser->isAdmin())) {
+if ($userservice->isLoggedOn()) {
+	if ($currenttag != ''
+        && ($GLOBALS['enableCommonTagDescriptionEditedByAll']
+            || $currentUser->isAdmin()
+        )
+    ) {
 		echo ' <a href="'. createURL('tagcommondescriptionedit', $currenttag).'" title="'.T_('Edit the common description of this tag').'">';
 		echo !is_array($cDescription) || strlen($cDescription['cdDescription'])==0?T_('Edit the common description of this tag'):'';
 		echo ' <img src="'.ROOT.'images/b_edit.png" /></a>';
-	} elseif(isset($hash)) {
+	} else if (isset($hash)) {
 		echo ' (<a href="'.createURL('bookmarkcommondescriptionedit', $hash).'" title="'.T_('Edit the common description of this bookmark').'">';
 		echo T_('Edit the common description of this bookmark').'</a>)';
 	}
@@ -117,33 +121,33 @@ $votingSort  = 'voting_desc';
 
 switch(getSortOrder()) {
 case 'date_asc':
-	$dateArrow = ' &uarr;';
+	$dateArrow = ' ↑';
 	$dateSort  = 'date_desc';
 	break;
 
 case 'title_asc':
-	$titleArrow = ' &uarr;';
+	$titleArrow = ' ↑';
 	$titleSort  = 'title_desc';
 	break;
 
 case 'title_desc':
-	$titleArrow = ' &darr;';
+	$titleArrow = ' ↓';
 	$titleSort  = 'title_asc';
 	break;
 
 case 'voting_asc':
-	$votingArrow = ' &uarr;';
+	$votingArrow = ' ↑';
 	$votingSort  = 'voting_desc';
 	break;
 
 case 'voting_desc':
-	$votingArrow = ' &darr;';
+	$votingArrow = ' ↓';
 	$votingSort  = 'voting_asc';
 	break;
 
 case 'date_desc':
 default:
-	$dateArrow = ' &darr;';
+	$dateArrow = ' ↓';
 	$dateSort = 'date_asc';
 	break;
 }
@@ -292,10 +296,9 @@ if ($currenttag!= '') {
 			$edit = ' - <a href="' . createURL('edit', $row['bId']) . '">'
                 . T_('Edit')
                 . '</a>'
-                . '<script type="text/javascript">'
-                . 'document.write(" - <a href=\"#\" onclick=\"deleteBookmark(this, '. $row['bId'] .'); return false;\">'
+                . ' <a href="#" onclick="deleteBookmark(this, '. $row['bId'] .'); return false;">'
                 . T_('Delete')
-                .'<\/a>");</script>';
+                .'</a>';
 		}
 
 		// Last update
@@ -309,10 +312,11 @@ if ($currenttag!= '') {
 			$copy .= T_('you');
 		} else {
 			$copy .= '<a href="' . createURL('bookmarks', $row['username']) . '">'
-                . $row['username'] . '</a>';
+                . SemanticScuttle_Model_UserArray::getName($row)
+                . '</a>';
 		}
 
-		// Udders!
+		// others
 		if (!isset($hash)) {
 			$others = $otherCounts[$row['bAddress']];
 			$ostart = '<a href="' . createURL('history', $row['bHash']) . '">';
@@ -390,7 +394,7 @@ if ($currenttag!= '') {
 		echo '  <div' . $adminBgClass . '>' . "\n";
 
 		echo '   <div class="link">'
-            . '<a href="'. $address .'"'. $rel .' class="taggedlink" target="_blank">'
+            . '<a href="'. htmlspecialchars($address) .'"'. $rel .' class="taggedlink">'
             . filter($row['bTitle'])
             . '</a>' . $adminStar . "</div>\n";
 		if ($row['bDescription'] == '') {

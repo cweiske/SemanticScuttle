@@ -16,7 +16,7 @@ foreach($watching as $watchuser) {
 ?>
 
 <?php if(count($closeContacts)>0):?>
-<h2 title="<?php echo T_('Close contacts are mutual contacts');?>"><?php echo ' &harr; '. T_('Close contacts'); ?></h2>
+<h2 title="<?php echo T_('Close contacts are mutual contacts');?>"><?php echo ' ↔ '. T_('Close contacts'); ?></h2>
 <div id="watching">
     <ul>
     <?php foreach($closeContacts as $watchuser): ?>
@@ -27,7 +27,7 @@ foreach($watching as $watchuser) {
 <?php endif; ?>
 
 
-<h2><?php echo ' &rarr; '. T_('Watching'); ?></h2>
+<h2><?php echo ' → '. T_('Watching'); ?></h2>
 <div id="watching">
     <ul>
         <?php if($userservice->isLoggedOn() && $currentUser->getUsername() == $user): ?>            
@@ -41,7 +41,7 @@ foreach($watching as $watchuser) {
     <?php foreach($watching as $watchuser): ?>
         <li><a href="<?php echo createURL('bookmarks', $watchuser); ?>"><?php echo $watchuser; ?></a>
         <?php if($userservice->isLoggedOn() && $currentUser->getUsername() == $user): ?>
-         - <a href="<?php echo createUrl('watch','?contact='.$watchuser); ?>" title="<?php echo T_('Remove this contact'); ?>">x<a/>
+         - <a href="<?php echo createUrl('watch','?contact='.$watchuser); ?>" title="<?php echo T_('Remove this contact'); ?>">x</a>
         </li>
         <?php endif; ?>  
     <?php endforeach; ?>
@@ -49,7 +49,7 @@ foreach($watching as $watchuser) {
     </ul>
 </div>
 
-<h2><?php echo ' &larr; '. T_('Watched By'); ?></h2>
+<h2><?php echo ' ← '. T_('Watched By'); ?></h2>
 <div id="watching">
     <ul>
     <?php foreach($watchedBy as $watchuser): ?>

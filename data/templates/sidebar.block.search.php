@@ -34,7 +34,7 @@ foreach ($lastSearches as $row) {
     echo  '<a href="'
         . htmlspecialchars(createURL('search', $range.'/'.$row['shTerms']))
         . '">';
-    echo $row['shTerms'];
+    echo htmlspecialchars($row['shTerms']);
     echo '</a>';
     echo ' <span title="'
         . T_('Number of bookmarks for this query')

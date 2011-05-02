@@ -12,13 +12,7 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-
-require_once dirname(__FILE__) . '/../prepare.php';
 require_once 'HTTP/Request2.php';
-
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Api_PostsAddTest::main');
-}
 
 /**
  * Unit tests for the SemanticScuttle post addition API.
@@ -34,28 +28,6 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
 class Api_PostsAddTest extends TestBaseApi
 {
     protected $urlPart = 'api/posts/add';
-
-
-
-    /**
-     * Used to run this test class standalone
-     *
-     * @return void
-     */
-    public static function main()
-    {
-        require_once 'PHPUnit/TextUI/TestRunner.php';
-        PHPUnit_TextUI_TestRunner::run(
-            new PHPUnit_Framework_TestSuite(__CLASS__)
-        );
-    }
-
-
-    public function setUp()
-    {
-        parent::setUp();
-        $this->bs->deleteAll();
-    }
 
 
 
@@ -89,6 +61,8 @@ class Api_PostsAddTest extends TestBaseApi
      */
     public function testAddBookmarkPost()
     {
+        $this->bs->deleteAll();
+
         $bmUrl         = 'http://example.org/tag-1';
         $bmTags        = array('foo', 'bar', 'baz');
         $bmDatetime    = '2010-09-08T03:02:01Z';
@@ -149,6 +123,8 @@ TXT;
      */
     public function testAddBookmarkGet()
     {
+        $this->bs->deleteAll();
+
         $bmUrl         = 'http://example.org/tag-1';
         $bmTags        = array('foo', 'bar', 'baz');
         $bmDatetime    = '2010-09-08T03:02:01Z';
@@ -208,6 +184,8 @@ TXT;
      */
     public function testUrlDescEnough()
     {
+        $this->bs->deleteAll();
+
         list($req, $uId) = $this->getAuthRequest();
         $req->setMethod(HTTP_Request2::METHOD_POST);
         $req->addPostParameter('url', 'http://example.org/tag2');
@@ -242,6 +220,8 @@ TXT;
      */
     public function testUrlRequired()
     {
+        $this->bs->deleteAll();
+
         list($req, $uId) = $this->getAuthRequest();
         $req->setMethod(HTTP_Request2::METHOD_POST);
         //$req->addPostParameter('url', 'http://example.org/tag2');
@@ -276,6 +256,8 @@ TXT;
      */
     public function testDescriptionRequired()
     {
+        $this->bs->deleteAll();
+
         list($req, $uId) = $this->getAuthRequest();
         $req->setMethod(HTTP_Request2::METHOD_POST);
         $req->addPostParameter('url', 'http://example.org/tag2');
@@ -310,6 +292,8 @@ TXT;
      */
     public function testReplaceNo()
     {
+        $this->bs->deleteAll();
+
         $url    = 'http://example.org/tag2';
         $title1 = 'foo bar 1';
         $title2 = 'bar 2 foo';
@@ -376,6 +360,8 @@ TXT;
      */
     public function testReplaceYes()
     {
+        $this->bs->deleteAll();
+
         $url    = 'http://example.org/tag2';
         $title1 = 'foo bar 1';
         $title2 = 'bar 2 foo';
@@ -624,9 +610,5 @@ TXT;
     }//end testDefaultPrivacyBookmarksAdd
 
 
-}
-
-if (PHPUnit_MAIN_METHOD == 'Api_PostsAddTest::main') {
-    Api_PostsAddTest::main();
 }
 ?>
