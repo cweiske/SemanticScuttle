@@ -23,6 +23,14 @@
  */
 class SemanticScuttle_Model_Bookmark
 {
+    /**
+     * Checks if the given URL is valid and may be used with this
+     * SemanticScuttle installation.
+     *
+     * @param string $url URL to verify.
+     *
+     * @return boolean True if the URL is allowed, false if not
+     */
     public static function isValidUrl($url)
     {
         $scheme = parse_url($url, PHP_URL_SCHEME);
