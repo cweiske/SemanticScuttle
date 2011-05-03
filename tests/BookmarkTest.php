@@ -50,8 +50,6 @@ class BookmarkTest extends TestBase
     /**
      * Tests if adding a bookmark with short url name
      * saves it in the database.
-     *
-     * @return void
      */
     public function testAddBookmarkShort()
     {
@@ -104,7 +102,7 @@ class BookmarkTest extends TestBase
         );
     }
 
-    public function testUnificationOfBookmarks()
+    public function testAddBookmarkUnification()
     {
         $bs = $this->bs;
 
