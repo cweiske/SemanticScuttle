@@ -65,7 +65,16 @@ class BookmarkTest extends TestBase
         $this->assertEquals('myShortName', $bm['bShort']);
     }
 
-    public function testHardCharactersInBookmarks()
+    public function testAddBookmarkInvalidUrl()
+    {
+        $retval = $this->bs->addBookmark(
+            'javascript:alert(123)', 'title', 'desc', 'priv',
+            0, array()
+        );
+        $this->assertFalse($retval, 'Bookmark with invalid URL was accepted');
+    }
+
+    public function testAddBookmarkWithSpecialCharacters()
     {
         $bs = $this->bs;
         $title = "title&é\"'(-è_çà)=";
