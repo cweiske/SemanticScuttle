@@ -183,3 +183,9 @@ CREATE TABLE `sc_votes` (
   KEY `bid` (`bId`),
   KEY `uid` (`uId`)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci ;
+
+
+CREATE TABLE `sc_version` (
+  `schema_version` int(11) NOT NULL
+) DEFAULT CHARSET=utf8;
+INSERT INTO `sc_version` (`schema_version`) VALUES ('6');
