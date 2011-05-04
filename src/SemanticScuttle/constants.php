@@ -41,7 +41,10 @@ if (!isset($GLOBALS['root'])) {
         $rootTmp .= '/';
     }
 
-    define('ROOT', 'http://'. $_SERVER['HTTP_HOST'] . $rootTmp);
+    //we do not prepend http since we also want to support https connections
+    // "http" is not required; it's automatically determined by the browser
+    // depending on the current connection.
+    define('ROOT', '//'. $_SERVER['HTTP_HOST'] . $rootTmp);
 } else {
     define('ROOT', $GLOBALS['root']);
 }

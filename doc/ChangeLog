@@ -15,6 +15,7 @@ ChangeLog for SemantiScuttle
 - api/posts/add respects the "replace" parameter now
 - Fix privacy issue when fetching tags of several users
 - Only URLs with an allowed protocol may be added to the database
+- Support HTTPS connections when $root is not configured
 
 
 0.97.2 - 2011-02-17
