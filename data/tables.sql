@@ -77,6 +77,16 @@ CREATE TABLE `sc_users` (
 
 -- --------------------------------------------------------
 
+CREATE TABLE `sc_users_sslclientcerts` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `uId` INT NOT NULL ,
+  `sslSerial` VARCHAR( 32 ) NOT NULL ,
+  `sslName` VARCHAR( 64 ) NOT NULL ,
+  `sslEmail` VARCHAR( 64 ) NOT NULL ,
+  PRIMARY KEY ( `id` ) ,
+  UNIQUE (`id`)
+) CHARACTER SET utf8 COLLATE utf8_general_ci;
+
 -- 
 -- Table structure for table `sc_watched`
 -- 

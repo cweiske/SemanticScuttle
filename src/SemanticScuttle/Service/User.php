@@ -390,6 +390,14 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
                 $this->db->sql_freeresult($dbresult);
                 return (int)$_SESSION[$this->getSessionKey()];
             }
+        } else if (isset($_SERVER['SSL_CLIENT_M_SERIAL'])
+            && isset($_SERVER['SSL_CLIENT_V_END'])
+        ) {
+            $id = $this->getUserIdFromSslClientCert();
+            if ($id !== false) {
+                $this->setCurrentUserId($id);
+                return (int)$_SESSION[$this->getSessionKey()];
+            }
         }
         return false;
     }
@@ -416,6 +424,48 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         //reload user object
         $this->getCurrentUser(true);
         $this->getCurrentObjectUser(true);
+    }
+
+
+
+    /**
+     * Tries to detect the user ID from the SSL client certificate passed
+     * to the web server.
+     *
+     * @return mixed Integer user ID if the certificate is valid and
+     *               assigned to a user, boolean false otherwise
+     */
+    protected function getUserIdFromSslClientCert()
+    {
+        if (!isset($_SERVER['SSL_CLIENT_M_SERIAL'])
+            || !isset($_SERVER['SSL_CLIENT_V_END'])
+        ) {
+            return false;
+        }
+        //TODO: verify this var is always there
+        if ($_SERVER['SSL_CLIENT_V_REMAIN'] <= 0) {
+            return false;
+        }
+
+        $serial = $_SERVER['SSL_CLIENT_M_SERIAL'];
+        $query = 'SELECT uId'
+            . ' FROM ' . $this->getTableName() . '_sslclientcerts'
+            . ' WHERE sslSerial = \'' . $this->db->sql_escape($serial) . '\'';
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR, 'Could not load user for client certificate',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            return false;
+        }
+
+        $row = $this->db->sql_fetchrow($dbresult);
+        $this->db->sql_freeresult($dbresult);
+
+        if (!$row) {
+            return false;
+        }
+        return (int)$row['uId'];
     }
 
 

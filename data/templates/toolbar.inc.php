@@ -1,5 +1,5 @@
 <?php
-if ($userservice->isLoggedOn()) {
+if ($userservice->isLoggedOn() && is_object($currentUser)) {
     $cUserId = $userservice->getCurrentUserId();
     $cUsername = $currentUser->getUsername();
 ?>
