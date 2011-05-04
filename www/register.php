@@ -34,7 +34,13 @@ if (!$GLOBALS['enableRegistration']) {
 isset($_POST['submitted']) ? define('POST_SUBMITTED', $_POST['submitted']): define('POST_SUBMITTED', '');
 isset($_POST['username']) ? define('POST_USERNAME', $_POST['username']): define('POST_USERNAME', '');
 isset($_POST['password']) ? define('POST_PASS', $_POST['password']): define('POST_PASS', '');
-isset($_POST['email']) ? define('POST_MAIL', $_POST['email']): define('POST_MAIL', '');
+if (isset($_POST['email'])) {
+    define('POST_MAIL', $_POST['email']);
+} else if (isset($_SERVER['SSL_CLIENT_S_DN_Email'])) {
+    define('POST_MAIL', $_SERVER['SSL_CLIENT_S_DN_Email']);
+} else {
+    define('POST_MAIL', '');
+}
 isset($_POST['antispamAnswer']) ? define('POST_ANTISPAMANSWER', $_POST['antispamAnswer']): define('POST_ANTISPAMANSWER', '');
 
 

@@ -24,7 +24,7 @@ window.onload = function() {
 </tr>
 <tr>
     <th align="left"><label for="email"><?php echo T_('E-mail'); ?></label></th>
-    <td><input type="text" id="email" name="email" size="40" class="required" /></td>
+    <td><input type="text" id="email" name="email" size="40" class="required" value="<?php echo htmlspecialchars(POST_MAIL); ?>" /></td>
     <td><?php echo '←'.T_(' to send you your password if you forget it')?></td>
 </tr>
 
