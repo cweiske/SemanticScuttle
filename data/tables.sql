@@ -81,6 +81,7 @@ CREATE TABLE `sc_users_sslclientcerts` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `uId` INT NOT NULL ,
   `sslSerial` VARCHAR( 32 ) NOT NULL ,
+  `sslClientIssuerDn` VARCHAR( 1024 ) NOT NULL ,
   `sslName` VARCHAR( 64 ) NOT NULL ,
   `sslEmail` VARCHAR( 64 ) NOT NULL ,
   PRIMARY KEY ( `id` ) ,

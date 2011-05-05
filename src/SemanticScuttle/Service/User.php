@@ -439,18 +439,26 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     {
         if (!isset($_SERVER['SSL_CLIENT_M_SERIAL'])
             || !isset($_SERVER['SSL_CLIENT_V_END'])
+            || !isset($_SERVER['SSL_CLIENT_VERIFY'])
+            || $_SERVER['SSL_CLIENT_VERIFY'] !== 'SUCCESS'
+            || !isset($_SERVER['SSL_CLIENT_I_DN'])
         ) {
             return false;
         }
-        //TODO: verify this var is always there
+
         if ($_SERVER['SSL_CLIENT_V_REMAIN'] <= 0) {
             return false;
         }
 
-        $serial = $_SERVER['SSL_CLIENT_M_SERIAL'];
+        $serial         = $_SERVER['SSL_CLIENT_M_SERIAL'];
+        $clientIssuerDn = $_SERVER['SSL_CLIENT_I_DN'];
+
         $query = 'SELECT uId'
             . ' FROM ' . $this->getTableName() . '_sslclientcerts'
-            . ' WHERE sslSerial = \'' . $this->db->sql_escape($serial) . '\'';
+            . ' WHERE sslSerial = \'' . $this->db->sql_escape($serial) . '\''
+            . ' AND sslClientIssuerDn = \''
+            . $this->db->sql_escape($clientIssuerDn)
+            . '\'';
         if (!($dbresult = $this->db->sql_query($query))) {
             message_die(
                 GENERAL_ERROR, 'Could not load user for client certificate',
