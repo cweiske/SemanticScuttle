@@ -167,15 +167,30 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         return $password;
     }
 
-    function _updateuser($uId, $fieldname, $value) {
+    /**
+     * Updates a single field in the user's database row
+     *
+     * @param integer $uId       ID of the user
+     * @param string  $fieldname Name of table column to change
+     * @param string  $value     New value
+     *
+     * @return boolean True if all was well, false if not
+     */
+    public function _updateuser($uId, $fieldname, $value)
+    {
         $updates = array ($fieldname => $value);
-        $sql = 'UPDATE '. $this->getTableName() .' SET '. $this->db->sql_build_array('UPDATE', $updates) .' WHERE '. $this->getFieldName('primary') .'='. intval($uId);
+        $sql = 'UPDATE '. $this->getTableName()
+            . ' SET '. $this->db->sql_build_array('UPDATE', $updates)
+            . ' WHERE '. $this->getFieldName('primary') . '=' . intval($uId);
 
         // Execute the statement.
         $this->db->sql_transaction('begin');
-        if (!($dbresult = & $this->db->sql_query($sql))) {
+        if (!($dbresult = $this->db->sql_query($sql))) {
             $this->db->sql_transaction('rollback');
-            message_die(GENERAL_ERROR, 'Could not update user', '', __LINE__, __FILE__, $sql, $this->db);
+            message_die(
+                GENERAL_ERROR, 'Could not update user', '',
+                __LINE__, __FILE__, $sql, $this->db
+            );
             return false;
         }
         $this->db->sql_transaction('commit');
@@ -390,10 +405,11 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
                 $this->db->sql_freeresult($dbresult);
                 return (int)$_SESSION[$this->getSessionKey()];
             }
-        } else if (isset($_SERVER['SSL_CLIENT_M_SERIAL'])
-            && isset($_SERVER['SSL_CLIENT_V_END'])
-        ) {
-            $id = $this->getUserIdFromSslClientCert();
+        }
+
+        $ssls = SemanticScuttle_Service_Factory::get('User_SslClientCert');
+        if ($ssls->hasValidCert()) {
+            $id = $ssls->getUserIdFromCert();
             if ($id !== false) {
                 $this->setCurrentUserId($id);
                 return (int)$_SESSION[$this->getSessionKey()];
@@ -424,56 +440,6 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         //reload user object
         $this->getCurrentUser(true);
         $this->getCurrentObjectUser(true);
-    }
-
-
-
-    /**
-     * Tries to detect the user ID from the SSL client certificate passed
-     * to the web server.
-     *
-     * @return mixed Integer user ID if the certificate is valid and
-     *               assigned to a user, boolean false otherwise
-     */
-    protected function getUserIdFromSslClientCert()
-    {
-        if (!isset($_SERVER['SSL_CLIENT_M_SERIAL'])
-            || !isset($_SERVER['SSL_CLIENT_V_END'])
-            || !isset($_SERVER['SSL_CLIENT_VERIFY'])
-            || $_SERVER['SSL_CLIENT_VERIFY'] !== 'SUCCESS'
-            || !isset($_SERVER['SSL_CLIENT_I_DN'])
-        ) {
-            return false;
-        }
-
-        if ($_SERVER['SSL_CLIENT_V_REMAIN'] <= 0) {
-            return false;
-        }
-
-        $serial         = $_SERVER['SSL_CLIENT_M_SERIAL'];
-        $clientIssuerDn = $_SERVER['SSL_CLIENT_I_DN'];
-
-        $query = 'SELECT uId'
-            . ' FROM ' . $this->getTableName() . '_sslclientcerts'
-            . ' WHERE sslSerial = \'' . $this->db->sql_escape($serial) . '\''
-            . ' AND sslClientIssuerDn = \''
-            . $this->db->sql_escape($clientIssuerDn)
-            . '\'';
-        if (!($dbresult = $this->db->sql_query($query))) {
-            message_die(
-                GENERAL_ERROR, 'Could not load user for client certificate',
-                '', __LINE__, __FILE__, $query, $this->db
-            );
-            return false;
-        }
-
-        $row = $this->db->sql_fetchrow($dbresult);
-        $this->db->sql_freeresult($dbresult);
-
-        if (!$row) {
-            return false;
-        }
-        return (int)$row['uId'];
     }
 
 
@@ -670,23 +636,57 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         return $uId;
     }
 
-    function updateUser($uId, $password, $name, $email, $homepage, $uContent) {
-        if (!is_numeric($uId))
-        return false;
+    /**
+     * Updates the given user
+     *
+     * @param integer $uId      ID of user to change
+     * @param string  $password Password to use
+     * @param string  $name     Realname to use
+     * @param string  $email    Email to use
+     * @param string  $homepage User's homepage
+     * @param string  $uContent User note
+     *
+     * @return boolean True when all is well, false if not
+     */
+    public function updateUser(
+        $uId, $password, $name, $email, $homepage, $uContent
+    ) {
+        if (!is_numeric($uId)) {
+            return false;
+        }
 
         // Set up the SQL UPDATE statement.
         $moddatetime = gmdate('Y-m-d H:i:s', time());
-        if ($password == '')
-        $updates = array ('uModified' => $moddatetime, 'name' => $name, 'email' => $email, 'homepage' => $homepage, 'uContent' => $uContent);
-        else
-        $updates = array ('uModified' => $moddatetime, 'password' => $this->sanitisePassword($password), 'name' => $name, 'email' => $email, 'homepage' => $homepage, 'uContent' => $uContent);
-        $sql = 'UPDATE '. $this->getTableName() .' SET '. $this->db->sql_build_array('UPDATE', $updates) .' WHERE '. $this->getFieldName('primary') .'='. intval($uId);
+        if ($password == '') {
+            $updates = array(
+                'uModified' => $moddatetime,
+                'name'      => $name,
+                'email'     => $email,
+                'homepage'  => $homepage,
+                'uContent'  => $uContent
+            );
+        } else {
+            $updates = array(
+                'uModified' => $moddatetime,
+                'password'  => $this->sanitisePassword($password),
+                'name'      => $name,
+                'email'     => $email,
+                'homepage'  => $homepage,
+                'uContent'  => $uContent
+            );
+        }
+        $sql = 'UPDATE '. $this->getTableName()
+            . ' SET '. $this->db->sql_build_array('UPDATE', $updates)
+            . ' WHERE '. $this->getFieldName('primary') . '=' . intval($uId);
 
         // Execute the statement.
         $this->db->sql_transaction('begin');
         if (!($dbresult = & $this->db->sql_query($sql))) {
             $this->db->sql_transaction('rollback');
-            message_die(GENERAL_ERROR, 'Could not update user', '', __LINE__, __FILE__, $sql, $this->db);
+            message_die(
+                GENERAL_ERROR, 'Could not update user', '',
+                __LINE__, __FILE__, $sql, $this->db
+            );
             return false;
         }
         $this->db->sql_transaction('commit');
@@ -694,6 +694,8 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         // Everything worked out, so return true.
         return true;
     }
+
+
 
     function getAllUsers ( ) {
         $query = 'SELECT * FROM '. $this->getTableName();
