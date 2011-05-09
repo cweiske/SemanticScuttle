@@ -50,13 +50,15 @@ $this->includeTemplate($GLOBALS['top_include']);
     <td><input type="submit" name="submitted" value="<?php echo T_('Save Changes'); ?>" /></td>
 </tr>
 </table>
+
+<?php include 'editprofile-sslclientcerts.tpl.php'; ?>
 <h3><?php echo T_('Actions'); ?></h3>
 <table class="profile">
 <tr>
     <th align="left"><?php echo T_('Export bookmarks'); ?></th>
     <td>
 	<a href="../api/export_html.php"><?php echo T_('HTML file (for browsers)')?></a> /
-	<a href="../api/posts_all.php"><?php echo T_('XML file (like del.icio.us)')?></a> / 
+	<a href="../api/posts_all.php"><?php echo T_('XML file (like del.icio.us)')?></a> /
 	<a href="../api/export_csv.php"><?php echo T_('CSV file (for spreadsheet tools)')?></a>
     </td>
 </tr>

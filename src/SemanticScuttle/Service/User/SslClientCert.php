@@ -180,5 +180,33 @@ class SemanticScuttle_Service_User_SslClientCert extends SemanticScuttle_DbServi
         return (int)$row['uId'];
     }
 
+
+    /**
+     * Fetches all registered certificates for the user from the database
+     * and returns it.
+     *
+     * @return array Array with all certificates for the user. Empty if
+     *               there are none, SemanticScuttle_Model_User_SslClientCert
+     *               objects otherwise.
+     */
+    public function getUserCerts($uId)
+    {
+        $query = 'SELECT * FROM ' . $this->getTableName()
+            . ' ORDER BY sslSerial DESC';
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR, 'Could not load SSL client certificates',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            return array();
+        }
+
+        $certs = array();
+        while ($row = $this->db->sql_fetchrow($dbresult)) {
+            $certs[] = SemanticScuttle_Model_User_SslClientCert::fromDb($row);
+        }
+        $this->db->sql_freeresult($dbresult);
+        return $certs;
+    }
 }
 ?>

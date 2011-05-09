@@ -455,6 +455,10 @@ table.profile th {
     width: 10em;
 }
 
+table tr.ssl-current td {
+    background-color: #AFA;
+}
+
 /* OTHER GUFF */
 
 dd {

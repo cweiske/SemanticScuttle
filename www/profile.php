@@ -121,7 +121,9 @@ if (!$userservice->isLoggedOn() || $currentUser->getId() != $userid) {
 	$templatename = 'editprofile.tpl.php';
 	$tplVars['formaction']  = createURL('profile', $user);
 	$tplVars['token'] = $_SESSION['token'];
-
+	$tplVars['sslClientCerts'] = SemanticScuttle_Service_Factory::get(
+		'User_SslClientCert'
+	)->getUserCerts($currentUser->getId());
 }
 
 $tplVars['objectUser'] = $userinfo;
