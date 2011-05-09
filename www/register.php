@@ -72,15 +72,25 @@ if (POST_SUBMITTED != '') {
         $tplVars['error'] = T_('Antispam answer is not valid. Please try again.');
 
     // Register details
-    } elseif ($userservice->addUser($posteduser, POST_PASS, POST_MAIL) !== false) {
-        // Log in with new username
-        $login = $userservice->login($posteduser, POST_PASS);
-        if ($login) {
-            header('Location: '. createURL('bookmarks', $posteduser));
-        }
-        $tplVars['msg'] = T_('You have successfully registered. Enjoy!');
     } else {
-        $tplVars['error'] = T_('Registration failed. Please try again.');
+        $uId = $userservice->addUser($posteduser, POST_PASS, POST_MAIL);
+        if ($uId !== false) {
+            if (isset($_SERVER['SSL_CLIENT_VERIFY'])
+                && $_SERVER['SSL_CLIENT_VERIFY'] == 'SUCCESS'
+            ) {
+                $ssl = SemanticScuttle_Service_Factory::get('User_SslClientCert');
+                $ssl->registerCurrentCertificate($uId);
+                $ssl->updateProfileFromCurentCert($uId);
+            }
+            // Log in with new username
+            $login = $userservice->login($posteduser, POST_PASS);
+            if ($login) {
+                header('Location: '. createURL('bookmarks', $posteduser));
+            }
+            $tplVars['msg'] = T_('You have successfully registered. Enjoy!');
+        } else {
+            $tplVars['error'] = T_('Registration failed. Please try again.');
+        }
     }
 }
 

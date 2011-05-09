@@ -85,8 +85,30 @@ class SemanticScuttle_Service_User_SslClientCert extends SemanticScuttle_DbServi
      */
     public function registerCurrentCertificate($uId)
     {
-        //FIXME
+        $serial         = $_SERVER['SSL_CLIENT_M_SERIAL'];
+        $clientIssuerDn = $_SERVER['SSL_CLIENT_I_DN'];
+
+        $query = 'INSERT INTO ' . $this->getTableName()
+            . ' '. $this->db->sql_build_array(
+                'INSERT', array(
+                    'uId'               => $uId,
+                    'sslSerial'         => $serial,
+                    'sslClientIssuerDn' => $clientIssuerDn,
+                    'sslName'           => $_SERVER['SSL_CLIENT_S_DN_CN'],
+                    'sslEmail'          => $_SERVER['SSL_CLIENT_S_DN_Email']
+                )
+            );
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR, 'Could not load user for client certificate',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            return false;
+        }
+
+        return true;
     }
+
 
 
     /**
@@ -109,8 +131,9 @@ class SemanticScuttle_Service_User_SslClientCert extends SemanticScuttle_DbServi
         }
 
         if (count($arData)) {
+            $us = SemanticScuttle_Service_Factory::get('User');
             foreach ($arData as $column => $value) {
-                $userservice->_updateuser($uId, $column, $value);
+                $us->_updateuser($uId, $column, $value);
             }
         }
         return $arData;
