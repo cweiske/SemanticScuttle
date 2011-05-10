@@ -119,11 +119,16 @@ if (!$userservice->isLoggedOn() || $currentUser->getId() != $userid) {
 	$_SESSION['token_stamp'] = time();
 
 	$templatename = 'editprofile.tpl.php';
-	$tplVars['formaction']  = createURL('profile', $user);
-	$tplVars['token'] = $_SESSION['token'];
-	$tplVars['sslClientCerts'] = SemanticScuttle_Service_Factory::get(
-		'User_SslClientCert'
-	)->getUserCerts($currentUser->getId());
+
+	$tplVars['formaction'] = createURL('profile', $user);
+	$tplVars['token']      = $_SESSION['token'];
+
+    $scert = SemanticScuttle_Service_Factory::get('User_SslClientCert');
+	$tplVars['sslClientCerts'] = $scert->getUserCerts($currentUser->getId());
+	$tplVars['currentCert']    = null;
+    if ($scert->hasValidCert()) {
+        $tplVars['currentCert'] = SemanticScuttle_Model_User_SslClientCert::fromCurrentCert();
+    }
 }
 
 $tplVars['objectUser'] = $userinfo;

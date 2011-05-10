@@ -208,5 +208,43 @@ class SemanticScuttle_Service_User_SslClientCert extends SemanticScuttle_DbServi
         $this->db->sql_freeresult($dbresult);
         return $certs;
     }
+
+
+
+    /**
+     * Deletes a SSL client certificate.
+     * No security checks are made here.
+     *
+     * @param mixed $cert Certificate object or certificate database id.
+     *                    Objects are of type
+     *                    SemanticScuttle_Model_User_SslClientCert
+     *
+     * @return boolean True if all went well, false if it could not be deleted
+     */
+    public function delete($cert)
+    {
+        if ($cert instanceof SemanticScuttle_Model_User_SslClientCert) {
+            $id = (int)$cert->id;
+        } else {
+            $id = (int)$cert;
+        }
+
+        if ($id === 0) {
+            return false;
+        }
+
+        $query = 'DELETE FROM ' . $this->getTableName()
+            .' WHERE uId = ' . $id;
+
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR, 'Could not delete user certificate',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            return false;
+        }
+
+        return true;
+    }
 }
 ?>
