@@ -181,6 +181,38 @@ class SemanticScuttle_Service_User_SslClientCert extends SemanticScuttle_DbServi
     }
 
 
+
+    /**
+     * Fetches the certificate with the given ID from database.
+     *
+     * @param integer $id Certificate ID in database
+     *
+     * @return SemanticScuttle_Model_User_SslClientCert Certificate object
+     *                                                  or null if not found
+     */
+    public function getCert($id)
+    {
+        $query = 'SELECT * FROM ' . $this->getTableName()
+            . ' WHERE id = ' . (int)$id;
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR, 'Could not load SSL client certificate',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            return null;
+        }
+
+        if ($row = $this->db->sql_fetchrow($dbresult)) {
+            $cert = SemanticScuttle_Model_User_SslClientCert::fromDb($row);
+        } else {
+            $cert = null;
+        }
+        $this->db->sql_freeresult($dbresult);
+        return $cert;
+    }
+
+
+
     /**
      * Fetches all registered certificates for the user from the database
      * and returns it.
@@ -234,7 +266,7 @@ class SemanticScuttle_Service_User_SslClientCert extends SemanticScuttle_DbServi
         }
 
         $query = 'DELETE FROM ' . $this->getTableName()
-            .' WHERE uId = ' . $id;
+            .' WHERE id = ' . $id;
 
         if (!($dbresult = $this->db->sql_query($query))) {
             message_die(

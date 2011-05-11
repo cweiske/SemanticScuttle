@@ -122,11 +122,26 @@ if (!$userservice->isLoggedOn() || $currentUser->getId() != $userid) {
         } else if (false !== $scert->getUserIdFromCert()) {
             $tplvars['error'] = T_('This certificate is already registered');
         } else if (false === $scert->registerCurrentCertificate($currentUser->getId())) {
-            $tplvars['error'] = T_('SSL client certificate registration failed');
+            $tplvars['error'] = T_('Failed to register SSL client certificate.');
         } else {
-            $tplVars['msg'] = T_('SSL client certificate registered');
+            $tplVars['msg'] = T_('SSL client certificate registered.');
+        }
+    } else if (isset($_POST['action']) && $_POST['action'] == 'deleteClientCert'
+        && isset($_POST['certId'])
+    ) {
+        $certId = (int)$_POST['certId'];
+        $cert = $scert->getCert($certId);
+        if ($cert === null) {
+            $tplvars['error'] = T_('Certificate not found.');
+        } else if ($cert->uId != $currentUser->getId()) {
+            $tplvars['error'] = T_('The certificate does not belong to you.');
+        } else if (false === $scert->delete($certId)) {
+            $tplvars['error'] = T_('Failed to delete SSL client certificate.');
+        } else {
+            $tplVars['msg'] = T_('SSL client certificate deleted.');
         }
     }
+
 
 	//Token Init
 	$_SESSION['token'] = md5(uniqid(rand(), true));
