@@ -103,7 +103,7 @@ if (POST_SUBMITTED!='' && $currentUser->getId() == $userid) {
 	}
 	if (!$error) {
 		if (!$userservice->updateUser($userid, $detPass, $detName, $detMail, $detPage, $detDesc)) {
-			$tplvars['error'] = T_('An error occurred while saving your changes.');
+			$tplVars['error'] = T_('An error occurred while saving your changes.');
 		} else {
 			$tplVars['msg'] = T_('Changes saved.');
 		}
@@ -118,11 +118,11 @@ if (!$userservice->isLoggedOn() || $currentUser->getId() != $userid) {
 
     if (isset($_POST['action']) && $_POST['action'] == 'registerCurrentCert') {
         if (!$scert->hasValidCert()) {
-            $tplvars['error'] = T_('You do not have a valid SSL client certificate');
+            $tplVars['error'] = T_('You do not have a valid SSL client certificate');
         } else if (false !== $scert->getUserIdFromCert()) {
-            $tplvars['error'] = T_('This certificate is already registered');
+            $tplVars['error'] = T_('This certificate is already registered');
         } else if (false === $scert->registerCurrentCertificate($currentUser->getId())) {
-            $tplvars['error'] = T_('Failed to register SSL client certificate.');
+            $tplVars['error'] = T_('Failed to register SSL client certificate.');
         } else {
             $tplVars['msg'] = T_('SSL client certificate registered.');
         }
@@ -131,17 +131,17 @@ if (!$userservice->isLoggedOn() || $currentUser->getId() != $userid) {
     ) {
         $certId = (int)$_POST['certId'];
         $cert = $scert->getCert($certId);
+
         if ($cert === null) {
-            $tplvars['error'] = T_('Certificate not found.');
+            $tplVars['error'] = T_('Certificate not found.');
         } else if ($cert->uId != $currentUser->getId()) {
-            $tplvars['error'] = T_('The certificate does not belong to you.');
+            $tplVars['error'] = T_('The certificate does not belong to you.');
         } else if (false === $scert->delete($certId)) {
-            $tplvars['error'] = T_('Failed to delete SSL client certificate.');
+            $tplVars['error'] = T_('Failed to delete SSL client certificate.');
         } else {
             $tplVars['msg'] = T_('SSL client certificate deleted.');
         }
     }
-
 
 	//Token Init
 	$_SESSION['token'] = md5(uniqid(rand(), true));
