@@ -13,7 +13,13 @@
  <tbody>
  <?php foreach($sslClientCerts as $cert) { ?>
   <tr <?php if ($cert->isCurrent()) { echo 'class="ssl-current"'; } ?>>
-   <td><a href="#FIXME">delete</a></td>
+   <td>
+    <form method="post" action="#FIXME">
+     <button type="submit" name="action" value="deleteClientCert">
+      <?php echo T_('delete'); ?>
+     </button>
+    </form>
+   </td>
    <td><?php echo htmlspecialchars($cert->sslSerial); ?></td>
    <td><?php echo htmlspecialchars($cert->sslName); ?></td>
    <td><?php echo htmlspecialchars($cert->sslEmail); ?></td>
@@ -31,9 +37,11 @@
   <p><?php echo T_('Your current certificate is already registered with your account.'); ?></p>
  <?php } else { ?>
   <p>
-   <a href="#FIXME">
-    <?php echo T_('Register current certificate to automatically login.'); ?>
-   </a>
+   <form method="post" action="#FIXME">
+    <button type="submit" name="action" value="registerCurrentCert">
+     <?php echo T_('Register current certificate to automatically login.'); ?>
+    </button>
+   </form>
   </p>
  <?php } ?>
 <?php } else { ?>
