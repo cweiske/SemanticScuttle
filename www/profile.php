@@ -114,6 +114,20 @@ if (POST_SUBMITTED!='' && $currentUser->getId() == $userid) {
 if (!$userservice->isLoggedOn() || $currentUser->getId() != $userid) {
 	$templatename = 'profile.tpl.php';
 } else {
+    $scert = SemanticScuttle_Service_Factory::get('User_SslClientCert');
+
+    if (isset($_POST['action']) && $_POST['action'] == 'registerCurrentCert') {
+        if (!$scert->hasValidCert()) {
+            $tplvars['error'] = T_('You do not have a valid SSL client certificate');
+        } else if (false !== $scert->getUserIdFromCert()) {
+            $tplvars['error'] = T_('This certificate is already registered');
+        } else if (false === $scert->registerCurrentCertificate($currentUser->getId())) {
+            $tplvars['error'] = T_('SSL client certificate registration failed');
+        } else {
+            $tplVars['msg'] = T_('SSL client certificate registered');
+        }
+    }
+
 	//Token Init
 	$_SESSION['token'] = md5(uniqid(rand(), true));
 	$_SESSION['token_stamp'] = time();
@@ -123,7 +137,6 @@ if (!$userservice->isLoggedOn() || $currentUser->getId() != $userid) {
 	$tplVars['formaction'] = createURL('profile', $user);
 	$tplVars['token']      = $_SESSION['token'];
 
-    $scert = SemanticScuttle_Service_Factory::get('User_SslClientCert');
 	$tplVars['sslClientCerts'] = $scert->getUserCerts($currentUser->getId());
 	$tplVars['currentCert']    = null;
     if ($scert->hasValidCert()) {
