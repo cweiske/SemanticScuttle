@@ -6,10 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SemanticScuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-04 19:09+0100\n"
-"PO-Revision-Date: 2009-11-05 22:33+0100\n"
+"POT-Creation-Date: 2011-05-11 17:51+0200\n"
+"PO-Revision-Date: 2011-05-11 17:57+0100\n"
 "Last-Translator: Christian Weiske <cweiske@cweiske.de>\n"
 "Language-Team: de-AT <info@ehb-world.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,69 +18,63 @@ msgstr ""
 "X-Poedit-Country: AUSTRIA\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/SemanticScuttle/functions.php:163
+#: src/SemanticScuttle/functions.php:189
 msgid "message_die() was called multiple times."
 msgstr "message_die() wurde mehrmals aufgerufen."
 
-#: src/SemanticScuttle/functions.php:175
+#: src/SemanticScuttle/functions.php:201
 msgid "SQL Error"
 msgstr "SQL-Fehler"
 
-#: src/SemanticScuttle/functions.php:181
+#: src/SemanticScuttle/functions.php:207
 msgid "Line"
 msgstr "Zeile"
 
-#: src/SemanticScuttle/functions.php:181
+#: src/SemanticScuttle/functions.php:207
 #: data/templates/importDelicious.tpl.php:8
 #: data/templates/importNetscape.tpl.php:9
 #: data/templates/importStructure.tpl.php:10
 msgid "File"
 msgstr "Datei"
 
-#: src/SemanticScuttle/functions.php:189
+#: src/SemanticScuttle/functions.php:215
 msgid "Information"
 msgstr "Information"
 
-#: src/SemanticScuttle/functions.php:194
+#: src/SemanticScuttle/functions.php:220
 msgid "Critical Information"
 msgstr "Kritische Information"
 
-#: src/SemanticScuttle/functions.php:199
+#: src/SemanticScuttle/functions.php:225
 msgid "An error occured"
 msgstr "Es ist ein Fehler aufgetreten."
 
-#: src/SemanticScuttle/functions.php:202
+#: src/SemanticScuttle/functions.php:228
 msgid "General Error"
 msgstr "Allgemeiner Fehler"
 
-#: src/SemanticScuttle/functions.php:210
+#: src/SemanticScuttle/functions.php:236
 msgid "An critical error occured"
 msgstr "Es ist ein kritischer Fehler aufgetreten."
 
-#: src/SemanticScuttle/functions.php:213
+#: src/SemanticScuttle/functions.php:239
 msgid "Critical Error"
 msgstr "Kritischer Fehler"
 
-#: src/SemanticScuttle/functions.php:222
+#: src/SemanticScuttle/functions.php:248
 msgid "DEBUG MODE"
 msgstr "Debugmodus"
 
 #: data/templates/about.tpl.php:6
-msgid ""
-"<strong>Store</strong> all your favourite links in one place, accessible "
-"from anywhere."
+msgid "<strong>Store</strong> all your favourite links in one place, accessible from anywhere."
 msgstr "<strong>Speichern</strong> Sie Ihre sämtlichen Lesezeichen an einem Ort, von überall zugänglich."
 
 #: data/templates/about.tpl.php:7
-msgid ""
-"<strong>Share</strong> your bookmarks with everyone, with friends on your "
-"watchlist or just keep them private."
+msgid "<strong>Share</strong> your bookmarks with everyone, with friends on your watchlist or just keep them private."
 msgstr "<strong>Teilen</strong> Sie Ihre Lesezeichen mit allen anderen, mit Freunden auf Ihrer Beobachtungsliste oder einfach privat für Sie persönlich."
 
 #: data/templates/about.tpl.php:8
-msgid ""
-"<strong>Tag</strong> your bookmarks with as many labels as you want, instead "
-"of wrestling with folders."
+msgid "<strong>Tag</strong> your bookmarks with as many labels as you want, instead of wrestling with folders."
 msgstr "<strong>Kategorisieren</strong> Sie Ihre Lesezeichen mittels unbegrenzten Schlagwörtern, anstatt Sie in unübersichtlichen Ordnern zu speichern."
 
 #: data/templates/about.tpl.php:9
@@ -105,12 +100,7 @@ msgstr "Sie können es selbst auf Ihrem Webserver oder Webspace installieren"
 
 #: data/templates/about.tpl.php:15
 #, php-format
-msgid ""
-"%1$s supports most of the <a href=\"http://del.icio.us/doc/api\">del.icio.us "
-"<abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all "
-"of the neat tools made for that system can be modified to work with %1$s "
-"instead. If you find a tool that won't let you change the API address, ask "
-"the creator to add this setting. You never know, they might just do it."
+msgid "%1$s supports most of the <a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
 msgstr "%1$s unterstützt die meisten der <a href=\"http://del.icio.us/doc/api\">del.icio.us-<abbr title=\"Application Programming Interface\">API</abbr></a>. Fast alle coolen Tools, die für dieses System erstellt wurden, können für %1$s geändert und adaptiert werden. Wenn Sie ein Programm finden, bei dem Sie die API-Adresse nicht ändern können, so fragen Sie doch einfach beim Entwickler nach. Man kann nie wissen, vielleicht machen sie es einfach."
 
 #: data/templates/about.tpl.php:24
@@ -122,13 +112,11 @@ msgid "Add search plugin into your browser:"
 msgstr "Suchplugin zum Browser hinzufügen"
 
 #: data/templates/about.tpl.php:27
-msgid ""
-"The secret tag \"system:unfiled\" allows you to find bookmarks without tags."
+msgid "The secret tag \"system:unfiled\" allows you to find bookmarks without tags."
 msgstr "Mit dem geheimen Schlagwort \"system:unfiled\" findet man Lesezeichen ohne Schlagwörter"
 
 #: data/templates/about.tpl.php:28
-msgid ""
-"The secret tag \"system:imported\" allows you to find imported bookmarks."
+msgid "The secret tag \"system:imported\" allows you to find imported bookmarks."
 msgstr "Mit dem geheimen Schlagwort \"system:imported\" findet man importierte Lesezeichen."
 
 #: data/templates/admin.tpl.php:5
@@ -139,18 +127,23 @@ msgstr "Benutzerverwaltung"
 msgid "Public/Shared/Private"
 msgstr "Öffentlich/Gemeinsam/Privat"
 
-#: data/templates/admin.tpl.php:14 data/templates/bookmarks.tpl.php:93
+#: data/templates/admin.tpl.php:14
+#: data/templates/bookmarks.tpl.php:113
 msgid "bookmark(s)"
 msgstr "Lesezeichen"
 
-#: data/templates/admin.tpl.php:19 data/templates/tag2tagadd.tpl.php:21
+#: data/templates/admin.tpl.php:19
+#: data/templates/tag2tagadd.tpl.php:21
 #: data/templates/tag2tagdelete.tpl.php:13
-#: data/templates/tag2tagedit.tpl.php:14 data/templates/tag2tagedit.tpl.php:35
-#: data/templates/tagdelete.tpl.php:6 www/jsScuttle.php:23
+#: data/templates/tag2tagedit.tpl.php:14
+#: data/templates/tag2tagedit.tpl.php:35
+#: data/templates/tagdelete.tpl.php:6
+#: www/jsScuttle.php:23
 msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
 
-#: data/templates/admin.tpl.php:19 data/templates/bookmarks.tpl.php:251
+#: data/templates/admin.tpl.php:19
+#: data/templates/bookmarks.tpl.php:300
 msgid "Delete"
 msgstr "Löschen"
 
@@ -163,19 +156,19 @@ msgid "Check all URLs (May take some time)"
 msgstr "Alle URLs überprüfen (Kann eine Weile dauern)"
 
 #: data/templates/bookmarkcommondescriptionedit.tpl.php:16
-msgid ""
-"Collaborative description: these fields can be viewed and modified by every "
-"users"
+msgid "Collaborative description: these fields can be viewed and modified by every users"
 msgstr "Gemeinsame Beschreibung: Diese Felder können von jedem Benutzer angeschaut und verändert werden."
 
 #: data/templates/bookmarkcommondescriptionedit.tpl.php:18
-#: data/templates/bookmarks.tpl.php:137 data/templates/editbookmark.tpl.php:38
+#: data/templates/bookmarks.tpl.php:157
+#: data/templates/editbookmark.tpl.php:51
 msgid "Title"
 msgstr "Titel"
 
 #: data/templates/bookmarkcommondescriptionedit.tpl.php:23
-#: data/templates/editbookmark.tpl.php:44
-#: data/templates/editprofile.tpl.php:47 data/templates/profile.tpl.php:33
+#: data/templates/editbookmark.tpl.php:57
+#: data/templates/editprofile.tpl.php:45
+#: data/templates/profile.tpl.php:33
 #: data/templates/tagcommondescriptionedit.tpl.php:13
 #: data/templates/tagedit.tpl.php:12
 msgid "Description"
@@ -186,135 +179,47 @@ msgstr "Beschreibung"
 msgid "Last modification:"
 msgstr "Letzte Änderung:"
 
-#: data/templates/bookmarkcommondescriptionedit.tpl.php:42
-#: data/templates/tagcommondescriptionedit.tpl.php:32
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:43
+#: data/templates/tagcommondescriptionedit.tpl.php:33
 #: data/templates/tagedit.tpl.php:18
 msgid "Update"
 msgstr "Aktualisieren"
 
-#: data/templates/bookmarkcommondescriptionedit.tpl.php:43
-#: data/templates/editbookmark.tpl.php:98 data/templates/tag2tagadd.tpl.php:24
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:44
+#: data/templates/editbookmark.tpl.php:111
+#: data/templates/tag2tagadd.tpl.php:24
 #: data/templates/tag2tagedit.tpl.php:38
-#: data/templates/tagcommondescriptionedit.tpl.php:33
-#: data/templates/tagedit.tpl.php:19 data/templates/tagrename.tpl.php:25
+#: data/templates/tagcommondescriptionedit.tpl.php:34
+#: data/templates/tagedit.tpl.php:19
+#: data/templates/tagrename.tpl.php:25
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: data/templates/bookmarks.tpl.php:26
-msgid "Bookmarks on this page are managed by an admin user."
-msgstr "Lesezeichen auf dieser Seite werden von einem Administrator gepflegt."
+#: data/templates/bookmarklet.inc.php:1
+msgid "Bookmarklet"
+msgstr "Bookmarklet"
 
-#: data/templates/bookmarks.tpl.php:51 data/templates/bookmarks.tpl.php:52
-msgid "Edit the common description of this tag"
-msgstr "Den gemeinsamen Beschreibungstext bearbeiten"
-
-#: data/templates/bookmarks.tpl.php:55 data/templates/bookmarks.tpl.php:56
-msgid "Edit the common description of this bookmark"
-msgstr "Den gemeinsamen Beschreibungstext bearbeiten"
-
-#: data/templates/bookmarks.tpl.php:76 data/templates/bookmarks.tpl.php:77
-msgid "Edit your personal description of this tag"
-msgstr "Privaten Beschreibungstext bearbeiten"
-
-#: data/templates/bookmarks.tpl.php:93 data/templates/tags.tpl.php:10
-#: data/templates/users.tpl.php:8
-msgid "Sort by:"
-msgstr "Sortieren nach:"
-
-#: data/templates/bookmarks.tpl.php:135
-msgid "Date"
-msgstr "Datum"
-
-#: data/templates/bookmarks.tpl.php:140
-msgid "Voting"
-msgstr "Stimmen"
-
-#: data/templates/bookmarks.tpl.php:149
-msgid "Bookmarks from other users for this tag"
-msgstr "Lesezeichen anderer Benutzer mit diesem Schlagwort"
-
-#: data/templates/bookmarks.tpl.php:154
-msgid "Only your bookmarks for this tag"
-msgstr "Nur meine Lesezeichen für dieses Schlagwort"
-
-#: data/templates/bookmarks.tpl.php:177 data/templates/bookmarks.tpl.php:183
-msgid "First"
-msgstr "neueste Lesezeichen"
-
-#: data/templates/bookmarks.tpl.php:178 data/templates/bookmarks.tpl.php:184
-msgid "Previous"
-msgstr "vorherige"
-
-#: data/templates/bookmarks.tpl.php:191 data/templates/bookmarks.tpl.php:194
-msgid "Next"
-msgstr "weitere"
-
-#: data/templates/bookmarks.tpl.php:192 data/templates/bookmarks.tpl.php:195
-msgid "Last"
-msgstr "älteste Lesezeichen"
-
-#: data/templates/bookmarks.tpl.php:205
+#: data/templates/bookmarklet.inc.php:11
 #, php-format
-msgid "Page %d of %d"
-msgstr "Seite %d von %d"
+msgid "Click one of the following bookmarklets to add a button you can click whenever you want to add the page you are on to %s"
+msgstr "Ziehen Sie eines der folgenden Bookmarklets in die Lesezeichen Ihres Webbrowsers, um jederzeit auf unkomplizierte Art und Weise einen neue Lesezeichen zu %s hinzuzufügen"
 
-#: data/templates/bookmarks.tpl.php:245
-msgid "Tags:"
-msgstr "Schlagwörter:"
-
-#: data/templates/bookmarks.tpl.php:251
-msgid "Edit"
-msgstr "Bearbeiten"
-
-#: data/templates/bookmarks.tpl.php:255
-msgid "Last update"
-msgstr "Letzte Änderung"
-
-#: data/templates/bookmarks.tpl.php:258
-msgid "by"
-msgstr "von"
-
-#: data/templates/bookmarks.tpl.php:260
-msgid "you"
-msgstr "dir"
-
-#: data/templates/bookmarks.tpl.php:274
+#: data/templates/bookmarklet.inc.php:20
 #, php-format
-msgid " and %s1 other%s"
-msgstr " und %s1 anderen Person%s"
+msgid "Drag one of the following bookmarklets to your browser's bookmarks and click it whenever you want to add the page you are on to %s"
+msgstr "Ziehen Sie eines der folgenden Bookmarklets in die Lesezeichen Ihres Webbrowsers, um jederzeit auf unkomplizierte Art und Weise einen neue Lesezeichen zu %s hinzuzufügen"
 
-#: data/templates/bookmarks.tpl.php:277
+#: data/templates/bookmarklet.inc.php:67
+#: data/templates/bookmarklet.inc.php:100
 #, php-format
-msgid " and %2$s%1$s others%3$s"
-msgstr " und %2$s%1$s anderer Person%3$s"
+msgid "Post to %s"
+msgstr "Lesezeichen zu %s hinzufügen."
 
-#: data/templates/bookmarks.tpl.php:288
-msgid "Copy this bookmark to YOUR bookmarks."
-msgstr "Dieses Lesezeichen in DEINE Lesezeichen kopieren."
-
-#: data/templates/bookmarks.tpl.php:289
-msgid "Copy"
-msgstr "Kopieren"
-
-#: data/templates/bookmarks.tpl.php:309
-msgid "This bookmark is certified by an admin user."
-msgstr "Dieses Lesezeichen wurde von einem Administrator verifiziert"
-
-#: data/templates/bookmarks.tpl.php:345
-msgid "Private Note on this bookmark"
-msgstr "Private Notiz zu diesem Lesezeichen"
-
-#: data/templates/bookmarks.tpl.php:357
-msgid "Come back to the top of this page."
-msgstr "Zurück zum Seitenanfang"
-
-#: data/templates/bookmarks.tpl.php:357
-msgid "Top of the page"
-msgstr "Seitenanfang"
-
-#: data/templates/bookmarks.tpl.php:363
-msgid "No bookmarks available"
-msgstr "Leider sind keine Lesezeichen vorhanden."
+#: data/templates/bookmarklet.inc.php:93
+#: data/templates/bookmarklet.inc.php:110
+#, php-format
+msgid "Post to %s (Pop-up)"
+msgstr "Lesezeichen zu %s hinzufügen (Pop-up)"
 
 #: data/templates/bookmarks-vote-horizontal.inc.tpl.php:24
 #, php-format
@@ -331,8 +236,135 @@ msgstr "Dafür"
 msgid "Vote against"
 msgstr "Dagegen"
 
-#: data/templates/bottom.inc.php:5 data/templates/toolbar.inc.php:15
-#: data/templates/toolbar.inc.php:28 www/about.php:23 www/about.php:24
+#: data/templates/bookmarks.tpl.php:42
+msgid "Bookmarks on this page are managed by an admin user."
+msgstr "Lesezeichen auf dieser Seite werden von einem Administrator gepflegt."
+
+#: data/templates/bookmarks.tpl.php:71
+#: data/templates/bookmarks.tpl.php:72
+msgid "Edit the common description of this tag"
+msgstr "Den gemeinsamen Beschreibungstext bearbeiten"
+
+#: data/templates/bookmarks.tpl.php:75
+#: data/templates/bookmarks.tpl.php:76
+msgid "Edit the common description of this bookmark"
+msgstr "Den gemeinsamen Beschreibungstext bearbeiten"
+
+#: data/templates/bookmarks.tpl.php:96
+#: data/templates/bookmarks.tpl.php:97
+msgid "Edit your personal description of this tag"
+msgstr "Privaten Beschreibungstext bearbeiten"
+
+#: data/templates/bookmarks.tpl.php:113
+#: data/templates/tags.tpl.php:10
+#: data/templates/users.tpl.php:8
+msgid "Sort by:"
+msgstr "Sortieren nach:"
+
+#: data/templates/bookmarks.tpl.php:155
+msgid "Date"
+msgstr "Datum"
+
+#: data/templates/bookmarks.tpl.php:160
+msgid "Voting"
+msgstr "Stimmen"
+
+#: data/templates/bookmarks.tpl.php:169
+msgid "Bookmarks from other users for this tag"
+msgstr "Lesezeichen anderer Benutzer mit diesem Schlagwort"
+
+#: data/templates/bookmarks.tpl.php:174
+msgid "Only your bookmarks for this tag"
+msgstr "Nur meine Lesezeichen für dieses Schlagwort"
+
+#: data/templates/bookmarks.tpl.php:197
+#: data/templates/bookmarks.tpl.php:203
+msgid "First"
+msgstr "neueste Lesezeichen"
+
+#: data/templates/bookmarks.tpl.php:198
+#: data/templates/bookmarks.tpl.php:204
+msgid "Previous"
+msgstr "vorherige"
+
+#: data/templates/bookmarks.tpl.php:211
+#: data/templates/bookmarks.tpl.php:214
+msgid "Next"
+msgstr "weitere"
+
+#: data/templates/bookmarks.tpl.php:212
+#: data/templates/bookmarks.tpl.php:215
+msgid "Last"
+msgstr "älteste Lesezeichen"
+
+#: data/templates/bookmarks.tpl.php:228
+#, php-format
+msgid "Page %d of %d"
+msgstr "Seite %d von %d"
+
+#: data/templates/bookmarks.tpl.php:290
+msgid "Tags:"
+msgstr "Schlagwörter:"
+
+#: data/templates/bookmarks.tpl.php:297
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: data/templates/bookmarks.tpl.php:305
+msgid "Last update"
+msgstr "Letzte Änderung"
+
+#: data/templates/bookmarks.tpl.php:308
+msgid "by"
+msgstr "von"
+
+#: data/templates/bookmarks.tpl.php:312
+msgid "you"
+msgstr "dir"
+
+#: data/templates/bookmarks.tpl.php:328
+#, php-format
+msgid " and %s1 other%s"
+msgstr " und %s1 anderen Person%s"
+
+#: data/templates/bookmarks.tpl.php:331
+#, php-format
+msgid " and %2$s%1$s others%3$s"
+msgstr " und %2$s%1$s anderer Person%3$s"
+
+#: data/templates/bookmarks.tpl.php:345
+msgid "Copy this bookmark to YOUR bookmarks."
+msgstr "Dieses Lesezeichen in DEINE Lesezeichen kopieren."
+
+#: data/templates/bookmarks.tpl.php:346
+msgid "Copy"
+msgstr "Kopieren"
+
+#: data/templates/bookmarks.tpl.php:366
+msgid "This bookmark is certified by an admin user."
+msgstr "Dieses Lesezeichen wurde von einem Administrator verifiziert"
+
+#: data/templates/bookmarks.tpl.php:419
+msgid "Private Note on this bookmark"
+msgstr "Private Notiz zu diesem Lesezeichen"
+
+#: data/templates/bookmarks.tpl.php:433
+msgid "Come back to the top of this page."
+msgstr "Zurück zum Seitenanfang"
+
+#: data/templates/bookmarks.tpl.php:433
+msgid "Top of the page"
+msgstr "Seitenanfang"
+
+#: data/templates/bookmarks.tpl.php:439
+msgid "No bookmarks available"
+msgstr "Leider sind keine Lesezeichen vorhanden."
+
+#: data/templates/bottom.inc.php:5
+#: data/templates/toolbar.inc.php:15
+#: data/templates/toolbar.inc.php:28
+#: www/about.php:23
+#: www/about.php:24
 msgid "About"
 msgstr "Impressum"
 
@@ -340,204 +372,212 @@ msgstr "Impressum"
 msgid "Propulsed by "
 msgstr "Angetrieben von"
 
-#: data/templates/dynamictags.inc.php:47
+#: data/templates/dynamictags.inc.php:56
 #: data/templates/sidebar.block.common.php:19
 #: data/templates/sidebar.block.popular.php:34
-#: data/templates/sidebar.block.recent.php:29 data/templates/tags.tpl.php:19
+#: data/templates/sidebar.block.recent.php:29
+#: data/templates/tags.tpl.php:19
 msgid "bookmark"
 msgid_plural "bookmarks"
 msgstr[0] "Lesezeichen"
 msgstr[1] "Lesezeichen"
 
-#: data/templates/dynamictags.inc.php:128
+#: data/templates/dynamictags.inc.php:105
 #: data/templates/sidebar.block.common.php:9
 #: data/templates/sidebar.block.menu.php:74
 #: data/templates/sidebar.block.popular.php:23
 #: data/templates/sidebar.block.recent.php:34
-#: data/templates/toolbar.inc.php:27 www/populartags.php:46
+#: data/templates/toolbar.inc.php:27
+#: www/populartags.php:46
 msgid "Popular Tags"
 msgstr "Populäre Schlagwörter"
 
-#: data/templates/dynamictags.inc.php:131
+#: data/templates/dynamictags.inc.php:108
 msgid "Popular Tags From All Users"
 msgstr "Populäre Schlagwörter von allen Benutzern"
 
-#: data/templates/editbookmark.tpl.php:33
+#: data/templates/editbookmark.tpl.php:46
 msgid "Address"
 msgstr "Webadresse"
 
-#: data/templates/editbookmark.tpl.php:35
-#: data/templates/editbookmark.tpl.php:40
-#: data/templates/editprofile.tpl.php:31 data/templates/tagrename.tpl.php:14
+#: data/templates/editbookmark.tpl.php:48
+#: data/templates/editbookmark.tpl.php:53
+#: data/templates/editprofile.tpl.php:29
+#: data/templates/tagrename.tpl.php:14
 #: data/templates/tagrename.tpl.php:19
 msgid "Required"
 msgstr "Erforderlich"
 
-#: data/templates/editbookmark.tpl.php:45
+#: data/templates/editbookmark.tpl.php:58
 msgid "Add Note"
 msgstr "Notiz hinzufügen"
 
-#: data/templates/editbookmark.tpl.php:48
-msgid ""
-"You can use anchors to delimite attributes. for example: [publisher]blah[/"
-"publisher] "
+#: data/templates/editbookmark.tpl.php:61
+msgid "You can use anchors to delimite attributes. for example: [publisher]blah[/publisher] "
 msgstr "Anker können benutzt werden, um Attribute zu begrenzen: [publisher]blah[/publisher] "
 
-#: data/templates/editbookmark.tpl.php:51
+#: data/templates/editbookmark.tpl.php:64
 msgid "Suggested anchors: "
 msgstr "Vorschläge: "
 
-#: data/templates/editbookmark.tpl.php:63
+#: data/templates/editbookmark.tpl.php:76
 msgid "Private Note"
 msgstr "Privatnotiz"
 
-#: data/templates/editbookmark.tpl.php:65
+#: data/templates/editbookmark.tpl.php:78
 msgid "Just visible by you and your contacts."
 msgstr "Nur für dich und deine Kontakte sichtbar."
 
-#: data/templates/editbookmark.tpl.php:69 data/templates/toolbar.inc.php:10
-#: www/tags.php:45 www/tags.php:67
+#: data/templates/editbookmark.tpl.php:82
+#: data/templates/toolbar.inc.php:10
+#: www/tags.php:45
+#: www/tags.php:67
 msgid "Tags"
 msgstr "Schlagwörter"
 
-#: data/templates/editbookmark.tpl.php:73
+#: data/templates/editbookmark.tpl.php:86
 msgid "Comma-separated"
 msgstr "kommagetrennt"
 
-#: data/templates/editbookmark.tpl.php:77 data/templates/tag2tagadd.tpl.php:9
-msgid ""
-"Note: use \">\" to include one tag in another. e.g.: europe>france>paris"
-msgstr ""
-"Anmerkung: verwenden Sie \">\" um ein Schlagwort in ein hierarchisch höheres "
-"Schlagwort zu integrieren (z.B.: Europa>Frankreich>Paris)"
+#: data/templates/editbookmark.tpl.php:90
+#: data/templates/tag2tagadd.tpl.php:9
+msgid "Note: use \">\" to include one tag in another. e.g.: europe>france>paris"
+msgstr "Anmerkung: verwenden Sie \">\" um ein Schlagwort in ein hierarchisch höheres Schlagwort zu integrieren (z.B.: Europa>Frankreich>Paris)"
 
-#: data/templates/editbookmark.tpl.php:81 data/templates/tag2tagadd.tpl.php:8
+#: data/templates/editbookmark.tpl.php:94
+#: data/templates/tag2tagadd.tpl.php:8
 msgid "Note: use \"=\" to make synonym two tags. e.g.: france=frenchcountry"
-msgstr ""
-"Anmerkung: verwenden Sie \"=\" um ein Synonym für ein Schlagwort zu "
-"integrieren (z.B.: Frankreich=französisches Land)"
+msgstr "Anmerkung: verwenden Sie \"=\" um ein Synonym für ein Schlagwort zu integrieren (z.B.: Frankreich=französisches Land)"
 
-#: data/templates/editbookmark.tpl.php:84
+#: data/templates/editbookmark.tpl.php:97
 #: data/templates/importDelicious.tpl.php:15
 #: data/templates/importNetscape.tpl.php:16
 msgid "Privacy"
 msgstr "Status"
 
-#: data/templates/editbookmark.tpl.php:87
+#: data/templates/editbookmark.tpl.php:100
 #: data/templates/importDelicious.tpl.php:18
 #: data/templates/importNetscape.tpl.php:19
 msgid "Public"
 msgstr "Öffentlich"
 
-#: data/templates/editbookmark.tpl.php:88
+#: data/templates/editbookmark.tpl.php:101
 msgid "Shared with Watch List"
 msgstr "Beobachtungsliste"
 
-#: data/templates/editbookmark.tpl.php:89
+#: data/templates/editbookmark.tpl.php:102
 #: data/templates/importDelicious.tpl.php:20
 #: data/templates/importNetscape.tpl.php:21
 msgid "Private"
 msgstr "Privat"
 
-#: data/templates/editbookmark.tpl.php:102
+#: data/templates/editbookmark.tpl.php:115
 msgid "Delete Bookmark"
 msgstr "Lesezeichen löschen"
 
-#: data/templates/editbookmark.tpl.php:107
+#: data/templates/editbookmark.tpl.php:120
 msgid "edit common description"
 msgstr "Die gemeinsame Beschreibung bearbeiten"
 
-#: data/templates/editbookmark.tpl.php:134
-msgid "Bookmarklet"
-msgstr "Bookmarklet"
-
-#: data/templates/editbookmark.tpl.php:140
-#, php-format
-msgid ""
-"Click one of the following bookmarklets to add a button you can click "
-"whenever you want to add the page you are on to %s"
-msgstr ""
-"Ziehen Sie eines der folgenden Bookmarklets in die Lesezeichen Ihres "
-"Webbrowsers, um jederzeit auf unkomplizierte Art und Weise einen neue "
-"Lesezeichen zu %s hinzuzufügen"
-
-#: data/templates/editbookmark.tpl.php:144
-#, php-format
-msgid ""
-"Drag one of the following bookmarklets to your browser's bookmarks and click "
-"it whenever you want to add the page you are on to %s"
-msgstr ""
-"Ziehen Sie eines der folgenden Bookmarklets in die Lesezeichen Ihres "
-"Webbrowsers, um jederzeit auf unkomplizierte Art und Weise einen neue "
-"Lesezeichen zu %s hinzuzufügen"
-
-#: data/templates/editbookmark.tpl.php:157
-#: data/templates/editbookmark.tpl.php:162
-#, php-format
-msgid "Post to %s"
-msgstr "Lesezeichen zu %s hinzufügen."
-
-#: data/templates/editbookmark.tpl.php:158
-#: data/templates/editbookmark.tpl.php:163
-#, php-format
-msgid "Post to %s (Pop-up)"
-msgstr "Lesezeichen zu %s hinzufügen (Pop-up)"
-
-#: data/templates/editbookmark.tpl.php:168
+#: data/templates/editbookmark.tpl.php:212
 #: data/templates/importDelicious.tpl.php:26
 #: data/templates/importNetscape.tpl.php:27
 #: data/templates/importStructure.tpl.php:16
 msgid "Import"
 msgstr "Importieren"
 
-#: data/templates/editbookmark.tpl.php:170
+#: data/templates/editbookmark.tpl.php:214
 msgid "Import bookmarks from bookmark file"
 msgstr "Die Lesezeichen aus einer Lesezeichendatei importieren."
 
-#: data/templates/editbookmark.tpl.php:170
+#: data/templates/editbookmark.tpl.php:214
 msgid "Internet Explorer, Mozilla Firefox and Netscape"
 msgstr "Microsoft Internet Explorer, Mozilla Firefox und Netscape"
 
-#: data/templates/editbookmark.tpl.php:171
+#: data/templates/editbookmark.tpl.php:215
 msgid "Import bookmarks from del.icio.us"
 msgstr "Lesezeichen von del.icio.us importieren."
 
-#: data/templates/editprofile.tpl.php:10
+#: data/templates/editprofile-sslclientcerts.tpl.php:11
+msgid "SSL client certificates"
+msgstr "SSL-Client-Zertifikate"
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:17
+msgid "Serial"
+msgstr "Seriennummer"
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:18
+#: data/templates/editprofile.tpl.php:37
+#: data/templates/profile.tpl.php:17
+msgid "Name"
+msgstr "Name"
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:19
+#: data/templates/profile.tpl.php:11
+msgid "Email"
+msgstr "E-Mail"
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:20
+msgid "Issuer"
+msgstr "Herausgeber"
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:30
+msgid "delete"
+msgstr "Löschen"
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:43
+msgid "No certificates registered"
+msgstr "Es sind keine Zertifikate registriert."
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:48
+msgid "Your current certificate is already registered with your account."
+msgstr "Dein aktuelles Zertifikat ist bereits registriert."
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:53
+msgid "Register current certificate to automatically login."
+msgstr "Aktuelles Zertifikat zum automatischen Einloggen registrieren."
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:59
+msgid "Your browser does not provide a certificate."
+msgstr "Dein Browser stellt kein Zertifikat zu Verfügung."
+
+#: data/templates/editprofile.tpl.php:8
 msgid "Account Details"
 msgstr "Kontodetails"
 
-#: data/templates/editprofile.tpl.php:14 data/templates/login.tpl.php:21
-#: data/templates/password.tpl.php:10 data/templates/profile.tpl.php:6
+#: data/templates/editprofile.tpl.php:12
+#: data/templates/login.tpl.php:21
+#: data/templates/password.tpl.php:10
+#: data/templates/profile.tpl.php:6
 #: data/templates/register.tpl.php:16
 msgid "Username"
 msgstr "Benutzername"
 
-#: data/templates/editprofile.tpl.php:19
+#: data/templates/editprofile.tpl.php:17
 msgid "New Password"
 msgstr "Neues Passwort"
 
-#: data/templates/editprofile.tpl.php:24
+#: data/templates/editprofile.tpl.php:22
 msgid "Confirm Password"
 msgstr "Passwort bestätigen"
 
-#: data/templates/editprofile.tpl.php:29 data/templates/password.tpl.php:14
+#: data/templates/editprofile.tpl.php:27
+#: data/templates/password.tpl.php:14
 #: data/templates/register.tpl.php:26
 msgid "E-mail"
 msgstr "E-Mail"
 
-#: data/templates/editprofile.tpl.php:35
+#: data/templates/editprofile.tpl.php:33
 msgid "Personal Details"
 msgstr "Persönliche Details"
 
-#: data/templates/editprofile.tpl.php:39 data/templates/profile.tpl.php:17
-msgid "Name"
-msgstr "Name"
-
-#: data/templates/editprofile.tpl.php:43 data/templates/profile.tpl.php:23
+#: data/templates/editprofile.tpl.php:41
+#: data/templates/profile.tpl.php:23
 msgid "Homepage"
 msgstr "Homepage"
 
-#: data/templates/editprofile.tpl.php:52 www/edit.php:113
+#: data/templates/editprofile.tpl.php:50
+#: www/edit.php:113
 msgid "Save Changes"
 msgstr "Änderungen speichern"
 
@@ -591,95 +631,61 @@ msgid "Instructions"
 msgstr "Instruktionen"
 
 #: data/templates/importDelicious.tpl.php:33
-msgid ""
-"Log in to the <a href=\"http://del.icio.us/api/posts/all\">export page at "
-"del.icio.us</a>"
-msgstr ""
-"Melden Sie sich <a href=\"http://del.icio.us/api/posts/all\">bei del.icio.us "
-"an</a>, um Ihre Lesezeichen zu exportieren"
+msgid "Log in to the <a href=\"http://del.icio.us/api/posts/all\">export page at del.icio.us</a>"
+msgstr "Melden Sie sich <a href=\"http://del.icio.us/api/posts/all\">bei del.icio.us an</a>, um Ihre Lesezeichen zu exportieren"
 
 #: data/templates/importDelicious.tpl.php:34
-msgid ""
-"Save the resulting <abbr title=\"Extensible Markup Language\">XML</abbr> "
-"file to your computer"
-msgstr ""
-"Speichern Sie die resultierende <abbr title=\"Extensible Markup Language"
-"\">XML</abbr>-Datei lokal auf Ihrem Computer"
+msgid "Save the resulting <abbr title=\"Extensible Markup Language\">XML</abbr> file to your computer"
+msgstr "Speichern Sie die resultierende <abbr title=\"Extensible Markup Language\">XML</abbr>-Datei lokal auf Ihrem Computer"
 
 #: data/templates/importDelicious.tpl.php:35
-msgid ""
-"Click <kbd>Browse...</kbd> to find this file on your computer. The maximum "
-"size the file can be is 1MB"
-msgstr ""
-"Klicken Sie auf <kbd>Durchsuchen...</kbd> um die bereits gespeicherte "
-"Lesezeichendatei auszuwählen. Die Dateigröße darf maximal 1 MB betragen"
+msgid "Click <kbd>Browse...</kbd> to find this file on your computer. The maximum size the file can be is 1MB"
+msgstr "Klicken Sie auf <kbd>Durchsuchen...</kbd> um die bereits gespeicherte Lesezeichendatei auszuwählen. Die Dateigröße darf maximal 1 MB betragen"
 
 #: data/templates/importDelicious.tpl.php:36
 #: data/templates/importNetscape.tpl.php:43
 msgid "Select the default privacy setting for your imported bookmarks"
-msgstr ""
-"Wählen Sie die Standardeinstellung der Privatsphäre für Ihre zu "
-"importierenden Lesezeichen"
+msgstr "Wählen Sie die Standardeinstellung der Privatsphäre für Ihre zu importierenden Lesezeichen"
 
 #: data/templates/importDelicious.tpl.php:37
 #: data/templates/importNetscape.tpl.php:44
-msgid ""
-"Click <kbd>Import</kbd> to start importing the bookmarks; it may take a "
-"minute"
-msgstr ""
-"Klicken Sie auf <kbd>Importieren</kbd> um die bereits lokal gespeicherte "
-"Lesezeichendatei zu importieren. Dieser Prozess kann bis zu eine Minute "
-"andauern"
+msgid "Click <kbd>Import</kbd> to start importing the bookmarks; it may take a minute"
+msgstr "Klicken Sie auf <kbd>Importieren</kbd> um die bereits lokal gespeicherte Lesezeichendatei zu importieren. Dieser Prozess kann bis zu eine Minute andauern"
 
 #: data/templates/importNetscape.tpl.php:35
 msgid "Export your bookmarks from your browser to a file"
 msgstr "Exportieren Sie Ihre Lesezeichen aus dem Webbrowser in eine Datei"
 
 #: data/templates/importNetscape.tpl.php:37
-msgid ""
-"Internet Explorer: <kbd>File &gt; Import and Export... &gt; Export Favorites"
-msgstr ""
-"Microsoft Internet Explorer: <kbd>Datei  &gt; Importieren und "
-"Exportieren...  &gt; Favoriten exportieren"
+msgid "Internet Explorer: <kbd>File &gt; Import and Export... &gt; Export Favorites"
+msgstr "Microsoft Internet Explorer: <kbd>Datei  &gt; Importieren und Exportieren...  &gt; Favoriten exportieren"
 
 #: data/templates/importNetscape.tpl.php:38
-msgid ""
-"Mozilla Firefox: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; File &gt; "
-"Export..."
-msgstr ""
-"Mozilla Firefox: <kbd>Lesezeichen  &gt; Lesezeichen verwalten... &gt; Datei "
-"&gt; Exportieren..."
+msgid "Mozilla Firefox: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; File &gt; Export..."
+msgstr "Mozilla Firefox: <kbd>Lesezeichen  &gt; Lesezeichen verwalten... &gt; Datei &gt; Exportieren..."
 
 #: data/templates/importNetscape.tpl.php:39
-msgid ""
-"Netscape: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; Tools &gt; Export..."
-msgstr ""
-"Netscape: <kbd>Lesezeichen &gt; Lesezeichen verwalten... &gt; Werkzeuge &gt; "
-"Exportieren..."
+msgid "Netscape: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; Tools &gt; Export..."
+msgstr "Netscape: <kbd>Lesezeichen &gt; Lesezeichen verwalten... &gt; Werkzeuge &gt; Exportieren..."
 
 #: data/templates/importNetscape.tpl.php:42
-msgid ""
-"Click <kbd>Browse...</kbd> to find the saved bookmark file on your computer. "
-"The maximum size the file can be is 1MB"
-msgstr ""
-"Klicken Sie auf <kbd>Durchsuchen...</kbd> um die bereits gespeicherte "
-"Lesezeichendatei auszuwählen. Die Dateigröße darf maximal 1 MB betragen"
+msgid "Click <kbd>Browse...</kbd> to find the saved bookmark file on your computer. The maximum size the file can be is 1MB"
+msgstr "Klicken Sie auf <kbd>Durchsuchen...</kbd> um die bereits gespeicherte Lesezeichendatei auszuwählen. Die Dateigröße darf maximal 1 MB betragen"
 
 #: data/templates/importStructure.tpl.php:24
 msgid "Create your structure into a simple text file and following this model:"
 msgstr "Erstelle deine eigene Struktur in einer einfachen Textdatei und folge folgendem Modell:"
 
 #: data/templates/importStructure.tpl.php:35
-msgid ""
-"Then import the file. The tags and their relations will be added to your "
-"profile."
+msgid "Then import the file. The tags and their relations will be added to your profile."
 msgstr "Importiere die Datei. Die Schlagwörter und ihre Beziehungen werden deinem Profil hinzugefügt."
 
 #: data/templates/login.tpl.php:13
 msgid "Please activate cookies"
 msgstr "Bitte Cookies aktivieren"
 
-#: data/templates/login.tpl.php:26 data/templates/register.tpl.php:21
+#: data/templates/login.tpl.php:26
+#: data/templates/register.tpl.php:21
 msgid "Password"
 msgstr "Passwort"
 
@@ -687,7 +693,8 @@ msgstr "Passwort"
 msgid "Don't ask for my password for 2 weeks"
 msgstr "Zwei Wochen nicht nach meinem Passwort fragen"
 
-#: data/templates/login.tpl.php:32 data/templates/toolbar.inc.php:29
+#: data/templates/login.tpl.php:32
+#: data/templates/toolbar.inc.php:29
 #: www/login.php:57
 msgid "Log In"
 msgstr "Anmelden"
@@ -698,23 +705,12 @@ msgstr "Haben Sie Ihr Passwort vergessen?"
 
 #: data/templates/password.tpl.php:5
 #, php-format
-msgid ""
-"If you have forgotten your password, %s can generate a new one. Enter the "
-"username and e-mail address of your account into the form below and we will "
-"e-mail your new password to you."
-msgstr ""
-"Sofern Sie Ihr Passwort vergessen haben, können Sie nun durch %s ein neues "
-"Passwort erstellen lassen. Geben Sie zur Verifizierung Ihren Benutzernamen "
-"und Ihre E-Mail Adresse Ihres Accounts ein. In Kürze erhalten Sie ein neues "
-"Passwort. Verwenden Sie dieses Passwort, um sich erfolgreich anzumelden."
+msgid "If you have forgotten your password, %s can generate a new one. Enter the username and e-mail address of your account into the form below and we will e-mail your new password to you."
+msgstr "Sofern Sie Ihr Passwort vergessen haben, können Sie nun durch %s ein neues Passwort erstellen lassen. Geben Sie zur Verifizierung Ihren Benutzernamen und Ihre E-Mail Adresse Ihres Accounts ein. In Kürze erhalten Sie ein neues Passwort. Verwenden Sie dieses Passwort, um sich erfolgreich anzumelden."
 
 #: data/templates/password.tpl.php:19
 msgid "Generate Password"
 msgstr "Passwort generieren"
-
-#: data/templates/profile.tpl.php:11
-msgid "Email"
-msgstr "E-Mail"
 
 #: data/templates/profile.tpl.php:28
 msgid "Member Since"
@@ -730,7 +726,8 @@ msgstr "Beobachten"
 msgid "Watched By"
 msgstr "Beobachtet von"
 
-#: data/templates/profile.tpl.php:68 data/templates/toolbar.inc.php:9
+#: data/templates/profile.tpl.php:68
+#: data/templates/toolbar.inc.php:9
 msgid "Bookmarks"
 msgstr "Lesezeichen"
 
@@ -740,17 +737,11 @@ msgstr "Zu den Lesezeichen"
 
 #: data/templates/register.tpl.php:11
 #, php-format
-msgid ""
-"Sign up here to create a free %s account. All the information requested "
-"below is required"
-msgstr ""
-"Registrieren Sie sich hier für ein kostenloses %s Konto. Alle unten "
-"angeforderten Informationen sind für die Registrierung erforderlich"
+msgid "Sign up here to create a free %s account. All the information requested below is required"
+msgstr "Registrieren Sie sich hier für ein kostenloses %s Konto. Alle unten angeforderten Informationen sind für die Registrierung erforderlich"
 
 #: data/templates/register.tpl.php:18
-msgid ""
-" at least 5 characters, alphanumeric (no spaces, no dots or other special "
-"ones)"
+msgid " at least 5 characters, alphanumeric (no spaces, no dots or other special ones)"
 msgstr " mindestens 5 alphanumerische Zeichen (keine Leerzeichen, keine Punkte oder andere Sonderzeichen)"
 
 #: data/templates/register.tpl.php:28
@@ -761,8 +752,9 @@ msgstr " zum Versenden des Passworts"
 msgid "Antispam question"
 msgstr "Sicherheitsfrage"
 
-#: data/templates/register.tpl.php:41 data/templates/toolbar.inc.php:31
-#: www/register.php:83
+#: data/templates/register.tpl.php:41
+#: data/templates/toolbar.inc.php:31
+#: www/register.php:99
 msgid "Register"
 msgstr "Registrieren"
 
@@ -794,27 +786,19 @@ msgstr "alle Lesezeichen"
 msgid "Search"
 msgstr "Suche"
 
-#: data/templates/sidebar.block.linked.php:51
+#: data/templates/sidebar.block.linked.php:23
 msgid "Linked Tags"
 msgstr "Ausgewählte Schlagwörter"
 
-#: data/templates/sidebar.block.linked.php:62
+#: data/templates/sidebar.block.linked.php:28
 #: data/templates/sidebar.block.menu.php:46
 msgid "Add new link"
 msgstr "Einen neuen Navigationslink hinzufügen."
 
-#: data/templates/sidebar.block.linked.php:63
+#: data/templates/sidebar.block.linked.php:29
 #: data/templates/sidebar.block.menu.php:47
 msgid "Delete link"
 msgstr "Einen Navigationslink löschen."
-
-#: data/templates/sidebar.block.menu2.php:25
-msgid "Featured Menu Tags"
-msgstr "Spezielle Schlagwörter"
-
-#: data/templates/sidebar.block.menu2.php:29
-msgid "This menu is composed of keywords (tags) organized by admins."
-msgstr "Dieses Menü ist aus von Administratoren ausgesuchten Schlagwörtern zusammengestellt"
 
 #: data/templates/sidebar.block.menu.php:35
 #, php-format
@@ -845,6 +829,14 @@ msgstr "Sämtliche Schlagwörter dieses Benutzers."
 msgid "See popular tags"
 msgstr "Betrachten Sie populäre Schlagwörter."
 
+#: data/templates/sidebar.block.menu2.php:21
+msgid "Featured Menu Tags"
+msgstr "Spezielle Schlagwörter"
+
+#: data/templates/sidebar.block.menu2.php:25
+msgid "This menu is composed of keywords (tags) organized by admins."
+msgstr "Dieses Menü ist aus von Administratoren ausgesuchten Schlagwörtern zusammengestellt"
+
 #: data/templates/sidebar.block.recent.php:18
 msgid "Recent Tags"
 msgstr "Neueste Schlagwörter"
@@ -853,30 +845,33 @@ msgstr "Neueste Schlagwörter"
 msgid "Related Tags"
 msgstr "Verwandte Schlagwörter"
 
-#: data/templates/sidebar.block.search.php:15
+#: data/templates/sidebar.block.search.php:28
 msgid "Last Searches"
 msgstr "Neueste Suchbegriffe"
 
-#: data/templates/sidebar.block.search.php:24
+#: data/templates/sidebar.block.search.php:40
 msgid "Number of bookmarks for this query"
 msgstr "Die Anzahl der Favoriten für diese Anfrage"
 
-#: data/templates/sidebar.block.tagactions.php:9 www/tagrename.php:72
+#: data/templates/sidebar.block.tagactions.php:9
+#: www/tagrename.php:72
 msgid "Rename Tag"
 msgid_plural "Rename Tags"
 msgstr[0] "Das Schlagwort umbenennen."
 msgstr[1] "Die Schlagwörter umbenennen."
 
-#: data/templates/sidebar.block.tagactions.php:22 www/tagdelete.php:54
+#: data/templates/sidebar.block.tagactions.php:22
+#: www/tagdelete.php:54
 msgid "Delete Tag"
 msgstr "Das Schlagwort löschen."
 
-#: data/templates/sidebar.block.tagactions.php:24 www/tagedit.php:61
+#: data/templates/sidebar.block.tagactions.php:24
+#: www/tagedit.php:61
 msgid "Edit Tag Description"
 msgstr "Die Schlagwortbeschreibung bearbeiten"
 
 #: data/templates/sidebar.block.tagactions.php:26
-#: www/tagcommondescriptionedit.php:64
+#: www/tagcommondescriptionedit.php:76
 msgid "Edit Tag Common Description"
 msgstr "Die gemeinsame Beschreibung des Schlagwortes bearbeiten."
 
@@ -888,7 +883,8 @@ msgstr "Eine Verbindung zwischen Schlagwörtern erstellen."
 msgid "New Users"
 msgstr "Neue Benutzer"
 
-#: data/templates/sidebar.block.users.php:23 data/templates/users.tpl.php:17
+#: data/templates/sidebar.block.users.php:23
+#: data/templates/users.tpl.php:24
 msgid "bookmarks"
 msgstr "Lesezeichen"
 
@@ -942,14 +938,11 @@ msgstr "Eine neue Verbindung erstellen:"
 
 #: data/templates/tag2tagadd.tpl.php:19
 #, php-format
-msgid ""
-"Note: include a tag into '%s' tag (e.g. %s>countries) display the tag into "
-"the menu box"
-msgstr ""
-"Anmerkung: Fügen Sie ein Schlagwort dem '%s' Schlagwort hinzu (z.B.: %"
-"s>Länder), so erscheint dieses Schlagwort in der Navigationsbox."
+msgid "Note: include a tag into '%s' tag (e.g. %s>countries) display the tag into the menu box"
+msgstr "Anmerkung: Fügen Sie ein Schlagwort dem '%s' Schlagwort hinzu (z.B.: %s>Länder), so erscheint dieses Schlagwort in der Navigationsbox."
 
-#: data/templates/tag2tagadd.tpl.php:23 data/templates/tag2tagedit.tpl.php:37
+#: data/templates/tag2tagadd.tpl.php:23
+#: data/templates/tag2tagedit.tpl.php:37
 msgid "Create"
 msgstr "Erstellen"
 
@@ -966,13 +959,15 @@ msgid "No links"
 msgstr "Leider derzeit keine Weblinks."
 
 #: data/templates/tag2tagdelete.tpl.php:15
-#: data/templates/tag2tagedit.tpl.php:16 data/templates/tagdelete.tpl.php:8
+#: data/templates/tag2tagedit.tpl.php:16
+#: data/templates/tagdelete.tpl.php:8
 #: www/jsScuttle.php:23
 msgid "Yes"
 msgstr "Ja"
 
 #: data/templates/tag2tagdelete.tpl.php:16
-#: data/templates/tag2tagedit.tpl.php:17 data/templates/tagdelete.tpl.php:9
+#: data/templates/tag2tagedit.tpl.php:17
+#: data/templates/tagdelete.tpl.php:9
 #: www/jsScuttle.php:23
 msgid "No"
 msgstr "Nein"
@@ -997,27 +992,33 @@ msgstr "Neu"
 msgid "Rename"
 msgstr "Umbenennen"
 
-#: data/templates/tags.tpl.php:11 data/templates/users.tpl.php:9
+#: data/templates/tags.tpl.php:11
+#: data/templates/users.tpl.php:9
 msgid "Alphabet"
 msgstr "Alphabet"
 
-#: data/templates/tags.tpl.php:12 data/templates/users.tpl.php:10
+#: data/templates/tags.tpl.php:12
+#: data/templates/users.tpl.php:10
 msgid "Popularity"
 msgstr "Popularität"
 
-#: data/templates/toolbar.inc.php:8 data/templates/toolbar.inc.php:26
+#: data/templates/toolbar.inc.php:8
+#: data/templates/toolbar.inc.php:26
 msgid "Home"
 msgstr "Start"
 
-#: data/templates/toolbar.inc.php:11 www/watchlist.php:106
+#: data/templates/toolbar.inc.php:11
+#: www/watchlist.php:106
 msgid "Watchlist"
 msgstr "Beobachtungsliste"
 
-#: data/templates/toolbar.inc.php:12 www/profile.php:67
+#: data/templates/toolbar.inc.php:12
+#: www/profile.php:67
 msgid "Profile"
 msgstr "Profil"
 
-#: data/templates/toolbar.inc.php:13 www/bookmarks.php:209
+#: data/templates/toolbar.inc.php:13
+#: www/bookmarks.php:215
 msgid "Add a Bookmark"
 msgstr "Lesezeichen hinzufügen"
 
@@ -1029,18 +1030,15 @@ msgstr "Abmelden"
 msgid "Admin"
 msgstr "Administration"
 
-#: data/templates/top.inc.php:49
-msgid ""
-"Admins, your installation is in \"Debug Mode\" ($debugMode = true). To go in "
-"\"Normal Mode\" and hide debugging messages, change $debugMode to false into "
-"config.php."
+#: data/templates/top.inc.php:55
+msgid "Admins, your installation is in \"Debug Mode\" ($debugMode = true). To go in \"Normal Mode\" and hide debugging messages, change $debugMode to false into config.php."
 msgstr "SemanticScuttle befindet sich im \"Debugmodus\" ($debugMode = true). Um in den normalen Modus zu wechseln und die Debugmeldungen zu verstecken, einfach $debugMode in der config.php auf \"false\" setzen."
 
-#: data/templates/users.tpl.php:17
+#: data/templates/users.tpl.php:20
 msgid "profile"
 msgstr "Profil"
 
-#: data/templates/users.tpl.php:17
+#: data/templates/users.tpl.php:21
 msgid "created in"
 msgstr "erstellt in"
 
@@ -1061,24 +1059,33 @@ msgstr "Problem mit "
 msgid "You are not allowed to delete this bookmark"
 msgstr "Sie dürfen dieses Lesezeichen nicht löschen"
 
-#: www/ajaxDelete.php:41 www/edit.php:103
+#: www/ajaxDelete.php:41
+#: www/edit.php:103
 msgid "Failed to delete bookmark"
 msgstr "Das Löschen des Lesezeichens ist fehlgeschlagen."
 
-#: www/alltags.php:49
+#: www/alltags.php:50
 msgid "All Tags"
 msgstr "Alle Schlagwörter"
 
-#: www/alltags.php:55 www/bookmarks.php:96 www/populartags.php:52
-#: www/profile.php:51 www/rss.php:67 www/search.php:109 www/watchlist.php:61
+#: www/alltags.php:56
+#: www/bookmarks.php:99
+#: www/populartags.php:52
+#: www/profile.php:51
+#: www/rss.php:82
+#: www/search.php:111
 #: www/watch.php:45
+#: www/watchlist.php:61
 #, php-format
 msgid "User with username %s was not found"
 msgstr "Der Benutzer %s wurde nicht gefunden."
 
-#: www/bookmarkcommondescriptionedit.php:51 www/tag2tagadd.php:37
-#: www/tag2tagdelete.php:41 www/tag2tagedit.php:33
-#: www/tagcommondescriptionedit.php:43 www/tagedit.php:43
+#: www/bookmarkcommondescriptionedit.php:51
+#: www/tag2tagadd.php:37
+#: www/tag2tagdelete.php:41
+#: www/tag2tagedit.php:33
+#: www/tagcommondescriptionedit.php:51
+#: www/tagedit.php:43
 msgid "Permission denied."
 msgstr "Zugriff verweigert."
 
@@ -1094,43 +1101,51 @@ msgstr "Das Ändern der gemeinsamen Lesezeichenbeschreibung ist fehlgeschlagen."
 msgid "Edit Bookmark Common Description"
 msgstr "Die gemeinsame Lesezeichenbeschreibung bearbeiten."
 
-#: www/bookmarks.php:111 www/tags.php:47
+#: www/bookmarks.php:114
+#: www/tags.php:47
 msgid "Remove the tag from the selection"
 msgstr "Schlagwort aus der Auswahl entfernen"
 
-#: www/bookmarks.php:131 www/edit.php:65
+#: www/bookmarks.php:134
+#: www/edit.php:65
 msgid "Your bookmark must have a title and an address"
 msgstr "Ihr Lesezeichen muss einen Titel und eine URL haben."
 
-#: www/bookmarks.php:152 www/edit.php:83 www/edit.php:86
+#: www/bookmarks.php:139
+msgid "This bookmark URL may not be added"
+msgstr "Diese Lesezeichen-URL darf nicht hinzugefügt werden."
+
+#: www/bookmarks.php:158
+#: www/edit.php:83
+#: www/edit.php:86
 msgid "Bookmark saved"
 msgstr "Ihr Lesezeichen wurde erfolgreich gespeichert."
 
-#: www/bookmarks.php:152
+#: www/bookmarks.php:158
 msgid "(Come back to previous page.)"
 msgstr "Zur vorherigen Seite zurück"
 
-#: www/bookmarks.php:159 www/importNetscape.php:108 www/import.php:106
-msgid ""
-"There was an error saving your bookmark. Please try again or contact the "
-"administrator."
-msgstr ""
-"Beim Speichern des Lesezeichens ist ein Fehler aufgetreten. Bitte versuchen "
-"Sie es erneut oder kontaktieren Sie den Administrator."
+#: www/bookmarks.php:165
+#: www/import.php:106
+#: www/importNetscape.php:108
+msgid "There was an error saving your bookmark. Please try again or contact the administrator."
+msgstr "Beim Speichern des Lesezeichens ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie den Administrator."
 
-#: www/bookmarks.php:216
+#: www/bookmarks.php:222
 msgid "Add Bookmark"
 msgstr "Lesezeichen hinzufügen"
 
-#: www/bookmarks.php:219
+#: www/bookmarks.php:225
 msgid "You must be logged in before you can add bookmarks."
 msgstr "Sie müssen angemeldet sein, um ein Lesezeichen hinzuzufügen."
 
-#: www/bookmarks.php:274 www/bookmarks.php:275
+#: www/bookmarks.php:280
+#: www/bookmarks.php:281
 msgid "My Bookmarks"
 msgstr "Meine Lesezeichen"
 
-#: www/edit.php:44 www/edit.php:45
+#: www/edit.php:44
+#: www/edit.php:45
 msgid "Edit Bookmark"
 msgstr "Lesezeichen bearbeiten"
 
@@ -1160,22 +1175,6 @@ msgstr "Verlauf von %s"
 msgid "Address was not found"
 msgstr "Die Adresse wurde nicht gefunden."
 
-#: www/importNetscape.php:95
-msgid "You have already submitted some of these bookmarks."
-msgstr "Sie haben einige dieser Lesezeichen bereits gespeichert."
-
-#: www/importNetscape.php:115
-msgid "Bookmarks found: "
-msgstr "Lesezeichen gefunden: "
-
-#: www/importNetscape.php:116
-msgid "Bookmarks imported: "
-msgstr "Importierte Lesezeichen: "
-
-#: www/importNetscape.php:117 www/importNetscape.php:122
-msgid "Import Bookmarks from Browser File"
-msgstr "Lesezeichen aus Browser-Lesezeichendatei importieren"
-
 #: www/import.php:47
 msgid "Could not open XML input"
 msgstr "Die XML-Daten konnten nicht geöffnet werden."
@@ -1196,6 +1195,23 @@ msgstr "Sie haben dieses Lesezeichen bereits gespeichert."
 #: www/import.php:104
 msgid "Bookmark imported."
 msgstr "Lesezeichen importiert."
+
+#: www/importNetscape.php:95
+msgid "You have already submitted some of these bookmarks."
+msgstr "Sie haben einige dieser Lesezeichen bereits gespeichert."
+
+#: www/importNetscape.php:115
+msgid "Bookmarks found: "
+msgstr "Lesezeichen gefunden: "
+
+#: www/importNetscape.php:116
+msgid "Bookmarks imported: "
+msgstr "Importierte Lesezeichen: "
+
+#: www/importNetscape.php:117
+#: www/importNetscape.php:122
+msgid "Import Bookmarks from Browser File"
+msgstr "Lesezeichen aus Browser-Lesezeichendatei importieren"
 
 #: www/importStructure.php:61
 msgid "Bad indentation"
@@ -1218,11 +1234,11 @@ msgstr "Sie sind jetzt abgemeldet."
 msgid "%s: Recent bookmarks"
 msgstr "%s: Neue Lesezeichen"
 
-#: www/index.php:78
+#: www/index.php:75
 msgid "Store, share and tag your favourite links"
 msgstr "Speichern, teilen und kategorisieren Sie Ihre Lesezeichen!"
 
-#: www/index.php:79
+#: www/index.php:76
 msgid "All Bookmarks"
 msgstr "Alle Lesezeichen"
 
@@ -1236,51 +1252,35 @@ msgstr "Nicht vorhanden"
 
 #: www/login.php:48
 msgid "The details you have entered are incorrect. Please try again."
-msgstr ""
-"Die von Ihnen angegebenen Daten sind nicht korrekt. Bitte versuchen Sie es "
-"erneut."
+msgstr "Die von Ihnen angegebenen Daten sind nicht korrekt. Bitte versuchen Sie es erneut."
 
 #: www/password.php:36
 msgid "You must enter your username."
 msgstr "Sie müssen Ihren Benutzernamen eingeben."
 
 #: www/password.php:40
-msgid ""
-"You must enter your <abbr title=\"electronic mail\">e-mail</abbr> address."
-msgstr ""
-"Sie müssen Ihre <abbr title=\"electronic mail\">E-Mail</abbr>adresse "
-"eingeben."
+msgid "You must enter your <abbr title=\"electronic mail\">e-mail</abbr> address."
+msgstr "Sie müssen Ihre <abbr title=\"electronic mail\">E-Mail</abbr>adresse eingeben."
 
 #: www/password.php:48
 msgid "No matches found for that username."
 msgstr "Keine Ergebnisse für diesen Benutzernamen gefunden."
 
 #: www/password.php:51
-msgid ""
-"No matches found for that combination of username and <abbr title="
-"\"electronic mail\">e-mail</abbr> address."
-msgstr ""
-"Keine Ergebnisse für diesen Benutzernamen und diese <abbr title=\"electronic "
-"mail\">E-Mail</abbr>adresse gefunden."
+msgid "No matches found for that combination of username and <abbr title=\"electronic mail\">e-mail</abbr> address."
+msgstr "Keine Ergebnisse für diesen Benutzernamen und diese <abbr title=\"electronic mail\">E-Mail</abbr>adresse gefunden."
 
 #: www/password.php:59
-msgid ""
-"There was an error while generating your new password. Please try again."
-msgstr ""
-"Bei der Generierung des neuen Passwortes ist ein Fehler aufgetreten. Bitte "
-"versuchen Sie es erneut."
+msgid "There was an error while generating your new password. Please try again."
+msgstr "Bei der Generierung des neuen Passwortes ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
 
 #: www/password.php:63
 msgid "Your new password is:"
 msgstr "Ihr neues Passwort lautet:"
 
 #: www/password.php:63
-msgid ""
-"To keep your bookmarks secure, you should change this password in your "
-"profile the next time you log in."
-msgstr ""
-"Um den größtmöglichen Schutz Ihrer Lesezeichen zu gewährleisten, sollten Sie "
-"das Passwort in Ihrem Profil bei Ihrer nächsten Anmeldung editieren."
+msgid "To keep your bookmarks secure, you should change this password in your profile the next time you log in."
+msgstr "Um den größtmöglichen Schutz Ihrer Lesezeichen zu gewährleisten, sollten Sie das Passwort in Ihrem Profil bei Ihrer nächsten Anmeldung editieren."
 
 #: www/password.php:66
 #, php-format
@@ -1296,7 +1296,8 @@ msgstr "Ein neues Passwort wurde erstellt und an %s gesandt."
 msgid "Forgotten Password"
 msgstr "Vergessenes Passwort"
 
-#: www/profile.php:59 www/watchlist.php:119
+#: www/profile.php:59
+#: www/watchlist.php:119
 msgid "Username was not specified"
 msgstr "Der Benutzername wurde nicht angegeben."
 
@@ -1328,73 +1329,97 @@ msgstr "Beim Speichern Ihrer Änderungen trat ein Fehler auf."
 msgid "Changes saved."
 msgstr "Die Änderungen wurden gespeichert."
 
-#: www/register.php:46
+#: www/profile.php:121
+msgid "You do not have a valid SSL client certificate"
+msgstr "Du hast kein gültiges SSL-Client-Zertifikat."
+
+#: www/profile.php:123
+msgid "This certificate is already registered"
+msgstr "Das Zertifikat ist bereits registriert."
+
+#: www/profile.php:125
+msgid "Failed to register SSL client certificate."
+msgstr "Fehler beim registrieren des SSL-Client-Zertifikats."
+
+#: www/profile.php:127
+msgid "SSL client certificate registered."
+msgstr "SSL-Client-Zertifikat wurde registriert."
+
+#: www/profile.php:136
+msgid "Certificate not found."
+msgstr "Zertifikat nicht gefunden."
+
+#: www/profile.php:138
+msgid "The certificate does not belong to you."
+msgstr "Dieses Zertifikat gehört nicht zu dir."
+
+#: www/profile.php:140
+msgid "Failed to delete SSL client certificate."
+msgstr "Das Löschen des SSL-Client-Zertifikats ist fehlgeschlagen."
+
+#: www/profile.php:142
+msgid "SSL client certificate deleted."
+msgstr "SSL-Client-Zertifikat gelöscht."
+
+#: www/register.php:52
 msgid "You <em>must</em> enter a username, password and e-mail address."
-msgstr ""
-"Sie müssen einen Benutzernamen, ein Passwort und eine <abbr title="
-"\"electronic mail\">E-Mail</abbr>addresse eingeben."
+msgstr "Sie müssen einen Benutzernamen, ein Passwort und eine <abbr title=\"electronic mail\">E-Mail</abbr>addresse eingeben."
 
-#: www/register.php:50
+#: www/register.php:56
 msgid "This username has been reserved, please make another choice."
-msgstr ""
-"Dieser Benutzername ist bereits reserviert. Bitte treffen Sie eine andere "
-"Wahl."
+msgstr "Dieser Benutzername ist bereits reserviert. Bitte treffen Sie eine andere Wahl."
 
-#: www/register.php:54
+#: www/register.php:60
 msgid "This username already exists, please make another choice."
-msgstr ""
-"Dieser Benutzername existiert bereits. Bitte treffen Sie eine andere Wahl."
+msgstr "Dieser Benutzername existiert bereits. Bitte treffen Sie eine andere Wahl."
 
-#: www/register.php:58
-msgid ""
-"This username is not valid (too short, too long, forbidden characters...), "
-"please make another choice."
+#: www/register.php:64
+msgid "This username is not valid (too short, too long, forbidden characters...), please make another choice."
 msgstr "Dieser Benutzername ist unzulässig (zu kurz, zu lang, nicht erlaubte Zeichen, ...). Bitte treffen Sie eine andere Wahl."
 
-#: www/register.php:62
+#: www/register.php:68
 msgid "E-mail address is not valid. Please try again."
 msgstr "Diese E-Mailadresse ist nicht gültig. Bitte versuchen Sie es erneut."
 
-#: www/register.php:66
+#: www/register.php:72
 msgid "Antispam answer is not valid. Please try again."
-msgstr ""
-"Die Sicherheitsfrage wurde nicht korrekt beantwortet. Bitte versuchen Sie es "
-"erneut."
+msgstr "Die Sicherheitsfrage wurde nicht korrekt beantwortet. Bitte versuchen Sie es erneut."
 
-#: www/register.php:75
+#: www/register.php:90
 msgid "You have successfully registered. Enjoy!"
 msgstr "Ihre Registrierung war erfolgreich!"
 
-#: www/register.php:77
+#: www/register.php:92
 msgid "Registration failed. Please try again."
 msgstr "Ihre Registrierung ist fehlgeschlagen. Bitte versuchen Sie es erneut."
 
-#: www/rss.php:84
+#: www/rss.php:99
 #, php-format
 msgid "Recent bookmarks posted to %s"
 msgstr "Neueste Lesezeichen in %s"
 
-#: www/search.php:81 www/search.php:145
+#: www/search.php:83
+#: www/search.php:147
 msgid "Search Bookmarks"
 msgstr "Suche Lesezeichen"
 
-#: www/search.php:87
+#: www/search.php:89
 msgid "Search Results"
 msgstr "Suche Ergebnisse"
 
-#: www/search.php:135
+#: www/search.php:137
 msgid "Unsatisfied? You can also try our "
 msgstr "Nicht zufriegen? Probier unser "
 
-#: www/tag2tagadd.php:50
+#: www/tag2tagadd.php:54
 msgid "Tag link created"
 msgstr "Der Weblink für das Schlagwort wurde erfolgreich erstellt."
 
-#: www/tag2tagadd.php:53
+#: www/tag2tagadd.php:57
 msgid "Failed to create the link"
 msgstr "Der Weblink für das Schlagwort konnte nicht erstellt werden."
 
-#: www/tag2tagadd.php:65
+#: www/tag2tagadd.php:69
 msgid "Add Tag Link"
 msgstr "Eine Verbindung für das Schlagwort hinzufügen"
 
@@ -1414,15 +1439,13 @@ msgstr "Eine Verbindung zwischen Schlagwörtern löschen"
 msgid "Edit Link Between Tags"
 msgstr "Einen Weblink zwischen Schlagwörtern editieren"
 
-#: www/tagcommondescriptionedit.php:55
+#: www/tagcommondescriptionedit.php:62
 msgid "Tag common description updated"
-msgstr ""
-"Die gemeinsame Beschreibung des Schlagwortes wurde erfolgreich aktualisiert."
+msgstr "Die gemeinsame Beschreibung des Schlagwortes wurde erfolgreich aktualisiert."
 
-#: www/tagcommondescriptionedit.php:58
+#: www/tagcommondescriptionedit.php:67
 msgid "Failed to update the tag common description"
-msgstr ""
-"Ändern der gemeinsame Beschreibung des Schlagwortes ist fehlgeschlagen."
+msgstr "Ändern der gemeinsame Beschreibung des Schlagwortes ist fehlgeschlagen."
 
 #: www/tagdelete.php:43
 msgid "Tag deleted"
@@ -1452,10 +1475,6 @@ msgstr "Die Umbenennung des Schlagwortes ist fehlgeschlagen."
 msgid "Users"
 msgstr "Benutzer"
 
-#: www/watchlist.php:104
-msgid "My Watchlist"
-msgstr "Meine Beobachtungsliste"
-
 #: www/watch.php:54
 msgid "User removed from your watchlist"
 msgstr "Der Benutzer wurde aus Ihrer Beobachtungsliste entfernt."
@@ -1464,7 +1483,11 @@ msgstr "Der Benutzer wurde aus Ihrer Beobachtungsliste entfernt."
 msgid "User added to your watchlist"
 msgstr "Der Benutzer wurde zu Ihrer Beobachtungsliste hinzugefügt."
 
-#: www/api/httpauth.inc.php:11
+#: www/watchlist.php:104
+msgid "My Watchlist"
+msgstr "Meine Beobachtungsliste"
+
+#: www/api/httpauth.inc.php:30
 msgid "Use of the API calls requires authentication."
 msgstr "Die API kann nur nach Authentifizierung benutzt werden."
 
@@ -1480,16 +1503,14 @@ msgstr "Administratorhinweise: "
 msgid "To refresh manually Google Custom Search Engine, goes to: "
 msgstr "Um die Google Custom Search Engine manuell zu aktualsieren, gehe zu "
 
-#: www/gsearch/index.php:35
-msgid ""
-"If no result appears, check that all the urls are valid in the admin section."
+#: www/gsearch/index.php:37
+msgid "If no result appears, check that all the urls are valid in the admin section."
 msgstr "Wenn keine Ergebnisse gefunden werden, sollten alle URLs im Administrationsbereich geprüft werden."
 
 #~ msgid "for"
 #~ msgstr "nach"
-
 #~ msgid "URL"
 #~ msgstr "URL"
-
 #~ msgid "Last Users"
 #~ msgstr "Neueste Benutzer"
+
