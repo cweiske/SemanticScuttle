@@ -224,6 +224,7 @@ class SemanticScuttle_Service_User_SslClientCert extends SemanticScuttle_DbServi
     public function getUserCerts($uId)
     {
         $query = 'SELECT * FROM ' . $this->getTableName()
+            . ' WHERE uId = ' . (int)$uId
             . ' ORDER BY sslSerial DESC';
         if (!($dbresult = $this->db->sql_query($query))) {
             message_die(
