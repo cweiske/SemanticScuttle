@@ -470,6 +470,21 @@ $filetypes = array(
 );
 
 /**
+ * Link protocols that are allowed for newly added bookmarks.
+ * This prevents i.e. adding javascript: links.
+ *
+ * @link http://en.wikipedia.org/wiki/URI_scheme
+ *
+ * @var array
+ */
+$allowedProtocols = array(
+    'ftp', 'ftps',
+    'http', 'https',
+    'mailto', 'nntp',
+    'xmpp'
+);
+
+/**
  * Enable the "common bookmark description" functionality
  *
  * @var boolean

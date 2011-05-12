@@ -50,8 +50,6 @@ class BookmarkTest extends TestBase
     /**
      * Tests if adding a bookmark with short url name
      * saves it in the database.
-     *
-     * @return void
      */
     public function testAddBookmarkShort()
     {
@@ -65,7 +63,16 @@ class BookmarkTest extends TestBase
         $this->assertEquals('myShortName', $bm['bShort']);
     }
 
-    public function testHardCharactersInBookmarks()
+    public function testAddBookmarkInvalidUrl()
+    {
+        $retval = $this->bs->addBookmark(
+            'javascript:alert(123)', 'title', 'desc', 'priv',
+            0, array()
+        );
+        $this->assertFalse($retval, 'Bookmark with invalid URL was accepted');
+    }
+
+    public function testAddBookmarkWithSpecialCharacters()
     {
         $bs = $this->bs;
         $title = "title&é\"'(-è_çà)=";
@@ -95,7 +102,7 @@ class BookmarkTest extends TestBase
         );
     }
 
-    public function testUnificationOfBookmarks()
+    public function testAddBookmarkUnification()
     {
         $bs = $this->bs;
 
