@@ -492,10 +492,18 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         return $arrWatch;
     }
 
-    function getWatchNames($uId, $watchedby = false) {
-        // Gets the list of user names being watched by the given user.
-        // - If $watchedby is false get the list of users that $uId watches
-        // - If $watchedby is true get the list of users that watch $uId
+
+    /**
+     * Gets the list of user names being watched by the given user.
+     *
+     * @param integer $uId       User ID
+     * @param boolean $watchedby if false: get the list of users that $uId watches
+     *                           if true: get the list of users that watch $uId
+     *
+     * @return array Array of user names
+     */
+    public function getWatchNames($uId, $watchedby = false)
+    {
         if ($watchedby) {
             $table1 = 'b';
             $table2 = 'a';
@@ -503,10 +511,22 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
             $table1 = 'a';
             $table2 = 'b';
         }
-        $query = 'SELECT '. $table1 .'.'. $this->getFieldName('username') .' FROM '. $GLOBALS['tableprefix'] .'watched AS W, '. $this->getTableName() .' AS a, '. $this->getTableName() .' AS b WHERE W.watched = a.'. $this->getFieldName('primary') .' AND W.uId = b.'. $this->getFieldName('primary') .' AND '. $table2 .'.'. $this->getFieldName('primary') .' = '. intval($uId) .' ORDER BY '. $table1 .'.'. $this->getFieldName('username');
+        $primary   = $this->getFieldName('primary');
+        $userfield = $this->getFieldName('username');
+        $query = 'SELECT '. $table1 .'.'. $userfield
+            . ' FROM '. $GLOBALS['tableprefix'] . 'watched AS W,'
+            . ' ' . $this->getTableName() .' AS a,'
+            . ' ' . $this->getTableName() .' AS b'
+            . ' WHERE W.watched = a.' . $primary
+            . ' AND W.uId = b.' . $primary
+            . ' AND ' . $table2 . '.' . $primary . ' = '. intval($uId)
+            . ' ORDER BY '. $table1 . '.' . $userfield;
 
-        if (!($dbresult =& $this->db->sql_query($query))) {
-            message_die(GENERAL_ERROR, 'Could not get watchlist', '', __LINE__, __FILE__, $query, $this->db);
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR, 'Could not get watchlist',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
             return false;
         }
 
@@ -515,12 +535,13 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
             $this->db->sql_freeresult($dbresult);
             return $arrWatch;
         }
-        while ($row =& $this->db->sql_fetchrow($dbresult)) {
+        while ($row = $this->db->sql_fetchrow($dbresult)) {
             $arrWatch[] = $row[$this->getFieldName('username')];
         }
         $this->db->sql_freeresult($dbresult);
         return $arrWatch;
     }
+
 
     function getWatchStatus($watcheduser, $currentuser) {
         // Returns true if the current user is watching the given user, and false otherwise.
