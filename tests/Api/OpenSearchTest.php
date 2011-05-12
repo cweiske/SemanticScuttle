@@ -27,7 +27,7 @@ class Api_OpenSearchTest extends TestBaseApi
             1, count($arElements),
             'OpenSearch link in HTML is missing'
         );
-        $searchDescUrl = (string)$arElements[0]['href'];
+        $searchDescUrl = $this->completeUrl((string)$arElements[0]['href']);
         $this->assertNotNull($searchDescUrl, 'Search description URL is empty');
 
         $req = new HTTP_Request2($searchDescUrl);
