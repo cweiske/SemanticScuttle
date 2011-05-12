@@ -12,11 +12,6 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'UserTest::main');
-}
-
-require_once 'prepare.php';
 
 /**
  * Unit tests for the SemanticScuttle user service.
@@ -31,24 +26,6 @@ require_once 'prepare.php';
  */
 class UserTest extends TestBase
 {
-
-
-
-    /**
-     * Used to run this test class standalone
-     *
-     * @return void
-     */
-    public static function main()
-    {
-        require_once 'PHPUnit/TextUI/TestRunner.php';
-        PHPUnit_TextUI_TestRunner::run(
-            new PHPUnit_Framework_TestSuite(__CLASS__)
-        );
-    }
-
-
-
     protected function setUp()
     {
         $this->us = SemanticScuttle_Service_Factory::get('User');
@@ -531,11 +508,4 @@ class UserTest extends TestBase
     }
 
 }
-
-
-
-if (PHPUnit_MAIN_METHOD == 'UserTest::main') {
-    UserTest::main();
-}
-
 ?>

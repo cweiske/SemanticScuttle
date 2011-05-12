@@ -131,8 +131,11 @@ if ($userservice->isLoggedOn() && POST_SUBMITTED != '') {
 		$templatename = 'editbookmark.tpl';
 	} else {
 		$address = trim(POST_ADDRESS);
-		// If the bookmark exists already, edit the original
-		if ($bookmarkservice->bookmarkExists($address, $currentUserID)) {
+        if (!SemanticScuttle_Model_Bookmark::isValidUrl($address)) {
+            $tplVars['error'] = T_('This bookmark URL may not be added');
+            $templatename = 'editbookmark.tpl';
+        } else if ($bookmarkservice->bookmarkExists($address, $currentUserID)) {
+            // If the bookmark exists already, edit the original
 			$bookmark = $bookmarkservice->getBookmarkByAddress($address);
 			header('Location: '. createURL('edit', $bookmark['bId']));
 			exit();

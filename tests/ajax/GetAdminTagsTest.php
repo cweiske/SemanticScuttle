@@ -12,8 +12,6 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-
-require_once dirname(__FILE__) . '/../prepare.php';
 require_once 'HTTP/Request2.php';
 
 /**

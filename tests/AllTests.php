@@ -12,23 +12,15 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'AllTests::main');
-}
-
-require_once 'prepare.php';
 
 /**
  * SemanticScuttle unit tests.
  *
  * To launch this tests, you need PHPUnit 3.
  * Run them with:
- * $ php tests/AllTests.php
+ * $ cd tests; phpunit .
  * or single files like:
- * $ php tests/BookmarkTest.php
- *
- * You also may use phpunit directly:
- * $ phpunit tests/AllTests.php
+ * $ cd tests; phpunit BookmarkTest.php
  *
  * @category Bookmarking
  * @package  SemanticScuttle
@@ -40,14 +32,6 @@ require_once 'prepare.php';
  */
 class AllTests extends PHPUnit_Framework_TestSuite
 {
-    public static function main()
-    {
-        require_once 'PHPUnit/TextUI/TestRunner.php';
-        PHPUnit_TextUI_TestRunner::run(self::suite());
-    }
-
-
-
     public static function suite()
     {
         $suite = new AllTests();
@@ -74,9 +58,4 @@ class AllTests extends PHPUnit_Framework_TestSuite
     {
     }
 }
-
-if (PHPUnit_MAIN_METHOD == 'AllTests::main') {
-    AllTests::main();
-}
-
 ?>

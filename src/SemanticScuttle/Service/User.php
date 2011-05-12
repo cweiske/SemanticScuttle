@@ -29,6 +29,14 @@ require_once 'SemanticScuttle/Model/User.php';
 class SemanticScuttle_Service_User extends SemanticScuttle_DbService
 {
     /**
+     * The ID of the currently logged on user.
+     * NULL when not logged in.
+     *
+     * @var integer
+     */
+    protected $currentuserId = null;
+
+    /**
      * Currently logged on user from database
      *
      * @var array
@@ -478,10 +486,17 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      */
     public function getCurrentUserId()
     {
-        if (isset($_SESSION[$this->getSessionKey()])) {
-            return (int)$_SESSION[$this->getSessionKey()];
+        if ($this->currentuserId !== null) {
+            return $this->currentuserId;
+        }
 
-        } else if (isset($_COOKIE[$this->getCookieKey()])) {
+        if (isset($_SESSION[$this->getSessionKey()])) {
+            $this->currentuserId = (int)$_SESSION[$this->getSessionKey()];
+            return $this->currentuserId;
+
+        }
+
+        if (isset($_COOKIE[$this->getCookieKey()])) {
             $cook = explode(':', $_COOKIE[$this->getCookieKey()]);
             //cookie looks like this: 'id:md5(username+password)'
             $query = 'SELECT * FROM '. $this->getTableName() .
@@ -500,10 +515,10 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
 
             if ($row = $this->db->sql_fetchrow($dbresult)) {
                 $this->setCurrentUserId(
-                    (int)$row[$this->getFieldName('primary')]
+                    (int)$row[$this->getFieldName('primary')], true
                 );
                 $this->db->sql_freeresult($dbresult);
-                return (int)$_SESSION[$this->getSessionKey()];
+                return $this->currentuserId;
             }
         }
         return false;
@@ -514,19 +529,26 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     /**
      * Set the current user ID (i.e. when logging on)
      *
-     * @param integer $user User ID or null to unset the user
+     * @param integer $user           User ID or null to unset the user
+     * @param boolean $storeInSession Store the user ID in the session
      *
      * @return void
      *
      * @internal
      * No ID verification is being done.
      */
-    public function setCurrentUserId($user)
+    public function setCurrentUserId($user, $storeInSession = false)
     {
         if ($user === null) {
-            unset($_SESSION[$this->getSessionKey()]);
+            $this->currentuserId = null;
+            if ($storeInSession) {
+                unset($_SESSION[$this->getSessionKey()]);
+            }
         } else {
-            $_SESSION[$this->getSessionKey()] = (int)$user;
+            $this->currentuserId = (int)$user;
+            if ($storeInSession) {
+                $_SESSION[$this->getSessionKey()] = $this->currentuserId;
+            }
         }
         //reload user object
         $this->getCurrentUser(true);
@@ -569,10 +591,9 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         $this->db->sql_freeresult($dbresult);
 
         if ($row) {
-            $id = $_SESSION[$this->getSessionKey()]
-                = $row[$this->getFieldName('primary')];
+            $this->setCurrentUserId($row[$this->getFieldName('primary')], true);
             if ($remember) {
-                $cookie = $id .':'. md5($username.$password);
+                $cookie = $this->currentuserId . ':' . md5($username.$password);
                 setcookie(
                     $this->cookiekey, $cookie,
                     time() + $this->cookietime, '/'
@@ -626,11 +647,11 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     }
 
     /**
-     * Logout current user
+     * Logs the user off
      *
      * @return void
      */
-    function logout()
+    public function logout()
     {
         @setcookie($this->getCookiekey(), '', time() - 1, '/');
         unset($_COOKIE[$this->getCookiekey()]);
@@ -671,18 +692,17 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         return $arrWatch;
     }
 
+
     /**
      * Gets the list of user names being watched by the given user.
      *
-     * @param string  $uId       Current User ID
-     * @param boolean $watchedby flag to determine:
-     * - If $watchedby is false get the list of users that $uId watches
-     * - If $watchedby is true get the list of users that watch $uId
+     * @param integer $uId       User ID
+     * @param boolean $watchedby if false: get the list of users that $uId watches
+     *                           if true: get the list of users that watch $uId
      *
-     * @return mixed array if valid query and generates data
-     *               boolean false if an error occured
+     * @return array Array of user names
      */
-    function getWatchNames($uId, $watchedby = false)
+    public function getWatchNames($uId, $watchedby = false)
     {
         if ($watchedby) {
             $table1 = 'b';
@@ -691,19 +711,21 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
             $table1 = 'a';
             $table2 = 'b';
         }
-        $query = 'SELECT '. $table1 .'.'. $this->getFieldName('username')
-            .' FROM '. $GLOBALS['tableprefix'] .'watched AS W, '
-            . $this->getTableName() .' AS a, '. $this->getTableName()
-            .' AS b WHERE W.watched = a.'. $this->getFieldName('primary')
-            .' AND W.uId = b.'. $this->getFieldName('primary') .' AND '
-            . $table2 .'.'. $this->getFieldName('primary') .' = '
-            . intval($uId) .' ORDER BY '. $table1 .'.'
-            . $this->getFieldName('username');
+        $primary   = $this->getFieldName('primary');
+        $userfield = $this->getFieldName('username');
+        $query = 'SELECT '. $table1 .'.'. $userfield
+            . ' FROM '. $GLOBALS['tableprefix'] . 'watched AS W,'
+            . ' ' . $this->getTableName() .' AS a,'
+            . ' ' . $this->getTableName() .' AS b'
+            . ' WHERE W.watched = a.' . $primary
+            . ' AND W.uId = b.' . $primary
+            . ' AND ' . $table2 . '.' . $primary . ' = '. intval($uId)
+            . ' ORDER BY '. $table1 . '.' . $userfield;
 
-        if (!($dbresult =& $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(
-                GENERAL_ERROR, 'Could not get watchlist', '', 
-                __LINE__, __FILE__, $query, $this->db
+                GENERAL_ERROR, 'Could not get watchlist',
+                '', __LINE__, __FILE__, $query, $this->db
             );
             return false;
         }
@@ -713,31 +735,23 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
             $this->db->sql_freeresult($dbresult);
             return $arrWatch;
         }
-        while ($row =& $this->db->sql_fetchrow($dbresult)) {
+        while ($row = $this->db->sql_fetchrow($dbresult)) {
             $arrWatch[] = $row[$this->getFieldName('username')];
         }
         $this->db->sql_freeresult($dbresult);
         return $arrWatch;
     }
 
-    /**
-     * Get Watch Status
-     *
-     * @param string $watcheduser User ID that is being Watched
-     * @param string $currentuser Current User ID
-     *
-     * @return boolean true if it successful, false if not
-     */
+
     function getWatchStatus($watcheduser, $currentuser)
     {
         // Returns true if the current user is watching
         // the given user, and false otherwise.
-        $query = 'SELECT watched FROM '. $GLOBALS['tableprefix']
-            .'watched AS W INNER JOIN '. $this->getTableName()
-            .' AS U ON U.'. $this->getFieldName('primary')
-            .' = W.watched WHERE U.'. $this->getFieldName('primary')
-            .' = '. intval($watcheduser) .' AND W.uId = '
-            . intval($currentuser);
+        $query = 'SELECT watched FROM '. $GLOBALS['tableprefix'] .'watched AS W'
+            . ' INNER JOIN '. $this->getTableName() .' AS U'
+            . ' ON U.'. $this->getFieldName('primary') .' = W.watched'
+            . ' WHERE U.'. $this->getFieldName('primary') .' = '
+            . intval($watcheduser) .' AND W.uId = '. intval($currentuser);
 
         if (! ($dbresult =& $this->db->sql_query($query)) ) {
             message_die(

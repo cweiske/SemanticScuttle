@@ -12,11 +12,6 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'BookmarkTest::main');
-}
-
-require_once 'prepare.php';
 
 /**
  * Unit tests for the SemanticScuttle bookmark service.
@@ -37,22 +32,6 @@ class BookmarkTest extends TestBase
     protected $tts;
 
 
-
-    /**
-     * Used to run this test class standalone
-     *
-     * @return void
-     */
-    public static function main()
-    {
-        require_once 'PHPUnit/TextUI/TestRunner.php';
-        PHPUnit_TextUI_TestRunner::run(
-            new PHPUnit_Framework_TestSuite(__CLASS__)
-        );
-    }
-
-
-
     protected function setUp()
     {
         $this->us = SemanticScuttle_Service_Factory::get('User');
@@ -71,8 +50,6 @@ class BookmarkTest extends TestBase
     /**
      * Tests if adding a bookmark with short url name
      * saves it in the database.
-     *
-     * @return void
      */
     public function testAddBookmarkShort()
     {
@@ -86,7 +63,16 @@ class BookmarkTest extends TestBase
         $this->assertEquals('myShortName', $bm['bShort']);
     }
 
-    public function testHardCharactersInBookmarks()
+    public function testAddBookmarkInvalidUrl()
+    {
+        $retval = $this->bs->addBookmark(
+            'javascript:alert(123)', 'title', 'desc', 'priv',
+            0, array()
+        );
+        $this->assertFalse($retval, 'Bookmark with invalid URL was accepted');
+    }
+
+    public function testAddBookmarkWithSpecialCharacters()
     {
         $bs = $this->bs;
         $title = "title&é\"'(-è_çà)=";
@@ -116,7 +102,7 @@ class BookmarkTest extends TestBase
         );
     }
 
-    public function testUnificationOfBookmarks()
+    public function testAddBookmarkUnification()
     {
         $bs = $this->bs;
 
@@ -1389,10 +1375,5 @@ class BookmarkTest extends TestBase
     }
 
 
-}
-
-
-if (PHPUnit_MAIN_METHOD == 'BookmarkTest::main') {
-    BookmarkTest::main();
 }
 ?>

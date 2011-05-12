@@ -434,6 +434,10 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
     /**
      * Adds a bookmark to the database.
      *
+     * Security checks are being made here, but no error reasons will be
+     * returned. It is the responsibility of the code that calls
+     * addBookmark() to verify the data.
+     *
      * @param string  $address     Full URL of the bookmark
      * @param string  $title       Bookmark title
      * @param string  $description Long bookmark description
@@ -452,7 +456,8 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      * @param boolean $fromImport  True when the bookmark is from an import.
      * @param integer $sId         ID of user who creates the bookmark.
      *
-     * @return integer Bookmark ID
+     * @return mixed Integer bookmark ID if saving succeeded, false in
+     *               case of an error. Error reasons are not returned.
      */
     public function addBookmark(
         $address, $title, $description, $privateNote, $status, $tags,
@@ -465,6 +470,9 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         }
 
         $address = $this->normalize($address);
+        if (!SemanticScuttle_Model_Bookmark::isValidUrl($address)) {
+            return false;
+        }
 
         /*
          * Note that if date is NULL, then it's added with a date and

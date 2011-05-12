@@ -12,11 +12,6 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Tag2TagTest::main');
-}
-
-require_once 'prepare.php';
 
 /**
  * Unit tests for the SemanticScuttle tag2tag service.
@@ -35,22 +30,6 @@ class Tag2TagTest extends TestBase
     protected $bs;
     protected $b2ts;
     protected $tts;
-
-
-
-    /**
-     * Used to run this test class standalone
-     *
-     * @return void
-     */
-    public static function main()
-    {
-        require_once 'PHPUnit/TextUI/TestRunner.php';
-        PHPUnit_TextUI_TestRunner::run(
-            new PHPUnit_Framework_TestSuite(__CLASS__)
-        );
-    }
-
 
 
     protected function setUp()
@@ -549,9 +528,5 @@ class Tag2TagTest extends TestBase
      $this->assertContains('tag4', $menuTags);
 
      }*/
-}
-
-if (PHPUnit_MAIN_METHOD == 'Tag2TagTest::main') {
-    Tag2TagTest::main();
 }
 ?>

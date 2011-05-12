@@ -51,11 +51,13 @@ if (count($exploded) == 4) {
     list($url, $range, $terms, $page) = $exploded;
 } elseif (count($exploded) == 2) {
     list($url, $range) = $exploded;
-    $terms = $page= null;
+    $terms = $page = null;
 } else {
     list($url, $range, $terms) = $exploded;
-    $page= null;
+    $page = null;
 }
+//some OpenSearch clients need that
+$terms = urldecode($terms);
 
 $tplVars['loadjs'] = true;
 

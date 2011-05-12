@@ -11,6 +11,8 @@
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
 
+require_once 'HTTP/Request2.php';
+
 /**
  * Base unittest class for web API tests.
  *
@@ -87,6 +89,23 @@ class TestBaseApi extends TestBase
         );
 
         return $req;
+    }
+
+
+    /**
+     * Completes an URL that's missing the protocol.
+     * Useful when re-using URLs extracted from HTML
+     *
+     * @param string $url Potentially partial URL
+     *
+     * @return string Full URL
+     */
+    protected function completeUrl($url)
+    {
+        if (substr($url, 0, 2) == '//') {
+            $url = 'http:' . $url;
+        }
+        return $url;
     }
 
 
