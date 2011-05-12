@@ -29,6 +29,14 @@ require_once 'SemanticScuttle/Model/User.php';
 class SemanticScuttle_Service_User extends SemanticScuttle_DbService
 {
     /**
+     * The ID of the currently logged on user.
+     * NULL when not logged in.
+     *
+     * @var integer
+     */
+    protected $currentuserId = null;
+
+    /**
      * Currently logged on user from database
      *
      * @var array
@@ -363,10 +371,17 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      */
     public function getCurrentUserId()
     {
-        if (isset($_SESSION[$this->getSessionKey()])) {
-            return (int)$_SESSION[$this->getSessionKey()];
+        if ($this->currentuserId !== null) {
+            return $this->currentuserId;
+        }
 
-        } else if (isset($_COOKIE[$this->getCookieKey()])) {
+        if (isset($_SESSION[$this->getSessionKey()])) {
+            $this->currentuserId = (int)$_SESSION[$this->getSessionKey()];
+            return $this->currentuserId;
+
+        }
+
+        if (isset($_COOKIE[$this->getCookieKey()])) {
             $cook = explode(':', $_COOKIE[$this->getCookieKey()]);
             //cookie looks like this: 'id:md5(username+password)'
             $query = 'SELECT * FROM '. $this->getTableName() .
@@ -385,10 +400,10 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
 
             if ($row = $this->db->sql_fetchrow($dbresult)) {
                 $this->setCurrentUserId(
-                    (int)$row[$this->getFieldName('primary')]
+                    (int)$row[$this->getFieldName('primary')], true
                 );
                 $this->db->sql_freeresult($dbresult);
-                return (int)$_SESSION[$this->getSessionKey()];
+                return $this->currentuserId;
             }
         }
         return false;
@@ -402,16 +417,23 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      * @internal
      * No ID verification is being done.
      *
-     * @param integer $user User ID or null to unset the user
+     * @param integer $user           User ID or null to unset the user
+     * @param boolean $storeInSession Store the user ID in the session
      *
      * @return void
      */
-    public function setCurrentUserId($user)
+    public function setCurrentUserId($user, $storeInSession = false)
     {
         if ($user === null) {
-            unset($_SESSION[$this->getSessionKey()]);
+            $this->currentuserId = null;
+            if ($storeInSession) {
+                unset($_SESSION[$this->getSessionKey()]);
+            }
         } else {
-            $_SESSION[$this->getSessionKey()] = (int)$user;
+            $this->currentuserId = (int)$user;
+            if ($storeInSession) {
+                $_SESSION[$this->getSessionKey()] = $this->currentuserId;
+            }
         }
         //reload user object
         $this->getCurrentUser(true);
@@ -449,10 +471,9 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         $this->db->sql_freeresult($dbresult);
 
         if ($row) {
-            $id = $_SESSION[$this->getSessionKey()]
-                = $row[$this->getFieldName('primary')];
+            $this->setCurrentUserId($row[$this->getFieldName('primary')], true);
             if ($remember) {
-                $cookie = $id .':'. md5($username.$password);
+                $cookie = $this->currentuserId . ':' . md5($username.$password);
                 setcookie(
                     $this->cookiekey, $cookie,
                     time() + $this->cookietime, '/'
@@ -464,7 +485,13 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         }
     }
 
-    function logout() {
+    /**
+     * Logs the user off
+     *
+     * @return void
+     */
+    public function logout()
+    {
         @setcookie($this->getCookiekey(), '', time() - 1, '/');
         unset($_COOKIE[$this->getCookiekey()]);
         session_unset();
