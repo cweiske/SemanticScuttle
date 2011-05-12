@@ -1,3 +1,4 @@
+doc/*.html
 dist/
 build.properties
 package.xml
