@@ -452,9 +452,9 @@ class UserTest extends TestBase
         $randKey2 = '-'.$this->us->getNewPrivateKey();
         $uid2 = $this->addUser('seconduser', 'passw0RD', $randKey2);
 
-        /* test invalid credentials - both invalid login and key */
+        /* test invalid private key */
         $this->assertFalse(
-            $this->us->loginPrivateKey('userdoesnot', '02848248084082408240824802408248')
+            $this->us->loginPrivateKey('02848248084082408240824802408248')
         );
     }
 
@@ -470,7 +470,7 @@ class UserTest extends TestBase
 
         /* test valid credentials with private key enabled */
         $this->assertTrue(
-            $this->us->loginPrivateKey('testusername', $randKey)
+            $this->us->loginPrivateKey($randKey)
         );
     }
 
@@ -486,7 +486,7 @@ class UserTest extends TestBase
 
         /* test valid credentials with private key enabled but invalid key */
         $this->assertFalse(
-            $this->us->loginPrivateKey('testusername', '123')
+            $this->us->loginPrivateKey('123')
         );
     }
 
@@ -507,7 +507,7 @@ class UserTest extends TestBase
 
         /* test valid credentials with private key disabled */
         $this->assertFalse(
-            $this->us->loginPrivateKey('seconduser', $randKey2)
+            $this->us->loginPrivateKey($randKey2)
         );
     }
 
@@ -523,10 +523,10 @@ class UserTest extends TestBase
 
         /* test valid credentials with private key disabled and invalid key */
         $this->assertFalse(
-            $this->us->loginPrivateKey('seconduser', '-1')
+            $this->us->loginPrivateKey('-1')
         );
         $this->assertFalse(
-            $this->us->loginPrivateKey('seconduser', null)
+            $this->us->loginPrivateKey(null)
         );
     }
 

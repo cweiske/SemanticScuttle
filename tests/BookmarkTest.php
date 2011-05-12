@@ -1384,7 +1384,7 @@ class BookmarkTest extends TestBase
         $b2 = $bookmarks['bookmarks'][0];
         $this->assertEquals('title', $b2['bTitle']);
         // there should be no second record
-        $this->assertEquals(count($bookmarks['bookmarks']),1);
+        $this->assertEquals(1,count($bookmarks['bookmarks']));
 
     }
 

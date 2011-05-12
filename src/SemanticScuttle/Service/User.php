@@ -585,16 +585,14 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     }
 
     /**
-     * Try to authenticate and login a user with
-     * username and privatekey.
+     * Try to authenticate via the privatekey
      *
-     * @param string $username   Name of User
      * @param string $privatekey Private Key
      *
      * @return boolean true if the user could be authenticated,
      *                 false if not.
      */
-    public function loginPrivateKey($username, $privatekey)
+    public function loginPrivateKey($privatekey)
     {
         /* Check if private key valid and enabled */
         if (!$this->isPrivateKeyValid($privatekey)) {
@@ -603,8 +601,6 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
 
         $query = 'SELECT '. $this->getFieldName('primary') .' FROM '
             . $this->getTableName() .' WHERE '
-            . $this->getFieldName('username') .' = "'
-            . $this->db->sql_escape($username) .'" AND '
             . $this->getFieldName('privatekey') .' = "'
             . $this->db->sql_escape($privatekey) .'"';
 

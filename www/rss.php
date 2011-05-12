@@ -86,7 +86,7 @@ if ($user && $user != 'all') {
             /* if user is not logged in and has valid privatekey */
             if (!$userservice->isLoggedOn()) {
                 if ($privatekey != null) {
-                    if ($userservice->loginPrivateKey($user, $privatekey)) {
+                    if ($userservice->loginPrivateKey($privatekey)) {
                         $isTempLogin = true;
                     } else {
                         $tplVars['error'] = sprintf(T_('Failed to Autenticate User with username %s using private key'), $user);
