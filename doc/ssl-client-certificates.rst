@@ -57,7 +57,7 @@ of this document's scope.
 
 Server certificate
 ''''''''''''''''''
-First, generate a Certificate signing request with the `CSR generator`__.
+First, generate a Certificate Signing Request with the `CSR generator`__.
 Store the key file under ::
 
   /etc/ssl/private/bookmarks.cweiske.de.key
