@@ -92,6 +92,23 @@ class TestBaseApi extends TestBase
     }
 
 
+    /**
+     * Completes an URL that's missing the protocol.
+     * Useful when re-using URLs extracted from HTML
+     *
+     * @param string $url Potentially partial URL
+     *
+     * @return string Full URL
+     */
+    protected function completeUrl($url)
+    {
+        if (substr($url, 0, 2) == '//') {
+            $url = 'http:' . $url;
+        }
+        return $url;
+    }
+
+
 
     /**
      * Creates a user and a HTTP request object and prepares
