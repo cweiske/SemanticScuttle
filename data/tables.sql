@@ -84,8 +84,9 @@ CREATE TABLE `sc_users_sslclientcerts` (
   `sslClientIssuerDn` VARCHAR( 1024 ) NOT NULL ,
   `sslName` VARCHAR( 64 ) NOT NULL ,
   `sslEmail` VARCHAR( 64 ) NOT NULL ,
+  `privateKey` varchar(33) default NULL,
   PRIMARY KEY ( `id` ) ,
-  UNIQUE (`id`)
+  UNIQUE KEY `privateKey` (`privateKey`)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 -- 

@@ -78,14 +78,15 @@ class TestBase extends PHPUnit_Framework_TestCase
      *
      * @param string $username Username
      * @param string $password Password
+     * @param string $pkey     Private Key
      *
      * @return integer ID of user
      *
      * @uses addUserData()
      */
-    protected function addUser($username = null, $password = null)
+    protected function addUser($username = null, $password = null, $pkey = null)
     {
-        return reset($this->addUserData($username, $password));
+        return reset($this->addUserData($username, $password, $pkey));
     }
 
 
@@ -95,10 +96,11 @@ class TestBase extends PHPUnit_Framework_TestCase
      *
      * @param string $username Username
      * @param string $password Password
+     * @param string $pkey     Private Key
      *
      * @return array ID of user, Name of user, password of user
      */
-    protected function addUserData($username = null, $password = null)
+    protected function addUserData($username = null, $password = null, $pkey = null)
     {
         $us   = SemanticScuttle_Service_Factory::get('User');
         $rand = rand();
@@ -113,7 +115,8 @@ class TestBase extends PHPUnit_Framework_TestCase
         $uid  = $us->addUser(
             $username,
             $password,
-            'unittest-' . $rand . '@example.org'
+            'unittest-' . $rand . '@example.org',
+            $pkey
         );
         return array($uid, $username, $password);
     }

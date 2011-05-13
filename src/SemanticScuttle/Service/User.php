@@ -48,9 +48,10 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     protected $currentuser = null;
 
     protected $fields = array(
-        'primary'   =>  'uId',
-        'username'  =>  'username',
-        'password'  =>  'password'
+        'primary'    => 'uId',
+        'username'   => 'username',
+        'password'   => 'password',
+        'privatekey' => 'privatekey'
     );
 
     protected $profileurl;
@@ -215,6 +216,18 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         return $this->_getuser($this->getFieldName('username'), $username);
     }
 
+    /**
+     * Returns user row from database.
+     *
+     * @param string $privatekey Private Key
+     *
+     * @return array User array from database, false if no user was found
+     */
+    public function getUserByPrivateKey($privatekey)
+    {
+        return $this->_getuser($this->getFieldName('privatekey'), $privatekey);
+    }
+
     function getObjectUserByUsername($username) {
         $user = $this->_getuser($this->getFieldName('username'), $username);
         if($user != false) {
@@ -280,6 +293,22 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     }
 
     /**
+     * Tells you if the private key is enabled and valid
+     *
+     * @param string $privateKey Private Key
+     *
+     * @return boolean True if enabled and valid
+     */
+    public function isPrivateKeyValid($privateKey)
+    {
+        // check length of private key
+        if (strlen($privateKey) == 32) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Returns the current user object
      *
      * @param boolean $refresh Reload the user from database
@@ -293,7 +322,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     {
         if (!is_null($newval)) {
             //internal use only: reset currentuser
-            $currentuser = $newval;
+            $this->currentuser = $newval;
         } else if ($refresh || !isset($this->currentuser)) {
             if ($id = $this->getCurrentUserId()) {
                 $this->currentuser = $this->getUser($id);
@@ -510,6 +539,47 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     }
 
     /**
+     * Try to authenticate via the privatekey
+     *
+     * @param string $privatekey Private Key
+     *
+     * @return boolean true if the user could be authenticated,
+     *                 false if not.
+     */
+    public function loginPrivateKey($privatekey)
+    {
+        /* Check if private key valid and enabled */
+        if (!$this->isPrivateKeyValid($privatekey)) {
+            return false;
+        }
+
+        $query = 'SELECT '. $this->getFieldName('primary') .' FROM '
+            . $this->getTableName() .' WHERE '
+            . $this->getFieldName('privatekey') .' = "'
+            . $this->db->sql_escape($privatekey) .'"';
+
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR,
+                'Could not get user',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            return false;
+        }
+
+        $row = $this->db->sql_fetchrow($dbresult);
+        $this->db->sql_freeresult($dbresult);
+
+        if ($row) {
+            $id = $_SESSION[$this->getSessionKey()]
+                = $row[$this->getFieldName('primary')];
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Logs the user off
      *
      * @return void
@@ -519,7 +589,8 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         @setcookie($this->getCookiekey(), '', time() - 1, '/');
         unset($_COOKIE[$this->getCookiekey()]);
         session_unset();
-        $this->getCurrentUser(TRUE, false);
+        $this->currentuserId = null;
+        $this->currentuser = null;
     }
 
     function getWatchlist($uId) {
@@ -646,24 +717,26 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
      * No checks are done in here - you ought to have checked
      * everything before calling this method!
      *
-     * @param string $username Username to use
-     * @param string $password Password to use
-     * @param string $email    Email to use
+     * @param string $username   Username to use
+     * @param string $password   Password to use
+     * @param string $email      Email to use
+     * @param string $privateKey Key for RSS auth
      *
      * @return mixed Integer user ID if all is well,
      *               boolean false if an error occured
      */
-    public function addUser($username, $password, $email)
+    public function addUser($username, $password, $email, $privateKey = null)
     {
         // Set up the SQL UPDATE statement.
         $datetime = gmdate('Y-m-d H:i:s', time());
         $password = $this->sanitisePassword($password);
         $values   = array(
-            'username'  => $username,
-            'password'  => $password,
-            'email'     => $email,
-            'uDatetime' => $datetime,
-            'uModified' => $datetime
+            'username'   => $username,
+            'password'   => $password,
+            'email'      => $email,
+            'uDatetime'  => $datetime,
+            'uModified'  => $datetime,
+            'privateKey' => $privateKey
         );
         $sql = 'INSERT INTO '. $this->getTableName()
             . ' '. $this->db->sql_build_array('INSERT', $values);
@@ -687,40 +760,64 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     /**
      * Updates the given user
      *
-     * @param integer $uId      ID of user to change
-     * @param string  $password Password to use
-     * @param string  $name     Realname to use
-     * @param string  $email    Email to use
-     * @param string  $homepage User's homepage
-     * @param string  $uContent User note
+     * @param integer $uId              ID of user to change
+     * @param string  $password         Password to use
+     * @param string  $name             Realname to use
+     * @param string  $email            Email to use
+     * @param string  $homepage         User's homepage
+     * @param string  $uContent         User note
+     * @param string  $privateKey       RSS Private Key
+     * @param boolean $enablePrivateKey RSS Private Key Flag
      *
      * @return boolean True when all is well, false if not
      */
     public function updateUser(
-        $uId, $password, $name, $email, $homepage, $uContent
+        $uId, $password, $name, $email, $homepage, $uContent,
+        $privateKey = null, $enablePrivateKey = false
     ) {
         if (!is_numeric($uId)) {
             return false;
+        }
+
+        // prepend '-' to privateKey if disabled
+        if ($privateKey != null && strlen($privateKey) == 32
+            && $enablePrivateKey == false
+        ) {
+            $privateKey = '-' . $privateKey;
+        }
+
+        // remove '-' from privateKey if enabling
+        if ($privateKey != null && strlen($privateKey) == 33
+            && $enablePrivateKey == true
+        ) {
+            $privateKey = substr($privateKey, 1, 32);
+        }
+
+        // if new user is enabling Private Key, create new key
+        if ($privateKey == null && $enablePrivateKey == true) {
+            $privateKey = $this->getNewPrivateKey();
         }
 
         // Set up the SQL UPDATE statement.
         $moddatetime = gmdate('Y-m-d H:i:s', time());
         if ($password == '') {
             $updates = array(
-                'uModified' => $moddatetime,
-                'name'      => $name,
-                'email'     => $email,
-                'homepage'  => $homepage,
-                'uContent'  => $uContent
+                'uModified'  => $moddatetime,
+                'name'       => $name,
+                'email'      => $email,
+                'homepage'   => $homepage,
+                'uContent'   => $uContent,
+                'privateKey' => $privateKey
             );
         } else {
             $updates = array(
-                'uModified' => $moddatetime,
-                'password'  => $this->sanitisePassword($password),
-                'name'      => $name,
-                'email'     => $email,
-                'homepage'  => $homepage,
-                'uContent'  => $uContent
+                'uModified'  => $moddatetime,
+                'password'   => $this->sanitisePassword($password),
+                'name'       => $name,
+                'email'      => $email,
+                'homepage'   => $homepage,
+                'uContent'   => $uContent,
+                'privateKey' => $privateKey
             );
         }
         $sql = 'UPDATE '. $this->getTableName()
@@ -835,6 +932,56 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         } else {
             return false;
         }
+    }
+
+    /**
+     * Generates a new private key and confirms it isn't being used.
+     * Private key is 32 characters long, consisting of lowercase and
+     * numeric characters.
+     *
+     * @return string the new key value
+     */
+    public function getNewPrivateKey()
+    {
+        do {
+            $newKey = md5(uniqid('SemanticScuttle', true));
+        } while ($this->privateKeyExists($newKey));
+
+        return $newKey;
+    }
+
+    /**
+     * Checks if a private key already exists
+     *
+     * @param string $privateKey key that has been generated
+     *
+     * @return boolean true when the private key exists,
+     *                 False if not.
+     */
+    public function privateKeyExists($privateKey)
+    {
+        if (!$privateKey) {
+            return false;
+        }
+        $crit = array('privateKey' => $privateKey);
+
+        $sql = 'SELECT COUNT(*) as "0" FROM '
+            . $GLOBALS['tableprefix'] . 'users'
+            . ' WHERE '. $this->db->sql_build_array('SELECT', $crit);
+
+        if (!($dbresult = $this->db->sql_query($sql))) {
+            message_die(
+                GENERAL_ERROR, 'Could not get vars', '',
+                __LINE__, __FILE__, $sql, $this->db
+            );
+        }
+        if ($this->db->sql_fetchfield(0, 0) > 0) {
+            $exists = true;
+        } else {
+            $exists = false;
+        }
+        $this->db->sql_freeresult($dbresult);
+        return $exists;
     }
 
     function isReserved($username) {

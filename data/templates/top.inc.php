@@ -12,7 +12,7 @@ if (isset($rsschannels)) {
 	$size = count($rsschannels);
 	for ($i = 0; $i < $size; $i++) {
 		echo '  <link rel="alternate" type="application/rss+xml" title="'
-            . htmlspecialchars($rsschannels[$i][0]) . '"'
+            . $rsschannels[$i][0] . '"'
             . ' href="'. $rsschannels[$i][1] .'" />';
 	}
 }

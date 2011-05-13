@@ -45,6 +45,19 @@ $tplVars['rsschannels'] = array(
 array(sprintf(T_('%s: Recent bookmarks'), $sitename), createURL('rss').'?sort='.getSortOrder())
 );
 
+if ($userservice->isLoggedOn()) {
+    $currentUsername = $currentUser->getUsername();
+    if ($userservice->isPrivateKeyValid($currentUser->getPrivateKey())) {
+        array_push(
+            $tplVars['rsschannels'],
+            array(
+                filter($sitename . sprintf(T_(': (private) ')) . $currentUsername),
+                createURL('rss', filter($currentUsername, 'url') . '?sort='.getSortOrder().'&amp;privatekey='.$currentUser->getPrivateKey())
+            )
+        );
+    }
+}
+
 if ($usecache) {
 	// Generate hash for caching on
 	$hashtext = $_SERVER['REQUEST_URI'];

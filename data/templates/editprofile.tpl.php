@@ -28,6 +28,14 @@ $this->includeTemplate($GLOBALS['top_include']);
     <td><input type="text" name="pMail" size="75" value="<?php echo filter($objectUser->getEmail(), 'xml'); ?>" /></td>
     <td>← <?php echo T_('Required'); ?></td>
 </tr>
+<tr>
+    <th align="left"><?php echo T_('Private RSS Feed'); ?></th>
+    <td><input type="checkbox" id="pEnablePrivateKey" name="pEnablePrivateKey" value="true" <?php echo $privateKeyIsEnabled;?> />
+        <label for="pEnablePrivateKey"><?php echo T_('Enable'); ?></label>&nbsp;&nbsp;&nbsp;
+        <input type="text" id="pPrivateKey" name="pPrivateKey" size="40" value="<?php echo $privateKey;?>" readonly="readonly" />
+        <input type="submit" name="submittedPK" value="<?php echo T_('Generate New Key'); ?>" />
+    </td>
+</tr>
 </table>
 
 <h3><?php echo T_('Personal Details'); ?></h3>

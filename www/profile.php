@@ -25,10 +25,13 @@ require_once 'www-header.php';
 // No specific services
 
 /* Managing all possible inputs */
+isset($_POST['submittedPK']) ? define('POST_SUBMITTEDPK', $_POST['submittedPK']): define('POST_SUBMITTEDPK', '');
 isset($_POST['submitted']) ? define('POST_SUBMITTED', $_POST['submitted']): define('POST_SUBMITTED', '');
 isset($_POST['pPass']) ? define('POST_PASS', $_POST['pPass']): define('POST_PASS', '');
 isset($_POST['pPassConf']) ? define('POST_PASSCONF', $_POST['pPassConf']): define('POST_PASSCONF', '');
 isset($_POST['pName']) ? define('POST_NAME', $_POST['pName']): define('POST_NAME', '');
+isset($_POST['pPrivateKey']) ? define('POST_PRIVATEKEY', $_POST['pPrivateKey']): define('POST_PRIVATEKEY', '');
+isset($_POST['pEnablePrivateKey']) ? define('POST_ENABLEPRIVATEKEY', $_POST['pEnablePrivateKey']): define('POST_ENABLEPRIVATEKEY', '');
 isset($_POST['pMail']) ? define('POST_MAIL', $_POST['pMail']): define('POST_MAIL', '');
 isset($_POST['pPage']) ? define('POST_PAGE', $_POST['pPage']): define('POST_PAGE', '');
 isset($_POST['pDesc']) ? define('POST_DESC', $_POST['pDesc']): define('POST_DESC', '');
@@ -61,10 +64,19 @@ if ($user) {
 	exit();
 }
 
+$tplVars['privateKeyIsEnabled'] = '';
 if ($userservice->isLoggedOn() && $user == $currentUser->getUsername()) {
-	$title = T_('My Profile');
+    $title = T_('My Profile');
+    $tplVars['privateKey'] = $currentUser->getPrivateKey(true);
+
+    if ($userservice->isPrivateKeyValid($currentUser->getPrivateKey())) {
+        $tplVars['privateKeyIsEnabled'] = 'checked="checked"';
+    } else {
+        $tplVars['privateKeyIsEnabled'] = '';
+    }
 } else {
-	$title = T_('Profile') .': '. $user;
+    $title = T_('Profile') .': '. $user;
+    $tplVars['privateKey'] = '';
 }
 $tplVars['pagetitle'] = $title;
 $tplVars['subtitle'] = $title;
@@ -72,11 +84,19 @@ $tplVars['subtitle'] = $title;
 $tplVars['user'] = $user;
 $tplVars['userid'] = $userid;
 
+/* Update Private Key */
+if (POST_SUBMITTEDPK!='' && $currentUser->getId() == $userid) {
+    $userinfo = $userservice->getObjectUserByUsername($user);
+    $tplVars['privateKey'] = $userservice->getNewPrivateKey();
+}
+
 if (POST_SUBMITTED!='' && $currentUser->getId() == $userid) {
 	$error = false;
 	$detPass = trim(POST_PASS);
 	$detPassConf = trim(POST_PASSCONF);
 	$detName = trim(POST_NAME);
+	$detPrivateKey = trim(POST_PRIVATEKEY);
+	$detEnablePrivateKey = trim(POST_ENABLEPRIVATEKEY);
 	$detMail = trim(POST_MAIL);
 	$detPage = trim(POST_PAGE);
 	$detDesc = filter(POST_DESC);
@@ -102,13 +122,19 @@ if (POST_SUBMITTED!='' && $currentUser->getId() == $userid) {
 		$tplVars['error'] = T_('E-mail address is not valid.');
 	}
 	if (!$error) {
-		if (!$userservice->updateUser($userid, $detPass, $detName, $detMail, $detPage, $detDesc)) {
+		if (!$userservice->updateUser($userid, $detPass, $detName, $detMail, $detPage, $detDesc, $detPrivateKey, $detEnablePrivateKey)) {
 			$tplVars['error'] = T_('An error occurred while saving your changes.');
 		} else {
 			$tplVars['msg'] = T_('Changes saved.');
 		}
 	}
 	$userinfo = $userservice->getObjectUserByUsername($user);
+	$tplVars['privateKey'] = $userinfo->getPrivateKey(true);
+	if ($userservice->isPrivateKeyValid($userinfo->getPrivateKey())) {
+		$tplVars['privateKeyIsEnabled'] = 'checked="checked"';
+	} else {
+		$tplVars['privateKeyIsEnabled'] = '';
+	}
 }
 
 if (!$userservice->isLoggedOn() || $currentUser->getId() != $userid) {
