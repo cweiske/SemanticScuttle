@@ -130,7 +130,7 @@ class SemanticScuttle_Service_AuthUser extends SemanticScuttle_Service_User
         //FIXME: caching?
         $name = $this->auth->getUsername();
         if (!$name) {
-            return false;
+            return parent::getCurrentUserId();
         }
         return $this->getIdFromUser($name);
     }
