@@ -426,8 +426,8 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         if ($ssls->hasValidCert()) {
             $id = $ssls->getUserIdFromCert();
             if ($id !== false) {
-                $this->setCurrentUserId($id);
-                return (int)$_SESSION[$this->getSessionKey()];
+                $this->setCurrentUserId($id, true);
+                return $this->currentuserId;
             }
         }
         return false;
