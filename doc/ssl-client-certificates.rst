@@ -94,7 +94,14 @@ you use.
 Apache configuration
 --------------------
 To make use of SSL client certificates, you need to deliver SemanticScuttle
-via HTTPS. 
+via HTTPS.
+
+Note that you can equip several virtual hosts with SSL certificates
+and keep them on the same, standard SSL port by using SNI -
+`Server Name Indication`__.
+
+.. _SNI: http://wiki.apache.org/httpd/NameBasedSSLVHostsWithSNI
+__ SNI_
 
 A basic virtual host configuration with SSL looks like this:
 
