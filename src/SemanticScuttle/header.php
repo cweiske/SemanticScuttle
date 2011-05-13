@@ -107,7 +107,7 @@ T_bind_textdomain_codeset($domain, 'UTF-8');
 T_textdomain($domain);
 
 // 4 // Session
-if (!defined('UNIT_TEST_MODE')) {
+if (!defined('UNIT_TEST_MODE') || defined('HTTP_UNIT_TEST_MODE')) {
     session_start();
     if ($GLOBALS['enableVoting']) {
         if (isset($_SESSION['lastUrl'])) {

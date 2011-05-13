@@ -81,7 +81,7 @@ if (isset($_REQUEST['dt']) && (trim($_REQUEST['dt']) != '')) {
 
 $replace = isset($_REQUEST['replace']) && ($_REQUEST['replace'] == 'yes');
 
-$status = 0;
+$status = $GLOBALS['defaults']['privacy'];
 if (isset($_REQUEST['status'])) {
     $status_str = trim($_REQUEST['status']);
     if (is_numeric($status_str)) {

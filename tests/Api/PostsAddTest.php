@@ -406,5 +406,51 @@ TXT;
         $this->assertEquals(1, $data['total']);
         $this->assertEquals($title2, $data['bookmarks'][0]['bTitle']);
     }
+
+
+    /**
+     * Test that a default privacy setting of 2 (Private) is used in adding
+     * a bookmark.
+     */
+    public function testDefaultPrivacyPrivate()
+    {
+        $this->setUnittestConfig(
+            array('defaults' => array('privacy' => 2))
+        );
+        list($req, $uId) = $this->getAuthRequest('?unittestMode=1');
+        $req->setMethod(HTTP_Request2::METHOD_POST);
+        $req->addPostParameter('url', 'http://www.example.org/testdefaultprivacyposts_addprivate');
+        $req->addPostParameter('description', 'Test bookmark 1 for default privacy.');
+        $req->send();
+        $this->us->setCurrentUserId($uId);
+        $bms = $this->bs->getBookmarks(0, null, $uId);
+        $this->assertEquals(1, count($bms['bookmarks']));
+        $bm = reset($bms['bookmarks']);
+        $this->assertEquals('2', $bm['bStatus']);
+    }//end testDefaultPrivacyPrivate
+
+
+    /**
+     * Test that a default privacy setting of 0 (Public) is used in adding
+     * a bookmark.
+     */
+    public function testDefaultPrivacyPublic()
+    {
+        $this->setUnittestConfig(
+            array('defaults' => array('privacy' => 0))
+        );
+        list($req, $uId) = $this->getAuthRequest('?unittestMode=1');
+        $req->setMethod(HTTP_Request2::METHOD_POST);
+        $req->addPostParameter('url', 'http://www.example.org/testdefaultprivacyposts_addpublic');
+        $req->addPostParameter('description', 'Test bookmark 1 for default privacy.');
+        $req->send();
+        $this->us->setCurrentUserId($uId);
+        $bms = $this->bs->getBookmarks(0, null, $uId);
+        $this->assertEquals(1, count($bms['bookmarks']));
+        $bm = reset($bms['bookmarks']);
+        $this->assertEquals('0', $bm['bStatus']);
+    }//end testDefaultPrivacyPublic
+
+
 }
 ?>

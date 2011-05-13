@@ -49,6 +49,11 @@ class TestBaseApi extends TestBase
         }
         $this->url = $GLOBALS['unittestUrl'] . $this->urlPart;
 
+        //clean up before test
+        if (file_exists($GLOBALS['datadir'] . '/config.unittest.php')) {
+            unlink($GLOBALS['datadir'] . '/config.unittest.php');
+        }
+
         $this->us = SemanticScuttle_Service_Factory::get('User');
         $this->us->deleteAll();
         $this->bs = SemanticScuttle_Service_Factory::get('Bookmark');
@@ -60,19 +65,7 @@ class TestBaseApi extends TestBase
 
 
     /**
-     * Clean up after test
-     */
-    public function tearDown()
-    {
-        if (file_exists($GLOBALS['datadir'] . '/config.unittest.php')) {
-            unlink($GLOBALS['datadir'] . '/config.unittest.php');
-        }
-    }
-
-
-
-    /**
-     * Gets a HTTP request object.
+     * Creates and returns a HTTP GET request object.
      * Uses $this->url plus $urlSuffix as request URL.
      *
      * @param string $urlSuffix Suffix for the URL
@@ -111,7 +104,7 @@ class TestBaseApi extends TestBase
 
 
     /**
-     * Creates a user and a HTTP request object and prepares
+     * Creates a user and a HTTP GET request object and prepares
      * the request object with authentication details, so that
      * the user is logged in.
      *
@@ -125,6 +118,7 @@ class TestBaseApi extends TestBase
      * @return array(HTTP_Request2, integer) HTTP request object and user id
      *
      * @uses getRequest()
+     * @see getLoggedInRequest()
      */
     protected function getAuthRequest($urlSuffix = null, $auth = true)
     {
@@ -147,7 +141,7 @@ class TestBaseApi extends TestBase
 
     /**
      * Creates a user and a HTTP_Request2 object, does a normal login
-     * and prepares the cookies for the HTTP request object so that
+     * and prepares the cookies for the HTTP GET request object so that
      * the user is seen as logged in when requesting any HTML page.
      *
      * Useful for testing HTML pages or ajax URLs.

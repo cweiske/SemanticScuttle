@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<posts user="dpuser" update="2011-03-24T21:09:22Z" tag="" total="3">
+  <post href="http://www.example.org/testdefaultprivacyposts_import1/" hash="4f8533885bb5740b98b6415140a0c8c6" description="Test bookmark 1 for default privacy." tag="tag1, tag2" time="2011-03-24T21:09:11Z" extended="" meta="5c80704730a1bf1b9eb615d4ba7a59bd" />
+  <post href="http://www.example.org/testdefaultprivacyposts_import2/" hash="21eee08d7945ac23c4cc2b6d08d02212" description="Test bookmark 2 for default privacy." tag="tag2, tag3" time="2011-03-24T21:08:33Z" extended="" meta="7514ab84f61ba1dd0413572f7c12348d" />
+  <post href="http://www.example.org/testdefaultprivacyposts_import3/" hash="cd64042205a083f1cf1e009344daef84" description="Test bookmark 3 for default privacy." tag="tag1, tag2, tag3" time="2011-03-24T21:07:44Z" extended="" meta="9cb24fddbc011e9634595d2f5e1a6537" />
+</posts>
+<!-- fe09.api.del.ac4.yahoo.net uncompressed/chunked Thur Mar 24 21:09:33 UTC 2011 -->

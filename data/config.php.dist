@@ -7,6 +7,7 @@
  * See config.default.inc.php for more options.
  */
 
+
 /**
  * The name of this site.
  *
@@ -114,6 +115,21 @@ $adminemail = 'admin@example.org';
  * @var array
  */
 $admin_users = array();
+
+
+/***************************************************
+ * Bookmarks 
+ */
+
+/**
+ * Default privacy setting for bookmarks.
+ * 0 - Public
+ * 1 - Shared with Watchlist
+ * 2 - Private
+ *
+ * @var integer 
+ */
+$defaults['privacy'] = 0;
 
 
 /**

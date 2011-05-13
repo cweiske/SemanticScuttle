@@ -27,7 +27,7 @@ require_once 'www-header.php';
 /* Managing all possible inputs */
 // First input is $_FILES
 // Other inputs
-isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_STATUS', '');
+isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_STATUS', $GLOBALS['defaults']['privacy']);
 
 
 if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['size'] > 0) {
@@ -36,7 +36,7 @@ if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['si
 	if (is_numeric(POST_STATUS)) {
 		$status = intval(POST_STATUS);
 	} else {
-		$status = 2;
+		$status = $GLOBALS['defaults']['privacy'];
 	}
 
 	$depth = array();

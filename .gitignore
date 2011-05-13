@@ -3,3 +3,4 @@ dist/
 build.properties
 package.xml
 semanticscuttle-dump.sql
+data/config.unittest.php

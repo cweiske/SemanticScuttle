@@ -191,7 +191,7 @@ if ($templatename == 'editbookmark.tpl') {
                 'bDescription' => stripslashes(POST_DESCRIPTION),
 			    'bPrivateNote' => stripslashes(POST_PRIVATENOTE),
                 'tags' => ($_POST['tags'] ? $_POST['tags'] : array()),
-				'bStatus' => 0,
+				'bStatus' => $GLOBALS['defaults']['privacy'],
 			);
 			$tplVars['tags'] = $_POST['tags'];
 		} else {
@@ -207,7 +207,7 @@ if ($templatename == 'editbookmark.tpl') {
                 'bDescription' => stripslashes(GET_DESCRIPTION),
                 'bPrivateNote' => stripslashes(GET_PRIVATENOTE),
                 'tags' => (GET_TAGS ? explode(',', stripslashes(GET_TAGS)) : array()),
-                'bStatus' => 0
+                'bStatus' => $GLOBALS['defaults']['privacy'] 
 			 );
 			}
 				
