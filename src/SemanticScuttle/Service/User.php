@@ -377,7 +377,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     {
         if (!is_null($newval)) {
             //internal use only: reset currentuser
-            $currentuser = $newval;
+            $this->currentuser = $newval;
         } else if ($refresh || !isset($this->currentuser)) {
             if ($id = $this->getCurrentUserId()) {
                 $this->currentuser = $this->getUser($id);
@@ -656,7 +656,8 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         @setcookie($this->getCookiekey(), '', time() - 1, '/');
         unset($_COOKIE[$this->getCookiekey()]);
         session_unset();
-        $this->getCurrentUser(true, false);
+        $this->currentuserId = null;
+        $this->currentuser = null;
     }
 
     /**

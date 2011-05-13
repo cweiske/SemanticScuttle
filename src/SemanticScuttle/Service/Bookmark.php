@@ -716,7 +716,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             // All public bookmarks, user's own bookmarks
             // and any shared with user
             $privacy = ' AND ((B.bStatus = 0) OR (B.uId = '. $sId .')';
-            $watchnames = $userservice->getWatchNames($sId, true);
+            $watchnames = $userservice->getWatchNames($sId);
             foreach ($watchnames as $watchuser) {
                 $privacy .= ' OR (U.username = "'. $watchuser;
                 $privacy .= '" AND B.bStatus = 1)';

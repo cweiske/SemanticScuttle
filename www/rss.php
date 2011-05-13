@@ -107,7 +107,19 @@ if ($user && $user != 'all') {
     }
     $pagetitle .= ": ". $user;
 } else {
-    $userid = null;
+    if ($privatekey != null) {
+        if ($userservice->loginPrivateKey($privatekey)) {
+            $isTempLogin = true;
+        } else {
+            $tplVars['error'] = sprintf(T_('Failed to Autenticate User with username %s using private key'), $user);
+            header('Content-type: text/html; charset=utf-8');
+            $templateservice->loadTemplate('error.404.tpl', $tplVars);
+            //throw a 404 error
+            exit();
+        }
+    } else {
+        $userid = null;
+    }
 }
 
 if ($cat) {
