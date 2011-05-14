@@ -28,19 +28,16 @@ if ($GLOBALS['enableGoogleCustomSearch'] == false) {
 ?>
 <?xml version="1.0" encoding="UTF-8" ?>
 <GoogleCustomizations>
-    <CustomSearchEngine>
-        <Title><?php echo htmlspecialchars($GLOBALS['sitename']) ?></Title>
-        <Description><?php echo filter($GLOBALS['welcomeMessage']) ?></Description>
-        <Context>
-           <BackgroundLabels>
-             <Label name="include" mode="FILTER" />
-          </BackgroundLabels>
-        </Context>
-        <LookAndFeel nonprofit="false">
-        </LookAndFeel>
-    </CustomSearchEngine>
-
-    <Include type="Annotations" href="<?php echo ROOT;?>api/export_gcs.php?xml=1" />
-
-
+ <CustomSearchEngine>
+  <Title><?php echo htmlspecialchars($GLOBALS['sitename']) ?></Title>
+  <Description><?php echo filter($GLOBALS['welcomeMessage']) ?></Description>
+  <Context>
+   <BackgroundLabels>
+    <Label name="include" mode="FILTER" />
+   </BackgroundLabels>
+  </Context>
+  <LookAndFeel nonprofit="false">
+  </LookAndFeel>
+ </CustomSearchEngine>
+ <Include type="Annotations" href="<?php echo ROOT;?>api/export_gcs.php?xml=1" />
 </GoogleCustomizations>
