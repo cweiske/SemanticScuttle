@@ -1,8 +1,11 @@
 <?php require_once '../www-header.php';
 
-if($GLOBALS['enableGoogleCustomSearch']==false) {
-    echo "Google Custom Search disabled. You can enable it into the config.php file.";
-    die;
+if ($GLOBALS['enableGoogleCustomSearch'] == false) {
+    header('HTTP/1.0 403 Forbidden');
+    header('Content-Type: text/plain; charset=utf-8');
+    echo "Google Custom Search disabled."
+        . " You can enable it into the config.php file.\n";
+    die();
 }
 
 ?>
