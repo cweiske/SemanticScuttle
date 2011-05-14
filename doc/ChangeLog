@@ -14,6 +14,7 @@ ChangeLog for SemantiScuttle
 - Update php-gettext library to 1.0.10
 - api/posts/add respects the "replace" parameter now
 - Fix privacy issue when fetching tags of several users
+- Fix Google custom search XML
 - Only URLs with an allowed protocol may be added to the database
 - Support HTTPS connections when $root is not configured
 - SQL schema version table to ease future database upgrades
