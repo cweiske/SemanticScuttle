@@ -674,11 +674,12 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
             return false;
         }
 
-        $arrWatch = array();
+        $retval = true;
         if ($this->db->sql_numrows($dbresult) == 0)
-        return false;
-        else
-        return true;
+        $retval = false;
+
+        $this->db->sql_freeresult($dbresult);
+        return $retval;
     }
 
     function setWatchStatus($subjectUserID) {
