@@ -35,7 +35,9 @@ $this->includeTemplate($GLOBALS['top_include']);
         <input type="text" id="pPrivateKey" name="pPrivateKey" size="40" value="<?php echo $privateKey;?>" readonly="readonly" />
         <!--<input type="button" name="submittedPK" value="<?php echo T_('Generate New Key'); ?>" />-->
 
-        <a onClick="getNewPrivateKey(this); return false;"><button type="submit" name="submittedPK" value="1"><?php echo T_('Generate New Key'); ?></button></a>
+        <a onclick="getNewPrivateKey(this); return false;">
+         <button type="submit" name="submittedPK" value="1"><?php echo T_('Generate New Key'); ?></button>
+        </a>
     </td>
 </tr>
 </table>
