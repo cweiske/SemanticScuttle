@@ -33,7 +33,9 @@ $this->includeTemplate($GLOBALS['top_include']);
     <td><input type="checkbox" id="pEnablePrivateKey" name="pEnablePrivateKey" value="true" <?php echo $privateKeyIsEnabled;?> />
         <label for="pEnablePrivateKey"><?php echo T_('Enable'); ?></label>&nbsp;&nbsp;&nbsp;
         <input type="text" id="pPrivateKey" name="pPrivateKey" size="40" value="<?php echo $privateKey;?>" readonly="readonly" />
-        <input type="submit" name="submittedPK" value="<?php echo T_('Generate New Key'); ?>" />
+        <!--<input type="button" name="submittedPK" value="<?php echo T_('Generate New Key'); ?>" />-->
+
+        <a onClick="getNewPrivateKey(this); return false;"><button type="submit" name="submittedPK" value="1"><?php echo T_('Generate New Key'); ?></button></a>
     </td>
 </tr>
 </table>

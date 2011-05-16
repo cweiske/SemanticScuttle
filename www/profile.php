@@ -23,6 +23,7 @@ require_once 'www-header.php';
 
 /* Service creation: only useful services are created */
 // No specific services
+$tplVars['loadjs'] = true;
 
 /* Managing all possible inputs */
 isset($_POST['submittedPK']) ? define('POST_SUBMITTEDPK', $_POST['submittedPK']): define('POST_SUBMITTEDPK', '');

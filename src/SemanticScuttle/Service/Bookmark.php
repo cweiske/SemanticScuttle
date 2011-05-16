@@ -728,14 +728,15 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             $privacy = ' AND B.bStatus = 0';
         }
 
+        $tagcount = 0;
         // Set up the tags, if need be.
-        if (!is_array($tags) && !is_null($tags)) {
+        if (!is_array($tags) && !is_null($tags) && $tags<>"") {
             $tags = explode('+', trim($tags));
-        }
 
-        $tagcount = count($tags);
-        for ($i = 0; $i < $tagcount; $i ++) {
-            $tags[$i] = trim($tags[$i]);
+            $tagcount = count($tags);
+            for ($i = 0; $i < $tagcount; $i ++) {
+                $tags[$i] = trim($tags[$i]);
+            }
         }
 
         // Set up the SQL query.
