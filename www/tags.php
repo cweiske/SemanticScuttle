@@ -67,8 +67,21 @@ if ($usecache) {
 $tplVars['pagetitle'] = T_('Tags') .': '. $cat;
 $tplVars['loadjs'] = true;
 $tplVars['rsschannels'] = array(
-array(filter($sitename .': '. $pagetitle), createURL('rss', 'all/'. filter($cat, 'url')).'?sort='.getSortOrder())
+array(filter($sitename .': Tags: '. $cat), createURL('rss', 'all/'. filter($cat, 'url')).'?sort='.getSortOrder())
 );
+
+if ($userservice->isLoggedOn()) {
+    $currentUsername = $currentUser->getUsername();
+    if ($userservice->isPrivateKeyValid($currentUser->getPrivateKey())) {
+        array_push(
+            $tplVars['rsschannels'],
+            array(
+                filter($sitename .': Tags: '. $cat . sprintf(T_(': (private) ')) . $currentUsername),
+                createURL('rss', filter($currentUsername, 'url') . '?sort='.getSortOrder().'&amp;privatekey='.$currentUser->getPrivateKey())
+            )
+        );
+    }
+}
 
 // Pagination
 $perpage = getPerPageCount($currentUser);

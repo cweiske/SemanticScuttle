@@ -821,23 +821,34 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         // Handle the parts of the query that depend on any tags that are present.
         $query_4 = '';
-        for ($i = 0; $i < $tagcount; $i ++) {
-            $query_2 .= ', '. $b2tservice->getTableName() .' AS T'. $i;
+        if ($tagcount > 0) {
+            $query_2 .= ', '. $b2tservice->getTableName() .' AS T0';
             $query_4 .= ' AND (';
+            
+            $tagArray = array();
+            for ($i = 0; $i < $tagcount; $i ++) {
+                $tmpTag = $this->db->sql_escape($tags[$i]);
+                $allLinkedTags = $tag2tagservice->getAllLinkedTags(
+                    $tmpTag, '>', $user
+                );
 
-            $allLinkedTags = $tag2tagservice->getAllLinkedTags(
-                $this->db->sql_escape($tags[$i]), '>', $user
-            );
+                while (is_array($allLinkedTags) && count($allLinkedTags)>0) {
+                    $tmpValue = array_pop($allLinkedTags);
+                    if (in_array($tmpValue, $tagArray) == false) {
+                        $tagArray[] = $tmpValue;
+                    }
+                }
 
-            while (is_array($allLinkedTags) && count($allLinkedTags)>0) {
-                $query_4 .= ' T'. $i .'.tag = "'. array_pop($allLinkedTags) .'"';
-                $query_4 .= ' OR';
+                if (in_array($tmpTag, $tagArray) == false) {
+                    $tagArray[] = $tmpTag;
+                }
             }
-
-            $query_4 .= ' T'. $i .'.tag = "'. $this->db->sql_escape($tags[$i]) .'"';
-
-            $query_4 .= ') AND T'. $i .'.bId = B.bId';
-            //die($query_4);
+            // loop through array of possible tags
+            foreach ($tagArray as $k => $v) {
+                $query_4 .= ' T0.tag = "'. $v .'" OR';
+            }
+            $query_4 = substr($query_4,0,-3);
+            $query_4 .= ') AND T0.bId = B.bId';
         }
 
         // Search terms
