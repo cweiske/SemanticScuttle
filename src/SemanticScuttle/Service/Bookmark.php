@@ -718,7 +718,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             // All public bookmarks, user's own bookmarks
             // and any shared with user
             $privacy = ' AND ((B.bStatus = 0) OR (B.uId = '. $sId .')';
-            $watchnames = $userservice->getWatchNames($sId);
+            $watchnames = $userservice->getWatchNames($sId, true);
             foreach ($watchnames as $watchuser) {
                 $privacy .= ' OR (U.username = "'. $watchuser .'" AND B.bStatus = 1)';
             }
@@ -728,15 +728,14 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             $privacy = ' AND B.bStatus = 0';
         }
 
-        $tagcount = 0;
         // Set up the tags, if need be.
-        if (!is_array($tags) && !is_null($tags) && $tags<>"") {
+        if (!is_array($tags) && !is_null($tags)) {
             $tags = explode('+', trim($tags));
+        }
 
-            $tagcount = count($tags);
-            for ($i = 0; $i < $tagcount; $i ++) {
-                $tags[$i] = trim($tags[$i]);
-            }
+        $tagcount = count($tags);
+        for ($i = 0; $i < $tagcount; $i ++) {
+            $tags[$i] = trim($tags[$i]);
         }
 
         // Set up the SQL query.
@@ -821,34 +820,23 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
 
         // Handle the parts of the query that depend on any tags that are present.
         $query_4 = '';
-        if ($tagcount > 0) {
-            $query_2 .= ', '. $b2tservice->getTableName() .' AS T0';
+        for ($i = 0; $i < $tagcount; $i ++) {
+            $query_2 .= ', '. $b2tservice->getTableName() .' AS T'. $i;
             $query_4 .= ' AND (';
-            
-            $tagArray = array();
-            for ($i = 0; $i < $tagcount; $i ++) {
-                $tmpTag = $this->db->sql_escape($tags[$i]);
-                $allLinkedTags = $tag2tagservice->getAllLinkedTags(
-                    $tmpTag, '>', $user
-                );
 
-                while (is_array($allLinkedTags) && count($allLinkedTags)>0) {
-                    $tmpValue = array_pop($allLinkedTags);
-                    if (in_array($tmpValue, $tagArray) == false) {
-                        $tagArray[] = $tmpValue;
-                    }
-                }
+            $allLinkedTags = $tag2tagservice->getAllLinkedTags(
+                $this->db->sql_escape($tags[$i]), '>', $user
+            );
 
-                if (in_array($tmpTag, $tagArray) == false) {
-                    $tagArray[] = $tmpTag;
-                }
+            while (is_array($allLinkedTags) && count($allLinkedTags)>0) {
+                $query_4 .= ' T'. $i .'.tag = "'. array_pop($allLinkedTags) .'"';
+                $query_4 .= ' OR';
             }
-            // loop through array of possible tags
-            foreach ($tagArray as $k => $v) {
-                $query_4 .= ' T0.tag = "'. $v .'" OR';
-            }
-            $query_4 = substr($query_4,0,-3);
-            $query_4 .= ') AND T0.bId = B.bId';
+
+            $query_4 .= ' T'. $i .'.tag = "'. $this->db->sql_escape($tags[$i]) .'"';
+
+            $query_4 .= ') AND T'. $i .'.bId = B.bId';
+            //die($query_4);
         }
 
         // Search terms
