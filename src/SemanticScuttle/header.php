@@ -46,14 +46,21 @@ if (isset($_GET['unittestMode']) && $_GET['unittestMode'] == 1
         die("Unittestmode is not allowed\n");
     }
 
-    $unittestConfigFile = $datadir . '/config.unittest.php';
-    if (file_exists($unittestConfigFile)) {
-        require_once $unittestConfigFile;
-    }
     define('HTTP_UNIT_TEST_MODE', true);
     define('UNIT_TEST_MODE', true);
 }
 if (defined('UNIT_TEST_MODE')) {
+    //load configuration for unit tests
+    $testingConfigFile = $datadir . '/config.testing.php';
+    if (file_exists($testingConfigFile)) {
+        require_once $testingConfigFile;
+    }
+    //test-specific configuration file
+    $unittestConfigFile = $datadir . '/config.testing-tmp.php';
+    if (file_exists($unittestConfigFile)) {
+        require_once $unittestConfigFile;
+    }
+
     //make local config vars global - needed for unit tests
     //run with phpunit
     foreach (get_defined_vars() as $var => $value) {
@@ -107,7 +114,7 @@ T_bind_textdomain_codeset($domain, 'UTF-8');
 T_textdomain($domain);
 
 // 4 // Session
-if (!defined('UNIT_TEST_MODE') || defined('HTTP_UNIT_TEST_MODE')) {
+if (isset($_SERVER['REMOTE_ADDR'])) {
     session_start();
     if ($GLOBALS['enableVoting']) {
         if (isset($_SESSION['lastUrl'])) {

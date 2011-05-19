@@ -50,8 +50,9 @@ class TestBaseApi extends TestBase
         $this->url = $GLOBALS['unittestUrl'] . $this->urlPart;
 
         //clean up before test
-        if (file_exists($GLOBALS['datadir'] . '/config.unittest.php')) {
-            unlink($GLOBALS['datadir'] . '/config.unittest.php');
+        $configFile = $GLOBALS['datadir'] . '/config.testing-tmp.php';
+        if (file_exists($configFile)) {
+            unlink($configFile);
         }
 
         $this->us = SemanticScuttle_Service_Factory::get('User');
@@ -230,7 +231,7 @@ class TestBaseApi extends TestBase
 
         $this->assertInternalType(
             'integer',
-            file_put_contents($GLOBALS['datadir'] . '/config.unittest.php', $str),
+            file_put_contents($GLOBALS['datadir'] . '/config.testing-tmp.php', $str),
             'Writing config.unittest.php failed'
         );
     }

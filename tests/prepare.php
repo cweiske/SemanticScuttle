@@ -22,7 +22,7 @@ $_SERVER['HTTP_HOST'] = 'http://localhost/';
 define('UNIT_TEST_MODE', true);
 
 if ('@data_dir@' == '@' . 'data_dir@') {
-    //non pear-install
+    //non pear-installation (i.e. git checkout)
     require_once dirname(__FILE__) . '/../src/SemanticScuttle/header.php';
 } else {
     //pear installation; files are in include path
@@ -35,7 +35,7 @@ if ($GLOBALS['debugMode'] == true
     && $GLOBALS['dbtype'] == 'mysql4'
 ) {
     echo "\n"
-        . '!!! The combination of debugMode and dbtype==mysql4'
+        . '!! The combination of debugMode and dbtype==mysql4'
         . ' will wreck some tests' . "\n\n";
 }
 ?>
