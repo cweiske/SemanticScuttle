@@ -72,10 +72,26 @@ class TestBaseApi extends TestBase
      * @param string $urlSuffix Suffix for the URL
      *
      * @return HTTP_Request2 HTTP request object
+     */
+    protected function getRequest($urlSuffix = null)
+    {
+        $url = $this->getTestUrl($urlSuffix);
+        $req = new HTTP_Request2($url, HTTP_Request2::METHOD_GET);
+
+        return $req;
+    }
+
+    /**
+     * Creates an URL from $this->url plus $urlSuffix and an appended
+     * unittestMode=1 parameter.
+     *
+     * @param string $urlSuffix Suffix for the URL
+     *
+     * @return string URL
      *
      * @uses $url
      */
-    protected function getRequest($urlSuffix = null)
+    protected function getTestUrl($urlSuffix = null)
     {
         $url = $this->url . $urlSuffix;
         if (strpos($urlSuffix, '?') !== false) {
@@ -83,10 +99,7 @@ class TestBaseApi extends TestBase
         } else {
             $url .= '?unittestMode=1';
         }
-
-        $req = new HTTP_Request2($url, HTTP_Request2::METHOD_GET);
-
-        return $req;
+        return $url;
     }
 
 
@@ -170,7 +183,7 @@ class TestBaseApi extends TestBase
         $uid = $this->addUser($username, $password);
 
         $req = new HTTP_Request2(
-            $GLOBALS['unittestUrl'] . '/login.php',
+            $GLOBALS['unittestUrl'] . '/login.php?unittestMode=1',
             HTTP_Request2::METHOD_POST
         );
         $cookies = $req->setCookieJar()->getCookieJar();
