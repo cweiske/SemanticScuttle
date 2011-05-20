@@ -77,10 +77,14 @@ class TestBaseApi extends TestBase
      */
     protected function getRequest($urlSuffix = null)
     {
-        $req = new HTTP_Request2(
-            $this->url . $urlSuffix,
-            HTTP_Request2::METHOD_GET
-        );
+        $url = $this->url . $urlSuffix;
+        if (strpos($urlSuffix, '?') !== false) {
+            $url .= '&unittestMode=1';
+        } else {
+            $url .= '?unittestMode=1';
+        }
+
+        $req = new HTTP_Request2($url, HTTP_Request2::METHOD_GET);
 
         return $req;
     }
