@@ -290,8 +290,8 @@ class Bookmark2TagTest extends TestBase
         $arTags = $this->b2ts->getPopularTags(null, 10, null, 1);
         $this->assertInternalType('array', $arTags);
         $this->assertEquals(3, count($arTags));
-        $this->assertContains(array('tag' => 'one', 'bCount' => '2'), $arTags);
-        $this->assertContains(array('tag' => 'two', 'bCount' => '1'), $arTags);
+        $this->assertContains(array('tag' => 'one', 'bCount' => '3'), $arTags);
+        $this->assertContains(array('tag' => 'two', 'bCount' => '2'), $arTags);
         $this->assertContains(array('tag' => 'thr', 'bCount' => '1'), $arTags);
 
         $arTags = $this->b2ts->getPopularTags(null, 10, null, 2);
