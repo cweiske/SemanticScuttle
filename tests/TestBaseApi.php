@@ -50,8 +50,9 @@ class TestBaseApi extends TestBase
         $this->url = $GLOBALS['unittestUrl'] . $this->urlPart;
 
         //clean up before test
-        if (file_exists($GLOBALS['datadir'] . '/config.unittest.php')) {
-            unlink($GLOBALS['datadir'] . '/config.unittest.php');
+        $configFile = $GLOBALS['datadir'] . '/config.testing-tmp.php';
+        if (file_exists($configFile)) {
+            unlink($configFile);
         }
 
         $this->us = SemanticScuttle_Service_Factory::get('User');
@@ -71,17 +72,34 @@ class TestBaseApi extends TestBase
      * @param string $urlSuffix Suffix for the URL
      *
      * @return HTTP_Request2 HTTP request object
-     *
-     * @uses $url
      */
     protected function getRequest($urlSuffix = null)
     {
-        $req = new HTTP_Request2(
-            $this->url . $urlSuffix,
-            HTTP_Request2::METHOD_GET
-        );
+        $url = $this->getTestUrl($urlSuffix);
+        $req = new HTTP_Request2($url, HTTP_Request2::METHOD_GET);
 
         return $req;
+    }
+
+    /**
+     * Creates an URL from $this->url plus $urlSuffix and an appended
+     * unittestMode=1 parameter.
+     *
+     * @param string $urlSuffix Suffix for the URL
+     *
+     * @return string URL
+     *
+     * @uses $url
+     */
+    protected function getTestUrl($urlSuffix = null)
+    {
+        $url = $this->url . $urlSuffix;
+        if (strpos($urlSuffix, '?') !== false) {
+            $url .= '&unittestMode=1';
+        } else {
+            $url .= '?unittestMode=1';
+        }
+        return $url;
     }
 
 
@@ -165,7 +183,7 @@ class TestBaseApi extends TestBase
         $uid = $this->addUser($username, $password);
 
         $req = new HTTP_Request2(
-            $GLOBALS['unittestUrl'] . '/login.php',
+            $GLOBALS['unittestUrl'] . '/login.php?unittestMode=1',
             HTTP_Request2::METHOD_POST
         );
         $cookies = $req->setCookieJar()->getCookieJar();
@@ -230,7 +248,7 @@ class TestBaseApi extends TestBase
 
         $this->assertInternalType(
             'integer',
-            file_put_contents($GLOBALS['datadir'] . '/config.unittest.php', $str),
+            file_put_contents($GLOBALS['datadir'] . '/config.testing-tmp.php', $str),
             'Writing config.unittest.php failed'
         );
     }

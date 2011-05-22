@@ -41,7 +41,7 @@ class www_SearchTest extends TestBaseApi
             'No bookmark found', false
         );
 
-        $res = $this->getRequest('/all/baz bat')->send();
+        $res = $this->getRequest('/all/baz%20bat')->send();
         $this->assertSelectCount(
             '.xfolkentry', false, $res->getBody(),
             'Bookmarks found', false
