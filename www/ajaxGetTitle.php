@@ -38,9 +38,12 @@ function getTitle($url) {
 		preg_match_all('/<title>(.*)<\/title>/si', $html, $matches);
 		$title = $matches[1][0];
 
+		$encoding = 'utf-8';
 		// Get encoding from charset attribute
 		preg_match_all('/<meta.*charset=([^;"]*)">/i', $html, $matches);
-		$encoding = strtoupper($matches[1][0]);
+		if (isset($matches[1][0])) {
+			$encoding = strtoupper($matches[1][0]);
+		}
 
 		// Convert to UTF-8 from the original encoding
 		if (function_exists("mb_convert_encoding")) {
