@@ -4,8 +4,8 @@
  <head>
   <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
   <title><?php echo filter($GLOBALS['sitename'] .(isset($pagetitle) ? ' » ' . $pagetitle : '')); ?></title>
-  <link rel="icon" type="image/png" href="<?php echo ROOT ?>icon.png" />
-  <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>scuttle.css" />
+  <link rel="icon" type="image/png" href="<?php echo ROOT ?>themes/<?php echo $GLOBALS['theme']; ?>/icon.png" />
+  <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>themes/<?php echo $GLOBALS['theme']; ?>/scuttle.css" />
   <link rel="search" type="application/opensearchdescription+xml" href="<?php echo ROOT ?>api/opensearch.php" title="<?php echo htmlspecialchars($GLOBALS['sitename']) ?>"/>
 <?php
 if (isset($rsschannels)) {

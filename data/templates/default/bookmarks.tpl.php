@@ -39,7 +39,7 @@ include('search.menu.php');
 
 <?php if($GLOBALS['enableAdminColors']!=false && isset($userid) && $userservice->isAdmin($userid) && $pageName != PAGE_WATCHLIST) : ?>
 <div style="width:70%;text-align:center;">
-<img src="<?php echo ROOT ?>images/logo_24.gif" width="12px"/> <?php echo T_('Bookmarks on this page are managed by an admin user.'); ?><img src="<?php echo ROOT ?>images/logo_24.gif" width="12px"/>
+<img src="<?php echo ROOT . 'themes/' . $GLOBALS['theme']; ?>/images/logo_24.gif" width="12px"/> <?php echo T_('Bookmarks on this page are managed by an admin user.'); ?><img src="<?php echo ROOT . 'themes/' . $GLOBALS['theme']; ?>/images/logo_24.gif" width="12px"/>
 </div>
 <?php endif?>
 
@@ -70,7 +70,7 @@ if ($userservice->isLoggedOn()) {
     ) {
 		echo ' <a href="'. createURL('tagcommondescriptionedit', $currenttag).'" title="'.T_('Edit the common description of this tag').'">';
 		echo !is_array($cDescription) || strlen($cDescription['cdDescription'])==0?T_('Edit the common description of this tag'):'';
-		echo ' <img src="'.ROOT.'images/b_edit.png" /></a>';
+		echo ' <img src="'.ROOT . 'themes/' . $GLOBALS['theme'] . '/images/b_edit.png" /></a>';
 	} else if (isset($hash)) {
 		echo ' (<a href="'.createURL('bookmarkcommondescriptionedit', $hash).'" title="'.T_('Edit the common description of this bookmark').'">';
 		echo T_('Edit the common description of this bookmark').'</a>)';
@@ -95,7 +95,7 @@ if($userservice->isLoggedOn()) {
 	if($currenttag!= '') {
 		echo ' <a href="'. createURL('tagedit', $currenttag).'" title="'.T_('Edit your personal description of this tag').'" >';
 		echo strlen($pDescription['tDescription'])==0?T_('Edit your personal description of this tag'):'';
-		echo ' <img src="'.ROOT.'images/b_edit.png" /></a>';
+		echo ' <img src="' . ROOT . 'themes/' . $GLOBALS['theme'] . '/images/b_edit.png" /></a>';
 	}
 }
 ?></p>
@@ -221,7 +221,7 @@ if ($currenttag!= '') {
 	for ($i = 0; $i < $size; $i++) {
 		$brss =  '<a style="background:#FFFFFF" href="'. htmlspecialchars($rsschannels[$i][1]) . '"'
             . ' title="' . htmlspecialchars($rsschannels[$i][0]) . '">'
-            . '<img src="' . ROOT . 'images/rss.gif" width="16" height="16" alt="' . htmlspecialchars($rsschannels[$i][0]) .'"/>'
+            . '<img src="' . ROOT . 'themes/' . $GLOBALS['theme'] . '/images/rss.gif" width="16" height="16" alt="' . htmlspecialchars($rsschannels[$i][0]) .'"/>'
             . '</a>';
 	}
 
@@ -363,7 +363,7 @@ if ($currenttag!= '') {
 		// Admin specific design
 		if ($userservice->isAdmin($row['username']) && $GLOBALS['enableAdminColors']) {
 			$adminBgClass = ' class="adminBackground"';
-			$adminStar    = ' <img src="'. ROOT .'images/logo_24.gif" width="12px" title="'. T_('This bookmark is certified by an admin user.') .'" />';
+			$adminStar    = ' <img src="' . ROOT . 'themes/' . $GLOBALS['theme'] . '/images/logo_24.gif" width="12px" title="'. T_('This bookmark is certified by an admin user.') .'" />';
 		} else {
 			$adminBgClass = '';
 			$adminStar    = '';
