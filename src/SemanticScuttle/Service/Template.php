@@ -38,6 +38,14 @@ class SemanticScuttle_Service_Template extends SemanticScuttle_Service
      */
     protected $basedir;
 
+    /**
+     * The template theme to use.
+     * Set in constructor from $GLOBALS['theme']
+     *
+     * @var string
+     */
+    protected $theme;
+
 
 
     /**
@@ -64,6 +72,8 @@ class SemanticScuttle_Service_Template extends SemanticScuttle_Service
     protected function __construct()
     {
         $this->basedir = $GLOBALS['TEMPLATES_DIR'];
+        $this->theme   = $GLOBALS['theme'];
+        //FIXME: verify the theme exists
     }
 
 
@@ -77,15 +87,24 @@ class SemanticScuttle_Service_Template extends SemanticScuttle_Service
      *
      * @return SemanticScuttle_Model_Template Template object
      */
-    function loadTemplate($template, $vars = null)
+    public function loadTemplate($template, $vars = null)
     {
         if (substr($template, -4) != '.php') {
             $template .= '.php';
         }
+
+        $oldIncPath = get_include_path();
+        set_include_path(
+            $this->basedir . $this->theme
+            . PATH_SEPARATOR . $this->basedir . 'default'
+        );
+
         $tpl = new SemanticScuttle_Model_Template(
-            $this->basedir .'/'. $template, $vars, $this
+            $template, $vars, $this
         );
         $tpl->parse();
+
+        set_include_path($oldIncPath);
 
         return $tpl;
     }
