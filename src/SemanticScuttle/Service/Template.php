@@ -97,6 +97,8 @@ class SemanticScuttle_Service_Template extends SemanticScuttle_Service
         set_include_path(
             $this->basedir . $this->theme
             . PATH_SEPARATOR . $this->basedir . 'default'
+            //needed since services are instantiated in templates
+            . PATH_SEPARATOR . $oldIncPath
         );
 
         $tpl = new SemanticScuttle_Model_Template(
