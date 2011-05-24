@@ -14,6 +14,7 @@
  */
 
 require_once 'SemanticScuttle/Model/Template.php';
+require_once 'SemanticScuttle/Model/Theme.php';
 
 /**
  * SemanticScuttle template service.
@@ -40,9 +41,9 @@ class SemanticScuttle_Service_Template extends SemanticScuttle_Service
 
     /**
      * The template theme to use.
-     * Set in constructor from $GLOBALS['theme']
+     * Set in constructor based on $GLOBALS['theme']
      *
-     * @var string
+     * @var SemanticScuttle_Model_Theme
      */
     protected $theme;
 
@@ -72,7 +73,7 @@ class SemanticScuttle_Service_Template extends SemanticScuttle_Service
     protected function __construct()
     {
         $this->basedir = $GLOBALS['TEMPLATES_DIR'];
-        $this->theme   = $GLOBALS['theme'];
+        $this->theme   = new SemanticScuttle_Model_Theme($GLOBALS['theme']);
         //FIXME: verify the theme exists
     }
 
@@ -84,6 +85,8 @@ class SemanticScuttle_Service_Template extends SemanticScuttle_Service
      * @param string $template Template filename relative
      *                         to template dir
      * @param array  $vars     Array of template variables.
+     *                         The current theme object will be added
+     *                         automatically with name "theme".
      *
      * @return SemanticScuttle_Model_Template Template object
      */
@@ -95,12 +98,13 @@ class SemanticScuttle_Service_Template extends SemanticScuttle_Service
 
         $oldIncPath = get_include_path();
         set_include_path(
-            $this->basedir . $this->theme
+            $this->basedir . $this->theme->getName()
             . PATH_SEPARATOR . $this->basedir . 'default'
             //needed since services are instantiated in templates
             . PATH_SEPARATOR . $oldIncPath
         );
 
+        $vars['theme'] = $this->theme;
         $tpl = new SemanticScuttle_Model_Template(
             $template, $vars, $this
         );

@@ -121,18 +121,19 @@
 
      <replacement
       path="src/SemanticScuttle/header.php"
-      type="pear-config"
-      from="@data_dir@" to="data_dir"
+      type="pear-config" from="@data_dir@" to="data_dir"
+      />
+     <replacement
+      path="src/SemanticScuttle/header.php"
+      type="pear-config" from="@www_dir@" to="www_dir"
       />
      <replacement
       path="www/www-header.php"
-      type="pear-config"
-      from="@data_dir@" to="data_dir"
+      type="pear-config" from="@data_dir@" to="data_dir"
       />
      <replacement
       path="tests/prepare.php"
-      type="pear-config"
-      from="@data_dir@" to="data_dir"
+      type="pear-config" from="@data_dir@" to="data_dir"
       />
 
      <changelog version="0.97" date="2010-06-09" license="GPL">
