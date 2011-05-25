@@ -4,8 +4,8 @@
  <head>
   <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
   <title><?php echo filter($GLOBALS['sitename'] .(isset($pagetitle) ? ' » ' . $pagetitle : '')); ?></title>
-  <link rel="icon" type="image/png" href="<?php echo ROOT ?>icon.png" />
-  <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>scuttle.css" />
+  <link rel="icon" type="image/png" href="<?php echo $theme->resource('icon.png');?>" />
+  <link rel="stylesheet" type="text/css" href="<?php echo $theme->resource('scuttle.css');?>" />
   <link rel="search" type="application/opensearchdescription+xml" href="<?php echo ROOT ?>api/opensearch.php" title="<?php echo htmlspecialchars($GLOBALS['sitename']) ?>"/>
 <?php
 if (isset($rsschannels)) {
@@ -40,7 +40,7 @@ if(isset($_GET['popup'])) {
 ?>
 
 <div id="header" <?php echo $headerstyle; ?>>
-<h1><a href="<?php echo ROOT ?>"><?php echo $GLOBALS['sitename']; ?></a></h1>
+<h1><a href="<?php echo ROOT ?>">.</a></h1>
 <?php
 if(!isset($_GET['popup'])) {
 	$this->includeTemplate('toolbar.inc');

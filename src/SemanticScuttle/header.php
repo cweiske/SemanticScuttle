@@ -18,9 +18,12 @@
 if ('@data_dir@' == '@' . 'data_dir@') {
     //non pear-install
     $datadir = dirname(__FILE__) . '/../../data/';
+    $wwwdir  = dirname(__FILE__) . '/../../www/';
 } else {
     //pear installation; files are in include path
     $datadir = '@data_dir@/SemanticScuttle/';
+    //FIXME: when you have multiple installations, the www_dir will be wrong
+    $wwwdir  = '@www_dir@/SemanticScuttle/';
 }
 
 if (!file_exists($datadir . '/config.php')) {

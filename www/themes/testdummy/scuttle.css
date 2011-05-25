@@ -1,0 +1,12 @@
+@import url(../default/scuttle.css);
+
+body {
+    background-color: #FEA;
+}
+
+html > body h1 {
+    background: url('images/logo.png') no-repeat 10px;
+}
+div#header {
+    background: #FEA;
+}

@@ -76,6 +76,9 @@ class SemanticScuttle_Model_Template
      * Sets variables and includes the template file,
      * causing it to be rendered.
      *
+     * Does not take care of themes and so.
+     * The include path must be set so the correct theme is used.
+     *
      * @return void
      */
     public function parse()
