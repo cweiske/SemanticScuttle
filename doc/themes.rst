@@ -1,8 +1,8 @@
 ======================
 SemanticScuttle Themes
 ======================
-SemanticScuttle may be changed visually by supplying custom "themes" that
-modify the visual appearance.
+SemanticScuttle may be changed visually by supplying custom "themes" (skins)
+that modify the visual appearance.
 
 
 Changing the current theme
