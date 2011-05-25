@@ -1,6 +1,9 @@
 ChangeLog for SemantiScuttle
 ============================
 
+- Implement request #FIXME: Theming support
+
+
 0.98.0 - 2011-XX-XX
 -------------------
 - Switch to jQuery and drop dojo
