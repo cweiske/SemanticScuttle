@@ -60,7 +60,7 @@ class SemanticScuttle_Model_Theme
      *
      * Must always be used when adding i.e. images to the output.
      *
-     * @param string $file File name to find the path for
+     * @param string $file File name to find the path for, i.e. "scuttle.css".
      *
      * @return string Full path
      */
