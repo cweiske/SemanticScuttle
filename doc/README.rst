@@ -11,7 +11,7 @@ Available under the GNU General Public License
 
 Installation
 ============
-See `INSTALL.txt`__
+See `INSTALL.rst`__
 
 
 __ INSTALL.html
