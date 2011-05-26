@@ -219,18 +219,30 @@
    </foreach>
   </target>
 
-  <target name="build-doc-file" depends="check">
+
+  <target name="build-doc-file" depends="check"
+   description="Builds a single documentation file. Pass file path as $fname"
+  >
    <echo msg="${fname}"/>
    <php function="preg_replace" returnProperty="outfile">
     <param value="/^(.+)(.rst|.txt)$/"/>
-    <param value="\1.html"/>
+    <param value="dist/\1.html"/>
     <param value="${fname}"/>
    </php>
-   <!--<echo msg="${fname} - ${outfile}"/>-->
-   <exec
-    command="rst2html --exit-status=2 ${fname} > dist/${outfile}"
-    checkreturn="1"
-    />
+
+   <!-- only render file if the doc file is newer than the html file -->
+   <property name="isuptodate" value="false"/>
+   <uptodate property="isuptodate" srcfile="${fname}" targetfile="${outfile}" />
+   <if>
+    <not><istrue value="${isuptodate}"/></not>
+    <then>
+     <exec
+      command="rst2html --exit-status=2 ${fname} ${outfile}"
+      checkreturn="1"
+      />
+    </then>
+   </if>
+
   </target>
 
 
