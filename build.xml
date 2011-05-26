@@ -207,7 +207,8 @@
   </target>
 
 
-
+  <!-- you need to have the python docutils package installed, since
+       we use the rst2html tool -->
   <target name="build-docs">
    <foreach param="fname" absparam="abs-fname" target="build-doc-file">
      <fileset dir=".">
