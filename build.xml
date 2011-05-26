@@ -41,7 +41,6 @@
 
       Test your zip with: unzip -l SemanticScuttle-0.95.0.zip
     -->
-    <mkdir dir="dist" />
     <echo msg="Creating distribution zip for SemanticScuttle ${version}"/>
     <delete file="${distfile}" failonerror="false"/>
     <zip destfile="${distfile}" prefix="${phing.project.name}-${version}/">
@@ -209,6 +208,23 @@
 
 
 
+  <target name="build-docs">
+   <foreach param="fname" absparam="abs-fname" target="build-doc-file">
+     <fileset dir=".">
+      <include name="doc/ChangeLog"/>
+      <include name="doc/**.txt"/>
+      <include name="doc/**.rst"/>
+     </fileset>
+   </foreach>
+  </target>
+
+  <target name="build-doc-file" depends="check">
+   <echo msg="${fname}"/>
+   <exec command="rst2html ${fname} > dist/${fname}.html" checkreturn="1"/>
+  </target>
+
+
+
   <target name="release" depends="check,zip,package,deploy-sf"
    description="Release the version on sourceforge"
    >
@@ -315,6 +331,9 @@
     <fail unless="sfuser" message="Sourceforge username not defined!" />
     <fail unless="sfproject" message="Sourceforge project name not defined!" />
     <fail unless="sffilepath" message="Sourceforge project file path not defined!" />
+
+    <mkdir dir="dist" />
+    <mkdir dir="dist/doc" />
   </target>
 
 </project>
