@@ -26,7 +26,7 @@ __ UPGRADE.html
 
 Public API
 ==========
-Scuttle supports most of the `del.icio.us API`__.
+SemanticScuttle supports most of the `del.icio.us API`__.
 Almost all of the neat tools made for that system can be modified
 to work with your SemanticScuttle installation. If you find a tool
 that won't let you change the API address, ask the creator to add
