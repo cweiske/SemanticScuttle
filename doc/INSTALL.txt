@@ -1,51 +1,60 @@
+============================
 SemanticScuttle installation
 ============================
 
 
 Prerequisites
--------------
+=============
 To run SemanticScuttle, you need:
+
 - PHP5 with filter functions enabled
 - A web server, for example Apache
 
 
 Installation instructions
--------------------------
+=========================
 1. Create a new MySQL database
-2. Import tables.sql into that database, i.e.
-   run
-   > mysql -umyusername semanticscuttle < data/tables.sql
+2. Import ``data/tables.sql`` into that database, i.e.
+   run ::
+
+   $ mysql -umyusername semanticscuttle < data/tables.sql
+
    on the shell ("semanticscuttle" being the database name)
-3. Copy data/config.php.dist to data/config.php and modify it as
+
+3. Copy ``data/config.php.dist`` to ``data/config.php`` and modify it as
    necessary.
 4. Make the cache directory writable by your web server.
-   For example, run
-   > chmod 0777 cache
+   For example, run ::
+
+   $ chmod 0777 cache
+
    on the shell.
-5. Set the www/ directory as document root in your web server,
+5. Set the ``www/`` directory as document root in your web server,
    restart the web server.
 
 
 Ugly www directory in URLs
---------------------------
+==========================
 In case point 5 of the installation instructions cannot be put into
 practice by you because you are not able to change the web server
 configuration, you are not lost! There is a way to get rid of
-www/ in your URL!
+``www/`` in your URL!
 
-Imagine following directory layout:
+Imagine following directory layout: ::
+
  /home/customer123/
    www/
      subdomain1/
      subdomain2/
      subdomain3/
 
-Create a SemanticScuttle directory somewhere outside www if possible
-and put all directories except www/ in there. Move all files and
-directories from www/ into your subdomain directory. Then modify
-subdomain/www-header.php to include the correct file path.
+Create a SemanticScuttle directory somewhere outside ``www`` if possible
+and put all directories except ``www/`` in there. Move all files and
+directories from ``www/`` into your subdomain directory. Then modify
+``subdomain/www-header.php`` to include the correct file path.
 
-The new directory layout should look that way:
+The new directory layout should look that way: ::
+
  /home/customer123/
    semanticscuttle/
      doc/
@@ -60,8 +69,11 @@ The new directory layout should look that way:
        www-header.php
      subdomain3/
 
-Now open www-header.php and replace
+Now open www-header.php and replace ::
+
   require_once '../src/SemanticScuttle/header.php';
-with
+
+with ::
+
   require_once '../../semanticscuttle/src/SemanticScuttle/header.php';
 
