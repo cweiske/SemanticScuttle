@@ -34,10 +34,10 @@ Developer documentation
 - `Running unit testes`__
 - `How to translate SemanticScuttle`__
 
-__ rules.html
-__ api.html
-__ debugging.html
-__ release-new-version.html
-__ running-unit-tests.html
-__ translation.html
+__ developers/rules.html
+__ developers/api.html
+__ developers/debugging.html
+__ developers/release-new-version.html
+__ developers/running-unit-tests.html
+__ developers/translation.html
 

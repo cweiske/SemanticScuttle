@@ -214,13 +214,20 @@
       <include name="doc/ChangeLog"/>
       <include name="doc/**.txt"/>
       <include name="doc/**.rst"/>
+      <include name="doc/**/*.rst"/>
      </fileset>
    </foreach>
   </target>
 
   <target name="build-doc-file" depends="check">
    <echo msg="${fname}"/>
-   <exec command="rst2html ${fname} > dist/${fname}.html" checkreturn="1"/>
+   <php function="preg_replace" returnProperty="outfile">
+    <param value="/^(.+)(.rst|.txt)$/"/>
+    <param value="\1.html"/>
+    <param value="${fname}"/>
+   </php>
+   <!--<echo msg="${fname} - ${outfile}"/>-->
+   <exec command="rst2html ${fname} > dist/${outfile}" checkreturn="1"/>
   </target>
 
 
@@ -334,6 +341,7 @@
 
     <mkdir dir="dist" />
     <mkdir dir="dist/doc" />
+    <mkdir dir="dist/doc/developers" />
   </target>
 
 </project>
