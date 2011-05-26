@@ -13,7 +13,7 @@ For example, to translate::
 
   echo "Vote for";
 
-just write
+just write ::
 
   echo T_("Vote for");
 
@@ -22,8 +22,8 @@ just write
 Translation basics
 ==================
 
-We keep one base translation file, data/locales/messages.po.
-This file is auto-generated via xgettext from all our php source files.
+We keep one base translation file, ``data/locales/messages.po``.
+This file is auto-generated via ``xgettext`` from all our php source files.
 In case you added a new string to the code that needs translation,
 update the base translation file by running ::
 
