@@ -227,7 +227,10 @@
     <param value="${fname}"/>
    </php>
    <!--<echo msg="${fname} - ${outfile}"/>-->
-   <exec command="rst2html ${fname} > dist/${outfile}" checkreturn="1"/>
+   <exec
+    command="rst2html --exit-status=2 ${fname} > dist/${outfile}"
+    checkreturn="1"
+    />
   </target>
 
 
