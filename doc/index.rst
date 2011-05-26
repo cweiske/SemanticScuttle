@@ -17,9 +17,11 @@ First reads
 
 Features
 ========
+- `Custom user authentication`__
 - `SSL Client certificates`__
 - Themes__
 
+__ authentication.html
 __ ssl-client-certificates.html
 __ themes.html
 
