@@ -217,6 +217,7 @@
       <include name="doc/**.rst"/>
       <include name="doc/**/*.rst"/>
       <exclude name="doc/LICENSE.txt"/>
+      <exclude name="doc/developers/TODO.rst"/>
      </fileset>
    </foreach>
   </target>
