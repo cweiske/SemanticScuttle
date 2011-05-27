@@ -4,261 +4,159 @@ Upgrading SemanticScuttle from a previous version
 
 
 From version 0.97 to 0.98
--------------------------
-Database updates: Apply data/schema/6.sql or do the following:
-
-    CREATE TABLE `sc_version` (
-      `schema_version` int(11) NOT NULL
-    ) DEFAULT CHARSET=utf8;
-
-    INSERT INTO `sc_version` (`schema_version`) VALUES ('6');
+=========================
+Database updates
+----------------
+Apply ``data/schema/6.sql``
 
 
 From version 0.96 to 0.97
--------------------------
+=========================
 No database changes necessary.
 
 
 From version 0.95 to 0.96
--------------------------
-Update your database:
-- ALTER TABLE `sc_bookmarks` ADD `bShort` VARCHAR(16) NULL DEFAULT NULL;
+=========================
+Database updates
+----------------
+Apply ``data/schema/5.sql``
 
-API:
-The method signatures of addBookmark() and updateBookmark()
-changed due to the addition of the $short parameter.
+API
+---
+The method signatures of ``addBookmark()`` and ``updateBookmark()``
+changed due to the addition of the ``$short`` parameter.
 
 We got complaints about the changed file structure, and people told
-us that they just cannot set the document root to www/, because they
-are not admins on their http server. This is a valid point, and
-with 0.96.0 you can easily change it. See INSTALL.txt for more information
-about moving www/.
+us that they just cannot set the document root to ``www/``, because they
+are not admins on their HTTP server. This is a valid point, and
+with 0.96.0 you can easily change it. See `INSTALL.txt`_ for more information
+about moving ``www/``.
+
+.. _INSTALL.txt: INSTALL.html
 
 
 From version 0.94 to 0.95
---------------------------
+=========================
 The file structure completely changed in 0.95.0 compared
 to previous versions. We recommend that you start with a
-fresh installation, just copying over your config.php file.
-Set your web server document root directory to www/.
+fresh installation, just copying over your ``config.php`` file.
+Set your web server document root directory to ``www/``.
 
 Yes, we kind of lost the ability to run SemanticScuttle
 in a subdirectory of a hostname. This functionality will
 be back in one of the next releases, but for now, you have
 to live with it.
 
-Update your database:
-- ALTER TABLE `sc_bookmarks` ADD `bVoting` INT NOT NULL;
-- ALTER TABLE `sc_bookmarks` ADD `bVotes` INT NOT NULL;
-- Add the new votes database table. See data/tables.sql.
+Update your database
+--------------------
+Apply ``data/schema/4.sql``.
 
 Currently, only MySQL can be used as database backend.
 All other DBMS (database management systems) have not been
 tested except for PostgreSQL, and SemanticScuttle fails there.
 
-The de_AT translation has been re-added. This is because
-de_AT provides a rather ugly "official German" style,
-while the normal de_DE is friendlier. Choose what you like.
+Translation
+-----------
+The ``de_AT`` translation has been re-added. This is because
+``de_AT`` provides a rather ugly "official German" style,
+while the normal ``de_DE`` is friendlier. Choose what you like.
 
 
 From version 0.93 to 0.94
--------------------------
+=========================
 
 - Nothing changed except for the default configuration file.
   It is recommended to start with a fresh config file,
   but not neccesary. Old config files still work.
-- If you used translation de_AT, please switch to de_DE.
-  de_AT was moved to de_DE and de_AT has been removed.
+- If you used translation ``de_AT``, please switch to ``de_DE``.
+  ``de_AT`` was moved to ``de_DE`` and ``de_AT`` has been removed.
 
 
 From version 0.92 to 0.93
--------------------------
+=========================
 
 - Backup your database
 - Make a copy from your SemanticScuttle Web directory
-- Upgrade your database by following instructions ONE after ONE (order is important) :
-#NOTHING TO CHANGE IN DB
-- Upgrade your current configuration file (config.inc.php) with respect to config.inc.php.example
-$footerMessage      = ''; #HTML message appearing at the bottom of the page (just above SemanticScuttle credits)
-$sidebarTopMessage  = ''; #HTML message appearing at the top of the sidebar
-$sidebarBottomMessage = ''; #HTML message appearing at the bottom of the sidebar
-$adminsCanModifyBookmarksFromOtherUsers = true;  # 'true' if admin users can edit or delete bookmarks belonging to other users. Else 'false'.
-$adminsAreAdvisedTagsFromOtherAdmins = false;  # 'true' if tags from other admins are proposed to each admin (in add/edit a bookmark page). Else 'false'.
-$defaultPerPageForAdmins = 20; # default number of bookmarks per page for admins (-1 means no limit)
+- Upgrade your current configuration file (``config.inc.php``) with respect to ``config.inc.php.example`` ::
+
+  $footerMessage      = ''; #HTML message appearing at the bottom of the page (just above SemanticScuttle credits)
+  $sidebarTopMessage  = ''; #HTML message appearing at the top of the sidebar
+  $sidebarBottomMessage = ''; #HTML message appearing at the bottom of the sidebar
+  $adminsCanModifyBookmarksFromOtherUsers = true;  # 'true' if admin users can edit or delete bookmarks belonging to other users. Else 'false'.
+  $adminsAreAdvisedTagsFromOtherAdmins = false;  # 'true' if tags from other admins are proposed to each admin (in add/edit a bookmark page). Else 'false'.
+  $defaultPerPageForAdmins = 20; # default number of bookmarks per page for admins (-1 means no limit)
 
 
 From version 0.91 to 0.92
--------------------------
+=========================
 Message: this version modifies the database to UTF-8 charset. The idea is to convert the content (through BLOB type) and then to change the tables' charsets.
 
 - Backup your database
 - Make a copy from your SemanticScuttle Web directory
-- Upgrade your database by following instructions ONE after ONE (order is important) :
+- Upgrade your database by applying ``data/schema/3.sql``
+- Upgrade your current configuration file (``config.inc.php``) with respect to ``config.inc.php.example``
 
-/* modify and add fields */
-ALTER TABLE `sc_bookmarks` MODIFY `bAddress` varchar(1500) NOT NULL;
-ALTER TABLE `sc_bookmarks` MODIFY `bDescription` TEXT default NULL;
-ALTER TABLE `sc_bookmarks` ADD `bPrivateNote` TEXT NULL AFTER `bDescription` ;
-ALTER TABLE `sc_tags` MODIFY `tDescription` TEXT default NULL;
-ALTER TABLE `sc_commondescription` MODIFY `cdDescription` TEXT default NULL;
+  - Add variable ::
 
-/* convert to UTF-8 if your table is ISO-something (through BLOB: tips provided by MYSQL documentation)*/
-/* first need to remove index keys because of BLOB constraints*/
-ALTER TABLE `sc_tags` DROP INDEX `sc_tags_tag_uId`;
-ALTER TABLE `sc_bookmarks2tags` DROP INDEX `sc_bookmarks2tags_tag_bId`;
-ALTER TABLE `sc_bookmarks2tags` DROP INDEX `sc_bookmarks2tags_bId`;
-ALTER TABLE `sc_tags2tags` DROP INDEX `sc_tags2tags_tag1_tag2_uId`;
-ALTER TABLE `sc_commondescription` DROP INDEX `sc_commondescription_tag_datetime`;
-ALTER TABLE `sc_tagscache` DROP INDEX `sc_tagscache_tag1_tag2_type_uId`;
-ALTER TABLE `sc_tagsstats` DROP INDEX `sc_tagsstats_tag1_type_uId`;
+      $descriptionAnchors = array("author", "isbn", "address"=>"[address][street][/street][city][/city][/address]"); #add a possible anchor (structured content) for bookmarks' description field
 
-/* secondly convert through BLOB type */
-ALTER TABLE `sc_bookmarks` CHANGE `bTitle` `bTitle` BLOB;
-ALTER TABLE `sc_bookmarks` CHANGE `bTitle` `bTitle` varchar(255) CHARACTER SET utf8;
-ALTER TABLE `sc_bookmarks` CHANGE `bAddress` `bAddress` BLOB;
-ALTER TABLE `sc_bookmarks` CHANGE `bAddress` `bAddress` varchar(1500) CHARACTER SET utf8;
-ALTER TABLE `sc_bookmarks` CHANGE `bDescription` `bDescription` BLOB;
-ALTER TABLE `sc_bookmarks` CHANGE `bDescription` `bDescription` text CHARACTER SET utf8;
-ALTER TABLE `sc_bookmarks` CHANGE `bPrivateNote` `bPrivateNote` BLOB;
-ALTER TABLE `sc_bookmarks` CHANGE `bPrivateNote` `bPrivateNote` text CHARACTER SET utf8;
+  - Add variable ::
 
-ALTER TABLE `sc_tags` CHANGE `tag` `tag` BLOB;
-ALTER TABLE `sc_tags` CHANGE `tag` `tag` varchar(100) CHARACTER SET utf8;
-ALTER TABLE `sc_tags` CHANGE `tDescription` `tDescription` BLOB;
-ALTER TABLE `sc_tags` CHANGE `tDescription` `tDescription` text CHARACTER SET utf8;
+      $enableCommonTagDescriptionEditedByAll = true; #true mean everybody can edit common description. Else just the admins can do it.
+  - Add variable ::
 
-ALTER TABLE `sc_bookmarks2tags` CHANGE `tag` `tag` BLOB;
-ALTER TABLE `sc_bookmarks2tags` CHANGE `tag` `tag` varchar(100) CHARACTER SET utf8;
-
-ALTER TABLE `sc_users` CHANGE `name` `name` BLOB;
-ALTER TABLE `sc_users` CHANGE `name` `name` varchar(50) CHARACTER SET utf8;
-ALTER TABLE `sc_users` CHANGE `uContent` `uContent` BLOB;
-ALTER TABLE `sc_users` CHANGE `uContent` `uContent` text CHARACTER SET utf8;
-
-ALTER TABLE `sc_tags2tags` CHANGE `tag1` `tag1` BLOB;
-ALTER TABLE `sc_tags2tags` CHANGE `tag1` `tag1` varchar(100) CHARACTER SET utf8;
-ALTER TABLE `sc_tags2tags` CHANGE `tag2` `tag2` BLOB;
-ALTER TABLE `sc_tags2tags` CHANGE `tag2` `tag2` varchar(100) CHARACTER SET utf8;
-
-ALTER TABLE `sc_tagsstats` CHANGE `tag1` `tag1` BLOB;
-ALTER TABLE `sc_tagsstats` CHANGE `tag1` `tag1` varchar(100) CHARACTER SET utf8;
-
-ALTER TABLE `sc_tagscache` CHANGE `tag1` `tag1` BLOB;
-ALTER TABLE `sc_tagscache` CHANGE `tag1` `tag1` varchar(100) CHARACTER SET utf8;
-ALTER TABLE `sc_tagscache` CHANGE `tag2` `tag2` BLOB;
-ALTER TABLE `sc_tagscache` CHANGE `tag2` `tag2` varchar(100) CHARACTER SET utf8;
-
-ALTER TABLE `sc_commondescription` CHANGE `tag` `tag` BLOB;
-ALTER TABLE `sc_commondescription` CHANGE `tag` `tag` varchar(100) CHARACTER SET utf8;
-ALTER TABLE `sc_commondescription` CHANGE `cdTitle` `cdTitle` BLOB;
-ALTER TABLE `sc_commondescription` CHANGE `cdTitle` `cdTitle` varchar(255) CHARACTER SET utf8;
-ALTER TABLE `sc_commondescription` CHANGE `cdDescription` `cdDescription` BLOB;
-ALTER TABLE `sc_commondescription` CHANGE `cdDescription` `cdDescription` text CHARACTER SET utf8;
-
-ALTER TABLE `sc_searchhistory` CHANGE `shTerms` `shTerms` BLOB;
-ALTER TABLE `sc_searchhistory` CHANGE `shTerms` `shTerms` varchar(255) CHARACTER SET utf8;
-ALTER TABLE `sc_searchhistory` CHANGE `shRange` `shRange` BLOB;
-ALTER TABLE `sc_searchhistory` CHANGE `shRange` `shRange` varchar(32) CHARACTER SET utf8;
-
-/* Thirdly re-add index keys */
-ALTER TABLE `sc_tags` ADD UNIQUE KEY `sc_tags_tag_uId` (`tag`, `uId`);
-ALTER TABLE `sc_bookmarks2tags` ADD UNIQUE KEY `sc_bookmarks2tags_tag_bId` (`tag`,`bId`);
-ALTER TABLE `sc_bookmarks2tags` ADD KEY `sc_bookmarks2tags_bId` (`bId`);
-ALTER TABLE `sc_tags2tags` ADD UNIQUE KEY `sc_tags2tags_tag1_tag2_uId` (`tag1`,`tag2`,`relationType`,`uId`);
-ALTER TABLE `sc_commondescription` ADD UNIQUE KEY `sc_commondescription_tag_datetime` (`tag`,`cdDatetime`);
-ALTER TABLE `sc_tagscache` ADD UNIQUE KEY `sc_tagscache_tag1_tag2_type_uId` (`tag1`,`tag2`,`relationType`,`uId`);
-ALTER TABLE `sc_tagsstats` ADD UNIQUE KEY `sc_tagsstats_tag1_type_uId` (`tag1`,`relationType`,`uId`);
-
-/* Change tables to utf-8 charset */
-ALTER TABLE `sc_bookmarks` CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE `sc_tags` CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE `sc_bookmarks2tags` CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE `sc_users` CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE `sc_watched` CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE `sc_tags2tags` CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE `sc_tagsstats` CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE `sc_tagscache` CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE `sc_commondescription` CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE `sc_searchhistory` CHARACTER SET utf8 COLLATE utf8_general_ci;
-
-- Upgrade your current configuration file (config.inc.php) with respect to config.inc.php.example
-* Add variable : $descriptionAnchors = array("author", "isbn", "address"=>"[address][street][/street][city][/city][/address]"); #add a possible anchor (structured content) for bookmarks' description field
-* Add variable : $enableCommonTagDescriptionEditedByAll = true; #true mean everybody can edit common description. Else just the admins can do it.
-* Add variable : $googleAnalyticsCode = ''; #Allow GoogleAnalytics tracker https://www.google.com/analytics/
+      $googleAnalyticsCode = ''; #Allow GoogleAnalytics tracker https://www.google.com/analytics/
 
 
 From version 0.90 to 0.91
--------------------------
+=========================
 - Backup you database
 - Make a copy from your SemanticScuttle Web directory
-- Upgrade your database by following instructions ONE after ONE (order is important) :
-  *  ALTER TABLE `sc_bookmarks` CHANGE `bDescription` `bDescription` VARCHAR( 1500 )
-  * CREATE TABLE `sc_tagscache` (
-   `tcId` int(11) NOT NULL auto_increment,
-   `tag1` varchar(100) NOT NULL default '',
-   `tag2` varchar(100) NOT NULL default '',
-   `relationType` varchar(32) NOT NULL default '',
-   `uId` int(11) NOT NULL default '0',
-   PRIMARY KEY (`tcId`),
-   UNIQUE KEY `sc_tagscache_tag1_tag2_type_uId` (`tag1`,`tag2`,`relationType`,`uId`)
-);
-- Upgrade your current configuration file (config.inc.php) with respect to config.inc.php.example
-  * Delete last line : include_once('debug.inc.php');
-  * Add variable: $menu2Tags = array('example', 'of', 'menu', 'tags');
-  * Add variable: $debugMode = true; # if true, show debug messages
+- Upgrade your database by applying ``data/schema/2.sql``
+- Upgrade your current configuration file (``config.inc.php``) with respect to ``config.inc.php.example``
+
+  - Delete last line ::
+
+      include_once('debug.inc.php');
+
+  - Add variable::
+
+      $menu2Tags = array('example', 'of', 'menu', 'tags');
+
+  - Add variable::
+
+      $debugMode = true; # if true, show debug messages
 
 
 From version 0.89 to 0.90
--------------------------
+=========================
 
 - Backup you database
 - Make a copy from your SemanticScuttle Web directory
 
 - Upgrade your current configuration file (config.inc.php) with respect to config.inc.php.example
-# add these lines under $enableWebsiteThumbnails = false; # enableWebsiteThumbnails {true|false}:
-$thumbnailsUserId = '';
-$thumbnailsKey = ''; 
 
+  add these lines under ``$enableWebsiteThumbnails = false; # enableWebsiteThumbnails {true|false}``::
+
+    $thumbnailsUserId = '';
+    $thumbnailsKey = '';
 
 
 From version 0.88 to 0.89
--------------------------
+=========================
 
 - Backup you database
 - Make a copy from your SemanticScuttle Web directory
-- Upgrade your database by following instructions ONE after ONE (order is important) :
+- Upgrade your database by applying ``data/schema/1.sql``
+- Upgrade your current configuration file (``config.inc.php``) with respect to ``config.inc.php.example``
 
+  - add line::
 
-* change the table called 'sc_tags' into 'sc_bookmarks2tags' by executing the following SQL commands (after changing 'yourdatabasename' and adapting its name prefix 'sc_' to your convenience):
-
-	RENAME TABLE `yourdatabasename`.`sc_tags`  TO `yourdatabasename`.`sc_bookmarks2tags` ;
-
-
-* add the following table (adapt its name prefix to your convenience) executing the following SQL commands:
-
-	CREATE TABLE `sc_searchhistory` (
-	  `shId` int(11) NOT NULL auto_increment,
-  	`shTerms` varchar(255) NOT NULL default '',
-	  `shRange` varchar(32) NOT NULL default '',
-	  `shDatetime` datetime NOT NULL default '0000-00-00 00:00:00',
-	  `shNbResults` int(6) NOT NULL default '0',
-	  `uId` int(11) NOT NULL default '0',
-	  PRIMARY KEY (`shId`)
-	);
-
-	CREATE TABLE `sc_tags` (
-	  `tId` int(11) NOT NULL auto_increment,
-	  `tag` varchar(32) NOT NULL default '',
-	  `uId` int(11) NOT NULL default '0',
-	  `tDescription` varchar(255) default NULL,
-	  PRIMARY KEY  (`tId`),
-	  UNIQUE KEY `sc_tags_tag_uId` (`tag`, `uId`)
-	);
-
-- Upgrade your current configuration file (config.inc.php) with respect to config.inc.php.example
-  # add line:
 	$sizeSearchHistory = 10;
-  # add sidebar block index line:
+
+  - add sidebar block index line::
+
 	$index_sidebar_blocks = array('search','menu','users','popular');
-  # add line:
+
+  - add line::
 	$enableGoogleCustomSearch = true;
