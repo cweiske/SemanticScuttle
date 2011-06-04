@@ -164,15 +164,16 @@ class TestBaseApi extends TestBase
      *
      * Useful for testing HTML pages or ajax URLs.
      *
-     * @param string $urlSuffix Suffix for the URL
-     * @param mixed  $auth      If user authentication is needed (true/false)
-     *                          or array with username and password
+     * @param string  $urlSuffix Suffix for the URL
+     * @param mixed   $auth      If user authentication is needed (true/false)
+     *                           or array with username and password
+     * @param boolean $privateKey True if to add user with private key
      *
      * @return array(HTTP_Request2, integer) HTTP request object and user id
      *
      * @uses getRequest()
      */
-    protected function getLoggedInRequest($urlSuffix = null, $auth = true)
+    protected function getLoggedInRequest($urlSuffix = null, $auth = true, $privateKey = false)
     {
         if (is_array($auth)) {
             list($username, $password) = $auth;
@@ -180,7 +181,13 @@ class TestBaseApi extends TestBase
             $username = 'testuser';
             $password = 'testpassword';
         }
-        $uid = $this->addUser($username, $password);
+        //include privatekey if requested
+        if ($privateKey) {
+            $pKey = $this->us->getNewPrivateKey();
+        } else {
+            $pKey = null;
+        }
+        $uid = $this->addUser($username, $password, $pKey);
 
         $req = new HTTP_Request2(
             $GLOBALS['unittestUrl'] . '/login.php?unittestMode=1',
@@ -234,7 +241,7 @@ class TestBaseApi extends TestBase
      */
     protected function setUnittestConfig($arConfig)
     {
-        $str = '<' . "?php\r\n";
+        $str = '<' . "?php\n";
         foreach ($arConfig as $name => $value) {
             $str .= '$' . $name . ' = '
                 . var_export($value, true) . ";\n";

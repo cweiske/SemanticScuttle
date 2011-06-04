@@ -486,7 +486,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
         } else {
             $time = strtotime($date);
         }
-        $datetime = date('Y-m-d H:i:s', $time);
+        $datetime = gmdate('Y-m-d H:i:s', $time);
 
         if ($short === '') {
             $short = null;

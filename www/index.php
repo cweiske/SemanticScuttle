@@ -51,7 +51,7 @@ if ($userservice->isLoggedOn()) {
         array_push(
             $tplVars['rsschannels'],
             array(
-                filter($sitename . sprintf(T_(': (private) ')) . $currentUsername),
+                filter($sitename . sprintf(T_(': Recent bookmarks (private)')) . $currentUsername),
                 createURL('rss', filter($currentUsername, 'url') . '?sort='.getSortOrder().'&amp;privatekey='.$currentUser->getPrivateKey())
             )
         );

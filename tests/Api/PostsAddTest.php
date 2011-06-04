@@ -111,7 +111,7 @@ TXT;
         $this->assertEquals($bmDescription, stripslashes($bm['bDescription']));
         $this->assertEquals($bmTags, $bm['tags']);
         $this->assertEquals(
-            date('Y-m-d H:i:s', strtotime($bmDatetime)),
+            gmdate('Y-m-d H:i:s', strtotime($bmDatetime)),
             $bm['bDatetime']
         );
     }
@@ -173,7 +173,7 @@ TXT;
         $this->assertEquals($bmDescription, stripslashes($bm['bDescription']));
         $this->assertEquals($bmTags, $bm['tags']);
         $this->assertEquals(
-            date('Y-m-d H:i:s', strtotime($bmDatetime)),
+            gmdate('Y-m-d H:i:s', strtotime($bmDatetime)),
             $bm['bDatetime']
         );
     }

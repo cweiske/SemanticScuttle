@@ -89,6 +89,14 @@ function useAddress(ele) {
     }
 }
 
+/**
+ * Makes an ajax call to PHP script to generate an new Private Key
+ *
+ * @param input    Calling object
+ * @param response Response object that returned value is placed
+ *
+ * @return boolean Returns false to halt execution after call
+ */
 function getNewPrivateKey(input, response){
     var pk = document.getElementById('pPrivateKey');
     if (response != null) {

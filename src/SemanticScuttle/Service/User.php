@@ -571,8 +571,6 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         $this->db->sql_freeresult($dbresult);
 
         if ($row) {
-            $id = $_SESSION[$this->getSessionKey()]
-                = $row[$this->getFieldName('primary')];
             return true;
         } else {
             return false;

@@ -584,7 +584,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
 
         if (is_int($days)) {
             $query .= ' AND B.bDatetime > "'
-                . date('Y-m-d H:i:s', time() - (86400 * $days))
+                . gmdate('Y-m-d H:i:s', time() - (86400 * $days))
                 . '"';
         }
 

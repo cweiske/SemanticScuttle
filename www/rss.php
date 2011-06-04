@@ -71,7 +71,6 @@ if (isset($_GET['privatekey'])) {
 
 $watchlist = null;
 $pagetitle = '';
-$isTempLogin = false;
 if ($user && $user != 'all') {
     if ($user == 'watchlist') {
         $user = $cat;
@@ -86,9 +85,7 @@ if ($user && $user != 'all') {
             /* if user is not logged in and has valid privatekey */
             if (!$userservice->isLoggedOn()) {
                 if ($privatekey != null) {
-                    if ($userservice->loginPrivateKey($privatekey)) {
-                        $isTempLogin = true;
-                    } else {
+                    if (!$userservice->loginPrivateKey($privatekey)) {
                         $tplVars['error'] = sprintf(T_('Failed to Autenticate User with username %s using private key'), $user);
                         header('Content-type: text/html; charset=utf-8');
                         $templateservice->loadTemplate('error.404.tpl', $tplVars);
@@ -109,9 +106,7 @@ if ($user && $user != 'all') {
     $pagetitle .= ": ". $user;
 } else {
     if ($privatekey != null) {
-        if ($userservice->loginPrivateKey($privatekey)) {
-            $isTempLogin = true;
-        } else {
+        if (!$userservice->loginPrivateKey($privatekey)) {
             $tplVars['error'] = sprintf(T_('Failed to Autenticate User with username %s using private key'), $user);
             header('Content-type: text/html; charset=utf-8');
             $templateservice->loadTemplate('error.404.tpl', $tplVars);
@@ -167,11 +162,6 @@ $tplVars['bookmarks']      = $bookmarks_tpl;
 $tplVars['feedlastupdate'] = date('r', strtotime($latestdate));
 
 $templateservice->loadTemplate('rss.tpl', $tplVars);
-
-/* If temporary login, please log out */
-if ($isTempLogin) {
-    $userservice->logout();
-}
 
 if ($usecache) {
     // Cache output if existing copy has expired

@@ -76,5 +76,32 @@ class www_bookmarksTest extends TestBaseApi
         $this->assertEquals(1, (string)$elements[0]['value']);
     }//end testDefaultPrivacyBookmarksAdd
 
+
+    /**
+     * Test that the private RSS link exists when a user
+     * has a private key and is enabled
+     */
+    public function testVerifyPrivateRSSLinkExists()
+    {
+        list($req, $uId) = $this->getLoggedInRequest('?unittestMode=1', true, true);
+
+        $user = $this->us->getUser($uId);
+        $reqUrl = $GLOBALS['unittestUrl'] . 'bookmarks.php/'
+            . $user['username'];
+        $req->setUrl($reqUrl);
+        $req->setMethod(HTTP_Request2::METHOD_GET);
+        $response = $req->send();
+        $response_body = $response->getBody();
+        $this->assertNotEquals('', $response_body, 'Response is empty');
+
+        $x = simplexml_load_string($response_body);
+        $ns = $x->getDocNamespaces();
+        $x->registerXPathNamespace('ns', reset($ns));
+
+        $elements = $x->xpath('//ns:link');
+        $this->assertEquals(5, count($elements), 'Number of Links in Head not correct');
+        $this->assertContains('privatekey=', (string)$elements[4]['href']);
+    }//end testVerifyPrivateRSSLinkExists
+
 }//end class www_bookmarksTest
 ?>
