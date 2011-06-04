@@ -3,6 +3,7 @@ $GLOBALS['saveInLastUrl'] = false;
 $httpContentType = 'text/javascript';
 require_once 'www-header.php';
 require_once 'SemanticScuttle/functions.php';
+$theme = new SemanticScuttle_Model_Theme($GLOBALS['theme']);
 $player_root = ROOT .'includes/player/';
 ?>
 
@@ -62,7 +63,7 @@ function isAvailable(input, response){
     username = username.trim();
     var availability = document.getElementById("availability");
     if (username != '') {
-        usernameField.style.backgroundImage = 'url(<?php echo ROOT; ?>images/loading.gif)';
+        usernameField.style.backgroundImage = 'url(<?php echo $theme->resource('images/loading.gif'); ?>)';
         if (response != '') {
             usernameField.style.backgroundImage = 'none';
             if (response == 'true') {
@@ -110,7 +111,7 @@ function getNewPrivateKey(input, response){
 function getTitle(input, response){
     var title = document.getElementById('titleField');
     if (title.value == '') {
-        title.style.backgroundImage = 'url(<?php echo ROOT; ?>images/loading.gif)';
+        title.style.backgroundImage = 'url(<?php echo $theme->resource('images/loading.gif');?>)';
         if (response != null) {
             title.style.backgroundImage = 'none';
             title.value = response;

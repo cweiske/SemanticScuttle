@@ -41,7 +41,6 @@
 
       Test your zip with: unzip -l SemanticScuttle-0.95.0.zip
     -->
-    <mkdir dir="dist" />
     <echo msg="Creating distribution zip for SemanticScuttle ${version}"/>
     <delete file="${distfile}" failonerror="false"/>
     <zip destfile="${distfile}" prefix="${phing.project.name}-${version}/">
@@ -121,18 +120,19 @@
 
      <replacement
       path="src/SemanticScuttle/header.php"
-      type="pear-config"
-      from="@data_dir@" to="data_dir"
+      type="pear-config" from="@data_dir@" to="data_dir"
+      />
+     <replacement
+      path="src/SemanticScuttle/header.php"
+      type="pear-config" from="@www_dir@" to="www_dir"
       />
      <replacement
       path="www/www-header.php"
-      type="pear-config"
-      from="@data_dir@" to="data_dir"
+      type="pear-config" from="@data_dir@" to="data_dir"
       />
      <replacement
       path="tests/prepare.php"
-      type="pear-config"
-      from="@data_dir@" to="data_dir"
+      type="pear-config" from="@data_dir@" to="data_dir"
       />
 
      <changelog version="0.97" date="2010-06-09" license="GPL">
@@ -204,6 +204,48 @@
    <move file="${pkgfile}" todir="dist/pear/" />
 
    <delete file="package.xml" failonerror="true" />
+  </target>
+
+
+  <!-- you need to have the python docutils package installed, since
+       we use the rst2html tool -->
+  <target name="build-docs">
+   <foreach param="fname" absparam="abs-fname" target="build-doc-file">
+     <fileset dir=".">
+      <include name="doc/ChangeLog"/>
+      <include name="doc/**.txt"/>
+      <include name="doc/**.rst"/>
+      <include name="doc/**/*.rst"/>
+      <exclude name="doc/LICENSE.txt"/>
+      <exclude name="doc/developers/TODO.rst"/>
+     </fileset>
+   </foreach>
+  </target>
+
+
+  <target name="build-doc-file" depends="check"
+   description="Builds a single documentation file. Pass file path as $fname"
+  >
+   <echo msg="${fname}"/>
+   <php function="preg_replace" returnProperty="outfile">
+    <param value="/^(.+)(.rst|.txt)$/"/>
+    <param value="dist/\1.html"/>
+    <param value="${fname}"/>
+   </php>
+
+   <!-- only render file if the doc file is newer than the html file -->
+   <property name="isuptodate" value="false"/>
+   <uptodate property="isuptodate" srcfile="${fname}" targetfile="${outfile}" />
+   <if>
+    <not><istrue value="${isuptodate}"/></not>
+    <then>
+     <exec
+      command="rst2html --exit-status=2 ${fname} ${outfile}"
+      checkreturn="1"
+      />
+    </then>
+   </if>
+
   </target>
 
 
@@ -314,6 +356,10 @@
     <fail unless="sfuser" message="Sourceforge username not defined!" />
     <fail unless="sfproject" message="Sourceforge project name not defined!" />
     <fail unless="sffilepath" message="Sourceforge project file path not defined!" />
+
+    <mkdir dir="dist" />
+    <mkdir dir="dist/doc" />
+    <mkdir dir="dist/doc/developers" />
   </target>
 
 </project>

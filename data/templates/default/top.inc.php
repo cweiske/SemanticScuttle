@@ -4,15 +4,15 @@
  <head>
   <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
   <title><?php echo filter($GLOBALS['sitename'] .(isset($pagetitle) ? ' » ' . $pagetitle : '')); ?></title>
-  <link rel="icon" type="image/png" href="<?php echo ROOT ?>icon.png" />
-  <link rel="stylesheet" type="text/css" href="<?php echo ROOT ?>scuttle.css" />
+  <link rel="icon" type="image/png" href="<?php echo $theme->resource('icon.png');?>" />
+  <link rel="stylesheet" type="text/css" href="<?php echo $theme->resource('scuttle.css');?>" />
   <link rel="search" type="application/opensearchdescription+xml" href="<?php echo ROOT ?>api/opensearch.php" title="<?php echo htmlspecialchars($GLOBALS['sitename']) ?>"/>
 <?php
 if (isset($rsschannels)) {
 	$size = count($rsschannels);
 	for ($i = 0; $i < $size; $i++) {
 		echo '  <link rel="alternate" type="application/rss+xml" title="'
-            . $rsschannels[$i][0] . '"'
+            . htmlspecialchars($rsschannels[$i][0]) . '"'
             . ' href="'. $rsschannels[$i][1] .'" />';
 	}
 }

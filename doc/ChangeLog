@@ -1,23 +1,28 @@
 ChangeLog for SemantiScuttle
 ============================
 
+
 0.98.0 - 2011-XX-XX
 -------------------
 - Switch to jQuery and drop dojo
 - Fix bug #3187177: Wrong URL / Export XML Bookmarks
-- Fix bug in getTagsForBookmarks() that fetched all tags
+- Fix bug in ``getTagsForBookmarks()`` that fetched all tags
 - Fix bug #3097187: Using opensearch with two tags does not work in Firefox
 - Fix bug #3251877: French translation JavaScript Bug when editing bookmarks
+- Fix bug #3168521: Title of tag-filtered RSS Feed is broken
+- Fix bug #2853627: Javascript warning
+- Implement request #1989987: Theming support
 - Implement request #3054906: Show user's full name instead of nickname
-- Implement patch #3059829: update FR_CA translation
+- Implement patch #3059829: update ``FR_CA`` translation
 - Show error message on mysqli connection errors
 - Update php-gettext library to 1.0.10
-- api/posts/add respects the "replace" parameter now
+- ``api/posts/add`` respects the "replace" parameter now
 - Fix privacy issue when fetching tags of several users
 - Fix Google custom search XML
 - Only URLs with an allowed protocol may be added to the database
-- Support HTTPS connections when $root is not configured
+- Support HTTPS connections when ``$root`` is not configured
 - SQL schema version table to ease future database upgrades
+- Documentation is written with rST (reStructuredText) now
 
 
 0.97.2 - 2011-02-17
@@ -68,11 +73,13 @@ your SemanticScuttle installations!
 - Fix several SQL injection possibilities
 - Fix E_NOTICE when calling alltags.php without any parameter
 - Implement part of request #2928950:
+
   - User adjustable entry count: rss.php?count=20
   - Fix HTTP content type header for RSS
   - Add config option to allow sorting by bookmark creation date
     instead of modification date
-- Implement request #2833793: Export to avahi config files
+
+  - Implement request #2833793: Export to avahi config files
   - we support zeroconf networking!
 - Implement request #2934868: Do not display full redirection URL
   Patch by fnorder@users.sourceforge.net
@@ -181,7 +188,7 @@ your SemanticScuttle installations!
 - Major Refactoring: add a tag cache improving query processing
   (knowledge inference on tag relations) [DB modified]
 - Interface fix: allows to remove a tag from the selection into
-  subtitle bar thanks to a *.
+  subtitle bar thanks to a \*.
 - New Feature: authorizes anchors with brackets into descriptions
   of bookmark. For example: "[city]Paris[/city]".
   This text between anchors will be highlighted when the
@@ -219,6 +226,7 @@ your SemanticScuttle installations!
 0.90 - 2008-06-05
 -----------------
 The main improvements of this new version are:
+
 - menu tags (tags which are included into the "menu" tag and
   thus which appear on the main page)
 - connexion with Google Custom Search Engine which allows to
@@ -227,6 +235,7 @@ The main improvements of this new version are:
 
 
 All the changes:
+
 - New feature: add Google Custom Search Engine into
   gsearch/ folder and looking into all bookmarks [Config modified]
 - Interface design: antispam question is hidden when
@@ -279,6 +288,7 @@ The main change of this release is the possibility to preview websites
 through thumbnails (thanks to artviper.net).
 
 All the changes:
+
 - Interface design: display SemanticScuttle version number
   on "about" page
 - Bug fix: allow clean urls thanks to .htaccess
@@ -298,6 +308,7 @@ All the changes:
 0.87 - 2008-02-14
 -----------------
 This new version brings two major features to SemanticScuttle:
+
 1) You can now create a synonym link between tags.
    For example, by linking the tags "monument" and "monuments",
    you can find resources tagged with the first one when you navigate
@@ -310,6 +321,7 @@ This new version brings two major features to SemanticScuttle:
    ones (more difficult but more powerful).
 
 All the changes:
+
 - Interface design: allow to access to users' bookmarks from last
   user sidebox. (Currently, we can just access to their profiles).
 - Interface design: hide multiple URLs repeated into history page
@@ -335,9 +347,11 @@ All the changes:
 -----------------
 - New feature: Add stats (nb children, nb descendants, depth,
   nb update) to structured tags
+
   - Allow to visualize structured tags according to stats
   - Add admin page to update stats from the existing structured
     tags in the database
+
 - Translation: improve French translation (add missing translations,
   transform "labels" into "tags")
 - New feature: List all users in a users page and users block on

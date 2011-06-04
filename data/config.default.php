@@ -63,6 +63,15 @@ $sidebarTopMessage  = '';
  */
 $sidebarBottomMessage = '';
 
+/**
+ * The HTML theme to use. With themes, you can give your semanticscuttle
+ * installation a new look.
+ *
+ * Themes are the folders in data/templates/
+ *
+ * @var string
+ */
+$theme = 'default';
 
 
 /***************************************************
