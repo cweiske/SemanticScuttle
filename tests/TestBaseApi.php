@@ -164,17 +164,18 @@ class TestBaseApi extends TestBase
      *
      * Useful for testing HTML pages or ajax URLs.
      *
-     * @param string  $urlSuffix Suffix for the URL
-     * @param mixed   $auth      If user authentication is needed (true/false)
-     *                           or array with username and password
+     * @param string  $urlSuffix  Suffix for the URL
+     * @param mixed   $auth       If user authentication is needed (true/false)
+     *                            or array with username and password
      * @param boolean $privateKey True if to add user with private key
      *
      * @return array(HTTP_Request2, integer) HTTP request object and user id
      *
      * @uses getRequest()
      */
-    protected function getLoggedInRequest($urlSuffix = null, $auth = true, $privateKey = false)
-    {
+    protected function getLoggedInRequest(
+        $urlSuffix = null, $auth = true, $privateKey = false
+    ) {
         if (is_array($auth)) {
             list($username, $password) = $auth;
         } else {
