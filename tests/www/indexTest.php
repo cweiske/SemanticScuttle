@@ -4,7 +4,7 @@ require_once 'HTTP/Request2.php';
 
 class www_indexTest extends TestBaseApi
 {
-    protected $urlPart = 'api/posts/add';
+    protected $urlPart = '';
 
     /**
      * Test that the private rss feed exists when user is setup
@@ -15,11 +15,9 @@ class www_indexTest extends TestBaseApi
         list($req, $uId) = $this->getLoggedInRequest('?unittestMode=1', true, true);
 
         $user = $this->us->getUser($uId);
-        $reqUrl = $GLOBALS['unittestUrl'] . 'index.php/';
-        $req->setUrl($reqUrl);
-        $req->setMethod(HTTP_Request2::METHOD_GET);
         $response = $req->send();
         $response_body = $response->getBody();
+
         $this->assertNotEquals('', $response_body, 'Response is empty');
 
         $x = simplexml_load_string($response_body);
@@ -32,19 +30,16 @@ class www_indexTest extends TestBaseApi
     }//end testVerifyPrivateRSSLinkExists
 
 
+
     /**
      * Test that the private RSS link doesn't exists when a user
-     * does not have a private key or is not enabled
+     * does not have a private key, or the private key is not enabled
      */
     public function testVerifyPrivateRSSLinkDoesNotExist()
     {
         list($req, $uId) = $this->getLoggedInRequest('?unittestMode=1', true);
 
         $user = $this->us->getUser($uId);
-        $reqUrl = $GLOBALS['unittestUrl'] . 'bookmarks.php/'
-            . $user['username'];
-        $req->setUrl($reqUrl);
-        $req->setMethod(HTTP_Request2::METHOD_GET);
         $response = $req->send();
         $response_body = $response->getBody();
         $this->assertNotEquals('', $response_body, 'Response is empty');

@@ -87,7 +87,7 @@ class www_bookmarksTest extends TestBaseApi
 
         $user = $this->us->getUser($uId);
         $reqUrl = $GLOBALS['unittestUrl'] . 'bookmarks.php/'
-            . $user['username'];
+            . $user['username'] . '?unittestMode=1';
         $req->setUrl($reqUrl);
         $req->setMethod(HTTP_Request2::METHOD_GET);
         $response = $req->send();
@@ -114,7 +114,7 @@ class www_bookmarksTest extends TestBaseApi
 
         $user = $this->us->getUser($uId);
         $reqUrl = $GLOBALS['unittestUrl'] . 'bookmarks.php/'
-            . $user['username'];
+            . $user['username'] . '?unittestMode=1';
         $req->setUrl($reqUrl);
         $req->setMethod(HTTP_Request2::METHOD_GET);
         $response = $req->send();
