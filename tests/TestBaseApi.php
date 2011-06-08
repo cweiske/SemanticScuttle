@@ -24,7 +24,20 @@ require_once 'HTTP/Request2.php';
  */
 class TestBaseApi extends TestBase
 {
+    /**
+     * Created from the configured host and the $urlPart.
+     * Should be used as base for all generated URLs
+     *
+     * @var string
+     */
     protected $url;
+
+    /**
+     * Part of the URL behind the configured host.
+     * Needs to be overwritten in each derived test case class.
+     *
+     * @var string
+     */
     protected $urlPart = null;
 
     /**
