@@ -221,9 +221,12 @@ if ($currenttag!= '') {
 	$brss = '';
 	$size = count($rsschannels);
 	for ($i = 0; $i < $size; $i++) {
-		$brss =  '<a style="background:#FFFFFF" href="'. htmlspecialchars($rsschannels[$i][1]) . '"'
+            $brss =  '<a style="background:#FFFFFF"'
+            . ' href="'. htmlspecialchars($rsschannels[$i][1]) . '"'
             . ' title="' . $rsschannels[$i][0] . '">'
-            . '<img src="' . ROOT . 'images/rss.gif" width="16" height="16" alt="' . $rsschannels[$i][0] .'"/>'
+            . '<img src="' . $theme->resource('images/rss.gif') . '"'
+            . ' width="16" height="16"'
+            . ' alt="' . $rsschannels[$i][0] .'"/>'
             . '</a>';
 	}
 
