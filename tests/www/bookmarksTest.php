@@ -98,10 +98,37 @@ class www_bookmarksTest extends TestBaseApi
         $ns = $x->getDocNamespaces();
         $x->registerXPathNamespace('ns', reset($ns));
 
-        $elements = $x->xpath('//ns:link');
-        $this->assertEquals(5, count($elements), 'Number of Links in Head not correct');
-        $this->assertContains('privatekey=', (string)$elements[4]['href']);
+        $elements = $x->xpath('//ns:link[@rel="alternate" and @type="application/rss+xml"]');
+        $this->assertEquals(2, count($elements), 'Number of Links in Head not correct');
+        $this->assertContains('privatekey=', (string)$elements[1]['href']);
     }//end testVerifyPrivateRSSLinkExists
+
+
+    /**
+     * Test that the private RSS link doesn't exists when a user
+     * does not have a private key or is not enabled
+     */
+    public function testVerifyPrivateRSSLinkDoesNotExist()
+    {
+        list($req, $uId) = $this->getLoggedInRequest('?unittestMode=1', true);
+
+        $user = $this->us->getUser($uId);
+        $reqUrl = $GLOBALS['unittestUrl'] . 'bookmarks.php/'
+            . $user['username'];
+        $req->setUrl($reqUrl);
+        $req->setMethod(HTTP_Request2::METHOD_GET);
+        $response = $req->send();
+        $response_body = $response->getBody();
+        $this->assertNotEquals('', $response_body, 'Response is empty');
+
+        $x = simplexml_load_string($response_body);
+        $ns = $x->getDocNamespaces();
+        $x->registerXPathNamespace('ns', reset($ns));
+
+        $elements = $x->xpath('//ns:link[@rel="alternate" and @type="application/rss+xml"]');
+        $this->assertEquals(1, count($elements), 'Number of Links in Head not correct');
+        $this->assertNotContains('privatekey=', (string)$elements[0]['href']);
+    }//end testVerifyPrivateRSSLinkDoesNotExist
 
 }//end class www_bookmarksTest
 ?>
