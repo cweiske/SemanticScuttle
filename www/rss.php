@@ -69,6 +69,7 @@ if (isset($_GET['privatekey'])) {
     $privatekey = $_GET['privatekey'];
 }
 
+$userid    = null;
 $watchlist = null;
 $pagetitle = '';
 if ($user && $user != 'all') {
