@@ -571,7 +571,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         $this->db->sql_freeresult($dbresult);
 
         if ($row) {
-            $this->setCurrentUserId($row[$this->getFieldName('primary')], true);
+            $this->setCurrentUserId($row[$this->getFieldName('primary')], false);
             return true;
         } else {
             return false;
