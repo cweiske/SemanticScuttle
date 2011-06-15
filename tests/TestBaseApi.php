@@ -187,7 +187,8 @@ class TestBaseApi extends TestBase
      * @uses getRequest()
      */
     protected function getLoggedInRequest(
-        $urlSuffix = null, $auth = true, $privateKey = false
+        $urlSuffix = null, $auth = true, $privateKey = false,
+        $setCookie = true
     ) {
         if (is_array($auth)) {
             list($username, $password) = $auth;
@@ -217,7 +218,9 @@ class TestBaseApi extends TestBase
         $this->assertEquals(302, $res->getStatus(), 'Login failure');
 
         $req = $this->getRequest($urlSuffix);
-        $req->setCookieJar($cookies);
+        if ($setCookie) {
+            $req->setCookieJar($cookies);
+        }
 
         return array($req, $uid);
     }
