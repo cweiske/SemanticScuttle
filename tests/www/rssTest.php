@@ -27,7 +27,7 @@ class www_rssTest extends TestBaseApi
      * A private bookmark should not show up in an rss feed if the
      * user is not logged in nor passes the private key
      */
-    public function testPrivateBookmarkNotLoggedIn()
+    public function testUserPrivateBookmarkNotLoggedIn()
     {
         list($uId, $username) = $this->addUserData();
         $this->addBookmark(
@@ -47,7 +47,7 @@ class www_rssTest extends TestBaseApi
      * Test a user who has RSS private key setup
      * with private bookmark.
      */
-    public function testPrivateBookmarkWithPrivateKey()
+    public function testUserPrivateBookmarkWithPrivateKey()
     {
         list($uId, $username, $password, $privateKey) = $this->addUserData(
             null, null, true
@@ -73,7 +73,7 @@ class www_rssTest extends TestBaseApi
      * Verify that fetching the feed with a private key
      * does not keep you logged in
      */
-    public function testPrivateKeyDoesNotKeepLoggedYouIn()
+    public function testUserPrivateKeyDoesNotKeepLoggedYouIn()
     {
         list($uId, $username, $password, $privateKey) = $this->addUserData(
             null, null, true
