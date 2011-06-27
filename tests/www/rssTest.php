@@ -78,7 +78,7 @@ class www_rssTest extends TestBaseApi
         $user = $this->us->getUser($uId);
 
         $req->setMethod(HTTP_Request2::METHOD_POST);
-        $req->setUrl($this->getTestUrl('/' . $user['username'] . '?sort=date_desc&privatekey=' . $user['privatekey']));
+        $req->setUrl($this->getTestUrl('/' . $user['username'] . '?sort=date_desc&privatekey=' . $user['privateKey']));
         $response = $req->send();
         $response_body = $response->getBody();
 
