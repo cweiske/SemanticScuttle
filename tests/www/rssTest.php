@@ -6,6 +6,23 @@ class www_rssTest extends TestBaseApi
 {
     protected $urlPart = 'rss.php';
 
+
+    /**
+     * Verifies that the given number of feed items exist in the feed
+     * XML tree.
+     *
+     * @var SimpleXMLElement $simpleXml RSS feed root element
+     * @var integer          $nCount    Number of expected feed items
+     * @var string           $msg       Error message
+     */
+    protected function assertItemCount(
+        SimpleXMLElement $simpleXml, $nCount, $msg = null
+    ) {
+        $this->assertEquals($nCount, count($simpleXml->channel->item), $msg);
+    }
+
+
+
     /**
      * A private bookmark should not show up in an rss feed if the
      * user is not logged in nor passes the private key
@@ -21,9 +38,7 @@ class www_rssTest extends TestBaseApi
         $response_body = $req->send()->getBody();
 
         $rss = simplexml_load_string($response_body);
-        $items = $rss->channel->item;
-
-        $this->assertEquals(0, count($items), 'I see a private bookmark');
+        $this->assertItemCount($rss, 0, 'I see a private bookmark');
     }
 
 
@@ -46,10 +61,10 @@ class www_rssTest extends TestBaseApi
         $response_body = $req->send()->getBody();
 
         $rss = simplexml_load_string($response_body);
-        $items = $rss->channel->item;
-
-        $this->assertEquals(1, count($items), 'I miss the private bookmark');
-        $this->assertEquals('private bookmark', (string)$items[0]->title);
+        $this->assertItemCount($rss, 1, 'I miss the private bookmark');
+        $this->assertEquals(
+            'private bookmark', (string)$rss->channel->item[0]->title
+        );
     }
 
 
@@ -83,9 +98,7 @@ class www_rssTest extends TestBaseApi
         $req->setCookieJar($cookies);
         $response_body = $req->send()->getBody();
         $rss = simplexml_load_string($response_body);
-        $items = $rss->channel->item;
-
-        $this->assertEquals(0, count($items), 'I still see the private bookmark');
+        $this->assertItemCount($rss, 0, 'I still see the private bookmark');
     }
 
 }//end class www_rssTest
