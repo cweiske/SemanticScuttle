@@ -187,8 +187,7 @@ class TestBaseApi extends TestBase
      * @uses getRequest()
      */
     protected function getLoggedInRequest(
-        $urlSuffix = null, $auth = true, $privateKey = false,
-        $setCookie = true
+        $urlSuffix = null, $auth = true, $privateKey = null
     ) {
         if (is_array($auth)) {
             list($username, $password) = $auth;
@@ -196,13 +195,7 @@ class TestBaseApi extends TestBase
             $username = 'testuser';
             $password = 'testpassword';
         }
-        //include privatekey if requested
-        if ($privateKey) {
-            $pKey = $this->us->getNewPrivateKey();
-        } else {
-            $pKey = null;
-        }
-        $uid = $this->addUser($username, $password, $pKey);
+        $uid = $this->addUser($username, $password, $privateKey);
 
         $req = new HTTP_Request2(
             $GLOBALS['unittestUrl'] . '/login.php?unittestMode=1',
@@ -218,9 +211,7 @@ class TestBaseApi extends TestBase
         $this->assertEquals(302, $res->getStatus(), 'Login failure');
 
         $req = $this->getRequest($urlSuffix);
-        if ($setCookie) {
-            $req->setCookieJar($cookies);
-        }
+        $req->setCookieJar($cookies);
 
         return array($req, $uid);
     }

@@ -24,6 +24,23 @@
 class SemanticScuttle_Model_Bookmark
 {
     /**
+     * Status "public" / visible for all
+     */
+    const SPUBLIC = 0;
+
+    /**
+     * Status "shared" / visible for people on your watchlist
+     */
+    const SWATCHLIST = 1;
+
+    /**
+     * Status "private" / visible for yourself only
+     */
+    const SPRIVATE = 2;
+
+
+
+    /**
      * Checks if the given URL is valid and may be used with this
      * SemanticScuttle installation.
      *

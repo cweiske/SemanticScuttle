@@ -76,8 +76,8 @@ class TestBase extends PHPUnit_Framework_TestCase
     /**
      * Creates a new user in the database.
      *
-     * @param string $username   Username
-     * @param string $password   Password
+     * @param string $username   Username, may be null
+     * @param string $password   Password, may be null
      * @param mixed  $privateKey String private key or boolean true to generate one
      *
      * @return integer ID of user
@@ -95,8 +95,8 @@ class TestBase extends PHPUnit_Framework_TestCase
     /**
      * Creates a new user in the database and returns id, username and password.
      *
-     * @param string $username   Username
-     * @param string $password   Password
+     * @param string $username   Username, may be null
+     * @param string $password   Password, may be null
      * @param mixed  $privateKey String private key or boolean true to generate one
      *
      * @return array ID of user, Name of user, password of user, privatekey
