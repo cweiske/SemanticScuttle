@@ -24,14 +24,15 @@ class www_rssTest extends TestBaseApi
         $items = $rss->channel->item;
 
         $this->assertEquals(0, count($items), 'I see a private bookmark');
-    }//end testNoRSSPrivateKeyEnabled
+    }
+
 
 
     /**
      * Test a user who has RSS private key setup
      * with private bookmark.
      */
-    public function testRSSPrivateKeyEnabled()
+    public function testPrivateWithPrivateKey()
     {
         list($uId, $username, $password, $privateKey) = $this->addUserData(
             null, null, true
@@ -49,9 +50,43 @@ class www_rssTest extends TestBaseApi
 
         $this->assertEquals(1, count($items), 'I miss the private bookmark');
         $this->assertEquals('private bookmark', (string)$items[0]->title);
-    }//end testRSSPrivateKeyEnabled
+    }
 
 
+
+    /**
+     * Verify that fetching the feed with a private key
+     * does not keep you logged in
+     */
+    public function testPrivatekeyDoesNotKeepLoggedYouIn()
+    {
+        list($uId, $username, $password, $privateKey) = $this->addUserData(
+            null, null, true
+        );
+        $this->addBookmark(
+            $uId, null, SemanticScuttle_Model_Bookmark::SPRIVATE,
+            null, 'private bookmark'
+        );
+
+        $req = $this->getRequest('/' . $username . '?privatekey=' . $privateKey);
+        $cookies = $req->setCookieJar()->getCookieJar();
+        $response_body = $req->send()->getBody();
+
+        $rss = simplexml_load_string($response_body);
+        $items = $rss->channel->item;
+
+        $this->assertEquals(1, count($items), 'I miss the private bookmark');
+        $this->assertEquals('private bookmark', (string)$items[0]->title);
+
+        //request the feed again, with the same cookies
+        $req = $this->getRequest('/' . $username);
+        $req->setCookieJar($cookies);
+        $response_body = $req->send()->getBody();
+        $rss = simplexml_load_string($response_body);
+        $items = $rss->channel->item;
+
+        $this->assertEquals(0, count($items), 'I still see the private bookmark');
+    }
 
 }//end class www_rssTest
 ?>
