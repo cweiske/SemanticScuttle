@@ -77,7 +77,7 @@ if ($userservice->isLoggedOn()) {
             $tplVars['rsschannels'],
             array(
                 filter($sitename .': Tags: '. $cat . sprintf(T_(': (private) ')) . $currentUsername),
-                createURL('rss', filter($currentUsername, 'url') . '?sort='.getSortOrder().'&amp;privatekey='.$currentUser->getPrivateKey())
+                createURL('rss', filter($currentUsername, 'url') . '?sort='.getSortOrder().'&amp;privateKey='.$currentUser->getPrivateKey())
             )
         );
     }

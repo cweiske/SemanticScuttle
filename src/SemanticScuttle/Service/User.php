@@ -51,7 +51,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         'primary'    => 'uId',
         'username'   => 'username',
         'password'   => 'password',
-        'privatekey' => 'privatekey'
+        'privateKey' => 'privateKey'
     );
 
     protected $profileurl;
@@ -219,13 +219,13 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     /**
      * Returns user row from database.
      *
-     * @param string $privatekey Private Key
+     * @param string $privateKey Private Key
      *
      * @return array User array from database, false if no user was found
      */
-    public function getUserByPrivateKey($privatekey)
+    public function getUserByPrivateKey($privateKey)
     {
-        return $this->_getuser($this->getFieldName('privatekey'), $privatekey);
+        return $this->_getuser($this->getFieldName('privateKey'), $privateKey);
     }
 
     function getObjectUserByUsername($username) {
@@ -539,24 +539,24 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     }
 
     /**
-     * Try to authenticate via the privatekey
+     * Try to authenticate via the privateKey
      *
-     * @param string $privatekey Private Key
+     * @param string $privateKey Private Key
      *
      * @return boolean true if the user could be authenticated,
      *                 false if not.
      */
-    public function loginPrivateKey($privatekey)
+    public function loginPrivateKey($privateKey)
     {
         /* Check if private key valid and enabled */
-        if (!$this->isPrivateKeyValid($privatekey)) {
+        if (!$this->isPrivateKeyValid($privateKey)) {
             return false;
         }
 
         $query = 'SELECT '. $this->getFieldName('primary') .' FROM '
             . $this->getTableName() .' WHERE '
-            . $this->getFieldName('privatekey') .' = "'
-            . $this->db->sql_escape($privatekey) .'"';
+            . $this->getFieldName('privateKey') .' = "'
+            . $this->db->sql_escape($privateKey) .'"';
 
         if (!($dbresult = $this->db->sql_query($query))) {
             message_die(

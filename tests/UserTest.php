@@ -40,7 +40,7 @@ class UserTest extends TestBase
     public function testAddUserPrivateKey()
     {
         $name = substr(md5(uniqid()), 0, 6);
-        $pkey = 'my-privatekey';
+        $pkey = 'my-privateKey';
         $id   = $this->us->addUser(
             $name, uniqid(), 'foo@example.org', $pkey
         );
@@ -413,17 +413,17 @@ class UserTest extends TestBase
         $randKey2 = '-'.$this->us->getNewPrivateKey();
         $this->assertFalse(
             $this->us->isPrivateKeyValid($randKey2),
-            'disabled privatekey should return false'
+            'disabled privateKey should return false'
         );
     }
 
 
     public function testLoginPrivateKeyInvalid()
     {
-        /* normal user with enabled privatekey */
+        /* normal user with enabled privateKey */
         $randKey = $this->us->getNewPrivateKey();
         $uid1 = $this->addUser('testusername', 'passw0rd', $randKey);
-        /* user that has disabled privatekey */
+        /* user that has disabled privateKey */
         $randKey2 = '-'.$this->us->getNewPrivateKey();
         $uid2 = $this->addUser('seconduser', 'passw0RD', $randKey2);
 
@@ -436,10 +436,10 @@ class UserTest extends TestBase
 
     public function testLoginPrivateKeyValidEnabledKey()
     {
-        /* normal user with enabled privatekey */
+        /* normal user with enabled privateKey */
         $randKey = $this->us->getNewPrivateKey();
         $uid1 = $this->addUser('testusername', 'passw0rd', $randKey);
-        /* user that has disabled privatekey */
+        /* user that has disabled privateKey */
         $randKey2 = '-'.$this->us->getNewPrivateKey();
         $uid2 = $this->addUser('seconduser', 'passw0RD', $randKey2);
 
@@ -453,10 +453,10 @@ class UserTest extends TestBase
 
     public function testLoginPrivateKeyInvalidEnabledKey()
     {
-        /* normal user with enabled privatekey */
+        /* normal user with enabled privateKey */
         $randKey = $this->us->getNewPrivateKey();
         $uid1 = $this->addUser('testusername', 'passw0rd', $randKey);
-        /* user that has disabled privatekey */
+        /* user that has disabled privateKey */
         $randKey2 = '-'.$this->us->getNewPrivateKey();
         $uid2 = $this->addUser('seconduser', 'passw0RD', $randKey2);
 
@@ -470,10 +470,10 @@ class UserTest extends TestBase
 
     public function testLoginPrivateKeyValidDisabledKey()
     {
-        /* normal user with enabled privatekey */
+        /* normal user with enabled privateKey */
         $randKey = $this->us->getNewPrivateKey();
         $uid1 = $this->addUser('testusername', 'passw0rd', $randKey);
-        /* user that has disabled privatekey */
+        /* user that has disabled privateKey */
         $randKey2 = '-'.$this->us->getNewPrivateKey();
         $uid2 = $this->addUser('seconduser', 'passw0RD', $randKey2);
 
@@ -491,10 +491,10 @@ class UserTest extends TestBase
 
     public function testLoginPrivateKeyInvalidDisabled()
     {
-        /* normal user with enabled privatekey */
+        /* normal user with enabled privateKey */
         $randKey = $this->us->getNewPrivateKey();
         $uid1 = $this->addUser('testusername', 'passw0rd', $randKey);
-        /* user that has disabled privatekey */
+        /* user that has disabled privateKey */
         $randKey2 = '-'.$this->us->getNewPrivateKey();
         $uid2 = $this->addUser('seconduser', 'passw0RD', $randKey2);
 

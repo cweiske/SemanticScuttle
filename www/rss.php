@@ -64,9 +64,9 @@ if (!isset($rssEntries) || $rssEntries <= 0) {
     $rssEntries = $maxRssEntries;
 }
 
-$privatekey = null;
-if (isset($_GET['privatekey'])) {
-    $privatekey = $_GET['privatekey'];
+$privateKey = null;
+if (isset($_GET['privateKey'])) {
+    $privateKey = $_GET['privateKey'];
 }
 
 $userid    = null;
@@ -83,10 +83,10 @@ if ($user && $user != 'all') {
     } else {
         if ($userinfo = $userservice->getUserByUsername($user)) {
             $userid =& $userinfo[$userservice->getFieldName('primary')];
-            /* if user is not logged in and has valid privatekey */
+            /* if user is not logged in and has valid privateKey */
             if (!$userservice->isLoggedOn()) {
-                if ($privatekey != null) {
-                    if (!$userservice->loginPrivateKey($privatekey)) {
+                if ($privateKey != null) {
+                    if (!$userservice->loginPrivateKey($privateKey)) {
                         $tplVars['error'] = sprintf(T_('Failed to Autenticate User with username %s using private key'), $user);
                         header('Content-type: text/html; charset=utf-8');
                         $templateservice->loadTemplate('error.404.tpl', $tplVars);
@@ -106,8 +106,8 @@ if ($user && $user != 'all') {
     }
     $pagetitle .= ": ". $user;
 } else {
-    if ($privatekey != null) {
-        if (!$userservice->loginPrivateKey($privatekey)) {
+    if ($privateKey != null) {
+        if (!$userservice->loginPrivateKey($privateKey)) {
             $tplVars['error'] = sprintf(T_('Failed to Autenticate User with username %s using private key'), $user);
             header('Content-type: text/html; charset=utf-8');
             $templateservice->loadTemplate('error.404.tpl', $tplVars);

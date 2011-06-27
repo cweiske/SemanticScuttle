@@ -99,7 +99,7 @@ class TestBase extends PHPUnit_Framework_TestCase
      * @param string $password   Password, may be null
      * @param mixed  $privateKey String private key or boolean true to generate one
      *
-     * @return array ID of user, Name of user, password of user, privatekey
+     * @return array ID of user, Name of user, password of user, privateKey
      */
     protected function addUserData(
         $username = null, $password = null, $privateKey = null

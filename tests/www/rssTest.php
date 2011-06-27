@@ -78,7 +78,7 @@ class www_rssTest extends TestBaseApi
             null, 'private bookmark'
         );
 
-        $req = $this->getRequest('?privatekey=' . $privateKey);
+        $req = $this->getRequest('?privateKey=' . $privateKey);
         $response_body = $req->send()->getBody();
 
         $rss = simplexml_load_string($response_body);
@@ -103,7 +103,7 @@ class www_rssTest extends TestBaseApi
             null, 'private bookmark'
         );
 
-        $req = $this->getRequest('/' . $username . '?privatekey=' . $privateKey);
+        $req = $this->getRequest('/' . $username . '?privateKey=' . $privateKey);
         $response_body = $req->send()->getBody();
 
         $rss = simplexml_load_string($response_body);
@@ -129,7 +129,7 @@ class www_rssTest extends TestBaseApi
             null, 'private bookmark'
         );
 
-        $req = $this->getRequest('/' . $username . '?privatekey=' . $privateKey);
+        $req = $this->getRequest('/' . $username . '?privateKey=' . $privateKey);
         $cookies = $req->setCookieJar()->getCookieJar();
         $response_body = $req->send()->getBody();
 

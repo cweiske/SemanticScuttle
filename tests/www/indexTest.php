@@ -26,7 +26,7 @@ class www_indexTest extends TestBaseApi
 
         $elements = $x->xpath('//ns:link[@rel="alternate" and @type="application/rss+xml"]');
         $this->assertEquals(2, count($elements), 'Number of Links in Head not correct');
-        $this->assertContains('privatekey=', (string)$elements[1]['href']);
+        $this->assertContains('privateKey=', (string)$elements[1]['href']);
     }//end testVerifyPrivateRSSLinkExists
 
 
@@ -50,7 +50,7 @@ class www_indexTest extends TestBaseApi
 
         $elements = $x->xpath('//ns:link[@rel="alternate" and @type="application/rss+xml"]');
         $this->assertEquals(1, count($elements), 'Number of Links in Head not correct');
-        $this->assertNotContains('privatekey=', (string)$elements[0]['href']);
+        $this->assertNotContains('privateKey=', (string)$elements[0]['href']);
     }//end testVerifyPrivateRSSLinkDoesNotExist
 
 
