@@ -67,17 +67,26 @@ if ($usecache) {
 $tplVars['pagetitle'] = T_('Tags') .': '. $cat;
 $tplVars['loadjs'] = true;
 $tplVars['rsschannels'] = array(
-array(filter($sitename .': Tags: '. $cat), createURL('rss', 'all/'. filter($cat, 'url')).'?sort='.getSortOrder())
+    array(
+        sprintf(T_('%s: tagged with "%s"'), $sitename, $cat),
+        createURL('rss', 'all/' . filter($cat, 'url'))
+        . '?sort='.getSortOrder()
+    )
 );
 
 if ($userservice->isLoggedOn()) {
-    $currentUsername = $currentUser->getUsername();
     if ($userservice->isPrivateKeyValid($currentUser->getPrivateKey())) {
+        $currentUsername = $currentUser->getUsername();
         array_push(
             $tplVars['rsschannels'],
             array(
-                filter($sitename .': Tags: '. $cat . sprintf(T_(': (private) ')) . $currentUsername),
-                createURL('rss', filter($currentUsername, 'url') . '?sort='.getSortOrder().'&amp;privateKey='.$currentUser->getPrivateKey())
+                sprintf(
+                    T_('%s: tagged with "%s" (+private %s)'),
+                    $sitename, $cat, $currentUsername
+                ),
+                createURL('rss', filter($currentUsername, 'url'))
+                . '?sort=' . getSortOrder()
+                . '&privateKey=' . $currentUser->getPrivateKey()
             )
         );
     }
