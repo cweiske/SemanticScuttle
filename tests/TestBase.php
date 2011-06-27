@@ -76,17 +76,18 @@ class TestBase extends PHPUnit_Framework_TestCase
     /**
      * Creates a new user in the database.
      *
-     * @param string $username Username
-     * @param string $password Password
-     * @param string $pkey     Private Key
+     * @param string $username   Username
+     * @param string $password   Password
+     * @param mixed  $privateKey String private key or boolean true to generate one
      *
      * @return integer ID of user
      *
      * @uses addUserData()
      */
-    protected function addUser($username = null, $password = null, $pkey = null)
-    {
-        return reset($this->addUserData($username, $password, $pkey));
+    protected function addUser(
+        $username = null, $password = null, $privateKey = null
+    ) {
+        return reset($this->addUserData($username, $password, $privateKey));
     }
 
 
@@ -94,14 +95,15 @@ class TestBase extends PHPUnit_Framework_TestCase
     /**
      * Creates a new user in the database and returns id, username and password.
      *
-     * @param string $username Username
-     * @param string $password Password
-     * @param string $pkey     Private Key
+     * @param string $username   Username
+     * @param string $password   Password
+     * @param mixed  $privateKey String private key or boolean true to generate one
      *
-     * @return array ID of user, Name of user, password of user
+     * @return array ID of user, Name of user, password of user, privatekey
      */
-    protected function addUserData($username = null, $password = null, $pkey = null)
-    {
+    protected function addUserData(
+        $username = null, $password = null, $privateKey = null
+    ) {
         $us   = SemanticScuttle_Service_Factory::get('User');
         $rand = rand();
 
@@ -111,14 +113,17 @@ class TestBase extends PHPUnit_Framework_TestCase
         if ($password === null) {
             $password = $rand;
         }
+        if ($privateKey === true) {
+            $privateKey = $this->us->getNewPrivateKey();
+        }
 
         $uid  = $us->addUser(
             $username,
             $password,
             'unittest-' . $rand . '@example.org',
-            $pkey
+            $privateKey
         );
-        return array($uid, $username, $password);
+        return array($uid, $username, $password, $privateKey);
     }
 
 
