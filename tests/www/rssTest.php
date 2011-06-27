@@ -23,8 +23,29 @@ class www_rssTest extends TestBaseApi
 
 
 
+
     /**
-     * A private bookmark should not show up in an rss feed if the
+     * A private bookmark should not show up in the global rss feed if the
+     * user is not logged in nor passes the private key
+     */
+    public function testAllPrivateBookmarkNotLoggedIn()
+    {
+        list($uId, $username) = $this->addUserData();
+        $this->addBookmark(
+            $uId, null, SemanticScuttle_Model_Bookmark::SPRIVATE
+        );
+
+        $req = $this->getRequest();
+        $response_body = $req->send()->getBody();
+
+        $rss = simplexml_load_string($response_body);
+        $this->assertItemCount($rss, 0, 'I see a private bookmark');
+    }
+
+
+
+    /**
+     * A private bookmark should not show up in the user's rss feed if the
      * user is not logged in nor passes the private key
      */
     public function testUserPrivateBookmarkNotLoggedIn()
@@ -43,9 +64,34 @@ class www_rssTest extends TestBaseApi
 
 
 
+
     /**
-     * Test a user who has RSS private key setup
-     * with private bookmark.
+     * Test the global feed by passing the private key
+     */
+    public function testAllPrivateBookmarkWithPrivateKey()
+    {
+        list($uId, $username, $password, $privateKey) = $this->addUserData(
+            null, null, true
+        );
+        $this->addBookmark(
+            $uId, null, SemanticScuttle_Model_Bookmark::SPRIVATE,
+            null, 'private bookmark'
+        );
+
+        $req = $this->getRequest('?privatekey=' . $privateKey);
+        $response_body = $req->send()->getBody();
+
+        $rss = simplexml_load_string($response_body);
+        $this->assertItemCount($rss, 1, 'I miss the private bookmark');
+        $this->assertEquals(
+            'private bookmark', (string)$rss->channel->item[0]->title
+        );
+    }
+
+
+
+    /**
+     * Test the user feed by passing the private key
      */
     public function testUserPrivateBookmarkWithPrivateKey()
     {
