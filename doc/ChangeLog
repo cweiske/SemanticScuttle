@@ -5,20 +5,22 @@ ChangeLog for SemantiScuttle
 0.98.0 - 2011-XX-XX
 -------------------
 - Switch to jQuery and drop dojo
+- Implement request #2928950: Private keys for RSS feeds (Mark Pemberton)
+- Implement request #3164348: Configurable default privacy (Brett Dee)
+- Implement request #1989987: Theming support
+- Implement request #3054906: Show user's full name instead of nickname
+- Implement patch #3059829: update ``FR_CA`` translation
 - Fix bug #3187177: Wrong URL / Export XML Bookmarks
-- Fix bug in ``getTagsForBookmarks()`` that fetched all tags
 - Fix bug #3097187: Using opensearch with two tags does not work in Firefox
 - Fix bug #3251877: French translation JavaScript Bug when editing bookmarks
 - Fix bug #3168521: Title of tag-filtered RSS Feed is broken
 - Fix bug #2853627: Javascript warning
-- Implement request #1989987: Theming support
-- Implement request #3054906: Show user's full name instead of nickname
-- Implement patch #3059829: update ``FR_CA`` translation
+- Fix bug in ``getTagsForBookmarks()`` that fetched all tags
+- Fix privacy issue when fetching tags of several users
+- Fix Google custom search XML
 - Show error message on mysqli connection errors
 - Update php-gettext library to 1.0.10
 - ``api/posts/add`` respects the "replace" parameter now
-- Fix privacy issue when fetching tags of several users
-- Fix Google custom search XML
 - Only URLs with an allowed protocol may be added to the database
 - Support HTTPS connections when ``$root`` is not configured
 - SQL schema version table to ease future database upgrades
