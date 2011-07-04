@@ -35,6 +35,7 @@ Developer documentation
 - `How to release a new version`__
 - `Running unit testes`__
 - `How to translate SemanticScuttle`__
+- `ChangeLog`__
 
 __ developers/rules.html
 __ developers/api.html
@@ -42,4 +43,4 @@ __ developers/debugging.html
 __ developers/release-new-version.html
 __ developers/running-unit-tests.html
 __ developers/translation.html
-
+__ ChangeLog.html
