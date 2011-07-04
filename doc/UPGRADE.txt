@@ -2,6 +2,7 @@
 Upgrading SemanticScuttle from a previous version
 =================================================
 
+.. contents::
 
 From version 0.97 to 0.98
 =========================

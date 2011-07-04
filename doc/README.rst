@@ -4,7 +4,9 @@ SemanticScuttle 0.98
 A social bookmarking tool experimenting with new features
 like structured tags or collaborative descriptions of tags.
 
-https://sourceforge.net/projects/semanticscuttle/
+- Home page: http://semanticscuttle.sourceforge.net/
+- Project page: https://sourceforge.net/projects/semanticscuttle/
+- Demo: http://semanticscuttle.sourceforge.net/demo/
 
 Available under the GNU General Public License
 

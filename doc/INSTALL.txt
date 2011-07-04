@@ -31,6 +31,8 @@ Installation instructions
    on the shell.
 5. Set the ``www/`` directory as document root in your web server,
    restart the web server.
+6. That's all! Visit your SemanticScuttle installation web site now
+   with your browser.
 
 
 Ugly www directory in URLs
