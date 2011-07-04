@@ -30,7 +30,8 @@
   <property name="sffilepath"  value="s/se/semanticscuttle/" />
   <property name="svnpath"     value="https://semanticscuttle.svn.sourceforge.net/svnroot/semanticscuttle/" />
 
-  <taskdef classname="phing.tasks.ext.d51PearPkg2Task" name="d51pearpkg2" />
+  <taskdef name="rST" classname="phing.tasks.ext.rSTTask" />
+  <taskdef name="d51pearpkg2" classname="phing.tasks.ext.d51PearPkg2Task" />
 
   <target name="zip" depends="check"
    description="Create zip file for release"
@@ -209,45 +210,19 @@
 
   <!-- you need to have the python docutils package installed, since
        we use the rst2html tool -->
-  <target name="build-docs">
-   <foreach param="fname" absparam="abs-fname" target="build-doc-file">
-     <fileset dir=".">
-      <include name="doc/ChangeLog"/>
-      <include name="doc/**.txt"/>
-      <include name="doc/**.rst"/>
-      <include name="doc/**/*.rst"/>
-      <exclude name="doc/LICENSE.txt"/>
-      <exclude name="doc/developers/TODO.rst"/>
-     </fileset>
-   </foreach>
+  <target name="build-docs" description="render documentation">
+   <rST format="html" uptodate="true">
+    <fileset dir="doc">
+     <include name="ChangeLog"/>
+     <include name="**.txt"/>
+     <include name="**.rst"/>
+     <include name="**/*.rst"/>
+     <exclude name="LICENSE.txt"/>
+     <exclude name="developers/TODO.rst"/>
+    </fileset>
+    <mapper type="regexp" from="^doc/(.+?)(.rst|.txt)?$" to="dist/docs/\1.html"/>
+   </rST>
   </target>
-
-
-  <target name="build-doc-file" depends="check"
-   description="Builds a single documentation file. Pass file path as $fname"
-  >
-   <echo msg="${fname}"/>
-   <php function="preg_replace" returnProperty="outfile">
-    <param value="/^(.+)(.rst|.txt)$/"/>
-    <param value="dist/\1.html"/>
-    <param value="${fname}"/>
-   </php>
-
-   <!-- only render file if the doc file is newer than the html file -->
-   <property name="isuptodate" value="false"/>
-   <uptodate property="isuptodate" srcfile="${fname}" targetfile="${outfile}" />
-   <if>
-    <not><istrue value="${isuptodate}"/></not>
-    <then>
-     <exec
-      command="rst2html --exit-status=2 ${fname} ${outfile}"
-      checkreturn="1"
-      />
-    </then>
-   </if>
-
-  </target>
-
 
 
   <target name="release" depends="check,zip,package,deploy-sf"
