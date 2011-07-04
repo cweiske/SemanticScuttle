@@ -333,8 +333,6 @@
     <fail unless="sffilepath" message="Sourceforge project file path not defined!" />
 
     <mkdir dir="dist" />
-    <mkdir dir="dist/doc" />
-    <mkdir dir="dist/doc/developers" />
   </target>
 
 </project>
