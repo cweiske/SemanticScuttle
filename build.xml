@@ -208,10 +208,10 @@
   </target>
 
 
-  <!-- you need to have the python docutils package installed, since
-       we use the rst2html tool -->
   <target name="build-docs" description="render documentation">
-   <rST format="html" uptodate="true">
+   <rST format="html" uptodate="false"
+        toolparam="--stylesheet=res/docs/style.css"
+        >
     <fileset dir="doc">
      <include name="ChangeLog"/>
      <include name="**.txt"/>
@@ -221,6 +221,13 @@
      <exclude name="developers/TODO.rst"/>
     </fileset>
     <mapper type="regexp" from="^doc/(.+?)(.rst|.txt)?$" to="dist/docs/\1.html"/>
+<!--
+    <filterchain>
+     <replacetokenswithfile dir="res/docs">
+      <
+     </replacetokenswithfile>
+    </filterchain>
+-->
    </rST>
   </target>
 
