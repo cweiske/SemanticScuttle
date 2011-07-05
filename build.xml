@@ -209,7 +209,7 @@
 
 
   <target name="build-docs" description="render documentation">
-   <rST format="html" uptodate="false"
+   <rST format="html" uptodate="true"
         toolparam="--stylesheet=res/docs/style.css"
         >
     <fileset dir="doc">
@@ -219,6 +219,7 @@
      <include name="**/*.rst"/>
      <exclude name="LICENSE.txt"/>
      <exclude name="developers/TODO.rst"/>
+     <exclude name="allinone.rst"/>
     </fileset>
     <mapper type="regexp" from="^doc/(.+?)(.rst|.txt)?$" to="dist/docs/\1.html"/>
 <!--
