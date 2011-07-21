@@ -283,8 +283,8 @@
 
 
 
-  <target name="deploy-sf-pear" depends="check,package"
-   description="Update PEAR channel on sourceforge"
+  <target name="deploy-sf-pear" depends="check,package,docs-to-website"
+   description="Update PEAR channel + website on sourceforge"
    >
     <available file="${websitedir}"
      type="dir" property="available.websitedir"
@@ -346,6 +346,16 @@
      escape="false" checkreturn="false"
      passthru="true"
      />
+  </target>
+
+  <target name="docs-to-website" depends="build-docs"
+          description="copy docs to website directory"
+  >
+   <copy todir="${websitedir}/docs">
+    <fileset dir="dist/docs">
+     <include name="**"/>
+    </fileset>
+   </copy>
   </target>
 
 
