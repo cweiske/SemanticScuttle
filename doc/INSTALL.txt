@@ -33,6 +33,7 @@ Installation instructions
    restart the web server.
 6. That's all! Visit your SemanticScuttle installation web site now
    with your browser.
+7. Register a user and add bookmarks.
 
 
 .. _configuration: configuration.html
