@@ -9,18 +9,31 @@
   <property file="build.properties" />
   <property file="html.properties" />
 
-  <property name="version-m"  value="0.97" />
-  <property name="version"    value="0.97.0" />
+  <property name="version-m"  value="0.98" />
+  <property name="version"    value="0.98.0" />
   <property name="stability"  value="beta" />
-  <property name="releasenotes" value="- Many SQL optimizations
-- SemanticScuttle shows bookmarks 4 times faster now
-- New config option to skip 'SET NAMES UTF8' call: $dbneedssetnames
-- Do not highlight admin bookmarks when $enableAdminColors is disabled
-- Add russian translation
-- Make HTML export follow the specifications a bit better
-- Fix bug #2953732: faulty error message for duplicate bookmarks
-- Fix bug #2960663: do not send content-type headers twice for ajax/api scripts
-- Fix bug #2976593: fr_FR locale is vietnamese
+  <property name="releasenotes" value="- Switch to jQuery and drop dojo
+- Implement request #2928950: Private keys for RSS feeds (Mark Pemberton)
+- Implement request #3164348: Configurable default privacy (Brett Dee)
+- Implement request #1989987: Theming support
+- Implement request #3054906: Show user's full name instead of nickname
+- Implement patch #3059829: update ``FR_CA`` translation
+- Fix bug #3187177: Wrong URL / Export XML Bookmarks
+- Fix bug #3097187: Using opensearch with two tags does not work in Firefox
+- Fix bug #3251877: French translation JavaScript Bug when editing bookmarks
+- Fix bug #3168521: Title of tag-filtered RSS Feed is broken
+- Fix bug #2853627: Javascript warning
+- Fix bug in ``getTagsForBookmarks()`` that fetched all tags
+- Fix privacy issue when fetching tags of several users
+- Fix Google custom search XML
+- Show error message on mysqli connection errors
+- Update php-gettext library to 1.0.10
+- ``api/posts/add`` respects the 'replace' parameter now
+- Only URLs with an allowed protocol may be added to the database
+- Support HTTPS connections when ``$root`` is not configured
+- SQL schema version table to ease future database upgrades
+- Documentation is written with rST (reStructuredText) now
+- Support per-host configuration files
 " />
   <property name="zipfile"     value="${phing.project.name}-${version}.zip" />
   <property name="pkgfile"     value="${phing.project.name}-${version}.tgz" />
@@ -67,7 +80,6 @@
   <target name="package" depends="check"
    description="Creates the pear package"
   >
-   <!-- fixme: create package.xml with d51pearpkg2 -->
    <d51pearpkg2 dir="." baseinstalldir="/">
      <name>SemanticScuttle</name>
      <summary>A social bookmarking tool</summary>
@@ -109,30 +121,34 @@
      <ignore>**/.svn</ignore>
      <ignore>build*</ignore>
      <ignore>data/config.php</ignore>
+     <ignore>data/config.testing.php</ignore>
+     <ignore>data/config.testing-tmp.php</ignore>
      <ignore>data/locales/messages.po</ignore>
      <ignore>data/locales/*/LC_MESSAGES/messages.po</ignore>
      <ignore>dist/**</ignore>
-     <ignore>doc/developers/**</ignore>
      <ignore>scripts/**</ignore>
      <ignore>src/php-gettext/examples/**</ignore>
-     <ignore>src/php-gettext/bin/**</ignore>
-     <ignore>*.tgz</ignore>
+     <ignore>src/php-gettext/tests/**</ignore>
      <ignore>*.properties</ignore>
+     <ignore>*.sql</ignore>
+     <ignore>*.tgz</ignore>
 
-     <replacement
-      path="src/SemanticScuttle/header.php"
+     <replacement path="src/SemanticScuttle/header.php"
       type="pear-config" from="@data_dir@" to="data_dir"
       />
-     <replacement
-      path="src/SemanticScuttle/header.php"
+     <replacement path="src/SemanticScuttle/header.php"
       type="pear-config" from="@www_dir@" to="www_dir"
       />
-     <replacement
-      path="www/www-header.php"
+     <replacement path="src/SemanticScuttle/Config.php"
       type="pear-config" from="@data_dir@" to="data_dir"
       />
-     <replacement
-      path="tests/prepare.php"
+     <replacement path="src/SemanticScuttle/Config.php"
+      type="pear-config" from="@www_dir@" to="www_dir"
+      />
+     <replacement path="www/www-header.php"
+      type="pear-config" from="@data_dir@" to="data_dir"
+      />
+     <replacement path="tests/prepare.php"
       type="pear-config" from="@data_dir@" to="data_dir"
       />
 

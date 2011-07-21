@@ -26,6 +26,7 @@ ChangeLog for SemantiScuttle
 - Support HTTPS connections when ``$root`` is not configured
 - SQL schema version table to ease future database upgrades
 - Documentation is written with rST (reStructuredText) now
+- Support per-host configuration files
 
 
 0.97.2 - 2011-02-17
