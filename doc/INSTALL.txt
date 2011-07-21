@@ -22,7 +22,7 @@ Installation instructions
    on the shell ("semanticscuttle" being the database name)
 
 3. Copy ``data/config.php.dist`` to ``data/config.php`` and modify it as
-   necessary.
+   necessary. See configuration_ for more information.
 4. Make the cache directory writable by your web server.
    For example, run ::
 
@@ -33,6 +33,9 @@ Installation instructions
    restart the web server.
 6. That's all! Visit your SemanticScuttle installation web site now
    with your browser.
+
+
+.. _configuration: configuration.html
 
 
 Ugly www directory in URLs
