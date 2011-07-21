@@ -367,6 +367,18 @@
   </target>
 
 
+  <target name="deploy-demo"
+          description="sync demo to sourceforge website"
+  >
+   <exec
+     command="rsync -avP -e ssh . ${sfuser},${sfproject}@web.sourceforge.net:htdocs/demo"
+     dir="${websitedir}/demo"
+     escape="false" checkreturn="false"
+     passthru="true"
+     />
+  </target>
+
+
 
 
   <target name="check"
