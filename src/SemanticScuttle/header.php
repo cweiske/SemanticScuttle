@@ -25,8 +25,19 @@ if ('@data_dir@' == '@' . 'data_dir@') {
     //FIXME: when you have multiple installations, the www_dir will be wrong
     $wwwdir  = '@www_dir@/SemanticScuttle/';
 }
+require_once dirname(__FILE__) . '/Config.php';
 
-if (!file_exists($datadir . '/config.php')) {
+$cfg = new SemanticScuttle_Config();
+list($configfile, $defaultfile) = $cfg->findFiles();
+if ($defaultfile === null) {
+    header('HTTP/1.0 500 Internal Server Error');
+    die(
+        'No default configuration file config.default.php found.'
+        . ' This is really, really strange'
+        . "\n"
+    );
+}
+if ($configfile === null) {
     header('HTTP/1.0 500 Internal Server Error');
     die(
         'Please copy "config.php.dist" to "config.php" in data/ folder.'
@@ -39,8 +50,8 @@ set_include_path(
 );
 
 // 1 // First requirements part (before debug management)
-require_once $datadir . '/config.default.php';
-require_once $datadir . '/config.php';
+require_once $defaultfile;
+require_once $configfile;
 
 if (isset($_GET['unittestMode']) && $_GET['unittestMode'] == 1
 ) {
