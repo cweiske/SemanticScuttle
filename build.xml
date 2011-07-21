@@ -66,11 +66,12 @@
         <exclude name="**/.gitignore/"/>
         <exclude name="**/.svn/"/>
         <exclude name="data/config.php"/>
+        <exclude name="data/config.testing.php"/>
+        <exclude name="data/config.testing-tmp.php"/>
         <exclude name="data/locales/messages.po"/>
         <exclude name="data/locales/*/LC_MESSAGES/messages.po"/>
-        <exclude name="doc/developers/"/>
         <exclude name="src/php-gettext/examples/" />
-        <exclude name="src/php-gettext/bin/"/>
+        <exclude name="src/php-gettext/tests/"/>
       </fileset>
     </zip>
   </target>
@@ -130,7 +131,7 @@
      <ignore>src/php-gettext/examples/**</ignore>
      <ignore>src/php-gettext/tests/**</ignore>
      <ignore>*.properties</ignore>
-     <ignore>*.sql</ignore>
+     <ignore>semanticscuttle-dump.sql</ignore>
      <ignore>*.tgz</ignore>
 
      <replacement path="src/SemanticScuttle/header.php"
