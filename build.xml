@@ -283,7 +283,7 @@
 
 
 
-  <target name="deploy-sf-pear" depends="check,package,docs-to-website"
+  <target name="deploy-sf-pear" depends="check,package"
    description="Update PEAR channel + website on sourceforge"
    >
     <available file="${websitedir}"
@@ -348,15 +348,25 @@
      />
   </target>
 
-  <target name="docs-to-website" depends="build-docs"
-          description="copy docs to website directory"
+
+  <target name="deploy-docs" depends="build-docs"
+          description="sync docs to sourceforge website"
   >
    <copy todir="${websitedir}/docs">
     <fileset dir="dist/docs">
      <include name="**"/>
     </fileset>
    </copy>
+
+   <exec
+     command="rsync -avP -e ssh . ${sfuser},${sfproject}@web.sourceforge.net:htdocs/docs"
+     dir="${websitedir}/docs"
+     escape="false" checkreturn="false"
+     passthru="true"
+     />
   </target>
+
+
 
 
   <target name="check"
