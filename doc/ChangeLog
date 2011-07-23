@@ -3,6 +3,11 @@ ChangeLog for SemantiScuttle
 
 .. contents::
 
+0.98.1 - 2011-XX-XX
+-------------------
+- Fix bug #3375635: XML parsing problem in top.inc.php
+
+
 0.98.0 - 2011-07-21
 -------------------
 - Switch to jQuery and drop dojo
