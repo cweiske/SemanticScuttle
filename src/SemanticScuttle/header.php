@@ -25,6 +25,7 @@ if ('@data_dir@' == '@' . 'data_dir@') {
     //FIXME: when you have multiple installations, the www_dir will be wrong
     $wwwdir  = '@www_dir@/SemanticScuttle/';
 }
+require_once dirname(__FILE__) . '/Environment.php';
 require_once dirname(__FILE__) . '/Config.php';
 
 $cfg = new SemanticScuttle_Config();
