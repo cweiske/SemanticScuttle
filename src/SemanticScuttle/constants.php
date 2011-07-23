@@ -74,7 +74,7 @@ if (isset($_SERVER['PATH_INFO']) && isset($_SERVER['ORIG_PATH_INFO'])) {
     if (strlen($_SERVER["PATH_INFO"])<strlen($_SERVER["ORIG_PATH_INFO"])) {
         $_SERVER["PATH_INFO"] = $_SERVER["ORIG_PATH_INFO"];
     }
-    if (strcasecmp($_SERVER["PATH_INFO"], $_SERVER["SCRIPT_NAME "]) == 0) {
+    if (strcasecmp($_SERVER["PATH_INFO"], $_SERVER["SCRIPT_NAME"]) == 0) {
         unset($_SERVER["PATH_INFO"]);
     }
     if (strpos($_SERVER["PATH_INFO"], '.php') !== false) {
