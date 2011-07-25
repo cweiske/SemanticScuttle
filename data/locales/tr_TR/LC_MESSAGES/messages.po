@@ -1,0 +1,1566 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Semantic Scuttle\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-11 17:51+0200\n"
+"PO-Revision-Date: 2011-06-27 19:11+0200\n"
+"Last-Translator: Yalçın Can <ylcncn@gmail.com>\n"
+"Language-Team:  <ylcncn@gmail.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n>1)\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: src/SemanticScuttle/functions.php:189
+msgid "message_die() was called multiple times."
+msgstr "message_die() fonksiyonu birden fazla çağrıldı."
+
+#: src/SemanticScuttle/functions.php:201
+msgid "SQL Error"
+msgstr "SQL Hatası"
+
+#: src/SemanticScuttle/functions.php:207
+msgid "Line"
+msgstr "Satır"
+
+#: src/SemanticScuttle/functions.php:207
+#: data/templates/importDelicious.tpl.php:8
+#: data/templates/importNetscape.tpl.php:9
+#: data/templates/importStructure.tpl.php:10
+msgid "File"
+msgstr "Dosya"
+
+#: src/SemanticScuttle/functions.php:215
+msgid "Information"
+msgstr "Bilgi"
+
+#: src/SemanticScuttle/functions.php:220
+msgid "Critical Information"
+msgstr "Önemli Bilgi"
+
+#: src/SemanticScuttle/functions.php:225
+msgid "An error occured"
+msgstr "Bir hata oluştu"
+
+#: src/SemanticScuttle/functions.php:228
+msgid "General Error"
+msgstr "Genel Hata"
+
+#: src/SemanticScuttle/functions.php:236
+msgid "An critical error occured"
+msgstr "Önemli bir hata oluştu"
+
+#: src/SemanticScuttle/functions.php:239
+msgid "Critical Error"
+msgstr "Kritik Hata"
+
+#: src/SemanticScuttle/functions.php:248
+msgid "DEBUG MODE"
+msgstr "GELİŞTİRİCİ KİPİ"
+
+#: data/templates/about.tpl.php:6
+msgid "<strong>Store</strong> all your favourite links in one place, accessible from anywhere."
+msgstr "Tüm beğendiğiniz bağlantıları tek yerde ve her yerden erişilebilecek bir şekilde <strong>saklayın</strong>"
+
+#: data/templates/about.tpl.php:7
+msgid "<strong>Share</strong> your bookmarks with everyone, with friends on your watchlist or just keep them private."
+msgstr ""
+
+#: data/templates/about.tpl.php:8
+msgid "<strong>Tag</strong> your bookmarks with as many labels as you want, instead of wrestling with folders."
+msgstr ""
+
+#: data/templates/about.tpl.php:9
+msgid "Register now"
+msgstr "Şimdi kaydoldun"
+
+#: data/templates/about.tpl.php:9
+#, fuzzy, php-format
+msgid " to start using %s!"
+msgstr "%s başlatılamadı"
+
+#: data/templates/about.tpl.php:12
+msgid "Geek Stuff"
+msgstr "Geek Şeyler"
+
+#: data/templates/about.tpl.php:14
+#, fuzzy
+msgid "is licensed under the "
+msgstr "Metin simgenin altında"
+
+#: data/templates/about.tpl.php:14
+msgid "you can freely host it on your own web server."
+msgstr "kendi sunucunuzda özgürce kullanabilirsiniz."
+
+#: data/templates/about.tpl.php:15
+#, php-format
+msgid "%1$s supports most of the <a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
+msgstr ""
+
+#: data/templates/about.tpl.php:24
+msgid "Tips"
+msgstr "İpuçları"
+
+#: data/templates/about.tpl.php:26
+msgid "Add search plugin into your browser:"
+msgstr "Arama eklentisini tarayıcınıza yükleyin:"
+
+#: data/templates/about.tpl.php:27
+msgid "The secret tag \"system:unfiled\" allows you to find bookmarks without tags."
+msgstr ""
+
+#: data/templates/about.tpl.php:28
+msgid "The secret tag \"system:imported\" allows you to find imported bookmarks."
+msgstr ""
+
+#: data/templates/admin.tpl.php:5
+msgid "Users management"
+msgstr "Kullanıcı Yönetimi"
+
+#: data/templates/admin.tpl.php:14
+#, fuzzy
+msgid "Public/Shared/Private"
+msgstr "&Kişisel verileri sil..."
+
+#: data/templates/admin.tpl.php:14
+#: data/templates/bookmarks.tpl.php:113
+msgid "bookmark(s)"
+msgstr "yer imi"
+
+#: data/templates/admin.tpl.php:19
+#: data/templates/tag2tagadd.tpl.php:21
+#: data/templates/tag2tagdelete.tpl.php:13
+#: data/templates/tag2tagedit.tpl.php:14
+#: data/templates/tag2tagedit.tpl.php:35
+#: data/templates/tagdelete.tpl.php:6
+#: www/jsScuttle.php:23
+msgid "Are you sure?"
+msgstr "Emini misiniz?"
+
+#: data/templates/admin.tpl.php:19
+#: data/templates/bookmarks.tpl.php:300
+msgid "Delete"
+msgstr "Sil"
+
+#: data/templates/admin.tpl.php:27
+msgid "Other actions"
+msgstr "Diğer eylemler"
+
+#: data/templates/admin.tpl.php:29
+msgid "Check all URLs (May take some time)"
+msgstr "Tüm bağlantıları kontrol edin (Uzun sürebilir)"
+
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:16
+msgid "Collaborative description: these fields can be viewed and modified by every users"
+msgstr ""
+
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:18
+#: data/templates/bookmarks.tpl.php:157
+#: data/templates/editbookmark.tpl.php:51
+msgid "Title"
+msgstr "Başlık"
+
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:23
+#: data/templates/editbookmark.tpl.php:57
+#: data/templates/editprofile.tpl.php:45
+#: data/templates/profile.tpl.php:33
+#: data/templates/tagcommondescriptionedit.tpl.php:13
+#: data/templates/tagedit.tpl.php:12
+msgid "Description"
+msgstr "Tanım"
+
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:31
+#: data/templates/tagcommondescriptionedit.tpl.php:21
+msgid "Last modification:"
+msgstr "Son değiştirilme:"
+
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:43
+#: data/templates/tagcommondescriptionedit.tpl.php:33
+#: data/templates/tagedit.tpl.php:18
+msgid "Update"
+msgstr "Güncelle"
+
+#: data/templates/bookmarkcommondescriptionedit.tpl.php:44
+#: data/templates/editbookmark.tpl.php:111
+#: data/templates/tag2tagadd.tpl.php:24
+#: data/templates/tag2tagedit.tpl.php:38
+#: data/templates/tagcommondescriptionedit.tpl.php:34
+#: data/templates/tagedit.tpl.php:19
+#: data/templates/tagrename.tpl.php:25
+msgid "Cancel"
+msgstr "İptal"
+
+#: data/templates/bookmarklet.inc.php:1
+msgid "Bookmarklet"
+msgstr "Bookmarklet"
+
+#: data/templates/bookmarklet.inc.php:11
+#, php-format
+msgid "Click one of the following bookmarklets to add a button you can click whenever you want to add the page you are on to %s"
+msgstr ""
+
+#: data/templates/bookmarklet.inc.php:20
+#, php-format
+msgid "Drag one of the following bookmarklets to your browser's bookmarks and click it whenever you want to add the page you are on to %s"
+msgstr ""
+
+#: data/templates/bookmarklet.inc.php:67
+#: data/templates/bookmarklet.inc.php:100
+#, fuzzy, php-format
+msgid "Post to %s"
+msgstr "Bir yazıya ekle"
+
+#: data/templates/bookmarklet.inc.php:93
+#: data/templates/bookmarklet.inc.php:110
+#, fuzzy, php-format
+msgid "Post to %s (Pop-up)"
+msgstr "`%s' güncel"
+
+#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:24
+#, php-format
+msgid "Voting <span class=\"voting\">%d</span>"
+msgstr "Oy <span class=\"voting\">%d</span>"
+
+#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:32
+#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:35
+msgid "Vote for"
+msgstr "Beğen"
+
+#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:43
+#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:46
+msgid "Vote against"
+msgstr "Kötüle"
+
+#: data/templates/bookmarks.tpl.php:42
+msgid "Bookmarks on this page are managed by an admin user."
+msgstr ""
+
+#: data/templates/bookmarks.tpl.php:71
+#: data/templates/bookmarks.tpl.php:72
+msgid "Edit the common description of this tag"
+msgstr ""
+
+#: data/templates/bookmarks.tpl.php:75
+#: data/templates/bookmarks.tpl.php:76
+msgid "Edit the common description of this bookmark"
+msgstr ""
+
+#: data/templates/bookmarks.tpl.php:96
+#: data/templates/bookmarks.tpl.php:97
+msgid "Edit your personal description of this tag"
+msgstr ""
+
+#: data/templates/bookmarks.tpl.php:113
+#: data/templates/tags.tpl.php:10
+#: data/templates/users.tpl.php:8
+msgid "Sort by:"
+msgstr "Sırala:"
+
+#: data/templates/bookmarks.tpl.php:155
+msgid "Date"
+msgstr "Tarih"
+
+#: data/templates/bookmarks.tpl.php:160
+msgid "Voting"
+msgstr "Oy"
+
+#: data/templates/bookmarks.tpl.php:169
+msgid "Bookmarks from other users for this tag"
+msgstr ""
+
+#: data/templates/bookmarks.tpl.php:174
+msgid "Only your bookmarks for this tag"
+msgstr ""
+
+#: data/templates/bookmarks.tpl.php:197
+#: data/templates/bookmarks.tpl.php:203
+msgid "First"
+msgstr "İlk"
+
+#: data/templates/bookmarks.tpl.php:198
+#: data/templates/bookmarks.tpl.php:204
+msgid "Previous"
+msgstr "Önceki"
+
+#: data/templates/bookmarks.tpl.php:211
+#: data/templates/bookmarks.tpl.php:214
+msgid "Next"
+msgstr "Sonraki"
+
+#: data/templates/bookmarks.tpl.php:212
+#: data/templates/bookmarks.tpl.php:215
+msgid "Last"
+msgstr "Son"
+
+#: data/templates/bookmarks.tpl.php:228
+#, fuzzy, php-format
+msgid "Page %d of %d"
+msgstr "Sayfa %d / %d"
+
+#: data/templates/bookmarks.tpl.php:290
+msgid "Tags:"
+msgstr "Etiketler:"
+
+#: data/templates/bookmarks.tpl.php:297
+msgid "Edit"
+msgstr "Düzenle"
+
+#: data/templates/bookmarks.tpl.php:305
+msgid "Last update"
+msgstr "Son güncelleme"
+
+#: data/templates/bookmarks.tpl.php:308
+#, fuzzy
+msgid "by"
+msgstr "Yazdıran"
+
+#: data/templates/bookmarks.tpl.php:312
+#, fuzzy
+msgid "you"
+msgstr "Biliyor muydunuz?"
+
+#: data/templates/bookmarks.tpl.php:328
+#, fuzzy, php-format
+msgid " and %s1 other%s"
+msgstr "%'d başka öğe seçildi"
+
+#: data/templates/bookmarks.tpl.php:331
+#, fuzzy, php-format
+msgid " and %2$s%1$s others%3$s"
+msgstr "Tüm Diğerleri"
+
+#: data/templates/bookmarks.tpl.php:345
+msgid "Copy this bookmark to YOUR bookmarks."
+msgstr "Bu yer imini kendi yer imlerinize kopyalayın."
+
+#: data/templates/bookmarks.tpl.php:346
+msgid "Copy"
+msgstr "Kopyala"
+
+#: data/templates/bookmarks.tpl.php:366
+msgid "This bookmark is certified by an admin user."
+msgstr "Bu yer imi bir yönetici tarafından onaylanmıştır."
+
+#: data/templates/bookmarks.tpl.php:419
+msgid "Private Note on this bookmark"
+msgstr "Bu yer imindeki özel notunuz"
+
+#: data/templates/bookmarks.tpl.php:433
+msgid "Come back to the top of this page."
+msgstr "Bu sayfanın en başına gidin."
+
+#: data/templates/bookmarks.tpl.php:433
+#, fuzzy
+msgid "Top of the page"
+msgstr "&Sayfanın üstü"
+
+#: data/templates/bookmarks.tpl.php:439
+#, fuzzy
+msgid "No bookmarks available"
+msgstr "-kaplama yok-"
+
+#: data/templates/bottom.inc.php:5
+#: data/templates/toolbar.inc.php:15
+#: data/templates/toolbar.inc.php:28
+#: www/about.php:23
+#: www/about.php:24
+msgid "About"
+msgstr "Hakkında"
+
+#: data/templates/bottom.inc.php:7
+msgid "Propulsed by "
+msgstr "Altyapı:"
+
+#: data/templates/dynamictags.inc.php:56
+#: data/templates/sidebar.block.common.php:19
+#: data/templates/sidebar.block.popular.php:34
+#: data/templates/sidebar.block.recent.php:29
+#: data/templates/tags.tpl.php:19
+msgid "bookmark"
+msgid_plural "bookmarks"
+msgstr[0] "yer imi"
+msgstr[1] "yerimi"
+
+#: data/templates/dynamictags.inc.php:105
+#: data/templates/sidebar.block.common.php:9
+#: data/templates/sidebar.block.menu.php:74
+#: data/templates/sidebar.block.popular.php:23
+#: data/templates/sidebar.block.recent.php:34
+#: data/templates/toolbar.inc.php:27
+#: www/populartags.php:46
+msgid "Popular Tags"
+msgstr "Popüler Etiketler"
+
+#: data/templates/dynamictags.inc.php:108
+msgid "Popular Tags From All Users"
+msgstr "Tüm kullanıcıların En Popüler Etiketleri"
+
+#: data/templates/editbookmark.tpl.php:46
+msgid "Address"
+msgstr "Adres"
+
+#: data/templates/editbookmark.tpl.php:48
+#: data/templates/editbookmark.tpl.php:53
+#: data/templates/editprofile.tpl.php:29
+#: data/templates/tagrename.tpl.php:14
+#: data/templates/tagrename.tpl.php:19
+msgid "Required"
+msgstr "Gerekli"
+
+#: data/templates/editbookmark.tpl.php:58
+msgid "Add Note"
+msgstr "Not Ekle"
+
+#: data/templates/editbookmark.tpl.php:61
+msgid "You can use anchors to delimite attributes. for example: [publisher]blah[/publisher] "
+msgstr ""
+
+#: data/templates/editbookmark.tpl.php:64
+msgid "Suggested anchors: "
+msgstr ""
+
+#: data/templates/editbookmark.tpl.php:76
+msgid "Private Note"
+msgstr "Gizli Not"
+
+#: data/templates/editbookmark.tpl.php:78
+msgid "Just visible by you and your contacts."
+msgstr ""
+
+#: data/templates/editbookmark.tpl.php:82
+#: data/templates/toolbar.inc.php:10
+#: www/tags.php:45
+#: www/tags.php:67
+msgid "Tags"
+msgstr "Etiketler"
+
+#: data/templates/editbookmark.tpl.php:86
+msgid "Comma-separated"
+msgstr "Virgülle ayrılmış"
+
+#: data/templates/editbookmark.tpl.php:90
+#: data/templates/tag2tagadd.tpl.php:9
+msgid "Note: use \">\" to include one tag in another. e.g.: europe>france>paris"
+msgstr ""
+
+#: data/templates/editbookmark.tpl.php:94
+#: data/templates/tag2tagadd.tpl.php:8
+msgid "Note: use \"=\" to make synonym two tags. e.g.: france=frenchcountry"
+msgstr ""
+
+#: data/templates/editbookmark.tpl.php:97
+#: data/templates/importDelicious.tpl.php:15
+#: data/templates/importNetscape.tpl.php:16
+msgid "Privacy"
+msgstr "Gizlilik"
+
+#: data/templates/editbookmark.tpl.php:100
+#: data/templates/importDelicious.tpl.php:18
+#: data/templates/importNetscape.tpl.php:19
+msgid "Public"
+msgstr "Açık"
+
+#: data/templates/editbookmark.tpl.php:101
+#, fuzzy
+msgid "Shared with Watch List"
+msgstr "Paylaşılmış dosya listesini yeniden yükler."
+
+#: data/templates/editbookmark.tpl.php:102
+#: data/templates/importDelicious.tpl.php:20
+#: data/templates/importNetscape.tpl.php:21
+msgid "Private"
+msgstr "Gizli"
+
+#: data/templates/editbookmark.tpl.php:115
+#, fuzzy
+msgid "Delete Bookmark"
+msgstr "_Yer imi ekle"
+
+#: data/templates/editbookmark.tpl.php:120
+#, fuzzy
+msgid "edit common description"
+msgstr "Açıklaması buradadır"
+
+#: data/templates/editbookmark.tpl.php:212
+#: data/templates/importDelicious.tpl.php:26
+#: data/templates/importNetscape.tpl.php:27
+#: data/templates/importStructure.tpl.php:16
+msgid "Import"
+msgstr "İçeri Aktar"
+
+#: data/templates/editbookmark.tpl.php:214
+#, fuzzy
+msgid "Import bookmarks from bookmark file"
+msgstr "Bağlantılarınızı del.icio.us'dan içeri aktarın"
+
+#: data/templates/editbookmark.tpl.php:214
+msgid "Internet Explorer, Mozilla Firefox and Netscape"
+msgstr "Internet Explorer, Mozilla Firefox ve Netscape"
+
+#: data/templates/editbookmark.tpl.php:215
+msgid "Import bookmarks from del.icio.us"
+msgstr "Bağlantılarınızı del.icio.us'dan içeri aktarın"
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:11
+#, fuzzy
+msgid "SSL client certificates"
+msgstr "İstemci Sertifikalarını Kabul Et"
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:17
+msgid "Serial"
+msgstr "Seri No"
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:18
+#: data/templates/editprofile.tpl.php:37
+#: data/templates/profile.tpl.php:17
+msgid "Name"
+msgstr "İsim"
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:19
+#: data/templates/profile.tpl.php:11
+msgid "Email"
+msgstr "Eposta"
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:20
+msgid "Issuer"
+msgstr ""
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:30
+msgid "delete"
+msgstr "sil"
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:43
+#, fuzzy
+msgid "No certificates registered"
+msgstr "İstemci Sertifikalarını Kabul Et"
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:48
+msgid "Your current certificate is already registered with your account."
+msgstr ""
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:53
+msgid "Register current certificate to automatically login."
+msgstr ""
+
+#: data/templates/editprofile-sslclientcerts.tpl.php:59
+#, fuzzy
+msgid "Your browser does not provide a certificate."
+msgstr "Pencere yöneticiniz bir uygulama listesi sunmuyor."
+
+#: data/templates/editprofile.tpl.php:8
+#, fuzzy
+msgid "Account Details"
+msgstr "Kullanıcı Ayrıntıları"
+
+#: data/templates/editprofile.tpl.php:12
+#: data/templates/login.tpl.php:21
+#: data/templates/password.tpl.php:10
+#: data/templates/profile.tpl.php:6
+#: data/templates/register.tpl.php:16
+msgid "Username"
+msgstr "Kullanıcı Adı"
+
+#: data/templates/editprofile.tpl.php:17
+msgid "New Password"
+msgstr "Yeni Parola"
+
+#: data/templates/editprofile.tpl.php:22
+#, fuzzy
+msgid "Confirm Password"
+msgstr "Parolayı hatırla"
+
+#: data/templates/editprofile.tpl.php:27
+#: data/templates/password.tpl.php:14
+#: data/templates/register.tpl.php:26
+msgid "E-mail"
+msgstr "E-posta"
+
+#: data/templates/editprofile.tpl.php:33
+msgid "Personal Details"
+msgstr "Kullanıcı Ayrıntıları"
+
+#: data/templates/editprofile.tpl.php:41
+#: data/templates/profile.tpl.php:23
+msgid "Homepage"
+msgstr "Ana Sayfa"
+
+#: data/templates/editprofile.tpl.php:50
+#: www/edit.php:113
+msgid "Save Changes"
+msgstr "Değişiklikleri Kaydet"
+
+#: data/templates/editprofile.tpl.php:55
+#: data/templates/sidebar.block.tagactions.php:17
+#: data/templates/sidebar.block.watchstatus.php:18
+msgid "Actions"
+msgstr "Eylemler"
+
+#: data/templates/editprofile.tpl.php:58
+#, fuzzy
+msgid "Export bookmarks"
+msgstr "Yer İmlerini Düzenle"
+
+#: data/templates/editprofile.tpl.php:60
+msgid "HTML file (for browsers)"
+msgstr "HTML dosyası (tarayıcılar için)"
+
+#: data/templates/editprofile.tpl.php:61
+msgid "XML file (like del.icio.us)"
+msgstr "XML dosyası (del.icio.us'ın sağladığı gibi)"
+
+#: data/templates/editprofile.tpl.php:62
+msgid "CSV file (for spreadsheet tools)"
+msgstr "CSV dosyası (excel programları için)"
+
+#: data/templates/error.404.tpl.php:5
+msgid "Not Found"
+msgstr "Bulunamadı"
+
+#: data/templates/error.404.tpl.php:6
+msgid "The requested URL was not found on this server"
+msgstr "İstenilen adres bu sunucuda bulunamadı"
+
+#: data/templates/error.500.tpl.php:5
+#, fuzzy
+msgid "General server error"
+msgstr "Genel SOCKS sunucu hatası"
+
+#: data/templates/error.500.tpl.php:6
+#, fuzzy
+msgid "The requested URL could not be processed"
+msgstr "İstenen RTSP oturumu başlatılamadı."
+
+#: data/templates/importDelicious.tpl.php:19
+#: data/templates/importNetscape.tpl.php:20
+#, fuzzy
+msgid "Shared with Watchlist"
+msgstr "%'d öğe, %s boyutunda"
+
+#: data/templates/importDelicious.tpl.php:31
+#: data/templates/importNetscape.tpl.php:32
+#: data/templates/importStructure.tpl.php:21
+msgid "Instructions"
+msgstr "Talimatlar"
+
+#: data/templates/importDelicious.tpl.php:33
+msgid "Log in to the <a href=\"http://del.icio.us/api/posts/all\">export page at del.icio.us</a>"
+msgstr "del.icio.us'a giriş yapıp <a href=\"http://del.icio.us/api/posts/all\">dışarı aktar sayfasına girin</a>"
+
+#: data/templates/importDelicious.tpl.php:34
+msgid "Save the resulting <abbr title=\"Extensible Markup Language\">XML</abbr> file to your computer"
+msgstr ""
+
+#: data/templates/importDelicious.tpl.php:35
+msgid "Click <kbd>Browse...</kbd> to find this file on your computer. The maximum size the file can be is 1MB"
+msgstr ""
+
+#: data/templates/importDelicious.tpl.php:36
+#: data/templates/importNetscape.tpl.php:43
+msgid "Select the default privacy setting for your imported bookmarks"
+msgstr ""
+
+#: data/templates/importDelicious.tpl.php:37
+#: data/templates/importNetscape.tpl.php:44
+msgid "Click <kbd>Import</kbd> to start importing the bookmarks; it may take a minute"
+msgstr ""
+
+#: data/templates/importNetscape.tpl.php:35
+msgid "Export your bookmarks from your browser to a file"
+msgstr ""
+
+#: data/templates/importNetscape.tpl.php:37
+msgid "Internet Explorer: <kbd>File &gt; Import and Export... &gt; Export Favorites"
+msgstr ""
+
+#: data/templates/importNetscape.tpl.php:38
+msgid "Mozilla Firefox: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; File &gt; Export..."
+msgstr ""
+
+#: data/templates/importNetscape.tpl.php:39
+msgid "Netscape: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; Tools &gt; Export..."
+msgstr ""
+
+#: data/templates/importNetscape.tpl.php:42
+msgid "Click <kbd>Browse...</kbd> to find the saved bookmark file on your computer. The maximum size the file can be is 1MB"
+msgstr ""
+
+#: data/templates/importStructure.tpl.php:24
+msgid "Create your structure into a simple text file and following this model:"
+msgstr ""
+
+#: data/templates/importStructure.tpl.php:35
+msgid "Then import the file. The tags and their relations will be added to your profile."
+msgstr ""
+
+#: data/templates/login.tpl.php:13
+#, fuzzy
+msgid "Please activate cookies"
+msgstr "HTML5 çerezlerini sil"
+
+#: data/templates/login.tpl.php:26
+#: data/templates/register.tpl.php:21
+msgid "Password"
+msgstr "Şifre"
+
+#: data/templates/login.tpl.php:28
+msgid "Don't ask for my password for 2 weeks"
+msgstr "Şifremi 2 hafta boyunca sorma"
+
+#: data/templates/login.tpl.php:32
+#: data/templates/toolbar.inc.php:29
+#: www/login.php:57
+msgid "Log In"
+msgstr "Giriş"
+
+#: data/templates/login.tpl.php:36
+msgid "Forgotten your password?"
+msgstr "Parolanızı mı unuttunuz?"
+
+#: data/templates/password.tpl.php:5
+#, php-format
+msgid "If you have forgotten your password, %s can generate a new one. Enter the username and e-mail address of your account into the form below and we will e-mail your new password to you."
+msgstr ""
+
+#: data/templates/password.tpl.php:19
+#, fuzzy
+msgid "Generate Password"
+msgstr "Parolayı hatırla"
+
+#: data/templates/profile.tpl.php:28
+#, fuzzy
+msgid "Member Since"
+msgstr "%s beri Sunucuya Bağlı"
+
+#: data/templates/profile.tpl.php:40
+#: data/templates/sidebar.block.watchlist.php:30
+msgid "Watching"
+msgstr "İzleniyor"
+
+#: data/templates/profile.tpl.php:55
+#: data/templates/sidebar.block.watchlist.php:52
+#, fuzzy
+msgid "Watched By"
+msgstr "Amblemine Göre"
+
+#: data/templates/profile.tpl.php:68
+#: data/templates/toolbar.inc.php:9
+msgid "Bookmarks"
+msgstr "Yer imleri"
+
+#: data/templates/profile.tpl.php:69
+msgid "Go to bookmarks"
+msgstr "Yer imlerine git"
+
+#: data/templates/register.tpl.php:11
+#, php-format
+msgid "Sign up here to create a free %s account. All the information requested below is required"
+msgstr ""
+
+#: data/templates/register.tpl.php:18
+msgid " at least 5 characters, alphanumeric (no spaces, no dots or other special ones)"
+msgstr ""
+
+#: data/templates/register.tpl.php:28
+msgid " to send you your password if you forget it"
+msgstr ""
+
+#: data/templates/register.tpl.php:33
+msgid "Antispam question"
+msgstr "Spam belirleyici soru"
+
+#: data/templates/register.tpl.php:41
+#: data/templates/toolbar.inc.php:31
+#: www/register.php:99
+msgid "Register"
+msgstr "Kaydol"
+
+#: data/templates/search.menu.php:27
+msgid "Search..."
+msgstr "Ara..."
+
+#: data/templates/search.menu.php:28
+msgid "in"
+msgstr "şurada"
+
+#: data/templates/search.menu.php:34
+#, fuzzy
+msgid "this user's bookmarks"
+msgstr "Bu kullanıcıyı silin."
+
+#: data/templates/search.menu.php:39
+msgid "my bookmarks"
+msgstr "yer imlerim"
+
+#: data/templates/search.menu.php:40
+msgid "my watchlist"
+msgstr "izleme listem"
+
+#: data/templates/search.menu.php:44
+msgid "all bookmarks"
+msgstr "tüm yer imleri"
+
+#: data/templates/search.menu.php:54
+msgid "Search"
+msgstr "Ara"
+
+#: data/templates/sidebar.block.linked.php:23
+#, fuzzy
+msgid "Linked Tags"
+msgstr "Folksonomi Etiketleri"
+
+#: data/templates/sidebar.block.linked.php:28
+#: data/templates/sidebar.block.menu.php:46
+#, fuzzy
+msgid "Add new link"
+msgstr "Yeni bağlantı ekle"
+
+#: data/templates/sidebar.block.linked.php:29
+#: data/templates/sidebar.block.menu.php:47
+#, fuzzy
+msgid "Delete link"
+msgstr "Bağ _adı:"
+
+#: data/templates/sidebar.block.menu.php:35
+#, fuzzy, php-format
+msgid "Tags included into the tag '%s'"
+msgstr "Geany etiket dosyaları (*.tags)"
+
+#: data/templates/sidebar.block.menu.php:35
+#, fuzzy
+msgid "Menu Tags"
+msgstr "Vitrin Etiketleri"
+
+#: data/templates/sidebar.block.menu.php:68
+#, fuzzy
+msgid "See all your tags"
+msgstr "Tüm açık etiketleri kapat"
+
+#: data/templates/sidebar.block.menu.php:68
+msgid "all your tags"
+msgstr "tüm etiketleriniz"
+
+#: data/templates/sidebar.block.menu.php:70
+msgid "See all tags from this user"
+msgstr ""
+
+#: data/templates/sidebar.block.menu.php:70
+msgid "all tags from this user"
+msgstr ""
+
+#: data/templates/sidebar.block.menu.php:74
+msgid "See popular tags"
+msgstr "Popüler etiketlere bak"
+
+#: data/templates/sidebar.block.menu2.php:21
+msgid "Featured Menu Tags"
+msgstr "Vitrin Etiketleri"
+
+#: data/templates/sidebar.block.menu2.php:25
+msgid "This menu is composed of keywords (tags) organized by admins."
+msgstr ""
+
+#: data/templates/sidebar.block.recent.php:18
+msgid "Recent Tags"
+msgstr "Son Etiketler"
+
+#: data/templates/sidebar.block.related.php:26
+msgid "Related Tags"
+msgstr "İlgili Etiketler"
+
+#: data/templates/sidebar.block.search.php:28
+msgid "Last Searches"
+msgstr "Son Aramalar"
+
+#: data/templates/sidebar.block.search.php:40
+#, fuzzy
+msgid "Number of bookmarks for this query"
+msgstr "Bu albüme yüklenebilecek maksimum resim sayısı:"
+
+#: data/templates/sidebar.block.tagactions.php:9
+#: www/tagrename.php:72
+msgid "Rename Tag"
+msgid_plural "Rename Tags"
+msgstr[0] "Etiketi Düzenle"
+msgstr[1] "Etiketi Düzenle"
+
+#: data/templates/sidebar.block.tagactions.php:22
+#: www/tagdelete.php:54
+msgid "Delete Tag"
+msgstr "Etiketi sil"
+
+#: data/templates/sidebar.block.tagactions.php:24
+#: www/tagedit.php:61
+msgid "Edit Tag Description"
+msgstr "Etiket Tanımını Düzenle"
+
+#: data/templates/sidebar.block.tagactions.php:26
+#: www/tagcommondescriptionedit.php:76
+#, fuzzy
+msgid "Edit Tag Common Description"
+msgstr "Etiket tanımının güncellenmesi başarısız oldu"
+
+#: data/templates/sidebar.block.tagactions.php:28
+msgid "Create a link to another tag"
+msgstr ""
+
+#: data/templates/sidebar.block.users.php:14
+msgid "New Users"
+msgstr "Yeni Kullanıcılar"
+
+#: data/templates/sidebar.block.users.php:23
+#: data/templates/users.tpl.php:24
+msgid "bookmarks"
+msgstr "yer imleri"
+
+#: data/templates/sidebar.block.users.php:30
+msgid "See all users"
+msgstr "TÜm kullanıcıları gör"
+
+#: data/templates/sidebar.block.users.php:30
+msgid "All users"
+msgstr "Tüm Kullanıcılar"
+
+#: data/templates/sidebar.block.watchlist.php:19
+msgid "Close contacts are mutual contacts"
+msgstr ""
+
+#: data/templates/sidebar.block.watchlist.php:19
+#, fuzzy
+msgid "Close contacts"
+msgstr "&Kişiler (Hepsi)"
+
+#: data/templates/sidebar.block.watchlist.php:36
+msgid "Add a contact..."
+msgstr "Bir kişi ekle..."
+
+#: data/templates/sidebar.block.watchlist.php:36
+msgid "Type a username to add it to your contacts."
+msgstr ""
+
+#: data/templates/sidebar.block.watchlist.php:44
+msgid "Remove this contact"
+msgstr "Bu kişiyi sil"
+
+#: data/templates/sidebar.block.watchstatus.php:11
+#, fuzzy
+msgid "Remove from Watchlist"
+msgstr "_Projeden çıkar"
+
+#: data/templates/sidebar.block.watchstatus.php:13
+#, fuzzy
+msgid "Add to Watchlist"
+msgstr "Çözüme ekle"
+
+#: data/templates/sidebar.linkedtags.inc.php:18
+msgid "Edit link"
+msgstr "Bağlantıyı düzenle"
+
+#: data/templates/sidebar.linkedtags.inc.php:47
+msgid "Synonyms:"
+msgstr "Eş anlamlılar"
+
+#: data/templates/tag2tagadd.tpl.php:12
+msgid "Create new link:"
+msgstr "Yeni bağlantı ekle:"
+
+#: data/templates/tag2tagadd.tpl.php:19
+#, php-format
+msgid "Note: include a tag into '%s' tag (e.g. %s>countries) display the tag into the menu box"
+msgstr ""
+
+#: data/templates/tag2tagadd.tpl.php:23
+#: data/templates/tag2tagedit.tpl.php:37
+msgid "Create"
+msgstr "Oluştur"
+
+#: data/templates/tag2tagadd.tpl.php:35
+#: data/templates/tag2tagdelete.tpl.php:27
+#: data/templates/tag2tagedit.tpl.php:51
+msgid "Existing links:"
+msgstr "Geçmiş Bağlantılar"
+
+#: data/templates/tag2tagadd.tpl.php:53
+#: data/templates/tag2tagdelete.tpl.php:45
+#: data/templates/tag2tagedit.tpl.php:69
+msgid "No links"
+msgstr "Yer imi yok"
+
+#: data/templates/tag2tagdelete.tpl.php:15
+#: data/templates/tag2tagedit.tpl.php:16
+#: data/templates/tagdelete.tpl.php:8
+#: www/jsScuttle.php:23
+msgid "Yes"
+msgstr "Evet"
+
+#: data/templates/tag2tagdelete.tpl.php:16
+#: data/templates/tag2tagedit.tpl.php:17
+#: data/templates/tagdelete.tpl.php:9
+#: www/jsScuttle.php:23
+msgid "No"
+msgstr "Hayır"
+
+#: data/templates/tag2tagedit.tpl.php:6
+#, fuzzy
+msgid "Delete the link"
+msgstr "Bağ _adı:"
+
+#: data/templates/tag2tagedit.tpl.php:29
+msgid "Create new link"
+msgstr "Yeni bağlantı ekle"
+
+#: data/templates/tagrename.tpl.php:12
+msgid "Old"
+msgstr "Eski"
+
+#: data/templates/tagrename.tpl.php:17
+msgid "New"
+msgstr "Yeni"
+
+#: data/templates/tagrename.tpl.php:24
+msgid "Rename"
+msgstr "Yeniden Adlandır"
+
+#: data/templates/tags.tpl.php:11
+#: data/templates/users.tpl.php:9
+msgid "Alphabet"
+msgstr "Abece"
+
+#: data/templates/tags.tpl.php:12
+#: data/templates/users.tpl.php:10
+msgid "Popularity"
+msgstr "Popülarite"
+
+#: data/templates/toolbar.inc.php:8
+#: data/templates/toolbar.inc.php:26
+msgid "Home"
+msgstr "Başlangıç"
+
+#: data/templates/toolbar.inc.php:11
+#: www/watchlist.php:106
+msgid "Watchlist"
+msgstr "İzleme listesi"
+
+#: data/templates/toolbar.inc.php:12
+#: www/profile.php:67
+msgid "Profile"
+msgstr "Profil"
+
+#: data/templates/toolbar.inc.php:13
+#: www/bookmarks.php:215
+msgid "Add a Bookmark"
+msgstr "Yer imi ekle"
+
+#: data/templates/toolbar.inc.php:14
+msgid "Log Out"
+msgstr "Çıkış"
+
+#: data/templates/toolbar.inc.php:17
+msgid "Admin"
+msgstr "Yönetici"
+
+#: data/templates/top.inc.php:55
+msgid "Admins, your installation is in \"Debug Mode\" ($debugMode = true). To go in \"Normal Mode\" and hide debugging messages, change $debugMode to false into config.php."
+msgstr ""
+
+#: data/templates/users.tpl.php:20
+msgid "profile"
+msgstr "profil"
+
+#: data/templates/users.tpl.php:21
+#, fuzzy
+msgid "created in"
+msgstr " (paket içinde):"
+
+#: www/admin.php:32
+#, fuzzy
+msgid "Manage users"
+msgstr "Kullanıcı Ortalaması:"
+
+#: www/admin.php:68
+#, php-format
+msgid "%s and all his bookmarks and tags were deleted."
+msgstr ""
+
+#: www/admin.php:75
+#, fuzzy
+msgid "Problem with "
+msgstr "Birlikte Aç"
+
+#: www/ajaxDelete.php:37
+#, fuzzy
+msgid "You are not allowed to delete this bookmark"
+msgstr "Bu sayfayı silmek için yetkiniz yok."
+
+#: www/ajaxDelete.php:41
+#: www/edit.php:103
+msgid "Failed to delete bookmark"
+msgstr "Yer iminin silinmesi başarısız oldu"
+
+#: www/alltags.php:50
+msgid "All Tags"
+msgstr "Tüm etiketler"
+
+#: www/alltags.php:56
+#: www/bookmarks.php:99
+#: www/populartags.php:52
+#: www/profile.php:51
+#: www/rss.php:82
+#: www/search.php:111
+#: www/watch.php:45
+#: www/watchlist.php:61
+#, php-format
+msgid "User with username %s was not found"
+msgstr ""
+
+#: www/bookmarkcommondescriptionedit.php:51
+#: www/tag2tagadd.php:37
+#: www/tag2tagdelete.php:41
+#: www/tag2tagedit.php:33
+#: www/tagcommondescriptionedit.php:51
+#: www/tagedit.php:43
+msgid "Permission denied."
+msgstr "İzin verilmedi."
+
+#: www/bookmarkcommondescriptionedit.php:60
+msgid "Bookmark common description updated"
+msgstr ""
+
+#: www/bookmarkcommondescriptionedit.php:63
+msgid "Failed to update the bookmark common description"
+msgstr ""
+
+#: www/bookmarkcommondescriptionedit.php:71
+msgid "Edit Bookmark Common Description"
+msgstr ""
+
+#: www/bookmarks.php:114
+#: www/tags.php:47
+msgid "Remove the tag from the selection"
+msgstr "Seçili öğeden etiketi çıkar"
+
+#: www/bookmarks.php:134
+#: www/edit.php:65
+msgid "Your bookmark must have a title and an address"
+msgstr ""
+
+#: www/bookmarks.php:139
+msgid "This bookmark URL may not be added"
+msgstr ""
+
+#: www/bookmarks.php:158
+#: www/edit.php:83
+#: www/edit.php:86
+msgid "Bookmark saved"
+msgstr "Yer imi kaydedildi"
+
+#: www/bookmarks.php:158
+msgid "(Come back to previous page.)"
+msgstr "(Önceki sayfaya geri git.)"
+
+#: www/bookmarks.php:165
+#: www/import.php:106
+#: www/importNetscape.php:108
+msgid "There was an error saving your bookmark. Please try again or contact the administrator."
+msgstr ""
+
+#: www/bookmarks.php:222
+msgid "Add Bookmark"
+msgstr "Yer imi ekle"
+
+#: www/bookmarks.php:225
+msgid "You must be logged in before you can add bookmarks."
+msgstr ""
+
+#: www/bookmarks.php:280
+#: www/bookmarks.php:281
+msgid "My Bookmarks"
+msgstr "Yer İmlerim"
+
+#: www/edit.php:44
+#: www/edit.php:45
+msgid "Edit Bookmark"
+msgstr "Yer İmini Düzenle"
+
+#: www/edit.php:51
+#, php-format
+msgid "Bookmark with id %s not was not found"
+msgstr ""
+
+#: www/edit.php:57
+msgid "You are not allowed to edit this bookmark"
+msgstr "Bu yer imini düzenlemek için yetkiniz yok."
+
+#: www/edit.php:77
+msgid "Error while saving your bookmark"
+msgstr "Yeriminizi kaydederken bir sorun yaşandı"
+
+#: www/history.php:61
+msgid "History"
+msgstr "Geçmiş"
+
+#: www/history.php:62
+#, php-format
+msgid "History for %s"
+msgstr "%s için geçmiş"
+
+#: www/history.php:84
+msgid "Address was not found"
+msgstr "Adres bulunamadı"
+
+#: www/import.php:47
+msgid "Could not open XML input"
+msgstr "XML girdisi açılamadı"
+
+#: www/import.php:51
+#, php-format
+msgid "XML error: %s at line %d"
+msgstr "XML hatası: %s, %d satırında"
+
+#: www/import.php:60
+msgid "Import Bookmarks from del.icio.us"
+msgstr "Bağlantılarınızı del.icio.us'dan içeri aktarın"
+
+#: www/import.php:93
+msgid "You have already submitted this bookmark."
+msgstr "Bu yer imini önceden kaydetmişsiniz."
+
+#: www/import.php:104
+msgid "Bookmark imported."
+msgstr "Yer imi içeri aktarıldı"
+
+#: www/importNetscape.php:95
+msgid "You have already submitted some of these bookmarks."
+msgstr ""
+
+#: www/importNetscape.php:115
+msgid "Bookmarks found: "
+msgstr "Yerimleri bulundu:"
+
+#: www/importNetscape.php:116
+msgid "Bookmarks imported: "
+msgstr "Yerimleri içe aktarıldı:"
+
+#: www/importNetscape.php:117
+#: www/importNetscape.php:122
+msgid "Import Bookmarks from Browser File"
+msgstr "Yer imlerinizi Tarayıcı Dosyasından İçeri Aktarın"
+
+#: www/importStructure.php:61
+msgid "Bad indentation"
+msgstr "Geçersiz Girinti"
+
+#: www/importStructure.php:67
+msgid "New links between tags: "
+msgstr "Etiketler arasında yeni bağlantılar:"
+
+#: www/importStructure.php:72
+msgid "Import Structure"
+msgstr "Yapıyı İçeri Aktar"
+
+#: www/index.php:38
+msgid "You have now logged out"
+msgstr "Çıkış yapmış bulunuyorsunuz"
+
+#: www/index.php:45
+#, php-format
+msgid "%s: Recent bookmarks"
+msgstr "%s: En son yer imleri"
+
+#: www/index.php:75
+msgid "Store, share and tag your favourite links"
+msgstr "Favori yer imlerinizi saklayın, paylaşın ve etiketleyin"
+
+#: www/index.php:76
+msgid "All Bookmarks"
+msgstr "Tüm yer imleri"
+
+#: www/jsScuttle.php:70
+msgid "Available"
+msgstr "Uygun"
+
+#: www/jsScuttle.php:73
+msgid "Not Available"
+msgstr "Uygun Değil"
+
+#: www/login.php:48
+msgid "The details you have entered are incorrect. Please try again."
+msgstr ""
+
+#: www/password.php:36
+msgid "You must enter your username."
+msgstr "Kullanıcı adınızı girmeniz gerekiyor."
+
+#: www/password.php:40
+msgid "You must enter your <abbr title=\"electronic mail\">e-mail</abbr> address."
+msgstr ""
+
+#: www/password.php:48
+msgid "No matches found for that username."
+msgstr ""
+
+#: www/password.php:51
+msgid "No matches found for that combination of username and <abbr title=\"electronic mail\">e-mail</abbr> address."
+msgstr ""
+
+#: www/password.php:59
+msgid "There was an error while generating your new password. Please try again."
+msgstr ""
+
+#: www/password.php:63
+msgid "Your new password is:"
+msgstr "Yeni parolanız:"
+
+#: www/password.php:63
+msgid "To keep your bookmarks secure, you should change this password in your profile the next time you log in."
+msgstr ""
+
+#: www/password.php:66
+#, php-format
+msgid "%s Account Information"
+msgstr "%s Hesap Bilgileri"
+
+#: www/password.php:68
+#, php-format
+msgid "New password generated and sent to %s"
+msgstr ""
+
+#: www/password.php:75
+msgid "Forgotten Password"
+msgstr "Şifremi Unuttum"
+
+#: www/profile.php:59
+#: www/watchlist.php:119
+msgid "Username was not specified"
+msgstr "Kullanıcı adı belirtilmedi"
+
+#: www/profile.php:65
+msgid "My Profile"
+msgstr "Profilim"
+
+#: www/profile.php:89
+#, fuzzy
+msgid "Invalid Token"
+msgstr "İşar_et listesi:"
+
+#: www/profile.php:94
+msgid "Password and confirmation do not match."
+msgstr ""
+
+#: www/profile.php:98
+#, fuzzy
+msgid "Password must be at least 6 characters long."
+msgstr "<strong>Dikkat</strong>: şifreler en az %u Zeichen lang sein."
+
+#: www/profile.php:102
+#, fuzzy
+msgid "E-mail address is not valid."
+msgstr "Dokunulup geçildi: `%s' geçerli bir arşiv değil"
+
+#: www/profile.php:106
+#, fuzzy
+msgid "An error occurred while saving your changes."
+msgstr "Ayarlarınız SimplePrefs ile kaydedilirken bir hata oluştu (%i)."
+
+#: www/profile.php:108
+msgid "Changes saved."
+msgstr "Değişiklikler kaydedildi."
+
+#: www/profile.php:121
+msgid "You do not have a valid SSL client certificate"
+msgstr ""
+
+#: www/profile.php:123
+#, fuzzy
+msgid "This certificate is already registered"
+msgstr "Bu sürüm zaten yüklü."
+
+#: www/profile.php:125
+msgid "Failed to register SSL client certificate."
+msgstr ""
+
+#: www/profile.php:127
+#, fuzzy
+msgid "SSL client certificate registered."
+msgstr "İstemci sertifikası parolası"
+
+#: www/profile.php:136
+msgid "Certificate not found."
+msgstr "Sertifika bulunamadı."
+
+#: www/profile.php:138
+msgid "The certificate does not belong to you."
+msgstr ""
+
+#: www/profile.php:140
+msgid "Failed to delete SSL client certificate."
+msgstr ""
+
+#: www/profile.php:142
+#, fuzzy
+msgid "SSL client certificate deleted."
+msgstr "İstemci sertifikası parolası"
+
+#: www/register.php:52
+msgid "You <em>must</em> enter a username, password and e-mail address."
+msgstr ""
+
+#: www/register.php:56
+msgid "This username has been reserved, please make another choice."
+msgstr ""
+
+#: www/register.php:60
+msgid "This username already exists, please make another choice."
+msgstr ""
+
+#: www/register.php:64
+msgid "This username is not valid (too short, too long, forbidden characters...), please make another choice."
+msgstr ""
+
+#: www/register.php:68
+msgid "E-mail address is not valid. Please try again."
+msgstr ""
+
+#: www/register.php:72
+msgid "Antispam answer is not valid. Please try again."
+msgstr ""
+
+#: www/register.php:90
+#, fuzzy
+msgid "You have successfully registered. Enjoy!"
+msgstr "Başarılı bir şekilde giriş yaptınız."
+
+#: www/register.php:92
+#, fuzzy
+msgid "Registration failed. Please try again."
+msgstr "Lütfen, yazım hatalarını kontrol edip tekrar deneyin."
+
+#: www/rss.php:99
+#, fuzzy, php-format
+msgid "Recent bookmarks posted to %s"
+msgstr "İki yer imi seçilmiş olmak zorunda."
+
+#: www/search.php:83
+#: www/search.php:147
+msgid "Search Bookmarks"
+msgstr "Yer İmlerinde Ara "
+
+#: www/search.php:89
+msgid "Search Results"
+msgstr "Sonuçlarda Ara"
+
+#: www/search.php:137
+msgid "Unsatisfied? You can also try our "
+msgstr ""
+
+#: www/tag2tagadd.php:54
+#, fuzzy
+msgid "Tag link created"
+msgstr "Yeni proje oluşturuldu"
+
+#: www/tag2tagadd.php:57
+#, fuzzy
+msgid "Failed to create the link"
+msgstr "Kısayol oluşturulamadı"
+
+#: www/tag2tagadd.php:69
+#, fuzzy
+msgid "Add Tag Link"
+msgstr "Bağlantı kategorisi ekle"
+
+#: www/tag2tagdelete.php:66
+#, fuzzy
+msgid "Tag link deleted"
+msgstr "Silin&miş çevirileri temizle"
+
+#: www/tag2tagdelete.php:69
+#, fuzzy
+msgid "Failed to delete the link"
+msgstr "UYARI: %s dosyası silinemiyor"
+
+#: www/tag2tagdelete.php:81
+#, fuzzy
+msgid "Delete Link Between Tags"
+msgstr "Etiketleri galeriden sil"
+
+#: www/tag2tagedit.php:55
+#, fuzzy
+msgid "Edit Link Between Tags"
+msgstr "<a href=\"%s\">Bağlantılar</a> / Bağlantı Düzenle"
+
+#: www/tagcommondescriptionedit.php:62
+#, fuzzy
+msgid "Tag common description updated"
+msgstr "Etiket tanımının güncellenmesi başarısız oldu"
+
+#: www/tagcommondescriptionedit.php:67
+msgid "Failed to update the tag common description"
+msgstr ""
+
+#: www/tagdelete.php:43
+msgid "Tag deleted"
+msgstr "Etiket silindi"
+
+#: www/tagdelete.php:46
+msgid "Failed to delete the tag"
+msgstr "Etiketin silinemedi"
+
+#: www/tagedit.php:52
+msgid "Tag description updated"
+msgstr "Etiket tanımı güncellendi"
+
+#: www/tagedit.php:55
+msgid "Failed to update the tag description"
+msgstr "Etiket tanımının güncellenmesi başarısız oldu"
+
+#: www/tagrename.php:63
+msgid "Tag renamed"
+msgstr "Etiket yeniden adlandırıldı"
+
+#: www/tagrename.php:66
+#, fuzzy
+msgid "Failed to rename the tag"
+msgstr "Etiketin silinemedi"
+
+#: www/users.php:31
+msgid "Users"
+msgstr "Kullanıcılar"
+
+#: www/watch.php:54
+msgid "User removed from your watchlist"
+msgstr ""
+
+#: www/watch.php:56
+msgid "User added to your watchlist"
+msgstr ""
+
+#: www/watchlist.php:104
+msgid "My Watchlist"
+msgstr "İzleme Listem"
+
+#: www/api/httpauth.inc.php:30
+msgid "Use of the API calls requires authentication."
+msgstr ""
+
+#: www/gsearch/index.php:27
+msgid "Come back to "
+msgstr "Geri dön"
+
+#: www/gsearch/index.php:32
+msgid "Admin tips: "
+msgstr "Yönetici ipuçları:"
+
+#: www/gsearch/index.php:33
+msgid "To refresh manually Google Custom Search Engine, goes to: "
+msgstr ""
+
+#: www/gsearch/index.php:37
+msgid "If no result appears, check that all the urls are valid in the admin section."
+msgstr ""
+
