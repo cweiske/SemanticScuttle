@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Semantic Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-11 17:51+0200\n"
-"PO-Revision-Date: 2011-06-27 19:11+0200\n"
+"PO-Revision-Date: 2011-07-26 16:36+0200\n"
 "Last-Translator: Yalçın Can <ylcncn@gmail.com>\n"
 "Language-Team:  <ylcncn@gmail.com>\n"
 "Language: \n"
@@ -71,11 +71,11 @@ msgstr "Tüm beğendiğiniz bağlantıları tek yerde ve her yerden erişilebile
 
 #: data/templates/about.tpl.php:7
 msgid "<strong>Share</strong> your bookmarks with everyone, with friends on your watchlist or just keep them private."
-msgstr ""
+msgstr "Yerimlerinizi arkadaşlarınızla, izleme listenizle isterseniz herkesle <strong>paylaşın</strong>,  isterseniz gizli tutun."
 
 #: data/templates/about.tpl.php:8
 msgid "<strong>Tag</strong> your bookmarks with as many labels as you want, instead of wrestling with folders."
-msgstr ""
+msgstr "Yerimlerinizi dosyalara bölmenize gerek yok, yerimlerinizi istediğiniz kadar <strong>etiket</strong>le etiketleyin."
 
 #: data/templates/about.tpl.php:9
 msgid "Register now"
@@ -102,7 +102,7 @@ msgstr "kendi sunucunuzda özgürce kullanabilirsiniz."
 #: data/templates/about.tpl.php:15
 #, php-format
 msgid "%1$s supports most of the <a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
-msgstr ""
+msgstr "%1$s birçok <a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>'sini desteklemektedir. Delicious için yapılmış tüm güzel uygulamalar düzenlenerek %1$s ile çalışması sağlanabilir. API adresini değiştirecek bir araç bulamadıysanız, programın yaratıcısından yardım isteyin. Kim bilir, hemen ekleyebilirler."
 
 #: data/templates/about.tpl.php:24
 msgid "Tips"
@@ -114,11 +114,11 @@ msgstr "Arama eklentisini tarayıcınıza yükleyin:"
 
 #: data/templates/about.tpl.php:27
 msgid "The secret tag \"system:unfiled\" allows you to find bookmarks without tags."
-msgstr ""
+msgstr "\"system:unfiled\" gizli etiketi etiketsiz olan yerimlerinizi bulmanızda yardımcı olur."
 
 #: data/templates/about.tpl.php:28
 msgid "The secret tag \"system:imported\" allows you to find imported bookmarks."
-msgstr ""
+msgstr "\"system:imported\" gizli etiketi içe aktarılmış olan yerimlerinizi bulmanızda yardımcı olur."
 
 #: data/templates/admin.tpl.php:5
 msgid "Users management"
@@ -159,7 +159,7 @@ msgstr "Tüm bağlantıları kontrol edin (Uzun sürebilir)"
 
 #: data/templates/bookmarkcommondescriptionedit.tpl.php:16
 msgid "Collaborative description: these fields can be viewed and modified by every users"
-msgstr ""
+msgstr "İmece tanım: Bu alanlar tüm kullancılar tarafından görülebilir ve değiştirilebilir."
 
 #: data/templates/bookmarkcommondescriptionedit.tpl.php:18
 #: data/templates/bookmarks.tpl.php:157
@@ -357,9 +357,8 @@ msgid "Come back to the top of this page."
 msgstr "Bu sayfanın en başına gidin."
 
 #: data/templates/bookmarks.tpl.php:433
-#, fuzzy
 msgid "Top of the page"
-msgstr "&Sayfanın üstü"
+msgstr "Sayfanın üstü"
 
 #: data/templates/bookmarks.tpl.php:439
 #, fuzzy
@@ -479,14 +478,12 @@ msgid "Private"
 msgstr "Gizli"
 
 #: data/templates/editbookmark.tpl.php:115
-#, fuzzy
 msgid "Delete Bookmark"
-msgstr "_Yer imi ekle"
+msgstr "Yerimini Sil"
 
 #: data/templates/editbookmark.tpl.php:120
-#, fuzzy
 msgid "edit common description"
-msgstr "Açıklaması buradadır"
+msgstr "genel tanımı düzenle"
 
 #: data/templates/editbookmark.tpl.php:212
 #: data/templates/importDelicious.tpl.php:26
@@ -509,9 +506,8 @@ msgid "Import bookmarks from del.icio.us"
 msgstr "Bağlantılarınızı del.icio.us'dan içeri aktarın"
 
 #: data/templates/editprofile-sslclientcerts.tpl.php:11
-#, fuzzy
 msgid "SSL client certificates"
-msgstr "İstemci Sertifikalarını Kabul Et"
+msgstr "SSL istemci sertifikaları"
 
 #: data/templates/editprofile-sslclientcerts.tpl.php:17
 msgid "Serial"
@@ -537,9 +533,8 @@ msgid "delete"
 msgstr "sil"
 
 #: data/templates/editprofile-sslclientcerts.tpl.php:43
-#, fuzzy
 msgid "No certificates registered"
-msgstr "İstemci Sertifikalarını Kabul Et"
+msgstr "Hİçbir sertifika kaydedilmedi"
 
 #: data/templates/editprofile-sslclientcerts.tpl.php:48
 msgid "Your current certificate is already registered with your account."
@@ -547,17 +542,15 @@ msgstr ""
 
 #: data/templates/editprofile-sslclientcerts.tpl.php:53
 msgid "Register current certificate to automatically login."
-msgstr ""
+msgstr "Sertifikayı kaydederek otomatik bir şekilde giriş yapabilirsiniz."
 
 #: data/templates/editprofile-sslclientcerts.tpl.php:59
-#, fuzzy
 msgid "Your browser does not provide a certificate."
-msgstr "Pencere yöneticiniz bir uygulama listesi sunmuyor."
+msgstr "Tarayıcınız bir sertifika sunmuyor."
 
 #: data/templates/editprofile.tpl.php:8
-#, fuzzy
 msgid "Account Details"
-msgstr "Kullanıcı Ayrıntıları"
+msgstr "Hesap Ayrıntıları"
 
 #: data/templates/editprofile.tpl.php:12
 #: data/templates/login.tpl.php:21
@@ -572,9 +565,8 @@ msgid "New Password"
 msgstr "Yeni Parola"
 
 #: data/templates/editprofile.tpl.php:22
-#, fuzzy
 msgid "Confirm Password"
-msgstr "Parolayı hatırla"
+msgstr "Parolayı tekrarla"
 
 #: data/templates/editprofile.tpl.php:27
 #: data/templates/password.tpl.php:14
@@ -603,9 +595,8 @@ msgid "Actions"
 msgstr "Eylemler"
 
 #: data/templates/editprofile.tpl.php:58
-#, fuzzy
 msgid "Export bookmarks"
-msgstr "Yer İmlerini Düzenle"
+msgstr "Yer İmlerini dışarı aktar"
 
 #: data/templates/editprofile.tpl.php:60
 msgid "HTML file (for browsers)"
@@ -628,20 +619,17 @@ msgid "The requested URL was not found on this server"
 msgstr "İstenilen adres bu sunucuda bulunamadı"
 
 #: data/templates/error.500.tpl.php:5
-#, fuzzy
 msgid "General server error"
-msgstr "Genel SOCKS sunucu hatası"
+msgstr "Genel sunucu hatası"
 
 #: data/templates/error.500.tpl.php:6
-#, fuzzy
 msgid "The requested URL could not be processed"
-msgstr "İstenen RTSP oturumu başlatılamadı."
+msgstr "İstenen adres işlenemedi"
 
 #: data/templates/importDelicious.tpl.php:19
 #: data/templates/importNetscape.tpl.php:20
-#, fuzzy
 msgid "Shared with Watchlist"
-msgstr "%'d öğe, %s boyutunda"
+msgstr "İzleme listesiyle Paylaşılanlar"
 
 #: data/templates/importDelicious.tpl.php:31
 #: data/templates/importNetscape.tpl.php:32
@@ -700,9 +688,8 @@ msgid "Then import the file. The tags and their relations will be added to your 
 msgstr ""
 
 #: data/templates/login.tpl.php:13
-#, fuzzy
 msgid "Please activate cookies"
-msgstr "HTML5 çerezlerini sil"
+msgstr "Lütfen çerezleri etkinleştirin"
 
 #: data/templates/login.tpl.php:26
 #: data/templates/register.tpl.php:21
@@ -729,14 +716,12 @@ msgid "If you have forgotten your password, %s can generate a new one. Enter the
 msgstr ""
 
 #: data/templates/password.tpl.php:19
-#, fuzzy
 msgid "Generate Password"
-msgstr "Parolayı hatırla"
+msgstr "Rastgele bir şifre oluştur"
 
 #: data/templates/profile.tpl.php:28
-#, fuzzy
 msgid "Member Since"
-msgstr "%s beri Sunucuya Bağlı"
+msgstr "Üyelik Tarihi:"
 
 #: data/templates/profile.tpl.php:40
 #: data/templates/sidebar.block.watchlist.php:30
@@ -790,9 +775,8 @@ msgid "in"
 msgstr "şurada"
 
 #: data/templates/search.menu.php:34
-#, fuzzy
 msgid "this user's bookmarks"
-msgstr "Bu kullanıcıyı silin."
+msgstr "bu kullanıcının yerimleri"
 
 #: data/templates/search.menu.php:39
 msgid "my bookmarks"
@@ -817,15 +801,13 @@ msgstr "Folksonomi Etiketleri"
 
 #: data/templates/sidebar.block.linked.php:28
 #: data/templates/sidebar.block.menu.php:46
-#, fuzzy
 msgid "Add new link"
 msgstr "Yeni bağlantı ekle"
 
 #: data/templates/sidebar.block.linked.php:29
 #: data/templates/sidebar.block.menu.php:47
-#, fuzzy
 msgid "Delete link"
-msgstr "Bağ _adı:"
+msgstr "Bağlantıyı sil"
 
 #: data/templates/sidebar.block.menu.php:35
 #, fuzzy, php-format
@@ -833,7 +815,6 @@ msgid "Tags included into the tag '%s'"
 msgstr "Geany etiket dosyaları (*.tags)"
 
 #: data/templates/sidebar.block.menu.php:35
-#, fuzzy
 msgid "Menu Tags"
 msgstr "Vitrin Etiketleri"
 
@@ -1007,9 +988,8 @@ msgid "No"
 msgstr "Hayır"
 
 #: data/templates/tag2tagedit.tpl.php:6
-#, fuzzy
 msgid "Delete the link"
-msgstr "Bağ _adı:"
+msgstr "Bağlantıyı sil"
 
 #: data/templates/tag2tagedit.tpl.php:29
 msgid "Create new link"
@@ -1079,9 +1059,8 @@ msgid "created in"
 msgstr " (paket içinde):"
 
 #: www/admin.php:32
-#, fuzzy
 msgid "Manage users"
-msgstr "Kullanıcı Ortalaması:"
+msgstr "Kullanıcıları yönet"
 
 #: www/admin.php:68
 #, php-format
@@ -1359,9 +1338,8 @@ msgid "Password must be at least 6 characters long."
 msgstr "<strong>Dikkat</strong>: şifreler en az %u Zeichen lang sein."
 
 #: www/profile.php:102
-#, fuzzy
 msgid "E-mail address is not valid."
-msgstr "Dokunulup geçildi: `%s' geçerli bir arşiv değil"
+msgstr "Eposta adresi geçersiz."
 
 #: www/profile.php:106
 #, fuzzy
@@ -1374,7 +1352,7 @@ msgstr "Değişiklikler kaydedildi."
 
 #: www/profile.php:121
 msgid "You do not have a valid SSL client certificate"
-msgstr ""
+msgstr "Geçerli bir SSL istemci sertifikasına sahip değilsiniz"
 
 #: www/profile.php:123
 #, fuzzy
@@ -1383,7 +1361,7 @@ msgstr "Bu sürüm zaten yüklü."
 
 #: www/profile.php:125
 msgid "Failed to register SSL client certificate."
-msgstr ""
+msgstr "SSL istemci sertifikasının kaydedilmesi başarısız oldu."
 
 #: www/profile.php:127
 #, fuzzy
@@ -1396,11 +1374,11 @@ msgstr "Sertifika bulunamadı."
 
 #: www/profile.php:138
 msgid "The certificate does not belong to you."
-msgstr ""
+msgstr "Sertifika size ait değil."
 
 #: www/profile.php:140
 msgid "Failed to delete SSL client certificate."
-msgstr ""
+msgstr "SSL istemci sertifikasının silinmesi başarısız oldu"
 
 #: www/profile.php:142
 #, fuzzy
@@ -1409,37 +1387,35 @@ msgstr "İstemci sertifikası parolası"
 
 #: www/register.php:52
 msgid "You <em>must</em> enter a username, password and e-mail address."
-msgstr ""
+msgstr "Bir kullanıcı adı, şifre ve eposta adresi girmeniz <em>zorunludur</em>."
 
 #: www/register.php:56
 msgid "This username has been reserved, please make another choice."
-msgstr ""
+msgstr "Bu kullanıcı adı rezerve edilmiş, lütfen başka bir seçim yapın."
 
 #: www/register.php:60
 msgid "This username already exists, please make another choice."
-msgstr ""
+msgstr "Bu kullanıcı adı önceden alınmış, lütfen başka bir seçim yapın."
 
 #: www/register.php:64
 msgid "This username is not valid (too short, too long, forbidden characters...), please make another choice."
-msgstr ""
+msgstr "Bu kullanıcı adı geçerli değil (çok kısa, çok uzun, yasaklı karakterler...), lütfen farklı bir ad seçin."
 
 #: www/register.php:68
 msgid "E-mail address is not valid. Please try again."
-msgstr ""
+msgstr "Eposta adresi geçerli değil. Lütfen tekrar deneyin."
 
 #: www/register.php:72
 msgid "Antispam answer is not valid. Please try again."
-msgstr ""
+msgstr "Çöp ileti engelleyici cevabı geçersiz."
 
 #: www/register.php:90
-#, fuzzy
 msgid "You have successfully registered. Enjoy!"
-msgstr "Başarılı bir şekilde giriş yaptınız."
+msgstr "Başarılı bir şekilde kaydoldunuz. İyi eğlenceler!"
 
 #: www/register.php:92
-#, fuzzy
 msgid "Registration failed. Please try again."
-msgstr "Lütfen, yazım hatalarını kontrol edip tekrar deneyin."
+msgstr "Kaydınız başarısız oldu. Lütfen tekrar deneyin."
 
 #: www/rss.php:99
 #, fuzzy, php-format
@@ -1457,7 +1433,7 @@ msgstr "Sonuçlarda Ara"
 
 #: www/search.php:137
 msgid "Unsatisfied? You can also try our "
-msgstr ""
+msgstr "Memnun kalmadınız mı? Şunu da deneyebilirsiniz:"
 
 #: www/tag2tagadd.php:54
 #, fuzzy
@@ -1465,9 +1441,8 @@ msgid "Tag link created"
 msgstr "Yeni proje oluşturuldu"
 
 #: www/tag2tagadd.php:57
-#, fuzzy
 msgid "Failed to create the link"
-msgstr "Kısayol oluşturulamadı"
+msgstr "Bağlantı oluşturulamadı"
 
 #: www/tag2tagadd.php:69
 #, fuzzy
@@ -1495,13 +1470,12 @@ msgid "Edit Link Between Tags"
 msgstr "<a href=\"%s\">Bağlantılar</a> / Bağlantı Düzenle"
 
 #: www/tagcommondescriptionedit.php:62
-#, fuzzy
 msgid "Tag common description updated"
-msgstr "Etiket tanımının güncellenmesi başarısız oldu"
+msgstr "Etiketin genel tanımı güncellendi"
 
 #: www/tagcommondescriptionedit.php:67
 msgid "Failed to update the tag common description"
-msgstr ""
+msgstr "Etiketin genel tanımının güncellenmesi başarısız oldu"
 
 #: www/tagdelete.php:43
 msgid "Tag deleted"
@@ -1524,9 +1498,8 @@ msgid "Tag renamed"
 msgstr "Etiket yeniden adlandırıldı"
 
 #: www/tagrename.php:66
-#, fuzzy
 msgid "Failed to rename the tag"
-msgstr "Etiketin silinemedi"
+msgstr "Etiket yeniden adlandırılamadı"
 
 #: www/users.php:31
 msgid "Users"
@@ -1534,11 +1507,11 @@ msgstr "Kullanıcılar"
 
 #: www/watch.php:54
 msgid "User removed from your watchlist"
-msgstr ""
+msgstr "Kullancıı izleme listenizden silindi"
 
 #: www/watch.php:56
 msgid "User added to your watchlist"
-msgstr ""
+msgstr "Kullancıı izleme listenize eklendi"
 
 #: www/watchlist.php:104
 msgid "My Watchlist"
