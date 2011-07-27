@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Semantic Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-11 17:51+0200\n"
-"PO-Revision-Date: 2011-07-27 14:15+0200\n"
+"PO-Revision-Date: 2011-07-27 14:38+0200\n"
 "Last-Translator: Yalçın Can <ylcncn@gmail.com>\n"
 "Language-Team:  <ylcncn@gmail.com>\n"
 "Language: \n"
@@ -275,7 +275,7 @@ msgstr "Bu etiketteki diğer kullanıcıların yerimleri"
 
 #: data/templates/bookmarks.tpl.php:174
 msgid "Only your bookmarks for this tag"
-msgstr ""
+msgstr "Bu etiketteki yerimleriniz"
 
 #: data/templates/bookmarks.tpl.php:197
 #: data/templates/bookmarks.tpl.php:203
@@ -658,11 +658,11 @@ msgstr ""
 
 #: data/templates/importNetscape.tpl.php:37
 msgid "Internet Explorer: <kbd>File &gt; Import and Export... &gt; Export Favorites"
-msgstr ""
+msgstr "Internet Explorer: <kbd> DOsya &gt; İçe Aktar ve Dışa Aktar... &gt; Favorileri Dışarı Aktar"
 
 #: data/templates/importNetscape.tpl.php:38
 msgid "Mozilla Firefox: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; File &gt; Export..."
-msgstr ""
+msgstr "Mozilla Firefox: <kbd>Yerimleri &gt; Yerimlerini Yönet... &gt; Dosya &gt; Dışarı Aktar..."
 
 #: data/templates/importNetscape.tpl.php:39
 msgid "Netscape: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; Tools &gt; Export..."
@@ -819,11 +819,11 @@ msgstr "tüm etiketleriniz"
 
 #: data/templates/sidebar.block.menu.php:70
 msgid "See all tags from this user"
-msgstr ""
+msgstr "Bu kullanıcının tüm etiketlerine bak"
 
 #: data/templates/sidebar.block.menu.php:70
 msgid "all tags from this user"
-msgstr ""
+msgstr "bu kullanıcının tüm etiketleri"
 
 #: data/templates/sidebar.block.menu.php:74
 msgid "See popular tags"
@@ -873,13 +873,12 @@ msgstr "Etiket Tanımını Düzenle"
 
 #: data/templates/sidebar.block.tagactions.php:26
 #: www/tagcommondescriptionedit.php:76
-#, fuzzy
 msgid "Edit Tag Common Description"
-msgstr "Etiket tanımının güncellenmesi başarısız oldu"
+msgstr "Genel Etiket Tanımını Düzenleyin"
 
 #: data/templates/sidebar.block.tagactions.php:28
 msgid "Create a link to another tag"
-msgstr ""
+msgstr "Başka bir etikete bağlantı yarat"
 
 #: data/templates/sidebar.block.users.php:14
 msgid "New Users"
@@ -912,7 +911,7 @@ msgstr "Bir kişi ekle..."
 
 #: data/templates/sidebar.block.watchlist.php:36
 msgid "Type a username to add it to your contacts."
-msgstr ""
+msgstr "Kişilerinize eklemek için bir kullanıcı adı yazın."
 
 #: data/templates/sidebar.block.watchlist.php:44
 msgid "Remove this contact"
@@ -1055,14 +1054,12 @@ msgid "%s and all his bookmarks and tags were deleted."
 msgstr ""
 
 #: www/admin.php:75
-#, fuzzy
 msgid "Problem with "
-msgstr "Birlikte Aç"
+msgstr "Şurada problem:"
 
 #: www/ajaxDelete.php:37
-#, fuzzy
 msgid "You are not allowed to delete this bookmark"
-msgstr "Bu sayfayı silmek için yetkiniz yok."
+msgstr "Bu yerimini silmek için yetkiniz yok."
 
 #: www/ajaxDelete.php:41
 #: www/edit.php:103
@@ -1118,7 +1115,7 @@ msgstr ""
 
 #: www/bookmarks.php:139
 msgid "This bookmark URL may not be added"
-msgstr ""
+msgstr "Bu yerimi adresi eklenmeyebilir"
 
 #: www/bookmarks.php:158
 #: www/edit.php:83
@@ -1311,27 +1308,24 @@ msgid "My Profile"
 msgstr "Profilim"
 
 #: www/profile.php:89
-#, fuzzy
 msgid "Invalid Token"
-msgstr "İşar_et listesi:"
+msgstr "Geçersiz belirteç"
 
 #: www/profile.php:94
 msgid "Password and confirmation do not match."
 msgstr ""
 
 #: www/profile.php:98
-#, fuzzy
 msgid "Password must be at least 6 characters long."
-msgstr "<strong>Dikkat</strong>: şifreler en az %u Zeichen lang sein."
+msgstr "Şifre en az 6 karakter uzunluğunda olmalıdır."
 
 #: www/profile.php:102
 msgid "E-mail address is not valid."
 msgstr "Eposta adresi geçersiz."
 
 #: www/profile.php:106
-#, fuzzy
 msgid "An error occurred while saving your changes."
-msgstr "Ayarlarınız SimplePrefs ile kaydedilirken bir hata oluştu (%i)."
+msgstr "Ayarlarınız kaydedilirken bir hata oluştu."
 
 #: www/profile.php:108
 msgid "Changes saved."
@@ -1342,18 +1336,16 @@ msgid "You do not have a valid SSL client certificate"
 msgstr "Geçerli bir SSL istemci sertifikasına sahip değilsiniz"
 
 #: www/profile.php:123
-#, fuzzy
 msgid "This certificate is already registered"
-msgstr "Bu sürüm zaten yüklü."
+msgstr "Bu sertifika zaten yüklü"
 
 #: www/profile.php:125
 msgid "Failed to register SSL client certificate."
 msgstr "SSL istemci sertifikasının kaydedilmesi başarısız oldu."
 
 #: www/profile.php:127
-#, fuzzy
 msgid "SSL client certificate registered."
-msgstr "İstemci sertifikası parolası"
+msgstr "SSL istemci sertifikası kaydedildi."
 
 #: www/profile.php:136
 msgid "Certificate not found."
@@ -1368,9 +1360,8 @@ msgid "Failed to delete SSL client certificate."
 msgstr "SSL istemci sertifikasının silinmesi başarısız oldu"
 
 #: www/profile.php:142
-#, fuzzy
 msgid "SSL client certificate deleted."
-msgstr "İstemci sertifikası parolası"
+msgstr "SSL istemci sertifikası silindi."
 
 #: www/register.php:52
 msgid "You <em>must</em> enter a username, password and e-mail address."
@@ -1405,9 +1396,9 @@ msgid "Registration failed. Please try again."
 msgstr "Kaydınız başarısız oldu. Lütfen tekrar deneyin."
 
 #: www/rss.php:99
-#, fuzzy, php-format
+#, php-format
 msgid "Recent bookmarks posted to %s"
-msgstr "İki yer imi seçilmiş olmak zorunda."
+msgstr "%s'e son kaydedilen yerimleri"
 
 #: www/search.php:83
 #: www/search.php:147
@@ -1423,18 +1414,16 @@ msgid "Unsatisfied? You can also try our "
 msgstr "Memnun kalmadınız mı? Şunu da deneyebilirsiniz:"
 
 #: www/tag2tagadd.php:54
-#, fuzzy
 msgid "Tag link created"
-msgstr "Yeni proje oluşturuldu"
+msgstr "Etiket bağlantısı oluşturuldu"
 
 #: www/tag2tagadd.php:57
 msgid "Failed to create the link"
 msgstr "Bağlantı oluşturulamadı"
 
 #: www/tag2tagadd.php:69
-#, fuzzy
 msgid "Add Tag Link"
-msgstr "Bağlantı kategorisi ekle"
+msgstr "Etiket Bağlantısı Oluştur"
 
 #: www/tag2tagdelete.php:66
 msgid "Tag link deleted"
