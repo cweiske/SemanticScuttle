@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Semantic Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-11 17:51+0200\n"
-"PO-Revision-Date: 2011-07-26 16:36+0200\n"
+"PO-Revision-Date: 2011-07-27 14:15+0200\n"
 "Last-Translator: Yalçın Can <ylcncn@gmail.com>\n"
 "Language-Team:  <ylcncn@gmail.com>\n"
 "Language: \n"
@@ -82,18 +82,17 @@ msgid "Register now"
 msgstr "Şimdi kaydoldun"
 
 #: data/templates/about.tpl.php:9
-#, fuzzy, php-format
+#, php-format
 msgid " to start using %s!"
-msgstr "%s başlatılamadı"
+msgstr "%s'i kullanmaya başlamak için!"
 
 #: data/templates/about.tpl.php:12
 msgid "Geek Stuff"
 msgstr "Geek Şeyler"
 
 #: data/templates/about.tpl.php:14
-#, fuzzy
 msgid "is licensed under the "
-msgstr "Metin simgenin altında"
+msgstr "koruma latın olduğu lisans"
 
 #: data/templates/about.tpl.php:14
 msgid "you can freely host it on your own web server."
@@ -125,9 +124,8 @@ msgid "Users management"
 msgstr "Kullanıcı Yönetimi"
 
 #: data/templates/admin.tpl.php:14
-#, fuzzy
 msgid "Public/Shared/Private"
-msgstr "&Kişisel verileri sil..."
+msgstr "Genel/Paylaşılmış/Gizli"
 
 #: data/templates/admin.tpl.php:14
 #: data/templates/bookmarks.tpl.php:113
@@ -204,7 +202,7 @@ msgstr "Bookmarklet"
 #: data/templates/bookmarklet.inc.php:11
 #, php-format
 msgid "Click one of the following bookmarklets to add a button you can click whenever you want to add the page you are on to %s"
-msgstr ""
+msgstr "Aşağıdaki bookmarklet'lerden birine tıklayarak tarayıcınızda %s'e link eklemenizi kolaylaştıracak bir buton oluşturun."
 
 #: data/templates/bookmarklet.inc.php:20
 #, php-format
@@ -213,15 +211,15 @@ msgstr ""
 
 #: data/templates/bookmarklet.inc.php:67
 #: data/templates/bookmarklet.inc.php:100
-#, fuzzy, php-format
+#, php-format
 msgid "Post to %s"
-msgstr "Bir yazıya ekle"
+msgstr "%s'e gönder"
 
 #: data/templates/bookmarklet.inc.php:93
 #: data/templates/bookmarklet.inc.php:110
-#, fuzzy, php-format
+#, php-format
 msgid "Post to %s (Pop-up)"
-msgstr "`%s' güncel"
+msgstr "%s'e gönder (Açılır pencere)"
 
 #: data/templates/bookmarks-vote-horizontal.inc.tpl.php:24
 #, php-format
@@ -240,22 +238,22 @@ msgstr "Kötüle"
 
 #: data/templates/bookmarks.tpl.php:42
 msgid "Bookmarks on this page are managed by an admin user."
-msgstr ""
+msgstr "Bu sayfadaki yerimleri bir yönetici tarafından yönetilebilir. "
 
 #: data/templates/bookmarks.tpl.php:71
 #: data/templates/bookmarks.tpl.php:72
 msgid "Edit the common description of this tag"
-msgstr ""
+msgstr "Bu etiketin genel tanımını düzenleyin"
 
 #: data/templates/bookmarks.tpl.php:75
 #: data/templates/bookmarks.tpl.php:76
 msgid "Edit the common description of this bookmark"
-msgstr ""
+msgstr "Bu yeriminin genel tanımını düzenleyin"
 
 #: data/templates/bookmarks.tpl.php:96
 #: data/templates/bookmarks.tpl.php:97
 msgid "Edit your personal description of this tag"
-msgstr ""
+msgstr "Bu etiketin kişisel tanımını değiştirin"
 
 #: data/templates/bookmarks.tpl.php:113
 #: data/templates/tags.tpl.php:10
@@ -273,7 +271,7 @@ msgstr "Oy"
 
 #: data/templates/bookmarks.tpl.php:169
 msgid "Bookmarks from other users for this tag"
-msgstr ""
+msgstr "Bu etiketteki diğer kullanıcıların yerimleri"
 
 #: data/templates/bookmarks.tpl.php:174
 msgid "Only your bookmarks for this tag"
@@ -300,7 +298,7 @@ msgid "Last"
 msgstr "Son"
 
 #: data/templates/bookmarks.tpl.php:228
-#, fuzzy, php-format
+#, php-format
 msgid "Page %d of %d"
 msgstr "Sayfa %d / %d"
 
@@ -317,19 +315,17 @@ msgid "Last update"
 msgstr "Son güncelleme"
 
 #: data/templates/bookmarks.tpl.php:308
-#, fuzzy
 msgid "by"
-msgstr "Yazdıran"
+msgstr "tarafından"
 
 #: data/templates/bookmarks.tpl.php:312
-#, fuzzy
 msgid "you"
-msgstr "Biliyor muydunuz?"
+msgstr "siz"
 
 #: data/templates/bookmarks.tpl.php:328
-#, fuzzy, php-format
+#, php-format
 msgid " and %s1 other%s"
-msgstr "%'d başka öğe seçildi"
+msgstr "ve %s1 diğer%s"
 
 #: data/templates/bookmarks.tpl.php:331
 #, fuzzy, php-format
@@ -361,9 +357,8 @@ msgid "Top of the page"
 msgstr "Sayfanın üstü"
 
 #: data/templates/bookmarks.tpl.php:439
-#, fuzzy
 msgid "No bookmarks available"
-msgstr "-kaplama yok-"
+msgstr "Yerimi mevcut değil"
 
 #: data/templates/bottom.inc.php:5
 #: data/templates/toolbar.inc.php:15
@@ -423,7 +418,7 @@ msgstr ""
 
 #: data/templates/editbookmark.tpl.php:64
 msgid "Suggested anchors: "
-msgstr ""
+msgstr "Önerilen çapalar(anchor):"
 
 #: data/templates/editbookmark.tpl.php:76
 msgid "Private Note"
@@ -431,7 +426,7 @@ msgstr "Gizli Not"
 
 #: data/templates/editbookmark.tpl.php:78
 msgid "Just visible by you and your contacts."
-msgstr ""
+msgstr "Sadece siz ve arkadaşlarınız tarafından görülebilir."
 
 #: data/templates/editbookmark.tpl.php:82
 #: data/templates/toolbar.inc.php:10
@@ -467,9 +462,8 @@ msgid "Public"
 msgstr "Açık"
 
 #: data/templates/editbookmark.tpl.php:101
-#, fuzzy
 msgid "Shared with Watch List"
-msgstr "Paylaşılmış dosya listesini yeniden yükler."
+msgstr "İzleme listesiyle paylaşılanlar"
 
 #: data/templates/editbookmark.tpl.php:102
 #: data/templates/importDelicious.tpl.php:20
@@ -493,9 +487,8 @@ msgid "Import"
 msgstr "İçeri Aktar"
 
 #: data/templates/editbookmark.tpl.php:214
-#, fuzzy
 msgid "Import bookmarks from bookmark file"
-msgstr "Bağlantılarınızı del.icio.us'dan içeri aktarın"
+msgstr "Bağlantılarınızı bir yerimi dosyasından içeri aktarın"
 
 #: data/templates/editbookmark.tpl.php:214
 msgid "Internet Explorer, Mozilla Firefox and Netscape"
@@ -538,7 +531,7 @@ msgstr "Hİçbir sertifika kaydedilmedi"
 
 #: data/templates/editprofile-sslclientcerts.tpl.php:48
 msgid "Your current certificate is already registered with your account."
-msgstr ""
+msgstr "Geçerli sertifika zaten hesabınıza kaydolmuş durumda."
 
 #: data/templates/editprofile-sslclientcerts.tpl.php:53
 msgid "Register current certificate to automatically login."
@@ -643,11 +636,11 @@ msgstr "del.icio.us'a giriş yapıp <a href=\"http://del.icio.us/api/posts/all\"
 
 #: data/templates/importDelicious.tpl.php:34
 msgid "Save the resulting <abbr title=\"Extensible Markup Language\">XML</abbr> file to your computer"
-msgstr ""
+msgstr "Sonuç <abbr title=\"Extensible Markup Language\">XML</abbr> dosyasını bilgisayarınıza kaydedin"
 
 #: data/templates/importDelicious.tpl.php:35
 msgid "Click <kbd>Browse...</kbd> to find this file on your computer. The maximum size the file can be is 1MB"
-msgstr ""
+msgstr "<kbd>Gözat...</kbd>'a basarak bilgisayarınızdan bir dosya seçin. Dosya boyutu en fazla 1 MB olabilir."
 
 #: data/templates/importDelicious.tpl.php:36
 #: data/templates/importNetscape.tpl.php:43
@@ -730,9 +723,8 @@ msgstr "İzleniyor"
 
 #: data/templates/profile.tpl.php:55
 #: data/templates/sidebar.block.watchlist.php:52
-#, fuzzy
 msgid "Watched By"
-msgstr "Amblemine Göre"
+msgstr "İzleyenler"
 
 #: data/templates/profile.tpl.php:68
 #: data/templates/toolbar.inc.php:9
@@ -795,9 +787,8 @@ msgid "Search"
 msgstr "Ara"
 
 #: data/templates/sidebar.block.linked.php:23
-#, fuzzy
 msgid "Linked Tags"
-msgstr "Folksonomi Etiketleri"
+msgstr "Bağlantılı Etiketler"
 
 #: data/templates/sidebar.block.linked.php:28
 #: data/templates/sidebar.block.menu.php:46
@@ -819,9 +810,8 @@ msgid "Menu Tags"
 msgstr "Vitrin Etiketleri"
 
 #: data/templates/sidebar.block.menu.php:68
-#, fuzzy
 msgid "See all your tags"
-msgstr "Tüm açık etiketleri kapat"
+msgstr "Tüm etiketlerinizi görün"
 
 #: data/templates/sidebar.block.menu.php:68
 msgid "all your tags"
@@ -913,9 +903,8 @@ msgid "Close contacts are mutual contacts"
 msgstr ""
 
 #: data/templates/sidebar.block.watchlist.php:19
-#, fuzzy
 msgid "Close contacts"
-msgstr "&Kişiler (Hepsi)"
+msgstr "Yakın kişiler"
 
 #: data/templates/sidebar.block.watchlist.php:36
 msgid "Add a contact..."
@@ -930,14 +919,12 @@ msgid "Remove this contact"
 msgstr "Bu kişiyi sil"
 
 #: data/templates/sidebar.block.watchstatus.php:11
-#, fuzzy
 msgid "Remove from Watchlist"
-msgstr "_Projeden çıkar"
+msgstr "İzleme listesinden sil"
 
 #: data/templates/sidebar.block.watchstatus.php:13
-#, fuzzy
 msgid "Add to Watchlist"
-msgstr "Çözüme ekle"
+msgstr "İzleme listesine ekle"
 
 #: data/templates/sidebar.linkedtags.inc.php:18
 msgid "Edit link"
@@ -1450,24 +1437,20 @@ msgid "Add Tag Link"
 msgstr "Bağlantı kategorisi ekle"
 
 #: www/tag2tagdelete.php:66
-#, fuzzy
 msgid "Tag link deleted"
-msgstr "Silin&miş çevirileri temizle"
+msgstr "Etiket bağlantısı silindi"
 
 #: www/tag2tagdelete.php:69
-#, fuzzy
 msgid "Failed to delete the link"
-msgstr "UYARI: %s dosyası silinemiyor"
+msgstr "Bağlantının silinmesi başarısız"
 
 #: www/tag2tagdelete.php:81
-#, fuzzy
 msgid "Delete Link Between Tags"
-msgstr "Etiketleri galeriden sil"
+msgstr "Etiketleri Arasındaki Bağlantıyı Sil"
 
 #: www/tag2tagedit.php:55
-#, fuzzy
 msgid "Edit Link Between Tags"
-msgstr "<a href=\"%s\">Bağlantılar</a> / Bağlantı Düzenle"
+msgstr "Etiketler arasındaki bağlantıyı düzenle"
 
 #: www/tagcommondescriptionedit.php:62
 msgid "Tag common description updated"
