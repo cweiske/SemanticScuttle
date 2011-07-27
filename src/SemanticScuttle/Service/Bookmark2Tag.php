@@ -99,7 +99,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         $tags_count = is_array($tags)?count($tags):0;
 
         for ($i = 0; $i < $tags_count; $i++) {
-            $tags[$i] = trim(strtolower($tags[$i]));
+            $tags[$i] = trim(utf8_strtolower($tags[$i]));
             if ($fromApi) {
                 include_once 'SemanticScuttle/functions.php';
                 $tags[$i] = convertTag($tags[$i], 'in');
@@ -584,7 +584,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
 
         if (is_int($days)) {
             $query .= ' AND B.bDatetime > "'
-                . date('Y-m-d H:i:s', time() - (86400 * $days))
+                . gmdate('Y-m-d H:i:s', time() - (86400 * $days))
                 . '"';
         }
 

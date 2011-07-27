@@ -282,10 +282,10 @@ class Bookmark2TagTest extends TestBase
     public function testGetPopularTagsDays()
     {
         $user = $this->addUser();
-        $this->addTagBookmark($user, array('one', 'two'), 'today');
-        $this->addTagBookmark($user, array('one', 'thr'), 'today');
-        $this->addTagBookmark($user, array('one', 'two'), '-1 day 1 hour');
-        $this->addTagBookmark($user, array('one', 'thr'), '-3 days 1 hour');
+        $this->addTagBookmark($user, array('one', 'two'), 'now');
+        $this->addTagBookmark($user, array('one', 'thr'), 'now');
+        $this->addTagBookmark($user, array('one', 'two'), '-1 day -1 hour');
+        $this->addTagBookmark($user, array('one', 'thr'), '-3 days -1 hour');
 
         $arTags = $this->b2ts->getPopularTags(null, 10, null, 1);
         $this->assertInternalType('array', $arTags);

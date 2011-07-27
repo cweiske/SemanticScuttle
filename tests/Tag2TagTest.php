@@ -332,6 +332,7 @@ class Tag2TagTest extends TestBase
         $this->assertSame('B3', $results['bookmarks'][0]['bTitle']);
 
         $results = $bs->getBookmarks(0, NULL, 1, 'aa+ee');
+
         $this->assertSame(1, intval($results['total']));
         $this->assertSame('B2', $results['bookmarks'][0]['bTitle']);
 

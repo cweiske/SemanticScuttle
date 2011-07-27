@@ -46,6 +46,7 @@ class AllTests extends PHPUnit_Framework_TestSuite
         $suite->addTestFile($tdir . '/VoteTest.php');
         $suite->addTestFile($tdir . '/UserTest.php');
         $suite->addTestFile($tdir . '/Api/ExportCsvTest.php');
+        $suite->addTestFile($tdir . '/Api/OpenSearchTest.php');
         $suite->addTestFile($tdir . '/Api/PostsAddTest.php');
         $suite->addTestFile($tdir . '/Api/PostsDeleteTest.php');
         $suite->addTestFile($tdir . '/Api/PostsUpdateTest.php');

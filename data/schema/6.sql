@@ -13,3 +13,7 @@ CREATE TABLE `sc_users_sslclientcerts` (
   PRIMARY KEY ( `id` ) ,
   UNIQUE (`id`)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+ALTER TABLE `sc_users` ADD `privateKey` VARCHAR(33) NULL;
+CREATE UNIQUE INDEX `privateKey` ON `sc_users` (`privateKey`);
+

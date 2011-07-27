@@ -427,6 +427,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             $existence[$hashes[$row['bHash']]] = $row['count'] > 0;
         }
 
+        $this->db->sql_freeresult($dbresult);
         return $existence;
     }
 

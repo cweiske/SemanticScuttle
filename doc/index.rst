@@ -20,10 +20,12 @@ Features
 - `Custom user authentication`__
 - `SSL Client certificates`__
 - Themes__
+- `Configuration files`__
 
 __ authentication.html
 __ ssl-client-certificates.html
 __ themes.html
+__ configuration.html
 
 
 
@@ -35,6 +37,7 @@ Developer documentation
 - `How to release a new version`__
 - `Running unit testes`__
 - `How to translate SemanticScuttle`__
+- `ChangeLog`__
 
 __ developers/rules.html
 __ developers/api.html
@@ -42,4 +45,4 @@ __ developers/debugging.html
 __ developers/release-new-version.html
 __ developers/running-unit-tests.html
 __ developers/translation.html
-
+__ ChangeLog.html

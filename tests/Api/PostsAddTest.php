@@ -108,7 +108,7 @@ TXT;
 
         $this->assertEquals($bmUrl, $bm['bAddress']);
         $this->assertEquals($bmTitle, $bm['bTitle']);
-        $this->assertEquals($bmDescription, $bm['bDescription']);
+        $this->assertEquals($bmDescription, stripslashes($bm['bDescription']));
         $this->assertEquals($bmTags, $bm['tags']);
         $this->assertEquals(
             gmdate('Y-m-d H:i:s', strtotime($bmDatetime)),
@@ -170,7 +170,7 @@ TXT;
 
         $this->assertEquals($bmUrl, $bm['bAddress']);
         $this->assertEquals($bmTitle, $bm['bTitle']);
-        $this->assertEquals($bmDescription, $bm['bDescription']);
+        $this->assertEquals($bmDescription, stripslashes($bm['bDescription']));
         $this->assertEquals($bmTags, $bm['tags']);
         $this->assertEquals(
             gmdate('Y-m-d H:i:s', strtotime($bmDatetime)),

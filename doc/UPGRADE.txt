@@ -2,12 +2,16 @@
 Upgrading SemanticScuttle from a previous version
 =================================================
 
+.. contents::
 
 From version 0.97 to 0.98
 =========================
 Database updates
 ----------------
 Apply ``data/schema/6.sql``
+
+    ALTER TABLE `sc_users` ADD `privateKey` VARCHAR(33) NULL;
+    CREATE UNIQUE INDEX `privateKey` ON `sc_users` (`privateKey`);
 
 
 From version 0.96 to 0.97

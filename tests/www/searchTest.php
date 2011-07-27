@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__FILE__) . '/../prepare.php';
+require_once 'HTTP/Request2.php';
 
 class www_SearchTest extends TestBaseApi
 {

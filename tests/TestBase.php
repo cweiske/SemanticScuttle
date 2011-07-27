@@ -76,16 +76,18 @@ class TestBase extends PHPUnit_Framework_TestCase
     /**
      * Creates a new user in the database.
      *
-     * @param string $username Username
-     * @param string $password Password
+     * @param string $username   Username, may be null
+     * @param string $password   Password, may be null
+     * @param mixed  $privateKey String private key or boolean true to generate one
      *
      * @return integer ID of user
      *
      * @uses addUserData()
      */
-    protected function addUser($username = null, $password = null)
-    {
-        return reset($this->addUserData($username, $password));
+    protected function addUser(
+        $username = null, $password = null, $privateKey = null
+    ) {
+        return reset($this->addUserData($username, $password, $privateKey));
     }
 
 
@@ -93,13 +95,15 @@ class TestBase extends PHPUnit_Framework_TestCase
     /**
      * Creates a new user in the database and returns id, username and password.
      *
-     * @param string $username Username
-     * @param string $password Password
+     * @param string $username   Username, may be null
+     * @param string $password   Password, may be null
+     * @param mixed  $privateKey String private key or boolean true to generate one
      *
-     * @return array ID of user, Name of user, password of user
+     * @return array ID of user, Name of user, password of user, privateKey
      */
-    protected function addUserData($username = null, $password = null)
-    {
+    protected function addUserData(
+        $username = null, $password = null, $privateKey = null
+    ) {
         $us   = SemanticScuttle_Service_Factory::get('User');
         $rand = rand();
 
@@ -109,13 +113,17 @@ class TestBase extends PHPUnit_Framework_TestCase
         if ($password === null) {
             $password = $rand;
         }
+        if ($privateKey === true) {
+            $privateKey = $this->us->getNewPrivateKey();
+        }
 
         $uid  = $us->addUser(
             $username,
             $password,
-            'unittest-' . $rand . '@example.org'
+            'unittest-' . $rand . '@example.org',
+            $privateKey
         );
-        return array($uid, $username, $password);
+        return array($uid, $username, $password, $privateKey);
     }
 
 

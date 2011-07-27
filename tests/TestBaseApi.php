@@ -24,7 +24,20 @@ require_once 'HTTP/Request2.php';
  */
 class TestBaseApi extends TestBase
 {
+    /**
+     * Created from the configured host and the $urlPart.
+     * Should be used as base for all generated URLs
+     *
+     * @var string
+     */
     protected $url;
+
+    /**
+     * Part of the URL behind the configured host.
+     * Needs to be overwritten in each derived test case class.
+     *
+     * @var string
+     */
     protected $urlPart = null;
 
     /**
@@ -164,23 +177,25 @@ class TestBaseApi extends TestBase
      *
      * Useful for testing HTML pages or ajax URLs.
      *
-     * @param string $urlSuffix Suffix for the URL
-     * @param mixed  $auth      If user authentication is needed (true/false)
-     *                          or array with username and password
+     * @param string  $urlSuffix  Suffix for the URL
+     * @param mixed   $auth       If user authentication is needed (true/false)
+     *                            or array with username and password
+     * @param boolean $privateKey True if to add user with private key
      *
      * @return array(HTTP_Request2, integer) HTTP request object and user id
      *
      * @uses getRequest()
      */
-    protected function getLoggedInRequest($urlSuffix = null, $auth = true)
-    {
+    protected function getLoggedInRequest(
+        $urlSuffix = null, $auth = true, $privateKey = null
+    ) {
         if (is_array($auth)) {
             list($username, $password) = $auth;
         } else {
             $username = 'testuser';
             $password = 'testpassword';
         }
-        $uid = $this->addUser($username, $password);
+        $uid = $this->addUser($username, $password, $privateKey);
 
         $req = new HTTP_Request2(
             $GLOBALS['unittestUrl'] . '/login.php?unittestMode=1',
@@ -234,7 +249,7 @@ class TestBaseApi extends TestBase
      */
     protected function setUnittestConfig($arConfig)
     {
-        $str = '<' . "?php\r\n";
+        $str = '<' . "?php\n";
         foreach ($arConfig as $name => $value) {
             $str .= '$' . $name . ' = '
                 . var_export($value, true) . ";\n";

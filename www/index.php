@@ -42,8 +42,29 @@ if (GET_ACTION == "logout") {
 // Header variables
 $tplVars['loadjs'] = true;
 $tplVars['rsschannels'] = array(
-array(sprintf(T_('%s: Recent bookmarks'), $sitename), createURL('rss').'?sort='.getSortOrder())
+    array(
+        sprintf(T_('%s: Recent bookmarks'), $sitename),
+        createURL('rss') . '?sort=' . getSortOrder()
+    )
 );
+
+if ($userservice->isLoggedOn()) {
+    if ($userservice->isPrivateKeyValid($currentUser->getPrivateKey())) {
+        $currentUsername = $currentUser->getUsername();
+        array_push(
+            $tplVars['rsschannels'],
+            array(
+                sprintf(
+                    T_('%s: Recent bookmarks (+private %s)'),
+                    $sitename, $currentUsername
+                ),
+                createURL('rss')
+                . '?sort=' . getSortOrder()
+                . '&privateKey=' . $currentUser->getPrivateKey()
+            )
+        );
+    }
+}
 
 if ($usecache) {
 	// Generate hash for caching on

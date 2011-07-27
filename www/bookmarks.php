@@ -229,12 +229,14 @@ if ($templatename == 'editbookmark.tpl') {
 	$tplVars['sidebar_blocks'] = array('watchstatus');
 
 	if (!$cat) { //user page without tags
+        $rssTitle = "My Bookmarks";
 		$cat = NULL;
 		$tplVars['currenttag'] = NULL;
 		//$tplVars['sidebar_blocks'][] = 'menu2';
 		$tplVars['sidebar_blocks'][] = 'linked';
 		$tplVars['sidebar_blocks'][] = 'popular';
 	} else { //pages with tags
+        $rssTitle = "Tags" . $catTitle;
 		$rssCat = '/'. filter($cat, 'url');
 		$tplVars['currenttag'] = $cat;
 		$tplVars['sidebar_blocks'][] = 'tagactions';
@@ -264,8 +266,31 @@ if ($templatename == 'editbookmark.tpl') {
 
 	// Set template vars
 	$tplVars['rsschannels'] = array(
-	array(filter($sitename .': '. $pagetitle), createURL('rss', filter($user, 'url') . $rssCat.'?sort='.getSortOrder()))
+        array(
+            sprintf(T_('%s: %s'), $sitename, $rssTitle),
+            createURL('rss', filter($user, 'url'))
+            . $rssCat . '?sort='.getSortOrder()
+        )
 	);
+
+    if ($userservice->isLoggedOn()) {
+        $currentUsername = $currentUser->getUsername();
+        if ($userservice->isPrivateKeyValid($currentUser->getPrivateKey())) {
+            array_push(
+                $tplVars['rsschannels'],
+                array(
+                    sprintf(
+                        T_('%s: %s (+private %s)'),
+                        $sitename, $rssTitle, $currentUsername
+                    ),
+                    createURL('rss', filter($currentUsername, 'url'))
+                    . $rssCat
+                    . '?sort=' . getSortOrder()
+                    . '&privateKey=' . $currentUser->getPrivateKey()
+                )
+            );
+        }
+    }
 
 	$tplVars['page'] = $page;
 	$tplVars['start'] = $start;

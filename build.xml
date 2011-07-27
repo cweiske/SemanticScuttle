@@ -9,18 +9,31 @@
   <property file="build.properties" />
   <property file="html.properties" />
 
-  <property name="version-m"  value="0.97" />
-  <property name="version"    value="0.97.0" />
+  <property name="version-m"  value="0.98" />
+  <property name="version"    value="0.98.0" />
   <property name="stability"  value="beta" />
-  <property name="releasenotes" value="- Many SQL optimizations
-- SemanticScuttle shows bookmarks 4 times faster now
-- New config option to skip 'SET NAMES UTF8' call: $dbneedssetnames
-- Do not highlight admin bookmarks when $enableAdminColors is disabled
-- Add russian translation
-- Make HTML export follow the specifications a bit better
-- Fix bug #2953732: faulty error message for duplicate bookmarks
-- Fix bug #2960663: do not send content-type headers twice for ajax/api scripts
-- Fix bug #2976593: fr_FR locale is vietnamese
+  <property name="releasenotes" value="- Switch to jQuery and drop dojo
+- Implement request #2928950: Private keys for RSS feeds (Mark Pemberton)
+- Implement request #3164348: Configurable default privacy (Brett Dee)
+- Implement request #1989987: Theming support
+- Implement request #3054906: Show user's full name instead of nickname
+- Implement patch #3059829: update ``FR_CA`` translation
+- Fix bug #3187177: Wrong URL / Export XML Bookmarks
+- Fix bug #3097187: Using opensearch with two tags does not work in Firefox
+- Fix bug #3251877: French translation JavaScript Bug when editing bookmarks
+- Fix bug #3168521: Title of tag-filtered RSS Feed is broken
+- Fix bug #2853627: Javascript warning
+- Fix bug in ``getTagsForBookmarks()`` that fetched all tags
+- Fix privacy issue when fetching tags of several users
+- Fix Google custom search XML
+- Show error message on mysqli connection errors
+- Update php-gettext library to 1.0.10
+- ``api/posts/add`` respects the 'replace' parameter now
+- Only URLs with an allowed protocol may be added to the database
+- Support HTTPS connections when ``$root`` is not configured
+- SQL schema version table to ease future database upgrades
+- Documentation is written with rST (reStructuredText) now
+- Support per-host configuration files
 " />
   <property name="zipfile"     value="${phing.project.name}-${version}.zip" />
   <property name="pkgfile"     value="${phing.project.name}-${version}.tgz" />
@@ -30,7 +43,8 @@
   <property name="sffilepath"  value="s/se/semanticscuttle/" />
   <property name="svnpath"     value="https://semanticscuttle.svn.sourceforge.net/svnroot/semanticscuttle/" />
 
-  <taskdef classname="phing.tasks.ext.d51PearPkg2Task" name="d51pearpkg2" />
+  <taskdef name="rST" classname="phing.tasks.ext.rSTTask" />
+  <taskdef name="d51pearpkg2" classname="phing.tasks.ext.d51PearPkg2Task" />
 
   <target name="zip" depends="check"
    description="Create zip file for release"
@@ -52,11 +66,12 @@
         <exclude name="**/.gitignore/"/>
         <exclude name="**/.svn/"/>
         <exclude name="data/config.php"/>
+        <exclude name="data/config.testing.php"/>
+        <exclude name="data/config.testing-tmp.php"/>
         <exclude name="data/locales/messages.po"/>
         <exclude name="data/locales/*/LC_MESSAGES/messages.po"/>
-        <exclude name="doc/developers/"/>
         <exclude name="src/php-gettext/examples/" />
-        <exclude name="src/php-gettext/bin/"/>
+        <exclude name="src/php-gettext/tests/"/>
       </fileset>
     </zip>
   </target>
@@ -66,7 +81,6 @@
   <target name="package" depends="check"
    description="Creates the pear package"
   >
-   <!-- fixme: create package.xml with d51pearpkg2 -->
    <d51pearpkg2 dir="." baseinstalldir="/">
      <name>SemanticScuttle</name>
      <summary>A social bookmarking tool</summary>
@@ -108,30 +122,34 @@
      <ignore>**/.svn</ignore>
      <ignore>build*</ignore>
      <ignore>data/config.php</ignore>
+     <ignore>data/config.testing.php</ignore>
+     <ignore>data/config.testing-tmp.php</ignore>
      <ignore>data/locales/messages.po</ignore>
      <ignore>data/locales/*/LC_MESSAGES/messages.po</ignore>
      <ignore>dist/**</ignore>
-     <ignore>doc/developers/**</ignore>
      <ignore>scripts/**</ignore>
      <ignore>src/php-gettext/examples/**</ignore>
-     <ignore>src/php-gettext/bin/**</ignore>
-     <ignore>*.tgz</ignore>
+     <ignore>src/php-gettext/tests/**</ignore>
      <ignore>*.properties</ignore>
+     <ignore>semanticscuttle-dump.sql</ignore>
+     <ignore>*.tgz</ignore>
 
-     <replacement
-      path="src/SemanticScuttle/header.php"
+     <replacement path="src/SemanticScuttle/header.php"
       type="pear-config" from="@data_dir@" to="data_dir"
       />
-     <replacement
-      path="src/SemanticScuttle/header.php"
+     <replacement path="src/SemanticScuttle/header.php"
       type="pear-config" from="@www_dir@" to="www_dir"
       />
-     <replacement
-      path="www/www-header.php"
+     <replacement path="src/SemanticScuttle/Config.php"
       type="pear-config" from="@data_dir@" to="data_dir"
       />
-     <replacement
-      path="tests/prepare.php"
+     <replacement path="src/SemanticScuttle/Config.php"
+      type="pear-config" from="@www_dir@" to="www_dir"
+      />
+     <replacement path="www/www-header.php"
+      type="pear-config" from="@data_dir@" to="data_dir"
+      />
+     <replacement path="tests/prepare.php"
       type="pear-config" from="@data_dir@" to="data_dir"
       />
 
@@ -207,47 +225,29 @@
   </target>
 
 
-  <!-- you need to have the python docutils package installed, since
-       we use the rst2html tool -->
-  <target name="build-docs">
-   <foreach param="fname" absparam="abs-fname" target="build-doc-file">
-     <fileset dir=".">
-      <include name="doc/ChangeLog"/>
-      <include name="doc/**.txt"/>
-      <include name="doc/**.rst"/>
-      <include name="doc/**/*.rst"/>
-      <exclude name="doc/LICENSE.txt"/>
-      <exclude name="doc/developers/TODO.rst"/>
-     </fileset>
-   </foreach>
+  <target name="build-docs" description="render documentation">
+   <rST format="html" uptodate="true"
+        toolparam="--stylesheet=res/docs/style.css"
+        >
+    <fileset dir="doc">
+     <include name="ChangeLog"/>
+     <include name="**.txt"/>
+     <include name="**.rst"/>
+     <include name="**/*.rst"/>
+     <exclude name="LICENSE.txt"/>
+     <exclude name="developers/TODO.rst"/>
+     <exclude name="allinone.rst"/>
+    </fileset>
+    <mapper type="regexp" from="^doc/(.+?)(.rst|.txt)?$" to="dist/docs/\1.html"/>
+<!--
+    <filterchain>
+     <replacetokenswithfile dir="res/docs">
+      <
+     </replacetokenswithfile>
+    </filterchain>
+-->
+   </rST>
   </target>
-
-
-  <target name="build-doc-file" depends="check"
-   description="Builds a single documentation file. Pass file path as $fname"
-  >
-   <echo msg="${fname}"/>
-   <php function="preg_replace" returnProperty="outfile">
-    <param value="/^(.+)(.rst|.txt)$/"/>
-    <param value="dist/\1.html"/>
-    <param value="${fname}"/>
-   </php>
-
-   <!-- only render file if the doc file is newer than the html file -->
-   <property name="isuptodate" value="false"/>
-   <uptodate property="isuptodate" srcfile="${fname}" targetfile="${outfile}" />
-   <if>
-    <not><istrue value="${isuptodate}"/></not>
-    <then>
-     <exec
-      command="rst2html --exit-status=2 ${fname} ${outfile}"
-      checkreturn="1"
-      />
-    </then>
-   </if>
-
-  </target>
-
 
 
   <target name="release" depends="check,zip,package,deploy-sf"
@@ -284,7 +284,7 @@
 
 
   <target name="deploy-sf-pear" depends="check,package"
-   description="Update PEAR channel on sourceforge"
+   description="Update PEAR channel + website on sourceforge"
    >
     <available file="${websitedir}"
      type="dir" property="available.websitedir"
@@ -349,6 +349,38 @@
   </target>
 
 
+  <target name="deploy-docs" depends="build-docs"
+          description="sync docs to sourceforge website"
+  >
+   <copy todir="${websitedir}/docs">
+    <fileset dir="dist/docs">
+     <include name="**"/>
+    </fileset>
+   </copy>
+
+   <exec
+     command="rsync -avP -e ssh . ${sfuser},${sfproject}@web.sourceforge.net:htdocs/docs"
+     dir="${websitedir}/docs"
+     escape="false" checkreturn="false"
+     passthru="true"
+     />
+  </target>
+
+
+  <target name="deploy-demo"
+          description="sync demo to sourceforge website"
+  >
+   <exec
+     command="rsync -avP -e ssh . ${sfuser},${sfproject}@web.sourceforge.net:htdocs/demo"
+     dir="${websitedir}/demo"
+     escape="false" checkreturn="false"
+     passthru="true"
+     />
+  </target>
+
+
+
+
   <target name="check"
    description="Check variables"
    >
@@ -358,8 +390,6 @@
     <fail unless="sffilepath" message="Sourceforge project file path not defined!" />
 
     <mkdir dir="dist" />
-    <mkdir dir="dist/doc" />
-    <mkdir dir="dist/doc/developers" />
   </target>
 
 </project>

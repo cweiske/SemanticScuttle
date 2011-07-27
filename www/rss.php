@@ -64,7 +64,12 @@ if (!isset($rssEntries) || $rssEntries <= 0) {
     $rssEntries = $maxRssEntries;
 }
 
+$privateKey = null;
+if (isset($_GET['privateKey'])) {
+    $privateKey = $_GET['privateKey'];
+}
 
+$userid    = null;
 $watchlist = null;
 $pagetitle = '';
 if ($user && $user != 'all') {
@@ -78,8 +83,22 @@ if ($user && $user != 'all') {
     } else {
         if ($userinfo = $userservice->getUserByUsername($user)) {
             $userid =& $userinfo[$userservice->getFieldName('primary')];
+            /* if user is not logged in and has valid privateKey */
+            if (!$userservice->isLoggedOn()) {
+                if ($privateKey != null) {
+                    if (!$userservice->loginPrivateKey($privateKey)) {
+                        $tplVars['error'] = sprintf(T_('Failed to Autenticate User with username %s using private key'), $user);
+                        header('Content-type: text/html; charset=utf-8');
+                        $templateservice->loadTemplate('error.404.tpl', $tplVars);
+                        //throw a 404 error
+                        exit();
+                    }
+                }
+            }
+
         } else {
             $tplVars['error'] = sprintf(T_('User with username %s was not found'), $user);
+            header('Content-type: text/html; charset=utf-8');
             $templateservice->loadTemplate('error.404.tpl', $tplVars);
             //throw a 404 error
             exit();
@@ -87,7 +106,17 @@ if ($user && $user != 'all') {
     }
     $pagetitle .= ": ". $user;
 } else {
-    $userid = null;
+    if ($privateKey != null) {
+        if (!$userservice->loginPrivateKey($privateKey)) {
+            $tplVars['error'] = sprintf(T_('Failed to Autenticate User with username %s using private key'), $user);
+            header('Content-type: text/html; charset=utf-8');
+            $templateservice->loadTemplate('error.404.tpl', $tplVars);
+            //throw a 404 error
+            exit();
+        }
+    } else {
+        $userid = null;
+    }
 }
 
 if ($cat) {
@@ -100,7 +129,8 @@ $tplVars['feeddescription'] = sprintf(T_('Recent bookmarks posted to %s'), $GLOB
 
 $bookmarks = $bookmarkservice->getBookmarks(
     0, $rssEntries, $userid, $cat,
-    null, getSortOrder(), $watchlist
+    null, getSortOrder(), $watchlist,
+    null, null, null
 );
 
 $bookmarks_tmp = filter($bookmarks['bookmarks']);

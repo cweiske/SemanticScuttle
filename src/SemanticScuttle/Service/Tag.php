@@ -141,10 +141,10 @@ class SemanticScuttle_Service_Tag extends SemanticScuttle_DbService
 
         //normalize
         if(!is_array($tags)) {
-            $tags = strtolower(trim($tags));
+            $tags = utf8_strtolower(trim($tags));
         } else {
             for($i=0; $i<count($tags); $i++) {
-                $tags[$i] = strtolower(trim($tags[$i]));
+                $tags[$i] = utf8_strtolower(trim($tags[$i]));
             }
         }
         return $tags;

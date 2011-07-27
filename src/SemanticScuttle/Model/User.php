@@ -35,6 +35,7 @@ class SemanticScuttle_Model_User
     var $content;
     var $datetime;
     var $isAdmin;
+    var $privateKey;
 
     /**
      * Create a new user object
@@ -66,6 +67,29 @@ class SemanticScuttle_Model_User
     public function getUsername()
     {
         return $this->username;
+    }
+
+    /**
+     * Returns private key
+     *
+     * @param boolean return sanitized value which basically drops
+     *                leading dash if exists
+     *
+     * @return string private key
+     */
+    public function getPrivateKey($sanitized = false)
+    {
+        // Look for value only if not already set
+        if (!isset($this->privateKey)) {
+            $us = SemanticScuttle_Service_Factory::get('User');
+            $user = $us->getUser($this->id);
+            $this->privateKey = $user['privateKey'];
+        }
+        if ($sanitized == true) {
+            return substr($this->privateKey, -32);
+        } else {
+            return $this->privateKey;
+        }
     }
 
     /**
