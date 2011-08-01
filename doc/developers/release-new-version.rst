@@ -4,7 +4,7 @@ How to release a new version of SemanticScuttle
 0. Run unit tests and verify that all of them pass
 1. Update ``doc/ChangeLog``
 2. Update ``doc/UPGRADE.txt``
-3. Update version in ``data/templates/about.tpl.php``,
+3. Update version in ``data/templates/default/about.tpl.php``,
    ``build.xml`` and ``doc/README.rst``
 4. Create a release zip file via the build script:
    Just type "``phing``".
