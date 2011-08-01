@@ -8,6 +8,7 @@ ChangeLog for SemantiScuttle
 - Fix bug #3375635: XML parsing problem in top.inc.php
 - Fix bug #3375428: Forgot to remove some old dojo files
 - Fix bug #3160512: Make SemanticScuttle work with FastCGI
+- Fix bug #3376618: Broken tag completion for private bookmarks
 
 
 0.98.0 - 2011-07-21

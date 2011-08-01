@@ -552,13 +552,6 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         $user = null, $limit = 30, $logged_on_user = null, $days = null,
         $beginsWith = null
     ) {
-        // Only count the tags that are visible to the current user.
-        if (($user != $logged_on_user) || is_null($user) || ($user === false)) {
-            $privacy = ' AND B.bStatus = 0';
-        } else {
-            $privacy = '';
-        }
-
         $query = 'SELECT'
             . ' T.tag, COUNT(T.bId) AS bCount'
             . ' FROM '
@@ -566,20 +559,30 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
             . ', ' . $GLOBALS['tableprefix'] . 'bookmarks AS B'
             . ' WHERE';
 
-        if (is_null($user) || ($user === false)) {
+        if (is_null($user) || $user === false) {
             $query .= ' B.bId = T.bId AND B.bStatus = 0';
         } else if (is_array($user)) {
             $query .= ' (1 = 0';  //tricks
             foreach ($user as $u) {
-                if (is_numeric($u)) {
-                    $query .= ' OR B.uId = ' . $this->db->sql_escape($u)
-                        . ' AND B.bId = T.bId';
+                if (!is_numeric($u)) {
+                    continue;
                 }
+                $query .= ' OR ('
+                    . ' B.uId = ' . $this->db->sql_escape($u)
+                    . ' AND B.bId = T.bId';
+                if ($u !== $logged_on_user) {
+                    //public bookmarks of others
+                    $query .= ' AND B.bStatus = 0';
+                }
+                $query .= ')';
             }
-            $query .= ' )' . $privacy;
+            $query .= ' )';
         } else {
             $query .= ' B.uId = ' . $this->db->sql_escape($user)
-                . ' AND B.bId = T.bId' . $privacy;
+                . ' AND B.bId = T.bId';
+            if ($user !== $logged_on_user) {
+                $query .= ' AND B.bStatus = 0';
+            }
         }
 
         if (is_int($days)) {
