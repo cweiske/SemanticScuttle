@@ -3,7 +3,7 @@ ChangeLog for SemantiScuttle
 
 .. contents::
 
-0.98.1 - 2011-XX-XX
+0.98.1 - 2011-08-01
 -------------------
 - Fix bug #3375635: XML parsing problem in top.inc.php
 - Fix bug #3375428: Forgot to remove some old dojo files
