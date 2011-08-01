@@ -500,6 +500,31 @@ class Bookmark2TagTest extends TestBase
         $this->assertContains(array('tag' => 'thr', 'bCount' => '1'), $arTags);
     }
 
+    /**
+     * Should return the logged on user's public, protected and private tags
+     * as well as public ones of other specified users.
+     *
+     * @covers SemanticScuttle_Service_Bookmark2Tag::getPopularTags
+     */
+    public function testGetPopularTagsUserPrivatesAndOthersWhenLoggedIn()
+    {
+        $user1 = $this->addUser();
+        $user2 = $this->addUser();
+        $this->addBookmark($user1, null, 0, array('one'));
+        $this->addBookmark($user1, null, 1, array('one', 'two'));
+        $this->addBookmark($user1, null, 2, array('thr'));
+        $this->addBookmark($user2, null, 0, array('fou'));
+        $this->addBookmark($user2, null, 1, array('fiv'));
+        $this->addBookmark($user2, null, 2, array('six'));
+
+        $arTags = $this->b2ts->getPopularTags(array($user2, $user1), 10, $user1);
+        $this->assertContains(array('tag' => 'one', 'bCount' => '2'), $arTags);
+        $this->assertContains(array('tag' => 'two', 'bCount' => '1'), $arTags);
+        $this->assertContains(array('tag' => 'thr', 'bCount' => '1'), $arTags);
+        $this->assertContains(array('tag' => 'fou', 'bCount' => '1'), $arTags);
+        $this->assertEquals(4, count($arTags));
+    }
+
 
     /**
      * @covers SemanticScuttle_Service_Bookmark2Tag::getAdminTags
