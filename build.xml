@@ -26,6 +26,32 @@
   <property name="sffilepath"  value="s/se/semanticscuttle/" />
   <property name="svnpath"     value="https://semanticscuttle.svn.sourceforge.net/svnroot/semanticscuttle/" />
 
+  <fileset id="fs.zip" dir=".">
+   <include name="data/**"/>
+   <include name="doc/**"/>
+   <include name="src/**"/>
+   <include name="www/**"/>
+   <exclude name="**/.gitignore/"/>
+   <exclude name="**/.svn/"/>
+   <exclude name="data/config.php"/>
+   <exclude name="data/config.testing.php"/>
+   <exclude name="data/config.testing-tmp.php"/>
+   <exclude name="data/locales/messages.po"/>
+   <exclude name="data/locales/*/LC_MESSAGES/messages.po"/>
+   <exclude name="src/php-gettext/examples/" />
+   <exclude name="src/php-gettext/tests/"/>
+  </fileset>
+
+  <fileset id="fs.doc" dir="doc">
+   <include name="ChangeLog"/>
+   <include name="**.txt"/>
+   <include name="**.rst"/>
+   <include name="**/*.rst"/>
+   <exclude name="LICENSE.txt"/>
+   <exclude name="developers/TODO.rst"/>
+   <exclude name="allinone.rst"/>
+  </fileset>
+
   <taskdef name="rST" classname="phing.tasks.ext.rSTTask" />
   <taskdef name="d51pearpkg2" classname="phing.tasks.ext.d51PearPkg2Task" />
 
@@ -41,21 +67,7 @@
     <echo msg="Creating distribution zip for SemanticScuttle ${version}"/>
     <delete file="${distfile}" failonerror="false"/>
     <zip destfile="${distfile}" prefix="${phing.project.name}-${version}/">
-      <fileset dir=".">
-        <include name="data/**"/>
-        <include name="doc/**"/>
-        <include name="src/**"/>
-        <include name="www/**"/>
-        <exclude name="**/.gitignore/"/>
-        <exclude name="**/.svn/"/>
-        <exclude name="data/config.php"/>
-        <exclude name="data/config.testing.php"/>
-        <exclude name="data/config.testing-tmp.php"/>
-        <exclude name="data/locales/messages.po"/>
-        <exclude name="data/locales/*/LC_MESSAGES/messages.po"/>
-        <exclude name="src/php-gettext/examples/" />
-        <exclude name="src/php-gettext/tests/"/>
-      </fileset>
+     <fileset refid="fs.zip"/>
     </zip>
   </target>
 
@@ -244,15 +256,7 @@
    <rST format="html" uptodate="true"
         toolparam="--stylesheet=res/docs/style.css"
         >
-    <fileset dir="doc">
-     <include name="ChangeLog"/>
-     <include name="**.txt"/>
-     <include name="**.rst"/>
-     <include name="**/*.rst"/>
-     <exclude name="LICENSE.txt"/>
-     <exclude name="developers/TODO.rst"/>
-     <exclude name="allinone.rst"/>
-    </fileset>
+    <fileset refid="fs.doc"/>
     <mapper type="regexp" from="^doc/(.+?)(.rst|.txt)?$" to="dist/docs/\1.html"/>
 <!--
     <filterchain>
@@ -262,6 +266,10 @@
     </filterchain>
 -->
    </rST>
+  </target>
+
+  <target name="clean-docs" description="delete rendered documentation files">
+   <delete dir="dist/docs" includeemptydirs="yes"/>
   </target>
 
 
