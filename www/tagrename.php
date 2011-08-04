@@ -67,7 +67,7 @@ if (POST_CONFIRM) {
 		$template         = 'error.500.tpl';
 	}
 } elseif (POST_CANCEL) {
-	header('Location: '. createURL('bookmarks', $currentUser->getUsername() .'/'. $tags));
+	header('Location: '. createURL('bookmarks', $currentUser->getUsername() .'/'. $tag));
 } else {
 	$tplVars['subtitle']    = T_('Rename Tag') .': '. $tag;
 	$tplVars['formaction']  = $_SERVER['SCRIPT_NAME'] .'/'. $tag;
