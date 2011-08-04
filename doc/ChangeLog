@@ -3,6 +3,11 @@ ChangeLog for SemantiScuttle
 
 .. contents::
 
+0.98.2 - 2011-08-XX
+-------------------
+- Fix bug #3385724: Rename tag ends with XML Parsing Error
+
+
 0.98.1 - 2011-08-01
 -------------------
 - Fix bug #3375635: XML parsing problem in top.inc.php

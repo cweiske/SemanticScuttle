@@ -28,7 +28,6 @@ window.onload = function() {
 </tr>
 
 </table>
-</p>
 
 <?php if (isset($referrer)): ?>
 <div><input type="hidden" name="referrer" value="<?php echo $referrer; ?>" /></div>
