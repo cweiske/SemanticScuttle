@@ -4,6 +4,12 @@ Upgrading SemanticScuttle from a previous version
 
 .. contents::
 
+From version 0.94-0.98.1 to 0.98.2
+==================================
+Run ``scripts/fix-unfiled-tags.php`` to fix old bookmarks that miss the
+``system:unfiled`` tags.
+
+
 From version 0.97 to 0.98
 =========================
 Database updates
