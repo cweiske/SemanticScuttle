@@ -80,6 +80,15 @@ class Bookmark2TagTest extends TestBase
         );
     }
 
+    public function testAttachTagsWithArrayWithEmptyStringAddsSystemUnfiled()
+    {
+        $bid = $this->addBookmark(null, null, 0, array(''));
+        $this->assertEquals(
+            array('system:unfiled'),
+            $this->b2ts->getTagsForBookmark($bid, true)
+        );
+    }
+
 
 
     /**
