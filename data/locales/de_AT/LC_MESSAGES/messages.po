@@ -571,8 +571,8 @@ msgstr "Sie können es selbst frei auf Ihrem Webserver oder Webspace installiere
 
 #: ../../../templates/about.tpl.php:15
 #, php-format
-msgid "%1$s supports most of the <a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
-msgstr "%1$s unterstützt die meisten der <a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programmierung Interface\">-API </ abbr> </ a>. Fast alle netten Tools, die für dieses System kreiert wurden, können für %1$s geändert und adaptiert werden. Wenn Sie eine Applikation finden, deren API-Adresse Sie nicht einfach ändern können, so fragen Sie doch einfach bei dem/der Entwickler/in nach, um dies zu adaptieren bzw. zu addieren. Man kann nie wissen, eventuell werden jene dies einfach bewerkstelligen."
+msgid "%1$s supports most of the <a href=\"http://www.delicious.com/help/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
+msgstr "%1$s unterstützt die meisten der <a href=\"http://www.delicious.com/help/api\">del.icio.us <abbr title=\"Application Programmierung Interface\">-API </ abbr> </ a>. Fast alle netten Tools, die für dieses System kreiert wurden, können für %1$s geändert und adaptiert werden. Wenn Sie eine Applikation finden, deren API-Adresse Sie nicht einfach ändern können, so fragen Sie doch einfach bei dem/der Entwickler/in nach, um dies zu adaptieren bzw. zu addieren. Man kann nie wissen, eventuell werden jene dies einfach bewerkstelligen."
 
 #: ../../../templates/bookmarkcommondescriptionedit.tpl.php:15
 #: ../../../templates/bookmarks.tpl.php:67

@@ -440,8 +440,8 @@ msgstr "O %s é baseado em <a href=\"http://sourceforge.net/projects/scuttle/\">
 
 #: ..\..\..\templates\about.tpl.php:15
 #, php-format
-msgid "%1$s supports most of the <a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
-msgstr "O %1$s suporta a maior parte do <a href=\"http://del.icio.us/doc/api\"><abbr title=\"Application Programming Interface\">API</abbr> do del.icio.us</a>. Quase todas as adoráveis ferramentas desenvolvidas para aquele sistema podem ser modificadas para funcionar com o %1$s. Se você encontrar uma ferramenta que não permita a mudança de seu endereço de API, solicite a seu criador para que adicione esta configuração. Nunca se sabe. Ele pode simplesmente atender a seu pedido."
+msgid "%1$s supports most of the <a href=\"http://www.delicious.com/help/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
+msgstr "O %1$s suporta a maior parte do <a href=\"http://www.delicious.com/help/api\"><abbr title=\"Application Programming Interface\">API</abbr> do del.icio.us</a>. Quase todas as adoráveis ferramentas desenvolvidas para aquele sistema podem ser modificadas para funcionar com o %1$s. Se você encontrar uma ferramenta que não permita a mudança de seu endereço de API, solicite a seu criador para que adicione esta configuração. Nunca se sabe. Ele pode simplesmente atender a seu pedido."
 
 #: ..\..\..\templates\bookmarks.tpl.php:10
 #: ..\..\..\templates\tags.tpl.php:6

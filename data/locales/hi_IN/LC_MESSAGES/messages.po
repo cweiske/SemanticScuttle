@@ -446,8 +446,8 @@ msgstr "%s एक <a href=\"http://sourceforge.net/projects/scuttle/\">मुक
 
 #: ..\..\..\templates\about.tpl.php:15
 #, php-format
-msgid "%1$s supports most of the <a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
-msgstr "%1$s में प्रायः सभी <a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">एपीआई</abbr></a> का समर्थन मिलता है. उस तंत्र के लिए बनाए गए प्रायः सभी औजारों को %1$s के लिए कार्य करने लायक परिवर्धित किया जा सकता है. यदि आपको कोई औजार ऐसा मिलता है जो आपको एपीआई पता बदलने नहीं देता है तो उसके सृजक को इस विन्यास को जोड़ने के लिए कहें. कौन जाने वे ऐसा भी कर लें."
+msgid "%1$s supports most of the <a href=\"http://www.delicious.com/help/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
+msgstr "%1$s में प्रायः सभी <a href=\"http://www.delicious.com/help/api\">del.icio.us <abbr title=\"Application Programming Interface\">एपीआई</abbr></a> का समर्थन मिलता है. उस तंत्र के लिए बनाए गए प्रायः सभी औजारों को %1$s के लिए कार्य करने लायक परिवर्धित किया जा सकता है. यदि आपको कोई औजार ऐसा मिलता है जो आपको एपीआई पता बदलने नहीं देता है तो उसके सृजक को इस विन्यास को जोड़ने के लिए कहें. कौन जाने वे ऐसा भी कर लें."
 
 #: ..\..\..\templates\bookmarks.tpl.php:17
 #: ..\..\..\templates\tags.tpl.php:7
