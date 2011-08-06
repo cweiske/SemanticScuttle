@@ -2,6 +2,8 @@
 Configuration files
 ===================
 
+.. contents::
+
 SemanticScuttle uses at least two configuration files:
 
 1. Default configuration file ``config.default.php``
