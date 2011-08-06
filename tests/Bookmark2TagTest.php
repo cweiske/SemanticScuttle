@@ -71,6 +71,26 @@ class Bookmark2TagTest extends TestBase
 
 
 
+    public function testAttachTagsWithoutTagsAddsSystemUnfiled()
+    {
+        $bid = $this->addBookmark(null, null, 0, array());
+        $this->assertEquals(
+            array('system:unfiled'),
+            $this->b2ts->getTagsForBookmark($bid, true)
+        );
+    }
+
+    public function testAttachTagsWithArrayWithEmptyStringAddsSystemUnfiled()
+    {
+        $bid = $this->addBookmark(null, null, 0, array(''));
+        $this->assertEquals(
+            array('system:unfiled'),
+            $this->b2ts->getTagsForBookmark($bid, true)
+        );
+    }
+
+
+
     /**
      * Test getTagsForBookmark() when the bookmark has no tags
      *

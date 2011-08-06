@@ -2,6 +2,8 @@
 Configuration files
 ===================
 
+.. contents::
+
 SemanticScuttle uses at least two configuration files:
 
 1. Default configuration file ``config.default.php``
@@ -55,4 +57,25 @@ per-host configuration files:
 
 - ``data/config.$hostname.php``
 - ``/etc/semanticscuttle/config.$hostname.php``
+
+
+
+Configuration options
+=====================
+``$root`` URL
+-------------
+Normally, this configuration setting is detected automatically and will
+work for both HTTP and HTTPS installations.
+
+If your installation is available on **HTTP only**, then you need to configure
+it.
+
+The value is the full URL to your installation, including a trailing
+slash::
+
+    $root = "http://homepage.example.org/semanticscuttle/";
+
+or::
+
+    $root = "http://bookmarks.example.org/";
 

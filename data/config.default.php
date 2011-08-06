@@ -81,12 +81,14 @@ $theme = 'default';
 
 /**
  * SemanticScuttle root directory.
- *
  * Set to NULL to autodetect the root url of the website.
  *
  * If your installation is in a subdirectory like
  * "http://www.example.com/semanticscuttle/" then
  * replace NULL by your address (between "" and with trailing '/')
+ *
+ * The autodetection works for both HTTP and HTTPS urls.
+ * If you offer HTTP *only*, then set your root url here.
  *
  * @var string
  */

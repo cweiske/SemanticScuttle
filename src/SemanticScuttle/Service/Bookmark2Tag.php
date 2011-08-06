@@ -271,10 +271,11 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
      * Retrieves all tags for a given bookmark except system tags.
      *
      * @param integer $bookmarkid ID of the bookmark
+     * @param boolean $systemTags Return "system:*" tags or not
      *
      * @return array Array of tags
      */
-    public function getTagsForBookmark($bookmarkid)
+    public function getTagsForBookmark($bookmarkid, $systemTags = false)
     {
         if (!is_numeric($bookmarkid)) {
             message_die(
@@ -285,9 +286,11 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         }
 
         $query = 'SELECT tag FROM ' . $this->getTableName()
-            . ' WHERE bId = ' . intval($bookmarkid)
-            . ' AND LEFT(tag, 7) <> "system:"'
-            . ' ORDER BY id ASC';
+            . ' WHERE bId = ' . intval($bookmarkid);
+        if (!$systemTags) {
+            $query .= ' AND LEFT(tag, 7) <> "system:"';
+        }
+        $query .= ' ORDER BY id ASC';
 
         if (!($dbresult = $this->db->sql_query($query))) {
             message_die(
