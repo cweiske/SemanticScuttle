@@ -100,8 +100,8 @@ msgstr "Sie können es selbst auf Ihrem Webserver oder Webspace installieren"
 
 #: data/templates/about.tpl.php:15
 #, php-format
-msgid "%1$s supports most of the <a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
-msgstr "%1$s unterstützt die meisten der <a href=\"http://del.icio.us/doc/api\">del.icio.us-<abbr title=\"Application Programming Interface\">API</abbr></a>. Fast alle coolen Tools, die für dieses System erstellt wurden, können für %1$s geändert und adaptiert werden. Wenn Sie ein Programm finden, bei dem Sie die API-Adresse nicht ändern können, so fragen Sie doch einfach beim Entwickler nach. Man kann nie wissen, vielleicht machen sie es einfach."
+msgid "%1$s supports most of the <a href=\"http://www.delicious.com/help/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
+msgstr "%1$s unterstützt die meisten der <a href=\"http://www.delicious.com/help/api\">del.icio.us-<abbr title=\"Application Programming Interface\">API</abbr></a>. Fast alle coolen Tools, die für dieses System erstellt wurden, können für %1$s geändert und adaptiert werden. Wenn Sie ein Programm finden, bei dem Sie die API-Adresse nicht ändern können, so fragen Sie doch einfach beim Entwickler nach. Man kann nie wissen, vielleicht machen sie es einfach."
 
 #: data/templates/about.tpl.php:24
 msgid "Tips"

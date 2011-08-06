@@ -101,8 +101,8 @@ msgstr "Bạn có thể thoải mái cài đặt nó trên Web server của bạ
 
 #: data/templates/about.tpl.php:15
 #, php-format
-msgid "%1$s supports most of the <a href=\"http://del.icio.us/doc/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
-msgstr "%1$s hỗ trợ phần lớn từ'<a href=\"http://del.icio.us/doc/api\"><abbr title=\"Ứng dụng lập trình giao diện\">API</abbr> del.icio.us</a>."
+msgid "%1$s supports most of the <a href=\"http://www.delicious.com/help/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
+msgstr "%1$s hỗ trợ phần lớn từ'<a href=\"http://www.delicious.com/help/api\"><abbr title=\"Ứng dụng lập trình giao diện\">API</abbr> del.icio.us</a>."
 
 #: data/templates/about.tpl.php:24
 msgid "Tips"
