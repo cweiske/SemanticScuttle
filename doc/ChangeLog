@@ -7,6 +7,7 @@ ChangeLog for SemantiScuttle
 -------------------
 - Fix bug #3385724: Rename tag ends with XML Parsing Error
 - Fix bug #3386178: "system:unfiled" secret tag does not work
+- Fix bug #3384416: Update documentation to explain HTTP/HTTPS root problem
 
 Run ``scripts/fix-unfiled-tags.php`` to fix old bookmarks that miss the
 ``system:unfiled`` tags.
