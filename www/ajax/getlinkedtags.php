@@ -1,13 +1,12 @@
 <?php
 /**
- * Returns a list of tags linked to the given one,
+ * Returns a list of tags linked to the given one(s),
  * suitable for jsTree consumption.
  *
  * Accepted GET parameters:
  *
  * @param string  $tag    Tag for which the children tags shall be returned
- *                        Multiple tags (separated with space or "+") are
- *                        supported.
+ *                        Multiple tags (separated with comma) are supported.
  *                        If no tag is given, all top-level tags are loaded.
  * @param integer $uId    User ID to fetch the tags for
  * @param boolean $parent Load parent tags
@@ -32,7 +31,7 @@ $tag            = isset($_GET['tag']) ? $_GET['tag'] : null;
 $uId            = isset($_GET['uId']) ? (int)$_GET['uId'] : 0;
 $loadParentTags = isset($_GET['parent']) ? (bool)$_GET['parent'] : false;
 
-$tags = explode(' ', trim($tag));
+$tags = explode(',', trim($tag));
 if (count($tags) == 1 && $tags[0] == '') {
     //no tags
     $tags = array();

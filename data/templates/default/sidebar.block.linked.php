@@ -14,7 +14,7 @@ require_once('sidebar.linkedtags.inc.php');
 /* Manage input */
 $user = isset($user)?$user:'';
 $userid = isset($userid)?$userid:0;
-$currenttag = isset($currenttag)?$currenttag:'';
+$currenttag = isset($currenttag) ? str_replace('+', ',', $currenttag) : '';
 //$summarizeLinkedTags = isset($summarizeLinkedTags)?$summarizeLinkedTags:false;
 
 $logged_on_userid = $userservice->getCurrentUserId();
