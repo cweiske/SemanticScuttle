@@ -97,6 +97,7 @@
      <dirroles key="www">www</dirroles>
      <dirroles key="data">data</dirroles>
      <dirroles key="doc">doc</dirroles>
+     <dirroles key="scripts">doc</dirroles>
      <dirroles key="src">php</dirroles>
      <dirroles key="tests">test</dirroles>
 
@@ -111,7 +112,6 @@
      <ignore>data/locales/messages.po</ignore>
      <ignore>data/locales/*/LC_MESSAGES/messages.po</ignore>
      <ignore>dist/**</ignore>
-     <ignore>scripts/**</ignore>
      <ignore>src/php-gettext/examples/**</ignore>
      <ignore>src/php-gettext/tests/**</ignore>
      <ignore>*.properties</ignore>
