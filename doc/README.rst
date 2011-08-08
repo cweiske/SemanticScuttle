@@ -1,6 +1,6 @@
-====================
-SemanticScuttle 0.98
-====================
+======================
+SemanticScuttle 0.98.2
+======================
 A social bookmarking tool experimenting with new features
 like structured tags or collaborative descriptions of tags.
 
@@ -46,7 +46,6 @@ Links
 - `suggestions`_ for SemanticScuttle
 - `bug reports`_
 - `feature requests`_
-- `patches`_
 
 __ http://semanticscuttle.wiki.sourceforge.net/
 __ http://sourceforge.net/forum/forum.php?forum_id=759510
@@ -54,7 +53,6 @@ __ https://sourceforge.net/mailarchive/forum.php?forum_name=semanticscuttle-deve
 .. _suggestions:  http://sourceforge.net/forum/forum.php?forum_id=759511
 .. _bug reports: http://sourceforge.net/tracker/?group_id=211356&atid=1017430
 .. _feature requests: https://sourceforge.net/tracker/?group_id=211356&atid=1017433
-.. _patches: https://sourceforge.net/tracker/?group_id=211356&atid=1017432
 
 
 

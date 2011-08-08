@@ -3,7 +3,7 @@ ChangeLog for SemantiScuttle
 
 .. contents::
 
-0.98.2 - 2011-08-XX
+0.98.2 - 2011-08-08
 -------------------
 - Fix bug #3385724: Rename tag ends with XML Parsing Error
 - Fix bug #3386178: "system:unfiled" secret tag does not work
