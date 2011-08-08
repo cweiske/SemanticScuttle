@@ -17,7 +17,7 @@ $this->includeTemplate($GLOBALS['top_include']);
 
 
 <?php if(!is_null($currentUser) && $currentUser->isAdmin()): ?>
-<li>SemanticScuttle v0.98.1</li>
+<li>SemanticScuttle v0.98.2</li>
 <?php endif ?>
 </ul>
 

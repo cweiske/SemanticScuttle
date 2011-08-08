@@ -10,13 +10,14 @@
   <property file="html.properties" />
 
   <property name="version-m"  value="0.98" />
-  <property name="version"    value="0.98.1" />
+  <property name="version"    value="0.98.2" />
   <property name="stability"  value="beta" />
   <property name="releasenotes" value="
-- Fix bug #3375635: XML parsing problem in top.inc.php
-- Fix bug #3375428: Forgot to remove some old dojo files
-- Fix bug #3160512: Make SemanticScuttle work with FastCGI
-- Fix bug #3376618: Broken tag completion for private bookmarks
+- Fix bug #3385724: Rename tag ends with XML Parsing Error
+- Fix bug #3386178: "system:unfiled" secret tag does not work
+- Fix bug #3384416: Update documentation to explain HTTP/HTTPS root problem
+- Fix bug #3382126: Linked tags does not work for tags with spaces
+- Fix delicious API help page link
 " />
   <property name="zipfile"     value="${phing.project.name}-${version}.zip" />
   <property name="pkgfile"     value="${phing.project.name}-${version}.tgz" />
@@ -135,6 +136,14 @@
      <replacement path="tests/prepare.php"
       type="pear-config" from="@data_dir@" to="data_dir"
       />
+
+     <changelog version="0.98.2" date="2011-08-08" license="GPL">
+- Fix bug #3385724: Rename tag ends with XML Parsing Error
+- Fix bug #3386178: "system:unfiled" secret tag does not work
+- Fix bug #3384416: Update documentation to explain HTTP/HTTPS root problem
+- Fix bug #3382126: Linked tags does not work for tags with spaces
+- Fix delicious API help page link
+     </changelog>
 
      <changelog version="0.98.1" date="2011-08-01" license="GPL">
 - Fix bug #3375635: XML parsing problem in top.inc.php
