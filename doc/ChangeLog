@@ -3,6 +3,14 @@ ChangeLog for SemantiScuttle
 
 .. contents::
 
+0.98.3 - 2011-08-09
+-------------------
+- Fix bug #3388456: Missing scripts/fix-unfiled-tags.php
+
+The script was only missing in the .zip file; the PEAR package
+contained it - thus no 0.98.3 PEAR package.
+
+
 0.98.2 - 2011-08-08
 -------------------
 - Fix bug #3385724: Rename tag ends with XML Parsing Error
