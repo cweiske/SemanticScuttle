@@ -71,8 +71,12 @@ class SemanticScuttle_Config
      */
     public function findFiles()
     {
-        //use basename to prevent path injection
-        $host = basename($_SERVER['HTTP_HOST']);
+        if (isset($_SERVER['HTTP_HOST'])) {
+            //use basename to prevent path injection
+            $host = basename($_SERVER['HTTP_HOST']);
+        } else {
+            $host = 'cli';
+        }
         $datadir = $this->getDataDir();
 
         $openbase = ini_get('open_basedir');
