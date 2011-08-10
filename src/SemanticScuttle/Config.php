@@ -50,26 +50,16 @@ class SemanticScuttle_Config
         return $datadir;
     }
 
-
-
     /**
-     * Tries to find a configuration file by looking in different
-     * places:
-     * - pear data_dir/SemanticScuttle/config-$hostname.php
-     * - pear data_dir/SemanticScuttle/config.php
-     * - /etc/semanticscuttle/config-$hostname.php
-     * - /etc/semanticscuttle/config.php
-     *
-     * Paths with host name have priority.
+     * Creates an array with file paths where the configuration
+     * file may be located.
      *
      * When open_basedir restrictions are in effect and /etc is not part of
      * the setting, /etc/semanticscuttle/ is not checked for config files.
      *
-     * @return array Array with config file path as first value
-     *               and default config file path as second value.
-     *               Any may be NULL if not found
+     * @return array Array of possible configuration file paths.
      */
-    public function findFiles()
+    public function getPossibleConfigFiles()
     {
         if (isset($_SERVER['HTTP_HOST'])) {
             //use basename to prevent path injection
@@ -78,6 +68,11 @@ class SemanticScuttle_Config
             $host = 'cli';
         }
         $datadir = $this->getDataDir();
+        $arFiles = array();
+
+        if (class_exists('Phar') && Phar::running(false) != '') {
+            $arFiles[] = Phar::running(false) . '.config.php';
+        }
 
         $openbase = ini_get('open_basedir');
         if ($openbase && strpos($openbase, '/etc') === false) {
@@ -96,6 +91,30 @@ class SemanticScuttle_Config
                 '/etc/semanticscuttle/config.php',
             );
         }
+
+        return $arFiles;
+    }
+
+
+
+    /**
+     * Tries to find a configuration file by looking in different
+     * places:
+     * - pear data_dir/SemanticScuttle/config-$hostname.php
+     * - pear data_dir/SemanticScuttle/config.php
+     * - /etc/semanticscuttle/config-$hostname.php
+     * - /etc/semanticscuttle/config.php
+     *
+     * Paths with host name have priority.
+     *
+     * @return array Array with config file path as first value
+     *               and default config file path as second value.
+     *               Any may be NULL if not found
+     */
+    public function findFiles()
+    {
+        $datadir = $this->getDataDir();
+        $arFiles = $this->getPossibleConfigFiles();
 
         $configfile = null;
         foreach ($arFiles as $file) {
