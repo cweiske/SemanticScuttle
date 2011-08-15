@@ -44,5 +44,41 @@ class SemanticScuttle_Environment
         //fallback when no special path after the php file is given
         return '';
     }
+
+
+    /**
+     * Determines the root directory from the server environment.
+     * The root directory is the path that needs to be prepended
+     * to relative links.
+     *
+     * Returns $GLOBALS['root'] if set.
+     *
+     * @return string Base URL with trailing slash
+     */
+    public static function getRoot()
+    {
+        if (isset($GLOBALS['root'])) {
+            return $GLOBALS['root'];
+        }
+
+        $pieces = explode('/', $_SERVER['SCRIPT_NAME']);
+        $rootTmp = '/';
+        foreach ($pieces as $piece) {
+            //we eliminate possible sscuttle subfolders (like gsearch for example)
+            if ($piece != '' && !strstr($piece, '.php')
+                && $piece != 'gsearch' && $piece != 'ajax'
+            ) {
+                $rootTmp .= $piece .'/';
+            }
+        }
+        if (($rootTmp != '/') && (substr($rootTmp, -1, 1) != '/')) {
+            $rootTmp .= '/';
+        }
+
+        //we do not prepend http since we also want to support https connections
+        // "http" is not required; it's automatically determined by the browser
+        // depending on the current connection.
+        return '//'. $_SERVER['HTTP_HOST'] . $rootTmp;
+    }
 }
 ?>

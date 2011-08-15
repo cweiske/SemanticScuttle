@@ -25,29 +25,7 @@ if (isset($GLOBALS['debugMode'])) {
 }
 
 // Determine the base URL as ROOT
-if (!isset($GLOBALS['root'])) {
-    $pieces = explode('/', $_SERVER['SCRIPT_NAME']);
-
-    $rootTmp = '/';
-    foreach ($pieces as $piece) {
-        //we eliminate possible sscuttle subfolders (like gsearch for example)
-        if ($piece != '' && !strstr($piece, '.php')
-            && $piece != 'gsearch' && $piece != 'ajax'
-        ) {
-            $rootTmp .= $piece .'/';
-        }
-    }
-    if (($rootTmp != '/') && (substr($rootTmp, -1, 1) != '/')) {
-        $rootTmp .= '/';
-    }
-
-    //we do not prepend http since we also want to support https connections
-    // "http" is not required; it's automatically determined by the browser
-    // depending on the current connection.
-    define('ROOT', '//'. $_SERVER['HTTP_HOST'] . $rootTmp);
-} else {
-    define('ROOT', $GLOBALS['root']);
-}
+define('ROOT', SemanticScuttle_Environment::getRoot());
 define('ROOT_JS', ROOT . 'js/jstree-1.0-rc2/');
 
 // Error codes

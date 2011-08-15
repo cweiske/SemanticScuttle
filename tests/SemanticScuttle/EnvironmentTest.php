@@ -229,6 +229,40 @@ class SemanticScuttle_EnvironmentTest extends PHPUnit_Framework_TestCase
             '/dummy/foo', SemanticScuttle_Environment::getServerPathInfo()
         );
     }
+
+    public function testGetRootInRootDir()
+    {
+        $_SERVER = array(
+            'HTTP_HOST'       => 'bm.bogo',
+            'DOCUMENT_ROOT'   => '/etc/apache2/htdocs',
+            'SCRIPT_FILENAME' => '/home/cweiske/Dev/html/hosts/bm.bogo/index.php',
+            'QUERY_STRING'    => '',
+            'REQUEST_URI'     => '/',
+            'SCRIPT_NAME'     => '/index.php',
+            'PHP_SELF'        => '/index.php',
+        );
+        $this->assertEquals(
+            '//bm.bogo/',
+            SemanticScuttle_Environment::getRoot()
+        );
+    }
+
+    public function testGetRootInSubdir()
+    {
+        $_SERVER = array(
+            'HTTP_HOST'       => 'bm-subdir.bogo',
+            'DOCUMENT_ROOT'   => '/etc/apache2/htdocs',
+            'SCRIPT_FILENAME' => '/home/cweiske/Dev/html/hosts/bm-subdir.bogo/tools/scuttle/index.php',
+            'QUERY_STRING'    => '',
+            'REQUEST_URI'     => '/tools/scuttle/',
+            'SCRIPT_NAME'     => '/tools/scuttle/index.php',
+            'PHP_SELF'        => '/tools/scuttle/index.php',
+        );
+        $this->assertEquals(
+            '//bm-subdir.bogo/tools/scuttle/',
+            SemanticScuttle_Environment::getRoot()
+        );
+    }
 }
 
 ?>
