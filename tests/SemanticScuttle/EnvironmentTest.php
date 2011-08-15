@@ -230,6 +230,15 @@ class SemanticScuttle_EnvironmentTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    public function testGetRootWithConfigPreset()
+    {
+        $GLOBALS['root'] = 'https://happy.penguin.example.org/walks/away/';
+        $this->assertEquals(
+            'https://happy.penguin.example.org/walks/away/',
+            SemanticScuttle_Environment::getRoot()
+        );
+    }
+
     public function testGetRootInRootDir()
     {
         $_SERVER = array(
