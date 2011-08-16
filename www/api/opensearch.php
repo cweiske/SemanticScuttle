@@ -1,6 +1,6 @@
 <?php 
 $httpContentType = 'text/xml';
-require_once '../www-header.php';
+require_once __DIR__ . '/../www-header.php';
 echo '<' . '?xml version="1.0" encoding="utf-8" ?' . ">\n";
 ?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">

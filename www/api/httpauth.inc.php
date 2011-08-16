@@ -17,7 +17,7 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-require_once '../www-header.php';
+require_once __DIR__ . '/../www-header.php';
 
 /**
  * Sends HTTP auth headers to the browser

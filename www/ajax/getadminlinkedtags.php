@@ -20,7 +20,7 @@
  */
 
 $httpContentType = 'application/json';
-require_once '../www-header.php';
+require_once __DIR__ . '/../www-header.php';
 
 /**
  * Creates and returns an array of tags for the jsTree ajax loader.

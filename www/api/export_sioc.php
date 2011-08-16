@@ -2,7 +2,7 @@
 /* Export data with semantic format (SIOC: http://sioc-project.org/, FOAF, SKOS, Annotea Ontology) */
 
 $httpContentType = 'text/xml';
-require_once '../www-header.php';
+require_once __DIR__ . '/../www-header.php';
 
 /* Service creation: only useful services are created */
 $userservice =SemanticScuttle_Service_Factory::get('User');

@@ -16,7 +16,7 @@
  * @link     http://sourceforge.net/projects/semanticscuttle
  * @link     http://www.google.com/cse/docs/cref.html
  */
-require_once '../www-header.php';
+require_once __DIR__ . '/../www-header.php';
 
 if ($GLOBALS['enableGoogleCustomSearch'] == false) {
     header('HTTP/1.0 403 Forbidden');

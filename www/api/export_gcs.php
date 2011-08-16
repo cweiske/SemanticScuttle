@@ -6,7 +6,7 @@
 // Force HTTP authentication first!
 //require_once('httpauth.inc.php');
 $httpContentType = false;
-require_once '../www-header.php';
+require_once __DIR__ . '/../www-header.php';
 
 if($GLOBALS['enableGoogleCustomSearch'] == false) {
     echo "Google Custom Search disabled. You can enable it into the config.php file.";

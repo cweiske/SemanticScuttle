@@ -7,7 +7,7 @@
 // Force HTTP authentication first!
 //require_once('httpauth.inc.php');
 $httpContentType = 'text/xml';
-require_once '../www-header.php';
+require_once __DIR__ . '/../www-header.php';
 
 /* Service creation: only useful services are created */
 $bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');

@@ -21,7 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 /* Return a json file with list of tags according to current user and sort by popularity*/
 $httpContentType = 'application/json';
-require_once '../www-header.php';
+require_once __DIR__ . '/../www-header.php';
 
 /* Service creation: only useful services are created */
 $b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');

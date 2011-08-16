@@ -13,7 +13,8 @@ function mapUrls($path)
         return false;
     }
     $arMap = array(
-        '/www/' => '/www/index.php'
+        '/www/'         => '/www/index.php',
+        '/www/gsearch/' => '/www/gsearch/index.php',
     );
     if (isset($arMap[$path])) {
         return $arMap[$path];

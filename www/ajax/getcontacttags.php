@@ -22,7 +22,7 @@
  */
 
 $httpContentType = 'application/json';
-require_once '../www-header.php';
+require_once __DIR__ . '/../www-header.php';
 
 $limit         = 30;
 $beginsWith    = null;
