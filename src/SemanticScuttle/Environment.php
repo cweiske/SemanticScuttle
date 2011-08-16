@@ -61,8 +61,17 @@ class SemanticScuttle_Environment
             return $GLOBALS['root'];
         }
 
-        $pieces = explode('/', $_SERVER['SCRIPT_NAME']);
         $rootTmp = '/';
+        if (isset($_SERVER['PHAR_PATH_TRANSLATED'])) {
+            $rootTmp = $_SERVER['SCRIPT_NAME'] . '/';
+            $_SERVER['SCRIPT_NAME'] = substr(
+                $_SERVER['PATH_TRANSLATED'],
+                strpos($_SERVER['PATH_TRANSLATED'], $rootTmp)
+                + strlen($rootTmp)
+            );
+        }
+
+        $pieces = explode('/', $_SERVER['SCRIPT_NAME']);
         foreach ($pieces as $piece) {
             //we eliminate possible sscuttle subfolders (like gsearch for example)
             if ($piece != '' && !strstr($piece, '.php')
@@ -78,7 +87,7 @@ class SemanticScuttle_Environment
         //we do not prepend http since we also want to support https connections
         // "http" is not required; it's automatically determined by the browser
         // depending on the current connection.
-        return '//'. $_SERVER['HTTP_HOST'] . $rootTmp;
+        return '//' . $_SERVER['HTTP_HOST'] . $rootTmp;
     }
 }
 ?>

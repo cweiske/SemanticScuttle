@@ -272,6 +272,48 @@ class SemanticScuttle_EnvironmentTest extends PHPUnit_Framework_TestCase
             SemanticScuttle_Environment::getRoot()
         );
     }
+
+    public function testGetRootFromPharIndex()
+    {
+        $_SERVER = array(
+            'HTTP_HOST'       => 'dist.bm.bogo',
+            'DOCUMENT_ROOT'   => '/etc/apache2/htdocs',
+            'SCRIPT_FILENAME' => '/home/cweiske/Dev/html/hosts/dist.bm.bogo/SemanticScuttle-0.98.X.phar',
+            'QUERY_STRING'    => '',
+            'REQUEST_URI'     => '/SemanticScuttle-0.98.X.phar/www/index.php',
+            'SCRIPT_NAME'     => '/SemanticScuttle-0.98.X.phar',
+            'PATH_INFO'       => '/www/index.php',
+            'PATH_TRANSLATED' => 'phar:///home/cweiske/Dev/semanticscuttle/cwdev/dist/SemanticScuttle-0.98.X.phar/www/index.php',
+            'PHP_SELF'        => '/SemanticScuttle-0.98.X.phar/www/index.php',
+            'PHAR_PATH_TRANSLATED' => '/home/cweiske/Dev/html/hosts/dist.bm.bogo/www/index.php',
+        );
+        $this->assertEquals(
+            '//dist.bm.bogo/SemanticScuttle-0.98.X.phar/www/',
+            SemanticScuttle_Environment::getRoot()
+        );
+    }
+
+    public function testGetRootFromPharWithSubpath()
+    {
+        $_SERVER = array(
+            'HTTP_HOST'       => 'dist.bm.bogo',
+            'DOCUMENT_ROOT'   => '/etc/apache2/htdocs',
+            'SCRIPT_FILENAME' => '/home/cweiske/Dev/html/hosts/dist.bm.bogo/SemanticScuttle-0.98.X.phar',
+            'QUERY_STRING'    => 'no value',
+            'REQUEST_URI'     => '/SemanticScuttle-0.98.X.phar/www/index.php/foo/bar/',
+            'SCRIPT_NAME'     => '/SemanticScuttle-0.98.X.phar',
+            'PATH_INFO'       => '/foo/bar/',
+            'PATH_TRANSLATED' => 'phar:///home/cweiske/Dev/semanticscuttle/cwdev/dist/SemanticScuttle-0.98.X.phar/www/index.php',
+            'PHP_SELF'        => '/SemanticScuttle-0.98.X.phar/www/index.php/foo/bar/',
+            'REQUEST_TIME'    => '1313425297',
+            'PHAR_PATH_INFO'  => '/www/index.php/foo/bar/',
+            'PHAR_PATH_TRANSLATED' => '/home/cweiske/Dev/html/hosts/dist.bm.bogo/www/index.php/foo/bar/',
+        );
+        $this->assertEquals(
+            '//dist.bm.bogo/SemanticScuttle-0.98.X.phar/www/',
+            SemanticScuttle_Environment::getRoot()
+        );
+    }
 }
 
 ?>
