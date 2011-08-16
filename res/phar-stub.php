@@ -6,33 +6,28 @@ if (!in_array('phar', stream_get_wrappers())
     exit;
 }
 
-//disallow access to everything except /www/
-$file = basename(__FILE__);
-$pos = strpos($_SERVER['REQUEST_URI'], $file);
-$following = substr($_SERVER['REQUEST_URI'], $pos + strlen($file), 5);
 
-if ($following != '/www/'
-    && $following !== false
-    && $following != '/'
-) {
-    header('403 Forbidden');
-    echo <<<HTM
-<html>
- <head>
-  <title>Forbidden</title>
- </head>
- <body>
-  <h1>403 - Forbidden</h1>
- </body>
-</html>
-HTM;
-    exit;
+function mapUrls($path)
+{
+    if (substr($path, 0, 5) !== '/www/') {
+        return false;
+    }
+    $arMap = array(
+        '/www/' => '/www/index.php'
+    );
+    if (isset($arMap[$path])) {
+        return $arMap[$path];
+    }
+    return $path;
 }
 
 Phar::interceptFileFuncs();
 Phar::webPhar(
     null,
-    'www/index.php'
+    'www/index.php',
+    null,
+    array(),
+    'mapUrls'
 );
 
 __HALT_COMPILER(); ?>
