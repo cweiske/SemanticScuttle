@@ -67,9 +67,9 @@ $bookmarks =& $bookmarkservice->getBookmarks(0, NULL, NULL, NULL);
 <?php foreach($bookmarks['bookmarks'] as $bookmark): ?>
 <bm:Bookmark rdf:about="<?php echo createUrl('history', $bookmark['bHash']) ?>">
   <dc:title><?php echo filter($bookmark['bTitle']) ?></dc:title>
-  <dc:created><?php echo filter($bookmark['bCreated']) ?></dc:created>
+  <dc:created><?php echo filter($bookmark['bDatetime']) ?></dc:created>
   <dc:description><?php echo filter(strip_tags($bookmark['bDescription'])) ?></dc:description>
-  <dc:date><?php echo $bookmark['bDateTime'] ?></dc:date>
+  <dc:date><?php echo $bookmark['bModified'] ?></dc:date>
   <bm:recalls rdf:resource="<?php echo filter($bookmark['bAddress']) ?>"/>
   <sioc:owner_of rdf:resource="<?php echo createUrl('profile', $usersArray[$bookmark['uId']]) ?>"/>
   <?php foreach($bookmark['tags'] as $tag): ?>
