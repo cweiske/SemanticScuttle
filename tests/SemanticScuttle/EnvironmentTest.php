@@ -230,6 +230,48 @@ class SemanticScuttle_EnvironmentTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    public function testGetServerPathInfoPharPurePhpFile()
+    {
+        $_SERVER = array(
+            'SERVER_NAME' => 'dist.bm.bogo',
+            'SERVER_ADDR' => '127.0.0.1',
+            'SERVER_PORT' => '80',
+            'DOCUMENT_ROOT' => '/etc/apache2/htdocs',
+            'SCRIPT_FILENAME' => '/home/cweiske/Dev/html/hosts/dist.bm.bogo/SemanticScuttle-0.98.X.phar',
+            'QUERY_STRING' => '',
+            'REQUEST_URI' => '/SemanticScuttle-0.98.X.phar/www/populartags.php',
+            'SCRIPT_NAME' => 'www/populartags.php',
+            'PATH_INFO' => '/www/populartags.php',
+            'PATH_TRANSLATED' => 'phar:///home/cweiske/Dev/semanticscuttle/cwdev/dist/SemanticScuttle-0.98.X.phar/www/populartags.php',
+            'PHP_SELF' => '/SemanticScuttle-0.98.X.phar/www/populartags.php',
+            'PHAR_PATH_TRANSLATED' => '/home/cweiske/Dev/html/hosts/dist.bm.bogo/www/populartags.php',
+        );
+        $this->assertNull(
+            SemanticScuttle_Environment::getServerPathInfo()
+        );
+    }
+
+    public function testGetServerPathInfoPharWithInfo()
+    {
+        $_SERVER = array(
+            'PATH' => '/usr/local/bin:/usr/bin:/bin',
+            'SERVER_NAME' => 'dist.bm.bogo',
+            'DOCUMENT_ROOT' => '/etc/apache2/htdocs',
+            'SCRIPT_FILENAME' => '/home/cweiske/Dev/html/hosts/dist.bm.bogo/SemanticScuttle-0.98.X.phar',
+            'QUERY_STRING' => '',
+            'REQUEST_URI' => '/SemanticScuttle-0.98.X.phar/www/populartags.php/foo/bar',
+            'SCRIPT_NAME' => 'www/populartags.php',
+            'PATH_INFO' => '/foo/bar',
+            'PATH_TRANSLATED' => 'phar:///home/cweiske/Dev/semanticscuttle/cwdev/dist/SemanticScuttle-0.98.X.phar/www/populartags.php',
+            'PHP_SELF' => '/SemanticScuttle-0.98.X.phar/www/populartags.php/foo/bar',
+            'PHAR_PATH_INFO' => '/www/populartags.php/foo/bar',
+            'PHAR_PATH_TRANSLATED' => '/home/cweiske/Dev/html/hosts/dist.bm.bogo/www/populartags.php/foo/bar',
+        );
+        $this->assertEquals(
+            '/foo/bar', SemanticScuttle_Environment::getServerPathInfo()
+        );
+    }
+
     public function testGetRootWithConfigPreset()
     {
         $GLOBALS['root'] = 'https://happy.penguin.example.org/walks/away/';
