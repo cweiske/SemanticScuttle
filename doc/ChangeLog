@@ -3,6 +3,11 @@ ChangeLog for SemantiScuttle
 
 .. contents::
 
+0.98.4 - 2011-XX-XX
+-------------------
+- Fix bug: URLs were escaped too often in bookmark list
+
+
 0.98.3 - 2011-08-09
 -------------------
 - Fix bug #3388456: Missing scripts/fix-unfiled-tags.php
