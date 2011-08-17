@@ -107,7 +107,7 @@ if($userservice->isLoggedOn()) {
 }
 ?>
 
-<?php if (count($bookmarks) > 0) { ?>
+<?php if (isset($bookmarks) && count($bookmarks) > 0) { ?>
 <script type="text/javascript">
 window.onload = playerLoad;
 </script>
@@ -358,7 +358,7 @@ if ($currenttag!= '') {
 			$rel = ' rel="nofollow"';
 		}
 
-		$address  = filter($row['bAddress']);
+		$address  = $row['bAddress'];
 		$oaddress = $address;
 		// Redirection option
 		if ($GLOBALS['useredir']) {
@@ -418,7 +418,7 @@ if ($currenttag!= '') {
 
 		}
 		echo '   <div class="description">'. nl2br($bkDescription) ."</div>\n";
-        echo '   <div class="address">' . shortenString($oaddress) . "</div>\n";
+        echo '   <div class="address">' . htmlspecialchars(shortenString($oaddress)) . "</div>\n";
 
 		echo '   <div class="meta">'
             . $cats . "\n"

@@ -124,5 +124,33 @@ class www_bookmarksTest extends TestBaseApi
         $this->assertNotContains('privateKey=', (string)$elements[0]['href']);
     }//end testVerifyPrivateRSSLinkDoesNotExist
 
+
+
+    /**
+     * We once had the bug that URLs with special characters were escaped too
+     * often. & -> &amp;
+     */
+    public function testAddressEncoding()
+    {
+        $this->addBookmark(null, 'http://example.org?foo&bar=baz');
+
+        //get rid of bookmarks.php
+        $this->url = $GLOBALS['unittestUrl'];
+
+        $html = $this->getRequest()->send()->getBody();
+        $x = simplexml_load_string($html);
+        $ns = $x->getDocNamespaces();
+        $x->registerXPathNamespace('ns', reset($ns));
+
+        $elements = $x->xpath('//ns:a[@class="taggedlink"]');
+        $this->assertEquals(
+            1, count($elements), 'Number of links is not 1'
+        );
+        $this->assertEquals(
+            'http://example.org?foo&bar=baz',
+            (string)$elements[0]['href']
+        );
+    }
+
 }//end class www_bookmarksTest
 ?>
