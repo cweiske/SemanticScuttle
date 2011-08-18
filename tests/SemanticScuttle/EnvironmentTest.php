@@ -330,7 +330,7 @@ class SemanticScuttle_EnvironmentTest extends PHPUnit_Framework_TestCase
             'PHAR_PATH_TRANSLATED' => '/home/cweiske/Dev/html/hosts/dist.bm.bogo/www/index.php',
         );
         $this->assertEquals(
-            '//dist.bm.bogo/SemanticScuttle-0.98.X.phar/www/',
+            '//dist.bm.bogo/SemanticScuttle-0.98.X.phar/',
             SemanticScuttle_Environment::getRoot()
         );
     }
@@ -352,7 +352,7 @@ class SemanticScuttle_EnvironmentTest extends PHPUnit_Framework_TestCase
             'PHAR_PATH_TRANSLATED' => '/home/cweiske/Dev/html/hosts/dist.bm.bogo/www/index.php/foo/bar/',
         );
         $this->assertEquals(
-            '//dist.bm.bogo/SemanticScuttle-0.98.X.phar/www/',
+            '//dist.bm.bogo/SemanticScuttle-0.98.X.phar/',
             SemanticScuttle_Environment::getRoot()
         );
     }

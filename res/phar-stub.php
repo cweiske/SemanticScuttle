@@ -9,17 +9,14 @@ if (!in_array('phar', stream_get_wrappers())
 
 function mapUrls($path)
 {
-    if (substr($path, 0, 5) !== '/www/') {
-        return false;
-    }
     $arMap = array(
-        '/www/'         => '/www/index.php',
-        '/www/gsearch/' => '/www/gsearch/index.php',
+        '/'         => '/www/index.php',
+        '/gsearch/' => '/www/gsearch/index.php',
     );
     if (isset($arMap[$path])) {
         return $arMap[$path];
     }
-    return $path;
+    return '/www' . $path;
 }
 
 Phar::interceptFileFuncs();

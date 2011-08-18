@@ -74,6 +74,7 @@ class SemanticScuttle_Environment
                 $_SERVER['PATH_TRANSLATED'],
                 strpos($_SERVER['PATH_TRANSLATED'], $rootTmp)
                 + strlen($rootTmp)
+                + 4 /* strip "www/" */
             );
         }
 
