@@ -48,8 +48,10 @@ if(!isset($_GET['popup'])) {
 ?></div>
 
 <?php
-if (isset($subtitle)) {
-	echo '<h2>'. htmlspecialchars($subtitle) ."</h2>\n";
+if (isset($subtitlehtml)) {
+	echo '<h2>' . $subtitlehtml . "</h2>\n";
+} else if (isset($subtitle)) {
+      echo '<h2>' . htmlspecialchars($subtitle) . "</h2>\n";
 }
 if(DEBUG_MODE) {
 	echo '<p class="error">'. T_('Admins, your installation is in "Debug Mode" ($debugMode = true). To go in "Normal Mode" and hide debugging messages, change $debugMode to false into config.php.') ."</p>\n";

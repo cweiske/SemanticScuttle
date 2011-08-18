@@ -303,7 +303,7 @@ if ($templatename == 'editbookmark.tpl') {
 	$tplVars['nav_url'] = createURL('bookmarks', '%s/%s%s');
 	if ($userservice->isLoggedOn() && $user == $currentUsername) {
 		$tplVars['pagetitle'] = T_('My Bookmarks') . $catTitle;
-		$tplVars['subtitle'] =  T_('My Bookmarks') . $catTitleWithUrls;
+		$tplVars['subtitlehtml'] =  T_('My Bookmarks') . $catTitleWithUrls;
 	} else {
 		$tplVars['pagetitle'] = $user.': '.$cat;
 		$tplVars['subtitle'] = $pagetitle;
