@@ -42,7 +42,7 @@ class SemanticScuttle_ConfigTest extends PHPUnit_Framework_TestCase
             'SemanticScuttle_Config',
             array('getDataDir')
         );
-        $this->cfg->expects($this->once())
+        $this->cfg->expects($this->any())
             ->method('getDataDir')
             ->will($this->returnValue('/data-dir/'));
 
