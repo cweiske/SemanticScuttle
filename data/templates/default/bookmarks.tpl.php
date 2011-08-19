@@ -39,9 +39,9 @@ include('search.menu.php');
 
 <?php if($GLOBALS['enableAdminColors']!=false && isset($userid) && $userservice->isAdmin($userid) && $pageName != PAGE_WATCHLIST) : ?>
 <div style="width:70%;text-align:center;">
- <img src="<?php $theme->resource('images/logo_24.gif'); ?>" width="12px"/>
+ <img src="<?php echo $theme->resource('images/logo_24.gif'); ?>" width="12px"/>
  <?php echo T_('Bookmarks on this page are managed by an admin user.'); ?>
- <img src="<?php $theme->resource('images/logo_24.gif'); ?>" width="12px"/>
+ <img src="<?php echo $theme->resource('images/logo_24.gif'); ?>" width="12px"/>
 </div>
 <?php endif?>
 
