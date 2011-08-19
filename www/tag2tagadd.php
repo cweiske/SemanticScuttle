@@ -59,7 +59,7 @@ if (POST_CONFIRM != '') {
         exit();
     }
 } elseif (POST_CANCEL) {
-    header('Location: '. createURL('bookmarks', $currentUser->getUsername() .'/'. $tags));
+    header('Location: '. createURL('bookmarks', $currentUser->getUsername() .'/'. $tag1));
 }
 
 $tplVars['links']	= $tag2tagservice->getLinks($currentUser->getId());
