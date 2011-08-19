@@ -29,10 +29,13 @@ class SemanticScuttle_Environment
      */
     public static function getServerPathInfo()
     {
-        if (isset($_SERVER['PHAR_PATH_TRANSLATED'])
-            && '/' . $_SERVER['SCRIPT_NAME'] == $_SERVER['PATH_INFO']
-        ) {
-            return null;
+        if (isset($_SERVER['PHAR_PATH_TRANSLATED'])) {
+            $fscript = '/' . $_SERVER['SCRIPT_NAME'];
+            if ($fscript == $_SERVER['PATH_INFO']) {
+                return null;
+            } else if (substr($_SERVER['PATH_INFO'], 0, strlen($fscript)) == $fscript) {
+                return substr($_SERVER['PATH_INFO'], strlen($fscript));
+            }
         }
 
         if (isset($_SERVER['PATH_INFO'])) {

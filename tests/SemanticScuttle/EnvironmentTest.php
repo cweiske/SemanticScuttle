@@ -272,6 +272,26 @@ class SemanticScuttle_EnvironmentTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    public function testGetServerPathInfoPharWithInfoWithoutWww()
+    {
+        $_SERVER = array(
+            'PATH' => '/usr/local/bin:/usr/bin:/bin',
+            'SERVER_NAME' => 'dist.bm.bogo',
+            'DOCUMENT_ROOT' => '/etc/apache2/htdocs',
+            'SCRIPT_FILENAME' => '/home/cweiske/Dev/html/hosts/dist.bm.bogo/SemanticScuttle-0.98.X.phar',
+            'QUERY_STRING' => '',
+            'REQUEST_URI' => '/SemanticScuttle-0.98.X.phar/tags.php/test',
+            'SCRIPT_NAME' => 'tags.php',
+            'PATH_INFO' => '/tags.php/test',
+            'PATH_TRANSLATED' => 'phar:///home/cweiske/Dev/semanticscuttle/cwdev/dist/SemanticScuttle-0.98.X.phar/www/tags.php',
+            'PHP_SELF' => '/SemanticScuttle-0.98.X.phar/tags.php/test',
+            'PHAR_PATH_TRANSLATED' => '/home/cweiske/Dev/html/hosts/dist.bm.bogo/tags.php/test',
+        );
+        $this->assertEquals(
+            '/test', SemanticScuttle_Environment::getServerPathInfo()
+        );
+    }
+
     public function testGetRootWithConfigPreset()
     {
         $GLOBALS['root'] = 'https://happy.penguin.example.org/walks/away/';
