@@ -6,6 +6,14 @@ if (!in_array('phar', stream_get_wrappers())
     exit;
 }
 
+Phar::interceptFileFuncs();
+
+if (php_sapi_name() == 'cli') {
+    require_once dirname(__FILE__) . '/../src/SemanticScuttle/Phar/Cli.php';
+    $cli = new SemanticScuttle_Phar_Cli();
+    $cli->run();
+    exit;
+}
 
 function mapUrls($path)
 {
@@ -19,7 +27,6 @@ function mapUrls($path)
     return '/www' . $path;
 }
 
-Phar::interceptFileFuncs();
 Phar::webPhar(
     null,
     'www/index.php',

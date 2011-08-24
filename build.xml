@@ -314,12 +314,9 @@
     <echo msg="Creating .phar for SemanticScuttle ${version}"/>
     <delete file="${pharfilepath}" quiet="yes"/>
     <pharpackage basedir="." destfile="${pharfilepath}"
-     alias="sc.phar"
-     stub="res/phar-stub.php">
-<!--
-     webstub="www/index.php"
-     clistub="www/index.php"
-    -->
+     alias="SemanticScuttle.phar"
+     stub="res/phar-stub.php"
+    >
      <metadata>
       <element name="version" value="${version}" />
       <element name="authors">
