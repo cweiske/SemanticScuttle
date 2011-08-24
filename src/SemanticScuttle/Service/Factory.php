@@ -113,16 +113,14 @@ class SemanticScuttle_Service_Factory
      */
     protected static function loadDb()
     {
-        global $dbhost, $dbuser, $dbpass, $dbname,
-            $dbport, $dbpersist, $dbtype, $dbneedssetnames;
-
         if (self::$db !== null) {
             return;
         }
-        include_once 'SemanticScuttle/db/'. $dbtype .'.php';
+        include_once 'SemanticScuttle/db/'. $GLOBALS['dbtype'] .'.php';
         $db = new sql_db();
         $db->sql_connect(
-            $dbhost, $dbuser, $dbpass, $dbname, $dbport, $dbpersist
+            $GLOBALS['dbhost'], $GLOBALS['dbuser'], $GLOBALS['dbpass'],
+            $GLOBALS['dbname'], $GLOBALS['dbport'], $GLOBALS['dbpersist']
         );
         if (!$db->db_connect_id) {
             message_die(
@@ -132,7 +130,7 @@ class SemanticScuttle_Service_Factory
             );
         }
 
-        $dbneedssetnames && $db->sql_query('SET NAMES UTF8');
+        $GLOBALS['dbneedssetnames'] && $db->sql_query('SET NAMES UTF8');
 
         self::$db = $db;
     }

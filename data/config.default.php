@@ -208,6 +208,8 @@ $tableprefix = 'sc_';
  */
 $dbneedssetnames = true;
 
+$dbpersist = false;
+
 
 /***************************************************
  * Users

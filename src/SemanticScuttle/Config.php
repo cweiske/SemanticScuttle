@@ -20,7 +20,7 @@
  * @license  AGPL http://www.gnu.org/licenses/agpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-class SemanticScuttle_Config
+class SemanticScuttle_Config implements ArrayAccess
 {
     /**
      * Prefix for configuration files.
@@ -29,6 +29,121 @@ class SemanticScuttle_Config
      * @var string
      */
     public $filePrefix = '';
+
+    /**
+     * Array with all configuration data
+     */
+    protected $configData = array();
+
+
+    /**
+     * Loads the variables from the given configuration file
+     * into $GLOBALS
+     *
+     * @param string $file Configuration file path to load
+     *
+     * @return void
+     */
+    public function load($file)
+    {
+        // ack \\$ data/config.default.php |sed 's/ .*$//'|grep -v ^$|sort
+        //this here is required because setting $GLOBALS doesnt'
+        // automatically set "global" :/
+        global
+            $adminemail,
+            $adminsAreAdvisedTagsFromOtherAdmins,
+            $adminsCanModifyBookmarksFromOtherUsers,
+            $admin_users,
+            $allowedProtocols,
+            $allowUnittestMode,
+            $antispamAnswer,
+            $antispamQuestion,
+            $authDebug,
+            $authEmailSuffix,
+            $authOptions,
+            $authType,
+            $avahiServiceFilePath,
+            $avahiServiceFilePrefix,
+            $avahiTagName,
+            $blankDescription,
+            $bottom_include,
+            $cleanurls,
+            $dateOrderField,
+            $dbhost,
+            $dbname,
+            $dbneedssetnames,
+            $dbpass,
+            $dbpersist,
+            $dbport,
+            $dbtype,
+            $dbuser,
+            $debugMode,
+            $defaultOrderBy,
+            $defaultPerPage,
+            $defaultPerPageForAdmins,
+            $defaultRecentDays,
+            $defaultRssEntries,
+            $defaults,
+            $descriptionAnchors,
+            $dir_cache,
+            $enableAdminColors,
+            $enableCommonBookmarkDescription,
+            $enableCommonTagDescription,
+            $enableCommonTagDescriptionEditedByAll,
+            $enableGoogleCustomSearch,
+            $enableRegistration,
+            $enableVoting,
+            $enableWebsiteThumbnails,
+            $filetypes,
+            $footerMessage,
+            $googleAnalyticsCode,
+            $hideBelowVoting,
+            $index_sidebar_blocks,
+            $locale,
+            $longdate,
+            $maxRssEntries,
+            $maxSizeMenuBlock,
+            $menu2Tags,
+            $menuTag,
+            $nofollow,
+            $reservedusers,
+            $root,
+            $serviceoverrides,
+            $shortdate,
+            $shorturl,
+            $sidebarBottomMessage,
+            $sidebarTopMessage,
+            $sitename,
+            $sizeSearchHistory,
+            $tableprefix,
+            $TEMPLATES_DIR,
+            $theme,
+            $thumbnailsKey,
+            $thumbnailsUserId,
+            $top_include,
+            $unittestUrl,
+            $url_redir,
+            $usecache,
+            $useredir,
+            $votingMode,
+            $welcomeMessage;
+
+        require_once $file;
+
+        //make them global
+        //does not really work because many parts still access the variables
+        // without $cfg/$GLOBALS
+        //unset($file);
+        //$GLOBALS = get_defined_vars() + $GLOBALS;
+    }
+
+    /**
+     * Assigns GLOBALS to configData
+     */
+    public function __construct()
+    {
+        $this->configData =& $GLOBALS;
+    }
 
 
 
@@ -140,6 +255,32 @@ class SemanticScuttle_Config
             }
         }
         return array($configfile, $defaultfile);
+    }
+
+
+
+    public function offsetExists($offset)
+    {
+        return isset($this->configData[$offset]);
+    }
+
+    public function offsetGet($offset)
+    {
+        return $this->configData[$offset];
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        if (is_null($offset)) {
+            $this->configData[] = $value;
+        } else {
+            $this->configData[$offset] = $value;
+        }
+    }
+
+    public function offsetUnset($offset)
+    {
+        unset($this->configData[$offset]);
     }
 }
 

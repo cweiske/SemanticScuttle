@@ -29,6 +29,8 @@ require_once dirname(__FILE__) . '/Environment.php';
 require_once dirname(__FILE__) . '/Config.php';
 
 $cfg = new SemanticScuttle_Config();
+$GLOBALS['cfg'] = $cfg;
+
 list($configfile, $defaultfile) = $cfg->findFiles();
 if ($defaultfile === null) {
     header('HTTP/1.0 500 Internal Server Error');
@@ -48,8 +50,8 @@ set_include_path(
 );
 
 // 1 // First requirements part (before debug management)
-require_once $defaultfile;
-require_once $configfile;
+$cfg->load($defaultfile);
+$cfg->load($configfile);
 
 if (isset($_GET['unittestMode']) && $_GET['unittestMode'] == 1
 ) {
@@ -106,11 +108,11 @@ require_once 'SemanticScuttle/Model/Bookmark.php';
 require_once 'SemanticScuttle/Model/UserArray.php';
 require_once 'SemanticScuttle/Model/User/SslClientCert.php';
 
-if (count($GLOBALS['serviceoverrides']) > 0
+if (count($cfg['serviceoverrides']) > 0
     && !defined('UNIT_TEST_MODE')
 ) {
     SemanticScuttle_Service_Factory::$serviceoverrides
-        = $GLOBALS['serviceoverrides'];
+        = $cfg['serviceoverrides'];
 }
 
 // 3 // Third requirements part which import functions from includes/ directory
@@ -121,7 +123,7 @@ require_once 'SemanticScuttle/utf8.php';
 // Translation
 require_once 'php-gettext/gettext.inc';
 $domain = 'messages';
-T_setlocale(LC_MESSAGES, $locale);
+T_setlocale(LC_MESSAGES, $cfg['locale']);
 T_bindtextdomain($domain, realpath($datadir . 'locales/'));
 T_bind_textdomain_codeset($domain, 'UTF-8');
 T_textdomain($domain);
@@ -129,15 +131,15 @@ T_textdomain($domain);
 // 4 // Session
 if (isset($_SERVER['REMOTE_ADDR'])) {
     session_start();
-    if ($GLOBALS['enableVoting']) {
+    if ($cfg['enableVoting']) {
         if (isset($_SESSION['lastUrl'])) {
-            $GLOBALS['lastUrl'] = $_SESSION['lastUrl'];
+            $cfg['lastUrl'] = $_SESSION['lastUrl'];
         }
         //this here is hacky, but currently the only way to
         // differentiate between css/js php files and normal
         // http files
-        if (!isset($GLOBALS['saveInLastUrl'])
-            || $GLOBALS['saveInLastUrl']
+        if (!isset($cfg['saveInLastUrl'])
+            || $cfg['saveInLastUrl']
         ) {
             $_SESSION['lastUrl'] = $_SERVER['REQUEST_URI'];
         }
