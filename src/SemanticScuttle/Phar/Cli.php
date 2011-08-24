@@ -41,6 +41,12 @@ class SemanticScuttle_Phar_Cli
         $extract->addArgument(
             'file', array('description' => 'Path of file to extract')
         );
+        $extract->addArgument(
+            'target', array(
+                'description' => 'Path to store file contents. Defaults to stdout',
+                'optional'    => true,
+            )
+        );
 
         $run = $ccl->addCommand('run', array('aliases' => array('r')));
         $run->addArgument(
@@ -49,8 +55,11 @@ class SemanticScuttle_Phar_Cli
 
         try {
             $result = $ccl->parse();
+            if ($result->command_name == '') {
+                $ccl->displayUsage();
+            }
             $method = $result->command_name . 'Action';
-            $this->$method($result->args, $result->options);
+            $this->$method($result->command->args, $result->command->options);
         } catch (Exception $ex) {
             $ccl->displayError($ex->getMessage());
         }
@@ -93,16 +102,49 @@ class SemanticScuttle_Phar_Cli
         }
     }
 
-
-    public function runAction($args, $options)
-    {
-        //FIXME
-    }
-
-
+    /**
+     * Extract the file given in $args['file'] to stdout
+     *
+     * @param array $args    Array of commandline arguments
+     * @param array $options Array of commandline options
+     *
+     * @return void
+     * @throws Exception When the file does not exist in the .phar
+     */
     public function extractAction($args, $options)
     {
-        //FIXME
+        $file = 'phar://SemanticScuttle.phar/' . $args['file'];
+        if (!file_exists($file)) {
+            echo 'File "' . $args['file'] . '" does not exist in phar.' . "\n";
+            exit(1);
+        }
+
+        if (isset($args['target'])) {
+            copy($file, $args['target']);
+        } else {
+            readfile($file);
+        }
+    }
+
+    /**
+     * Runs a script inside the .phar
+     *
+     * @param array $args    Array of commandline arguments
+     * @param array $options Array of commandline options
+     *
+     * @return void
+     * @throws Exception When the file does not exist in the .phar
+     */
+    public function runAction($args, $options)
+    {
+        $file = 'phar://SemanticScuttle.phar/' . $args['file'];
+        if (!file_exists($file)) {
+            echo 'File "' . $args['file'] . '" does not exist in phar.' . "\n";
+            exit(1);
+        }
+
+        //FIXME: shift off options
+        include $file;
     }
 }
 ?>
