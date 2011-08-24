@@ -10,6 +10,7 @@
  * @license  AGPL http://www.gnu.org/licenses/agpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
+require_once 'Console/CommandLine.php';
 
 /**
  * Command line interface for the SemanticScuttle.phar file.
@@ -26,7 +27,33 @@ class SemanticScuttle_Phar_Cli
 {
     public function run()
     {
-        $this->listAction();
+        $ccl = new Console_CommandLine();
+        $ccl->name        = 'SemanticScuttle';
+        $ccl->description = 'Command line interface to SemanticScuttle .phar files';
+        $ccl->version            = '0.98.3';
+        $ccl->add_help_option    = true;
+        $ccl->add_version_option = true;
+        $ccl->force_posix        = true;
+
+        $ccl->addCommand('list', array('aliases' => array('l')));
+
+        $extract = $ccl->addCommand('extract', array('aliases' => array('x')));
+        $extract->addArgument(
+            'file', array('description' => 'Path of file to extract')
+        );
+
+        $run = $ccl->addCommand('run', array('aliases' => array('r')));
+        $run->addArgument(
+            'file', array('description' => 'Path of file to extract')
+        );
+
+        try {
+            $result = $ccl->parse();
+            $method = $result->command_name . 'Action';
+            $this->$method($result->args, $result->options);
+        } catch (Exception $ex) {
+            $ccl->displayError($ex->getMessage());
+        }
     }
 
 
@@ -67,13 +94,13 @@ class SemanticScuttle_Phar_Cli
     }
 
 
-    public function runAction()
+    public function runAction($args, $options)
     {
         //FIXME
     }
 
 
-    public function extractAction()
+    public function extractAction($args, $options)
     {
         //FIXME
     }
