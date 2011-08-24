@@ -14,6 +14,11 @@ To run SemanticScuttle, you need:
 
 Standard installation instructions
 ==================================
+If you downloaded the ``.phar`` file, follow the `Phar setup instructions`__.
+Otherwise continue here:
+
+__ install-phar.html
+
 If you've downloaded a ``SemanticScuttle-x.y.z.zip`` file from SourceForge,
 then this instructions are for you.
 
