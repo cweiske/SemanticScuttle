@@ -18,6 +18,7 @@ if (php_sapi_name() == 'cli') {
 function mapUrls($path)
 {
     $arMap = array(
+        ''          => '/www/index.php',
         '/'         => '/www/index.php',
         '/gsearch/' => '/www/gsearch/index.php',
     );
