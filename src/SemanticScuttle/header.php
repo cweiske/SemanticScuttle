@@ -14,6 +14,7 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
+global $wwwdir, $datadir;
 
 if ('@data_dir@' == '@' . 'data_dir@') {
     //non pear-install
