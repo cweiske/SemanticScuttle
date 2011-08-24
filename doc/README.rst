@@ -59,9 +59,6 @@ __ https://sourceforge.net/mailarchive/forum.php?forum_name=semanticscuttle-deve
 
 Known issues
 ============
+See `troubleshooting.rst`_ for a list of known problems and their solution.
 
-Number of bookmarks always 0: "0 bookmark(s)"
----------------------------------------------
-This issue occurs when debug mode is enabled.
-Technically, this is because the database layers ``DEBUG_EXTRA`` gets
-enabled through debug mode.
+.. _troubleshooting.rst: troubleshooting.html
