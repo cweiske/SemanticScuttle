@@ -251,6 +251,28 @@ class SemanticScuttle_EnvironmentTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    public function testGetServerPathInfoPharCleanUrl()
+    {
+        $_SERVER = array(
+            'HTTP_HOST' => 'dist.bm.bogo',
+            'SERVER_NAME' => 'dist.bm.bogo',
+            'SERVER_ADDR' => '127.0.0.1',
+            'SERVER_PORT' => '80',
+            'DOCUMENT_ROOT' => '/etc/apache2/htdocs' ,
+            'SCRIPT_FILENAME' => '/home/cweiske/Dev/html/hosts/dist.bm.bogo/SemanticScuttle-0.98.X.phar' ,
+            'QUERY_STRING' => '',
+            'REQUEST_URI' => '/SemanticScuttle-0.98.X.phar/populartags',
+            'SCRIPT_NAME' => 'populartags.php',
+            'PATH_INFO' => '/populartags',
+            'PATH_TRANSLATED' => 'phar:///home/cweiske/Dev/semanticscuttle/cwdev/dist/SemanticScuttle-0.98.X.phar/www/populartags.php',
+            'PHP_SELF' => '/SemanticScuttle-0.98.X.phar/populartags',
+            'PHAR_PATH_TRANSLATED' => '/home/cweiske/Dev/html/hosts/dist.bm.bogo/populartags',
+        );
+        $this->assertNull(
+            SemanticScuttle_Environment::getServerPathInfo()
+        );
+    }
+
     public function testGetServerPathInfoPharWithInfo()
     {
         $_SERVER = array(

@@ -31,7 +31,9 @@ class SemanticScuttle_Environment
     {
         if (isset($_SERVER['PHAR_PATH_TRANSLATED'])) {
             $fscript = '/' . $_SERVER['SCRIPT_NAME'];
-            if ($fscript == $_SERVER['PATH_INFO']) {
+            if ($fscript == $_SERVER['PATH_INFO']
+                || $fscript == $_SERVER['PATH_INFO'] . '.php'
+            ) {
                 return null;
             } else if (substr($_SERVER['PATH_INFO'], 0, strlen($fscript)) == $fscript) {
                 return substr($_SERVER['PATH_INFO'], strlen($fscript));

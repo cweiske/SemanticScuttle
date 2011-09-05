@@ -25,12 +25,22 @@ function mapUrls($path)
     if (isset($arMap[$path])) {
         return $arMap[$path];
     }
-    $pos = strrpos($path, '.');
-    if ($pos === false || strlen($path) - $pos > 5) {
-        //clean url
-        $path .= '.php';
+    $parts = explode('/', $path);
+    $partPos = 1;
+    if (in_array($parts[$partPos], array('js', 'player', 'themes'))) {
+        return '/www' . $path;
     }
-    return '/www' . $path;
+    if (in_array($parts[$partPos], array('ajax', 'api', 'gsearch'))) {
+        $partPos = 2;
+    }
+    $pos = strrpos($parts[$partPos], '.');
+    if ($pos === false) {
+        $parts[$partPos] .= '.php';
+        $_SERVER['PATH_INFO'] = '/' . implode(
+            '/', array_slice($parts, $partPos + 1)
+        );
+    }
+    return '/www' . implode('/', $parts);
 }
 
 Phar::webPhar(
