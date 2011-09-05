@@ -25,6 +25,11 @@ function mapUrls($path)
     if (isset($arMap[$path])) {
         return $arMap[$path];
     }
+    $pos = strrpos($path, '.');
+    if ($pos === false || strlen($path) - $pos > 5) {
+        //clean url
+        $path .= '.php';
+    }
     return '/www' . $path;
 }
 
