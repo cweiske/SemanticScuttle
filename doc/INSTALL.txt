@@ -2,6 +2,7 @@
 SemanticScuttle installation
 ============================
 
+.. contents::
 
 Prerequisites
 =============
@@ -11,8 +12,11 @@ To run SemanticScuttle, you need:
 - A web server, for example Apache
 
 
-Installation instructions
-=========================
+Standard installation instructions
+==================================
+If you've downloaded a ``SemanticScuttle-x.y.z.zip`` file from SourceForge,
+then this instructions are for you.
+
 1. Create a new MySQL database
 2. Import ``data/tables.sql`` into that database, i.e.
    run ::
@@ -40,7 +44,7 @@ Installation instructions
 
 
 Ugly www directory in URLs
-==========================
+--------------------------
 In case point 5 of the installation instructions cannot be put into
 practice by you because you are not able to change the web server
 configuration, you are not lost! There is a way to get rid of
@@ -83,3 +87,58 @@ with ::
 
   require_once '../../semanticscuttle/src/SemanticScuttle/header.php';
 
+
+
+PEAR package installation
+=========================
+Apart from the normal installation, you may install the SemanticScuttle PEAR
+package - it gives you the ability to upgrade to the next version with a single
+command, without manually unzipping files.
+
+0. The SemanticScuttle PEAR channel is available at
+   http://semanticscuttle.sourceforge.net/pirum.html
+
+1. Make sure you have the PEAR installer (or Pyrus) available and working.
+   You can check that by running ::
+
+     $ pear version
+     PEAR Version: 1.9.2
+     PHP Version: 5.3.6-13ubuntu3.2
+     Zend Engine Version: 2.3.0
+     Running on: Linux bogo 3.0.0-12-generic #20-Ubuntu SMP Fri Oct 7 14:56:25 UTC 2011 x86_64
+
+2. Discover the channel if you haven't done so yet::
+
+     $ pear channel-discover semanticscuttle.sourceforge.net
+
+   Verify that the channel has been added with::
+
+     $ pear list-channels
+     Registered Channels:
+     ====================
+     Channel                         Alias     Summary
+     ...
+     semanticscuttle.sourceforge.net sc        SemanticScuttle PEAR channel
+     ...
+
+3. Install SemanticScuttle::
+
+     $ pear install sc/semanticscuttle-beta
+
+4. Find out where it got installed to::
+
+     $ pear list-files sc/semanticscuttle
+
+5. Generally, the directory you need to point your web server's ``DocumentRoot`` to
+   is the *PEAR www directory* + ``/SemanticScuttle/``. Find the www directory with::
+
+     $ pear config-get www_dir
+     /usr/share/php/htdocs
+
+6. The configuration file is located in *PEAR's data directory*  + ``/SemanticScuttle/``::
+
+     $ pear config-get data_dir
+     /usr/share/php/data
+
+   In ``$data_dir/SemanticScuttle/``, copy ``config.php.dist`` to
+   ``config.php`` and continue with  configuration_.
