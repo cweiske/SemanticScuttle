@@ -9,6 +9,7 @@ ChangeLog for SemantiScuttle
 - Fix bug: Subtitle was not escaped
 - Fix bug #3393951: Logo images missing on bookmark page
 - Fix bug #3388219: Incorrect URL when cancelling tag2tag-actions
+- Fix bug #3399815: PHP error in opensearch API in 0.98.3
 
 
 0.98.3 - 2011-08-09
