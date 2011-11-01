@@ -342,7 +342,7 @@ msgstr ""
 
 #: data/templates/bookmarks.tpl.php:383
 msgid "Top of the page"
-msgstr ""
+msgstr "Revenir en haut de la page"
 
 #: data/templates/bookmarks.tpl.php:389
 msgid "No bookmarks available"
@@ -355,7 +355,7 @@ msgstr "À propos"
 
 #: data/templates/bottom.inc.php:7
 msgid "Propulsed by "
-msgstr ""
+msgstr "Propulsé par"
 
 #: data/templates/dynamictags.inc.php:47
 #: data/templates/sidebar.block.common.php:19
@@ -742,13 +742,13 @@ msgstr "Membre depuis"
 #: data/templates/sidebar.block.watchlist.php:30
 #, fuzzy
 msgid "Watching"
-msgstr "Él&eacute;ments surveill&eacute;s"
+msgstr "Éléments surveillés"
 
 #: data/templates/profile.tpl.php:55
 #: data/templates/sidebar.block.watchlist.php:52
 #, fuzzy
 msgid "Watched By"
-msgstr "Surveill&eacute; par"
+msgstr "Surveillé par"
 
 #: data/templates/profile.tpl.php:68 data/templates/toolbar.inc.php:9
 msgid "Bookmarks"
@@ -911,7 +911,7 @@ msgstr "Créer un lien vers un autre mot-cl&eacute;"
 #: data/templates/sidebar.block.users.php:14
 #, fuzzy
 msgid "New Users"
-msgstr "Utilisateurs"
+msgstr "Nouveaux utilisateurs"
 
 #: data/templates/sidebar.block.users.php:23 data/templates/users.tpl.php:17
 msgid "bookmarks"
@@ -1035,12 +1035,11 @@ msgstr "Popularité"
 #: data/templates/toolbar.inc.php:8 data/templates/toolbar.inc.php:26
 #, fuzzy
 msgid "Home"
-msgstr "Page personnelle"
+msgstr "Accueil"
 
 #: data/templates/toolbar.inc.php:11 www/watchlist.php:106
-#, fuzzy
 msgid "Watchlist"
-msgstr "Liste des signets vus"
+msgstr "À surveiller"
 
 #: data/templates/toolbar.inc.php:12 www/profile.php:67
 msgid "Profile"
@@ -1491,9 +1490,8 @@ msgid "User added to your watchlist"
 msgstr "Utilisateur ajouté à la liste des consultés."
 
 #: www/watchlist.php:104
-#, fuzzy
 msgid "My Watchlist"
-msgstr "Ma liste de suivi"
+msgstr "Mes signets surveillés"
 
 #: www/api/httpauth.inc.php:11
 msgid "Use of the API calls requires authentication."
