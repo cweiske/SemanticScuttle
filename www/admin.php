@@ -47,8 +47,9 @@ if ( !$currentUser->isAdmin() ) {
 
 @list($url, $action, $user) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
 
-if ( $action
-&& (strpos($_SERVER['HTTP_REFERER'], ROOT.'admin') === 0)  // Prevent CSRF attacks
+if ($action
+    && (strpos($_SERVER['HTTP_REFERER'], ROOT.'admin') <= 6)
+    // Prevent CSRF attacks. 6 is needed for "//example.org"-root urls
 ) {
 	switch ( $action ) {
 		case 'delete':
