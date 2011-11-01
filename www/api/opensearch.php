@@ -1,8 +1,8 @@
 <?php 
 $httpContentType = 'text/xml';
 require_once '../www-header.php';
+echo '<' . '?xml version="1.0" encoding="utf-8" ?' . ">\n";
 ?>
-<?xml version="1.0" encoding="utf-8" ?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
   <ShortName><?php echo $GLOBALS['sitename']?></ShortName>
   <LongName></LongName>
