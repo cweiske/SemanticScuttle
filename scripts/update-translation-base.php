@@ -11,7 +11,7 @@ passthru(
     . ' src/SemanticScuttle/*.php'
     . ' src/SemanticScuttle/Model/*.php'
     . ' src/SemanticScuttle/Service/*.php'
-    . ' data/templates/*.php'
+    . ' data/templates/default/*.php'
     . ' www/*.php'
     . ' www/*/*.php'
 );

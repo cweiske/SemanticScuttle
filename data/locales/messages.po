@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-11 17:51+0200\n"
+"POT-Creation-Date: 2011-11-01 17:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,9 +31,9 @@ msgid "Line"
 msgstr ""
 
 #: src/SemanticScuttle/functions.php:207
-#: data/templates/importDelicious.tpl.php:8
-#: data/templates/importNetscape.tpl.php:9
-#: data/templates/importStructure.tpl.php:10
+#: data/templates/default/importDelicious.tpl.php:8
+#: data/templates/default/importNetscape.tpl.php:9
+#: data/templates/default/importStructure.tpl.php:10
 msgid "File"
 msgstr ""
 
@@ -65,648 +65,688 @@ msgstr ""
 msgid "DEBUG MODE"
 msgstr ""
 
-#: data/templates/about.tpl.php:6
+#: data/templates/default/about.tpl.php:6
 msgid ""
 "<strong>Store</strong> all your favourite links in one place, accessible "
 "from anywhere."
 msgstr ""
 
-#: data/templates/about.tpl.php:7
+#: data/templates/default/about.tpl.php:7
 msgid ""
 "<strong>Share</strong> your bookmarks with everyone, with friends on your "
 "watchlist or just keep them private."
 msgstr ""
 
-#: data/templates/about.tpl.php:8
+#: data/templates/default/about.tpl.php:8
 msgid ""
 "<strong>Tag</strong> your bookmarks with as many labels as you want, instead "
 "of wrestling with folders."
 msgstr ""
 
-#: data/templates/about.tpl.php:9
+#: data/templates/default/about.tpl.php:9
 msgid "Register now"
 msgstr ""
 
-#: data/templates/about.tpl.php:9
+#: data/templates/default/about.tpl.php:9
 #, php-format
 msgid " to start using %s!"
 msgstr ""
 
-#: data/templates/about.tpl.php:12
+#: data/templates/default/about.tpl.php:12
 msgid "Geek Stuff"
 msgstr ""
 
-#: data/templates/about.tpl.php:14
+#: data/templates/default/about.tpl.php:14
 msgid "is licensed under the "
 msgstr ""
 
-#: data/templates/about.tpl.php:14
+#: data/templates/default/about.tpl.php:14
 msgid "you can freely host it on your own web server."
 msgstr ""
 
-#: data/templates/about.tpl.php:15
+#: data/templates/default/about.tpl.php:15
 #, php-format
 msgid ""
-"%1$s supports most of the <a href=\"http://www.delicious.com/help/api\">del.icio.us "
-"<abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all "
-"of the neat tools made for that system can be modified to work with %1$s "
-"instead. If you find a tool that won't let you change the API address, ask "
-"the creator to add this setting. You never know, they might just do it."
+"%1$s supports most of the <a href=\"http://www.delicious.com/help/api\">del."
+"icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. "
+"Almost all of the neat tools made for that system can be modified to work "
+"with %1$s instead. If you find a tool that won't let you change the API "
+"address, ask the creator to add this setting. You never know, they might "
+"just do it."
 msgstr ""
 
-#: data/templates/about.tpl.php:24
+#: data/templates/default/about.tpl.php:24
 msgid "Tips"
 msgstr ""
 
-#: data/templates/about.tpl.php:26
+#: data/templates/default/about.tpl.php:26
 msgid "Add search plugin into your browser:"
 msgstr ""
 
-#: data/templates/about.tpl.php:27
+#: data/templates/default/about.tpl.php:27
 msgid ""
 "The secret tag \"system:unfiled\" allows you to find bookmarks without tags."
 msgstr ""
 
-#: data/templates/about.tpl.php:28
+#: data/templates/default/about.tpl.php:28
 msgid ""
 "The secret tag \"system:imported\" allows you to find imported bookmarks."
 msgstr ""
 
-#: data/templates/admin.tpl.php:5
+#: data/templates/default/admin.tpl.php:5
 msgid "Users management"
 msgstr ""
 
-#: data/templates/admin.tpl.php:14
+#: data/templates/default/admin.tpl.php:14
 msgid "Public/Shared/Private"
 msgstr ""
 
-#: data/templates/admin.tpl.php:14 data/templates/bookmarks.tpl.php:113
+#: data/templates/default/admin.tpl.php:14
+#: data/templates/default/bookmarks.tpl.php:115
 msgid "bookmark(s)"
 msgstr ""
 
-#: data/templates/admin.tpl.php:19 data/templates/tag2tagadd.tpl.php:21
-#: data/templates/tag2tagdelete.tpl.php:13
-#: data/templates/tag2tagedit.tpl.php:14 data/templates/tag2tagedit.tpl.php:35
-#: data/templates/tagdelete.tpl.php:6 www/jsScuttle.php:23
+#: data/templates/default/admin.tpl.php:19
+#: data/templates/default/tag2tagadd.tpl.php:21
+#: data/templates/default/tag2tagdelete.tpl.php:13
+#: data/templates/default/tag2tagedit.tpl.php:14
+#: data/templates/default/tag2tagedit.tpl.php:35
+#: data/templates/default/tagdelete.tpl.php:6 www/jsScuttle.php:24
 msgid "Are you sure?"
 msgstr ""
 
-#: data/templates/admin.tpl.php:19 data/templates/bookmarks.tpl.php:300
+#: data/templates/default/admin.tpl.php:19
+#: data/templates/default/bookmarks.tpl.php:305
 msgid "Delete"
 msgstr ""
 
-#: data/templates/admin.tpl.php:27
+#: data/templates/default/admin.tpl.php:27
 msgid "Other actions"
 msgstr ""
 
-#: data/templates/admin.tpl.php:29
+#: data/templates/default/admin.tpl.php:29
 msgid "Check all URLs (May take some time)"
 msgstr ""
 
-#: data/templates/bookmarkcommondescriptionedit.tpl.php:16
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:16
 msgid ""
 "Collaborative description: these fields can be viewed and modified by every "
 "users"
 msgstr ""
 
-#: data/templates/bookmarkcommondescriptionedit.tpl.php:18
-#: data/templates/bookmarks.tpl.php:157 data/templates/editbookmark.tpl.php:51
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:18
+#: data/templates/default/bookmarks.tpl.php:159
+#: data/templates/default/editbookmark.tpl.php:51
 msgid "Title"
 msgstr ""
 
-#: data/templates/bookmarkcommondescriptionedit.tpl.php:23
-#: data/templates/editbookmark.tpl.php:57
-#: data/templates/editprofile.tpl.php:45 data/templates/profile.tpl.php:33
-#: data/templates/tagcommondescriptionedit.tpl.php:13
-#: data/templates/tagedit.tpl.php:12
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:23
+#: data/templates/default/editbookmark.tpl.php:57
+#: data/templates/default/editprofile.tpl.php:53
+#: data/templates/default/profile.tpl.php:33
+#: data/templates/default/tagcommondescriptionedit.tpl.php:13
+#: data/templates/default/tagedit.tpl.php:12
 msgid "Description"
 msgstr ""
 
-#: data/templates/bookmarkcommondescriptionedit.tpl.php:31
-#: data/templates/tagcommondescriptionedit.tpl.php:21
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:31
+#: data/templates/default/tagcommondescriptionedit.tpl.php:21
 msgid "Last modification:"
 msgstr ""
 
-#: data/templates/bookmarkcommondescriptionedit.tpl.php:43
-#: data/templates/tagcommondescriptionedit.tpl.php:33
-#: data/templates/tagedit.tpl.php:18
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:43
+#: data/templates/default/tagcommondescriptionedit.tpl.php:33
+#: data/templates/default/tagedit.tpl.php:18
 msgid "Update"
 msgstr ""
 
-#: data/templates/bookmarkcommondescriptionedit.tpl.php:44
-#: data/templates/editbookmark.tpl.php:111
-#: data/templates/tag2tagadd.tpl.php:24 data/templates/tag2tagedit.tpl.php:38
-#: data/templates/tagcommondescriptionedit.tpl.php:34
-#: data/templates/tagedit.tpl.php:19 data/templates/tagrename.tpl.php:25
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:44
+#: data/templates/default/editbookmark.tpl.php:111
+#: data/templates/default/tag2tagadd.tpl.php:24
+#: data/templates/default/tag2tagedit.tpl.php:38
+#: data/templates/default/tagcommondescriptionedit.tpl.php:34
+#: data/templates/default/tagedit.tpl.php:19
+#: data/templates/default/tagrename.tpl.php:25
 msgid "Cancel"
 msgstr ""
 
-#: data/templates/bookmarklet.inc.php:1
+#: data/templates/default/bookmarklet.inc.php:1
 msgid "Bookmarklet"
 msgstr ""
 
-#: data/templates/bookmarklet.inc.php:11
+#: data/templates/default/bookmarklet.inc.php:11
 #, php-format
 msgid ""
 "Click one of the following bookmarklets to add a button you can click "
 "whenever you want to add the page you are on to %s"
 msgstr ""
 
-#: data/templates/bookmarklet.inc.php:20
+#: data/templates/default/bookmarklet.inc.php:20
 #, php-format
 msgid ""
 "Drag one of the following bookmarklets to your browser's bookmarks and click "
 "it whenever you want to add the page you are on to %s"
 msgstr ""
 
-#: data/templates/bookmarklet.inc.php:67
-#: data/templates/bookmarklet.inc.php:100
+#: data/templates/default/bookmarklet.inc.php:67
+#: data/templates/default/bookmarklet.inc.php:100
 #, php-format
 msgid "Post to %s"
 msgstr ""
 
-#: data/templates/bookmarklet.inc.php:93
-#: data/templates/bookmarklet.inc.php:110
+#: data/templates/default/bookmarklet.inc.php:93
+#: data/templates/default/bookmarklet.inc.php:110
 #, php-format
 msgid "Post to %s (Pop-up)"
 msgstr ""
 
-#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:24
+#: data/templates/default/bookmarks-vote-horizontal.inc.tpl.php:24
 #, php-format
 msgid "Voting <span class=\"voting\">%d</span>"
 msgstr ""
 
-#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:32
-#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:35
+#: data/templates/default/bookmarks-vote-horizontal.inc.tpl.php:32
+#: data/templates/default/bookmarks-vote-horizontal.inc.tpl.php:35
 msgid "Vote for"
 msgstr ""
 
-#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:43
-#: data/templates/bookmarks-vote-horizontal.inc.tpl.php:46
+#: data/templates/default/bookmarks-vote-horizontal.inc.tpl.php:43
+#: data/templates/default/bookmarks-vote-horizontal.inc.tpl.php:46
 msgid "Vote against"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:42
+#: data/templates/default/bookmarks.tpl.php:43
 msgid "Bookmarks on this page are managed by an admin user."
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:71 data/templates/bookmarks.tpl.php:72
+#: data/templates/default/bookmarks.tpl.php:73
+#: data/templates/default/bookmarks.tpl.php:74
 msgid "Edit the common description of this tag"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:75 data/templates/bookmarks.tpl.php:76
+#: data/templates/default/bookmarks.tpl.php:77
+#: data/templates/default/bookmarks.tpl.php:78
 msgid "Edit the common description of this bookmark"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:96 data/templates/bookmarks.tpl.php:97
+#: data/templates/default/bookmarks.tpl.php:98
+#: data/templates/default/bookmarks.tpl.php:99
 msgid "Edit your personal description of this tag"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:113 data/templates/tags.tpl.php:10
-#: data/templates/users.tpl.php:8
+#: data/templates/default/bookmarks.tpl.php:115
+#: data/templates/default/tags.tpl.php:10
+#: data/templates/default/users.tpl.php:8
 msgid "Sort by:"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:155
+#: data/templates/default/bookmarks.tpl.php:157
 msgid "Date"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:160
+#: data/templates/default/bookmarks.tpl.php:162
 msgid "Voting"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:169
+#: data/templates/default/bookmarks.tpl.php:171
 msgid "Bookmarks from other users for this tag"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:174
+#: data/templates/default/bookmarks.tpl.php:176
 msgid "Only your bookmarks for this tag"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:197 data/templates/bookmarks.tpl.php:203
+#: data/templates/default/bookmarks.tpl.php:199
+#: data/templates/default/bookmarks.tpl.php:205
 msgid "First"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:198 data/templates/bookmarks.tpl.php:204
+#: data/templates/default/bookmarks.tpl.php:200
+#: data/templates/default/bookmarks.tpl.php:206
 msgid "Previous"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:211 data/templates/bookmarks.tpl.php:214
+#: data/templates/default/bookmarks.tpl.php:213
+#: data/templates/default/bookmarks.tpl.php:216
 msgid "Next"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:212 data/templates/bookmarks.tpl.php:215
+#: data/templates/default/bookmarks.tpl.php:214
+#: data/templates/default/bookmarks.tpl.php:217
 msgid "Last"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:228
+#: data/templates/default/bookmarks.tpl.php:233
 #, php-format
 msgid "Page %d of %d"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:290
+#: data/templates/default/bookmarks.tpl.php:295
 msgid "Tags:"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:297
+#: data/templates/default/bookmarks.tpl.php:302
 msgid "Edit"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:305
+#: data/templates/default/bookmarks.tpl.php:310
 msgid "Last update"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:308
+#: data/templates/default/bookmarks.tpl.php:313
 msgid "by"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:312
+#: data/templates/default/bookmarks.tpl.php:317
 msgid "you"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:328
+#: data/templates/default/bookmarks.tpl.php:333
 #, php-format
 msgid " and %s1 other%s"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:331
+#: data/templates/default/bookmarks.tpl.php:336
 #, php-format
 msgid " and %2$s%1$s others%3$s"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:345
+#: data/templates/default/bookmarks.tpl.php:350
 msgid "Copy this bookmark to YOUR bookmarks."
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:346
+#: data/templates/default/bookmarks.tpl.php:351
 msgid "Copy"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:366
+#: data/templates/default/bookmarks.tpl.php:376
 msgid "This bookmark is certified by an admin user."
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:419
+#: data/templates/default/bookmarks.tpl.php:430
 msgid "Private Note on this bookmark"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:433
+#: data/templates/default/bookmarks.tpl.php:444
 msgid "Come back to the top of this page."
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:433
+#: data/templates/default/bookmarks.tpl.php:444
 msgid "Top of the page"
 msgstr ""
 
-#: data/templates/bookmarks.tpl.php:439
+#: data/templates/default/bookmarks.tpl.php:450
 msgid "No bookmarks available"
 msgstr ""
 
-#: data/templates/bottom.inc.php:5 data/templates/toolbar.inc.php:15
-#: data/templates/toolbar.inc.php:28 www/about.php:23 www/about.php:24
+#: data/templates/default/bottom.inc.php:5
+#: data/templates/default/toolbar.inc.php:15
+#: data/templates/default/toolbar.inc.php:28 www/about.php:23 www/about.php:24
 msgid "About"
 msgstr ""
 
-#: data/templates/bottom.inc.php:7
+#: data/templates/default/bottom.inc.php:7
 msgid "Propulsed by "
 msgstr ""
 
-#: data/templates/dynamictags.inc.php:56
-#: data/templates/sidebar.block.common.php:19
-#: data/templates/sidebar.block.popular.php:34
-#: data/templates/sidebar.block.recent.php:29 data/templates/tags.tpl.php:19
+#: data/templates/default/dynamictags.inc.php:56
+#: data/templates/default/sidebar.block.common.php:19
+#: data/templates/default/sidebar.block.popular.php:34
+#: data/templates/default/sidebar.block.recent.php:29
+#: data/templates/default/tags.tpl.php:19
 msgid "bookmark"
 msgid_plural "bookmarks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: data/templates/dynamictags.inc.php:105
-#: data/templates/sidebar.block.common.php:9
-#: data/templates/sidebar.block.menu.php:74
-#: data/templates/sidebar.block.popular.php:23
-#: data/templates/sidebar.block.recent.php:34
-#: data/templates/toolbar.inc.php:27 www/populartags.php:46
+#: data/templates/default/dynamictags.inc.php:105
+#: data/templates/default/sidebar.block.common.php:9
+#: data/templates/default/sidebar.block.menu.php:74
+#: data/templates/default/sidebar.block.popular.php:23
+#: data/templates/default/sidebar.block.recent.php:34
+#: data/templates/default/toolbar.inc.php:27 www/populartags.php:46
 msgid "Popular Tags"
 msgstr ""
 
-#: data/templates/dynamictags.inc.php:108
+#: data/templates/default/dynamictags.inc.php:108
 msgid "Popular Tags From All Users"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:46
+#: data/templates/default/editbookmark.tpl.php:46
 msgid "Address"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:48
-#: data/templates/editbookmark.tpl.php:53
-#: data/templates/editprofile.tpl.php:29 data/templates/tagrename.tpl.php:14
-#: data/templates/tagrename.tpl.php:19
+#: data/templates/default/editbookmark.tpl.php:48
+#: data/templates/default/editbookmark.tpl.php:53
+#: data/templates/default/editprofile.tpl.php:29
+#: data/templates/default/tagrename.tpl.php:14
+#: data/templates/default/tagrename.tpl.php:19
 msgid "Required"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:58
+#: data/templates/default/editbookmark.tpl.php:58
 msgid "Add Note"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:61
+#: data/templates/default/editbookmark.tpl.php:61
 msgid ""
 "You can use anchors to delimite attributes. for example: [publisher]blah[/"
 "publisher] "
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:64
+#: data/templates/default/editbookmark.tpl.php:64
 msgid "Suggested anchors: "
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:76
+#: data/templates/default/editbookmark.tpl.php:76
 msgid "Private Note"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:78
+#: data/templates/default/editbookmark.tpl.php:78
 msgid "Just visible by you and your contacts."
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:82 data/templates/toolbar.inc.php:10
-#: www/tags.php:45 www/tags.php:67
+#: data/templates/default/editbookmark.tpl.php:82
+#: data/templates/default/toolbar.inc.php:10 www/tags.php:45 www/tags.php:67
 msgid "Tags"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:86
+#: data/templates/default/editbookmark.tpl.php:86
 msgid "Comma-separated"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:90 data/templates/tag2tagadd.tpl.php:9
+#: data/templates/default/editbookmark.tpl.php:90
+#: data/templates/default/tag2tagadd.tpl.php:9
 msgid ""
 "Note: use \">\" to include one tag in another. e.g.: europe>france>paris"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:94 data/templates/tag2tagadd.tpl.php:8
+#: data/templates/default/editbookmark.tpl.php:94
+#: data/templates/default/tag2tagadd.tpl.php:8
 msgid "Note: use \"=\" to make synonym two tags. e.g.: france=frenchcountry"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:97
-#: data/templates/importDelicious.tpl.php:15
-#: data/templates/importNetscape.tpl.php:16
+#: data/templates/default/editbookmark.tpl.php:97
+#: data/templates/default/importDelicious.tpl.php:15
+#: data/templates/default/importNetscape.tpl.php:16
 msgid "Privacy"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:100
-#: data/templates/importDelicious.tpl.php:18
-#: data/templates/importNetscape.tpl.php:19
+#: data/templates/default/editbookmark.tpl.php:100
+#: data/templates/default/importDelicious.tpl.php:18
+#: data/templates/default/importNetscape.tpl.php:19
 msgid "Public"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:101
+#: data/templates/default/editbookmark.tpl.php:101
 msgid "Shared with Watch List"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:102
-#: data/templates/importDelicious.tpl.php:20
-#: data/templates/importNetscape.tpl.php:21
+#: data/templates/default/editbookmark.tpl.php:102
+#: data/templates/default/importDelicious.tpl.php:20
+#: data/templates/default/importNetscape.tpl.php:21
 msgid "Private"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:115
+#: data/templates/default/editbookmark.tpl.php:115
 msgid "Delete Bookmark"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:120
+#: data/templates/default/editbookmark.tpl.php:120
 msgid "edit common description"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:212
-#: data/templates/importDelicious.tpl.php:26
-#: data/templates/importNetscape.tpl.php:27
-#: data/templates/importStructure.tpl.php:16
+#: data/templates/default/editbookmark.tpl.php:212
+#: data/templates/default/importDelicious.tpl.php:26
+#: data/templates/default/importNetscape.tpl.php:27
+#: data/templates/default/importStructure.tpl.php:16
 msgid "Import"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:214
+#: data/templates/default/editbookmark.tpl.php:214
 msgid "Import bookmarks from bookmark file"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:214
+#: data/templates/default/editbookmark.tpl.php:214
 msgid "Internet Explorer, Mozilla Firefox and Netscape"
 msgstr ""
 
-#: data/templates/editbookmark.tpl.php:215
+#: data/templates/default/editbookmark.tpl.php:215
 msgid "Import bookmarks from del.icio.us"
 msgstr ""
 
-#: data/templates/editprofile-sslclientcerts.tpl.php:11
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:11
 msgid "SSL client certificates"
 msgstr ""
 
-#: data/templates/editprofile-sslclientcerts.tpl.php:17
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:17
 msgid "Serial"
 msgstr ""
 
-#: data/templates/editprofile-sslclientcerts.tpl.php:18
-#: data/templates/editprofile.tpl.php:37 data/templates/profile.tpl.php:17
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:18
+#: data/templates/default/editprofile.tpl.php:45
+#: data/templates/default/profile.tpl.php:17
 msgid "Name"
 msgstr ""
 
-#: data/templates/editprofile-sslclientcerts.tpl.php:19
-#: data/templates/profile.tpl.php:11
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:19
+#: data/templates/default/profile.tpl.php:11
 msgid "Email"
 msgstr ""
 
-#: data/templates/editprofile-sslclientcerts.tpl.php:20
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:20
 msgid "Issuer"
 msgstr ""
 
-#: data/templates/editprofile-sslclientcerts.tpl.php:30
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:30
 msgid "delete"
 msgstr ""
 
-#: data/templates/editprofile-sslclientcerts.tpl.php:43
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:43
 msgid "No certificates registered"
 msgstr ""
 
-#: data/templates/editprofile-sslclientcerts.tpl.php:48
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:48
 msgid "Your current certificate is already registered with your account."
 msgstr ""
 
-#: data/templates/editprofile-sslclientcerts.tpl.php:53
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:53
 msgid "Register current certificate to automatically login."
 msgstr ""
 
-#: data/templates/editprofile-sslclientcerts.tpl.php:59
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:59
 msgid "Your browser does not provide a certificate."
 msgstr ""
 
-#: data/templates/editprofile.tpl.php:8
+#: data/templates/default/editprofile.tpl.php:8
 msgid "Account Details"
 msgstr ""
 
-#: data/templates/editprofile.tpl.php:12 data/templates/login.tpl.php:21
-#: data/templates/password.tpl.php:10 data/templates/profile.tpl.php:6
-#: data/templates/register.tpl.php:16
+#: data/templates/default/editprofile.tpl.php:12
+#: data/templates/default/login.tpl.php:21
+#: data/templates/default/password.tpl.php:10
+#: data/templates/default/profile.tpl.php:6
+#: data/templates/default/register.tpl.php:16
 msgid "Username"
 msgstr ""
 
-#: data/templates/editprofile.tpl.php:17
+#: data/templates/default/editprofile.tpl.php:17
 msgid "New Password"
 msgstr ""
 
-#: data/templates/editprofile.tpl.php:22
+#: data/templates/default/editprofile.tpl.php:22
 msgid "Confirm Password"
 msgstr ""
 
-#: data/templates/editprofile.tpl.php:27 data/templates/password.tpl.php:14
-#: data/templates/register.tpl.php:26
+#: data/templates/default/editprofile.tpl.php:27
+#: data/templates/default/password.tpl.php:14
+#: data/templates/default/register.tpl.php:26
 msgid "E-mail"
 msgstr ""
 
-#: data/templates/editprofile.tpl.php:33
+#: data/templates/default/editprofile.tpl.php:32
+msgid "Private RSS Feed"
+msgstr ""
+
+#: data/templates/default/editprofile.tpl.php:34
+msgid "Enable"
+msgstr ""
+
+#: data/templates/default/editprofile.tpl.php:36
+msgid "Generate New Key"
+msgstr ""
+
+#: data/templates/default/editprofile.tpl.php:41
 msgid "Personal Details"
 msgstr ""
 
-#: data/templates/editprofile.tpl.php:41 data/templates/profile.tpl.php:23
+#: data/templates/default/editprofile.tpl.php:49
+#: data/templates/default/profile.tpl.php:23
 msgid "Homepage"
 msgstr ""
 
-#: data/templates/editprofile.tpl.php:50 www/edit.php:113
+#: data/templates/default/editprofile.tpl.php:58 www/edit.php:113
 msgid "Save Changes"
 msgstr ""
 
-#: data/templates/editprofile.tpl.php:55
-#: data/templates/sidebar.block.tagactions.php:17
-#: data/templates/sidebar.block.watchstatus.php:18
+#: data/templates/default/editprofile.tpl.php:63
+#: data/templates/default/sidebar.block.tagactions.php:17
+#: data/templates/default/sidebar.block.watchstatus.php:18
 msgid "Actions"
 msgstr ""
 
-#: data/templates/editprofile.tpl.php:58
+#: data/templates/default/editprofile.tpl.php:66
 msgid "Export bookmarks"
 msgstr ""
 
-#: data/templates/editprofile.tpl.php:60
+#: data/templates/default/editprofile.tpl.php:68
 msgid "HTML file (for browsers)"
 msgstr ""
 
-#: data/templates/editprofile.tpl.php:61
+#: data/templates/default/editprofile.tpl.php:69
 msgid "XML file (like del.icio.us)"
 msgstr ""
 
-#: data/templates/editprofile.tpl.php:62
+#: data/templates/default/editprofile.tpl.php:70
 msgid "CSV file (for spreadsheet tools)"
 msgstr ""
 
-#: data/templates/error.404.tpl.php:5
+#: data/templates/default/error.404.tpl.php:5
 msgid "Not Found"
 msgstr ""
 
-#: data/templates/error.404.tpl.php:6
+#: data/templates/default/error.404.tpl.php:6
 msgid "The requested URL was not found on this server"
 msgstr ""
 
-#: data/templates/error.500.tpl.php:5
+#: data/templates/default/error.500.tpl.php:5
 msgid "General server error"
 msgstr ""
 
-#: data/templates/error.500.tpl.php:6
+#: data/templates/default/error.500.tpl.php:6
 msgid "The requested URL could not be processed"
 msgstr ""
 
-#: data/templates/importDelicious.tpl.php:19
-#: data/templates/importNetscape.tpl.php:20
+#: data/templates/default/importDelicious.tpl.php:19
+#: data/templates/default/importNetscape.tpl.php:20
 msgid "Shared with Watchlist"
 msgstr ""
 
-#: data/templates/importDelicious.tpl.php:31
-#: data/templates/importNetscape.tpl.php:32
-#: data/templates/importStructure.tpl.php:21
+#: data/templates/default/importDelicious.tpl.php:31
+#: data/templates/default/importNetscape.tpl.php:32
+#: data/templates/default/importStructure.tpl.php:21
 msgid "Instructions"
 msgstr ""
 
-#: data/templates/importDelicious.tpl.php:33
+#: data/templates/default/importDelicious.tpl.php:33
 msgid ""
 "Log in to the <a href=\"http://del.icio.us/api/posts/all\">export page at "
 "del.icio.us</a>"
 msgstr ""
 
-#: data/templates/importDelicious.tpl.php:34
+#: data/templates/default/importDelicious.tpl.php:34
 msgid ""
 "Save the resulting <abbr title=\"Extensible Markup Language\">XML</abbr> "
 "file to your computer"
 msgstr ""
 
-#: data/templates/importDelicious.tpl.php:35
+#: data/templates/default/importDelicious.tpl.php:35
 msgid ""
 "Click <kbd>Browse...</kbd> to find this file on your computer. The maximum "
 "size the file can be is 1MB"
 msgstr ""
 
-#: data/templates/importDelicious.tpl.php:36
-#: data/templates/importNetscape.tpl.php:43
+#: data/templates/default/importDelicious.tpl.php:36
+#: data/templates/default/importNetscape.tpl.php:43
 msgid "Select the default privacy setting for your imported bookmarks"
 msgstr ""
 
-#: data/templates/importDelicious.tpl.php:37
-#: data/templates/importNetscape.tpl.php:44
+#: data/templates/default/importDelicious.tpl.php:37
+#: data/templates/default/importNetscape.tpl.php:44
 msgid ""
 "Click <kbd>Import</kbd> to start importing the bookmarks; it may take a "
 "minute"
 msgstr ""
 
-#: data/templates/importNetscape.tpl.php:35
+#: data/templates/default/importNetscape.tpl.php:35
 msgid "Export your bookmarks from your browser to a file"
 msgstr ""
 
-#: data/templates/importNetscape.tpl.php:37
+#: data/templates/default/importNetscape.tpl.php:37
 msgid ""
 "Internet Explorer: <kbd>File &gt; Import and Export... &gt; Export Favorites"
 msgstr ""
 
-#: data/templates/importNetscape.tpl.php:38
+#: data/templates/default/importNetscape.tpl.php:38
 msgid ""
 "Mozilla Firefox: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; File &gt; "
 "Export..."
 msgstr ""
 
-#: data/templates/importNetscape.tpl.php:39
+#: data/templates/default/importNetscape.tpl.php:39
 msgid ""
 "Netscape: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; Tools &gt; Export..."
 msgstr ""
 
-#: data/templates/importNetscape.tpl.php:42
+#: data/templates/default/importNetscape.tpl.php:42
 msgid ""
 "Click <kbd>Browse...</kbd> to find the saved bookmark file on your computer. "
 "The maximum size the file can be is 1MB"
 msgstr ""
 
-#: data/templates/importStructure.tpl.php:24
+#: data/templates/default/importStructure.tpl.php:24
 msgid "Create your structure into a simple text file and following this model:"
 msgstr ""
 
-#: data/templates/importStructure.tpl.php:35
+#: data/templates/default/importStructure.tpl.php:35
 msgid ""
 "Then import the file. The tags and their relations will be added to your "
 "profile."
 msgstr ""
 
-#: data/templates/login.tpl.php:13
+#: data/templates/default/login.tpl.php:13
 msgid "Please activate cookies"
 msgstr ""
 
-#: data/templates/login.tpl.php:26 data/templates/register.tpl.php:21
+#: data/templates/default/login.tpl.php:26
+#: data/templates/default/register.tpl.php:21
 msgid "Password"
 msgstr ""
 
-#: data/templates/login.tpl.php:28
+#: data/templates/default/login.tpl.php:28
 msgid "Don't ask for my password for 2 weeks"
 msgstr ""
 
-#: data/templates/login.tpl.php:32 data/templates/toolbar.inc.php:29
-#: www/login.php:57
+#: data/templates/default/login.tpl.php:32
+#: data/templates/default/toolbar.inc.php:29 www/login.php:57
 msgid "Log In"
 msgstr ""
 
-#: data/templates/login.tpl.php:36
+#: data/templates/default/login.tpl.php:36
 msgid "Forgotten your password?"
 msgstr ""
 
-#: data/templates/password.tpl.php:5
+#: data/templates/default/password.tpl.php:5
 #, php-format
 msgid ""
 "If you have forgotten your password, %s can generate a new one. Enter the "
@@ -714,331 +754,337 @@ msgid ""
 "e-mail your new password to you."
 msgstr ""
 
-#: data/templates/password.tpl.php:19
+#: data/templates/default/password.tpl.php:19
 msgid "Generate Password"
 msgstr ""
 
-#: data/templates/profile.tpl.php:28
+#: data/templates/default/profile.tpl.php:28
 msgid "Member Since"
 msgstr ""
 
-#: data/templates/profile.tpl.php:40
-#: data/templates/sidebar.block.watchlist.php:30
+#: data/templates/default/profile.tpl.php:40
+#: data/templates/default/sidebar.block.watchlist.php:30
 msgid "Watching"
 msgstr ""
 
-#: data/templates/profile.tpl.php:55
-#: data/templates/sidebar.block.watchlist.php:52
+#: data/templates/default/profile.tpl.php:55
+#: data/templates/default/sidebar.block.watchlist.php:52
 msgid "Watched By"
 msgstr ""
 
-#: data/templates/profile.tpl.php:68 data/templates/toolbar.inc.php:9
+#: data/templates/default/profile.tpl.php:68
+#: data/templates/default/toolbar.inc.php:9
 msgid "Bookmarks"
 msgstr ""
 
-#: data/templates/profile.tpl.php:69
+#: data/templates/default/profile.tpl.php:69
 msgid "Go to bookmarks"
 msgstr ""
 
-#: data/templates/register.tpl.php:11
+#: data/templates/default/register.tpl.php:11
 #, php-format
 msgid ""
 "Sign up here to create a free %s account. All the information requested "
 "below is required"
 msgstr ""
 
-#: data/templates/register.tpl.php:18
+#: data/templates/default/register.tpl.php:18
 msgid ""
 " at least 5 characters, alphanumeric (no spaces, no dots or other special "
 "ones)"
 msgstr ""
 
-#: data/templates/register.tpl.php:28
+#: data/templates/default/register.tpl.php:28
 msgid " to send you your password if you forget it"
 msgstr ""
 
-#: data/templates/register.tpl.php:33
+#: data/templates/default/register.tpl.php:33
 msgid "Antispam question"
 msgstr ""
 
-#: data/templates/register.tpl.php:41 data/templates/toolbar.inc.php:31
-#: www/register.php:99
+#: data/templates/default/register.tpl.php:41
+#: data/templates/default/toolbar.inc.php:31 www/register.php:99
 msgid "Register"
 msgstr ""
 
-#: data/templates/search.menu.php:27
+#: data/templates/default/search.menu.php:27
 msgid "Search..."
 msgstr ""
 
-#: data/templates/search.menu.php:28
+#: data/templates/default/search.menu.php:28
 msgid "in"
 msgstr ""
 
-#: data/templates/search.menu.php:34
+#: data/templates/default/search.menu.php:34
 msgid "this user's bookmarks"
 msgstr ""
 
-#: data/templates/search.menu.php:39
+#: data/templates/default/search.menu.php:39
 msgid "my bookmarks"
 msgstr ""
 
-#: data/templates/search.menu.php:40
+#: data/templates/default/search.menu.php:40
 msgid "my watchlist"
 msgstr ""
 
-#: data/templates/search.menu.php:44
+#: data/templates/default/search.menu.php:44
 msgid "all bookmarks"
 msgstr ""
 
-#: data/templates/search.menu.php:54
+#: data/templates/default/search.menu.php:54
 msgid "Search"
 msgstr ""
 
-#: data/templates/sidebar.block.linked.php:23
+#: data/templates/default/sidebar.block.linked.php:23
 msgid "Linked Tags"
 msgstr ""
 
-#: data/templates/sidebar.block.linked.php:28
-#: data/templates/sidebar.block.menu.php:46
+#: data/templates/default/sidebar.block.linked.php:28
+#: data/templates/default/sidebar.block.menu.php:46
 msgid "Add new link"
 msgstr ""
 
-#: data/templates/sidebar.block.linked.php:29
-#: data/templates/sidebar.block.menu.php:47
+#: data/templates/default/sidebar.block.linked.php:29
+#: data/templates/default/sidebar.block.menu.php:47
 msgid "Delete link"
 msgstr ""
 
-#: data/templates/sidebar.block.menu.php:35
+#: data/templates/default/sidebar.block.menu.php:35
 #, php-format
 msgid "Tags included into the tag '%s'"
 msgstr ""
 
-#: data/templates/sidebar.block.menu.php:35
+#: data/templates/default/sidebar.block.menu.php:35
 msgid "Menu Tags"
 msgstr ""
 
-#: data/templates/sidebar.block.menu.php:68
+#: data/templates/default/sidebar.block.menu.php:68
 msgid "See all your tags"
 msgstr ""
 
-#: data/templates/sidebar.block.menu.php:68
+#: data/templates/default/sidebar.block.menu.php:68
 msgid "all your tags"
 msgstr ""
 
-#: data/templates/sidebar.block.menu.php:70
+#: data/templates/default/sidebar.block.menu.php:70
 msgid "See all tags from this user"
 msgstr ""
 
-#: data/templates/sidebar.block.menu.php:70
+#: data/templates/default/sidebar.block.menu.php:70
 msgid "all tags from this user"
 msgstr ""
 
-#: data/templates/sidebar.block.menu.php:74
+#: data/templates/default/sidebar.block.menu.php:74
 msgid "See popular tags"
 msgstr ""
 
-#: data/templates/sidebar.block.menu2.php:21
+#: data/templates/default/sidebar.block.menu2.php:21
 msgid "Featured Menu Tags"
 msgstr ""
 
-#: data/templates/sidebar.block.menu2.php:25
+#: data/templates/default/sidebar.block.menu2.php:25
 msgid "This menu is composed of keywords (tags) organized by admins."
 msgstr ""
 
-#: data/templates/sidebar.block.recent.php:18
+#: data/templates/default/sidebar.block.recent.php:18
 msgid "Recent Tags"
 msgstr ""
 
-#: data/templates/sidebar.block.related.php:26
+#: data/templates/default/sidebar.block.related.php:26
 msgid "Related Tags"
 msgstr ""
 
-#: data/templates/sidebar.block.search.php:28
+#: data/templates/default/sidebar.block.search.php:28
 msgid "Last Searches"
 msgstr ""
 
-#: data/templates/sidebar.block.search.php:40
+#: data/templates/default/sidebar.block.search.php:40
 msgid "Number of bookmarks for this query"
 msgstr ""
 
-#: data/templates/sidebar.block.tagactions.php:9 www/tagrename.php:72
+#: data/templates/default/sidebar.block.tagactions.php:9 www/tagrename.php:72
 msgid "Rename Tag"
 msgid_plural "Rename Tags"
 msgstr[0] ""
 msgstr[1] ""
 
-#: data/templates/sidebar.block.tagactions.php:22 www/tagdelete.php:54
+#: data/templates/default/sidebar.block.tagactions.php:22 www/tagdelete.php:54
 msgid "Delete Tag"
 msgstr ""
 
-#: data/templates/sidebar.block.tagactions.php:24 www/tagedit.php:61
+#: data/templates/default/sidebar.block.tagactions.php:24 www/tagedit.php:61
 msgid "Edit Tag Description"
 msgstr ""
 
-#: data/templates/sidebar.block.tagactions.php:26
+#: data/templates/default/sidebar.block.tagactions.php:26
 #: www/tagcommondescriptionedit.php:76
 msgid "Edit Tag Common Description"
 msgstr ""
 
-#: data/templates/sidebar.block.tagactions.php:28
+#: data/templates/default/sidebar.block.tagactions.php:28
 msgid "Create a link to another tag"
 msgstr ""
 
-#: data/templates/sidebar.block.users.php:14
+#: data/templates/default/sidebar.block.users.php:14
 msgid "New Users"
 msgstr ""
 
-#: data/templates/sidebar.block.users.php:23 data/templates/users.tpl.php:24
+#: data/templates/default/sidebar.block.users.php:23
+#: data/templates/default/users.tpl.php:24
 msgid "bookmarks"
 msgstr ""
 
-#: data/templates/sidebar.block.users.php:30
+#: data/templates/default/sidebar.block.users.php:30
 msgid "See all users"
 msgstr ""
 
-#: data/templates/sidebar.block.users.php:30
+#: data/templates/default/sidebar.block.users.php:30
 msgid "All users"
 msgstr ""
 
-#: data/templates/sidebar.block.watchlist.php:19
+#: data/templates/default/sidebar.block.watchlist.php:19
 msgid "Close contacts are mutual contacts"
 msgstr ""
 
-#: data/templates/sidebar.block.watchlist.php:19
+#: data/templates/default/sidebar.block.watchlist.php:19
 msgid "Close contacts"
 msgstr ""
 
-#: data/templates/sidebar.block.watchlist.php:36
+#: data/templates/default/sidebar.block.watchlist.php:36
 msgid "Add a contact..."
 msgstr ""
 
-#: data/templates/sidebar.block.watchlist.php:36
+#: data/templates/default/sidebar.block.watchlist.php:36
 msgid "Type a username to add it to your contacts."
 msgstr ""
 
-#: data/templates/sidebar.block.watchlist.php:44
+#: data/templates/default/sidebar.block.watchlist.php:44
 msgid "Remove this contact"
 msgstr ""
 
-#: data/templates/sidebar.block.watchstatus.php:11
+#: data/templates/default/sidebar.block.watchstatus.php:11
 msgid "Remove from Watchlist"
 msgstr ""
 
-#: data/templates/sidebar.block.watchstatus.php:13
+#: data/templates/default/sidebar.block.watchstatus.php:13
 msgid "Add to Watchlist"
 msgstr ""
 
-#: data/templates/sidebar.linkedtags.inc.php:18
+#: data/templates/default/sidebar.linkedtags.inc.php:18
 msgid "Edit link"
 msgstr ""
 
-#: data/templates/sidebar.linkedtags.inc.php:47
+#: data/templates/default/sidebar.linkedtags.inc.php:47
 msgid "Synonyms:"
 msgstr ""
 
-#: data/templates/tag2tagadd.tpl.php:12
+#: data/templates/default/tag2tagadd.tpl.php:12
 msgid "Create new link:"
 msgstr ""
 
-#: data/templates/tag2tagadd.tpl.php:19
+#: data/templates/default/tag2tagadd.tpl.php:19
 #, php-format
 msgid ""
 "Note: include a tag into '%s' tag (e.g. %s>countries) display the tag into "
 "the menu box"
 msgstr ""
 
-#: data/templates/tag2tagadd.tpl.php:23 data/templates/tag2tagedit.tpl.php:37
+#: data/templates/default/tag2tagadd.tpl.php:23
+#: data/templates/default/tag2tagedit.tpl.php:37
 msgid "Create"
 msgstr ""
 
-#: data/templates/tag2tagadd.tpl.php:35
-#: data/templates/tag2tagdelete.tpl.php:27
-#: data/templates/tag2tagedit.tpl.php:51
+#: data/templates/default/tag2tagadd.tpl.php:35
+#: data/templates/default/tag2tagdelete.tpl.php:27
+#: data/templates/default/tag2tagedit.tpl.php:51
 msgid "Existing links:"
 msgstr ""
 
-#: data/templates/tag2tagadd.tpl.php:53
-#: data/templates/tag2tagdelete.tpl.php:45
-#: data/templates/tag2tagedit.tpl.php:69
+#: data/templates/default/tag2tagadd.tpl.php:53
+#: data/templates/default/tag2tagdelete.tpl.php:45
+#: data/templates/default/tag2tagedit.tpl.php:69
 msgid "No links"
 msgstr ""
 
-#: data/templates/tag2tagdelete.tpl.php:15
-#: data/templates/tag2tagedit.tpl.php:16 data/templates/tagdelete.tpl.php:8
-#: www/jsScuttle.php:23
+#: data/templates/default/tag2tagdelete.tpl.php:15
+#: data/templates/default/tag2tagedit.tpl.php:16
+#: data/templates/default/tagdelete.tpl.php:8 www/jsScuttle.php:24
 msgid "Yes"
 msgstr ""
 
-#: data/templates/tag2tagdelete.tpl.php:16
-#: data/templates/tag2tagedit.tpl.php:17 data/templates/tagdelete.tpl.php:9
-#: www/jsScuttle.php:23
+#: data/templates/default/tag2tagdelete.tpl.php:16
+#: data/templates/default/tag2tagedit.tpl.php:17
+#: data/templates/default/tagdelete.tpl.php:9 www/jsScuttle.php:24
 msgid "No"
 msgstr ""
 
-#: data/templates/tag2tagedit.tpl.php:6
+#: data/templates/default/tag2tagedit.tpl.php:6
 msgid "Delete the link"
 msgstr ""
 
-#: data/templates/tag2tagedit.tpl.php:29
+#: data/templates/default/tag2tagedit.tpl.php:29
 msgid "Create new link"
 msgstr ""
 
-#: data/templates/tagrename.tpl.php:12
+#: data/templates/default/tagrename.tpl.php:12
 msgid "Old"
 msgstr ""
 
-#: data/templates/tagrename.tpl.php:17
+#: data/templates/default/tagrename.tpl.php:17
 msgid "New"
 msgstr ""
 
-#: data/templates/tagrename.tpl.php:24
+#: data/templates/default/tagrename.tpl.php:24
 msgid "Rename"
 msgstr ""
 
-#: data/templates/tags.tpl.php:11 data/templates/users.tpl.php:9
+#: data/templates/default/tags.tpl.php:11
+#: data/templates/default/users.tpl.php:9
 msgid "Alphabet"
 msgstr ""
 
-#: data/templates/tags.tpl.php:12 data/templates/users.tpl.php:10
+#: data/templates/default/tags.tpl.php:12
+#: data/templates/default/users.tpl.php:10
 msgid "Popularity"
 msgstr ""
 
-#: data/templates/toolbar.inc.php:8 data/templates/toolbar.inc.php:26
+#: data/templates/default/toolbar.inc.php:8
+#: data/templates/default/toolbar.inc.php:26
 msgid "Home"
 msgstr ""
 
-#: data/templates/toolbar.inc.php:11 www/watchlist.php:106
+#: data/templates/default/toolbar.inc.php:11 www/watchlist.php:106
 msgid "Watchlist"
 msgstr ""
 
-#: data/templates/toolbar.inc.php:12 www/profile.php:67
+#: data/templates/default/toolbar.inc.php:12 www/profile.php:79
 msgid "Profile"
 msgstr ""
 
-#: data/templates/toolbar.inc.php:13 www/bookmarks.php:215
+#: data/templates/default/toolbar.inc.php:13 www/bookmarks.php:215
 msgid "Add a Bookmark"
 msgstr ""
 
-#: data/templates/toolbar.inc.php:14
+#: data/templates/default/toolbar.inc.php:14
 msgid "Log Out"
 msgstr ""
 
-#: data/templates/toolbar.inc.php:17
+#: data/templates/default/toolbar.inc.php:17
 msgid "Admin"
 msgstr ""
 
-#: data/templates/top.inc.php:55
+#: data/templates/default/top.inc.php:57
 msgid ""
 "Admins, your installation is in \"Debug Mode\" ($debugMode = true). To go in "
 "\"Normal Mode\" and hide debugging messages, change $debugMode to false into "
 "config.php."
 msgstr ""
 
-#: data/templates/users.tpl.php:20
+#: data/templates/default/users.tpl.php:20
 msgid "profile"
 msgstr ""
 
-#: data/templates/users.tpl.php:21
+#: data/templates/default/users.tpl.php:21
 msgid "created in"
 msgstr ""
 
@@ -1046,12 +1092,12 @@ msgstr ""
 msgid "Manage users"
 msgstr ""
 
-#: www/admin.php:68
+#: www/admin.php:69
 #, php-format
 msgid "%s and all his bookmarks and tags were deleted."
 msgstr ""
 
-#: www/admin.php:75
+#: www/admin.php:76
 msgid "Problem with "
 msgstr ""
 
@@ -1068,7 +1114,7 @@ msgid "All Tags"
 msgstr ""
 
 #: www/alltags.php:56 www/bookmarks.php:99 www/populartags.php:52
-#: www/profile.php:51 www/rss.php:82 www/search.php:111 www/watch.php:45
+#: www/profile.php:55 www/rss.php:100 www/search.php:111 www/watch.php:45
 #: www/watchlist.php:61
 #, php-format
 msgid "User with username %s was not found"
@@ -1126,7 +1172,17 @@ msgstr ""
 msgid "You must be logged in before you can add bookmarks."
 msgstr ""
 
-#: www/bookmarks.php:280 www/bookmarks.php:281
+#: www/bookmarks.php:270
+#, php-format
+msgid "%s: %s"
+msgstr ""
+
+#: www/bookmarks.php:283
+#, php-format
+msgid "%s: %s (+private %s)"
+msgstr ""
+
+#: www/bookmarks.php:305 www/bookmarks.php:306
 msgid "My Bookmarks"
 msgstr ""
 
@@ -1213,24 +1269,29 @@ msgstr ""
 msgid "You have now logged out"
 msgstr ""
 
-#: www/index.php:45
+#: www/index.php:46
 #, php-format
 msgid "%s: Recent bookmarks"
 msgstr ""
 
-#: www/index.php:75
+#: www/index.php:58
+#, php-format
+msgid "%s: Recent bookmarks (+private %s)"
+msgstr ""
+
+#: www/index.php:96
 msgid "Store, share and tag your favourite links"
 msgstr ""
 
-#: www/index.php:76
+#: www/index.php:97
 msgid "All Bookmarks"
 msgstr ""
 
-#: www/jsScuttle.php:70
+#: www/jsScuttle.php:71
 msgid "Available"
 msgstr ""
 
-#: www/jsScuttle.php:73
+#: www/jsScuttle.php:74
 msgid "Not Available"
 msgstr ""
 
@@ -1286,67 +1347,67 @@ msgstr ""
 msgid "Forgotten Password"
 msgstr ""
 
-#: www/profile.php:59 www/watchlist.php:119
+#: www/profile.php:63 www/watchlist.php:119
 msgid "Username was not specified"
 msgstr ""
 
-#: www/profile.php:65
+#: www/profile.php:70
 msgid "My Profile"
 msgstr ""
 
-#: www/profile.php:89
+#: www/profile.php:110
 msgid "Invalid Token"
 msgstr ""
 
-#: www/profile.php:94
+#: www/profile.php:115
 msgid "Password and confirmation do not match."
 msgstr ""
 
-#: www/profile.php:98
+#: www/profile.php:119
 msgid "Password must be at least 6 characters long."
 msgstr ""
 
-#: www/profile.php:102
+#: www/profile.php:123
 msgid "E-mail address is not valid."
 msgstr ""
 
-#: www/profile.php:106
+#: www/profile.php:127
 msgid "An error occurred while saving your changes."
 msgstr ""
 
-#: www/profile.php:108
+#: www/profile.php:129
 msgid "Changes saved."
 msgstr ""
 
-#: www/profile.php:121
+#: www/profile.php:148
 msgid "You do not have a valid SSL client certificate"
 msgstr ""
 
-#: www/profile.php:123
+#: www/profile.php:150
 msgid "This certificate is already registered"
 msgstr ""
 
-#: www/profile.php:125
+#: www/profile.php:152
 msgid "Failed to register SSL client certificate."
 msgstr ""
 
-#: www/profile.php:127
+#: www/profile.php:154
 msgid "SSL client certificate registered."
 msgstr ""
 
-#: www/profile.php:136
+#: www/profile.php:163
 msgid "Certificate not found."
 msgstr ""
 
-#: www/profile.php:138
+#: www/profile.php:165
 msgid "The certificate does not belong to you."
 msgstr ""
 
-#: www/profile.php:140
+#: www/profile.php:167
 msgid "Failed to delete SSL client certificate."
 msgstr ""
 
-#: www/profile.php:142
+#: www/profile.php:169
 msgid "SSL client certificate deleted."
 msgstr ""
 
@@ -1384,7 +1445,12 @@ msgstr ""
 msgid "Registration failed. Please try again."
 msgstr ""
 
-#: www/rss.php:99
+#: www/rss.php:90 www/rss.php:111
+#, php-format
+msgid "Failed to Autenticate User with username %s using private key"
+msgstr ""
+
+#: www/rss.php:128
 #, php-format
 msgid "Recent bookmarks posted to %s"
 msgstr ""
@@ -1461,6 +1527,16 @@ msgstr ""
 msgid "Failed to rename the tag"
 msgstr ""
 
+#: www/tags.php:71
+#, php-format
+msgid "%s: tagged with \"%s\""
+msgstr ""
+
+#: www/tags.php:84
+#, php-format
+msgid "%s: tagged with \"%s\" (+private %s)"
+msgstr ""
+
 #: www/users.php:31
 msgid "Users"
 msgstr ""
@@ -1481,19 +1557,19 @@ msgstr ""
 msgid "Use of the API calls requires authentication."
 msgstr ""
 
-#: www/gsearch/index.php:27
+#: www/gsearch/index.php:51
 msgid "Come back to "
 msgstr ""
 
-#: www/gsearch/index.php:32
+#: www/gsearch/index.php:56
 msgid "Admin tips: "
 msgstr ""
 
-#: www/gsearch/index.php:33
+#: www/gsearch/index.php:57
 msgid "To refresh manually Google Custom Search Engine, goes to: "
 msgstr ""
 
-#: www/gsearch/index.php:37
+#: www/gsearch/index.php:61
 msgid ""
 "If no result appears, check that all the urls are valid in the admin section."
 msgstr ""
