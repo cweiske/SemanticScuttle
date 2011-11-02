@@ -62,6 +62,9 @@ class SemanticScuttle_Config
      *
      * Paths with host name have priority.
      *
+     * When open_basedir restrictions are in effect and /etc is not part of
+     * the setting, /etc/semanticscuttle/ is not checked for config files.
+     *
      * @return array Array with config file path as first value
      *               and default config file path as second value.
      *               Any may be NULL if not found
@@ -72,12 +75,23 @@ class SemanticScuttle_Config
         $host = basename($_SERVER['HTTP_HOST']);
         $datadir = $this->getDataDir();
 
-        $arFiles = array(
-            $datadir . 'config.' . $host . '.php',
-            '/etc/semanticscuttle/config.' . $host . '.php',
-            $datadir . 'config.php',
-            '/etc/semanticscuttle/config.php',
-        );
+        $openbase = ini_get('open_basedir');
+        if ($openbase && strpos($openbase, '/etc') === false) {
+            //open_basedir restrictions enabled and /etc not allowed?
+            // then don't look in /etc for config files.
+            // the check is not perfect, but it covers most cases
+            $arFiles = array(
+                $datadir . 'config.' . $host . '.php',
+                $datadir . 'config.php',
+            );
+        } else {
+            $arFiles = array(
+                $datadir . 'config.' . $host . '.php',
+                '/etc/semanticscuttle/config.' . $host . '.php',
+                $datadir . 'config.php',
+                '/etc/semanticscuttle/config.php',
+            );
+        }
 
         $configfile = null;
         foreach ($arFiles as $file) {
