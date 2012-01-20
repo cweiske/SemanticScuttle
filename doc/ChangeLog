@@ -12,6 +12,7 @@ ChangeLog for SemantiScuttle
 - Fix bug #3399815: PHP error in opensearch API in 0.98.3
 - Fix bug #3407728: Can't delete users from admin page
 - Fix bug #3431742: open_basedir problems with /etc/ config files
+- Fix bug #3436624: Wrong URL for Delicious API when importing
 - Implement request #3403609: fr_CA translation update
 
 
