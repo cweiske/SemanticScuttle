@@ -5,7 +5,7 @@ ChangeLog for SemantiScuttle
 
 0.98.4 - 2011-XX-XX
 -------------------
-- Fix bug: URLs were escaped too often in bookmark list
+- Fix bug #3439729: URLs were escaped too often in bookmark list
 - Fix bug: Subtitle was not escaped
 - Fix bug #3388219: Incorrect URL when cancelling tag2tag-actions
 - Fix bug #3393951: Logo images missing on bookmark page
