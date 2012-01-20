@@ -137,6 +137,7 @@ $bookmarks_tmp = filter($bookmarks['bookmarks']);
 
 $bookmarks_tpl = array();
 $latestdate    = null;
+$guidBaseUrl   = addProtocolToUrl(ROOT) . '#';
 foreach ($bookmarks_tmp as $key => $row) {
     $_link = $row['bAddress'];
     // Redirection option
@@ -154,7 +155,8 @@ foreach ($bookmarks_tmp as $key => $row) {
         'description' => $row['bDescription'],
         'creator'     => SemanticScuttle_Model_UserArray::getName($row),
         'pubdate'     => $_pubdate,
-        'tags'        => $row['tags']
+        'tags'        => $row['tags'],
+        'guid'        => $guidBaseUrl . $row['bId'],
     );
 }
 unset($bookmarks_tmp);

@@ -17,6 +17,7 @@ echo '<' . '?xml version="1.0" encoding="utf-8" ?' . ">\n";
     <item>
         <title><?php echo htmlspecialchars($bookmark['title']); ?></title>
         <link><?php echo htmlspecialchars($bookmark['link']); ?></link>
+        <guid><?php echo $bookmark['guid']; ?></guid>
         <description><?php echo htmlspecialchars($bookmark['description']); ?></description>
         <dc:creator><?php echo htmlspecialchars($bookmark['creator']); ?></dc:creator>
         <pubDate><?php echo $bookmark['pubdate']; ?></pubDate>
