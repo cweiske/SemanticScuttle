@@ -15,6 +15,7 @@ ChangeLog for SemantiScuttle
 - Fix bug #3436624: Wrong URL for Delicious API when importing
 - Implement request #3403609: fr_CA translation update
 - Implement patch #3476011: PostgreSQL tables can not be initialized
+  (Frédéric Fauberteau [triaxx])
 
 
 0.98.3 - 2011-08-09
