@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: semanticscuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-04 11:48+0200\n"
+"POT-Creation-Date: 2012-01-20 13:58+0100\n"
 "PO-Revision-Date: 2009-05-30 02:29+0900\n"
 "Last-Translator: Tadashi Jokagi <elf2000@users.sourceforge.net>\n"
 "Language-Team: Japanese <http://oss.poyo.jp/bbs/>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,578 +19,54 @@ msgstr ""
 "X-Poedit-Language: Japanese\n"
 "X-Poedit-Country: JAPAN\n"
 
-#: ../../../about.php:23 ../../../about.php:24
-#: ../../../templates/bottom.inc.php:5 ../../../templates/toolbar.inc.php:15
-#: ../../../templates/toolbar.inc.php:28
-msgid "About"
-msgstr "このサイトについて"
-
-#: ../../../admin.php:32
-msgid "Manage users"
-msgstr "ユーザー管理"
-
-#: ../../../admin.php:68
-#, php-format
-msgid "%s and all his bookmarks and tags were deleted."
-msgstr "%s とすべてのブックマークを削除しました。"
-
-#: ../../../admin.php:75
-msgid "Problem with "
-msgstr ""
-
-#: ../../../ajaxDelete.php:37
-msgid "You are not allowed to delete this bookmark"
-msgstr "このブックマークの削除は許可されていません"
-
-#: ../../../ajaxDelete.php:41 ../../../edit.php:103
-msgid "Failed to delete bookmark"
-msgstr "ブックマークの削除に失敗しました"
-
-#: ../../../alltags.php:49
-msgid "All Tags"
-msgstr "すべてのタグ"
-
-#: ../../../alltags.php:55 ../../../bookmarks.php:96
-#: ../../../populartags.php:52 ../../../profile.php:51 ../../../rss.php:67
-#: ../../../search.php:101 ../../../watch.php:45 ../../../watchlist.php:61
-#, php-format
-msgid "User with username %s was not found"
-msgstr "ユーザー名が「%s」のユーザーは見つけられませんでした"
-
-#: ../../../bookmarkcommondescriptionedit.php:51 ../../../tag2tagadd.php:37
-#: ../../../tag2tagdelete.php:41 ../../../tag2tagedit.php:33
-#: ../../../tagcommondescriptionedit.php:43 ../../../tagedit.php:43
-msgid "Permission denied."
-msgstr "権限がありません。"
-
-#: ../../../bookmarkcommondescriptionedit.php:60
-msgid "Bookmark common description updated"
-msgstr "ブックマーク共通の説明を更新しました"
-
-#: ../../../bookmarkcommondescriptionedit.php:63
-msgid "Failed to update the bookmark common description"
-msgstr "ブックマーク共通の説明の更新に失敗しました"
-
-#: ../../../bookmarkcommondescriptionedit.php:71
-msgid "Edit Bookmark Common Description"
-msgstr "ブックマーク共通の説明の編集"
-
-#: ../../../bookmarks.php:111 ../../../tags.php:47
-msgid "Remove the tag from the selection"
-msgstr "選択からタグを削除する"
-
-#: ../../../bookmarks.php:131 ../../../edit.php:65
-msgid "Your bookmark must have a title and an address"
-msgstr "ブックマークは題名とアドレスがなければなりません"
-
-#: ../../../bookmarks.php:152 ../../../edit.php:83 ../../../edit.php:86
-msgid "Bookmark saved"
-msgstr "ブックマークを保存しました"
-
-#: ../../../bookmarks.php:152
-msgid "(Come back to previous page.)"
-msgstr ""
-
-#: ../../../bookmarks.php:159 ../../../import.php:106
-#: ../../../importNetscape.php:108
-msgid ""
-"There was an error saving your bookmark. Please try again or contact the "
-"administrator."
-msgstr ""
-"ブックマークの保存中にエラーです。再度試すか、管理者に連絡してください。"
-
-#: ../../../bookmarks.php:209 ../../../templates/toolbar.inc.php:13
-msgid "Add a Bookmark"
-msgstr "ブックマーク追加"
-
-#: ../../../bookmarks.php:213
-msgid "Add Bookmark"
-msgstr "ブックマークを追加する"
-
-#: ../../../bookmarks.php:216
-msgid "You must be logged in before you can add bookmarks."
-msgstr "ブックマークを追加する前にログインしなければなりません。"
-
-#: ../../../bookmarks.php:270 ../../../bookmarks.php:271
-msgid "My Bookmarks"
-msgstr "自分のブックマーク"
-
-#: ../../../edit.php:44 ../../../edit.php:45
-msgid "Edit Bookmark"
-msgstr "ブックマークを編集する"
-
-#: ../../../edit.php:51
-#, php-format
-msgid "Bookmark with id %s not was not found"
-msgstr "ID「%s」とブックマークは見つかりません"
-
-#: ../../../edit.php:57
-msgid "You are not allowed to edit this bookmark"
-msgstr "このブックマークの編集は許可されていません"
-
-#: ../../../edit.php:77
-msgid "Error while saving your bookmark"
-msgstr "ブックマークの保存中にエラー"
-
-#: ../../../edit.php:113 ../../../templates/editprofile.tpl.php:52
-msgid "Save Changes"
-msgstr "変更を保存する"
-
-#: ../../../functions.inc.php:144
+#: src/SemanticScuttle/functions.php:189
 msgid "message_die() was called multiple times."
 msgstr "message_die() は複数回呼ばれました。"
 
-#: ../../../functions.inc.php:156
+#: src/SemanticScuttle/functions.php:201
 msgid "SQL Error"
 msgstr "SQL エラー"
 
-#: ../../../functions.inc.php:162
+#: src/SemanticScuttle/functions.php:207
 msgid "Line"
 msgstr "行"
 
-#: ../../../functions.inc.php:162 ../../../templates/importDelicious.tpl.php:8
-#: ../../../templates/importNetscape.tpl.php:9
-#: ../../../templates/importStructure.tpl.php:10
+#: src/SemanticScuttle/functions.php:207
+#: data/templates/default/importDelicious.tpl.php:8
+#: data/templates/default/importNetscape.tpl.php:9
+#: data/templates/default/importStructure.tpl.php:10
 msgid "File"
 msgstr "ファイル"
 
-#: ../../../functions.inc.php:168
+#: src/SemanticScuttle/functions.php:215
 msgid "Information"
 msgstr "情報"
 
-#: ../../../functions.inc.php:173
+#: src/SemanticScuttle/functions.php:220
 msgid "Critical Information"
 msgstr "重要な情報"
 
-#: ../../../functions.inc.php:178
+#: src/SemanticScuttle/functions.php:225
 msgid "An error occured"
 msgstr "エラーが発生しました"
 
-#: ../../../functions.inc.php:181
+#: src/SemanticScuttle/functions.php:228
 msgid "General Error"
 msgstr "一般エラー"
 
-#: ../../../functions.inc.php:189
+#: src/SemanticScuttle/functions.php:236
 msgid "An critical error occured"
 msgstr "重大なエラーが発生しました"
 
-#: ../../../functions.inc.php:192
+#: src/SemanticScuttle/functions.php:239
 msgid "Critical Error"
 msgstr "重大なエラー"
 
-#: ../../../functions.inc.php:201
+#: src/SemanticScuttle/functions.php:248
 msgid "DEBUG MODE"
 msgstr "デバッグモード"
 
-#: ../../../history.php:61
-msgid "History"
-msgstr "履歴"
-
-#: ../../../history.php:62
-#, php-format
-msgid "History for %s"
-msgstr "%s の履歴"
-
-#: ../../../history.php:84
-msgid "Address was not found"
-msgstr "アドレスは見つかりません"
-
-#: ../../../import.php:47
-msgid "Could not open XML input"
-msgstr "入力の XML を開けません"
-
-#: ../../../import.php:51
-#, php-format
-msgid "XML error: %s at line %d"
-msgstr "XML エラー: %s の %d 行目"
-
-#: ../../../import.php:60
-msgid "Import Bookmarks from del.icio.us"
-msgstr "del.icio.us からブックマークをインポートする"
-
-#: ../../../import.php:93
-msgid "You have already submitted this bookmark."
-msgstr "このブックマークは既に送信しました。"
-
-#: ../../../import.php:104
-msgid "Bookmark imported."
-msgstr "ブックマークをインポートしました。"
-
-#: ../../../importNetscape.php:95
-msgid "You have already submitted some of these bookmarks."
-msgstr "ブックマークのうちいくつかは既に登録済みです。"
-
-#: ../../../importNetscape.php:115
-msgid "Bookmarks found: "
-msgstr "ブックマーク発見: "
-
-#: ../../../importNetscape.php:116
-msgid "Bookmarks imported: "
-msgstr "ブックマークをインポートしました: "
-
-#: ../../../importNetscape.php:117 ../../../importNetscape.php:122
-msgid "Import Bookmarks from Browser File"
-msgstr "ブラウザーのファイルからブックマークをインポートする"
-
-#: ../../../importStructure.php:61
-msgid "Bad indentation"
-msgstr ""
-
-#: ../../../importStructure.php:67
-msgid "New links between tags: "
-msgstr ""
-
-#: ../../../importStructure.php:72
-msgid "Import Structure"
-msgstr "構造のインポート"
-
-#: ../../../index.php:38
-msgid "You have now logged out"
-msgstr "ログアウトしました"
-
-#: ../../../index.php:45
-#, php-format
-msgid "%s: Recent bookmarks"
-msgstr "%s: 最近のブックマーク"
-
-#: ../../../index.php:78
-msgid "Store, share and tag your favourite links"
-msgstr "お気に入りのリンクの保存、共有、タグ付けをします。"
-
-#: ../../../index.php:79
-msgid "All Bookmarks"
-msgstr "すべてのブックマーク"
-
-#: ../../../jsScuttle.php:22 ../../../templates/admin.tpl.php:19
-#: ../../../templates/tag2tagadd.tpl.php:21
-#: ../../../templates/tag2tagdelete.tpl.php:13
-#: ../../../templates/tag2tagedit.tpl.php:14
-#: ../../../templates/tag2tagedit.tpl.php:35
-#: ../../../templates/tagdelete.tpl.php:6
-msgid "Are you sure?"
-msgstr "本当にしますか?"
-
-#: ../../../jsScuttle.php:22 ../../../templates/tag2tagdelete.tpl.php:15
-#: ../../../templates/tag2tagedit.tpl.php:16
-#: ../../../templates/tagdelete.tpl.php:8
-msgid "Yes"
-msgstr "はい"
-
-#: ../../../jsScuttle.php:22 ../../../templates/tag2tagdelete.tpl.php:16
-#: ../../../templates/tag2tagedit.tpl.php:17
-#: ../../../templates/tagdelete.tpl.php:9
-msgid "No"
-msgstr "いいえ"
-
-#: ../../../jsScuttle.php:69
-msgid "Available"
-msgstr "利用できます"
-
-#: ../../../jsScuttle.php:72
-msgid "Not Available"
-msgstr "利用できません"
-
-#: ../../../login.php:48
-msgid "The details you have entered are incorrect. Please try again."
-msgstr "入力した詳細は正しくありません。再度試してください。"
-
-#: ../../../login.php:57 ../../../templates/login.tpl.php:26
-#: ../../../templates/toolbar.inc.php:29
-msgid "Log In"
-msgstr "ログイン"
-
-#: ../../../password.php:36
-msgid "You must enter your username."
-msgstr "ユーザー名を入力してください。"
-
-#: ../../../password.php:40
-msgid ""
-"You must enter your <abbr title=\"electronic mail\">e-mail</abbr> address."
-msgstr ""
-"<abbr title=\"電子メール\">電子メール</abbr>アドレスを入力しなければなりませ"
-"ん。"
-
-#: ../../../password.php:48
-msgid "No matches found for that username."
-msgstr "一致するユーザー名が見つかりません。"
-
-#: ../../../password.php:51
-msgid ""
-"No matches found for that combination of username and <abbr title="
-"\"electronic mail\">e-mail</abbr> address."
-msgstr ""
-"一致する<abbr title=\"電子メール\">電子メール</abbr>アドレスとユーザー名の組"
-"み合わせが見つかりませんでした。"
-
-#: ../../../password.php:59
-msgid ""
-"There was an error while generating your new password. Please try again."
-msgstr "新規パスワードの生成中にエラーです。再度試してください。"
-
-#: ../../../password.php:63
-msgid "Your new password is:"
-msgstr "新しいパスワード:"
-
-#: ../../../password.php:63
-msgid ""
-"To keep your bookmarks secure, you should change this password in your "
-"profile the next time you log in."
-msgstr ""
-"ブックマークの安全性を維持するために、次回のログイン時にプロフィールのこのパ"
-"スワードを変えるべきです。"
-
-#: ../../../password.php:66
-#, php-format
-msgid "%s Account Information"
-msgstr "%sアカウント情報"
-
-#: ../../../password.php:68
-#, php-format
-msgid "New password generated and sent to %s"
-msgstr "新規アカウントを生成し、%s に送信しました"
-
-#: ../../../password.php:75
-msgid "Forgotten Password"
-msgstr "パスワード忘れ"
-
-#: ../../../populartags.php:46 ../../../templates/dynamictags.inc.php:128
-#: ../../../templates/sidebar.block.common.php:9
-#: ../../../templates/sidebar.block.menu.php:74
-#: ../../../templates/sidebar.block.popular.php:23
-#: ../../../templates/sidebar.block.recent.php:34
-#: ../../../templates/toolbar.inc.php:27
-msgid "Popular Tags"
-msgstr "人気のタグ"
-
-#: ../../../profile.php:59 ../../../watchlist.php:119
-msgid "Username was not specified"
-msgstr "ユーザー名が指定されていません"
-
-#: ../../../profile.php:65
-msgid "My Profile"
-msgstr "自分のプロフィール"
-
-#: ../../../profile.php:67 ../../../templates/toolbar.inc.php:12
-msgid "Profile"
-msgstr "プロフィール"
-
-#: ../../../profile.php:89
-msgid "Invalid Token"
-msgstr ""
-
-#: ../../../profile.php:94
-msgid "Password and confirmation do not match."
-msgstr "パスワードと確認パスワードが一致しません。"
-
-#: ../../../profile.php:98
-msgid "Password must be at least 6 characters long."
-msgstr "パスワードは少なくとも 6 文字以上です。"
-
-#: ../../../profile.php:102
-msgid "E-mail address is not valid."
-msgstr "電子メールアドレスが有効ではありません。"
-
-#: ../../../profile.php:106
-msgid "An error occurred while saving your changes."
-msgstr "変更の保存中にエラーです。"
-
-#: ../../../profile.php:108
-msgid "Changes saved."
-msgstr "変更を保存しました。"
-
-#: ../../../register.php:40
-msgid "You <em>must</em> enter a username, password and e-mail address."
-msgstr ""
-"ユーザー名、パスワード、名前と電子メールアドレスを入力しなければなりません。"
-
-#: ../../../register.php:44
-msgid "This username has been reserved, please make another choice."
-msgstr "このユーザー名は予約されています。ほかの名前を選んでください。"
-
-#: ../../../register.php:48
-msgid "This username already exists, please make another choice."
-msgstr "このユーザー名は既に存在します。ほかの名前を選んでください。"
-
-#: ../../../register.php:52
-msgid ""
-"This username is not valid (too short, too long, forbidden characters...), "
-"please make another choice."
-msgstr ""
-"このユーザー名は正しくありません (短すぎる、長すぎる、禁止文字...)。他を選ん"
-"でください。"
-
-#: ../../../register.php:56
-msgid "E-mail address is not valid. Please try again."
-msgstr "電子メールアドレスは有効ではありません。再度試してください。"
-
-#: ../../../register.php:60
-msgid "Antispam answer is not valid. Please try again."
-msgstr "スパム対策の回答が正しくありません。もう一度試してください。"
-
-#: ../../../register.php:69
-msgid "You have successfully registered. Enjoy!"
-msgstr "登録に成功しました。楽しんでください!"
-
-#: ../../../register.php:71
-msgid "Registration failed. Please try again."
-msgstr "登録に失敗しました。再度試してください。"
-
-#: ../../../register.php:77 ../../../templates/register.tpl.php:41
-#: ../../../templates/toolbar.inc.php:30
-msgid "Register"
-msgstr "登録する"
-
-#: ../../../rss.php:84
-#, php-format
-msgid "Recent bookmarks posted to %s"
-msgstr "最近のブックマークを %s に投稿しました"
-
-#: ../../../search.inc.php:23
-msgid "Search..."
-msgstr "検索..."
-
-#: ../../../search.inc.php:24
-msgid "in"
-msgstr ""
-
-#: ../../../search.inc.php:30
-msgid "this user's bookmarks"
-msgstr "このユーザーのブックマーク"
-
-#: ../../../search.inc.php:35
-msgid "my bookmarks"
-msgstr "自分のブックマーク"
-
-#: ../../../search.inc.php:36
-msgid "my watchlist"
-msgstr "自分の注目一覧"
-
-#: ../../../search.inc.php:40
-msgid "all bookmarks"
-msgstr "すべてのブックマーク"
-
-#: ../../../search.inc.php:50
-msgid "Search"
-msgstr "検索"
-
-#: ../../../search.php:73 ../../../search.php:123
-msgid "Search Bookmarks"
-msgstr "ブックマークを検索する"
-
-#: ../../../search.php:79
-msgid "Search Results"
-msgstr "検索結果"
-
-#: ../../../search.php:114
-msgid "Unsatisfied? You can also try our "
-msgstr ""
-
-#: ../../../tag2tagadd.php:50
-msgid "Tag link created"
-msgstr ""
-
-#: ../../../tag2tagadd.php:53
-msgid "Failed to create the link"
-msgstr "リンクの削除に失敗しました"
-
-#: ../../../tag2tagadd.php:65
-msgid "Add Tag Link"
-msgstr ""
-
-#: ../../../tag2tagdelete.php:66
-msgid "Tag link deleted"
-msgstr ""
-
-#: ../../../tag2tagdelete.php:69
-msgid "Failed to delete the link"
-msgstr "リンクの削除に失敗しました"
-
-#: ../../../tag2tagdelete.php:81
-msgid "Delete Link Between Tags"
-msgstr ""
-
-#: ../../../tag2tagedit.php:55
-msgid "Edit Link Between Tags"
-msgstr ""
-
-#: ../../../tagcommondescriptionedit.php:55
-msgid "Tag common description updated"
-msgstr ""
-
-#: ../../../tagcommondescriptionedit.php:58
-msgid "Failed to update the tag common description"
-msgstr ""
-
-#: ../../../tagcommondescriptionedit.php:64
-#: ../../../templates/sidebar.block.tagactions.php:26
-msgid "Edit Tag Common Description"
-msgstr ""
-
-#: ../../../tagdelete.php:43
-msgid "Tag deleted"
-msgstr "タグを削除しました"
-
-#: ../../../tagdelete.php:46
-msgid "Failed to delete the tag"
-msgstr "タグの削除に失敗しました"
-
-#: ../../../tagdelete.php:54
-#: ../../../templates/sidebar.block.tagactions.php:22
-msgid "Delete Tag"
-msgstr "タグを削除する"
-
-#: ../../../tagedit.php:52
-msgid "Tag description updated"
-msgstr "タグの説明を更新しました"
-
-#: ../../../tagedit.php:55
-msgid "Failed to update the tag description"
-msgstr "タグの説明の更新に失敗しました"
-
-#: ../../../tagedit.php:61 ../../../templates/sidebar.block.tagactions.php:24
-msgid "Edit Tag Description"
-msgstr "タグの説明を編集する"
-
-#: ../../../tagrename.php:63
-msgid "Tag renamed"
-msgstr "タグ名を変更しました"
-
-#: ../../../tagrename.php:66
-msgid "Failed to rename the tag"
-msgstr "タグ名の変更に失敗しました"
-
-#: ../../../tagrename.php:72 ../../../templates/sidebar.block.tagactions.php:9
-msgid "Rename Tag"
-msgid_plural "Rename Tags"
-msgstr[0] "タグを変更する"
-
-#: ../../../tags.php:45 ../../../tags.php:67
-#: ../../../templates/editbookmark.tpl.php:69
-#: ../../../templates/toolbar.inc.php:10
-msgid "Tags"
-msgstr "タグ"
-
-#: ../../../users.php:35
-msgid "Users"
-msgstr "ユーザー"
-
-#: ../../../watch.php:54
-msgid "User removed from your watchlist"
-msgstr "注目一覧からユーザーを削除しました"
-
-#: ../../../watch.php:56
-msgid "User added to your watchlist"
-msgstr "注目一覧にユーザーを追加しました"
-
-#: ../../../watchlist.php:104
-msgid "My Watchlist"
-msgstr "自分の注目一覧"
-
-#: ../../../watchlist.php:106 ../../../templates/toolbar.inc.php:11
-msgid "Watchlist"
-msgstr "注目一覧"
-
-#: ../../../templates/about.tpl.php:6
+#: data/templates/default/about.tpl.php:6
 msgid ""
 "<strong>Store</strong> all your favourite links in one place, accessible "
 "from anywhere."
@@ -597,7 +74,7 @@ msgstr ""
 "いかなる場所からもアクセス可能な 1 つの場所に、好きなリンクをすべて<strong>保"
 "管</strong>します。"
 
-#: ../../../templates/about.tpl.php:7
+#: data/templates/default/about.tpl.php:7
 msgid ""
 "<strong>Share</strong> your bookmarks with everyone, with friends on your "
 "watchlist or just keep them private."
@@ -605,7 +82,7 @@ msgstr ""
 "ブックマークをプライベートで、注目一覧で友達と、すべての人と<strong>共有</"
 "strong>します。"
 
-#: ../../../templates/about.tpl.php:8
+#: data/templates/default/about.tpl.php:8
 msgid ""
 "<strong>Tag</strong> your bookmarks with as many labels as you want, instead "
 "of wrestling with folders."
@@ -613,348 +90,144 @@ msgstr ""
 "フォルダーと格闘する代わりに、望むならいくつかのラベルととしてブックマークの"
 "<strong>タグ</strong>を付けてください。"
 
-#: ../../../templates/about.tpl.php:9
+#: data/templates/default/about.tpl.php:9
 msgid "Register now"
 msgstr "今すぐ登録する"
 
-#: ../../../templates/about.tpl.php:9
+#: data/templates/default/about.tpl.php:9
 #, php-format
 msgid " to start using %s!"
 msgstr "で %s の利用を始められます!"
 
-#: ../../../templates/about.tpl.php:12
+#: data/templates/default/about.tpl.php:12
 msgid "Geek Stuff"
 msgstr "ギークスタッフ"
 
-#: ../../../templates/about.tpl.php:14
+#: data/templates/default/about.tpl.php:14
 msgid "is licensed under the "
 msgstr "は次のライセンスで利用できます: "
 
-#: ../../../templates/about.tpl.php:14
+#: data/templates/default/about.tpl.php:14
 msgid "you can freely host it on your own web server."
 msgstr "あなたのウェブサーバーで自由に運営できます。"
 
-#: ../../../templates/about.tpl.php:15
+#: data/templates/default/about.tpl.php:15
 #, php-format
 msgid ""
-"%1$s supports most of the <a href=\"http://www.delicious.com/help/api\">del.icio.us "
-"<abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all "
-"of the neat tools made for that system can be modified to work with %1$s "
-"instead. If you find a tool that won't let you change the API address, ask "
-"the creator to add this setting. You never know, they might just do it."
+"%1$s supports most of the <a href=\"http://www.delicious.com/help/api\">del."
+"icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. "
+"Almost all of the neat tools made for that system can be modified to work "
+"with %1$s instead. If you find a tool that won't let you change the API "
+"address, ask the creator to add this setting. You never know, they might "
+"just do it."
 msgstr ""
-"%1$s はほとんどの <a href=\"http://www.delicious.com/help/api\">del.icio.us <abbr "
-"title=\"Application Programming Interface\">API</abbr></a> をサポートします。"
-"そのシステムのために作成された適切なツールのほぼ全ては、代わりにAAAAで動作す"
-"るように修正することができます。あなたが API アドレスを変更することができない"
-"ツールを見つけたら、製作者にこの設定を加えるよう頼んでください。どうなるかわ"
-"かりませんが、彼らは対応するかもしれません。"
+"%1$s はほとんどの <a href=\"http://www.delicious.com/help/api\">del.icio.us "
+"<abbr title=\"Application Programming Interface\">API</abbr></a> をサポートし"
+"ます。そのシステムのために作成された適切なツールのほぼ全ては、代わりにAAAAで"
+"動作するように修正することができます。あなたが API アドレスを変更することがで"
+"きないツールを見つけたら、製作者にこの設定を加えるよう頼んでください。どうな"
+"るかわかりませんが、彼らは対応するかもしれません。"
 
-#: ../../../templates/about.tpl.php:24
+#: data/templates/default/about.tpl.php:24
 msgid "Tips"
 msgstr ""
 
-#: ../../../templates/about.tpl.php:26
+#: data/templates/default/about.tpl.php:26
 msgid "Add search plugin into your browser:"
 msgstr ""
 
-#: ../../../templates/about.tpl.php:27
+#: data/templates/default/about.tpl.php:27
 msgid ""
 "The secret tag \"system:unfiled\" allows you to find bookmarks without tags."
 msgstr ""
 
-#: ../../../templates/about.tpl.php:28
+#: data/templates/default/about.tpl.php:28
 msgid ""
 "The secret tag \"system:imported\" allows you to find imported bookmarks."
 msgstr ""
 
-#: ../../../templates/admin.tpl.php:5
+#: data/templates/default/admin.tpl.php:5
 msgid "Users management"
 msgstr "ユーザー管理"
 
-#: ../../../templates/admin.tpl.php:14
+#: data/templates/default/admin.tpl.php:14
 msgid "Public/Shared/Private"
 msgstr "公開/共有/プライベート"
 
-#: ../../../templates/admin.tpl.php:14 ../../../templates/bookmarks.tpl.php:93
+#: data/templates/default/admin.tpl.php:14
+#: data/templates/default/bookmarks.tpl.php:115
 msgid "bookmark(s)"
 msgstr "ブックマーク"
 
-#: ../../../templates/admin.tpl.php:19
-#: ../../../templates/bookmarks.tpl.php:231
+#: data/templates/default/admin.tpl.php:19
+#: data/templates/default/tag2tagadd.tpl.php:21
+#: data/templates/default/tag2tagdelete.tpl.php:13
+#: data/templates/default/tag2tagedit.tpl.php:14
+#: data/templates/default/tag2tagedit.tpl.php:35
+#: data/templates/default/tagdelete.tpl.php:6 www/jsScuttle.php:24
+msgid "Are you sure?"
+msgstr "本当にしますか?"
+
+#: data/templates/default/admin.tpl.php:19
+#: data/templates/default/bookmarks.tpl.php:305
 msgid "Delete"
 msgstr "削除する"
 
-#: ../../../templates/admin.tpl.php:27
+#: data/templates/default/admin.tpl.php:27
 msgid "Other actions"
 msgstr "その他の操作"
 
-#: ../../../templates/admin.tpl.php:29
+#: data/templates/default/admin.tpl.php:29
 msgid "Check all URLs (May take some time)"
 msgstr ""
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:16
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:16
 msgid ""
 "Collaborative description: these fields can be viewed and modified by every "
 "users"
 msgstr ""
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:18
-#: ../../../templates/bookmarks.tpl.php:123
-#: ../../../templates/editbookmark.tpl.php:38
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:18
+#: data/templates/default/bookmarks.tpl.php:159
+#: data/templates/default/editbookmark.tpl.php:51
 msgid "Title"
 msgstr "題名"
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:23
-#: ../../../templates/editbookmark.tpl.php:44
-#: ../../../templates/editprofile.tpl.php:47
-#: ../../../templates/profile.tpl.php:33
-#: ../../../templates/tagcommondescriptionedit.tpl.php:13
-#: ../../../templates/tagedit.tpl.php:12
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:23
+#: data/templates/default/editbookmark.tpl.php:57
+#: data/templates/default/editprofile.tpl.php:53
+#: data/templates/default/profile.tpl.php:33
+#: data/templates/default/tagcommondescriptionedit.tpl.php:13
+#: data/templates/default/tagedit.tpl.php:12
 msgid "Description"
 msgstr "説明"
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:31
-#: ../../../templates/tagcommondescriptionedit.tpl.php:21
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:31
+#: data/templates/default/tagcommondescriptionedit.tpl.php:21
 msgid "Last modification:"
 msgstr "最終更新:"
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:42
-#: ../../../templates/tagcommondescriptionedit.tpl.php:32
-#: ../../../templates/tagedit.tpl.php:18
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:43
+#: data/templates/default/tagcommondescriptionedit.tpl.php:33
+#: data/templates/default/tagedit.tpl.php:18
 msgid "Update"
 msgstr "更新"
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:43
-#: ../../../templates/editbookmark.tpl.php:98
-#: ../../../templates/tag2tagadd.tpl.php:24
-#: ../../../templates/tag2tagedit.tpl.php:38
-#: ../../../templates/tagcommondescriptionedit.tpl.php:33
-#: ../../../templates/tagedit.tpl.php:19
-#: ../../../templates/tagrename.tpl.php:25
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:44
+#: data/templates/default/editbookmark.tpl.php:111
+#: data/templates/default/tag2tagadd.tpl.php:24
+#: data/templates/default/tag2tagedit.tpl.php:38
+#: data/templates/default/tagcommondescriptionedit.tpl.php:34
+#: data/templates/default/tagedit.tpl.php:19
+#: data/templates/default/tagrename.tpl.php:25
 msgid "Cancel"
 msgstr "取り消し"
 
-#: ../../../templates/bookmarks.tpl.php:26
-msgid "Bookmarks on this page are managed by an admin user."
-msgstr ""
-
-#: ../../../templates/bookmarks.tpl.php:51
-#: ../../../templates/bookmarks.tpl.php:52
-msgid "Edit the common description of this tag"
-msgstr "このタグの共通説明を編集する"
-
-#: ../../../templates/bookmarks.tpl.php:55
-#: ../../../templates/bookmarks.tpl.php:56
-msgid "Edit the common description of this bookmark"
-msgstr "このブックマークの共通説明を編集する"
-
-#: ../../../templates/bookmarks.tpl.php:76
-#: ../../../templates/bookmarks.tpl.php:77
-msgid "Edit your personal description of this tag"
-msgstr "このタグの個人的に説明を編集する"
-
-#: ../../../templates/bookmarks.tpl.php:93 ../../../templates/tags.tpl.php:10
-#: ../../../templates/users.tpl.php:8
-msgid "Sort by:"
-msgstr "並べ替えの基準:"
-
-#: ../../../templates/bookmarks.tpl.php:122
-msgid "Date"
-msgstr "日付"
-
-#: ../../../templates/bookmarks.tpl.php:129
-msgid "Bookmarks from other users for this tag"
-msgstr "このタグのその他のユーザーのブックマーク"
-
-#: ../../../templates/bookmarks.tpl.php:134
-msgid "Only your bookmarks for this tag"
-msgstr "このタグはあなたのブックマークのみです"
-
-#: ../../../templates/bookmarks.tpl.php:157
-#: ../../../templates/bookmarks.tpl.php:163
-msgid "First"
-msgstr "最初へ"
-
-#: ../../../templates/bookmarks.tpl.php:158
-#: ../../../templates/bookmarks.tpl.php:164
-msgid "Previous"
-msgstr "前へ"
-
-#: ../../../templates/bookmarks.tpl.php:171
-#: ../../../templates/bookmarks.tpl.php:174
-msgid "Next"
-msgstr "次へ"
-
-#: ../../../templates/bookmarks.tpl.php:172
-#: ../../../templates/bookmarks.tpl.php:175
-msgid "Last"
-msgstr "最後へ"
-
-#: ../../../templates/bookmarks.tpl.php:185
-#, php-format
-msgid "Page %d of %d"
-msgstr "ページ (%d/%d)"
-
-#: ../../../templates/bookmarks.tpl.php:225
-msgid "Tags:"
-msgstr "タグ:"
-
-#: ../../../templates/bookmarks.tpl.php:231
-msgid "Edit"
-msgstr "編集する"
-
-#: ../../../templates/bookmarks.tpl.php:235
-msgid "Last update"
-msgstr ""
-
-#: ../../../templates/bookmarks.tpl.php:238
-msgid "by"
-msgstr "登録者:"
-
-#: ../../../templates/bookmarks.tpl.php:240
-msgid "you"
-msgstr "あなた"
-
-#: ../../../templates/bookmarks.tpl.php:254
-#, php-format
-msgid " and %s1 other%s"
-msgstr "とその他%sひとり%s"
-
-#: ../../../templates/bookmarks.tpl.php:257
-#, php-format
-msgid " and %2$s%1$s others%3$s"
-msgstr "とその他 %2$s%1$s 人%3$s"
-
-#: ../../../templates/bookmarks.tpl.php:265
-msgid "Copy this bookmark to YOUR bookmarks."
-msgstr "あなたのブックマークにこのブックマークをコピーします"
-
-#: ../../../templates/bookmarks.tpl.php:265
-msgid "Copy"
-msgstr "コピーする"
-
-#: ../../../templates/bookmarks.tpl.php:284
-msgid "This bookmark is certified by an admin user."
-msgstr ""
-
-#: ../../../templates/bookmarks.tpl.php:323
-msgid "Private Note on this bookmark"
-msgstr "このブックマークのプライベートノート"
-
-#: ../../../templates/bookmarks.tpl.php:334
-msgid "Come back to the top of this page."
-msgstr ""
-
-#: ../../../templates/bookmarks.tpl.php:334
-msgid "Top of the page"
-msgstr "ページの先頭"
-
-#: ../../../templates/bookmarks.tpl.php:340
-msgid "No bookmarks available"
-msgstr "ブックマークに登録されていません"
-
-#: ../../../templates/bottom.inc.php:7
-msgid "Propulsed by "
-msgstr ""
-
-#: ../../../templates/dynamictags.inc.php:47
-#: ../../../templates/sidebar.block.common.php:19
-#: ../../../templates/sidebar.block.popular.php:34
-#: ../../../templates/sidebar.block.recent.php:29
-#: ../../../templates/tags.tpl.php:19
-msgid "bookmark"
-msgid_plural "bookmarks"
-msgstr[0] "ブックマーク"
-
-#: ../../../templates/dynamictags.inc.php:131
-msgid "Popular Tags From All Users"
-msgstr "すべてのユーザーで人気のタグ"
-
-#: ../../../templates/editbookmark.tpl.php:33
-msgid "Address"
-msgstr "アドレス"
-
-#: ../../../templates/editbookmark.tpl.php:35
-#: ../../../templates/editbookmark.tpl.php:40
-#: ../../../templates/editprofile.tpl.php:31
-#: ../../../templates/tagrename.tpl.php:14
-#: ../../../templates/tagrename.tpl.php:19
-msgid "Required"
-msgstr "必須"
-
-#: ../../../templates/editbookmark.tpl.php:45
-msgid "Add Note"
-msgstr "ノートの追加"
-
-#: ../../../templates/editbookmark.tpl.php:48
-msgid ""
-"You can use anchors to delimite attributes. for example: [publisher]blah[/"
-"publisher] "
-msgstr ""
-
-#: ../../../templates/editbookmark.tpl.php:51
-msgid "Suggested anchors: "
-msgstr ""
-
-#: ../../../templates/editbookmark.tpl.php:63
-msgid "Private Note"
-msgstr "プライベートノート"
-
-#: ../../../templates/editbookmark.tpl.php:65
-msgid "Just visible by you and your contacts."
-msgstr ""
-
-#: ../../../templates/editbookmark.tpl.php:73
-msgid "Comma-separated"
-msgstr "カンマ区切り"
-
-#: ../../../templates/editbookmark.tpl.php:77
-#: ../../../templates/tag2tagadd.tpl.php:9
-msgid ""
-"Note: use \">\" to include one tag in another. e.g.: europe>france>paris"
-msgstr ""
-
-#: ../../../templates/editbookmark.tpl.php:81
-#: ../../../templates/tag2tagadd.tpl.php:8
-msgid "Note: use \"=\" to make synonym two tags. e.g.: france=frenchcountry"
-msgstr ""
-
-#: ../../../templates/editbookmark.tpl.php:84
-#: ../../../templates/importDelicious.tpl.php:15
-#: ../../../templates/importNetscape.tpl.php:16
-msgid "Privacy"
-msgstr "プライバシー"
-
-#: ../../../templates/editbookmark.tpl.php:87
-#: ../../../templates/importDelicious.tpl.php:18
-#: ../../../templates/importNetscape.tpl.php:19
-msgid "Public"
-msgstr "公開"
-
-#: ../../../templates/editbookmark.tpl.php:88
-msgid "Shared with Watch List"
-msgstr "注目リストで共有"
-
-#: ../../../templates/editbookmark.tpl.php:89
-#: ../../../templates/importDelicious.tpl.php:20
-#: ../../../templates/importNetscape.tpl.php:21
-msgid "Private"
-msgstr "プライベート"
-
-#: ../../../templates/editbookmark.tpl.php:102
-msgid "Delete Bookmark"
-msgstr "ブックマークを削除する"
-
-#: ../../../templates/editbookmark.tpl.php:107
-msgid "edit common description"
-msgstr "共通説明の編集"
-
-#: ../../../templates/editbookmark.tpl.php:134
+#: data/templates/default/bookmarklet.inc.php:1
 msgid "Bookmarklet"
 msgstr "ブックマークレット"
 
-#: ../../../templates/editbookmark.tpl.php:140
+#: data/templates/default/bookmarklet.inc.php:11
 #, fuzzy, php-format
 msgid ""
 "Click one of the following bookmarklets to add a button you can click "
@@ -963,7 +236,7 @@ msgstr ""
 "ブラウザーのブックマークに次のブックマークレットのうちの 1 つをドラッグしま"
 "す。%s にページを追加したい場合、常にそれをクリックしてください。"
 
-#: ../../../templates/editbookmark.tpl.php:144
+#: data/templates/default/bookmarklet.inc.php:20
 #, php-format
 msgid ""
 "Drag one of the following bookmarklets to your browser's bookmarks and click "
@@ -972,133 +245,448 @@ msgstr ""
 "ブラウザーのブックマークに次のブックマークレットのうちの 1 つをドラッグしま"
 "す。%s にページを追加したい場合、常にそれをクリックしてください。"
 
-#: ../../../templates/editbookmark.tpl.php:157
-#: ../../../templates/editbookmark.tpl.php:162
+#: data/templates/default/bookmarklet.inc.php:67
+#: data/templates/default/bookmarklet.inc.php:100
 #, php-format
 msgid "Post to %s"
 msgstr "%s に投稿する"
 
-#: ../../../templates/editbookmark.tpl.php:158
-#: ../../../templates/editbookmark.tpl.php:163
+#: data/templates/default/bookmarklet.inc.php:93
+#: data/templates/default/bookmarklet.inc.php:110
 #, php-format
 msgid "Post to %s (Pop-up)"
 msgstr "%s に投稿する (ポップアップ)"
 
-#: ../../../templates/editbookmark.tpl.php:168
-#: ../../../templates/importDelicious.tpl.php:26
-#: ../../../templates/importNetscape.tpl.php:27
-#: ../../../templates/importStructure.tpl.php:16
+#: data/templates/default/bookmarks-vote-horizontal.inc.tpl.php:24
+#, php-format
+msgid "Voting <span class=\"voting\">%d</span>"
+msgstr ""
+
+#: data/templates/default/bookmarks-vote-horizontal.inc.tpl.php:32
+#: data/templates/default/bookmarks-vote-horizontal.inc.tpl.php:35
+msgid "Vote for"
+msgstr ""
+
+#: data/templates/default/bookmarks-vote-horizontal.inc.tpl.php:43
+#: data/templates/default/bookmarks-vote-horizontal.inc.tpl.php:46
+msgid "Vote against"
+msgstr ""
+
+#: data/templates/default/bookmarks.tpl.php:43
+msgid "Bookmarks on this page are managed by an admin user."
+msgstr ""
+
+#: data/templates/default/bookmarks.tpl.php:73
+#: data/templates/default/bookmarks.tpl.php:74
+msgid "Edit the common description of this tag"
+msgstr "このタグの共通説明を編集する"
+
+#: data/templates/default/bookmarks.tpl.php:77
+#: data/templates/default/bookmarks.tpl.php:78
+msgid "Edit the common description of this bookmark"
+msgstr "このブックマークの共通説明を編集する"
+
+#: data/templates/default/bookmarks.tpl.php:98
+#: data/templates/default/bookmarks.tpl.php:99
+msgid "Edit your personal description of this tag"
+msgstr "このタグの個人的に説明を編集する"
+
+#: data/templates/default/bookmarks.tpl.php:115
+#: data/templates/default/tags.tpl.php:10
+#: data/templates/default/users.tpl.php:8
+msgid "Sort by:"
+msgstr "並べ替えの基準:"
+
+#: data/templates/default/bookmarks.tpl.php:157
+msgid "Date"
+msgstr "日付"
+
+#: data/templates/default/bookmarks.tpl.php:162
+msgid "Voting"
+msgstr ""
+
+#: data/templates/default/bookmarks.tpl.php:171
+msgid "Bookmarks from other users for this tag"
+msgstr "このタグのその他のユーザーのブックマーク"
+
+#: data/templates/default/bookmarks.tpl.php:176
+msgid "Only your bookmarks for this tag"
+msgstr "このタグはあなたのブックマークのみです"
+
+#: data/templates/default/bookmarks.tpl.php:199
+#: data/templates/default/bookmarks.tpl.php:205
+msgid "First"
+msgstr "最初へ"
+
+#: data/templates/default/bookmarks.tpl.php:200
+#: data/templates/default/bookmarks.tpl.php:206
+msgid "Previous"
+msgstr "前へ"
+
+#: data/templates/default/bookmarks.tpl.php:213
+#: data/templates/default/bookmarks.tpl.php:216
+msgid "Next"
+msgstr "次へ"
+
+#: data/templates/default/bookmarks.tpl.php:214
+#: data/templates/default/bookmarks.tpl.php:217
+msgid "Last"
+msgstr "最後へ"
+
+#: data/templates/default/bookmarks.tpl.php:233
+#, php-format
+msgid "Page %d of %d"
+msgstr "ページ (%d/%d)"
+
+#: data/templates/default/bookmarks.tpl.php:295
+msgid "Tags:"
+msgstr "タグ:"
+
+#: data/templates/default/bookmarks.tpl.php:302
+msgid "Edit"
+msgstr "編集する"
+
+#: data/templates/default/bookmarks.tpl.php:310
+msgid "Last update"
+msgstr ""
+
+#: data/templates/default/bookmarks.tpl.php:313
+msgid "by"
+msgstr "登録者:"
+
+#: data/templates/default/bookmarks.tpl.php:317
+msgid "you"
+msgstr "あなた"
+
+#: data/templates/default/bookmarks.tpl.php:333
+#, php-format
+msgid " and %s1 other%s"
+msgstr "とその他%sひとり%s"
+
+#: data/templates/default/bookmarks.tpl.php:336
+#, php-format
+msgid " and %2$s%1$s others%3$s"
+msgstr "とその他 %2$s%1$s 人%3$s"
+
+#: data/templates/default/bookmarks.tpl.php:350
+msgid "Copy this bookmark to YOUR bookmarks."
+msgstr "あなたのブックマークにこのブックマークをコピーします"
+
+#: data/templates/default/bookmarks.tpl.php:351
+msgid "Copy"
+msgstr "コピーする"
+
+#: data/templates/default/bookmarks.tpl.php:376
+msgid "This bookmark is certified by an admin user."
+msgstr ""
+
+#: data/templates/default/bookmarks.tpl.php:430
+msgid "Private Note on this bookmark"
+msgstr "このブックマークのプライベートノート"
+
+#: data/templates/default/bookmarks.tpl.php:444
+msgid "Come back to the top of this page."
+msgstr ""
+
+#: data/templates/default/bookmarks.tpl.php:444
+msgid "Top of the page"
+msgstr "ページの先頭"
+
+#: data/templates/default/bookmarks.tpl.php:450
+msgid "No bookmarks available"
+msgstr "ブックマークに登録されていません"
+
+#: data/templates/default/bottom.inc.php:5
+#: data/templates/default/toolbar.inc.php:15
+#: data/templates/default/toolbar.inc.php:28 www/about.php:23 www/about.php:24
+msgid "About"
+msgstr "このサイトについて"
+
+#: data/templates/default/bottom.inc.php:7
+msgid "Propulsed by "
+msgstr ""
+
+#: data/templates/default/dynamictags.inc.php:56
+#: data/templates/default/sidebar.block.common.php:19
+#: data/templates/default/sidebar.block.popular.php:34
+#: data/templates/default/sidebar.block.recent.php:29
+#: data/templates/default/tags.tpl.php:19
+msgid "bookmark"
+msgid_plural "bookmarks"
+msgstr[0] "ブックマーク"
+
+#: data/templates/default/dynamictags.inc.php:105
+#: data/templates/default/sidebar.block.common.php:9
+#: data/templates/default/sidebar.block.menu.php:74
+#: data/templates/default/sidebar.block.popular.php:23
+#: data/templates/default/sidebar.block.recent.php:34
+#: data/templates/default/toolbar.inc.php:27 www/populartags.php:46
+msgid "Popular Tags"
+msgstr "人気のタグ"
+
+#: data/templates/default/dynamictags.inc.php:108
+msgid "Popular Tags From All Users"
+msgstr "すべてのユーザーで人気のタグ"
+
+#: data/templates/default/editbookmark.tpl.php:46
+msgid "Address"
+msgstr "アドレス"
+
+#: data/templates/default/editbookmark.tpl.php:48
+#: data/templates/default/editbookmark.tpl.php:53
+#: data/templates/default/editprofile.tpl.php:29
+#: data/templates/default/tagrename.tpl.php:14
+#: data/templates/default/tagrename.tpl.php:19
+msgid "Required"
+msgstr "必須"
+
+#: data/templates/default/editbookmark.tpl.php:58
+msgid "Add Note"
+msgstr "ノートの追加"
+
+#: data/templates/default/editbookmark.tpl.php:61
+msgid ""
+"You can use anchors to delimite attributes. for example: [publisher]blah[/"
+"publisher] "
+msgstr ""
+
+#: data/templates/default/editbookmark.tpl.php:64
+msgid "Suggested anchors: "
+msgstr ""
+
+#: data/templates/default/editbookmark.tpl.php:76
+msgid "Private Note"
+msgstr "プライベートノート"
+
+#: data/templates/default/editbookmark.tpl.php:78
+msgid "Just visible by you and your contacts."
+msgstr ""
+
+#: data/templates/default/editbookmark.tpl.php:82
+#: data/templates/default/toolbar.inc.php:10 www/tags.php:45 www/tags.php:67
+msgid "Tags"
+msgstr "タグ"
+
+#: data/templates/default/editbookmark.tpl.php:86
+msgid "Comma-separated"
+msgstr "カンマ区切り"
+
+#: data/templates/default/editbookmark.tpl.php:90
+#: data/templates/default/tag2tagadd.tpl.php:9
+msgid ""
+"Note: use \">\" to include one tag in another. e.g.: europe>france>paris"
+msgstr ""
+
+#: data/templates/default/editbookmark.tpl.php:94
+#: data/templates/default/tag2tagadd.tpl.php:8
+msgid "Note: use \"=\" to make synonym two tags. e.g.: france=frenchcountry"
+msgstr ""
+
+#: data/templates/default/editbookmark.tpl.php:97
+#: data/templates/default/importDelicious.tpl.php:15
+#: data/templates/default/importNetscape.tpl.php:16
+msgid "Privacy"
+msgstr "プライバシー"
+
+#: data/templates/default/editbookmark.tpl.php:100
+#: data/templates/default/importDelicious.tpl.php:18
+#: data/templates/default/importNetscape.tpl.php:19
+msgid "Public"
+msgstr "公開"
+
+#: data/templates/default/editbookmark.tpl.php:101
+msgid "Shared with Watch List"
+msgstr "注目リストで共有"
+
+#: data/templates/default/editbookmark.tpl.php:102
+#: data/templates/default/importDelicious.tpl.php:20
+#: data/templates/default/importNetscape.tpl.php:21
+msgid "Private"
+msgstr "プライベート"
+
+#: data/templates/default/editbookmark.tpl.php:115
+msgid "Delete Bookmark"
+msgstr "ブックマークを削除する"
+
+#: data/templates/default/editbookmark.tpl.php:120
+msgid "edit common description"
+msgstr "共通説明の編集"
+
+#: data/templates/default/editbookmark.tpl.php:212
+#: data/templates/default/importDelicious.tpl.php:26
+#: data/templates/default/importNetscape.tpl.php:27
+#: data/templates/default/importStructure.tpl.php:16
 msgid "Import"
 msgstr "インポートする"
 
-#: ../../../templates/editbookmark.tpl.php:170
+#: data/templates/default/editbookmark.tpl.php:214
 msgid "Import bookmarks from bookmark file"
 msgstr "ブックマークファイルからブックマークをインポートする"
 
-#: ../../../templates/editbookmark.tpl.php:170
+#: data/templates/default/editbookmark.tpl.php:214
 msgid "Internet Explorer, Mozilla Firefox and Netscape"
 msgstr "Internet Explorer、Mozilla Firefox と Netscape"
 
-#: ../../../templates/editbookmark.tpl.php:171
+#: data/templates/default/editbookmark.tpl.php:215
 msgid "Import bookmarks from del.icio.us"
 msgstr "del.icio.us からブックマークをインポートする"
 
-#: ../../../templates/editprofile.tpl.php:10
-msgid "Account Details"
-msgstr "アカウントの詳細"
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:11
+msgid "SSL client certificates"
+msgstr ""
 
-#: ../../../templates/editprofile.tpl.php:14
-#: ../../../templates/login.tpl.php:15 ../../../templates/password.tpl.php:10
-#: ../../../templates/profile.tpl.php:6 ../../../templates/register.tpl.php:16
-msgid "Username"
-msgstr "ユーザー名"
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:17
+msgid "Serial"
+msgstr ""
 
-#: ../../../templates/editprofile.tpl.php:19
-msgid "New Password"
-msgstr "新規パスワード"
-
-#: ../../../templates/editprofile.tpl.php:24
-msgid "Confirm Password"
-msgstr "パスワード(確認)"
-
-#: ../../../templates/editprofile.tpl.php:29
-#: ../../../templates/password.tpl.php:14
-#: ../../../templates/register.tpl.php:26
-msgid "E-mail"
-msgstr "電子メール"
-
-#: ../../../templates/editprofile.tpl.php:35
-msgid "Personal Details"
-msgstr "個人の詳細"
-
-#: ../../../templates/editprofile.tpl.php:39
-#: ../../../templates/profile.tpl.php:17
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:18
+#: data/templates/default/editprofile.tpl.php:45
+#: data/templates/default/profile.tpl.php:17
 msgid "Name"
 msgstr "名前"
 
-#: ../../../templates/editprofile.tpl.php:43
-#: ../../../templates/profile.tpl.php:23
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:19
+#: data/templates/default/profile.tpl.php:11
+msgid "Email"
+msgstr "電子メール"
+
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:20
+msgid "Issuer"
+msgstr ""
+
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:30
+#, fuzzy
+msgid "delete"
+msgstr "削除する"
+
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:43
+msgid "No certificates registered"
+msgstr ""
+
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:48
+msgid "Your current certificate is already registered with your account."
+msgstr ""
+
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:53
+msgid "Register current certificate to automatically login."
+msgstr ""
+
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:59
+msgid "Your browser does not provide a certificate."
+msgstr ""
+
+#: data/templates/default/editprofile.tpl.php:8
+msgid "Account Details"
+msgstr "アカウントの詳細"
+
+#: data/templates/default/editprofile.tpl.php:12
+#: data/templates/default/login.tpl.php:21
+#: data/templates/default/password.tpl.php:10
+#: data/templates/default/profile.tpl.php:6
+#: data/templates/default/register.tpl.php:16
+msgid "Username"
+msgstr "ユーザー名"
+
+#: data/templates/default/editprofile.tpl.php:17
+msgid "New Password"
+msgstr "新規パスワード"
+
+#: data/templates/default/editprofile.tpl.php:22
+msgid "Confirm Password"
+msgstr "パスワード(確認)"
+
+#: data/templates/default/editprofile.tpl.php:27
+#: data/templates/default/password.tpl.php:14
+#: data/templates/default/register.tpl.php:26
+msgid "E-mail"
+msgstr "電子メール"
+
+#: data/templates/default/editprofile.tpl.php:32
+#, fuzzy
+msgid "Private RSS Feed"
+msgstr "プライベートノート"
+
+#: data/templates/default/editprofile.tpl.php:34
+msgid "Enable"
+msgstr ""
+
+#: data/templates/default/editprofile.tpl.php:36
+#, fuzzy
+msgid "Generate New Key"
+msgstr "パスワードを生成する"
+
+#: data/templates/default/editprofile.tpl.php:41
+msgid "Personal Details"
+msgstr "個人の詳細"
+
+#: data/templates/default/editprofile.tpl.php:49
+#: data/templates/default/profile.tpl.php:23
 msgid "Homepage"
 msgstr "ホームページ"
 
-#: ../../../templates/editprofile.tpl.php:55
-#: ../../../templates/sidebar.block.tagactions.php:17
-#: ../../../templates/sidebar.block.watchstatus.php:18
+#: data/templates/default/editprofile.tpl.php:58 www/edit.php:113
+msgid "Save Changes"
+msgstr "変更を保存する"
+
+#: data/templates/default/editprofile.tpl.php:63
+#: data/templates/default/sidebar.block.tagactions.php:17
+#: data/templates/default/sidebar.block.watchstatus.php:18
 msgid "Actions"
 msgstr "操作"
 
-#: ../../../templates/editprofile.tpl.php:58
+#: data/templates/default/editprofile.tpl.php:66
 msgid "Export bookmarks"
 msgstr "ブックマークをエクスポートする"
 
-#: ../../../templates/editprofile.tpl.php:60
+#: data/templates/default/editprofile.tpl.php:68
 msgid "HTML file (for browsers)"
 msgstr "HTML ファイル (ブラウザー用)"
 
-#: ../../../templates/editprofile.tpl.php:61
+#: data/templates/default/editprofile.tpl.php:69
 msgid "XML file (like del.icio.us)"
 msgstr "XML ファイル (del.icio.us のような)"
 
-#: ../../../templates/editprofile.tpl.php:62
+#: data/templates/default/editprofile.tpl.php:70
 msgid "CSV file (for spreadsheet tools)"
 msgstr "CSV ファイル (スプレッドシート ツール用)"
 
-#: ../../../templates/error.404.tpl.php:5
+#: data/templates/default/error.404.tpl.php:5
 msgid "Not Found"
 msgstr "見つかりません"
 
-#: ../../../templates/error.404.tpl.php:6
+#: data/templates/default/error.404.tpl.php:6
 msgid "The requested URL was not found on this server"
 msgstr "要求された URL はこのサーバーで見つかりません"
 
-#: ../../../templates/error.500.tpl.php:5
+#: data/templates/default/error.500.tpl.php:5
 msgid "General server error"
 msgstr "サーバー全体のエラー"
 
-#: ../../../templates/error.500.tpl.php:6
+#: data/templates/default/error.500.tpl.php:6
 msgid "The requested URL could not be processed"
 msgstr "要求された URL は処理できません"
 
-#: ../../../templates/importDelicious.tpl.php:19
-#: ../../../templates/importNetscape.tpl.php:20
+#: data/templates/default/importDelicious.tpl.php:19
+#: data/templates/default/importNetscape.tpl.php:20
 msgid "Shared with Watchlist"
 msgstr "注目リストで共有"
 
-#: ../../../templates/importDelicious.tpl.php:31
-#: ../../../templates/importNetscape.tpl.php:32
-#: ../../../templates/importStructure.tpl.php:21
+#: data/templates/default/importDelicious.tpl.php:31
+#: data/templates/default/importNetscape.tpl.php:32
+#: data/templates/default/importStructure.tpl.php:21
 msgid "Instructions"
 msgstr "手順"
 
-#: ../../../templates/importDelicious.tpl.php:33
+#: data/templates/default/importDelicious.tpl.php:33
+#, fuzzy
 msgid ""
-"Log in to the <a href=\"http://del.icio.us/api/posts/all\">export page at "
-"del.icio.us</a>"
+"Log in to the <a href=\"https://api.del.icio.us/v1/posts/all\">export page "
+"at del.icio.us</a>"
 msgstr ""
 "<a href=\"http://del.icio.us/api/posts/all\">del.icio.us のエクスポートページ"
 "</a> にログインします。"
 
-#: ../../../templates/importDelicious.tpl.php:34
+#: data/templates/default/importDelicious.tpl.php:34
 msgid ""
 "Save the resulting <abbr title=\"Extensible Markup Language\">XML</abbr> "
 "file to your computer"
@@ -1106,7 +694,7 @@ msgstr ""
 "結果の <abbr title=\"Extensible Markup Language\">XML</abbr> ファイルをコン"
 "ピューターに保存します。"
 
-#: ../../../templates/importDelicious.tpl.php:35
+#: data/templates/default/importDelicious.tpl.php:35
 msgid ""
 "Click <kbd>Browse...</kbd> to find this file on your computer. The maximum "
 "size the file can be is 1MB"
@@ -1114,13 +702,13 @@ msgstr ""
 "コンピューター上のこのファイルを見つけるために <kbd>参照...</kbd> をクリック"
 "します。ファイルの最大サイズは 1MB です。"
 
-#: ../../../templates/importDelicious.tpl.php:36
-#: ../../../templates/importNetscape.tpl.php:43
+#: data/templates/default/importDelicious.tpl.php:36
+#: data/templates/default/importNetscape.tpl.php:43
 msgid "Select the default privacy setting for your imported bookmarks"
 msgstr "インポートしたブックマークの標準プライバシー設定を選択します。"
 
-#: ../../../templates/importDelicious.tpl.php:37
-#: ../../../templates/importNetscape.tpl.php:44
+#: data/templates/default/importDelicious.tpl.php:37
+#: data/templates/default/importNetscape.tpl.php:44
 msgid ""
 "Click <kbd>Import</kbd> to start importing the bookmarks; it may take a "
 "minute"
@@ -1128,18 +716,18 @@ msgstr ""
 "<kbd>インポートする</kbd> をクリックするとブックマークのインポートを開始しま"
 "す。しばらくかかるかもしれません。"
 
-#: ../../../templates/importNetscape.tpl.php:35
+#: data/templates/default/importNetscape.tpl.php:35
 msgid "Export your bookmarks from your browser to a file"
 msgstr "ブラウザーからファイルにブックマークをエクスポートする"
 
-#: ../../../templates/importNetscape.tpl.php:37
+#: data/templates/default/importNetscape.tpl.php:37
 msgid ""
 "Internet Explorer: <kbd>File &gt; Import and Export... &gt; Export Favorites"
 msgstr ""
 "Internet Explorer: <kbd>ファイル &gt; インポートとエクスポート... &gt; お気に"
 "入りのエクスポート"
 
-#: ../../../templates/importNetscape.tpl.php:38
+#: data/templates/default/importNetscape.tpl.php:38
 msgid ""
 "Mozilla Firefox: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; File &gt; "
 "Export..."
@@ -1147,14 +735,14 @@ msgstr ""
 "Mozilla Firefox: <kbd>ブックマーク &gt; ブックマークの管理... &gt; ファイル "
 "&gt; Export..."
 
-#: ../../../templates/importNetscape.tpl.php:39
+#: data/templates/default/importNetscape.tpl.php:39
 msgid ""
 "Netscape: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; Tools &gt; Export..."
 msgstr ""
 "Netscape: <kbd>ブックマーク &gt; ブックマークの管理... &gt; ツール &gt; エク"
 "スポート..."
 
-#: ../../../templates/importNetscape.tpl.php:42
+#: data/templates/default/importNetscape.tpl.php:42
 msgid ""
 "Click <kbd>Browse...</kbd> to find the saved bookmark file on your computer. "
 "The maximum size the file can be is 1MB"
@@ -1162,29 +750,39 @@ msgstr ""
 "コンピューター上に保存されたブックマークを見つけるために <kbd>参照...</kbd> "
 "をクリックします。ファイルの最大サイズは 1MB です。"
 
-#: ../../../templates/importStructure.tpl.php:24
+#: data/templates/default/importStructure.tpl.php:24
 msgid "Create your structure into a simple text file and following this model:"
 msgstr ""
 
-#: ../../../templates/importStructure.tpl.php:35
+#: data/templates/default/importStructure.tpl.php:35
 msgid ""
 "Then import the file. The tags and their relations will be added to your "
 "profile."
 msgstr ""
 
-#: ../../../templates/login.tpl.php:20 ../../../templates/register.tpl.php:21
+#: data/templates/default/login.tpl.php:13
+msgid "Please activate cookies"
+msgstr ""
+
+#: data/templates/default/login.tpl.php:26
+#: data/templates/default/register.tpl.php:21
 msgid "Password"
 msgstr "パスワード"
 
-#: ../../../templates/login.tpl.php:22
+#: data/templates/default/login.tpl.php:28
 msgid "Don't ask for my password for 2 weeks"
 msgstr "2 週間自分のパスワードを問い合わせません"
 
-#: ../../../templates/login.tpl.php:30
+#: data/templates/default/login.tpl.php:32
+#: data/templates/default/toolbar.inc.php:29 www/login.php:57
+msgid "Log In"
+msgstr "ログイン"
+
+#: data/templates/default/login.tpl.php:36
 msgid "Forgotten your password?"
 msgstr "パスワードを忘れましたか?"
 
-#: ../../../templates/password.tpl.php:5
+#: data/templates/default/password.tpl.php:5
 #, php-format
 msgid ""
 "If you have forgotten your password, %s can generate a new one. Enter the "
@@ -1195,37 +793,34 @@ msgstr ""
 "トのユーザー名と電子メールアドレスを下のフォームに入力してください。そうすれ"
 "ば、新しいパスワードを電子メールで送信するでしょう。"
 
-#: ../../../templates/password.tpl.php:19
+#: data/templates/default/password.tpl.php:19
 msgid "Generate Password"
 msgstr "パスワードを生成する"
 
-#: ../../../templates/profile.tpl.php:11
-msgid "Email"
-msgstr "電子メール"
-
-#: ../../../templates/profile.tpl.php:28
+#: data/templates/default/profile.tpl.php:28
 msgid "Member Since"
 msgstr "メンバー登録日"
 
-#: ../../../templates/profile.tpl.php:40
-#: ../../../templates/sidebar.block.watchlist.php:30
+#: data/templates/default/profile.tpl.php:40
+#: data/templates/default/sidebar.block.watchlist.php:30
 msgid "Watching"
 msgstr "注目一覧"
 
-#: ../../../templates/profile.tpl.php:55
-#: ../../../templates/sidebar.block.watchlist.php:52
+#: data/templates/default/profile.tpl.php:55
+#: data/templates/default/sidebar.block.watchlist.php:52
 msgid "Watched By"
 msgstr "注目している人:"
 
-#: ../../../templates/profile.tpl.php:68 ../../../templates/toolbar.inc.php:9
+#: data/templates/default/profile.tpl.php:68
+#: data/templates/default/toolbar.inc.php:9
 msgid "Bookmarks"
 msgstr "ブックマーク"
 
-#: ../../../templates/profile.tpl.php:69
+#: data/templates/default/profile.tpl.php:69
 msgid "Go to bookmarks"
 msgstr "ブックマークに移動する"
 
-#: ../../../templates/register.tpl.php:11
+#: data/templates/default/register.tpl.php:11
 #, php-format
 msgid ""
 "Sign up here to create a free %s account. All the information requested "
@@ -1234,226 +829,801 @@ msgstr ""
 "ここでサインアップし、%s のアカウントを自由に作成できます。下記で要求された情"
 "報はすべて必須です。"
 
-#: ../../../templates/register.tpl.php:18
+#: data/templates/default/register.tpl.php:18
 msgid ""
 " at least 5 characters, alphanumeric (no spaces, no dots or other special "
 "ones)"
 msgstr ""
 
-#: ../../../templates/register.tpl.php:28
+#: data/templates/default/register.tpl.php:28
 msgid " to send you your password if you forget it"
 msgstr ""
 
-#: ../../../templates/register.tpl.php:33
+#: data/templates/default/register.tpl.php:33
 msgid "Antispam question"
 msgstr "スパム対策の質問"
 
-#: ../../../templates/sidebar.block.linked.php:51
+#: data/templates/default/register.tpl.php:41
+#: data/templates/default/toolbar.inc.php:31 www/register.php:99
+msgid "Register"
+msgstr "登録する"
+
+#: data/templates/default/search.menu.php:27
+msgid "Search..."
+msgstr "検索..."
+
+#: data/templates/default/search.menu.php:28
+msgid "in"
+msgstr ""
+
+#: data/templates/default/search.menu.php:34
+msgid "this user's bookmarks"
+msgstr "このユーザーのブックマーク"
+
+#: data/templates/default/search.menu.php:39
+msgid "my bookmarks"
+msgstr "自分のブックマーク"
+
+#: data/templates/default/search.menu.php:40
+msgid "my watchlist"
+msgstr "自分の注目一覧"
+
+#: data/templates/default/search.menu.php:44
+msgid "all bookmarks"
+msgstr "すべてのブックマーク"
+
+#: data/templates/default/search.menu.php:54
+msgid "Search"
+msgstr "検索"
+
+#: data/templates/default/sidebar.block.linked.php:23
 #, fuzzy
 msgid "Linked Tags"
 msgstr "関連するタグ"
 
-#: ../../../templates/sidebar.block.linked.php:62
-#: ../../../templates/sidebar.block.menu.php:46
+#: data/templates/default/sidebar.block.linked.php:28
+#: data/templates/default/sidebar.block.menu.php:46
 msgid "Add new link"
 msgstr "新規リンクを追加する"
 
-#: ../../../templates/sidebar.block.linked.php:63
-#: ../../../templates/sidebar.block.menu.php:47
+#: data/templates/default/sidebar.block.linked.php:29
+#: data/templates/default/sidebar.block.menu.php:47
 msgid "Delete link"
 msgstr "リンクを削除する"
 
-#: ../../../templates/sidebar.block.menu.php:35
+#: data/templates/default/sidebar.block.menu.php:35
 #, php-format
 msgid "Tags included into the tag '%s'"
 msgstr ""
 
-#: ../../../templates/sidebar.block.menu.php:35
+#: data/templates/default/sidebar.block.menu.php:35
 msgid "Menu Tags"
 msgstr "タグのメニュー"
 
-#: ../../../templates/sidebar.block.menu.php:68
+#: data/templates/default/sidebar.block.menu.php:68
 msgid "See all your tags"
 msgstr "すべてのタグを見る"
 
-#: ../../../templates/sidebar.block.menu.php:68
+#: data/templates/default/sidebar.block.menu.php:68
 msgid "all your tags"
 msgstr "あなたのすべてのタグ"
 
-#: ../../../templates/sidebar.block.menu.php:70
+#: data/templates/default/sidebar.block.menu.php:70
 msgid "See all tags from this user"
 msgstr "このユーザーのすべてのタグを見る"
 
-#: ../../../templates/sidebar.block.menu.php:70
+#: data/templates/default/sidebar.block.menu.php:70
 msgid "all tags from this user"
 msgstr "このユーザーのほかのタグ"
 
-#: ../../../templates/sidebar.block.menu.php:74
+#: data/templates/default/sidebar.block.menu.php:74
 msgid "See popular tags"
 msgstr "人気のタグを見る"
 
-#: ../../../templates/sidebar.block.menu2.php:25
+#: data/templates/default/sidebar.block.menu2.php:21
 msgid "Featured Menu Tags"
 msgstr ""
 
-#: ../../../templates/sidebar.block.menu2.php:29
+#: data/templates/default/sidebar.block.menu2.php:25
 msgid "This menu is composed of keywords (tags) organized by admins."
 msgstr ""
 
-#: ../../../templates/sidebar.block.recent.php:18
+#: data/templates/default/sidebar.block.recent.php:18
 msgid "Recent Tags"
 msgstr "最近のタグ"
 
-#: ../../../templates/sidebar.block.related.php:26
+#: data/templates/default/sidebar.block.related.php:26
 msgid "Related Tags"
 msgstr "関連するタグ"
 
-#: ../../../templates/sidebar.block.search.php:15
+#: data/templates/default/sidebar.block.search.php:28
 msgid "Last Searches"
 msgstr "最後の検索"
 
-#: ../../../templates/sidebar.block.search.php:24
+#: data/templates/default/sidebar.block.search.php:40
 msgid "Number of bookmarks for this query"
 msgstr "この問い合わせのブックマーク数"
 
-#: ../../../templates/sidebar.block.tagactions.php:28
+#: data/templates/default/sidebar.block.tagactions.php:9 www/tagrename.php:72
+msgid "Rename Tag"
+msgid_plural "Rename Tags"
+msgstr[0] "タグを変更する"
+
+#: data/templates/default/sidebar.block.tagactions.php:22 www/tagdelete.php:54
+msgid "Delete Tag"
+msgstr "タグを削除する"
+
+#: data/templates/default/sidebar.block.tagactions.php:24 www/tagedit.php:61
+msgid "Edit Tag Description"
+msgstr "タグの説明を編集する"
+
+#: data/templates/default/sidebar.block.tagactions.php:26
+#: www/tagcommondescriptionedit.php:76
+msgid "Edit Tag Common Description"
+msgstr ""
+
+#: data/templates/default/sidebar.block.tagactions.php:28
 msgid "Create a link to another tag"
 msgstr "別のタグへのリンクを作成する"
 
-#: ../../../templates/sidebar.block.users.php:14
+#: data/templates/default/sidebar.block.users.php:14
 msgid "New Users"
 msgstr "新規ユーザー"
 
-#: ../../../templates/sidebar.block.users.php:23
-#: ../../../templates/users.tpl.php:17
+#: data/templates/default/sidebar.block.users.php:23
+#: data/templates/default/users.tpl.php:24
 msgid "bookmarks"
 msgstr "ブックマーク"
 
-#: ../../../templates/sidebar.block.users.php:30
+#: data/templates/default/sidebar.block.users.php:30
 msgid "See all users"
 msgstr "すべてのユーザーを見る"
 
-#: ../../../templates/sidebar.block.users.php:30
+#: data/templates/default/sidebar.block.users.php:30
 msgid "All users"
 msgstr "すべてのユーザー"
 
-#: ../../../templates/sidebar.block.watchlist.php:19
+#: data/templates/default/sidebar.block.watchlist.php:19
 msgid "Close contacts are mutual contacts"
 msgstr ""
 
-#: ../../../templates/sidebar.block.watchlist.php:19
+#: data/templates/default/sidebar.block.watchlist.php:19
 msgid "Close contacts"
 msgstr "連絡簿を閉じる"
 
-#: ../../../templates/sidebar.block.watchlist.php:36
+#: data/templates/default/sidebar.block.watchlist.php:36
 msgid "Add a contact..."
 msgstr "連絡簿に追加する..."
 
-#: ../../../templates/sidebar.block.watchlist.php:36
+#: data/templates/default/sidebar.block.watchlist.php:36
 msgid "Type a username to add it to your contacts."
 msgstr "連絡簿に追加するユーザー名を入力します。"
 
-#: ../../../templates/sidebar.block.watchlist.php:44
+#: data/templates/default/sidebar.block.watchlist.php:44
 msgid "Remove this contact"
 msgstr "連絡簿から削除する"
 
-#: ../../../templates/sidebar.block.watchstatus.php:11
+#: data/templates/default/sidebar.block.watchstatus.php:11
 msgid "Remove from Watchlist"
 msgstr "注目一覧から削除する"
 
-#: ../../../templates/sidebar.block.watchstatus.php:13
+#: data/templates/default/sidebar.block.watchstatus.php:13
 msgid "Add to Watchlist"
 msgstr "注目一覧に追加"
 
-#: ../../../templates/sidebar.linkedtags.inc.php:18
+#: data/templates/default/sidebar.linkedtags.inc.php:18
 msgid "Edit link"
 msgstr "リンクを編集する"
 
-#: ../../../templates/sidebar.linkedtags.inc.php:47
+#: data/templates/default/sidebar.linkedtags.inc.php:47
 msgid "Synonyms:"
 msgstr ""
 
-#: ../../../templates/tag2tagadd.tpl.php:12
+#: data/templates/default/tag2tagadd.tpl.php:12
 msgid "Create new link:"
 msgstr "新しいリンクの作成:"
 
-#: ../../../templates/tag2tagadd.tpl.php:19
+#: data/templates/default/tag2tagadd.tpl.php:19
 #, php-format
 msgid ""
 "Note: include a tag into '%s' tag (e.g. %s>countries) display the tag into "
 "the menu box"
 msgstr ""
 
-#: ../../../templates/tag2tagadd.tpl.php:23
-#: ../../../templates/tag2tagedit.tpl.php:37
+#: data/templates/default/tag2tagadd.tpl.php:23
+#: data/templates/default/tag2tagedit.tpl.php:37
 msgid "Create"
 msgstr "作成"
 
-#: ../../../templates/tag2tagadd.tpl.php:35
-#: ../../../templates/tag2tagdelete.tpl.php:27
-#: ../../../templates/tag2tagedit.tpl.php:51
+#: data/templates/default/tag2tagadd.tpl.php:35
+#: data/templates/default/tag2tagdelete.tpl.php:27
+#: data/templates/default/tag2tagedit.tpl.php:51
 msgid "Existing links:"
 msgstr "既存のリンク:"
 
-#: ../../../templates/tag2tagadd.tpl.php:53
-#: ../../../templates/tag2tagdelete.tpl.php:45
-#: ../../../templates/tag2tagedit.tpl.php:69
+#: data/templates/default/tag2tagadd.tpl.php:53
+#: data/templates/default/tag2tagdelete.tpl.php:45
+#: data/templates/default/tag2tagedit.tpl.php:69
 msgid "No links"
 msgstr "リンクなし"
 
-#: ../../../templates/tag2tagedit.tpl.php:6
+#: data/templates/default/tag2tagdelete.tpl.php:15
+#: data/templates/default/tag2tagedit.tpl.php:16
+#: data/templates/default/tagdelete.tpl.php:8 www/jsScuttle.php:24
+msgid "Yes"
+msgstr "はい"
+
+#: data/templates/default/tag2tagdelete.tpl.php:16
+#: data/templates/default/tag2tagedit.tpl.php:17
+#: data/templates/default/tagdelete.tpl.php:9 www/jsScuttle.php:24
+msgid "No"
+msgstr "いいえ"
+
+#: data/templates/default/tag2tagedit.tpl.php:6
 msgid "Delete the link"
 msgstr "リンクを作成する"
 
-#: ../../../templates/tag2tagedit.tpl.php:29
+#: data/templates/default/tag2tagedit.tpl.php:29
 msgid "Create new link"
 msgstr "新規リンクを作成する"
 
-#: ../../../templates/tagrename.tpl.php:12
+#: data/templates/default/tagrename.tpl.php:12
 msgid "Old"
 msgstr "旧"
 
-#: ../../../templates/tagrename.tpl.php:17
+#: data/templates/default/tagrename.tpl.php:17
 msgid "New"
 msgstr "新"
 
-#: ../../../templates/tagrename.tpl.php:24
+#: data/templates/default/tagrename.tpl.php:24
 msgid "Rename"
 msgstr "名前を変更する"
 
-#: ../../../templates/tags.tpl.php:11 ../../../templates/users.tpl.php:9
+#: data/templates/default/tags.tpl.php:11
+#: data/templates/default/users.tpl.php:9
 msgid "Alphabet"
 msgstr "アルファベット"
 
-#: ../../../templates/tags.tpl.php:12 ../../../templates/users.tpl.php:10
+#: data/templates/default/tags.tpl.php:12
+#: data/templates/default/users.tpl.php:10
 msgid "Popularity"
 msgstr "人気"
 
-#: ../../../templates/toolbar.inc.php:8 ../../../templates/toolbar.inc.php:26
+#: data/templates/default/toolbar.inc.php:8
+#: data/templates/default/toolbar.inc.php:26
 msgid "Home"
 msgstr "ホーム"
 
-#: ../../../templates/toolbar.inc.php:14
+#: data/templates/default/toolbar.inc.php:11 www/watchlist.php:106
+msgid "Watchlist"
+msgstr "注目一覧"
+
+#: data/templates/default/toolbar.inc.php:12 www/profile.php:79
+msgid "Profile"
+msgstr "プロフィール"
+
+#: data/templates/default/toolbar.inc.php:13 www/bookmarks.php:215
+msgid "Add a Bookmark"
+msgstr "ブックマーク追加"
+
+#: data/templates/default/toolbar.inc.php:14
 msgid "Log Out"
 msgstr "ログアウト"
 
-#: ../../../templates/toolbar.inc.php:17
+#: data/templates/default/toolbar.inc.php:17
 msgid "Admin"
 msgstr "管理"
 
-#: ../../../templates/top.inc.php:51
+#: data/templates/default/top.inc.php:57
 msgid ""
 "Admins, your installation is in \"Debug Mode\" ($debugMode = true). To go in "
 "\"Normal Mode\" and hide debugging messages, change $debugMode to false into "
-"config.inc.php."
+"config.php."
 msgstr ""
 
-#: ../../../templates/users.tpl.php:17
+#: data/templates/default/users.tpl.php:20
 msgid "profile"
 msgstr "プロフィール"
 
-#: ../../../templates/users.tpl.php:17
+#: data/templates/default/users.tpl.php:21
 msgid "created in"
+msgstr ""
+
+#: www/admin.php:32
+msgid "Manage users"
+msgstr "ユーザー管理"
+
+#: www/admin.php:69
+#, php-format
+msgid "%s and all his bookmarks and tags were deleted."
+msgstr "%s とすべてのブックマークを削除しました。"
+
+#: www/admin.php:76
+msgid "Problem with "
+msgstr ""
+
+#: www/ajaxDelete.php:37
+msgid "You are not allowed to delete this bookmark"
+msgstr "このブックマークの削除は許可されていません"
+
+#: www/ajaxDelete.php:41 www/edit.php:103
+msgid "Failed to delete bookmark"
+msgstr "ブックマークの削除に失敗しました"
+
+#: www/alltags.php:50
+msgid "All Tags"
+msgstr "すべてのタグ"
+
+#: www/alltags.php:56 www/bookmarks.php:99 www/populartags.php:52
+#: www/profile.php:55 www/rss.php:100 www/search.php:111 www/watch.php:45
+#: www/watchlist.php:61
+#, php-format
+msgid "User with username %s was not found"
+msgstr "ユーザー名が「%s」のユーザーは見つけられませんでした"
+
+#: www/bookmarkcommondescriptionedit.php:51 www/tag2tagadd.php:37
+#: www/tag2tagdelete.php:41 www/tag2tagedit.php:33
+#: www/tagcommondescriptionedit.php:51 www/tagedit.php:43
+msgid "Permission denied."
+msgstr "権限がありません。"
+
+#: www/bookmarkcommondescriptionedit.php:60
+msgid "Bookmark common description updated"
+msgstr "ブックマーク共通の説明を更新しました"
+
+#: www/bookmarkcommondescriptionedit.php:63
+msgid "Failed to update the bookmark common description"
+msgstr "ブックマーク共通の説明の更新に失敗しました"
+
+#: www/bookmarkcommondescriptionedit.php:71
+msgid "Edit Bookmark Common Description"
+msgstr "ブックマーク共通の説明の編集"
+
+#: www/bookmarks.php:114 www/tags.php:47
+msgid "Remove the tag from the selection"
+msgstr "選択からタグを削除する"
+
+#: www/bookmarks.php:134 www/edit.php:65
+msgid "Your bookmark must have a title and an address"
+msgstr "ブックマークは題名とアドレスがなければなりません"
+
+#: www/bookmarks.php:139
+msgid "This bookmark URL may not be added"
+msgstr ""
+
+#: www/bookmarks.php:158 www/edit.php:83 www/edit.php:86
+msgid "Bookmark saved"
+msgstr "ブックマークを保存しました"
+
+#: www/bookmarks.php:158
+msgid "(Come back to previous page.)"
+msgstr ""
+
+#: www/bookmarks.php:165 www/import.php:106 www/importNetscape.php:108
+msgid ""
+"There was an error saving your bookmark. Please try again or contact the "
+"administrator."
+msgstr ""
+"ブックマークの保存中にエラーです。再度試すか、管理者に連絡してください。"
+
+#: www/bookmarks.php:222
+msgid "Add Bookmark"
+msgstr "ブックマークを追加する"
+
+#: www/bookmarks.php:225
+msgid "You must be logged in before you can add bookmarks."
+msgstr "ブックマークを追加する前にログインしなければなりません。"
+
+#: www/bookmarks.php:270
+#, php-format
+msgid "%s: %s"
+msgstr ""
+
+#: www/bookmarks.php:283
+#, php-format
+msgid "%s: %s (+private %s)"
+msgstr ""
+
+#: www/bookmarks.php:305 www/bookmarks.php:306
+msgid "My Bookmarks"
+msgstr "自分のブックマーク"
+
+#: www/edit.php:44 www/edit.php:45
+msgid "Edit Bookmark"
+msgstr "ブックマークを編集する"
+
+#: www/edit.php:51
+#, php-format
+msgid "Bookmark with id %s not was not found"
+msgstr "ID「%s」とブックマークは見つかりません"
+
+#: www/edit.php:57
+msgid "You are not allowed to edit this bookmark"
+msgstr "このブックマークの編集は許可されていません"
+
+#: www/edit.php:77
+msgid "Error while saving your bookmark"
+msgstr "ブックマークの保存中にエラー"
+
+#: www/history.php:61
+msgid "History"
+msgstr "履歴"
+
+#: www/history.php:62
+#, php-format
+msgid "History for %s"
+msgstr "%s の履歴"
+
+#: www/history.php:84
+msgid "Address was not found"
+msgstr "アドレスは見つかりません"
+
+#: www/import.php:47
+msgid "Could not open XML input"
+msgstr "入力の XML を開けません"
+
+#: www/import.php:51
+#, php-format
+msgid "XML error: %s at line %d"
+msgstr "XML エラー: %s の %d 行目"
+
+#: www/import.php:60
+msgid "Import Bookmarks from del.icio.us"
+msgstr "del.icio.us からブックマークをインポートする"
+
+#: www/import.php:93
+msgid "You have already submitted this bookmark."
+msgstr "このブックマークは既に送信しました。"
+
+#: www/import.php:104
+msgid "Bookmark imported."
+msgstr "ブックマークをインポートしました。"
+
+#: www/importNetscape.php:95
+msgid "You have already submitted some of these bookmarks."
+msgstr "ブックマークのうちいくつかは既に登録済みです。"
+
+#: www/importNetscape.php:115
+msgid "Bookmarks found: "
+msgstr "ブックマーク発見: "
+
+#: www/importNetscape.php:116
+msgid "Bookmarks imported: "
+msgstr "ブックマークをインポートしました: "
+
+#: www/importNetscape.php:117 www/importNetscape.php:122
+msgid "Import Bookmarks from Browser File"
+msgstr "ブラウザーのファイルからブックマークをインポートする"
+
+#: www/importStructure.php:61
+msgid "Bad indentation"
+msgstr ""
+
+#: www/importStructure.php:67
+msgid "New links between tags: "
+msgstr ""
+
+#: www/importStructure.php:72
+msgid "Import Structure"
+msgstr "構造のインポート"
+
+#: www/index.php:38
+msgid "You have now logged out"
+msgstr "ログアウトしました"
+
+#: www/index.php:46
+#, php-format
+msgid "%s: Recent bookmarks"
+msgstr "%s: 最近のブックマーク"
+
+#: www/index.php:58
+#, fuzzy, php-format
+msgid "%s: Recent bookmarks (+private %s)"
+msgstr "%s: 最近のブックマーク"
+
+#: www/index.php:96
+msgid "Store, share and tag your favourite links"
+msgstr "お気に入りのリンクの保存、共有、タグ付けをします。"
+
+#: www/index.php:97
+msgid "All Bookmarks"
+msgstr "すべてのブックマーク"
+
+#: www/jsScuttle.php:71
+msgid "Available"
+msgstr "利用できます"
+
+#: www/jsScuttle.php:74
+msgid "Not Available"
+msgstr "利用できません"
+
+#: www/login.php:48
+msgid "The details you have entered are incorrect. Please try again."
+msgstr "入力した詳細は正しくありません。再度試してください。"
+
+#: www/password.php:36
+msgid "You must enter your username."
+msgstr "ユーザー名を入力してください。"
+
+#: www/password.php:40
+msgid ""
+"You must enter your <abbr title=\"electronic mail\">e-mail</abbr> address."
+msgstr ""
+"<abbr title=\"電子メール\">電子メール</abbr>アドレスを入力しなければなりませ"
+"ん。"
+
+#: www/password.php:48
+msgid "No matches found for that username."
+msgstr "一致するユーザー名が見つかりません。"
+
+#: www/password.php:51
+msgid ""
+"No matches found for that combination of username and <abbr title="
+"\"electronic mail\">e-mail</abbr> address."
+msgstr ""
+"一致する<abbr title=\"電子メール\">電子メール</abbr>アドレスとユーザー名の組"
+"み合わせが見つかりませんでした。"
+
+#: www/password.php:59
+msgid ""
+"There was an error while generating your new password. Please try again."
+msgstr "新規パスワードの生成中にエラーです。再度試してください。"
+
+#: www/password.php:63
+msgid "Your new password is:"
+msgstr "新しいパスワード:"
+
+#: www/password.php:63
+msgid ""
+"To keep your bookmarks secure, you should change this password in your "
+"profile the next time you log in."
+msgstr ""
+"ブックマークの安全性を維持するために、次回のログイン時にプロフィールのこのパ"
+"スワードを変えるべきです。"
+
+#: www/password.php:66
+#, php-format
+msgid "%s Account Information"
+msgstr "%sアカウント情報"
+
+#: www/password.php:68
+#, php-format
+msgid "New password generated and sent to %s"
+msgstr "新規アカウントを生成し、%s に送信しました"
+
+#: www/password.php:75
+msgid "Forgotten Password"
+msgstr "パスワード忘れ"
+
+#: www/profile.php:63 www/watchlist.php:119
+msgid "Username was not specified"
+msgstr "ユーザー名が指定されていません"
+
+#: www/profile.php:70
+msgid "My Profile"
+msgstr "自分のプロフィール"
+
+#: www/profile.php:110
+msgid "Invalid Token"
+msgstr ""
+
+#: www/profile.php:115
+msgid "Password and confirmation do not match."
+msgstr "パスワードと確認パスワードが一致しません。"
+
+#: www/profile.php:119
+msgid "Password must be at least 6 characters long."
+msgstr "パスワードは少なくとも 6 文字以上です。"
+
+#: www/profile.php:123
+msgid "E-mail address is not valid."
+msgstr "電子メールアドレスが有効ではありません。"
+
+#: www/profile.php:127
+msgid "An error occurred while saving your changes."
+msgstr "変更の保存中にエラーです。"
+
+#: www/profile.php:129
+msgid "Changes saved."
+msgstr "変更を保存しました。"
+
+#: www/profile.php:148
+msgid "You do not have a valid SSL client certificate"
+msgstr ""
+
+#: www/profile.php:150
+msgid "This certificate is already registered"
+msgstr ""
+
+#: www/profile.php:152
+msgid "Failed to register SSL client certificate."
+msgstr ""
+
+#: www/profile.php:154
+msgid "SSL client certificate registered."
+msgstr ""
+
+#: www/profile.php:163
+msgid "Certificate not found."
+msgstr ""
+
+#: www/profile.php:165
+msgid "The certificate does not belong to you."
+msgstr ""
+
+#: www/profile.php:167
+#, fuzzy
+msgid "Failed to delete SSL client certificate."
+msgstr "タグの削除に失敗しました"
+
+#: www/profile.php:169
+msgid "SSL client certificate deleted."
+msgstr ""
+
+#: www/register.php:52
+msgid "You <em>must</em> enter a username, password and e-mail address."
+msgstr ""
+"ユーザー名、パスワード、名前と電子メールアドレスを入力しなければなりません。"
+
+#: www/register.php:56
+msgid "This username has been reserved, please make another choice."
+msgstr "このユーザー名は予約されています。ほかの名前を選んでください。"
+
+#: www/register.php:60
+msgid "This username already exists, please make another choice."
+msgstr "このユーザー名は既に存在します。ほかの名前を選んでください。"
+
+#: www/register.php:64
+msgid ""
+"This username is not valid (too short, too long, forbidden characters...), "
+"please make another choice."
+msgstr ""
+"このユーザー名は正しくありません (短すぎる、長すぎる、禁止文字...)。他を選ん"
+"でください。"
+
+#: www/register.php:68
+msgid "E-mail address is not valid. Please try again."
+msgstr "電子メールアドレスは有効ではありません。再度試してください。"
+
+#: www/register.php:72
+msgid "Antispam answer is not valid. Please try again."
+msgstr "スパム対策の回答が正しくありません。もう一度試してください。"
+
+#: www/register.php:90
+msgid "You have successfully registered. Enjoy!"
+msgstr "登録に成功しました。楽しんでください!"
+
+#: www/register.php:92
+msgid "Registration failed. Please try again."
+msgstr "登録に失敗しました。再度試してください。"
+
+#: www/rss.php:90 www/rss.php:111
+#, php-format
+msgid "Failed to Autenticate User with username %s using private key"
+msgstr ""
+
+#: www/rss.php:128
+#, php-format
+msgid "Recent bookmarks posted to %s"
+msgstr "最近のブックマークを %s に投稿しました"
+
+#: www/search.php:83 www/search.php:147
+msgid "Search Bookmarks"
+msgstr "ブックマークを検索する"
+
+#: www/search.php:89
+msgid "Search Results"
+msgstr "検索結果"
+
+#: www/search.php:137
+msgid "Unsatisfied? You can also try our "
+msgstr ""
+
+#: www/tag2tagadd.php:54
+msgid "Tag link created"
+msgstr ""
+
+#: www/tag2tagadd.php:57
+msgid "Failed to create the link"
+msgstr "リンクの削除に失敗しました"
+
+#: www/tag2tagadd.php:69
+msgid "Add Tag Link"
+msgstr ""
+
+#: www/tag2tagdelete.php:66
+msgid "Tag link deleted"
+msgstr ""
+
+#: www/tag2tagdelete.php:69
+msgid "Failed to delete the link"
+msgstr "リンクの削除に失敗しました"
+
+#: www/tag2tagdelete.php:81
+msgid "Delete Link Between Tags"
+msgstr ""
+
+#: www/tag2tagedit.php:55
+msgid "Edit Link Between Tags"
+msgstr ""
+
+#: www/tagcommondescriptionedit.php:62
+msgid "Tag common description updated"
+msgstr ""
+
+#: www/tagcommondescriptionedit.php:67
+msgid "Failed to update the tag common description"
+msgstr ""
+
+#: www/tagdelete.php:43
+msgid "Tag deleted"
+msgstr "タグを削除しました"
+
+#: www/tagdelete.php:46
+msgid "Failed to delete the tag"
+msgstr "タグの削除に失敗しました"
+
+#: www/tagedit.php:52
+msgid "Tag description updated"
+msgstr "タグの説明を更新しました"
+
+#: www/tagedit.php:55
+msgid "Failed to update the tag description"
+msgstr "タグの説明の更新に失敗しました"
+
+#: www/tagrename.php:63
+msgid "Tag renamed"
+msgstr "タグ名を変更しました"
+
+#: www/tagrename.php:66
+msgid "Failed to rename the tag"
+msgstr "タグ名の変更に失敗しました"
+
+#: www/tags.php:71
+#, php-format
+msgid "%s: tagged with \"%s\""
+msgstr ""
+
+#: www/tags.php:84
+#, php-format
+msgid "%s: tagged with \"%s\" (+private %s)"
+msgstr ""
+
+#: www/users.php:31
+msgid "Users"
+msgstr "ユーザー"
+
+#: www/watch.php:54
+msgid "User removed from your watchlist"
+msgstr "注目一覧からユーザーを削除しました"
+
+#: www/watch.php:56
+msgid "User added to your watchlist"
+msgstr "注目一覧にユーザーを追加しました"
+
+#: www/watchlist.php:104
+msgid "My Watchlist"
+msgstr "自分の注目一覧"
+
+#: www/api/httpauth.inc.php:30
+msgid "Use of the API calls requires authentication."
+msgstr ""
+
+#: www/gsearch/index.php:51
+msgid "Come back to "
+msgstr ""
+
+#: www/gsearch/index.php:56
+msgid "Admin tips: "
+msgstr ""
+
+#: www/gsearch/index.php:57
+msgid "To refresh manually Google Custom Search Engine, goes to: "
+msgstr ""
+
+#: www/gsearch/index.php:61
+msgid ""
+"If no result appears, check that all the urls are valid in the admin section."
 msgstr ""
 
 #~ msgid "Last Users"
