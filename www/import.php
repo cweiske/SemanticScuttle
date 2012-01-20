@@ -27,7 +27,9 @@ require_once 'www-header.php';
 /* Managing all possible inputs */
 // First input is $_FILES
 // Other inputs
-isset($_POST['status']) ? define('POST_STATUS', $_POST['status']): define('POST_STATUS', $GLOBALS['defaults']['privacy']);
+isset($_POST['status'])
+    ? define('POST_STATUS', $_POST['status'])
+    : define('POST_STATUS', $GLOBALS['defaults']['privacy']);
 
 
 if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['size'] > 0) {
@@ -54,6 +56,7 @@ if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['si
 		}
 	}
 	xml_parser_free($xml_parser);
+	//FIXME: show errors and warnings
 	header('Location: '. createURL('bookmarks', $userinfo->getUsername()));
 } else {
 	$templatename = 'importDelicious.tpl';
@@ -70,7 +73,8 @@ function startElement($parser, $name, $attrs) {
 	$bookmarkservice =SemanticScuttle_Service_Factory::get('Bookmark');
 
 	if ($name == 'POST') {
-		while(list($attrTitle, $attrVal) = each($attrs)) {
+		$newstatus = $status;
+		while (list($attrTitle, $attrVal) = each($attrs)) {
 			switch ($attrTitle) {
 				case 'HREF':
 					$bAddress = $attrVal;
@@ -87,6 +91,11 @@ function startElement($parser, $name, $attrs) {
 				case 'TAG':
 					$tags = strtolower($attrVal);
 					break;
+				case 'PRIVATE':
+					if ($attrVal == 'yes') {
+						$newstatus = 2;
+					}
+					break;
 			}
 		}
 		if ($bookmarkservice->bookmarkExists($bAddress, $userservice->getCurrentUserId())) {
@@ -100,11 +109,19 @@ function startElement($parser, $name, $attrs) {
 				$bDatetime = gmdate('Y-m-d H:i:s');
 			}
 
-			if ($bookmarkservice->addBookmark($bAddress, $bTitle, $bDescription, '', $status, $tags, null, $bDatetime, true, true))
-			$tplVars['msg'] = T_('Bookmark imported.');
-			else
-			$tplVars['error'] = T_('There was an error saving your bookmark. Please try again or contact the administrator.');
+			$res = $bookmarkservice->addBookmark(
+				$bAddress, $bTitle, $bDescription, '', $newstatus, $tags,
+				null, $bDatetime, true, true
+			);
+			if ($res) {
+				$tplVars['msg'] = T_('Bookmark imported.');
+			} else {
+				$tplVars['error'] = T_('There was an error saving your bookmark. Please try again or contact the administrator.');
+			}
 		}
+	}
+	if (!isset($depth[$parser])) {
+		$depth[$parser] = 0;
 	}
 	$depth[$parser]++;
 }
