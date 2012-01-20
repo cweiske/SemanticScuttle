@@ -50,7 +50,10 @@ function getTitle($url) {
 			$title = @mb_convert_encoding($title, 'UTF-8', $encoding);
 		}
 
+		$title = trim($title);
+
 		if (utf8_strlen($title) > 0) {
+			$title = html_entity_decode($title, ENT_QUOTES, 'UTF-8');
 			return $title;
 		} else {
 			// No title, so return filename
