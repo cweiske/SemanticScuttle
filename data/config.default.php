@@ -556,11 +556,11 @@ $enableWebsiteThumbnails = false;
  * User ID from websitethumbnail.de
  *
  * You need to register on
- *  http://www.artviper.net/registerAPI.php
+ *  http://www.artviper.net/registerapi.php
  * in order to use thumbnails on your domain
  *
  * @var  string
- * @link http://www.artviper.net/registerAPI.php
+ * @link http://www.artviper.net/registerapi.php
  */
 $thumbnailsUserId = null;
 
