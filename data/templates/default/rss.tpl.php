@@ -6,7 +6,7 @@ echo '<' . '?xml version="1.0" encoding="utf-8" ?' . ">\n";
 >
 <channel>
     <title><?php echo $feedtitle; ?></title>
-    <link><?php echo htmlspecialchars($feedlink); ?></link>
+    <link><?php echo htmlspecialchars($pagelink); ?></link>
     <atom:link rel="self" type="application/rss+xml" href="<?php echo htmlspecialchars($feedlink); ?>"/>
     <description><?php echo htmlspecialchars($feeddescription); ?></description>
     <pubDate><?php echo date('r'); ?></pubDate>

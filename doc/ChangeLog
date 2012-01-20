@@ -13,6 +13,7 @@ ChangeLog for SemantiScuttle
 - Fix bug #3407728: Can't delete users from admin page
 - Fix bug #3431742: open_basedir problems with /etc/ config files
 - Fix bug #3436624: Wrong URL for Delicious API when importing
+- Fix bug #3463481: RSS feed show warnings in feedvalidator.org
 - Implement request #3403609: fr_CA translation update
 - Implement patch #3476011: PostgreSQL tables can not be initialized
   (Frédéric Fauberteau [triaxx])
