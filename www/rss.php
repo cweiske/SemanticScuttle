@@ -124,7 +124,7 @@ if ($cat) {
 }
 
 $tplVars['feedtitle'] = filter($GLOBALS['sitename'] . (isset($pagetitle) ? $pagetitle : ''));
-$tplVars['feedlink'] = ROOT;
+$tplVars['feedlink'] = addProtocolToUrl(ROOT);
 $tplVars['feeddescription'] = sprintf(T_('Recent bookmarks posted to %s'), $GLOBALS['sitename']);
 
 $bookmarks = $bookmarkservice->getBookmarks(
