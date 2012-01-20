@@ -30,7 +30,7 @@ $this->includeTemplate($GLOBALS['top_include']);
 
 <h3><?php echo T_('Instructions'); ?></h3>
 <ol>
-    <li><?php echo T_('Log in to the <a href="http://del.icio.us/api/posts/all">export page at del.icio.us</a>'); ?>.</li>
+    <li><?php echo T_('Log in to the <a href="https://api.del.icio.us/v1/posts/all">export page at del.icio.us</a>'); ?>.</li>
     <li><?php echo T_('Save the resulting <abbr title="Extensible Markup Language">XML</abbr> file to your computer'); ?>.</li>
     <li><?php echo T_('Click <kbd>Browse...</kbd> to find this file on your computer. The maximum size the file can be is 1MB'); ?>.</li>
     <li><?php echo T_('Select the default privacy setting for your imported bookmarks'); ?>.</li>
