@@ -16,6 +16,7 @@ ChangeLog for SemantiScuttle
 - Fix bug #3463481: RSS feed show warnings in feedvalidator.org
 - Fix bug #3384416: Use URL with protocol in bookmarklet
 - Fix bug: Invalid HTML when website thumbnails are activated
+- Fix bug #3413459: Thumbnails not in one line
 - Implement request #3403609: fr_CA translation update
 - Implement patch #3476011: PostgreSQL tables can not be initialized
   (Frédéric Fauberteau [triaxx])
