@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Semantic Scuttle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-04 11:33+0200\n"
+"POT-Creation-Date: 2012-01-20 13:58+0100\n"
 "PO-Revision-Date: 2010-04-30 02:35+0400\n"
 "Last-Translator: Sergey Ulitin <serge.ulitin@gmail.com>\n"
 "Language-Team: Sergey Ulitin <serge.ulitin@gmail.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,1398 +20,1645 @@ msgstr ""
 "X-Poedit-Country: Russia\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../../../about.php:23
-#: ../../../about.php:24
-#: ../../../templates/bottom.inc.php:5
-#: ../../../templates/toolbar.inc.php:15
-#: ../../../templates/toolbar.inc.php:28
-msgid "About"
-msgstr "О сайте"
-
-#: ../../../admin.php:32
-msgid "Manage users"
-msgstr "Управление пользователями"
-
-#: ../../../admin.php:68
-#, php-format
-msgid "%s and all his bookmarks and tags were deleted."
-msgstr "%s и всего закладки и тэги удалены."
-
-#: ../../../admin.php:75
-msgid "Problem with "
-msgstr "Возникла проблема с"
-
-#: ../../../ajaxDelete.php:37
-msgid "You are not allowed to delete this bookmark"
-msgstr "У Вас нет прав на удаление этой закладки"
-
-#: ../../../ajaxDelete.php:41
-#: ../../../edit.php:103
-msgid "Failed to delete bookmark"
-msgstr "Ошибка при удалении закладки"
-
-#: ../../../alltags.php:49
-msgid "All Tags"
-msgstr "Все тэги"
-
-#: ../../../alltags.php:55
-#: ../../../bookmarks.php:96
-#: ../../../populartags.php:52
-#: ../../../profile.php:51
-#: ../../../rss.php:67
-#: ../../../search.php:101
-#: ../../../watch.php:45
-#: ../../../watchlist.php:61
-#, php-format
-msgid "User with username %s was not found"
-msgstr "Пользователь с именем %s не найден"
-
-#: ../../../bookmarkcommondescriptionedit.php:51
-#: ../../../tag2tagadd.php:37
-#: ../../../tag2tagdelete.php:41
-#: ../../../tag2tagedit.php:33
-#: ../../../tagcommondescriptionedit.php:43
-#: ../../../tagedit.php:43
-msgid "Permission denied."
-msgstr "Доступ запрещен."
-
-#: ../../../bookmarkcommondescriptionedit.php:60
-msgid "Bookmark common description updated"
-msgstr "Описание закладки обновлено"
-
-#: ../../../bookmarkcommondescriptionedit.php:63
-msgid "Failed to update the bookmark common description"
-msgstr "Ошибка при изменении описания закладки"
-
-#: ../../../bookmarkcommondescriptionedit.php:71
-msgid "Edit Bookmark Common Description"
-msgstr "Изменить описание закладки"
-
-#: ../../../bookmarks.php:111
-#: ../../../tags.php:47
-msgid "Remove the tag from the selection"
-msgstr "Remove the tag from the selection"
-
-#: ../../../bookmarks.php:131
-#: ../../../edit.php:65
-msgid "Your bookmark must have a title and an address"
-msgstr "Закладка должна иметь название и адрес"
-
-#: ../../../bookmarks.php:152
-#: ../../../edit.php:83
-#: ../../../edit.php:86
-msgid "Bookmark saved"
-msgstr "Закладка сохранена"
-
-#: ../../../bookmarks.php:152
-msgid "(Come back to previous page.)"
-msgstr "(Вернуться на предыдущую страницу.)"
-
-#: ../../../bookmarks.php:159
-#: ../../../import.php:106
-#: ../../../importNetscape.php:108
-msgid "There was an error saving your bookmark. Please try again or contact the administrator."
-msgstr "Произошла ошибка при сохранении закладки. Попробуйте еще раз или свяжитесь с администрацией."
-
-#: ../../../bookmarks.php:209
-#: ../../../templates/toolbar.inc.php:13
-msgid "Add a Bookmark"
-msgstr "Добавить закладку"
-
-#: ../../../bookmarks.php:213
-msgid "Add Bookmark"
-msgstr "Добавить закладку"
-
-#: ../../../bookmarks.php:216
-msgid "You must be logged in before you can add bookmarks."
-msgstr "Вы должны войти в систему, прежде чем добавлять закладки."
-
-#: ../../../bookmarks.php:270
-#: ../../../bookmarks.php:271
-msgid "My Bookmarks"
-msgstr "Мои закладки"
-
-#: ../../../edit.php:44
-#: ../../../edit.php:45
-msgid "Edit Bookmark"
-msgstr "Изменить закладку"
-
-#: ../../../edit.php:51
-#, php-format
-msgid "Bookmark with id %s not was not found"
-msgstr "Закладка # %s не найдена"
-
-#: ../../../edit.php:57
-msgid "You are not allowed to edit this bookmark"
-msgstr "У Вас нет доступа для редактирования этой закладки"
-
-#: ../../../edit.php:77
-msgid "Error while saving your bookmark"
-msgstr "Ошибка во время сохранения Вашей закладки"
-
-#: ../../../edit.php:113
-#: ../../../templates/editprofile.tpl.php:52
-msgid "Save Changes"
-msgstr "Сохранить изменения"
-
-#: ../../../functions.inc.php:144
+#: src/SemanticScuttle/functions.php:189
 msgid "message_die() was called multiple times."
 msgstr "message_die() было вызвано несколько раз."
 
-#: ../../../functions.inc.php:156
+#: src/SemanticScuttle/functions.php:201
 msgid "SQL Error"
 msgstr "Ошибка SQL"
 
-#: ../../../functions.inc.php:162
+#: src/SemanticScuttle/functions.php:207
 msgid "Line"
 msgstr "Line"
 
-#: ../../../functions.inc.php:162
-#: ../../../templates/importDelicious.tpl.php:8
-#: ../../../templates/importNetscape.tpl.php:9
-#: ../../../templates/importStructure.tpl.php:10
+#: src/SemanticScuttle/functions.php:207
+#: data/templates/default/importDelicious.tpl.php:8
+#: data/templates/default/importNetscape.tpl.php:9
+#: data/templates/default/importStructure.tpl.php:10
 msgid "File"
 msgstr "Файл"
 
-#: ../../../functions.inc.php:168
+#: src/SemanticScuttle/functions.php:215
 msgid "Information"
 msgstr "Информация"
 
-#: ../../../functions.inc.php:173
+#: src/SemanticScuttle/functions.php:220
 msgid "Critical Information"
 msgstr "Важная информация"
 
-#: ../../../functions.inc.php:178
+#: src/SemanticScuttle/functions.php:225
 msgid "An error occured"
 msgstr "Произошла ошибка"
 
-#: ../../../functions.inc.php:181
+#: src/SemanticScuttle/functions.php:228
 msgid "General Error"
 msgstr "Общая ошибка"
 
-#: ../../../functions.inc.php:189
+#: src/SemanticScuttle/functions.php:236
 msgid "An critical error occured"
 msgstr "Произошла критическая ошибка"
 
-#: ../../../functions.inc.php:192
+#: src/SemanticScuttle/functions.php:239
 msgid "Critical Error"
 msgstr "Критическая ошибка"
 
-#: ../../../functions.inc.php:201
+#: src/SemanticScuttle/functions.php:248
 msgid "DEBUG MODE"
 msgstr "Режим DEBUG"
 
-#: ../../../history.php:61
-msgid "History"
-msgstr "История"
-
-#: ../../../history.php:62
-#, php-format
-msgid "History for %s"
-msgstr "История для %s"
-
-#: ../../../history.php:84
-msgid "Address was not found"
-msgstr "Адрес не найден"
-
-#: ../../../import.php:47
-msgid "Could not open XML input"
-msgstr "Невозможно открыть XML"
-
-#: ../../../import.php:51
-#, php-format
-msgid "XML error: %s at line %d"
-msgstr "Ошибка XML: %s в строке %d"
-
-#: ../../../import.php:60
-msgid "Import Bookmarks from del.icio.us"
-msgstr "Импортировать закладки из del.icio.us"
-
-#: ../../../import.php:93
-msgid "You have already submitted this bookmark."
-msgstr "Вы уже добавили эту закладку."
-
-#: ../../../import.php:104
-msgid "Bookmark imported."
-msgstr "Закладка импортирована."
-
-#: ../../../importNetscape.php:95
-msgid "You have already submitted some of these bookmarks."
-msgstr "Вы уже сохранили некоторые из этих закладок."
-
-#: ../../../importNetscape.php:115
-msgid "Bookmarks found: "
-msgstr "Найденные закладки: "
-
-#: ../../../importNetscape.php:116
-msgid "Bookmarks imported: "
-msgstr "Закладки загружены: "
-
-#: ../../../importNetscape.php:117
-#: ../../../importNetscape.php:122
-msgid "Import Bookmarks from Browser File"
-msgstr "Импортировать закладки из файла"
-
-#: ../../../importStructure.php:61
-msgid "Bad indentation"
-msgstr "Ошибка в отступе"
-
-#: ../../../importStructure.php:67
-msgid "New links between tags: "
-msgstr "Новые ссылки между тэгов: "
-
-#: ../../../importStructure.php:72
-msgid "Import Structure"
-msgstr "Импорт структуры"
-
-#: ../../../index.php:38
-msgid "You have now logged out"
-msgstr "Вы вышли"
-
-#: ../../../index.php:45
-#, php-format
-msgid "%s: Recent bookmarks"
-msgstr "%s: Недавно добавленные закладки"
-
-#: ../../../index.php:78
-msgid "Store, share and tag your favourite links"
-msgstr "Сохраняйте, делитесь и отмечайте Ваши любимые ссылки"
-
-#: ../../../index.php:79
-msgid "All Bookmarks"
-msgstr "Все закладки"
-
-#: ../../../jsScuttle.php:22
-#: ../../../templates/admin.tpl.php:19
-#: ../../../templates/tag2tagadd.tpl.php:21
-#: ../../../templates/tag2tagdelete.tpl.php:13
-#: ../../../templates/tag2tagedit.tpl.php:14
-#: ../../../templates/tag2tagedit.tpl.php:35
-#: ../../../templates/tagdelete.tpl.php:6
-msgid "Are you sure?"
-msgstr "Вы уверены?"
-
-#: ../../../jsScuttle.php:22
-#: ../../../templates/tag2tagdelete.tpl.php:15
-#: ../../../templates/tag2tagedit.tpl.php:16
-#: ../../../templates/tagdelete.tpl.php:8
-msgid "Yes"
-msgstr "Да"
-
-#: ../../../jsScuttle.php:22
-#: ../../../templates/tag2tagdelete.tpl.php:16
-#: ../../../templates/tag2tagedit.tpl.php:17
-#: ../../../templates/tagdelete.tpl.php:9
-msgid "No"
-msgstr "Нет"
-
-#: ../../../jsScuttle.php:69
-msgid "Available"
-msgstr "Доступно"
-
-#: ../../../jsScuttle.php:72
-msgid "Not Available"
-msgstr "Недоступно"
-
-#: ../../../login.php:48
-msgid "The details you have entered are incorrect. Please try again."
-msgstr "Вы ввели некорректные данные. Попробуйте еще раз."
-
-#: ../../../login.php:57
-#: ../../../templates/login.tpl.php:26
-#: ../../../templates/toolbar.inc.php:29
-msgid "Log In"
-msgstr "Вход"
-
-#: ../../../password.php:36
-msgid "You must enter your username."
-msgstr "Вы должны ввести имя пользователя."
-
-#: ../../../password.php:40
-msgid "You must enter your <abbr title=\"electronic mail\">e-mail</abbr> address."
-msgstr "Вы должны ввести <abbr title=\"electronic mail\">e-mail</abbr>."
-
-#: ../../../password.php:48
-msgid "No matches found for that username."
-msgstr "Для этого пользователя ничего не найдено."
-
-#: ../../../password.php:51
-msgid "No matches found for that combination of username and <abbr title=\"electronic mail\">e-mail</abbr> address."
-msgstr "Ничего не найдено для этого имени пользователя и адреса <abbr title=\"electronic mail\">e-mail</abbr>."
-
-#: ../../../password.php:59
-msgid "There was an error while generating your new password. Please try again."
-msgstr "Произошла ошибка во время генерации имени пользователя. Попробуйте еще раз."
-
-#: ../../../password.php:63
-msgid "Your new password is:"
-msgstr "Ваш новый пароль:"
-
-#: ../../../password.php:63
-msgid "To keep your bookmarks secure, you should change this password in your profile the next time you log in."
-msgstr "Для обеспечения безопасности, Вы должны изменить пароль в профиле, следующий раз когда войдете в систему."
-
-#: ../../../password.php:66
-#, php-format
-msgid "%s Account Information"
-msgstr "%s просмотр информации об аккаунте"
-
-#: ../../../password.php:68
-#, php-format
-msgid "New password generated and sent to %s"
-msgstr "Новый пароль отправлен по адресу %s"
-
-#: ../../../password.php:75
-msgid "Forgotten Password"
-msgstr "Забытый пароль"
-
-#: ../../../populartags.php:46
-#: ../../../templates/dynamictags.inc.php:128
-#: ../../../templates/sidebar.block.common.php:9
-#: ../../../templates/sidebar.block.menu.php:74
-#: ../../../templates/sidebar.block.popular.php:23
-#: ../../../templates/sidebar.block.recent.php:34
-#: ../../../templates/toolbar.inc.php:27
-msgid "Popular Tags"
-msgstr "Популярные тэги"
-
-#: ../../../profile.php:59
-#: ../../../watchlist.php:119
-msgid "Username was not specified"
-msgstr "Имя пользователя не введено"
-
-#: ../../../profile.php:65
-msgid "My Profile"
-msgstr "Мой профиль"
-
-#: ../../../profile.php:67
-#: ../../../templates/toolbar.inc.php:12
-msgid "Profile"
-msgstr "Профиль"
-
-#: ../../../profile.php:89
-msgid "Invalid Token"
-msgstr "Неверный символ"
-
-#: ../../../profile.php:94
-msgid "Password and confirmation do not match."
-msgstr "Пароль и подтверждение пароля не совпадают."
-
-#: ../../../profile.php:98
-msgid "Password must be at least 6 characters long."
-msgstr "Пароль должен быть минимум 6 символов длиной."
-
-#: ../../../profile.php:102
-msgid "E-mail address is not valid."
-msgstr "Некорректный адрес E-mail."
-
-#: ../../../profile.php:106
-msgid "An error occurred while saving your changes."
-msgstr "Ошибка при сохранении изменений."
-
-#: ../../../profile.php:108
-msgid "Changes saved."
-msgstr "Изменения сохранены."
-
-#: ../../../register.php:40
-msgid "You <em>must</em> enter a username, password and e-mail address."
-msgstr "Вы <em>должны</em> ввести имя пользователя, пароль и адрес e-mail."
-
-#: ../../../register.php:44
-msgid "This username has been reserved, please make another choice."
-msgstr "Это имя пользователя занято, пожалуйста выберете другое."
-
-#: ../../../register.php:48
-msgid "This username already exists, please make another choice."
-msgstr "Это имя пользоватея уже существует, пожалуйста выберете другое."
-
-#: ../../../register.php:52
-msgid "This username is not valid (too short, too long, forbidden characters...), please make another choice."
-msgstr "Некорректное имя пользователя (слишком короткое, слишком длинное или запрещенные символы...), пожалуйста выберете другое."
-
-#: ../../../register.php:56
-msgid "E-mail address is not valid. Please try again."
-msgstr "Некорректный адрес e-mail. Попробуйте еще раз."
-
-#: ../../../register.php:60
-msgid "Antispam answer is not valid. Please try again."
-msgstr "Ответ на вопрос спам-фильтра не верен. Попробуйте еще раз."
-
-#: ../../../register.php:69
-msgid "You have successfully registered. Enjoy!"
-msgstr "Поздравляем! Вы успешно зарегистрировались!"
-
-#: ../../../register.php:71
-msgid "Registration failed. Please try again."
-msgstr "Ошибка регистрации. Пожалуйста попробуйте еще раз."
-
-#: ../../../register.php:77
-#: ../../../templates/register.tpl.php:41
-#: ../../../templates/toolbar.inc.php:30
-msgid "Register"
-msgstr "Регистрация"
-
-#: ../../../rss.php:84
-#, php-format
-msgid "Recent bookmarks posted to %s"
-msgstr "Последние закладки добавленные в %s"
-
-#: ../../../search.inc.php:23
-msgid "Search..."
-msgstr "Поиск..."
-
-#: ../../../search.inc.php:24
-msgid "in"
-msgstr "в"
-
-#: ../../../search.inc.php:30
-msgid "this user's bookmarks"
-msgstr "закладки этого пользователя"
-
-#: ../../../search.inc.php:35
-msgid "my bookmarks"
-msgstr "мои закладки"
-
-#: ../../../search.inc.php:36
-msgid "my watchlist"
-msgstr "мой лист наблюдения"
-
-#: ../../../search.inc.php:40
-msgid "all bookmarks"
-msgstr "все закладки"
-
-#: ../../../search.inc.php:50
-msgid "Search"
-msgstr "Поиск"
-
-#: ../../../search.php:73
-#: ../../../search.php:123
-msgid "Search Bookmarks"
-msgstr "Поиск закладок"
-
-#: ../../../search.php:79
-msgid "Search Results"
-msgstr "Результаты поиска"
-
-#: ../../../search.php:114
-msgid "Unsatisfied? You can also try our "
-msgstr "Неудовлетворены? Вы еще можете поробовать наш "
-
-#: ../../../tag2tagadd.php:50
-msgid "Tag link created"
-msgstr "Tag link created"
-
-#: ../../../tag2tagadd.php:53
-msgid "Failed to create the link"
-msgstr "Ошибка создания ссылки"
-
-#: ../../../tag2tagadd.php:65
-msgid "Add Tag Link"
-msgstr "Добавить тэг к ссылке"
-
-#: ../../../tag2tagdelete.php:66
-msgid "Tag link deleted"
-msgstr "Тэг ссылки удален"
-
-#: ../../../tag2tagdelete.php:69
-msgid "Failed to delete the link"
-msgstr "Ошибка удаления ссылки"
-
-#: ../../../tag2tagdelete.php:81
-msgid "Delete Link Between Tags"
-msgstr "Delete Link between Tags"
-
-#: ../../../tag2tagedit.php:55
-msgid "Edit Link Between Tags"
-msgstr "Edit Link between Tags"
-
-#: ../../../tagcommondescriptionedit.php:55
-msgid "Tag common description updated"
-msgstr "Tag common description updated"
-
-#: ../../../tagcommondescriptionedit.php:58
-msgid "Failed to update the tag common description"
-msgstr "Failed to update the tag common description"
-
-#: ../../../tagcommondescriptionedit.php:64
-#: ../../../templates/sidebar.block.tagactions.php:26
-msgid "Edit Tag Common Description"
-msgstr "Edit Tag common description"
-
-#: ../../../tagdelete.php:43
-msgid "Tag deleted"
-msgstr "Тэг удален"
-
-#: ../../../tagdelete.php:46
-msgid "Failed to delete the tag"
-msgstr "Ошибка удаления тэга"
-
-#: ../../../tagdelete.php:54
-#: ../../../templates/sidebar.block.tagactions.php:22
-msgid "Delete Tag"
-msgstr "Удалить тэг"
-
-#: ../../../tagedit.php:52
-msgid "Tag description updated"
-msgstr "Описание тэга обновлено"
-
-#: ../../../tagedit.php:55
-msgid "Failed to update the tag description"
-msgstr "Ошибка обновления описания тэга"
-
-#: ../../../tagedit.php:61
-#: ../../../templates/sidebar.block.tagactions.php:24
-msgid "Edit Tag Description"
-msgstr "Изменить описание тэга"
-
-#: ../../../tagrename.php:63
-msgid "Tag renamed"
-msgstr "Тэг переименован"
-
-#: ../../../tagrename.php:66
-msgid "Failed to rename the tag"
-msgstr "Ошибка переименования тэга"
-
-#: ../../../tagrename.php:72
-#: ../../../templates/sidebar.block.tagactions.php:9
-msgid "Rename Tag"
-msgid_plural "Rename Tags"
-msgstr[0] "Переименовать тэг"
-msgstr[1] "Переименовать тэги"
-
-#: ../../../tags.php:45
-#: ../../../tags.php:67
-#: ../../../templates/editbookmark.tpl.php:69
-#: ../../../templates/toolbar.inc.php:10
-msgid "Tags"
-msgstr "Тэги"
-
-#: ../../../users.php:35
-msgid "Users"
-msgstr "Пользователи"
-
-#: ../../../watch.php:54
-msgid "User removed from your watchlist"
-msgstr "Пользователь удален из списка наблюдения"
-
-#: ../../../watch.php:56
-msgid "User added to your watchlist"
-msgstr "Пользователь добавлен в список наблюдения"
-
-#: ../../../watchlist.php:104
-msgid "My Watchlist"
-msgstr "Мой список наблюдения"
-
-#: ../../../watchlist.php:106
-#: ../../../templates/toolbar.inc.php:11
-msgid "Watchlist"
-msgstr "Список наблюдения"
-
-#: ../../../templates/about.tpl.php:6
-msgid "<strong>Store</strong> all your favourite links in one place, accessible from anywhere."
-msgstr "<strong>Храните</strong> Ваши любимые ссылки в одной месте, доступном отовсюду."
-
-#: ../../../templates/about.tpl.php:7
-msgid "<strong>Share</strong> your bookmarks with everyone, with friends on your watchlist or just keep them private."
-msgstr "<strong>Делитесь</strong> ссылками со всем миром, с Вашими друзьями или оставьте их приватными."
-
-#: ../../../templates/about.tpl.php:8
-msgid "<strong>Tag</strong> your bookmarks with as many labels as you want, instead of wrestling with folders."
-msgstr "<strong>Помечайте тэгами</strong> Ваши ссылки с таким количеством меток сколько хотите, вместо того чтобы бороться со свалкой ссылок."
-
-#: ../../../templates/about.tpl.php:9
+#: data/templates/default/about.tpl.php:6
+msgid ""
+"<strong>Store</strong> all your favourite links in one place, accessible "
+"from anywhere."
+msgstr ""
+"<strong>Храните</strong> Ваши любимые ссылки в одной месте, доступном "
+"отовсюду."
+
+#: data/templates/default/about.tpl.php:7
+msgid ""
+"<strong>Share</strong> your bookmarks with everyone, with friends on your "
+"watchlist or just keep them private."
+msgstr ""
+"<strong>Делитесь</strong> ссылками со всем миром, с Вашими друзьями или "
+"оставьте их приватными."
+
+#: data/templates/default/about.tpl.php:8
+msgid ""
+"<strong>Tag</strong> your bookmarks with as many labels as you want, instead "
+"of wrestling with folders."
+msgstr ""
+"<strong>Помечайте тэгами</strong> Ваши ссылки с таким количеством меток "
+"сколько хотите, вместо того чтобы бороться со свалкой ссылок."
+
+#: data/templates/default/about.tpl.php:9
 msgid "Register now"
 msgstr "Зарегистрируйтесь сейчас"
 
-#: ../../../templates/about.tpl.php:9
+#: data/templates/default/about.tpl.php:9
 #, php-format
 msgid " to start using %s!"
 msgstr " чтобы начать пользоваться %s!"
 
-#: ../../../templates/about.tpl.php:12
+#: data/templates/default/about.tpl.php:12
 msgid "Geek Stuff"
 msgstr "Geek Stuff"
 
-#: ../../../templates/about.tpl.php:14
+#: data/templates/default/about.tpl.php:14
 msgid "is licensed under the "
 msgstr "лицензировано по"
 
-#: ../../../templates/about.tpl.php:14
+#: data/templates/default/about.tpl.php:14
 msgid "you can freely host it on your own web server."
 msgstr "Вы можете свободно устанавливать его на свой веб-сервер."
 
-#: ../../../templates/about.tpl.php:15
+#: data/templates/default/about.tpl.php:15
 #, php-format
-msgid "%1$s supports most of the <a href=\"http://www.delicious.com/help/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Almost all of the neat tools made for that system can be modified to work with %1$s instead. If you find a tool that won't let you change the API address, ask the creator to add this setting. You never know, they might just do it."
-msgstr "%1$s поддерживает большинство <a href=\"http://www.delicious.com/help/api\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. Большинство инструментов сделаных для этой системы, могут быть изменены  для работы с %1$s. Если Вы нашли инструмент, который не позволяет изменить адрес API, попросите авторов добавить эту настройку. Возможно они это сделают."
+msgid ""
+"%1$s supports most of the <a href=\"http://www.delicious.com/help/api\">del."
+"icio.us <abbr title=\"Application Programming Interface\">API</abbr></a>. "
+"Almost all of the neat tools made for that system can be modified to work "
+"with %1$s instead. If you find a tool that won't let you change the API "
+"address, ask the creator to add this setting. You never know, they might "
+"just do it."
+msgstr ""
+"%1$s поддерживает большинство <a href=\"http://www.delicious.com/help/api"
+"\">del.icio.us <abbr title=\"Application Programming Interface\">API</abbr></"
+"a>. Большинство инструментов сделаных для этой системы, могут быть изменены  "
+"для работы с %1$s. Если Вы нашли инструмент, который не позволяет изменить "
+"адрес API, попросите авторов добавить эту настройку. Возможно они это "
+"сделают."
 
-#: ../../../templates/about.tpl.php:24
+#: data/templates/default/about.tpl.php:24
 msgid "Tips"
 msgstr "Подсказки"
 
-#: ../../../templates/about.tpl.php:26
+#: data/templates/default/about.tpl.php:26
 msgid "Add search plugin into your browser:"
 msgstr "Добавить плагин поиска в браузер:"
 
-#: ../../../templates/about.tpl.php:27
-msgid "The secret tag \"system:unfiled\" allows you to find bookmarks without tags."
-msgstr "Секретный тэг \"system:unfiled\" позволяет Вам находить закладки без тэгов."
+#: data/templates/default/about.tpl.php:27
+msgid ""
+"The secret tag \"system:unfiled\" allows you to find bookmarks without tags."
+msgstr ""
+"Секретный тэг \"system:unfiled\" позволяет Вам находить закладки без тэгов."
 
-#: ../../../templates/about.tpl.php:28
-msgid "The secret tag \"system:imported\" allows you to find imported bookmarks."
-msgstr "Секретный тэг \"system:imported\" позволяет Вам находить импортированные закладки."
+#: data/templates/default/about.tpl.php:28
+msgid ""
+"The secret tag \"system:imported\" allows you to find imported bookmarks."
+msgstr ""
+"Секретный тэг \"system:imported\" позволяет Вам находить импортированные "
+"закладки."
 
-#: ../../../templates/admin.tpl.php:5
+#: data/templates/default/admin.tpl.php:5
 msgid "Users management"
 msgstr "Управление пользователем"
 
-#: ../../../templates/admin.tpl.php:14
+#: data/templates/default/admin.tpl.php:14
 #, fuzzy
 msgid "Public/Shared/Private"
 msgstr "Публичный/Общий/Приватный"
 
-#: ../../../templates/admin.tpl.php:14
-#: ../../../templates/bookmarks.tpl.php:93
+#: data/templates/default/admin.tpl.php:14
+#: data/templates/default/bookmarks.tpl.php:115
 msgid "bookmark(s)"
 msgstr "закладка(и)"
 
-#: ../../../templates/admin.tpl.php:19
-#: ../../../templates/bookmarks.tpl.php:231
+#: data/templates/default/admin.tpl.php:19
+#: data/templates/default/tag2tagadd.tpl.php:21
+#: data/templates/default/tag2tagdelete.tpl.php:13
+#: data/templates/default/tag2tagedit.tpl.php:14
+#: data/templates/default/tag2tagedit.tpl.php:35
+#: data/templates/default/tagdelete.tpl.php:6 www/jsScuttle.php:24
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+#: data/templates/default/admin.tpl.php:19
+#: data/templates/default/bookmarks.tpl.php:305
 msgid "Delete"
 msgstr "Удалить"
 
-#: ../../../templates/admin.tpl.php:27
+#: data/templates/default/admin.tpl.php:27
 msgid "Other actions"
 msgstr "Другие действия"
 
-#: ../../../templates/admin.tpl.php:29
+#: data/templates/default/admin.tpl.php:29
 msgid "Check all URLs (May take some time)"
 msgstr "Проверить все ссылки (может занять некоторое время)"
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:16
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:16
 #, fuzzy
-msgid "Collaborative description: these fields can be viewed and modified by every users"
-msgstr "Совместное описание: эти поля могут быть просмотрены и изменены любым пользователем"
+msgid ""
+"Collaborative description: these fields can be viewed and modified by every "
+"users"
+msgstr ""
+"Совместное описание: эти поля могут быть просмотрены и изменены любым "
+"пользователем"
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:18
-#: ../../../templates/bookmarks.tpl.php:123
-#: ../../../templates/editbookmark.tpl.php:38
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:18
+#: data/templates/default/bookmarks.tpl.php:159
+#: data/templates/default/editbookmark.tpl.php:51
 msgid "Title"
 msgstr "Название"
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:23
-#: ../../../templates/editbookmark.tpl.php:44
-#: ../../../templates/editprofile.tpl.php:47
-#: ../../../templates/profile.tpl.php:33
-#: ../../../templates/tagcommondescriptionedit.tpl.php:13
-#: ../../../templates/tagedit.tpl.php:12
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:23
+#: data/templates/default/editbookmark.tpl.php:57
+#: data/templates/default/editprofile.tpl.php:53
+#: data/templates/default/profile.tpl.php:33
+#: data/templates/default/tagcommondescriptionedit.tpl.php:13
+#: data/templates/default/tagedit.tpl.php:12
 msgid "Description"
 msgstr "Описание"
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:31
-#: ../../../templates/tagcommondescriptionedit.tpl.php:21
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:31
+#: data/templates/default/tagcommondescriptionedit.tpl.php:21
 msgid "Last modification:"
 msgstr "Последнее изменение:"
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:42
-#: ../../../templates/tagcommondescriptionedit.tpl.php:32
-#: ../../../templates/tagedit.tpl.php:18
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:43
+#: data/templates/default/tagcommondescriptionedit.tpl.php:33
+#: data/templates/default/tagedit.tpl.php:18
 msgid "Update"
 msgstr "Имзенить"
 
-#: ../../../templates/bookmarkcommondescriptionedit.tpl.php:43
-#: ../../../templates/editbookmark.tpl.php:98
-#: ../../../templates/tag2tagadd.tpl.php:24
-#: ../../../templates/tag2tagedit.tpl.php:38
-#: ../../../templates/tagcommondescriptionedit.tpl.php:33
-#: ../../../templates/tagedit.tpl.php:19
-#: ../../../templates/tagrename.tpl.php:25
+#: data/templates/default/bookmarkcommondescriptionedit.tpl.php:44
+#: data/templates/default/editbookmark.tpl.php:111
+#: data/templates/default/tag2tagadd.tpl.php:24
+#: data/templates/default/tag2tagedit.tpl.php:38
+#: data/templates/default/tagcommondescriptionedit.tpl.php:34
+#: data/templates/default/tagedit.tpl.php:19
+#: data/templates/default/tagrename.tpl.php:25
 msgid "Cancel"
 msgstr "Отмена"
 
-#: ../../../templates/bookmarks.tpl.php:26
+#: data/templates/default/bookmarklet.inc.php:1
+#, fuzzy
+msgid "Bookmarklet"
+msgstr "Закладочник"
+
+#: data/templates/default/bookmarklet.inc.php:11
+#, php-format
+msgid ""
+"Click one of the following bookmarklets to add a button you can click "
+"whenever you want to add the page you are on to %s"
+msgstr ""
+"Кликните на один из букмарклетов чтобы добавить кнопку, на которую Вы можете "
+"нажать в любой момент когда захотите  добавить страницу на которой "
+"находитесь в %s"
+
+#: data/templates/default/bookmarklet.inc.php:20
+#, fuzzy, php-format
+msgid ""
+"Drag one of the following bookmarklets to your browser's bookmarks and click "
+"it whenever you want to add the page you are on to %s"
+msgstr ""
+"Перетяните мышкой bookmarklets в закладки Вашего браузера и нажмите на него, "
+"в любой момент когда захотите добавить страницу на которой находитесь в %s"
+
+#: data/templates/default/bookmarklet.inc.php:67
+#: data/templates/default/bookmarklet.inc.php:100
+#, php-format
+msgid "Post to %s"
+msgstr "Добавить в %s"
+
+#: data/templates/default/bookmarklet.inc.php:93
+#: data/templates/default/bookmarklet.inc.php:110
+#, php-format
+msgid "Post to %s (Pop-up)"
+msgstr "Добавить в %s (pop-up)"
+
+#: data/templates/default/bookmarks-vote-horizontal.inc.tpl.php:24
+#, php-format
+msgid "Voting <span class=\"voting\">%d</span>"
+msgstr ""
+
+#: data/templates/default/bookmarks-vote-horizontal.inc.tpl.php:32
+#: data/templates/default/bookmarks-vote-horizontal.inc.tpl.php:35
+msgid "Vote for"
+msgstr ""
+
+#: data/templates/default/bookmarks-vote-horizontal.inc.tpl.php:43
+#: data/templates/default/bookmarks-vote-horizontal.inc.tpl.php:46
+msgid "Vote against"
+msgstr ""
+
+#: data/templates/default/bookmarks.tpl.php:43
 #, fuzzy
 msgid "Bookmarks on this page are managed by an admin user."
 msgstr "Закладки на этой странице управляются администратором."
 
-#: ../../../templates/bookmarks.tpl.php:51
-#: ../../../templates/bookmarks.tpl.php:52
+#: data/templates/default/bookmarks.tpl.php:73
+#: data/templates/default/bookmarks.tpl.php:74
 #, fuzzy
 msgid "Edit the common description of this tag"
 msgstr "Изменить описание этого тэга"
 
-#: ../../../templates/bookmarks.tpl.php:55
-#: ../../../templates/bookmarks.tpl.php:56
+#: data/templates/default/bookmarks.tpl.php:77
+#: data/templates/default/bookmarks.tpl.php:78
 msgid "Edit the common description of this bookmark"
 msgstr "Изменить описание этой закладки"
 
-#: ../../../templates/bookmarks.tpl.php:76
-#: ../../../templates/bookmarks.tpl.php:77
+#: data/templates/default/bookmarks.tpl.php:98
+#: data/templates/default/bookmarks.tpl.php:99
 msgid "Edit your personal description of this tag"
 msgstr "Изменить личное описание этой закладки"
 
-#: ../../../templates/bookmarks.tpl.php:93
-#: ../../../templates/tags.tpl.php:10
-#: ../../../templates/users.tpl.php:8
+#: data/templates/default/bookmarks.tpl.php:115
+#: data/templates/default/tags.tpl.php:10
+#: data/templates/default/users.tpl.php:8
 msgid "Sort by:"
 msgstr "Сортировать по:"
 
-#: ../../../templates/bookmarks.tpl.php:122
+#: data/templates/default/bookmarks.tpl.php:157
 msgid "Date"
 msgstr "Дате"
 
-#: ../../../templates/bookmarks.tpl.php:129
+#: data/templates/default/bookmarks.tpl.php:162
+msgid "Voting"
+msgstr ""
+
+#: data/templates/default/bookmarks.tpl.php:171
 msgid "Bookmarks from other users for this tag"
 msgstr "Ссылки других пользователей с этим тэгом"
 
-#: ../../../templates/bookmarks.tpl.php:134
+#: data/templates/default/bookmarks.tpl.php:176
 msgid "Only your bookmarks for this tag"
 msgstr "Только Ваши ссылки с этим тэгом"
 
-#: ../../../templates/bookmarks.tpl.php:157
-#: ../../../templates/bookmarks.tpl.php:163
+#: data/templates/default/bookmarks.tpl.php:199
+#: data/templates/default/bookmarks.tpl.php:205
 msgid "First"
 msgstr "Первая"
 
-#: ../../../templates/bookmarks.tpl.php:158
-#: ../../../templates/bookmarks.tpl.php:164
+#: data/templates/default/bookmarks.tpl.php:200
+#: data/templates/default/bookmarks.tpl.php:206
 msgid "Previous"
 msgstr "Предыдущая"
 
-#: ../../../templates/bookmarks.tpl.php:171
-#: ../../../templates/bookmarks.tpl.php:174
+#: data/templates/default/bookmarks.tpl.php:213
+#: data/templates/default/bookmarks.tpl.php:216
 msgid "Next"
 msgstr "Следующая"
 
-#: ../../../templates/bookmarks.tpl.php:172
-#: ../../../templates/bookmarks.tpl.php:175
+#: data/templates/default/bookmarks.tpl.php:214
+#: data/templates/default/bookmarks.tpl.php:217
 msgid "Last"
 msgstr "Последняя"
 
-#: ../../../templates/bookmarks.tpl.php:185
+#: data/templates/default/bookmarks.tpl.php:233
 #, php-format
 msgid "Page %d of %d"
 msgstr "Страница%d из %d"
 
-#: ../../../templates/bookmarks.tpl.php:225
+#: data/templates/default/bookmarks.tpl.php:295
 msgid "Tags:"
 msgstr "Тэги:"
 
-#: ../../../templates/bookmarks.tpl.php:231
+#: data/templates/default/bookmarks.tpl.php:302
 msgid "Edit"
 msgstr "Изменить"
 
-#: ../../../templates/bookmarks.tpl.php:235
+#: data/templates/default/bookmarks.tpl.php:310
 msgid "Last update"
 msgstr "Последнее изменение"
 
-#: ../../../templates/bookmarks.tpl.php:238
+#: data/templates/default/bookmarks.tpl.php:313
 msgid "by"
 msgstr " добавлено"
 
-#: ../../../templates/bookmarks.tpl.php:240
+#: data/templates/default/bookmarks.tpl.php:317
 msgid "you"
 msgstr "Вами"
 
-#: ../../../templates/bookmarks.tpl.php:254
+#: data/templates/default/bookmarks.tpl.php:333
 #, fuzzy, php-format
 msgid " and %s1 other%s"
 msgstr " и %s1 другие%s"
 
-#: ../../../templates/bookmarks.tpl.php:257
+#: data/templates/default/bookmarks.tpl.php:336
 #, fuzzy, php-format
 msgid " and %2$s%1$s others%3$s"
 msgstr " и %2$s%1$s другими%3$s"
 
-#: ../../../templates/bookmarks.tpl.php:265
+#: data/templates/default/bookmarks.tpl.php:350
 msgid "Copy this bookmark to YOUR bookmarks."
 msgstr "Скопировать эту ссылку закладку в ВАШИ закладки"
 
-#: ../../../templates/bookmarks.tpl.php:265
+#: data/templates/default/bookmarks.tpl.php:351
 msgid "Copy"
 msgstr "Копировать"
 
-#: ../../../templates/bookmarks.tpl.php:284
+#: data/templates/default/bookmarks.tpl.php:376
 msgid "This bookmark is certified by an admin user."
 msgstr "Эта закладка заверена администрацией."
 
-#: ../../../templates/bookmarks.tpl.php:323
+#: data/templates/default/bookmarks.tpl.php:430
 msgid "Private Note on this bookmark"
 msgstr "Личная заметка к этой закладке"
 
-#: ../../../templates/bookmarks.tpl.php:334
+#: data/templates/default/bookmarks.tpl.php:444
 #, fuzzy
 msgid "Come back to the top of this page."
 msgstr "Вернуться наверх этой страницы."
 
-#: ../../../templates/bookmarks.tpl.php:334
+#: data/templates/default/bookmarks.tpl.php:444
 #, fuzzy
 msgid "Top of the page"
 msgstr "Верх страницы"
 
-#: ../../../templates/bookmarks.tpl.php:340
+#: data/templates/default/bookmarks.tpl.php:450
 msgid "No bookmarks available"
 msgstr "Ни одной закладки недоступно"
 
-#: ../../../templates/bottom.inc.php:7
+#: data/templates/default/bottom.inc.php:5
+#: data/templates/default/toolbar.inc.php:15
+#: data/templates/default/toolbar.inc.php:28 www/about.php:23 www/about.php:24
+msgid "About"
+msgstr "О сайте"
+
+#: data/templates/default/bottom.inc.php:7
 msgid "Propulsed by "
 msgstr "Propulsed by "
 
-#: ../../../templates/dynamictags.inc.php:47
-#: ../../../templates/sidebar.block.common.php:19
-#: ../../../templates/sidebar.block.popular.php:34
-#: ../../../templates/sidebar.block.recent.php:29
-#: ../../../templates/tags.tpl.php:19
+#: data/templates/default/dynamictags.inc.php:56
+#: data/templates/default/sidebar.block.common.php:19
+#: data/templates/default/sidebar.block.popular.php:34
+#: data/templates/default/sidebar.block.recent.php:29
+#: data/templates/default/tags.tpl.php:19
 msgid "bookmark"
 msgid_plural "bookmarks"
 msgstr[0] "закладка"
 msgstr[1] "закладки"
 
-#: ../../../templates/dynamictags.inc.php:131
+#: data/templates/default/dynamictags.inc.php:105
+#: data/templates/default/sidebar.block.common.php:9
+#: data/templates/default/sidebar.block.menu.php:74
+#: data/templates/default/sidebar.block.popular.php:23
+#: data/templates/default/sidebar.block.recent.php:34
+#: data/templates/default/toolbar.inc.php:27 www/populartags.php:46
+msgid "Popular Tags"
+msgstr "Популярные тэги"
+
+#: data/templates/default/dynamictags.inc.php:108
 msgid "Popular Tags From All Users"
 msgstr "Популярные тэги всех пользователей"
 
-#: ../../../templates/editbookmark.tpl.php:33
+#: data/templates/default/editbookmark.tpl.php:46
 msgid "Address"
 msgstr "Адрес"
 
-#: ../../../templates/editbookmark.tpl.php:35
-#: ../../../templates/editbookmark.tpl.php:40
-#: ../../../templates/editprofile.tpl.php:31
-#: ../../../templates/tagrename.tpl.php:14
-#: ../../../templates/tagrename.tpl.php:19
+#: data/templates/default/editbookmark.tpl.php:48
+#: data/templates/default/editbookmark.tpl.php:53
+#: data/templates/default/editprofile.tpl.php:29
+#: data/templates/default/tagrename.tpl.php:14
+#: data/templates/default/tagrename.tpl.php:19
 #, fuzzy
 msgid "Required"
 msgstr "Обязательно"
 
-#: ../../../templates/editbookmark.tpl.php:45
+#: data/templates/default/editbookmark.tpl.php:58
 msgid "Add Note"
 msgstr "Добавить заметку"
 
-#: ../../../templates/editbookmark.tpl.php:48
+#: data/templates/default/editbookmark.tpl.php:61
 #, fuzzy
-msgid "You can use anchors to delimite attributes. for example: [publisher]blah[/publisher] "
-msgstr "Вы можете использовать \"анкоры\" чтобы разделать атрибуты, например: [publisher]blah[/publisher] "
+msgid ""
+"You can use anchors to delimite attributes. for example: [publisher]blah[/"
+"publisher] "
+msgstr ""
+"Вы можете использовать \"анкоры\" чтобы разделать атрибуты, например: "
+"[publisher]blah[/publisher] "
 
-#: ../../../templates/editbookmark.tpl.php:51
+#: data/templates/default/editbookmark.tpl.php:64
 #, fuzzy
 msgid "Suggested anchors: "
 msgstr "Предлагаемые анкоры: "
 
-#: ../../../templates/editbookmark.tpl.php:63
+#: data/templates/default/editbookmark.tpl.php:76
 msgid "Private Note"
 msgstr "Личная заметка"
 
-#: ../../../templates/editbookmark.tpl.php:65
+#: data/templates/default/editbookmark.tpl.php:78
 msgid "Just visible by you and your contacts."
 msgstr "Видимо только для Вас и Ваших контактов."
 
-#: ../../../templates/editbookmark.tpl.php:73
+#: data/templates/default/editbookmark.tpl.php:82
+#: data/templates/default/toolbar.inc.php:10 www/tags.php:45 www/tags.php:67
+msgid "Tags"
+msgstr "Тэги"
+
+#: data/templates/default/editbookmark.tpl.php:86
 msgid "Comma-separated"
 msgstr "Разделенный запятыми"
 
-#: ../../../templates/editbookmark.tpl.php:77
-#: ../../../templates/tag2tagadd.tpl.php:9
-msgid "Note: use \">\" to include one tag in another. e.g.: europe>france>paris"
-msgstr "Внимание: используйте \">\" чтобы включить один тэг в другой. например: европа>россия>москва"
+#: data/templates/default/editbookmark.tpl.php:90
+#: data/templates/default/tag2tagadd.tpl.php:9
+msgid ""
+"Note: use \">\" to include one tag in another. e.g.: europe>france>paris"
+msgstr ""
+"Внимание: используйте \">\" чтобы включить один тэг в другой. например: "
+"европа>россия>москва"
 
-#: ../../../templates/editbookmark.tpl.php:81
-#: ../../../templates/tag2tagadd.tpl.php:8
+#: data/templates/default/editbookmark.tpl.php:94
+#: data/templates/default/tag2tagadd.tpl.php:8
 msgid "Note: use \"=\" to make synonym two tags. e.g.: france=frenchcountry"
-msgstr "Внимание: используйте \"=\" чтобы сделать два тэга синонимами. например: россия=рф"
+msgstr ""
+"Внимание: используйте \"=\" чтобы сделать два тэга синонимами. например: "
+"россия=рф"
 
-#: ../../../templates/editbookmark.tpl.php:84
-#: ../../../templates/importDelicious.tpl.php:15
-#: ../../../templates/importNetscape.tpl.php:16
+#: data/templates/default/editbookmark.tpl.php:97
+#: data/templates/default/importDelicious.tpl.php:15
+#: data/templates/default/importNetscape.tpl.php:16
 msgid "Privacy"
 msgstr "Конфиденциальность"
 
-#: ../../../templates/editbookmark.tpl.php:87
-#: ../../../templates/importDelicious.tpl.php:18
-#: ../../../templates/importNetscape.tpl.php:19
+#: data/templates/default/editbookmark.tpl.php:100
+#: data/templates/default/importDelicious.tpl.php:18
+#: data/templates/default/importNetscape.tpl.php:19
 msgid "Public"
 msgstr "Публичный"
 
-#: ../../../templates/editbookmark.tpl.php:88
+#: data/templates/default/editbookmark.tpl.php:101
 msgid "Shared with Watch List"
 msgstr "Shared with Watchlist"
 
-#: ../../../templates/editbookmark.tpl.php:89
-#: ../../../templates/importDelicious.tpl.php:20
-#: ../../../templates/importNetscape.tpl.php:21
+#: data/templates/default/editbookmark.tpl.php:102
+#: data/templates/default/importDelicious.tpl.php:20
+#: data/templates/default/importNetscape.tpl.php:21
 msgid "Private"
 msgstr "Личный"
 
-#: ../../../templates/editbookmark.tpl.php:102
+#: data/templates/default/editbookmark.tpl.php:115
 msgid "Delete Bookmark"
 msgstr "Удалить закладку"
 
-#: ../../../templates/editbookmark.tpl.php:107
+#: data/templates/default/editbookmark.tpl.php:120
 msgid "edit common description"
 msgstr "изменит описание"
 
-#: ../../../templates/editbookmark.tpl.php:134
-#, fuzzy
-msgid "Bookmarklet"
-msgstr "Закладочник"
-
-#: ../../../templates/editbookmark.tpl.php:140
-#, php-format
-msgid "Click one of the following bookmarklets to add a button you can click whenever you want to add the page you are on to %s"
-msgstr "Кликните на один из букмарклетов чтобы добавить кнопку, на которую Вы можете нажать в любой момент когда захотите  добавить страницу на которой находитесь в %s"
-
-#: ../../../templates/editbookmark.tpl.php:144
-#, fuzzy, php-format
-msgid "Drag one of the following bookmarklets to your browser's bookmarks and click it whenever you want to add the page you are on to %s"
-msgstr "Перетяните мышкой bookmarklets в закладки Вашего браузера и нажмите на него, в любой момент когда захотите добавить страницу на которой находитесь в %s"
-
-#: ../../../templates/editbookmark.tpl.php:157
-#: ../../../templates/editbookmark.tpl.php:162
-#, php-format
-msgid "Post to %s"
-msgstr "Добавить в %s"
-
-#: ../../../templates/editbookmark.tpl.php:158
-#: ../../../templates/editbookmark.tpl.php:163
-#, php-format
-msgid "Post to %s (Pop-up)"
-msgstr "Добавить в %s (pop-up)"
-
-#: ../../../templates/editbookmark.tpl.php:168
-#: ../../../templates/importDelicious.tpl.php:26
-#: ../../../templates/importNetscape.tpl.php:27
-#: ../../../templates/importStructure.tpl.php:16
+#: data/templates/default/editbookmark.tpl.php:212
+#: data/templates/default/importDelicious.tpl.php:26
+#: data/templates/default/importNetscape.tpl.php:27
+#: data/templates/default/importStructure.tpl.php:16
 msgid "Import"
 msgstr "Импорт"
 
-#: ../../../templates/editbookmark.tpl.php:170
+#: data/templates/default/editbookmark.tpl.php:214
 msgid "Import bookmarks from bookmark file"
 msgstr "Импортировать закладки из файла закладок"
 
-#: ../../../templates/editbookmark.tpl.php:170
+#: data/templates/default/editbookmark.tpl.php:214
 msgid "Internet Explorer, Mozilla Firefox and Netscape"
 msgstr "Internet Explorer, Mozilla Firefox и Netscape"
 
-#: ../../../templates/editbookmark.tpl.php:171
+#: data/templates/default/editbookmark.tpl.php:215
 msgid "Import bookmarks from del.icio.us"
 msgstr "Импортировать закладки из del.icio.us"
 
-#: ../../../templates/editprofile.tpl.php:10
-msgid "Account Details"
-msgstr "Данные аккаунта"
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:11
+msgid "SSL client certificates"
+msgstr ""
 
-#: ../../../templates/editprofile.tpl.php:14
-#: ../../../templates/login.tpl.php:15
-#: ../../../templates/password.tpl.php:10
-#: ../../../templates/profile.tpl.php:6
-#: ../../../templates/register.tpl.php:16
-msgid "Username"
-msgstr "Имя пользователя"
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:17
+msgid "Serial"
+msgstr ""
 
-#: ../../../templates/editprofile.tpl.php:19
-msgid "New Password"
-msgstr "Новый пароль"
-
-#: ../../../templates/editprofile.tpl.php:24
-msgid "Confirm Password"
-msgstr "Подтвердите пароль"
-
-#: ../../../templates/editprofile.tpl.php:29
-#: ../../../templates/password.tpl.php:14
-#: ../../../templates/register.tpl.php:26
-msgid "E-mail"
-msgstr "E-mail"
-
-#: ../../../templates/editprofile.tpl.php:35
-msgid "Personal Details"
-msgstr "Личные данные"
-
-#: ../../../templates/editprofile.tpl.php:39
-#: ../../../templates/profile.tpl.php:17
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:18
+#: data/templates/default/editprofile.tpl.php:45
+#: data/templates/default/profile.tpl.php:17
 msgid "Name"
 msgstr "Имя"
 
-#: ../../../templates/editprofile.tpl.php:43
-#: ../../../templates/profile.tpl.php:23
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:19
+#: data/templates/default/profile.tpl.php:11
+msgid "Email"
+msgstr "Email"
+
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:20
+msgid "Issuer"
+msgstr ""
+
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:30
+#, fuzzy
+msgid "delete"
+msgstr "Удалить"
+
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:43
+msgid "No certificates registered"
+msgstr ""
+
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:48
+msgid "Your current certificate is already registered with your account."
+msgstr ""
+
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:53
+msgid "Register current certificate to automatically login."
+msgstr ""
+
+#: data/templates/default/editprofile-sslclientcerts.tpl.php:59
+msgid "Your browser does not provide a certificate."
+msgstr ""
+
+#: data/templates/default/editprofile.tpl.php:8
+msgid "Account Details"
+msgstr "Данные аккаунта"
+
+#: data/templates/default/editprofile.tpl.php:12
+#: data/templates/default/login.tpl.php:21
+#: data/templates/default/password.tpl.php:10
+#: data/templates/default/profile.tpl.php:6
+#: data/templates/default/register.tpl.php:16
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: data/templates/default/editprofile.tpl.php:17
+msgid "New Password"
+msgstr "Новый пароль"
+
+#: data/templates/default/editprofile.tpl.php:22
+msgid "Confirm Password"
+msgstr "Подтвердите пароль"
+
+#: data/templates/default/editprofile.tpl.php:27
+#: data/templates/default/password.tpl.php:14
+#: data/templates/default/register.tpl.php:26
+msgid "E-mail"
+msgstr "E-mail"
+
+#: data/templates/default/editprofile.tpl.php:32
+#, fuzzy
+msgid "Private RSS Feed"
+msgstr "Личная заметка"
+
+#: data/templates/default/editprofile.tpl.php:34
+msgid "Enable"
+msgstr ""
+
+#: data/templates/default/editprofile.tpl.php:36
+#, fuzzy
+msgid "Generate New Key"
+msgstr "Сгенерировать пароль"
+
+#: data/templates/default/editprofile.tpl.php:41
+msgid "Personal Details"
+msgstr "Личные данные"
+
+#: data/templates/default/editprofile.tpl.php:49
+#: data/templates/default/profile.tpl.php:23
 msgid "Homepage"
 msgstr "Домашняя страница"
 
-#: ../../../templates/editprofile.tpl.php:55
-#: ../../../templates/sidebar.block.tagactions.php:17
-#: ../../../templates/sidebar.block.watchstatus.php:18
+#: data/templates/default/editprofile.tpl.php:58 www/edit.php:113
+msgid "Save Changes"
+msgstr "Сохранить изменения"
+
+#: data/templates/default/editprofile.tpl.php:63
+#: data/templates/default/sidebar.block.tagactions.php:17
+#: data/templates/default/sidebar.block.watchstatus.php:18
 msgid "Actions"
 msgstr "Действия"
 
-#: ../../../templates/editprofile.tpl.php:58
+#: data/templates/default/editprofile.tpl.php:66
 msgid "Export bookmarks"
 msgstr "Экспорт закладок"
 
-#: ../../../templates/editprofile.tpl.php:60
+#: data/templates/default/editprofile.tpl.php:68
 msgid "HTML file (for browsers)"
 msgstr "HTML файл (для браузеров)"
 
-#: ../../../templates/editprofile.tpl.php:61
+#: data/templates/default/editprofile.tpl.php:69
 msgid "XML file (like del.icio.us)"
 msgstr "XML файл (как del.icio.us)"
 
-#: ../../../templates/editprofile.tpl.php:62
+#: data/templates/default/editprofile.tpl.php:70
 #, fuzzy
 msgid "CSV file (for spreadsheet tools)"
 msgstr "CSV файл (для табличных процессоров)"
 
-#: ../../../templates/error.404.tpl.php:5
+#: data/templates/default/error.404.tpl.php:5
 msgid "Not Found"
 msgstr "Не найдено"
 
-#: ../../../templates/error.404.tpl.php:6
+#: data/templates/default/error.404.tpl.php:6
 msgid "The requested URL was not found on this server"
 msgstr "Запрашиваемый адрес не найден на сервере"
 
-#: ../../../templates/error.500.tpl.php:5
+#: data/templates/default/error.500.tpl.php:5
 msgid "General server error"
 msgstr "Ошибка сервера"
 
-#: ../../../templates/error.500.tpl.php:6
+#: data/templates/default/error.500.tpl.php:6
 msgid "The requested URL could not be processed"
 msgstr "Запрашиваемый адрес не может быть обработан"
 
-#: ../../../templates/importDelicious.tpl.php:19
-#: ../../../templates/importNetscape.tpl.php:20
+#: data/templates/default/importDelicious.tpl.php:19
+#: data/templates/default/importNetscape.tpl.php:20
 msgid "Shared with Watchlist"
 msgstr "Открыть для листа наблюдения"
 
-#: ../../../templates/importDelicious.tpl.php:31
-#: ../../../templates/importNetscape.tpl.php:32
-#: ../../../templates/importStructure.tpl.php:21
+#: data/templates/default/importDelicious.tpl.php:31
+#: data/templates/default/importNetscape.tpl.php:32
+#: data/templates/default/importStructure.tpl.php:21
 msgid "Instructions"
 msgstr "Инструкции"
 
-#: ../../../templates/importDelicious.tpl.php:33
-msgid "Log in to the <a href=\"http://del.icio.us/api/posts/all\">export page at del.icio.us</a>"
-msgstr "Войдите на <a href=\"http://del.icio.us/api/posts/all\">страницу экспорта на del.icio.us</a>"
+#: data/templates/default/importDelicious.tpl.php:33
+#, fuzzy
+msgid ""
+"Log in to the <a href=\"https://api.del.icio.us/v1/posts/all\">export page "
+"at del.icio.us</a>"
+msgstr ""
+"Войдите на <a href=\"http://del.icio.us/api/posts/all\">страницу экспорта на "
+"del.icio.us</a>"
 
-#: ../../../templates/importDelicious.tpl.php:34
-msgid "Save the resulting <abbr title=\"Extensible Markup Language\">XML</abbr> file to your computer"
-msgstr "Сохраните полученный<abbr title=\"Extensible Markup Language\">XML</abbr> файл на Ваш компьютер"
+#: data/templates/default/importDelicious.tpl.php:34
+msgid ""
+"Save the resulting <abbr title=\"Extensible Markup Language\">XML</abbr> "
+"file to your computer"
+msgstr ""
+"Сохраните полученный<abbr title=\"Extensible Markup Language\">XML</abbr> "
+"файл на Ваш компьютер"
 
-#: ../../../templates/importDelicious.tpl.php:35
-msgid "Click <kbd>Browse...</kbd> to find this file on your computer. The maximum size the file can be is 1MB"
-msgstr "Yf;vbnt <kbd>Просмотр...</kbd> чтобы выбрать файл на Вашем компьютере. Максимальный размер файла -  1MB"
+#: data/templates/default/importDelicious.tpl.php:35
+msgid ""
+"Click <kbd>Browse...</kbd> to find this file on your computer. The maximum "
+"size the file can be is 1MB"
+msgstr ""
+"Yf;vbnt <kbd>Просмотр...</kbd> чтобы выбрать файл на Вашем компьютере. "
+"Максимальный размер файла -  1MB"
 
-#: ../../../templates/importDelicious.tpl.php:36
-#: ../../../templates/importNetscape.tpl.php:43
+#: data/templates/default/importDelicious.tpl.php:36
+#: data/templates/default/importNetscape.tpl.php:43
 msgid "Select the default privacy setting for your imported bookmarks"
-msgstr "Выберете уровень доступа, который будет применяться по умолчанию к импортируемый закладкам"
+msgstr ""
+"Выберете уровень доступа, который будет применяться по умолчанию к "
+"импортируемый закладкам"
 
-#: ../../../templates/importDelicious.tpl.php:37
-#: ../../../templates/importNetscape.tpl.php:44
-msgid "Click <kbd>Import</kbd> to start importing the bookmarks; it may take a minute"
-msgstr "Нажмите <kbd>Импорт</kbd> для начала импорта закладок; это может занять минуту"
+#: data/templates/default/importDelicious.tpl.php:37
+#: data/templates/default/importNetscape.tpl.php:44
+msgid ""
+"Click <kbd>Import</kbd> to start importing the bookmarks; it may take a "
+"minute"
+msgstr ""
+"Нажмите <kbd>Импорт</kbd> для начала импорта закладок; это может занять "
+"минуту"
 
-#: ../../../templates/importNetscape.tpl.php:35
+#: data/templates/default/importNetscape.tpl.php:35
 msgid "Export your bookmarks from your browser to a file"
 msgstr "Экспортировать Ваши закладки из браузера в файл"
 
-#: ../../../templates/importNetscape.tpl.php:37
-msgid "Internet Explorer: <kbd>File &gt; Import and Export... &gt; Export Favorites"
-msgstr "Internet Explorer: <kbd>File &gt; Import and Export... &gt; Export Favorites"
+#: data/templates/default/importNetscape.tpl.php:37
+msgid ""
+"Internet Explorer: <kbd>File &gt; Import and Export... &gt; Export Favorites"
+msgstr ""
+"Internet Explorer: <kbd>File &gt; Import and Export... &gt; Export Favorites"
 
-#: ../../../templates/importNetscape.tpl.php:38
-msgid "Mozilla Firefox: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; File &gt; Export..."
-msgstr "Mozilla Firefox: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; File &gt; Export..."
+#: data/templates/default/importNetscape.tpl.php:38
+msgid ""
+"Mozilla Firefox: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; File &gt; "
+"Export..."
+msgstr ""
+"Mozilla Firefox: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; File &gt; "
+"Export..."
 
-#: ../../../templates/importNetscape.tpl.php:39
-msgid "Netscape: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; Tools &gt; Export..."
-msgstr "Netscape: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; Tools &gt; Export..."
+#: data/templates/default/importNetscape.tpl.php:39
+msgid ""
+"Netscape: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; Tools &gt; Export..."
+msgstr ""
+"Netscape: <kbd>Bookmarks &gt; Manage Bookmarks... &gt; Tools &gt; Export..."
 
-#: ../../../templates/importNetscape.tpl.php:42
-msgid "Click <kbd>Browse...</kbd> to find the saved bookmark file on your computer. The maximum size the file can be is 1MB"
-msgstr "Нажмите <kbd>Просмотр...</kbd> чтобы выбрать сохраненный файл закладок на Вашем компьютере. Максимальный размер файла -  1MB"
+#: data/templates/default/importNetscape.tpl.php:42
+msgid ""
+"Click <kbd>Browse...</kbd> to find the saved bookmark file on your computer. "
+"The maximum size the file can be is 1MB"
+msgstr ""
+"Нажмите <kbd>Просмотр...</kbd> чтобы выбрать сохраненный файл закладок на "
+"Вашем компьютере. Максимальный размер файла -  1MB"
 
-#: ../../../templates/importStructure.tpl.php:24
+#: data/templates/default/importStructure.tpl.php:24
 #, fuzzy
 msgid "Create your structure into a simple text file and following this model:"
 msgstr "Создайте структуру в простом текстовом файле используя эту модель:"
 
-#: ../../../templates/importStructure.tpl.php:35
+#: data/templates/default/importStructure.tpl.php:35
 #, fuzzy
-msgid "Then import the file. The tags and their relations will be added to your profile."
-msgstr "Затем импортируйте файл. Тэги и их отношения будут добавлены в Ваш профиль."
+msgid ""
+"Then import the file. The tags and their relations will be added to your "
+"profile."
+msgstr ""
+"Затем импортируйте файл. Тэги и их отношения будут добавлены в Ваш профиль."
 
-#: ../../../templates/login.tpl.php:20
-#: ../../../templates/register.tpl.php:21
+#: data/templates/default/login.tpl.php:13
+msgid "Please activate cookies"
+msgstr ""
+
+#: data/templates/default/login.tpl.php:26
+#: data/templates/default/register.tpl.php:21
 msgid "Password"
 msgstr "Пароль"
 
-#: ../../../templates/login.tpl.php:22
+#: data/templates/default/login.tpl.php:28
 msgid "Don't ask for my password for 2 weeks"
 msgstr "Не запрашивать мой пароль 2 недели"
 
-#: ../../../templates/login.tpl.php:30
+#: data/templates/default/login.tpl.php:32
+#: data/templates/default/toolbar.inc.php:29 www/login.php:57
+msgid "Log In"
+msgstr "Вход"
+
+#: data/templates/default/login.tpl.php:36
 msgid "Forgotten your password?"
 msgstr "Забыли пароль?"
 
-#: ../../../templates/password.tpl.php:5
+#: data/templates/default/password.tpl.php:5
 #, php-format
-msgid "If you have forgotten your password, %s can generate a new one. Enter the username and e-mail address of your account into the form below and we will e-mail your new password to you."
-msgstr "Если Вы забыли пароль, %s может создать новый. Введите имя пользователя и адрес e-mail Вашего аккаунта в форме ниже и мы вышлем Вам новый пароль."
+msgid ""
+"If you have forgotten your password, %s can generate a new one. Enter the "
+"username and e-mail address of your account into the form below and we will "
+"e-mail your new password to you."
+msgstr ""
+"Если Вы забыли пароль, %s может создать новый. Введите имя пользователя и "
+"адрес e-mail Вашего аккаунта в форме ниже и мы вышлем Вам новый пароль."
 
-#: ../../../templates/password.tpl.php:19
+#: data/templates/default/password.tpl.php:19
 msgid "Generate Password"
 msgstr "Сгенерировать пароль"
 
-#: ../../../templates/profile.tpl.php:11
-msgid "Email"
-msgstr "Email"
-
-#: ../../../templates/profile.tpl.php:28
+#: data/templates/default/profile.tpl.php:28
 msgid "Member Since"
 msgstr "Участник с"
 
-#: ../../../templates/profile.tpl.php:40
-#: ../../../templates/sidebar.block.watchlist.php:30
+#: data/templates/default/profile.tpl.php:40
+#: data/templates/default/sidebar.block.watchlist.php:30
 msgid "Watching"
 msgstr "Watching"
 
-#: ../../../templates/profile.tpl.php:55
-#: ../../../templates/sidebar.block.watchlist.php:52
+#: data/templates/default/profile.tpl.php:55
+#: data/templates/default/sidebar.block.watchlist.php:52
 msgid "Watched By"
 msgstr "Наблюдается"
 
-#: ../../../templates/profile.tpl.php:68
-#: ../../../templates/toolbar.inc.php:9
+#: data/templates/default/profile.tpl.php:68
+#: data/templates/default/toolbar.inc.php:9
 msgid "Bookmarks"
 msgstr "Закладки"
 
-#: ../../../templates/profile.tpl.php:69
+#: data/templates/default/profile.tpl.php:69
 msgid "Go to bookmarks"
 msgstr "Перейти к закладкам"
 
-#: ../../../templates/register.tpl.php:11
+#: data/templates/default/register.tpl.php:11
 #, fuzzy, php-format
-msgid "Sign up here to create a free %s account. All the information requested below is required"
-msgstr "Зарегистрируйтесь здесь, чтобы создать бесплатный  %s аккаунт. Вся поля обязательны для заполнения"
+msgid ""
+"Sign up here to create a free %s account. All the information requested "
+"below is required"
+msgstr ""
+"Зарегистрируйтесь здесь, чтобы создать бесплатный  %s аккаунт. Вся поля "
+"обязательны для заполнения"
 
-#: ../../../templates/register.tpl.php:18
-msgid " at least 5 characters, alphanumeric (no spaces, no dots or other special ones)"
-msgstr " как минимум 5 символов, буквенно-цифровой (без пробелов, без точек или других спецсимволов)"
+#: data/templates/default/register.tpl.php:18
+msgid ""
+" at least 5 characters, alphanumeric (no spaces, no dots or other special "
+"ones)"
+msgstr ""
+" как минимум 5 символов, буквенно-цифровой (без пробелов, без точек или "
+"других спецсимволов)"
 
-#: ../../../templates/register.tpl.php:28
+#: data/templates/default/register.tpl.php:28
 msgid " to send you your password if you forget it"
 msgstr " чтобы выслать Вам Вамш пароль, если Вы его забудете"
 
-#: ../../../templates/register.tpl.php:33
+#: data/templates/default/register.tpl.php:33
 #, fuzzy
 msgid "Antispam question"
 msgstr "Антиспам вопрос"
 
-#: ../../../templates/sidebar.block.linked.php:51
+#: data/templates/default/register.tpl.php:41
+#: data/templates/default/toolbar.inc.php:31 www/register.php:99
+msgid "Register"
+msgstr "Регистрация"
+
+#: data/templates/default/search.menu.php:27
+msgid "Search..."
+msgstr "Поиск..."
+
+#: data/templates/default/search.menu.php:28
+msgid "in"
+msgstr "в"
+
+#: data/templates/default/search.menu.php:34
+msgid "this user's bookmarks"
+msgstr "закладки этого пользователя"
+
+#: data/templates/default/search.menu.php:39
+msgid "my bookmarks"
+msgstr "мои закладки"
+
+#: data/templates/default/search.menu.php:40
+msgid "my watchlist"
+msgstr "мой лист наблюдения"
+
+#: data/templates/default/search.menu.php:44
+msgid "all bookmarks"
+msgstr "все закладки"
+
+#: data/templates/default/search.menu.php:54
+msgid "Search"
+msgstr "Поиск"
+
+#: data/templates/default/sidebar.block.linked.php:23
 #, fuzzy
 msgid "Linked Tags"
 msgstr "Связанные тэги"
 
-#: ../../../templates/sidebar.block.linked.php:62
-#: ../../../templates/sidebar.block.menu.php:46
+#: data/templates/default/sidebar.block.linked.php:28
+#: data/templates/default/sidebar.block.menu.php:46
 msgid "Add new link"
 msgstr "Добавить новую ссылку"
 
-#: ../../../templates/sidebar.block.linked.php:63
-#: ../../../templates/sidebar.block.menu.php:47
+#: data/templates/default/sidebar.block.linked.php:29
+#: data/templates/default/sidebar.block.menu.php:47
 msgid "Delete link"
 msgstr "Удалить ссылку"
 
-#: ../../../templates/sidebar.block.menu.php:35
+#: data/templates/default/sidebar.block.menu.php:35
 #, php-format
 msgid "Tags included into the tag '%s'"
 msgstr "Тэги включенные в тэг '%s'"
 
-#: ../../../templates/sidebar.block.menu.php:35
+#: data/templates/default/sidebar.block.menu.php:35
 msgid "Menu Tags"
 msgstr "Меню тэгов"
 
-#: ../../../templates/sidebar.block.menu.php:68
+#: data/templates/default/sidebar.block.menu.php:68
 msgid "See all your tags"
 msgstr "Просмотреть все свои тэги"
 
-#: ../../../templates/sidebar.block.menu.php:68
+#: data/templates/default/sidebar.block.menu.php:68
 msgid "all your tags"
 msgstr "все Ваши тэги"
 
-#: ../../../templates/sidebar.block.menu.php:70
+#: data/templates/default/sidebar.block.menu.php:70
 msgid "See all tags from this user"
 msgstr "Просмотреть все тэги этого пользователя"
 
-#: ../../../templates/sidebar.block.menu.php:70
+#: data/templates/default/sidebar.block.menu.php:70
 msgid "all tags from this user"
 msgstr "все тэги этого пользователя"
 
-#: ../../../templates/sidebar.block.menu.php:74
+#: data/templates/default/sidebar.block.menu.php:74
 msgid "See popular tags"
 msgstr "Просмотреть популярные тэги"
 
-#: ../../../templates/sidebar.block.menu2.php:25
+#: data/templates/default/sidebar.block.menu2.php:21
 #, fuzzy
 msgid "Featured Menu Tags"
 msgstr "Рекомендуемые Тэги"
 
-#: ../../../templates/sidebar.block.menu2.php:29
+#: data/templates/default/sidebar.block.menu2.php:25
 #, fuzzy
 msgid "This menu is composed of keywords (tags) organized by admins."
 msgstr "Это меню состоит из ключевых слов (тэгов) управляемых администраицей."
 
-#: ../../../templates/sidebar.block.recent.php:18
+#: data/templates/default/sidebar.block.recent.php:18
 msgid "Recent Tags"
 msgstr "Последние Тэги"
 
-#: ../../../templates/sidebar.block.related.php:26
+#: data/templates/default/sidebar.block.related.php:26
 msgid "Related Tags"
 msgstr "Связанные Тэги"
 
-#: ../../../templates/sidebar.block.search.php:15
+#: data/templates/default/sidebar.block.search.php:28
 #, fuzzy
 msgid "Last Searches"
 msgstr "Что искали недавно"
 
-#: ../../../templates/sidebar.block.search.php:24
+#: data/templates/default/sidebar.block.search.php:40
 msgid "Number of bookmarks for this query"
 msgstr "Количество закладок для этого запроса"
 
-#: ../../../templates/sidebar.block.tagactions.php:28
+#: data/templates/default/sidebar.block.tagactions.php:9 www/tagrename.php:72
+msgid "Rename Tag"
+msgid_plural "Rename Tags"
+msgstr[0] "Переименовать тэг"
+msgstr[1] "Переименовать тэги"
+
+#: data/templates/default/sidebar.block.tagactions.php:22 www/tagdelete.php:54
+msgid "Delete Tag"
+msgstr "Удалить тэг"
+
+#: data/templates/default/sidebar.block.tagactions.php:24 www/tagedit.php:61
+msgid "Edit Tag Description"
+msgstr "Изменить описание тэга"
+
+#: data/templates/default/sidebar.block.tagactions.php:26
+#: www/tagcommondescriptionedit.php:76
+msgid "Edit Tag Common Description"
+msgstr "Edit Tag common description"
+
+#: data/templates/default/sidebar.block.tagactions.php:28
 msgid "Create a link to another tag"
 msgstr "Создать ссылку на другой тэг"
 
-#: ../../../templates/sidebar.block.users.php:14
+#: data/templates/default/sidebar.block.users.php:14
 msgid "New Users"
 msgstr "Новые Пользователи"
 
-#: ../../../templates/sidebar.block.users.php:23
-#: ../../../templates/users.tpl.php:17
+#: data/templates/default/sidebar.block.users.php:23
+#: data/templates/default/users.tpl.php:24
 msgid "bookmarks"
 msgstr "закладки"
 
-#: ../../../templates/sidebar.block.users.php:30
+#: data/templates/default/sidebar.block.users.php:30
 msgid "See all users"
 msgstr "Просмотреть всех пользователей"
 
-#: ../../../templates/sidebar.block.users.php:30
+#: data/templates/default/sidebar.block.users.php:30
 msgid "All users"
 msgstr "Все пользователи"
 
-#: ../../../templates/sidebar.block.watchlist.php:19
+#: data/templates/default/sidebar.block.watchlist.php:19
 #, fuzzy
 msgid "Close contacts are mutual contacts"
 msgstr "Близкие контакты взаимных контактов"
 
-#: ../../../templates/sidebar.block.watchlist.php:19
+#: data/templates/default/sidebar.block.watchlist.php:19
 msgid "Close contacts"
 msgstr "Близкие контакты"
 
-#: ../../../templates/sidebar.block.watchlist.php:36
+#: data/templates/default/sidebar.block.watchlist.php:36
 msgid "Add a contact..."
 msgstr "Добавить контакт..."
 
-#: ../../../templates/sidebar.block.watchlist.php:36
+#: data/templates/default/sidebar.block.watchlist.php:36
 msgid "Type a username to add it to your contacts."
 msgstr "Введите имя пользователя чтобы добавить его в контакты."
 
-#: ../../../templates/sidebar.block.watchlist.php:44
+#: data/templates/default/sidebar.block.watchlist.php:44
 msgid "Remove this contact"
 msgstr "Удалить этот контакт"
 
-#: ../../../templates/sidebar.block.watchstatus.php:11
+#: data/templates/default/sidebar.block.watchstatus.php:11
 msgid "Remove from Watchlist"
 msgstr "Удалить из списка наблюдения"
 
-#: ../../../templates/sidebar.block.watchstatus.php:13
+#: data/templates/default/sidebar.block.watchstatus.php:13
 msgid "Add to Watchlist"
 msgstr "Добавить в список наблюдения"
 
-#: ../../../templates/sidebar.linkedtags.inc.php:18
+#: data/templates/default/sidebar.linkedtags.inc.php:18
 msgid "Edit link"
 msgstr "Изменить ссылку"
 
-#: ../../../templates/sidebar.linkedtags.inc.php:47
+#: data/templates/default/sidebar.linkedtags.inc.php:47
 msgid "Synonyms:"
 msgstr "Синонимы:"
 
-#: ../../../templates/tag2tagadd.tpl.php:12
+#: data/templates/default/tag2tagadd.tpl.php:12
 msgid "Create new link:"
 msgstr "Создать новую ссылку:"
 
-#: ../../../templates/tag2tagadd.tpl.php:19
+#: data/templates/default/tag2tagadd.tpl.php:19
 #, php-format
-msgid "Note: include a tag into '%s' tag (e.g. %s>countries) display the tag into the menu box"
-msgstr "Внимание: включение тэга в '%s' тэг (например: %s>страны) выведет тэг в списке меню"
+msgid ""
+"Note: include a tag into '%s' tag (e.g. %s>countries) display the tag into "
+"the menu box"
+msgstr ""
+"Внимание: включение тэга в '%s' тэг (например: %s>страны) выведет тэг в "
+"списке меню"
 
-#: ../../../templates/tag2tagadd.tpl.php:23
-#: ../../../templates/tag2tagedit.tpl.php:37
+#: data/templates/default/tag2tagadd.tpl.php:23
+#: data/templates/default/tag2tagedit.tpl.php:37
 msgid "Create"
 msgstr "Создать"
 
-#: ../../../templates/tag2tagadd.tpl.php:35
-#: ../../../templates/tag2tagdelete.tpl.php:27
-#: ../../../templates/tag2tagedit.tpl.php:51
+#: data/templates/default/tag2tagadd.tpl.php:35
+#: data/templates/default/tag2tagdelete.tpl.php:27
+#: data/templates/default/tag2tagedit.tpl.php:51
 msgid "Existing links:"
 msgstr "Существующие ссылки:"
 
-#: ../../../templates/tag2tagadd.tpl.php:53
-#: ../../../templates/tag2tagdelete.tpl.php:45
-#: ../../../templates/tag2tagedit.tpl.php:69
+#: data/templates/default/tag2tagadd.tpl.php:53
+#: data/templates/default/tag2tagdelete.tpl.php:45
+#: data/templates/default/tag2tagedit.tpl.php:69
 msgid "No links"
 msgstr "Ссылок нет"
 
-#: ../../../templates/tag2tagedit.tpl.php:6
+#: data/templates/default/tag2tagdelete.tpl.php:15
+#: data/templates/default/tag2tagedit.tpl.php:16
+#: data/templates/default/tagdelete.tpl.php:8 www/jsScuttle.php:24
+msgid "Yes"
+msgstr "Да"
+
+#: data/templates/default/tag2tagdelete.tpl.php:16
+#: data/templates/default/tag2tagedit.tpl.php:17
+#: data/templates/default/tagdelete.tpl.php:9 www/jsScuttle.php:24
+msgid "No"
+msgstr "Нет"
+
+#: data/templates/default/tag2tagedit.tpl.php:6
 msgid "Delete the link"
 msgstr "Удалить ссылку"
 
-#: ../../../templates/tag2tagedit.tpl.php:29
+#: data/templates/default/tag2tagedit.tpl.php:29
 msgid "Create new link"
 msgstr "Создать новую ссылку"
 
-#: ../../../templates/tagrename.tpl.php:12
+#: data/templates/default/tagrename.tpl.php:12
 msgid "Old"
 msgstr "Старый"
 
-#: ../../../templates/tagrename.tpl.php:17
+#: data/templates/default/tagrename.tpl.php:17
 msgid "New"
 msgstr "Новый"
 
-#: ../../../templates/tagrename.tpl.php:24
+#: data/templates/default/tagrename.tpl.php:24
 msgid "Rename"
 msgstr "Переименовать"
 
-#: ../../../templates/tags.tpl.php:11
-#: ../../../templates/users.tpl.php:9
+#: data/templates/default/tags.tpl.php:11
+#: data/templates/default/users.tpl.php:9
 msgid "Alphabet"
 msgstr "Алфавиту"
 
-#: ../../../templates/tags.tpl.php:12
-#: ../../../templates/users.tpl.php:10
+#: data/templates/default/tags.tpl.php:12
+#: data/templates/default/users.tpl.php:10
 msgid "Popularity"
 msgstr "Популярности"
 
-#: ../../../templates/toolbar.inc.php:8
-#: ../../../templates/toolbar.inc.php:26
+#: data/templates/default/toolbar.inc.php:8
+#: data/templates/default/toolbar.inc.php:26
 msgid "Home"
 msgstr "Домой"
 
-#: ../../../templates/toolbar.inc.php:14
+#: data/templates/default/toolbar.inc.php:11 www/watchlist.php:106
+msgid "Watchlist"
+msgstr "Список наблюдения"
+
+#: data/templates/default/toolbar.inc.php:12 www/profile.php:79
+msgid "Profile"
+msgstr "Профиль"
+
+#: data/templates/default/toolbar.inc.php:13 www/bookmarks.php:215
+msgid "Add a Bookmark"
+msgstr "Добавить закладку"
+
+#: data/templates/default/toolbar.inc.php:14
 msgid "Log Out"
 msgstr "Выйти"
 
-#: ../../../templates/toolbar.inc.php:17
+#: data/templates/default/toolbar.inc.php:17
 msgid "Admin"
 msgstr "Админ"
 
-#: ../../../templates/top.inc.php:51
-msgid "Admins, your installation is in \"Debug Mode\" ($debugMode = true). To go in \"Normal Mode\" and hide debugging messages, change $debugMode to false into config.inc.php."
+#: data/templates/default/top.inc.php:57
+msgid ""
+"Admins, your installation is in \"Debug Mode\" ($debugMode = true). To go in "
+"\"Normal Mode\" and hide debugging messages, change $debugMode to false into "
+"config.php."
 msgstr ""
 
-#: ../../../templates/users.tpl.php:17
+#: data/templates/default/users.tpl.php:20
 msgid "profile"
 msgstr "Профиль"
 
-#: ../../../templates/users.tpl.php:17
+#: data/templates/default/users.tpl.php:21
 msgid "created in"
 msgstr "создано в"
 
+#: www/admin.php:32
+msgid "Manage users"
+msgstr "Управление пользователями"
+
+#: www/admin.php:69
+#, php-format
+msgid "%s and all his bookmarks and tags were deleted."
+msgstr "%s и всего закладки и тэги удалены."
+
+#: www/admin.php:76
+msgid "Problem with "
+msgstr "Возникла проблема с"
+
+#: www/ajaxDelete.php:37
+msgid "You are not allowed to delete this bookmark"
+msgstr "У Вас нет прав на удаление этой закладки"
+
+#: www/ajaxDelete.php:41 www/edit.php:103
+msgid "Failed to delete bookmark"
+msgstr "Ошибка при удалении закладки"
+
+#: www/alltags.php:50
+msgid "All Tags"
+msgstr "Все тэги"
+
+#: www/alltags.php:56 www/bookmarks.php:99 www/populartags.php:52
+#: www/profile.php:55 www/rss.php:100 www/search.php:111 www/watch.php:45
+#: www/watchlist.php:61
+#, php-format
+msgid "User with username %s was not found"
+msgstr "Пользователь с именем %s не найден"
+
+#: www/bookmarkcommondescriptionedit.php:51 www/tag2tagadd.php:37
+#: www/tag2tagdelete.php:41 www/tag2tagedit.php:33
+#: www/tagcommondescriptionedit.php:51 www/tagedit.php:43
+msgid "Permission denied."
+msgstr "Доступ запрещен."
+
+#: www/bookmarkcommondescriptionedit.php:60
+msgid "Bookmark common description updated"
+msgstr "Описание закладки обновлено"
+
+#: www/bookmarkcommondescriptionedit.php:63
+msgid "Failed to update the bookmark common description"
+msgstr "Ошибка при изменении описания закладки"
+
+#: www/bookmarkcommondescriptionedit.php:71
+msgid "Edit Bookmark Common Description"
+msgstr "Изменить описание закладки"
+
+#: www/bookmarks.php:114 www/tags.php:47
+msgid "Remove the tag from the selection"
+msgstr "Remove the tag from the selection"
+
+#: www/bookmarks.php:134 www/edit.php:65
+msgid "Your bookmark must have a title and an address"
+msgstr "Закладка должна иметь название и адрес"
+
+#: www/bookmarks.php:139
+msgid "This bookmark URL may not be added"
+msgstr ""
+
+#: www/bookmarks.php:158 www/edit.php:83 www/edit.php:86
+msgid "Bookmark saved"
+msgstr "Закладка сохранена"
+
+#: www/bookmarks.php:158
+msgid "(Come back to previous page.)"
+msgstr "(Вернуться на предыдущую страницу.)"
+
+#: www/bookmarks.php:165 www/import.php:106 www/importNetscape.php:108
+msgid ""
+"There was an error saving your bookmark. Please try again or contact the "
+"administrator."
+msgstr ""
+"Произошла ошибка при сохранении закладки. Попробуйте еще раз или свяжитесь с "
+"администрацией."
+
+#: www/bookmarks.php:222
+msgid "Add Bookmark"
+msgstr "Добавить закладку"
+
+#: www/bookmarks.php:225
+msgid "You must be logged in before you can add bookmarks."
+msgstr "Вы должны войти в систему, прежде чем добавлять закладки."
+
+#: www/bookmarks.php:270
+#, php-format
+msgid "%s: %s"
+msgstr ""
+
+#: www/bookmarks.php:283
+#, php-format
+msgid "%s: %s (+private %s)"
+msgstr ""
+
+#: www/bookmarks.php:305 www/bookmarks.php:306
+msgid "My Bookmarks"
+msgstr "Мои закладки"
+
+#: www/edit.php:44 www/edit.php:45
+msgid "Edit Bookmark"
+msgstr "Изменить закладку"
+
+#: www/edit.php:51
+#, php-format
+msgid "Bookmark with id %s not was not found"
+msgstr "Закладка # %s не найдена"
+
+#: www/edit.php:57
+msgid "You are not allowed to edit this bookmark"
+msgstr "У Вас нет доступа для редактирования этой закладки"
+
+#: www/edit.php:77
+msgid "Error while saving your bookmark"
+msgstr "Ошибка во время сохранения Вашей закладки"
+
+#: www/history.php:61
+msgid "History"
+msgstr "История"
+
+#: www/history.php:62
+#, php-format
+msgid "History for %s"
+msgstr "История для %s"
+
+#: www/history.php:84
+msgid "Address was not found"
+msgstr "Адрес не найден"
+
+#: www/import.php:47
+msgid "Could not open XML input"
+msgstr "Невозможно открыть XML"
+
+#: www/import.php:51
+#, php-format
+msgid "XML error: %s at line %d"
+msgstr "Ошибка XML: %s в строке %d"
+
+#: www/import.php:60
+msgid "Import Bookmarks from del.icio.us"
+msgstr "Импортировать закладки из del.icio.us"
+
+#: www/import.php:93
+msgid "You have already submitted this bookmark."
+msgstr "Вы уже добавили эту закладку."
+
+#: www/import.php:104
+msgid "Bookmark imported."
+msgstr "Закладка импортирована."
+
+#: www/importNetscape.php:95
+msgid "You have already submitted some of these bookmarks."
+msgstr "Вы уже сохранили некоторые из этих закладок."
+
+#: www/importNetscape.php:115
+msgid "Bookmarks found: "
+msgstr "Найденные закладки: "
+
+#: www/importNetscape.php:116
+msgid "Bookmarks imported: "
+msgstr "Закладки загружены: "
+
+#: www/importNetscape.php:117 www/importNetscape.php:122
+msgid "Import Bookmarks from Browser File"
+msgstr "Импортировать закладки из файла"
+
+#: www/importStructure.php:61
+msgid "Bad indentation"
+msgstr "Ошибка в отступе"
+
+#: www/importStructure.php:67
+msgid "New links between tags: "
+msgstr "Новые ссылки между тэгов: "
+
+#: www/importStructure.php:72
+msgid "Import Structure"
+msgstr "Импорт структуры"
+
+#: www/index.php:38
+msgid "You have now logged out"
+msgstr "Вы вышли"
+
+#: www/index.php:46
+#, php-format
+msgid "%s: Recent bookmarks"
+msgstr "%s: Недавно добавленные закладки"
+
+#: www/index.php:58
+#, fuzzy, php-format
+msgid "%s: Recent bookmarks (+private %s)"
+msgstr "%s: Недавно добавленные закладки"
+
+#: www/index.php:96
+msgid "Store, share and tag your favourite links"
+msgstr "Сохраняйте, делитесь и отмечайте Ваши любимые ссылки"
+
+#: www/index.php:97
+msgid "All Bookmarks"
+msgstr "Все закладки"
+
+#: www/jsScuttle.php:71
+msgid "Available"
+msgstr "Доступно"
+
+#: www/jsScuttle.php:74
+msgid "Not Available"
+msgstr "Недоступно"
+
+#: www/login.php:48
+msgid "The details you have entered are incorrect. Please try again."
+msgstr "Вы ввели некорректные данные. Попробуйте еще раз."
+
+#: www/password.php:36
+msgid "You must enter your username."
+msgstr "Вы должны ввести имя пользователя."
+
+#: www/password.php:40
+msgid ""
+"You must enter your <abbr title=\"electronic mail\">e-mail</abbr> address."
+msgstr "Вы должны ввести <abbr title=\"electronic mail\">e-mail</abbr>."
+
+#: www/password.php:48
+msgid "No matches found for that username."
+msgstr "Для этого пользователя ничего не найдено."
+
+#: www/password.php:51
+msgid ""
+"No matches found for that combination of username and <abbr title="
+"\"electronic mail\">e-mail</abbr> address."
+msgstr ""
+"Ничего не найдено для этого имени пользователя и адреса <abbr title="
+"\"electronic mail\">e-mail</abbr>."
+
+#: www/password.php:59
+msgid ""
+"There was an error while generating your new password. Please try again."
+msgstr ""
+"Произошла ошибка во время генерации имени пользователя. Попробуйте еще раз."
+
+#: www/password.php:63
+msgid "Your new password is:"
+msgstr "Ваш новый пароль:"
+
+#: www/password.php:63
+msgid ""
+"To keep your bookmarks secure, you should change this password in your "
+"profile the next time you log in."
+msgstr ""
+"Для обеспечения безопасности, Вы должны изменить пароль в профиле, следующий "
+"раз когда войдете в систему."
+
+#: www/password.php:66
+#, php-format
+msgid "%s Account Information"
+msgstr "%s просмотр информации об аккаунте"
+
+#: www/password.php:68
+#, php-format
+msgid "New password generated and sent to %s"
+msgstr "Новый пароль отправлен по адресу %s"
+
+#: www/password.php:75
+msgid "Forgotten Password"
+msgstr "Забытый пароль"
+
+#: www/profile.php:63 www/watchlist.php:119
+msgid "Username was not specified"
+msgstr "Имя пользователя не введено"
+
+#: www/profile.php:70
+msgid "My Profile"
+msgstr "Мой профиль"
+
+#: www/profile.php:110
+msgid "Invalid Token"
+msgstr "Неверный символ"
+
+#: www/profile.php:115
+msgid "Password and confirmation do not match."
+msgstr "Пароль и подтверждение пароля не совпадают."
+
+#: www/profile.php:119
+msgid "Password must be at least 6 characters long."
+msgstr "Пароль должен быть минимум 6 символов длиной."
+
+#: www/profile.php:123
+msgid "E-mail address is not valid."
+msgstr "Некорректный адрес E-mail."
+
+#: www/profile.php:127
+msgid "An error occurred while saving your changes."
+msgstr "Ошибка при сохранении изменений."
+
+#: www/profile.php:129
+msgid "Changes saved."
+msgstr "Изменения сохранены."
+
+#: www/profile.php:148
+msgid "You do not have a valid SSL client certificate"
+msgstr ""
+
+#: www/profile.php:150
+msgid "This certificate is already registered"
+msgstr ""
+
+#: www/profile.php:152
+msgid "Failed to register SSL client certificate."
+msgstr ""
+
+#: www/profile.php:154
+msgid "SSL client certificate registered."
+msgstr ""
+
+#: www/profile.php:163
+msgid "Certificate not found."
+msgstr ""
+
+#: www/profile.php:165
+msgid "The certificate does not belong to you."
+msgstr ""
+
+#: www/profile.php:167
+#, fuzzy
+msgid "Failed to delete SSL client certificate."
+msgstr "Ошибка удаления тэга"
+
+#: www/profile.php:169
+msgid "SSL client certificate deleted."
+msgstr ""
+
+#: www/register.php:52
+msgid "You <em>must</em> enter a username, password and e-mail address."
+msgstr "Вы <em>должны</em> ввести имя пользователя, пароль и адрес e-mail."
+
+#: www/register.php:56
+msgid "This username has been reserved, please make another choice."
+msgstr "Это имя пользователя занято, пожалуйста выберете другое."
+
+#: www/register.php:60
+msgid "This username already exists, please make another choice."
+msgstr "Это имя пользоватея уже существует, пожалуйста выберете другое."
+
+#: www/register.php:64
+msgid ""
+"This username is not valid (too short, too long, forbidden characters...), "
+"please make another choice."
+msgstr ""
+"Некорректное имя пользователя (слишком короткое, слишком длинное или "
+"запрещенные символы...), пожалуйста выберете другое."
+
+#: www/register.php:68
+msgid "E-mail address is not valid. Please try again."
+msgstr "Некорректный адрес e-mail. Попробуйте еще раз."
+
+#: www/register.php:72
+msgid "Antispam answer is not valid. Please try again."
+msgstr "Ответ на вопрос спам-фильтра не верен. Попробуйте еще раз."
+
+#: www/register.php:90
+msgid "You have successfully registered. Enjoy!"
+msgstr "Поздравляем! Вы успешно зарегистрировались!"
+
+#: www/register.php:92
+msgid "Registration failed. Please try again."
+msgstr "Ошибка регистрации. Пожалуйста попробуйте еще раз."
+
+#: www/rss.php:90 www/rss.php:111
+#, php-format
+msgid "Failed to Autenticate User with username %s using private key"
+msgstr ""
+
+#: www/rss.php:128
+#, php-format
+msgid "Recent bookmarks posted to %s"
+msgstr "Последние закладки добавленные в %s"
+
+#: www/search.php:83 www/search.php:147
+msgid "Search Bookmarks"
+msgstr "Поиск закладок"
+
+#: www/search.php:89
+msgid "Search Results"
+msgstr "Результаты поиска"
+
+#: www/search.php:137
+msgid "Unsatisfied? You can also try our "
+msgstr "Неудовлетворены? Вы еще можете поробовать наш "
+
+#: www/tag2tagadd.php:54
+msgid "Tag link created"
+msgstr "Tag link created"
+
+#: www/tag2tagadd.php:57
+msgid "Failed to create the link"
+msgstr "Ошибка создания ссылки"
+
+#: www/tag2tagadd.php:69
+msgid "Add Tag Link"
+msgstr "Добавить тэг к ссылке"
+
+#: www/tag2tagdelete.php:66
+msgid "Tag link deleted"
+msgstr "Тэг ссылки удален"
+
+#: www/tag2tagdelete.php:69
+msgid "Failed to delete the link"
+msgstr "Ошибка удаления ссылки"
+
+#: www/tag2tagdelete.php:81
+msgid "Delete Link Between Tags"
+msgstr "Delete Link between Tags"
+
+#: www/tag2tagedit.php:55
+msgid "Edit Link Between Tags"
+msgstr "Edit Link between Tags"
+
+#: www/tagcommondescriptionedit.php:62
+msgid "Tag common description updated"
+msgstr "Tag common description updated"
+
+#: www/tagcommondescriptionedit.php:67
+msgid "Failed to update the tag common description"
+msgstr "Failed to update the tag common description"
+
+#: www/tagdelete.php:43
+msgid "Tag deleted"
+msgstr "Тэг удален"
+
+#: www/tagdelete.php:46
+msgid "Failed to delete the tag"
+msgstr "Ошибка удаления тэга"
+
+#: www/tagedit.php:52
+msgid "Tag description updated"
+msgstr "Описание тэга обновлено"
+
+#: www/tagedit.php:55
+msgid "Failed to update the tag description"
+msgstr "Ошибка обновления описания тэга"
+
+#: www/tagrename.php:63
+msgid "Tag renamed"
+msgstr "Тэг переименован"
+
+#: www/tagrename.php:66
+msgid "Failed to rename the tag"
+msgstr "Ошибка переименования тэга"
+
+#: www/tags.php:71
+#, php-format
+msgid "%s: tagged with \"%s\""
+msgstr ""
+
+#: www/tags.php:84
+#, php-format
+msgid "%s: tagged with \"%s\" (+private %s)"
+msgstr ""
+
+#: www/users.php:31
+msgid "Users"
+msgstr "Пользователи"
+
+#: www/watch.php:54
+msgid "User removed from your watchlist"
+msgstr "Пользователь удален из списка наблюдения"
+
+#: www/watch.php:56
+msgid "User added to your watchlist"
+msgstr "Пользователь добавлен в список наблюдения"
+
+#: www/watchlist.php:104
+msgid "My Watchlist"
+msgstr "Мой список наблюдения"
+
+#: www/api/httpauth.inc.php:30
+msgid "Use of the API calls requires authentication."
+msgstr ""
+
+#: www/gsearch/index.php:51
+#, fuzzy
+msgid "Come back to "
+msgstr "(Вернуться на предыдущую страницу.)"
+
+#: www/gsearch/index.php:56
+msgid "Admin tips: "
+msgstr ""
+
+#: www/gsearch/index.php:57
+msgid "To refresh manually Google Custom Search Engine, goes to: "
+msgstr ""
+
+#: www/gsearch/index.php:61
+msgid ""
+"If no result appears, check that all the urls are valid in the admin section."
+msgstr ""

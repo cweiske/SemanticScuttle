@@ -118,6 +118,31 @@ function createURL($page = '', $ending = '') {
 		return ROOT . $page;
 	}
 }
+
+/**
+ * Adds the protocol to the URL if it's missing.
+ * If the current URL is served via HTTPS, https will be used as protocol.
+ *
+ * Useful to fix ROOT urls of SemanticScuttle when it's needed, e.g.
+ * in the bookmarklet or the feed.
+ *
+ * @param string $url Url with or without the protocol ("//example.org/foo")
+ *
+ * @return string URL with a HTTP protocol
+ */
+function addProtocolToUrl($url)
+{
+    if (substr($url, 0, 2) != '//') {
+        return $url;
+    }
+
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']) {
+        $protocol = 'https:';
+    } else {
+        $protocol = 'http:';
+    }
+    return $protocol . $url;
+}
 /**
  * Creates a "vote for/against this bookmark" URL.
  * Also runs htmlspecialchars() on them to prevent XSS.

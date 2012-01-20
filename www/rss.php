@@ -124,7 +124,8 @@ if ($cat) {
 }
 
 $tplVars['feedtitle'] = filter($GLOBALS['sitename'] . (isset($pagetitle) ? $pagetitle : ''));
-$tplVars['feedlink'] = ROOT;
+$tplVars['pagelink'] = addProtocolToUrl(ROOT);
+$tplVars['feedlink'] = addProtocolToUrl(ROOT) . 'rss?sort=' . getSortOrder();
 $tplVars['feeddescription'] = sprintf(T_('Recent bookmarks posted to %s'), $GLOBALS['sitename']);
 
 $bookmarks = $bookmarkservice->getBookmarks(
@@ -137,6 +138,7 @@ $bookmarks_tmp = filter($bookmarks['bookmarks']);
 
 $bookmarks_tpl = array();
 $latestdate    = null;
+$guidBaseUrl   = addProtocolToUrl(ROOT) . '#';
 foreach ($bookmarks_tmp as $key => $row) {
     $_link = $row['bAddress'];
     // Redirection option
@@ -154,7 +156,8 @@ foreach ($bookmarks_tmp as $key => $row) {
         'description' => $row['bDescription'],
         'creator'     => SemanticScuttle_Model_UserArray::getName($row),
         'pubdate'     => $_pubdate,
-        'tags'        => $row['tags']
+        'tags'        => $row['tags'],
+        'guid'        => $guidBaseUrl . $row['bId'],
     );
 }
 unset($bookmarks_tmp);

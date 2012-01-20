@@ -5,14 +5,23 @@ ChangeLog for SemantiScuttle
 
 0.98.4 - 2011-XX-XX
 -------------------
-- Fix bug: URLs were escaped too often in bookmark list
+- Fix bug #3439729: URLs were escaped too often in bookmark list
 - Fix bug: Subtitle was not escaped
 - Fix bug #3388219: Incorrect URL when cancelling tag2tag-actions
 - Fix bug #3393951: Logo images missing on bookmark page
 - Fix bug #3399815: PHP error in opensearch API in 0.98.3
 - Fix bug #3407728: Can't delete users from admin page
 - Fix bug #3431742: open_basedir problems with /etc/ config files
+- Fix bug #3436624: Wrong URL for Delicious API when importing
+- Fix bug #3463481: RSS feed show warnings in feedvalidator.org
+- Fix bug #3384416: Use URL with protocol in bookmarklet
+- Fix bug: Invalid HTML when website thumbnails are activated
+- Fix bug #3413459: Thumbnails not in one line
+- Fix bug #3468293: Delicious import does not preserve private links
+- Fix bug #3396727: Title of http://lesscss.org/ not loaded
 - Implement request #3403609: fr_CA translation update
+- Implement patch #3476011: PostgreSQL tables can not be initialized
+  (Frédéric Fauberteau [triaxx])
 
 
 0.98.3 - 2011-08-09

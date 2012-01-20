@@ -25,6 +25,8 @@ then this instructions are for you.
 
    on the shell ("semanticscuttle" being the database name)
 
+   If you run PostgreSQL, use ``data/tables.postgresql.sql``.
+
 3. Copy ``data/config.php.dist`` to ``data/config.php`` and modify it as
    necessary. See configuration_ for more information.
 4. Make the cache directory writable by your web server.

@@ -223,6 +223,7 @@ li.xfolkentry {
     border-bottom: 1px solid #DDD;
     margin-bottom: 0;
     padding: 1em 0.5em;
+    overflow: auto;
 }
 html > body li.xfolkentry {
     border-bottom: 1px dotted #AAA;
