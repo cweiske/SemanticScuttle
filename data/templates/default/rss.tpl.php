@@ -1,10 +1,13 @@
 <?php
 echo '<' . '?xml version="1.0" encoding="utf-8" ?' . ">\n";
 ?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+>
 <channel>
     <title><?php echo $feedtitle; ?></title>
     <link><?php echo htmlspecialchars($feedlink); ?></link>
+    <atom:link rel="self" type="application/rss+xml" href="<?php echo htmlspecialchars($feedlink); ?>"/>
     <description><?php echo htmlspecialchars($feeddescription); ?></description>
     <pubDate><?php echo date('r'); ?></pubDate>
     <lastBuildDate><?php echo $feedlastupdate ?></lastBuildDate>
