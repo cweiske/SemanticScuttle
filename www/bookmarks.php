@@ -305,8 +305,8 @@ if ($templatename == 'editbookmark.tpl') {
 		$tplVars['pagetitle'] = T_('My Bookmarks') . $catTitle;
 		$tplVars['subtitlehtml'] =  T_('My Bookmarks') . $catTitleWithUrls;
 	} else {
-		$tplVars['pagetitle'] = $user.': '.$cat;
-		$tplVars['subtitle'] = $pagetitle;
+		$tplVars['pagetitle']    = $user.': '.$cat;
+		$tplVars['subtitlehtml'] =  $user . $catTitleWithUrls;
 	}
 }
 
