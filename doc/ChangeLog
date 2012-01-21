@@ -3,7 +3,7 @@ ChangeLog for SemantiScuttle
 
 .. contents::
 
-0.98.4 - 2011-XX-XX
+0.98.4 - 2012-01-21
 -------------------
 - Fix bug #3439729: URLs were escaped too often in bookmark list
 - Fix bug: Subtitle was not escaped
@@ -19,6 +19,7 @@ ChangeLog for SemantiScuttle
 - Fix bug #3413459: Thumbnails not in one line
 - Fix bug #3468293: Delicious import does not preserve private links
 - Fix bug #3396727: Title of http://lesscss.org/ not loaded
+- Fix bug #3111254: getIdFromUser() always returns an integer now (part 2)
 - Implement request #3403609: fr_CA translation update
 - Implement patch #3476011: PostgreSQL tables can not be initialized
   (Frédéric Fauberteau [triaxx])

@@ -10,13 +10,27 @@
   <property file="html.properties" />
 
   <property name="version-m"  value="0.98" />
-  <property name="version"    value="0.98.3" />
+  <property name="version"    value="0.98.4" />
   <property name="stability"  value="beta" />
   <property name="releasenotes" value="
-- Fix bug #3388456: Missing scripts/fix-unfiled-tags.php
-
-The script was only missing in the .zip file; the PEAR package
-contained it - thus no 0.98.3 PEAR package.
+- Fix bug #3439729: URLs were escaped too often in bookmark list
+- Fix bug: Subtitle was not escaped
+- Fix bug #3388219: Incorrect URL when cancelling tag2tag-actions
+- Fix bug #3393951: Logo images missing on bookmark page
+- Fix bug #3399815: PHP error in opensearch API in 0.98.3
+- Fix bug #3407728: Can't delete users from admin page
+- Fix bug #3431742: open_basedir problems with /etc/ config files
+- Fix bug #3436624: Wrong URL for Delicious API when importing
+- Fix bug #3463481: RSS feed show warnings in feedvalidator.org
+- Fix bug #3384416: Use URL with protocol in bookmarklet
+- Fix bug: Invalid HTML when website thumbnails are activated
+- Fix bug #3413459: Thumbnails not in one line
+- Fix bug #3468293: Delicious import does not preserve private links
+- Fix bug #3396727: Title of http://lesscss.org/ not loaded
+- Fix bug #3111254: getIdFromUser() always returns an integer now (part 2)
+- Implement request #3403609: fr_CA translation update
+- Implement patch #3476011: PostgreSQL tables can not be initialized
+  (Frédéric Fauberteau [triaxx])
 " />
   <property name="zipfile"     value="${phing.project.name}-${version}.zip" />
   <property name="pkgfile"     value="${phing.project.name}-${version}.tgz" />
@@ -149,6 +163,29 @@ contained it - thus no 0.98.3 PEAR package.
      <replacement path="tests/prepare.php"
       type="pear-config" from="@data_dir@" to="data_dir"
       />
+
+     <changelog version="0.98.4" date="2012-01-21" license="GPL">
+- Fix bug #3439729: URLs were escaped too often in bookmark list
+- Fix bug: Subtitle was not escaped
+- Fix bug #3388219: Incorrect URL when cancelling tag2tag-actions
+- Fix bug #3393951: Logo images missing on bookmark page
+- Fix bug #3399815: PHP error in opensearch API in 0.98.3
+- Fix bug #3407728: Can't delete users from admin page
+- Fix bug #3431742: open_basedir problems with /etc/ config files
+- Fix bug #3436624: Wrong URL for Delicious API when importing
+- Fix bug #3463481: RSS feed show warnings in feedvalidator.org
+- Fix bug #3384416: Use URL with protocol in bookmarklet
+- Fix bug: Invalid HTML when website thumbnails are activated
+- Fix bug #3413459: Thumbnails not in one line
+- Fix bug #3468293: Delicious import does not preserve private links
+- Fix bug #3396727: Title of http://lesscss.org/ not loaded
+- Fix bug #3111254: getIdFromUser() always returns an integer now (part 2)
+- Implement request #3403609: fr_CA translation update
+- Implement patch #3476011: PostgreSQL tables can not be initialized
+  (Frédéric Fauberteau [triaxx])
+     </changelog>
+
+     <!-- 0.98.3 was not needed -->
 
      <changelog version="0.98.2" date="2011-08-08" license="GPL">
 - Fix bug #3385724: Rename tag ends with XML Parsing Error

@@ -246,6 +246,22 @@ class UserTest extends TestBase
         );
     }
 
+    public function testGetIdFromUserParamId()
+    {
+        $uid   = $this->addUser();
+        $newId = $this->us->getIdFromUser($uid);
+        $this->assertInternalType('integer', $newId);
+        $this->assertEquals($uid, $newId);
+    }
+
+    public function testGetIdFromUserParamUsername()
+    {
+        $uid   = $this->addUser('someusername');
+        $newId = $this->us->getIdFromUser('someusername');
+        $this->assertInternalType('integer', $newId);
+        $this->assertEquals($uid, $newId);
+    }
+
 
 
     /**
