@@ -3,7 +3,7 @@ ChangeLog for SemantiScuttle
 
 .. contents::
 
-0.98.4 - 2011-XX-XX
+0.98.4 - 2012-01-21
 -------------------
 - Fix bug #3439729: URLs were escaped too often in bookmark list
 - Fix bug: Subtitle was not escaped
