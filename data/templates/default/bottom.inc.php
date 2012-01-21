@@ -9,7 +9,7 @@ echo " <a href=\"https://sourceforge.net/projects/semanticscuttle/\">SemanticScu
 
 if($GLOBALS['enableWebsiteThumbnails']) {
 	// Licence to the thumbnails provider (OBLIGATORY IF YOU USE ARTVIPER SERVICE)
-	echo ' (Thumbnails by <script type="text/ecmascript" src="http://www.artviper.net/link.js"></script>)';
+	echo ' (Thumbnails by <a href="http://www.artviper.net">webdesign</a>)';
 }
 ?>
 
