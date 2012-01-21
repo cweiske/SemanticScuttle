@@ -19,6 +19,7 @@ ChangeLog for SemantiScuttle
 - Fix bug #3413459: Thumbnails not in one line
 - Fix bug #3468293: Delicious import does not preserve private links
 - Fix bug #3396727: Title of http://lesscss.org/ not loaded
+- Fix bug #3111254: getIdFromUser() always returns an integer now (part 2)
 - Implement request #3403609: fr_CA translation update
 - Implement patch #3476011: PostgreSQL tables can not be initialized
   (Frédéric Fauberteau [triaxx])
