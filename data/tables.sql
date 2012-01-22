@@ -79,6 +79,15 @@ CREATE TABLE `sc_users` (
 
 -- --------------------------------------------------------
 
+CREATE TABLE `sc_users_openids` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uId` int(11) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+-- --------------------------------------------------------
+
 CREATE TABLE `sc_users_sslclientcerts` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `uId` INT NOT NULL ,
