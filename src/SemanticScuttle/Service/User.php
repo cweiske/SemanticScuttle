@@ -539,6 +539,101 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     }
 
     /**
+     * Try to authenticate and login a user with his OpenID
+     *
+     * @param string  $identifier OpenID URL, may be null if $return is active
+     * @param boolean $return     If the request is the answer from the provider
+     * @param boolean $remember   If a long-time cookie shall be set
+     *
+     * @return boolean True if the user could be authenticated,
+     *                 false if not.
+     */
+    public function loginOpenId($identifier, $return, $remember = false)
+    {
+        require_once 'OpenID.php';
+        require_once 'OpenID/RelyingParty.php';
+        require_once 'OpenID/Extension/SREG11.php';
+
+        $returnUrl = addProtocolToUrl(createURL('login', 'openidreturn'));
+        if ($identifier !== null) {
+            $identifier = OpenID::normalizeIdentifier($identifier);
+        }
+        $rp = new OpenID_RelyingParty(
+            $returnUrl/*returnTo*/,
+            addProtocolToUrl(ROOT)/* realm */,
+            $identifier
+        );
+
+        if ($return) {
+            //answer from ID provider
+            if (!count($_POST)) {
+                list(, $queryString) = explode('?', $_SERVER['REQUEST_URI']);
+            } else {
+                $queryString = file_get_contents('php://input');
+            }
+            try {
+                $request = new Net_URL2($returnUrl . '?' . $queryString);
+                $message = new OpenID_Message($queryString, OpenID_Message::FORMAT_HTTP);
+
+                $result = $rp->verify($request, $message);
+                if (!$result->success()) {
+                    return false;
+                }
+
+                $identifier = $message->get('openid.claimed_id');
+            } catch (Exception $e) {
+                //FIXME: report error
+                return false;
+            }
+
+            //FIXME: join user table to be sure the user exists
+            $query = 'SELECT uId'
+                . ' FROM sc_users_openids'
+                . ' WHERE url = "' . $this->db->sql_escape($identifier) . '"';
+
+            if (!($dbresult = $this->db->sql_query($query))) {
+                message_die(
+                    GENERAL_ERROR,
+                    'Could not get user',
+                    '', __LINE__, __FILE__, $query, $this->db
+                );
+                return false;
+            }
+            $row = $this->db->sql_fetchrow($dbresult);
+            $this->db->sql_freeresult($dbresult);
+            if (!$row) {
+                //OpenID not found in database. FIXME: Need to register
+                return false;
+            }
+            $this->setCurrentUserId($row['uId'], true);
+            //FIXME: update email and name
+            //FIXME: remember login setting
+            return true;
+        }
+
+        //send request to ID provider
+        try {
+            $authRequest = $rp->prepare();
+
+            //FIXME: when user exists already, use immediate mode first and
+            // fall back to normal when it fails
+            //FIXME: (?) when user exists already, don't request details
+
+            $sreg = new OpenID_Extension_SREG11(OpenID_Extension::REQUEST);
+            //$sreg->set('required', 'email');
+            $sreg->set('optional', 'email,nickname,fullname');
+            $authRequest->addExtension($sreg);
+            //$auth->setMode(OpenID::MODE_CHECKID_IMMEDIATE);
+            header('Location: ' . $authRequest->getAuthorizeURL());
+            exit();
+        } catch (Exception $e) {
+            //FIXME: throw user exception
+            var_dump($e);
+            return false;
+        }        
+    }
+
+    /**
      * Try to authenticate via the privateKey
      *
      * @param string $privateKey Private Key

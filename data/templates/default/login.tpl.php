@@ -18,6 +18,11 @@ if (!$userservice->isSessionStable()) {
     <div><input type="hidden" name="query" value="<?php echo $querystring; ?>" /></div>
     <table>
     <tr>
+        <th align="left"><label for="openid"><?php echo T_('OpenId'); ?></label></th>
+        <td><input type="text" id="openid" name="openid_identifier" size="20" /></td>
+        <td></td>
+    </tr>
+    <tr>
         <th align="left"><label for="username"><?php echo T_('Username'); ?></label></th>
         <td><input type="text" id="username" name="username" size="20" /></td>
         <td></td>

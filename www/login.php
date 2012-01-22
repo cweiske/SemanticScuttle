@@ -35,20 +35,38 @@ isset($_POST['query']) ? define('POST_QUERY', $_POST['query']): define('POST_QUE
 
 $keeppass = (POST_KEEPPASS=='yes')?true:false;
 
+@list($url, $method) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
+
+
 $login = false;
-if (POST_SUBMITTED!='' && POST_USERNAME!='' && POST_PASSWORD!='') {
+if ($method == 'openidreturn') {
+    $login = $userservice->loginOpenId(null, true);
+    if (!$login) {
+        $tplVars['error'] = T_('OpenID login error');
+    }
+} else if (POST_SUBMITTED != ''
+    && isset($_POST['openid_identifier']) && $_POST['openid_identifier'] != ''
+) {
+    $login = $userservice->loginOpenId(
+        $_POST['openid_identifier'], false, POST_KEEPPASS
+    );
+    if (!$login) {
+        //may be an exception with the ID
+        $tplVars['error'] = T_('OpenID login error');
+    }
+} else if (POST_SUBMITTED!='' && POST_USERNAME!='' && POST_PASSWORD!='') {
     $posteduser = trim(utf8_strtolower(POST_USERNAME));
     $login = $userservice->login($posteduser, POST_PASSWORD, $keeppass); 
-    if ($login) {
-        if (POST_QUERY)
-            header('Location: '. createURL('bookmarks', $posteduser .'?'. POST_QUERY));
-        else
-            header('Location: '. createURL('bookmarks', $posteduser));
-    } else {
+    if (!$login) {
         $tplVars['error'] = T_('The details you have entered are incorrect. Please try again.');
     }
 }
-if (!$login) { 
+if ($login) {
+    if (POST_QUERY)
+        header('Location: '. createURL('bookmarks', $posteduser .'?'. POST_QUERY));
+    else
+        header('Location: '. createURL('bookmarks', $posteduser));
+} else {
     if ($userservice->isLoggedOn()) {
         $cUser = $userservice->getCurrentObjectUser();
         header('Location: '. createURL('bookmarks', strtolower($cUser->getUsername())));
