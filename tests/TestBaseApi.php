@@ -55,7 +55,7 @@ class TestBaseApi extends TestBase
     protected function setUp()
     {
         if ($GLOBALS['unittestUrl'] === null) {
-            $this->assertTrue(false, 'Unittest URL not set in config');
+            $this->markTestSkipped('Unittest URL not set in config');
         }
         if ($this->urlPart === null) {
             $this->assertTrue(false, 'Set the urlPart variable');
