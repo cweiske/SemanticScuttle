@@ -1,0 +1,6 @@
+language: php
+phps:
+  - 5.3
+script: cd tests && phpunit .
+notifications:
+  irc: "irc.freenode.org#semanticscuttle"
