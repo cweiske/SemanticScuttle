@@ -122,6 +122,10 @@
                 channel="pear.php.net"
                 minimum_version="2.0.0"
                 />
+       <package name="Stream_Var"
+                channel="pear.php.net"
+                minimum_version="1.1.0"
+                />
 
      </dependencies>
 
