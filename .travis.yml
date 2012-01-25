@@ -10,4 +10,5 @@ before_script:
   - mysql semanticscuttle_test < data/tables.sql
   - cat data/config.php.dist | sed "s/'username'/'root'/" | sed "s/'password'/''/" | sed "s/'scuttle'/'semanticscuttle_test'/" > data/config.php
   - pyrus install pear/HTTP_Request2
+  - pyrus install pear/PEAR
   - phpenv rehash
