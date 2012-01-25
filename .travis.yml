@@ -4,3 +4,7 @@ phps:
 script: cd tests && phpunit .
 notifications:
   irc: "irc.freenode.org#semanticscuttle"
+
+before_script:
+  - mysql -e 'create database semanticscuttle_test;'
+  - cat data/config.php.dist | sed "s/'username'/'root'/" | sed "s/'password'/''/" | sed "s/'scuttle'/'semanticscuttle_test'/" > data/config.php
