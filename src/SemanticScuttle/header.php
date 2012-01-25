@@ -32,18 +32,15 @@ $cfg = new SemanticScuttle_Config();
 list($configfile, $defaultfile) = $cfg->findFiles();
 if ($defaultfile === null) {
     header('HTTP/1.0 500 Internal Server Error');
-    die(
-        'No default configuration file config.default.php found.'
+    echo 'No default configuration file config.default.php found.'
         . ' This is really, really strange'
-        . "\n"
-    );
+        . "\n";
+    exit(1);
 }
 if ($configfile === null) {
     header('HTTP/1.0 500 Internal Server Error');
-    die(
-        'Please copy "config.php.dist" to "config.php" in data/ folder.'
-        . "\n"
-    );
+    echo 'Please copy "config.php.dist" to "config.php" in data/ folder.' . "\n";
+    exit(1);
 }
 set_include_path(
     get_include_path() . PATH_SEPARATOR
@@ -58,7 +55,8 @@ if (isset($_GET['unittestMode']) && $_GET['unittestMode'] == 1
 ) {
     if ($allowUnittestMode !== true) {
         header('HTTP/1.0 400 Bad Request');
-        die("Unittestmode is not allowed\n");
+        echo "Unittestmode is not allowed\n";
+        exit(2);
     }
 
     define('HTTP_UNIT_TEST_MODE', true);
