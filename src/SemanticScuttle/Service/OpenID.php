@@ -156,9 +156,9 @@ class SemanticScuttle_Service_OpenID extends SemanticScuttle_DbService
 
             $identifier = $message->get('openid.claimed_id');
         } catch (OpenID_Exception $e) {
-            //FIXME: report error
-            var_dump($e);die();
-            throw $e;
+            throw new SemanticScuttle_Exception_User(
+                'Unknown OpenID error', 14, $e
+            );
         }
 
         try {
