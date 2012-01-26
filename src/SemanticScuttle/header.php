@@ -98,6 +98,7 @@ if (DEBUG_MODE) {
 
 // 2 // Second requirements part which could display bugs
 // (must come after debug management)
+require_once 'SemanticScuttle/Exception.php';
 require_once 'SemanticScuttle/Service.php';
 require_once 'SemanticScuttle/DbService.php';
 require_once 'SemanticScuttle/Service/Factory.php';

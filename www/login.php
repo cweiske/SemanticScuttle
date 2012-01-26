@@ -39,20 +39,31 @@ $keeppass = (POST_KEEPPASS=='yes')?true:false;
 
 
 $login = false;
-if ($method == 'openidreturn') {
-    $login = $userservice->loginOpenId(null, true);
-    if (!$login) {
-        $tplVars['error'] = T_('OpenID login error');
-    }
-} else if (POST_SUBMITTED != ''
-    && isset($_POST['openid_identifier']) && $_POST['openid_identifier'] != ''
+if ($method == 'openidreturn'
+    || (POST_SUBMITTED != ''
+        && isset($_POST['openid_identifier']) && $_POST['openid_identifier'] != ''
+    )
 ) {
-    $login = $userservice->loginOpenId(
-        $_POST['openid_identifier'], false, POST_KEEPPASS
-    );
-    if (!$login) {
-        //may be an exception with the ID
-        $tplVars['error'] = T_('OpenID login error');
+    $oids      = SemanticScuttle_Service_Factory::get('OpenID');
+    $returnUrl = addProtocolToUrl(createURL('login', 'openidreturn'));
+    try {
+        if ($method == 'openidreturn') {
+            //part 2: handle response
+            $ret = $oids->handleIdResponse($returnUrl);
+            if ($ret['userId'] === null) {
+                //FIXME: ask to register
+                $tplVars['error'] = T_('OpenID login error');
+            } else {
+                $userservice->setCurrentUserId($ret['userId'], true);
+                $login = true;
+            }
+            //FIXME POST_KEEPPASS
+        } else {
+            //part 1: send request
+            $oids->sendIdRequest($_POST['openid_identifier'], $returnUrl);
+        }
+    } catch (Exception $e) {
+        $tplVars['error'] = SemanticScuttle_Exception::getErrorMessage($e);
     }
 } else if (POST_SUBMITTED!='' && POST_USERNAME!='' && POST_PASSWORD!='') {
     $posteduser = trim(utf8_strtolower(POST_USERNAME));
@@ -61,6 +72,7 @@ if ($method == 'openidreturn') {
         $tplVars['error'] = T_('The details you have entered are incorrect. Please try again.');
     }
 }
+
 if ($login) {
     if (POST_QUERY)
         header('Location: '. createURL('bookmarks', $posteduser .'?'. POST_QUERY));
