@@ -44,25 +44,24 @@ isset($_SESSION['token_stamp']) ? define('SESSION_TOKENSTAMP', $_SESSION['token_
 
 @list($url, $user) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
 
-if ($user) {
-
-    if (is_int($user)) {
-        $userid = intval($user);
-    } else {
-        $user = urldecode($user);
-        $userinfo = $userservice->getObjectUserByUsername($user);
-        if ($userinfo == NULL) {
-            $tplVars['error'] = sprintf(T_('User with username %s was not found'), $user);
-            $templateservice->loadTemplate('error.404.tpl', $tplVars);
-            exit();
-        } else {
-            $userid = $userinfo->getId();
-        }
-    }
-} else {
+if (!$user) {
     $tplVars['error'] = T_('Username was not specified');
     $templateservice->loadTemplate('error.404.tpl', $tplVars);
     exit();
+}
+
+if (is_int($user)) {
+    $userid = intval($user);
+} else {
+    $user = urldecode($user);
+    $userinfo = $userservice->getObjectUserByUsername($user);
+    if ($userinfo == NULL) {
+        $tplVars['error'] = sprintf(T_('User with username %s was not found'), $user);
+        $templateservice->loadTemplate('error.404.tpl', $tplVars);
+        exit();
+    } else {
+        $userid = $userinfo->getId();
+    }
 }
 
 $tplVars['privateKeyIsEnabled'] = '';
