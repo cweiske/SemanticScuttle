@@ -59,6 +59,7 @@ $this->includeTemplate($GLOBALS['top_include']);
 </tr>
 </table>
 
+<?php include 'editprofile-openid.tpl.php'; ?>
 <?php include 'editprofile-sslclientcerts.tpl.php'; ?>
 <h3><?php echo T_('Actions'); ?></h3>
 <table class="profile">

@@ -42,7 +42,8 @@ isset($_SESSION['token']) ? define('SESSION_TOKEN', $_SESSION['token']): define(
 isset($_SESSION['token_stamp']) ? define('SESSION_TOKENSTAMP', $_SESSION['token_stamp']): define('SESSION_TOKENSTAMP', '');
 
 
-@list($url, $user) = isset($_SERVER['PATH_INFO']) ? explode('/', $_SERVER['PATH_INFO']) : NULL;
+@list($url, $user, $method) = isset($_SERVER['PATH_INFO'])
+    ? explode('/', $_SERVER['PATH_INFO']) : NULL;
 
 if (!$user) {
     $tplVars['error'] = T_('Username was not specified');
@@ -169,6 +170,53 @@ if (!$userservice->isLoggedOn() || $currentUser->getId() != $userid) {
         }
     }
 
+    $oids = SemanticScuttle_Service_Factory::get('OpenId');
+    if (isset($_POST['action']) && $_POST['action'] == 'deleteOpenId'
+        && isset($_POST['openIdUrl'])
+    ) {
+        $identifier = $_POST['openIdUrl'];
+        $openId     = $oids->getId($identifier);
+        if ($openId === null || $openId->uId != $currentUser->getId()
+        ) {
+            $tplVars['error'] = T_('OpenID not found.');
+        } else if (false === $oids->delete($openId->id)) {
+            $tplVars['error'] = T_('Failed to delete OpenID.');
+        } else {
+            $tplVars['msg'] = T_('OpenID deleted.');
+        }
+    }
+
+    $openIdAction = false;
+    $openIdReturn = false;
+    if (isset($_POST['action']) && $_POST['action'] == 'registerOpenId'
+        && isset($_POST['openid_identifier'])
+    ) {
+        $openIdAction = true;
+    } else if (isset($method) && $method == 'openidreturn') {
+        $openIdAction = true;
+        $openIdReturn = true;
+    }
+    if ($openIdAction) {
+        $returnUrl = addProtocolToUrl(createURL('profile', $user . '/openidreturn'));
+
+        try {
+            if (!$openIdReturn) {
+                //part 1 of OpenID registration
+                $oids->sendIdRequest($_POST['openid_identifier'], $returnUrl);
+            } else {
+                //part 2
+                $ret = $oids->handleIdResponse($returnUrl);
+                $oids->register(
+                    $currentUser->getId(), $ret['identifier'], $ret['email']
+                );
+                $tplVars['msg'] = T_('OpenID registered.');
+            }
+        } catch (Exception $e) {
+            $tplVars['error'] = SemanticScuttle_Exception::getErrorMessage($e);
+        }
+    }
+
+
     //Token Init
     $_SESSION['token'] = md5(uniqid(rand(), true));
     $_SESSION['token_stamp'] = time();
@@ -179,6 +227,7 @@ if (!$userservice->isLoggedOn() || $currentUser->getId() != $userid) {
     $tplVars['token']      = $_SESSION['token'];
 
     $tplVars['sslClientCerts'] = $scert->getUserCerts($currentUser->getId());
+    $tplVars['openIds']        = $oids->getIds($currentUser->getId());
     $tplVars['currentCert']    = null;
     if ($scert->hasValidCert()) {
         $tplVars['currentCert'] = SemanticScuttle_Model_User_SslClientCert::fromCurrentCert();

@@ -12,6 +12,7 @@
  */
 
 require_once 'SemanticScuttle/Exception/User.php';
+require_once 'SemanticScuttle/Model/OpenId.php';
 require_once 'OpenID.php';
 require_once 'OpenID/RelyingParty.php';
 require_once 'OpenID/Extension/SREG11.php';
@@ -25,7 +26,7 @@ require_once 'OpenID/Extension/SREG11.php';
  * @license  AGPL http://www.gnu.org/licenses/agpl.html
  * @link     http://sourceforge.net/projects/semanticscuttle
  */
-class SemanticScuttle_Service_OpenID extends SemanticScuttle_DbService
+class SemanticScuttle_Service_OpenId extends SemanticScuttle_DbService
 {
     /**
      * Creates a new instance, sets database variable and table name.
@@ -43,7 +44,7 @@ class SemanticScuttle_Service_OpenID extends SemanticScuttle_DbService
      *
      * @param sql_db $db Database object
      *
-     * @return SemanticScuttle_Service_OpenID
+     * @return SemanticScuttle_Service_OpenId
      */
     public static function getInstance($db)
     {
@@ -207,6 +208,120 @@ class SemanticScuttle_Service_OpenID extends SemanticScuttle_DbService
             return null;
         }
         return $row['uId'];
+    }
+
+    /**
+     * Add an OpenID to a given user
+     *
+     * @param integer $uId        User ID to attach the OpenID to
+     * @param string  $identifier OpenID identifier (URL)
+     * @param string  $email      OpenID-delivered e-mail address of the user
+     *
+     * @return boolean True if it worked, false if not
+     */
+    public function register($uId, $identifier, $email = null)
+    {
+        //FIXME: use email when google-openid
+        $query = 'INSERT INTO ' . $this->getTableName()
+            . ' ' . $this->db->sql_build_array(
+                'INSERT', array(
+                    'uId' => $uId,
+                    'url' => $identifier,
+                )
+            );
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR, 'Could not register OpenID',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Deletes the OpenID with the given numeric database ID
+     *
+     * @param integer $id Numeric ID from database
+     *
+     * @return boolean True if it worked, false if not
+     */
+    public function delete($id)
+    {
+        if ($id instanceof SemanticScuttle_Model_OpenId) {
+            $id = $id->id;
+        }
+        $id = (int)$id;
+
+        $query = 'DELETE FROM ' . $this->getTableName()
+            .' WHERE id = ' . $id;
+
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR, 'Could not delete OpenID',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Loads an OpenID object from the given identifiert
+     *
+     * @param string $identifier OpenID identifier (URL)
+     *
+     * @return SemanticScuttle_Model_OpenId OpenID object or NULL if not found
+     */
+    public function getId($identifier)
+    {
+        $query = 'SELECT * FROM ' . $this->getTableName()
+            . ' WHERE url = "' . $this->db->sql_escape($identifier) . '"';
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR, 'Could not load OpenID',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            return null;
+        }
+
+        if ($row = $this->db->sql_fetchrow($dbresult)) {
+            $cert = SemanticScuttle_Model_OpenId::fromDb($row);
+        } else {
+            $cert = null;
+        }
+        $this->db->sql_freeresult($dbresult);
+        return $cert;
+    }
+
+    /**
+     * Fetch all OpenIDs the given user has attached
+     *
+     * @param integer $uId  User ID to fetch registered OpenIDs for
+     *
+     * @return array Array of SemanticScuttle_Model_OpenId objects
+     */
+    public function getIds($uId)
+    {
+        $query = 'SELECT * FROM ' . $this->getTableName()
+            . ' WHERE uId = ' . (int)$uId
+            . ' ORDER BY url ASC';
+        if (!($dbresult = $this->db->sql_query($query))) {
+            message_die(
+                GENERAL_ERROR, 'Could not load OpenIDs',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
+            return array();
+        }
+
+        $certs = array();
+        while ($row = $this->db->sql_fetchrow($dbresult)) {
+            $certs[] = SemanticScuttle_Model_OpenId::fromDb($row);
+        }
+        $this->db->sql_freeresult($dbresult);
+        return $certs;
     }
 }
 ?>
