@@ -39,7 +39,7 @@
 
  <p>
   <form method="post" action="<?php echo $formaction; ?>">
-   <label for="openid"><?php echo T_('New OpenID'); ?></label>
+   <label for="openid"><?php echo T_('New E-Mail or OpenID'); ?></label>
    <input type="text" id="openid" name="openid_identifier" size="20" />
    <button type="submit" name="action" value="registerOpenId">
     <?php echo T_('Register'); ?>

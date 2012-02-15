@@ -260,10 +260,21 @@ class SemanticScuttle_Service_OpenId extends SemanticScuttle_DbService
      * @param string  $identifier OpenID identifier (URL)
      * @param string  $email      OpenID-delivered e-mail address of the user
      *
-     * @return boolean True if it worked, false if not
+     * @return void
+     *
+     * @throws SemanticScuttle_Exception When something goes wrong,
+     *                                   e.g. the OpenID is already registered
      */
     public function register($uId, $identifier, $email = null)
     {
+        if ($this->getId($identifier) !== null) {
+            //already registered
+            throw new SemanticScuttle_Exception_User(
+                'OpenID already registered: ' . $identifier,
+                21
+            );
+        }
+
         //FIXME: use email when google-openid
         $query = 'INSERT INTO ' . $this->getTableName()
             . ' ' . $this->db->sql_build_array(
@@ -277,10 +288,7 @@ class SemanticScuttle_Service_OpenId extends SemanticScuttle_DbService
                 GENERAL_ERROR, 'Could not register OpenID',
                 '', __LINE__, __FILE__, $query, $this->db
             );
-            return false;
         }
-
-        return true;
     }
 
     /**
