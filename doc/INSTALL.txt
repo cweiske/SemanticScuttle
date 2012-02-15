@@ -8,7 +8,7 @@ Prerequisites
 =============
 To run SemanticScuttle, you need:
 
-- PHP5 with filter functions enabled
+- PHP5
 - A web server, for example Apache
 
 

@@ -16,6 +16,7 @@ require_once 'SemanticScuttle/Model/OpenId.php';
 require_once 'OpenID.php';
 require_once 'OpenID/RelyingParty.php';
 require_once 'OpenID/Extension/SREG11.php';
+require_once 'Net/WebFinger.php';
 
 /**
  * SemanticScuttle OpenID verification and management
@@ -56,11 +57,45 @@ class SemanticScuttle_Service_OpenId extends SemanticScuttle_DbService
     }
 
     /**
+     * When the user gives an e-mail address instead of an OpenID, we use
+     * WebFinger to find his OpenID.
+     *
+     * @param string $identifier OpenID URL OR e-mail address
+     *
+     * @return string Raw/unnormalized OpenID URL.
+     *
+     * @throws SemanticScuttle_Exception_User When the user's mail host does not
+     *                                        support WebFinger
+     */
+    protected function resolveEmailIdentifier($identifier)
+    {
+        if (filter_var($identifier, FILTER_VALIDATE_EMAIL) === false) {
+            //no valid email
+            return $identifier;
+        }
+
+        require_once 'Net/WebFinger.php';
+        $wf  = new Net_WebFinger();
+        $react = $wf->finger($identifier);
+        if ($react->openid === null) {
+            throw new SemanticScuttle_Exception_User(
+                'No OpenID found for the given email address ' . $identifier,
+                20
+            );
+        }
+
+        return $react->openid;
+    }
+
+    /**
      * Part 1 of the OpenID login process: Send user to his identity provider.
+     *
+     * If an e-mail address is given, a WebFinger lookup is made to find out the
+     * user's OpenID.
      *
      * This method exits the PHP process.
      *
-     * @param string $identifier OpenID URL
+     * @param string $identifier OpenID URL OR e-mail address
      * @param string $returnUrl  URL the identity provider shall send the user
      *                           back to
      *
@@ -70,6 +105,8 @@ class SemanticScuttle_Service_OpenId extends SemanticScuttle_DbService
      */
     public function sendIdRequest($identifier, $returnUrl)
     {
+        $identifier = $this->resolveEmailIdentifier($identifier);
+
         //send request to ID provider
         try {
             $identifier = OpenID::normalizeIdentifier($identifier);

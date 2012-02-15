@@ -44,7 +44,7 @@ if ($method == 'openidreturn'
         && isset($_POST['openid_identifier']) && $_POST['openid_identifier'] != ''
     )
 ) {
-    $oids      = SemanticScuttle_Service_Factory::get('OpenID');
+    $oids      = SemanticScuttle_Service_Factory::get('OpenId');
     $returnUrl = addProtocolToUrl(createURL('login', 'openidreturn'));
     try {
         if ($method == 'openidreturn') {
