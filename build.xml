@@ -105,15 +105,15 @@
                 channel="pear.php.net"
                 minimum_version="0.4.0"
                 />
+       <package name="HTML_Request2"
+                channel="pear.php.net"
+                minimum_version="2.0.0"
+                />
        <package name="Net_WebFinger"
                 channel="pear.php.net"
                 minimum_version="0.2.0"
                 />
        <!-- unit tests: -->
-       <package name="HTML_Request2"
-                channel="pear.php.net"
-                minimum_version="2.0.0"
-                />
        <package name="Stream_Var"
                 channel="pear.php.net"
                 minimum_version="1.1.0"

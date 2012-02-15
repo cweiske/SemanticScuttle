@@ -16,7 +16,6 @@ require_once 'SemanticScuttle/Model/OpenId.php';
 require_once 'OpenID.php';
 require_once 'OpenID/RelyingParty.php';
 require_once 'OpenID/Extension/SREG11.php';
-require_once 'Net/WebFinger.php';
 
 /**
  * SemanticScuttle OpenID verification and management
@@ -75,7 +74,14 @@ class SemanticScuttle_Service_OpenId extends SemanticScuttle_DbService
         }
 
         require_once 'Net/WebFinger.php';
+        require_once 'HTTP/Request2.php';
+
+        $req = new HTTP_Request2();
+        $req->setConfig('follow_redirects', true);
+        $req->setHeader('User-Agent', 'SemanticScuttle');
+
         $wf  = new Net_WebFinger();
+        $wf->setHttpClient($req);
         $react = $wf->finger($identifier);
         if ($react->openid === null) {
             throw new SemanticScuttle_Exception_User(
