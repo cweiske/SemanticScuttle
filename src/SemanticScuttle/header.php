@@ -96,16 +96,12 @@ if (DEBUG_MODE) {
     error_reporting(0);
 }
 
-// 2 // Second requirements part which could display bugs
-// (must come after debug management)
-require_once 'SemanticScuttle/Exception.php';
-require_once 'SemanticScuttle/Service.php';
-require_once 'SemanticScuttle/DbService.php';
-require_once 'SemanticScuttle/Service/Factory.php';
+require_once 'silex.phar';
+//modify silex/symfony autoloader
+$loader->useIncludePath(true);
+
 require_once 'SemanticScuttle/functions.php';
-require_once 'SemanticScuttle/Model/Bookmark.php';
-require_once 'SemanticScuttle/Model/UserArray.php';
-require_once 'SemanticScuttle/Model/User/SslClientCert.php';
+
 
 if (count($GLOBALS['serviceoverrides']) > 0
     && !defined('UNIT_TEST_MODE')
