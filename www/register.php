@@ -34,6 +34,7 @@ if (!$GLOBALS['enableRegistration']) {
 isset($_POST['submitted']) ? define('POST_SUBMITTED', $_POST['submitted']): define('POST_SUBMITTED', '');
 isset($_POST['username']) ? define('POST_USERNAME', $_POST['username']): define('POST_USERNAME', '');
 isset($_POST['password']) ? define('POST_PASS', $_POST['password']): define('POST_PASS', '');
+isset($_POST['password2']) ? define('POST_PASS2', $_POST['password2']): define('POST_PASS2', '');
 if (isset($_POST['email'])) {
     define('POST_MAIL', $_POST['email']);
 } else if (isset($_SERVER['SSL_CLIENT_S_DN_Email'])) {
@@ -50,6 +51,10 @@ if (POST_SUBMITTED != '') {
     // Check if form is incomplete
     if (!($posteduser) || POST_PASS == '' || POST_MAIL == '') {    	
         $tplVars['error'] = T_('You <em>must</em> enter a username, password and e-mail address.');
+
+    // Check if passwords match
+    } elseif (POST_PASS != POST_PASS2) {
+        $tplVars['error'] = T_('Those passwords do not match.');
 
     // Check if username is reserved
     } elseif ($userservice->isReserved($posteduser)) {
