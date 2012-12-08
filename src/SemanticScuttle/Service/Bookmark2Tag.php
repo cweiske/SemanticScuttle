@@ -98,7 +98,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
 
         $tags_count = is_array($tags)?count($tags):0;
 
-        for ($i = 0; $i < $tags_count; $i++) {
+        foreach($tags as $i => $tag) {
             $tags[$i] = trim(utf8_strtolower($tags[$i]));
             if ($fromApi) {
                 include_once 'SemanticScuttle/functions.php';

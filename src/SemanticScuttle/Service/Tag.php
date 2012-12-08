@@ -144,7 +144,7 @@ class SemanticScuttle_Service_Tag extends SemanticScuttle_DbService
             $tags = utf8_strtolower(trim($tags));
         } else {
             $tags = array_filter($tags);//remove empty values
-            for($i=0; $i<count($tags); $i++) {
+            foreach($tags as $i => $tag) {
                 $tags[$i] = utf8_strtolower(trim($tags[$i]));
             }
         }
