@@ -88,6 +88,21 @@ class Bookmark2TagTest extends TestBase
             $this->b2ts->getTagsForBookmark($bid, true)
         );
     }
+    
+    public function testAttachTagsWithEmptyStringAddsSystemUnfiled()
+    {
+        $originalDisplayErros = ini_get('display_errors');
+        $originalErrorReporting = ini_get('error_reporting');
+        ini_set('display_errors', 1);
+        error_reporting(E_ALL);
+        $bid = $this->addBookmark(null, null, 0, '');
+        $this->assertEquals(
+            array('system:unfiled'),
+            $this->b2ts->getTagsForBookmark($bid, true)
+        );
+        ini_set('display_errors', $originalDisplayErros);
+        error_reporting($originalErrorReporting);
+    }
 
     public function testAttachTagsWithSomeEmptyTags()
     {
