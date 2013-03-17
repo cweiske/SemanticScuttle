@@ -90,7 +90,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             . ' "' . $this->db->sql_escape($value) .'"'
             . $range;
 
-        if (!($dbresult = & $this->db->sql_query_limit($query, 1, 0))) {
+        if (!($dbresult = $this->db->sql_query_limit($query, 1, 0))) {
             message_die(
                 GENERAL_ERROR,
                 'Could not get bookmark', '', __LINE__, __FILE__,
@@ -148,7 +148,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             . $query_2
             .' WHERE B.bId = '. $this->db->sql_escape($bid);
 
-        if (!($dbresult = & $this->db->sql_query($sql))) {
+        if (!($dbresult = $this->db->sql_query($sql))) {
             message_die(
                 GENERAL_ERROR, 'Could not get bookmark',
                 '', __LINE__, __FILE__, $sql, $this->db
@@ -630,7 +630,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             . ' WHERE bId = ' . intval($bId);
         $this->db->sql_transaction('begin');
 
-        if (!($dbresult = & $this->db->sql_query($sql))) {
+        if (!($dbresult = $this->db->sql_query($sql))) {
             $this->db->sql_transaction('rollback');
             message_die(
                 GENERAL_ERROR, 'Could not update bookmark',

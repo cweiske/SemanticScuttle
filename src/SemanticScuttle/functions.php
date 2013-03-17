@@ -276,4 +276,17 @@ function message_die($msg_code, $msg_text = '', $msg_title = '', $err_line = '',
 	echo "<html>\n<body>\n". $msg_title ."\n<br /><br />\n". $msg_text ."</body>\n</html>";
 	exit;
 }
+
+/**
+ * Calls reset() on the given arg, without the E_STRICT error
+ * "Only variables should be passed by reference"
+ *
+ * @param array $arg Array to return first element of
+ *
+ * @return mixed First element of the array
+ */
+function rreset($array)
+{
+    return reset($array);
+}
 ?>

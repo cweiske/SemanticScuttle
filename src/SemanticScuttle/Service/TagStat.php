@@ -67,7 +67,7 @@ class SemanticScuttle_Service_TagStat extends SemanticScuttle_DbService
         $query.= " AND relationType = '". $relationType ."'";
         $query.= " AND uId = '".$uId."'";
 
-        $dbresults =& $this->db->sql_query($query);
+        $dbresults = $this->db->sql_query($query);
         $row = $this->db->sql_fetchrow($dbresults);
         $this->db->sql_freeresult($dbresults);
         if($row['nb'] == null) {
@@ -83,7 +83,7 @@ class SemanticScuttle_Service_TagStat extends SemanticScuttle_DbService
         $query.= " AND relationType = '". $relationType ."'";
         $query.= " AND uId = '".$uId."'";
 
-        $dbresults =& $this->db->sql_query($query);
+        $dbresults = $this->db->sql_query($query);
         $row = $this->db->sql_fetchrow($dbresults);
         $this->db->sql_freeresult($dbresults);
         if($row['depth'] == null) {
@@ -99,7 +99,7 @@ class SemanticScuttle_Service_TagStat extends SemanticScuttle_DbService
         $query.= " AND relationType = '". $relationType ."'";
         $query.= " AND uId = '".$uId."'";
 
-        $dbresults =& $this->db->sql_query($query);
+        $dbresults = $this->db->sql_query($query);
         $row = $this->db->sql_fetchrow($dbresults);
         $this->db->sql_freeresult($dbresults);
         if($row['nbupdate'] == null) {
@@ -161,7 +161,7 @@ class SemanticScuttle_Service_TagStat extends SemanticScuttle_DbService
 
         //die($query);
 
-        if (! ($dbresult =& $this->db->sql_query($query)) ){
+        if (! ($dbresult = $this->db->sql_query($query)) ){
             message_die(GENERAL_ERROR, 'Could not update stats', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -215,7 +215,7 @@ class SemanticScuttle_Service_TagStat extends SemanticScuttle_DbService
     function deleteTagStatForUser($uId) {
         $query = 'DELETE FROM '. $this->getTableName() .' WHERE uId = '.        intval($uId);
 
-        if (!($dbresult = & $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not delete tag stats', '', __LINE__,
             __FILE__, $query, $this->db);
             return false;

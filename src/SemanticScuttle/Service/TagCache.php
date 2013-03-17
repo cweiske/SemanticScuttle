@@ -72,7 +72,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
         $query.= " AND uId = " . intval($uId);
 
         //die($query);
-        if (! ($dbresult =& $this->db->sql_query($query)) ){
+        if (! ($dbresult = $this->db->sql_query($query)) ){
             message_die(GENERAL_ERROR, 'Could not get related tags', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -101,7 +101,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
         $values = array('tag1' => $tag1, 'tag2' => $tag2, 'relationType'=> '>', 'uId'=> $uId);
         $query = 'INSERT INTO '. $this->getTableName() .' '. $this->db->sql_build_array('INSERT', $values);
         //die($query);
-        if (!($dbresult =& $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             $this->db->sql_transaction('rollback');
             message_die(GENERAL_ERROR, 'Could not add tag cache inference', '', __LINE__, __FILE__, $query, $this->db);
             return false;
@@ -122,7 +122,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
         $query.= ' AND relationType = ">"';
         $query.= strlen($uId)>0 ? ' AND uId = ' . intval($uId) : '';
 
-        if (!($dbresult =& $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not remove tag cache inference', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -215,7 +215,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
                 $values = array('tag1' => $tag1, 'tag2' => $tag2, 'relationType'=> '=', 'uId'=> $uId);
                 $query = 'INSERT INTO '. $this->getTableName() .' '. $this->db->sql_build_array('INSERT', $values);
                 //die($query);
-                if (!($dbresult =& $this->db->sql_query($query))) {
+                if (!($dbresult = $this->db->sql_query($query))) {
                     $this->db->sql_transaction('rollback');
                     message_die(GENERAL_ERROR, 'Could not add tag cache synonymy', '', __LINE__, __FILE__, $query, $this->db);
                     return false;
@@ -232,7 +232,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
         $query.= ' AND relationType = "="';
         $query.= ' AND uId = ' . intval($uId);
 
-        if (!($dbresult =& $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not remove tag cache inference', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -295,7 +295,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
         $query.= " AND uId = " . intval($uId);
 
         //die($query);
-        if (! ($dbresult =& $this->db->sql_query($query)) ){
+        if (! ($dbresult = $this->db->sql_query($query)) ){
             message_die(GENERAL_ERROR, 'Could not get related tags', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -323,7 +323,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
         $query.= " AND uId = " . intval($uId);
         $query.= $tagExcepted!=''?" AND tag2!='" . $this->db->sql_escape($tagExcepted) . "'" : '';
 
-        if (! ($dbresult =& $this->db->sql_query($query)) ){
+        if (! ($dbresult = $this->db->sql_query($query)) ){
             message_die(GENERAL_ERROR, 'Could not get related tags', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -371,7 +371,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
     function deleteByUser($uId) {
         $query = 'DELETE FROM '. $this->getTableName() .' WHERE uId = '. intval($uId);
 
-        if (!($dbresult = & $this->db->sql_query($query))) {
+        if (!($dbresult =  $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not delete user tags cache', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }

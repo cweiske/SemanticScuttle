@@ -198,7 +198,7 @@ class SemanticScuttle_Service_SearchHistory extends SemanticScuttle_DbService
     {
         $sql = 'SELECT COUNT(*) AS `total` FROM '. $this->getTableName();
         if (!($dbresult = $this->db->sql_query($sql))
-            || (!($row = & $this->db->sql_fetchrow($dbresult)))
+            || (!($row =  $this->db->sql_fetchrow($dbresult)))
         ) {
             message_die(
                 GENERAL_ERROR, 'Could not get total searches',

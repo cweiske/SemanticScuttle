@@ -54,7 +54,7 @@ class SemanticScuttle_Service_Tag extends SemanticScuttle_DbService
         $query.= ' WHERE tag = \''. $this->db->sql_escape($tag) . "'";
         $query.= ' AND uId = ' . intval($uId);
 
-        if (!($dbresult = & $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not get tag description', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -74,7 +74,7 @@ class SemanticScuttle_Service_Tag extends SemanticScuttle_DbService
         $query.= ' WHERE tag = \'' . $this->db->sql_escape($tag) . "'";
         $query.= ' AND uId = "' . intval($uId) . '"';
 
-        if (!($dbresult = & $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not get tag description', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -93,7 +93,7 @@ class SemanticScuttle_Service_Tag extends SemanticScuttle_DbService
         $query.= ' FROM '.$this->getTableName();
         $query.= ' WHERE tag = \''. $this->db->sql_escape($tag) . "'";
 
-        if (!($dbresult = & $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not get tag description', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -114,7 +114,7 @@ class SemanticScuttle_Service_Tag extends SemanticScuttle_DbService
         }
 
         $this->db->sql_transaction('begin');
-        if (!($dbresult = & $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             $this->db->sql_transaction('rollback');
             message_die(GENERAL_ERROR, 'Could not delete bookmarks', '', __LINE__, __FILE__, $query, $this->db);
             return false;

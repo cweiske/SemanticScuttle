@@ -200,7 +200,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
 
             $sql = 'INSERT INTO '. $this->getTableName()
                 . ' ' . $this->db->sql_build_array('INSERT', $values);
-            if (!($dbresult =& $this->db->sql_query($sql))) {
+            if (!($dbresult = $this->db->sql_query($sql))) {
                 $this->db->sql_transaction('rollback');
                 message_die(
                     GENERAL_ERROR, 'Could not attach tags',
@@ -222,7 +222,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         $query.= ' AND '. $bs->getTableName() .'.uId = '. $uId;
         $query.= ' AND '. $this->getTableName() .'.tag = "'. $this->db->sql_escape($tag) .'"';
 
-        if (!($dbresult =& $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not delete tags', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -238,7 +238,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
 
         $query = 'DELETE FROM '. $this->getTableName() .' WHERE bId = '. intval($bookmarkid);
 
-        if (!($dbresult =& $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not delete tags', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -258,7 +258,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         $GLOBALS['tableprefix'].'bookmarks',
         $uId);
 
-        if (!($dbresult =& $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not delete tags', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -370,7 +370,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
 
         $query .= ' WHERE '. $this->db->sql_build_array('SELECT', $conditions) .' AND LEFT(T.tag, 7) <> "system:" GROUP BY T.tag ORDER BY bCount DESC, tag';
 
-        if (!($dbresult =& $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not get tags', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -418,7 +418,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         $query_5 = ' AND LEFT(T0.tag, 7) <> "system:" GROUP BY T0.tag ORDER BY bCount DESC, T0.tag';
         $query = $query_1 . $query_2 . $query_3 . $query_4 . $query_5;
 
-        if (! ($dbresult =& $this->db->sql_query_limit($query, $limit)) ){
+        if (! ($dbresult = $this->db->sql_query_limit($query, $limit)) ){
             message_die(GENERAL_ERROR, 'Could not get related tags', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -448,7 +448,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
 
         $query = 'SELECT T.tag, COUNT(T.tag) AS bCount FROM '.$GLOBALS['tableprefix'].'bookmarks AS B LEFT JOIN '.$GLOBALS['tableprefix'].'bookmarks2tags AS T ON B.bId = T.bId WHERE B.bHash = \''. $this->db->sql_escape($hash) .'\' '. $privacy .'AND LEFT(T.tag, 7) <> "system:" GROUP BY T.tag ORDER BY bCount DESC';
 
-        if (!($dbresult =& $this->db->sql_query_limit($query, $limit))) {
+        if (!($dbresult = $this->db->sql_query_limit($query, $limit))) {
             message_die(GENERAL_ERROR, 'Could not get related tags for this hash', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -622,12 +622,12 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
     function hasTag($bookmarkid, $tag) {
         $query = 'SELECT COUNT(*) AS tCount FROM '. $this->getTableName() .' WHERE bId = '. intval($bookmarkid) .' AND tag ="'. $this->db->sql_escape($tag) .'"';
 
-        if (! ($dbresult =& $this->db->sql_query($query)) ) {
+        if (! ($dbresult = $this->db->sql_query($query)) ) {
             message_die(GENERAL_ERROR, 'Could not find tag', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
 
-        if ($row =& $this->db->sql_fetchrow($dbresult)) {
+        if ($row = $this->db->sql_fetchrow($dbresult)) {
             if ($row['tCount'] > 0) {
                 $output = true;
             }
@@ -645,8 +645,8 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         return false;
 
         // Find bookmarks with old tag
-        $bookmarksInfo =& $bookmarkservice->getBookmarks(0, NULL, $userid, $old);
-        $bookmarks =& $bookmarksInfo['bookmarks'];
+        $bookmarksInfo = $bookmarkservice->getBookmarks(0, NULL, $userid, $old);
+        $bookmarks = $bookmarksInfo['bookmarks'];
 
         // Delete old tag
         $this->deleteTag($userid, $old);
@@ -655,7 +655,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         $new = $tagservice->normalize($new);
 
         foreach(array_keys($bookmarks) as $key) {
-            $row =& $bookmarks[$key];
+            $row = $bookmarks[$key];
             $this->attachTags($row['bId'], $new, $fromApi, NULL, false);
         }
 

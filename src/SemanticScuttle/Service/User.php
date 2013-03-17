@@ -120,12 +120,12 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         if($nb>0) {
             $query .= ' LIMIT 0, '.$nb;
         }
-        if (! ($dbresult =& $this->db->sql_query($query)) ) {
+        if (! ($dbresult = $this->db->sql_query($query)) ) {
             message_die(GENERAL_ERROR, 'Could not get user', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
 
-        while ($row = & $this->db->sql_fetchrow($dbresult)) {
+        while ($row = $this->db->sql_fetchrow($dbresult)) {
             $users[] = $row;
         }
         $this->db->sql_freeresult($dbresult);
@@ -149,7 +149,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
             $query .= ' LIMIT 0, ' . intval($nb);
         }
 
-        if (! ($dbresult =& $this->db->sql_query($query)) ) {
+        if (! ($dbresult = $this->db->sql_query($query)) ) {
             message_die(
                 GENERAL_ERROR, 'Could not get user',
                 '', __LINE__, __FILE__, $query, $this->db
@@ -158,7 +158,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         }
 
         $users = array();
-        while ($row = & $this->db->sql_fetchrow($dbresult)) {
+        while ($row = $this->db->sql_fetchrow($dbresult)) {
             $users[] = new SemanticScuttle_Model_User(
                 $row[$this->getFieldName('primary')],
                 $row[$this->getFieldName('username')]
@@ -434,7 +434,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
                      ')) = \''.$this->db->sql_escape($cook[1]).'\' AND '.
             $this->getFieldName('primary'). ' = '. $this->db->sql_escape($cook[0]);
 
-            if (! ($dbresult =& $this->db->sql_query($query)) ) {
+            if (! ($dbresult = $this->db->sql_query($query)) ) {
                 message_die(
                     GENERAL_ERROR, 'Could not get user',
                     '', __LINE__, __FILE__, $query, $this->db
@@ -596,7 +596,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         // Gets the list of user IDs being watched by the given user.
         $query = 'SELECT watched FROM '. $GLOBALS['tableprefix'] .'watched WHERE uId = '. intval($uId);
 
-        if (! ($dbresult =& $this->db->sql_query($query)) ) {
+        if (! ($dbresult = $this->db->sql_query($query)) ) {
             message_die(GENERAL_ERROR, 'Could not get watchlist', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -606,7 +606,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
             $this->db->sql_freeresult($dbresult);
             return $arrWatch;
         }
-        while ($row =& $this->db->sql_fetchrow($dbresult)) {
+        while ($row = $this->db->sql_fetchrow($dbresult)) {
             $arrWatch[] = $row['watched'];
         }
         $this->db->sql_freeresult($dbresult);
@@ -668,7 +668,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
         // Returns true if the current user is watching the given user, and false otherwise.
         $query = 'SELECT watched FROM '. $GLOBALS['tableprefix'] .'watched AS W INNER JOIN '. $this->getTableName() .' AS U ON U.'. $this->getFieldName('primary') .' = W.watched WHERE U.'. $this->getFieldName('primary') .' = '. intval($watcheduser) .' AND W.uId = '. intval($currentuser);
 
-        if (! ($dbresult =& $this->db->sql_query($query)) ) {
+        if (! ($dbresult = $this->db->sql_query($query)) ) {
             message_die(GENERAL_ERROR, 'Could not get watchstatus', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -690,7 +690,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
 
         if ($watched) {
             $sql = 'DELETE FROM '. $GLOBALS['tableprefix'] .'watched WHERE uId = '. intval($currentUserID) .' AND watched = '. intval($subjectUserID);
-            if (!($dbresult =& $this->db->sql_query($sql))) {
+            if (!($dbresult = $this->db->sql_query($sql))) {
                 $this->db->sql_transaction('rollback');
                 message_die(GENERAL_ERROR, 'Could not add user to watch list', '', __LINE__, __FILE__, $sql, $this->db);
                 return false;
@@ -701,7 +701,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
                 'watched' => intval($subjectUserID)
             );
             $sql = 'INSERT INTO '. $GLOBALS['tableprefix'] .'watched '. $this->db->sql_build_array('INSERT', $values);
-            if (!($dbresult =& $this->db->sql_query($sql))) {
+            if (!($dbresult = $this->db->sql_query($sql))) {
                 $this->db->sql_transaction('rollback');
                 message_die(GENERAL_ERROR, 'Could not add user to watch list', '', __LINE__, __FILE__, $sql, $this->db);
                 return false;
@@ -743,7 +743,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
 
         // Execute the statement.
         $this->db->sql_transaction('begin');
-        if (!($dbresult = & $this->db->sql_query($sql))) {
+        if (!($dbresult = $this->db->sql_query($sql))) {
             $this->db->sql_transaction('rollback');
             message_die(
                 GENERAL_ERROR, 'Could not insert user',
@@ -826,7 +826,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
 
         // Execute the statement.
         $this->db->sql_transaction('begin');
-        if (!($dbresult = & $this->db->sql_query($sql))) {
+        if (!($dbresult = $this->db->sql_query($sql))) {
             $this->db->sql_transaction('rollback');
             message_die(
                 GENERAL_ERROR, 'Could not update user', '',
@@ -845,7 +845,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     function getAllUsers ( ) {
         $query = 'SELECT * FROM '. $this->getTableName();
 
-        if (! ($dbresult =& $this->db->sql_query($query)) ) {
+        if (! ($dbresult = $this->db->sql_query($query)) ) {
             message_die(GENERAL_ERROR, 'Could not get users', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -872,7 +872,7 @@ class SemanticScuttle_Service_User extends SemanticScuttle_DbService
     function deleteUser($uId) {
         $query = 'DELETE FROM '. $this->getTableName() .' WHERE uId = '. intval($uId);
 
-        if (!($dbresult = & $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not delete user', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }

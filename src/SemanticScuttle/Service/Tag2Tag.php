@@ -43,9 +43,9 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
     }
 
 
-    function __construct(&$db)
+    function __construct($db)
     {
-        $this->db =& $db;
+        $this->db =$db;
         $this->tablename = $GLOBALS['tableprefix'] .'tags2tags';
     }
 
@@ -173,7 +173,7 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
             $query.= " AND uId = '".intval($uId)."'";
         }
         //die($query);
-        if (! ($dbresult =& $this->db->sql_query($query)) ){
+        if (! ($dbresult = $this->db->sql_query($query)) ){
             message_die(GENERAL_ERROR, 'Could not get related tags', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -312,7 +312,7 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
             $query.= " LIMIT 0," . intval($limit);
         }
 
-        if (! ($dbresult =& $this->db->sql_query($query)) ){
+        if (! ($dbresult = $this->db->sql_query($query)) ){
             message_die(GENERAL_ERROR, 'Could not get linked tags', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -337,7 +337,7 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
             $query.= " ORDER BY count DESC";
             $query.= " LIMIT 0, " . intval($GLOBALS['maxSizeMenuBlock']);
 
-            if (! ($dbresult =& $this->db->sql_query($query)) ){
+            if (! ($dbresult = $this->db->sql_query($query)) ){
                 message_die(GENERAL_ERROR, 'Could not get linked tags', '', __LINE__, __FILE__, $query, $this->db);
                 return false;
             }
@@ -393,7 +393,7 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
         $query.= strlen($relationType)>0 ? ' AND relationType = \''. $this->db->sql_escape($relationType) . "'" : '';
         $query.= strlen($uId)>0 ? ' AND uId = '. intval($uId) : '';
 
-        if (!($dbresult =& $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not remove tag relation', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -410,7 +410,7 @@ class SemanticScuttle_Service_Tag2Tag extends SemanticScuttle_DbService
         $query = 'DELETE FROM '. $this->getTableName();
         $query.= ' WHERE uId = '. intval($uId);
 
-        if (!($dbresult =& $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not remove tag relation', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }

@@ -12,7 +12,7 @@ class Api_OpenSearchTest extends TestBaseApi
         $xhtml = $req->send()->getBody();
 
         $xml = simplexml_load_string($xhtml);
-        $xml->registerXPathNamespace('h', reset($xml->getDocNamespaces()));
+        $xml->registerXPathNamespace('h', rreset($xml->getDocNamespaces()));
 
         $this->assertInstanceOf(
             'SimpleXMLElement', $xml,
@@ -58,7 +58,7 @@ class Api_OpenSearchTest extends TestBaseApi
     {
         $xml = $this->getRequest('api/opensearch.php')->send()->getBody();
         $x = simplexml_load_string($xml);
-        $x->registerXPathNamespace('os', reset($x->getDocNamespaces()));
+        $x->registerXPathNamespace('os', rreset($x->getDocNamespaces()));
 
         $arElements = $x->xpath('//os:Url[@type="text/html"]');
         $this->assertEquals(

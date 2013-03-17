@@ -62,7 +62,7 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
         $values = array('tag'=>$tag, 'cdDescription'=>$desc, 'uId'=>$uId, 'cdDatetime'=>$datetime);
         $sql = 'INSERT INTO '. $this->getTableName() .' '. $this->db->sql_build_array('INSERT', $values);
 
-        if (!($dbresult =& $this->db->sql_query($sql))) {
+        if (!($dbresult = $this->db->sql_query($sql))) {
             $this->db->sql_transaction('rollback');
             message_die(GENERAL_ERROR, 'Could not add tag description', '', __LINE__, __FILE__, $sql, $this->db);
             return false;
@@ -79,7 +79,7 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
         $query.= ' WHERE tag=\'' . $this->db->sql_escape($tag) . "'";
         $query.= " ORDER BY cdDatetime DESC";
 
-        if (!($dbresult = & $this->db->sql_query_limit($query, 1, 0))) {
+        if (!($dbresult = $this->db->sql_query_limit($query, 1, 0))) {
             message_die(GENERAL_ERROR, 'Could not get tag description', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -99,7 +99,7 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
         $query.= ' WHERE tag=\'' . $this->db->sql_escape($tag) . "'";
         $query.= " ORDER BY cdDatetime DESC";
 
-        if (!($dbresult = & $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not get tag descriptions', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -114,12 +114,12 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
         $query.= " FROM `". $this->getTableName() ."`";
         $query.= ' WHERE cdId=\'' . $this->db->sql_escape($cdId) . "'";
 
-        if (!($dbresult = & $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not get tag descriptions', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
 
-        if ($row =& $this->db->sql_fetchrow($dbresult)) {
+        if ($row = $this->db->sql_fetchrow($dbresult)) {
             $this->db->sql_freeresult($dbresult);
             return $row;
         } else {
@@ -140,7 +140,7 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
         $values = array('bHash'=>$bHash, 'cdTitle'=>$title, 'cdDescription'=>$desc, 'uId'=>$uId, 'cdDatetime'=>$datetime);
         $sql = 'INSERT INTO '. $this->getTableName() .' '. $this->db->sql_build_array('INSERT', $values);
 
-        if (!($dbresult =& $this->db->sql_query($sql))) {
+        if (!($dbresult = $this->db->sql_query($sql))) {
             $this->db->sql_transaction('rollback');
             message_die(GENERAL_ERROR, 'Could not add bookmark description', '', __LINE__, __FILE__, $sql, $this->db);
             return false;
@@ -154,7 +154,7 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
         $query.= ' WHERE bHash=\'' . $this->db->sql_escape($bHash) . "'";
         $query.= " ORDER BY cdDatetime DESC";
 
-        if (!($dbresult = & $this->db->sql_query_limit($query, 1, 0))) {
+        if (!($dbresult = $this->db->sql_query_limit($query, 1, 0))) {
             message_die(GENERAL_ERROR, 'Could not get bookmark description', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -174,7 +174,7 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
         $query.= ' WHERE bHash=\'' . $this->db->sql_escape($bHash) . "'";
         $query.= " ORDER BY cdDatetime DESC";
 
-        if (!($dbresult = & $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             message_die(GENERAL_ERROR, 'Could not get bookmark descriptions', '', __LINE__, __FILE__, $query, $this->db);
             return false;
         }
@@ -188,7 +188,7 @@ class SemanticScuttle_Service_CommonDescription extends SemanticScuttle_DbServic
         $query = 'DELETE FROM '. $this->getTableName() . ' WHERE uId = '. intval($uId);
 
         $this->db->sql_transaction('begin');
-        if (!($dbresult = & $this->db->sql_query($query))) {
+        if (!($dbresult = $this->db->sql_query($query))) {
             $this->db->sql_transaction('rollback');
             message_die(GENERAL_ERROR, 'Could not delete user descriptions', '',
             __LINE__, __FILE__, $query, $this->db);

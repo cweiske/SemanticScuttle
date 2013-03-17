@@ -87,7 +87,7 @@ class TestBase extends PHPUnit_Framework_TestCase
     protected function addUser(
         $username = null, $password = null, $privateKey = null
     ) {
-        return reset($this->addUserData($username, $password, $privateKey));
+        return rreset($this->addUserData($username, $password, $privateKey));
     }
 
 

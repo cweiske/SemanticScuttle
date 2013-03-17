@@ -64,7 +64,7 @@ class Api_ExportCsvTest extends TestBaseApi
      */
     public function testMimeTypeFilename()
     {
-        $res = reset($this->getAuthRequest())->send();
+        $res = rreset($this->getAuthRequest())->send();
 
         $this->assertEquals(200, $res->getStatus());
         //verify MIME content type
@@ -253,7 +253,7 @@ class Api_ExportCsvTest extends TestBaseApi
                 $ar[] = $arl;
             }
         }
-        if (count(end($ar)) == 1 && reset(end($ar)) == '') {
+        if (count(end($ar)) == 1 && rreset(end($ar)) == '') {
             unset($ar[key($ar)]);
         }
         return $ar;
