@@ -2,9 +2,9 @@
 /**
  * Configuration for SemanticScuttle.
  *
- * Copy this file to config.inc.php and adjust it.
+ * Copy this file to config.php and adjust it.
  *
- * See config.default.inc.php for more options.
+ * See config.default.php for more options.
  */
 
 
