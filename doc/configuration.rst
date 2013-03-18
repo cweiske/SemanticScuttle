@@ -79,3 +79,20 @@ or::
 
     $root = "http://bookmarks.example.org/";
 
+
+Common problems
+===============
+Searching for words with slashes "/" does not work
+--------------------------------------------------
+When searching for a phrase with a slash in it, like "foo/bar", you
+may get a 404 error.
+
+In that case, you need to enable AllowEncodedSlashes__ in your Apache
+virtual host configuration::
+
+    AllowEncodedSlashes NoDecode
+
+Restart apache after changing the vhost config file.
+Searching will work now.
+
+__ http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
