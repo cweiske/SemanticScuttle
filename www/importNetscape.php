@@ -67,6 +67,8 @@ if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['si
 
 		$bDatetime = ""; //bDateTime optional
 		$bCategories = ""; //bCategories optional
+		$bPrivateNote = ""; //bPrivateNote optional
+		$bPrivate = $status; //bPrivate set default
 
 		foreach ($attributes[0] as $attribute) {
 			$att = preg_split('/\s*=\s*/s', $attribute, 2);
@@ -86,6 +88,11 @@ if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['si
 					break;
 				case "NOTE":
 					$bPrivateNote = $attrVal;
+					break;
+				case "PRIVATE":
+					if ($attrVal) {
+						$bPrivate = 2;//private
+					}
 			}
 		}
 		$bTitle = trim($titles[$i]);
@@ -102,7 +109,7 @@ if ($userservice->isLoggedOn() && sizeof($_FILES) > 0 && $_FILES['userfile']['si
 					$bDatetime = gmdate('Y-m-d H:i:s');
 				}
 
-				if ($bookmarkservice->addBookmark($bAddress, $bTitle, $bDescription, $bPrivateNote, $status, $bCategories, null, $bDatetime, false, true)) {
+				if ($bookmarkservice->addBookmark($bAddress, $bTitle, $bDescription, $bPrivateNote, $bPrivate, $bCategories, null, $bDatetime, false, true)) {
 					$countImportedBookmarks++;
 				} else {
 					$tplVars['error'] = T_('There was an error saving your bookmark. Please try again or contact the administrator.');
