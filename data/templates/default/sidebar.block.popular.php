@@ -14,8 +14,8 @@ $logged_on_userid = $userservice->getCurrentUserId();
 if ($logged_on_userid === false) {
     $logged_on_userid = NULL;
 }
-$popularTags =& $b2tservice->getPopularTags($userid, $popCount, $logged_on_userid);
-$popularTags =& $b2tservice->tagCloud($popularTags, 5, 90, 225, 'alphabet_asc'); 
+$popularTags = $b2tservice->getPopularTags($userid, $popCount, $logged_on_userid);
+$popularTags = $b2tservice->tagCloud($popularTags, 5, 90, 225, 'alphabet_asc');
 
 if ($popularTags && count($popularTags) > 0) {
 ?>

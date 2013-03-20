@@ -115,7 +115,7 @@ if (is_null($terms)) {
 
     }
 }
-$bookmarks =& $bookmarkservice->getBookmarks(
+$bookmarks = $bookmarkservice->getBookmarks(
     $start, $perpage, $s_user, NULL, $terms, getSortOrder(),
     $s_watchlist, $s_start, $s_end
 );
@@ -147,7 +147,7 @@ $tplVars['terms'] = $terms;
 $tplVars['pagetitle'] = T_('Search Bookmarks');
 $tplVars['bookmarkCount'] = $start + 1;
 $tplVars['total'] = $bookmarks['total'];
-$tplVars['bookmarks'] =& $bookmarks['bookmarks'];
+$tplVars['bookmarks'] = $bookmarks['bookmarks'];
 $tplVars['cat_url'] = createURL('tags', '%2$s');
 $tplVars['nav_url'] = createURL('search', $range .'/'. $terms .'/%3$s');
 

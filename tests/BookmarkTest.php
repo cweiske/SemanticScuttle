@@ -129,9 +129,9 @@ class BookmarkTest extends TestBase
      $bs = $this->bs;
 
      $bs->addBookmark("http://site1.com", "title", "éèüaàê", "status", array('tag1'), null, false, false, 1);
-     $bookmarks =& $bs->getBookmarks(0, NULL, NULL, NULL, $terms = "eeaae"); //void
+     $bookmarks = $bs->getBookmarks(0, NULL, NULL, NULL, $terms = "eeaae"); //void
      $this->assertEquals(0, $bookmarks['total']);
-     $bookmarks =& $bs->getBookmarks(0, NULL, NULL, NULL, $terms = "eeuaae");
+     $bookmarks = $bs->getBookmarks(0, NULL, NULL, NULL, $terms = "eeuaae");
      $this->assertEquals(1, $bookmarks['total']);
      }*/
 

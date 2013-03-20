@@ -62,7 +62,7 @@ if ($user) {
             $templateservice->loadTemplate('error.404.tpl', $tplVars);
             exit();
         } else {
-            $userid =& $userinfo->getId();
+            $userid = $userinfo->getId();
         }
     }
 }
@@ -73,7 +73,7 @@ $tplVars['loadjs'] = true;
 if ($user) {
     $tplVars['user'] = $user;
     $tplVars['userid'] = $userid;
-    $tplVars['userinfo'] =& $userinfo;
+    $tplVars['userinfo'] = $userinfo;
 
     // Pagination
     $perpage = getPerPageCount($currentUser);
@@ -91,12 +91,12 @@ if ($user) {
     $tplVars['start'] = $start;
     $tplVars['bookmarkCount'] = $start + 1;
     
-    $bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, $userid, NULL, NULL, getSortOrder(), true);
+    $bookmarks = $bookmarkservice->getBookmarks($start, $perpage, $userid, NULL, NULL, getSortOrder(), true);
 
     $tplVars['sidebar_blocks'] = array('watchlist');
     $tplVars['watched'] = true;
     $tplVars['total'] = $bookmarks['total'];
-    $tplVars['bookmarks'] =& $bookmarks['bookmarks'];
+    $tplVars['bookmarks'] = $bookmarks['bookmarks'];
     $tplVars['cat_url'] = createURL('tags', '%2$s');
     $tplVars['nav_url'] = createURL('watchlist', '%s/%s%s');
 

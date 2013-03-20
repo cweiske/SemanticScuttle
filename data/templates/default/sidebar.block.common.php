@@ -1,7 +1,7 @@
 <?php
 $b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
-$commonTags =& $b2tservice->getRelatedTagsByHash($hash);
-$commonTags =& $b2tservice->tagCloud($commonTags, 5, 90, 225, 'alphabet_asc');
+$commonTags = $b2tservice->getRelatedTagsByHash($hash);
+$commonTags = $b2tservice->tagCloud($commonTags, 5, 90, 225, 'alphabet_asc');
 
 if ($commonTags && count($commonTags) > 0) {
 	?>

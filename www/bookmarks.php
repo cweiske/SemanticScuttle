@@ -100,7 +100,7 @@ if ($user) {
 			$templateservice->loadTemplate('error.404.tpl', $tplVars);
 			exit();
 		} else {
-			$userid =& $userinfo['uId'];
+			$userid = $userinfo['uId'];
 		}
 	}
 	$pagetitle .= ': '. $user;
@@ -173,7 +173,7 @@ if ($userservice->isLoggedOn() && POST_SUBMITTED != '') {
 if (GET_ACTION == "add") {
 	// If the bookmark exists already, edit the original
 	if ($bookmarkservice->bookmarkExists(stripslashes(GET_ADDRESS), $currentUserID)) {		
-		$bookmark =& $bookmarkservice->getBookmarks(0, NULL, $currentUserID, NULL, NULL, NULL, NULL, NULL, NULL, $bookmarkservice->getHash(stripslashes(GET_ADDRESS)));
+		$bookmark = $bookmarkservice->getBookmarks(0, NULL, $currentUserID, NULL, NULL, NULL, NULL, NULL, NULL, $bookmarkservice->getHash(stripslashes(GET_ADDRESS)));
 		$popup = (GET_POPUP!='') ? '?popup=1' : '';
 		header('Location: '. createURL('edit', $bookmark['bookmarks'][0]['bId'] . $popup));
 		exit();
@@ -250,7 +250,7 @@ if ($templatename == 'editbookmark.tpl') {
 	//$tplVars['sidebar_blocks'][] = 'popular';
 
 	$tplVars['userid'] = $userid;
-	$tplVars['userinfo'] =& $userinfo;
+	$tplVars['userinfo'] = $userinfo;
 	$tplVars['user'] = $user;
 	$tplVars['range'] = 'user';
 
@@ -296,9 +296,9 @@ if ($templatename == 'editbookmark.tpl') {
 	$tplVars['start'] = $start;
 	$tplVars['bookmarkCount'] = $start + 1;
 
-	$bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, $userid, $cat, null, getSortOrder());
+	$bookmarks = $bookmarkservice->getBookmarks($start, $perpage, $userid, $cat, null, getSortOrder());
 	$tplVars['total'] = $bookmarks['total'];
-	$tplVars['bookmarks'] =& $bookmarks['bookmarks'];
+	$tplVars['bookmarks'] = $bookmarks['bookmarks'];
 	$tplVars['cat_url'] = createURL('bookmarks', '%s/%s');
 	$tplVars['nav_url'] = createURL('bookmarks', '%s/%s%s');
 	if ($userservice->isLoggedOn() && $user == $currentUsername) {

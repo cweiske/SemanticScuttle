@@ -10,7 +10,7 @@ if ($logged_on_userid === false) {
     $logged_on_userid = NULL;
 }
 $recentTags = $b2tservice->getPopularTags($userid, $popCount, $logged_on_userid, $GLOBALS['defaultRecentDays']);
-$recentTags =& $b2tservice->tagCloud($recentTags, 5, 90, 225, 'alphabet_asc'); 
+$recentTags = $b2tservice->tagCloud($recentTags, 5, 90, 225, 'alphabet_asc');
 
 if ($recentTags && count($recentTags) > 0) {
 ?>

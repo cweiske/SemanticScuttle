@@ -20,7 +20,7 @@ else
     $tag = NULL;
 
 // Get the posts relevant to the passed-in variables.
-$bookmarks =& $bookmarkservice->getBookmarks(0, NULL, NULL, $tag);
+$bookmarks = $bookmarkservice->getBookmarks(0, NULL, NULL, $tag);
 
 // Set up the XML file and output all the posts.
 echo '<?xml version="1.0" standalone="yes" ?'.">\r\n";

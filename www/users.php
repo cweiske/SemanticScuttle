@@ -49,7 +49,7 @@ $tplVars['loadjs'] = true;
 $tplVars['sidebar_blocks'] = array('recent', 'popular');
 $tplVars['subtitle'] = filter($pagetitle);
 
-$tplVars['users'] =& $userservice->getUsers();
+$tplVars['users'] = $userservice->getUsers();
 //$tplVars['cat_url'] = createURL('tags', '%2$s');
 //$tplVars['nav_url'] = createURL('tags', '%2$s%3$s');
 

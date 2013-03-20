@@ -13,7 +13,7 @@ $b2tservice =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
 
 
 // Get the tags relevant to the passed-in variables.
-$tags =& $b2tservice->getTags($userservice->getCurrentUserId());
+$tags = $b2tservice->getTags($userservice->getCurrentUserId());
 
 // Set up the XML file and output all the tags.
 echo '<?xml version="1.0" standalone="yes" ?'.">\r\n";

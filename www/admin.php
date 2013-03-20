@@ -70,7 +70,7 @@ if ($action
 			}
 			break;
 		case 'checkUrl' :
-			$bookmarks =& $bookmarkservice->getBookmarks(0, NULL, NULL, NULL, NULL, getSortOrder());
+			$bookmarks = $bookmarkservice->getBookmarks(0, NULL, NULL, NULL, NULL, getSortOrder());
 			foreach($bookmarks['bookmarks'] as $bookmark) {
 				if(!checkUrl($bookmark['bAddress'])) {
 					$tplVars['error'].= T_('Problem with ').$bookmark['bAddress'].' ('. $bookmark['username'] .')<br/>';  
@@ -83,13 +83,13 @@ if ($action
 }
 
 $templatename = 'admin.tpl';
-$users =& $userservice->getObjectUsers();
+$users = $userservice->getObjectUsers();
 
 if ( !is_array($users) ) {
 	$users = array();
 }
 
-$tplVars['users'] =& $users;
+$tplVars['users'] = $users;
 
 $templateservice->loadTemplate($templatename, $tplVars);
 ?>

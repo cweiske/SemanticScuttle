@@ -108,7 +108,7 @@ if (!($row = $bookmarkservice->getBookmark(intval($bookmark), true))) {
     }
 
     $tplVars['popup'] = (GET_POPUP) ? GET_POPUP : null;
-    $tplVars['row'] =& $row;
+    $tplVars['row'] = $row;
     $tplVars['formaction']  = createURL('edit', $bookmark);
     $tplVars['btnsubmit'] = T_('Save Changes');
     $tplVars['showdelete'] = true;

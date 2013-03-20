@@ -55,9 +55,9 @@ if (intval(GET_PAGE) > 1) {
     $start = 0;
 }
 
-if ($bookmark =& $bookmarkservice->getBookmarkByHash($hash)) {
+if ($bookmark = $bookmarkservice->getBookmarkByHash($hash)) {
     // Template variables
-    $bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, NULL, NULL, NULL, getSortOrder(), NULL, NULL, NULL, $hash);
+    $bookmarks = $bookmarkservice->getBookmarks($start, $perpage, NULL, NULL, NULL, getSortOrder(), NULL, NULL, NULL, $hash);
     $tplVars['pagetitle'] = T_('History') .': '. $bookmark['bAddress'];
     $tplVars['subtitle'] = sprintf(T_('History for %s'), $bookmark['bAddress']);
     $tplVars['loadjs'] = true;
@@ -65,7 +65,7 @@ if ($bookmark =& $bookmarkservice->getBookmarkByHash($hash)) {
     $tplVars['start'] = $start;
     $tplVars['bookmarkCount'] = $start + 1;
     $tplVars['total'] = $bookmarks['total'];
-    $tplVars['bookmarks'] =& $bookmarks['bookmarks'];
+    $tplVars['bookmarks'] = $bookmarks['bookmarks'];
     $tplVars['hash'] = $hash;
     $tplVars['popCount'] = 50;
     $tplVars['sidebar_blocks'] = array('common');

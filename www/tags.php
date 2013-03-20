@@ -109,9 +109,9 @@ $tplVars['currenttag'] = $cat;
 $tplVars['sidebar_blocks'] = array('linked', 'related', 'menu2');//array('linked', 'related', 'popular');
 $tplVars['subtitlehtml'] = $pagetitle;
 $tplVars['bookmarkCount'] = $start + 1;
-$bookmarks =& $bookmarkservice->getBookmarks($start, $perpage, NULL, $cat, NULL, getSortOrder());
+$bookmarks = $bookmarkservice->getBookmarks($start, $perpage, NULL, $cat, NULL, getSortOrder());
 $tplVars['total'] = $bookmarks['total'];
-$tplVars['bookmarks'] =& $bookmarks['bookmarks'];
+$tplVars['bookmarks'] = $bookmarks['bookmarks'];
 $tplVars['cat_url'] = createURL('bookmarks', '%1$s/%2$s');
 $tplVars['nav_url'] = createURL('tags', '%2$s%3$s');
 

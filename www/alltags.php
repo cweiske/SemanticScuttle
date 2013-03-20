@@ -63,8 +63,8 @@ if (isset($user) && $user != '') {
 	$userid = NULL;
 }
 
-$tags =& $b2tservice->getTags($userid);
-$tplVars['tags'] =& $b2tservice->tagCloud($tags, 5, 90, 225, getSortOrder());
+$tags = $b2tservice->getTags($userid);
+$tplVars['tags'] = $b2tservice->tagCloud($tags, 5, 90, 225, getSortOrder());
 $tplVars['user'] = $user;
 
 if (isset($userid)) {

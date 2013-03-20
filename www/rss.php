@@ -82,7 +82,7 @@ if ($user && $user != 'all') {
         $userid = intval($user);
     } else {
         if ($userinfo = $userservice->getUserByUsername($user)) {
-            $userid =& $userinfo[$userservice->getFieldName('primary')];
+            $userid = $userinfo[$userservice->getFieldName('primary')];
             /* if user is not logged in and has valid privateKey */
             if (!$userservice->isLoggedOn()) {
                 if ($privateKey != null) {

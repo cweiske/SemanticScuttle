@@ -56,7 +56,7 @@ if ($user) {
 			$templateservice->loadTemplate('error.404.tpl', $tplVars);
 			exit();
 		} else {
-			$userid =& $userinfo->getId();
+			$userid = $userinfo->getId();
 		}
 	}
 } else {

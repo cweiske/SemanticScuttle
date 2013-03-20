@@ -25,13 +25,13 @@ $b2tservice = SemanticScuttle_Service_Factory :: get('Bookmark2Tag');
 $logged_on_userid = $userservice->getCurrentUserId();
 
 //tags from current user
-$userPopularTags        =& $b2tservice->getPopularTags($logged_on_userid, 25, $logged_on_userid);
-$userPopularTagsCloud   =& $b2tservice->tagCloud($userPopularTags, 5, 90, 175);
+$userPopularTags        = $b2tservice->getPopularTags($logged_on_userid, 25, $logged_on_userid);
+$userPopularTagsCloud   = $b2tservice->tagCloud($userPopularTags, 5, 90, 175);
 $userPopularTagsCount   = count($userPopularTags);
 
 //tags from all users
-$allPopularTags        =& $b2tservice->getPopularTags(null, 5, $logged_on_userid);
-$allPopularTagsCloud   =& $b2tservice->tagCloud($allPopularTags, 5, 90, 175);
+$allPopularTags        = $b2tservice->getPopularTags(null, 5, $logged_on_userid);
+$allPopularTagsCloud   = $b2tservice->tagCloud($allPopularTags, 5, 90, 175);
 $allPopularTagsCount   = count($allPopularTags);
 
 

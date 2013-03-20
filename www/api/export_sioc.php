@@ -61,7 +61,7 @@ No page for usergroup (users/admin) for the moment
 
 <?php 
 //bookmarks are described using Annotea ontology
-$bookmarks =& $bookmarkservice->getBookmarks(0, NULL, NULL, NULL);
+$bookmarks = $bookmarkservice->getBookmarks(0, NULL, NULL, NULL);
 ?>
 
 <?php foreach($bookmarks['bookmarks'] as $bookmark): ?>
