@@ -10,27 +10,15 @@
   <property file="html.properties" />
 
   <property name="version-m"  value="0.98" />
-  <property name="version"    value="0.98.4" />
+  <property name="version"    value="0.98.5" />
   <property name="stability"  value="beta" />
   <property name="releasenotes" value="
-- Fix bug #3439729: URLs were escaped too often in bookmark list
-- Fix bug: Subtitle was not escaped
-- Fix bug #3388219: Incorrect URL when cancelling tag2tag-actions
-- Fix bug #3393951: Logo images missing on bookmark page
-- Fix bug #3399815: PHP error in opensearch API in 0.98.3
-- Fix bug #3407728: Can't delete users from admin page
-- Fix bug #3431742: open_basedir problems with /etc/ config files
-- Fix bug #3436624: Wrong URL for Delicious API when importing
-- Fix bug #3463481: RSS feed show warnings in feedvalidator.org
-- Fix bug #3384416: Use URL with protocol in bookmarklet
-- Fix bug: Invalid HTML when website thumbnails are activated
-- Fix bug #3413459: Thumbnails not in one line
-- Fix bug #3468293: Delicious import does not preserve private links
-- Fix bug #3396727: Title of http://lesscss.org/ not loaded
-- Fix bug #3111254: getIdFromUser() always returns an integer now (part 2)
-- Implement request #3403609: fr_CA translation update
-- Implement patch #3476011: PostgreSQL tables can not be initialized
-  (Frédéric Fauberteau [triaxx])
+- Fix bug #109: preserve privacy setting from Delicious export files
+  (Thanks to David Glenck)
+- Fix bug #110: Document solution for &quot;searching slashes&quot;
+- Fix bug #111: Comments in config.php mention *.inc.php files
+  (José María Mateos [rinze])
+- Fix bug: Do not use eregi functions anymore
 " />
   <property name="zipfile"     value="${phing.project.name}-${version}.zip" />
   <property name="pkgfile"     value="${phing.project.name}-${version}.tgz" />
@@ -151,6 +139,15 @@
      <replacement path="tests/prepare.php"
       type="pear-config" from="@data_dir@" to="data_dir"
       />
+
+     <changelog version="0.98.5" date="2013-03-20" license="GPL">
+- Fix bug #109: preserve privacy setting from Delicious export files
+  (Thanks to David Glenck)
+- Fix bug #110: Document solution for "searching slashes"
+- Fix bug #111: Comments in config.php mention *.inc.php files
+  (José María Mateos [rinze])
+- Fix bug: Do not use eregi functions anymore
+     </changelog>
 
      <changelog version="0.98.4" date="2012-01-21" license="GPL">
 - Fix bug #3439729: URLs were escaped too often in bookmark list

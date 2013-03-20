@@ -3,6 +3,16 @@ ChangeLog for SemantiScuttle
 
 .. contents::
 
+0.98.5 - 2013-03-20
+-------------------
+- Fix bug #109: preserve privacy setting from Delicious export files
+  (Thanks to David Glenck)
+- Fix bug #110: Document solution for "searching slashes"
+- Fix bug #111: Comments in config.php mention \*.inc.php files
+  (José María Mateos [rinze])
+- Fix bug: Do not use eregi functions anymore
+
+
 0.98.4 - 2012-01-21
 -------------------
 - Fix bug #3439729: URLs were escaped too often in bookmark list
