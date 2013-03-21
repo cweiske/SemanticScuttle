@@ -308,8 +308,11 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
     /*
      * Return values associated with a key.
      * $tagExcepted allows to hide a value.
+     *
+     * @return array Array with tag names
      */
-    function _getSynonymValues($tag1, $uId, $tagExcepted = NULL) {
+    protected function _getSynonymValues($tag1, $uId, $tagExcepted = NULL)
+    {
         $tagservice =SemanticScuttle_Service_Factory::get('Tag');
         $tag1 = $tagservice->normalize($tag1);
         $tagExcepted = $tagservice->normalize($tagExcepted);
@@ -317,14 +320,19 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
         if($tag1 == '') return false;
 
         $query = "SELECT DISTINCT tag2 as 'tag'";
-        $query.= " FROM `". $this->getTableName() ."`";
-        $query.= " WHERE relationType = '='";
-        $query.= " AND tag1 = '" . $this->db->sql_escape($tag1) . "'";
-        $query.= " AND uId = " . intval($uId);
-        $query.= $tagExcepted!=''?" AND tag2!='" . $this->db->sql_escape($tagExcepted) . "'" : '';
+        $query .= " FROM `". $this->getTableName() ."`";
+        $query .= " WHERE relationType = '='";
+        $query .= " AND tag1 = '" . $this->db->sql_escape($tag1) . "'";
+        $query .= " AND uId = " . intval($uId);
+        $query .= $tagExcepted != ''
+            ? " AND tag2!='" . $this->db->sql_escape($tagExcepted) . "'"
+            : '';
 
         if (! ($dbresult = $this->db->sql_query($query)) ){
-            message_die(GENERAL_ERROR, 'Could not get related tags', '', __LINE__, __FILE__, $query, $this->db);
+            message_die(
+                GENERAL_ERROR, 'Could not get related tags',
+                '', __LINE__, __FILE__, $query, $this->db
+            );
             return false;
         }
 
