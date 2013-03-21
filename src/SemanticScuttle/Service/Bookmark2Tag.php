@@ -92,16 +92,14 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
             }
         }
 
-        $tagservice =SemanticScuttle_Service_Factory::get('Tag');
+        $tagservice = SemanticScuttle_Service_Factory::get('Tag');
         $tags = $tagservice->normalize($tags);
-
 
         $tags_count = is_array($tags)?count($tags):0;
         if (is_array($tags)) {
-            foreach($tags as $i => $tag) {
+            foreach ($tags as $i => $tag) {
                 $tags[$i] = trim(utf8_strtolower($tags[$i]));
                 if ($fromApi) {
-                    include_once 'SemanticScuttle/functions.php';
                     $tags[$i] = convertTag($tags[$i], 'in');
                 }
             }
@@ -655,7 +653,7 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
         // Attach new tags
         $new = $tagservice->normalize($new);
 
-        foreach(array_keys($bookmarks) as $key) {
+        foreach (array_keys($bookmarks) as $key) {
             $row = $bookmarks[$key];
             $this->attachTags($row['bId'], $new, $fromApi, NULL, false);
         }
