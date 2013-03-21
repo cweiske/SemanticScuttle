@@ -183,7 +183,7 @@ class SemanticScuttle_Service_TagCache extends SemanticScuttle_DbService
                 $values = $this->_getSynonymValues($tag2, $uId);
                 $this->removeSynonymGroup($tag2, $uId);
                 foreach($values as $value) {
-                    $this->addSynonym($tag1, $value['tag'], $uId);
+                    $this->addSynonym($tag1, $value, $uId);
                 }
                 $this->addSynonym($tag1, $tag2, $uId);
                 break;

@@ -270,12 +270,14 @@ class Tag2TagTest extends TestBase
         $tts = $this->tts;
         $linkedTags = $tts->getLinkedTags('a', '>', $uid);
         $this->assertEquals(2, count($linkedTags));
-        $this->assertSame('b', $linkedTags[0]['tag']);
-        $this->assertSame('d', $linkedTags[1]['tag']);
+        $this->assertInternalType('string', $linkedTags[0]);
+        $this->assertSame('b', $linkedTags[0]);
+        $this->assertInternalType('string', $linkedTags[1]);
+        $this->assertSame('d', $linkedTags[1]);
 
         $linkedTags = $tts->getLinkedTags('b', '>', $uid);
         $this->assertEquals(1, count($linkedTags));
-        $this->assertSame('c', $linkedTags[0]['tag']);
+        $this->assertSame('c', $linkedTags[0]);
         $this->assertTrue($tts->existsLinkedTags('d', 'e', '>', $uid));
         $this->assertFalse($tts->existsLinkedTags('e', 'd', '>', $uid));
     }
