@@ -92,7 +92,7 @@ class TagTest extends TestBase
         $tags = $this->ts->normalize(
             array('foo', '', 'bar', 'baz')
         );
-        $this->assertEquals(array('foo', 'bar', 'baz'), $tags);
+        $this->assertEquals(array(0 => 'foo', 2 => 'bar', 3 => 'baz'), $tags);
     }
 
 }
