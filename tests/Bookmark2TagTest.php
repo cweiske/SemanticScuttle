@@ -89,7 +89,15 @@ class Bookmark2TagTest extends TestBase
         );
     }
 
-
+    public function testAttachTagsWithSomeEmptyTags()
+    {
+        $bid = $this->addBookmark(null, null, 0, array());
+        $this->b2ts->attachTags($bid, array('foo', '', 'bar', 'baz'));
+        $this->assertEquals(
+            array('foo', 'bar', 'baz'),
+            $this->b2ts->getTagsForBookmark($bid)
+        );
+    }
 
     /**
      * Test getTagsForBookmark() when the bookmark has no tags

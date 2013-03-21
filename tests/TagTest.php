@@ -87,5 +87,13 @@ class TagTest extends TestBase
 
     }
 
+    public function testNormalizeEmptyValues()
+    {
+        $tags = $this->ts->normalize(
+            array('foo', '', 'bar', 'baz')
+        );
+        $this->assertEquals(array('foo', 'bar', 'baz'), $tags);
+    }
+
 }
 ?>
