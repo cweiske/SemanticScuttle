@@ -626,12 +626,13 @@ class SemanticScuttle_Service_Bookmark2Tag extends SemanticScuttle_DbService
             return false;
         }
 
+        $output = false;
         if ($row = $this->db->sql_fetchrow($dbresult)) {
             if ($row['tCount'] > 0) {
                 $output = true;
             }
         }
-        $output = false;
+
         $this->db->sql_freeresult($dbresult);
         return $output;
     }

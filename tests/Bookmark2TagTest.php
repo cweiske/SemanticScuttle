@@ -88,7 +88,7 @@ class Bookmark2TagTest extends TestBase
             $this->b2ts->getTagsForBookmark($bid, true)
         );
     }
-    
+
     public function testAttachTagsWithEmptyStringAddsSystemUnfiled()
     {
         $originalDisplayErros = ini_get('display_errors');
@@ -582,7 +582,7 @@ class Bookmark2TagTest extends TestBase
         $this->addBookmark($user1, null, 0, array('usertag'));
 
         $GLOBALS['admin_users'] = array('admin1', 'admin2');
-        
+
         $arTags = $this->b2ts->getAdminTags(4);
         $this->assertEquals(3, count($arTags));
         $this->assertContains(array('tag' => 'admintag', 'bCount' => '2'), $arTags);
@@ -600,7 +600,7 @@ class Bookmark2TagTest extends TestBase
         $this->addBookmark($admin1, null, 0, array('tester', 'testos'));
 
         $GLOBALS['admin_users'] = array('admin1');
-        
+
         $arTags = $this->b2ts->getAdminTags(4, null, null, 'test');
         $this->assertEquals(2, count($arTags));
         $this->assertContains(array('tag' => 'tester', 'bCount' => '1'), $arTags);
@@ -674,6 +674,15 @@ class Bookmark2TagTest extends TestBase
         $this->assertContains(array('tag' => 'usertag', 'bCount' => '1'), $arTags);
         $this->assertContains(array('tag' => 'usertag1', 'bCount' => '1'), $arTags);
         $this->assertContains(array('tag' => 'usable', 'bCount' => '2'), $arTags);
+    }
+
+    public function testHasTag()
+    {
+        $bid = $this->addBookmark(null, null, 0, array('foo'));
+
+        $this->assertTrue($this->b2ts->hasTag($bid, 'foo'));
+        $this->assertFalse($this->b2ts->hasTag($bid, 'bar'));
+
     }
 }
 ?>
