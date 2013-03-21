@@ -35,6 +35,8 @@ class Tag2TagTest extends TestBase
     protected function setUp()
     {
         $this->us =SemanticScuttle_Service_Factory::get('User');
+        $this->us->deleteAll();
+        $this->addUser();
         $this->bs =SemanticScuttle_Service_Factory::get('Bookmark');
         $this->bs->deleteAll();
         $this->b2ts =SemanticScuttle_Service_Factory::get('Bookmark2Tag');
@@ -318,20 +320,20 @@ class Tag2TagTest extends TestBase
         $this->assertSame('B1', $results['bookmarks'][0]['bTitle']);
 
         //advanced queries
-        $results = $bs->getBookmarks(0, NULL, 1, 'aa');
+        $results = $bs->getBookmarks(0, NULL, 1, 'aa', null, 'title_asc');
         $this->assertSame(2, intval($results['total']));
         $this->assertSame('B1', $results['bookmarks'][0]['bTitle']);
         $this->assertSame('B2', $results['bookmarks'][1]['bTitle']);
 
-        $results = $bs->getBookmarks(0, NULL, 1, 'ee');
+        $results = $bs->getBookmarks(0, NULL, 1, 'ee', null, 'title_asc');
         $this->assertSame(2, intval($results['total']));
-        $this->assertSame('B2', $results['bookmarks'][1]['bTitle']);
-        $this->assertSame('B3', $results['bookmarks'][0]['bTitle']);
+        $this->assertSame('B2', $results['bookmarks'][0]['bTitle']);
+        $this->assertSame('B3', $results['bookmarks'][1]['bTitle']);
 
-        $results = $bs->getBookmarks(0, NULL, 1, 'ii');
+        $results = $bs->getBookmarks(0, NULL, 1, 'ii', null, 'title_asc');
         $this->assertSame(2, intval($results['total']));
-        $this->assertSame('B2', $results['bookmarks'][1]['bTitle']);
-        $this->assertSame('B3', $results['bookmarks'][0]['bTitle']);
+        $this->assertSame('B2', $results['bookmarks'][0]['bTitle']);
+        $this->assertSame('B3', $results['bookmarks'][1]['bTitle']);
 
         $results = $bs->getBookmarks(0, NULL, 1, 'aa+ee');
 
