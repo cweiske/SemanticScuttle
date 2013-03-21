@@ -120,14 +120,14 @@ function startElement($parser, $name, $attrs) {
 			}
 		}
 	}
-	if (!isset($depth[$parser])) {
-		$depth[$parser] = 0;
+	if (!isset($depth[(int)$parser])) {
+		$depth[(int)$parser] = 0;
 	}
-	$depth[$parser]++;
+	$depth[(int)$parser]++;
 }
 
 function endElement($parser, $name) {
 	global $depth;
-	$depth[$parser]--;
+	$depth[(int)$parser]--;
 }
 ?>
