@@ -1,5 +1,10 @@
 Running unit tests
 ==================
+The tests are dependent on the pear packages HTTP_Request2 and Stream_Var.
+
+Install them with: ::
+  $ pear install HTTP_Request2
+  $ pear install Stream_Var
 
 Go to the SemanticScuttle ``tests`` directory and run ``phpunit``::
 
