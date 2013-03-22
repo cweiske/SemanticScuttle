@@ -21,11 +21,13 @@ Features
 - `SSL Client certificates`__
 - Themes__
 - `Configuration files`__
+- Tools__
 
 __ authentication.html
 __ ssl-client-certificates.html
 __ themes.html
 __ configuration.html
+__ tools.html
 
 
 
