@@ -17,15 +17,17 @@ Standard installation instructions
 If you've downloaded a ``SemanticScuttle-x.y.z.zip`` file from SourceForge,
 then this instructions are for you.
 
-1. Create a new MySQL database
+1. Create a new MySQL/PostgreSQL database
 2. Import ``data/tables.sql`` into that database, i.e.
    run ::
 
-   $ mysql -umyusername semanticscuttle < data/tables.sql
+   $ mysql -umyusername -p mydatabasename < data/tables.sql
 
-   on the shell ("semanticscuttle" being the database name)
+   on the shell.
 
-   If you run PostgreSQL, use ``data/tables.postgresql.sql``.
+   If you run PostgreSQL, use ``tables-postgresql.sql``::
+
+   $ psql mydatabasename myusername < data/tables-postgresql.sql
 
 3. Copy ``data/config.php.dist`` to ``data/config.php`` and modify it as
    necessary. See configuration_ for more information.
