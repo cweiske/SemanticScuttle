@@ -69,6 +69,6 @@ define('PAGE_WATCHLIST', "watchlist");
 // installations on the same host server
 define('INSTALLATION_ID', md5($GLOBALS['dbname'].$GLOBALS['tableprefix']));
 
-//currently not needed
-//$_SERVER['PATH_INFO'] = SemanticScuttle_Environment::getServerPathInfo();
+//fix PATH_INFO on certain hosts
+$_SERVER['PATH_INFO'] = SemanticScuttle_Environment::getServerPathInfo();
 ?>
