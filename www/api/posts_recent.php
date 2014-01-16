@@ -4,6 +4,9 @@
  * optionally filtered by tag and/or number of posts
  * (default 15, max 100, just like del.icio.us).
  *
+ * Scuttle behavior:
+ * - returns privacy status of each bookmark.
+ *
  * SemanticScuttle - your social bookmark manager.
  *
  * PHP version 5.
@@ -75,7 +78,7 @@ foreach ($bookmarks['bookmarks'] as $row) {
         $taglist = 'system:unfiled';
     }
 
-    echo "\t<post href=\"". filter($row['bAddress'], 'xml') .'" description="'. filter($row['bTitle'], 'xml') .'" '. $description .'hash="'. $row['bHash'] .'" tag="'. filter($taglist, 'xml') .'" time="'. gmdate('Y-m-d\TH:i:s\Z', strtotime($row['bDatetime'])) ."\" />\r\n";
+    echo "\t<post href=\"". filter($row['bAddress'], 'xml') .'" description="'. filter($row['bTitle'], 'xml') .'" '. $description .'hash="'. $row['bHash'] .'" tag="'. filter($taglist, 'xml') .'" time="'. gmdate('Y-m-d\TH:i:s\Z', strtotime($row['bDatetime'])) . '" status="'. filter($row['bStatus'], 'xml') ."\" />\r\n";
 }
 
 echo '</posts>';

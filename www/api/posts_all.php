@@ -4,6 +4,9 @@
 // del.icio.us behavior:
 // - doesn't include the filtered tag as an attribute on the root element (we do)
 
+// Scuttle behavior:
+// - returns privacy status of each bookmark.
+
 // Force HTTP authentication first!
 $httpContentType = 'text/xml';
 require_once 'httpauth.inc.php';
@@ -40,7 +43,7 @@ foreach($bookmarks['bookmarks'] as $row) {
         $taglist = 'system:unfiled';
     }
 
-    echo "\t<post href=\"". filter($row['bAddress'], 'xml') .'" description="'. filter($row['bTitle'], 'xml') .'" '. $description .'hash="'. md5($row['bAddress']) .'" tag="'. filter($taglist, 'xml') .'" time="'. gmdate('Y-m-d\TH:i:s\Z', strtotime($row['bDatetime'])) ."\" />\r\n";
+    echo "\t<post href=\"". filter($row['bAddress'], 'xml') .'" description="'. filter($row['bTitle'], 'xml') .'" '. $description .'hash="'. md5($row['bAddress']) .'" tag="'. filter($taglist, 'xml') .'" time="'. gmdate('Y-m-d\TH:i:s\Z', strtotime($row['bDatetime'])) . '" status="'. filter($row['bStatus'], 'xml') ."\" />\r\n";
 }
 
 echo '</posts>';

@@ -10,6 +10,7 @@
  *
  * Scuttle behavior:
  * - Uses today, instead of the last bookmarked date, if no date is specified
+ * - returns privacy status of each bookmark.
  *
  * SemanticScuttle - your social bookmark manager.
  *
@@ -75,7 +76,7 @@ foreach ($bookmarks['bookmarks'] as $row) {
         $taglist = 'system:unfiled';
     }
 
-    echo "\t<post href=\"". filter($row['bAddress'], 'xml') .'" description="'. filter($row['bTitle'], 'xml') .'" '. $description .'hash="'. $row['bHash'] .'" others="'. $bookmarkservice->countOthers($row['bAddress']) .'" tag="'. filter($taglist, 'xml') .'" time="'. gmdate('Y-m-d\TH:i:s\Z', strtotime($row['bDatetime'])) ."\" />\r\n";
+    echo "\t<post href=\"". filter($row['bAddress'], 'xml') .'" description="'. filter($row['bTitle'], 'xml') .'" '. $description .'hash="'. $row['bHash'] .'" others="'. $bookmarkservice->countOthers($row['bAddress']) .'" tag="'. filter($taglist, 'xml') .'" time="'. gmdate('Y-m-d\TH:i:s\Z', strtotime($row['bDatetime'])) . '" status="'. filter($row['bStatus'], 'xml') ."\" />\r\n";
 }
 
 echo '</posts>';
