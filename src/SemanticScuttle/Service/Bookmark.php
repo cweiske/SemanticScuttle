@@ -687,6 +687,7 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
      * @param string  $terms     Search terms separated by spaces
      * @param string  $sortOrder One of the following values:
      *                           "date_asc", "date_desc",
+     *                           "modified_asc", "modified_desc"
      *                           "title_desc", "title_asc",
      *                           "url_desc", "url_asc",
      *                           "voting_asc", "voting_desc"
@@ -813,6 +814,12 @@ class SemanticScuttle_Service_Bookmark extends SemanticScuttle_DbService
             break;
         case 'url_asc':
             $query_5 .= ' ORDER BY B.bAddress ASC ';
+            break;
+        case 'modified_desc':
+            $query_5 .= ' ORDER BY B.bModified DESC ';
+            break;
+        case 'modified_asc':
+            $query_5 .= ' ORDER BY B.bModified ASC ';
             break;
         default:
             $query_5 .= ' ORDER BY B.' . $GLOBALS['dateOrderField'] . ' DESC ';
