@@ -18,8 +18,7 @@ __ https://github.com/ilesinge/scuttloid
 
 Scuttle for Android
 ===================
-Scuttle for Android is a client for the Scuttle bookmarking software
-(http://scuttle.org/).
+Scuttle for Android is a client for the Scuttle bookmarking software.
 Enter your Scuttle login information and you will presented with a list of your
 bookmarks.
 Touching a bookmark will load that web page in the browser.
