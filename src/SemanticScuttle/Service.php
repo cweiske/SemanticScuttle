@@ -51,7 +51,7 @@ class SemanticScuttle_Service
     {
 		static $instance;
 		if (!isset($instance)) {
-            $instance = new self($db);
+            $instance = new static($db);
         }
 		return $instance;
 	}

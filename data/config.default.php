@@ -542,35 +542,27 @@ $defaults['privacy'] = 0;
  */
 
 /**
- * Enable bookmark website thumbnails.
+ * Which thumbnail service type to use.
  *
- * According to artviper.net license, buy a license if you
- * gain profit with your pages.
- *
- * @var  boolean
- * @link http://www.websitethumbnail.de/
- */
-$enableWebsiteThumbnails = false;
-
-/**
- * User ID from websitethumbnail.de
- *
- * You need to register on
- *  http://www.artviper.net/registerapi.php
- * in order to use thumbnails on your domain
- *
- * @var  string
- * @link http://www.artviper.net/registerapi.php
- */
-$thumbnailsUserId = null;
-
-/**
- * API key.
- * Sent to you by artviper.net after registration.
+ * Currently supported:
+ * - null (no screenshots)
+ * - 'phancap', see http://cweiske.de/phancap.htm
  *
  * @var string
  */
-$thumbnailsKey = null;
+$thumbnailsType = null;
+
+/**
+ * Configuration for thumbnail service.
+ *
+ * Phancap requires an array with the following keys:
+ * - url: URL to phancap's get.php file
+ * - token: user name (if access protected)
+ * - secret: password for the user (if access protected)
+ *
+ * @var array
+ */
+$thumbnailsConfig = array();
 
 
 
