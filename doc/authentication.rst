@@ -211,3 +211,6 @@ Here we authenticate against an active directory server.
   );
   $authEmailSuffix = '@example.org';
 
+More LDAP options can be found in the `PEAR manual`__.
+
+__ http://pear.php.net/manual/en/package.authentication.auth.storage.ldap.php
