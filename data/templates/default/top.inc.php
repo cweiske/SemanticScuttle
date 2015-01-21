@@ -30,11 +30,25 @@ if (isset($rsschannels)) {
 <?php endif ?>
 
  </head>
- <body>
+<?php
+$bodystyle = '';
+if (isset($_GET['popup'])) {
+    if (isset($_GET['height'])) {
+        $bodystyle .= 'height:' . intval($_GET['height']) . 'px;';
+    }
+    if (isset($_GET['width'])) {
+        $bodystyle .= 'width:' . intval($_GET['width']) . 'px;';
+    }
+    if ($bodystyle != '') {
+        $bodystyle = ' style="' . $bodystyle . '"';
+    }
+}
+?>
+ <body<?php echo $bodystyle; ?>>
 
 <?php
 $headerstyle = '';
-if(isset($_GET['popup'])) {
+if (isset($_GET['popup'])) {
 	$headerstyle = ' class="popup"';
 }
 ?>

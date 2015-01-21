@@ -115,3 +115,38 @@ echo jsEscTitle(htmlspecialchars($link));
 }
 //]]>
 </script>
+
+
+<script type="text/javascript">
+function activateSocialApi(node) {
+    var baseurl = <?php echo json_encode(addProtocolToUrl(createURL())); ?>;
+    var socialApiData = {
+        // currently required
+        "name": <?php echo json_encode($GLOBALS['sitename']); ?>,
+        "iconURL":   baseurl + "themes/default/images/logo.png",
+        "icon32URL": baseurl + "themes/default/images/logo.png",
+        "icon64URL": baseurl + "themes/default/images/logo.png",
+
+        "markURL": "<?php echo addProtocolToUrl(createURL('bookmarks', $GLOBALS['user'])); ?>?action=add&amp;popup=1&amp;width=800&amp;height=470&amp;address=%{url}&amp;title=%{title}&amp;description=%{description}%{text}",
+        "markedIcon":   baseurl + "themes/default/images/logo.png",
+        "unmarkedIcon": baseurl + "themes/default/images/logo-empty.png",
+
+        // should be available for display purposes
+        "description": "Self-hosted bookmark manager",
+        "author": "Christian Weiske",
+        "homepageURL": "http://semanticscuttle.sf.net/",
+
+        // optional
+        "version": "0.0.3"
+    };
+
+    var event = new CustomEvent("ActivateSocialFeature");
+    node.setAttribute("data-service", JSON.stringify(socialApiData));
+    node.dispatchEvent(event);
+}
+</script>
+<p>
+  <button onclick="activateSocialApi(this)" title="activate semanticscuttle in firefox">
+    Add SemanticScuttle to Firefox
+  </button>
+</p>

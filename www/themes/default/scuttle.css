@@ -110,7 +110,8 @@ html > body h1 {
     padding-left: 75px;
 }
 html > body div#header.popup h1 {
-    background: url('images/logo_24.gif') no-repeat 10px;
+    background: url('images/logo.png') no-repeat 10px;
+    background-size: 24px;
     padding: 0.5em 0.5em 0.5em 50px;
 }
 /*html > body div#header #welcome {
