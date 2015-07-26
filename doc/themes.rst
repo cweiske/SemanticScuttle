@@ -51,7 +51,8 @@ Existing themes
 ===============
 
 * `Flat`__ by Roman Lehnhof. See the `introduction blog post`__
+* `sscuttlizr`__
 
 __ https://github.com/rlehnhof/flat
 __ http://lehnhof.net/2013/08/semantic-scuttle-new-flat-interface-theme-template/
-
+__ https://github.com/jonrandoem/sscuttlizr
