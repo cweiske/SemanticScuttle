@@ -29,6 +29,8 @@ then this instructions are for you.
 
    $ psql mydatabasename myusername < data/tables-postgresql.sql
 
+   You can also use a web interface like phpMyAdmin to import the file.
+
 3. Copy ``data/config.php.dist`` to ``data/config.php`` and modify it as
    necessary. See configuration_ for more information.
 4. Make the cache directory writable by your web server.
