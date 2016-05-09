@@ -778,4 +778,10 @@ $unittestUrl = null;
  */
 $allowUnittestMode = false;
 
+/**
+ * bookmark-bot email address mapping
+ * Input address as key, user email as target
+ */
+$botMailMap = array();
+
 ?>
